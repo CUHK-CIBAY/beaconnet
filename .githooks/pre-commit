@@ -1,0 +1,9 @@
+#!/bin/bash
+for i in $(ls -d */);
+do
+    pushd $i;
+    yarn run depcheck && \
+    yarn run format && \
+    yarn run lint;
+    popd;
+done

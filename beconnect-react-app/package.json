@@ -1,0 +1,64 @@
+{
+  "name": "reconnet-react-app",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "_eject": "react-scripts eject",
+    "build": "react-scripts build",
+    "depcheck": "depcheck",
+    "format": "yarn run format/js && yarn run format/properties && yarn run format/yaml",
+    "format/js": "prettier --write \"./**/*.{js,jsx,ts,tsx,css,json}\" --config ./.prettierrc",
+    "format/properties": "find . -name '*.properties' -print -exec sort -o {} {} \\;",
+    "format/yaml": "git ls-files '*.yml' '*.yaml' | xargs -t -I {} yq -i -S -Y . {}",
+    "lint": "eslint \"src/*.{js,jsx,ts,tsx}\"",
+    "start": "react-scripts start",
+    "test": "react-scripts test"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "dependencies": {
+    "@testing-library/jest-dom": "^5.14.1",
+    "@testing-library/react": "^13.0.0",
+    "@testing-library/user-event": "^13.2.1",
+    "@types/jest": "^27.0.1",
+    "@types/node": "^16.7.13",
+    "@types/react": "^18.0.0",
+    "@types/react-dom": "^18.0.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-scripts": "5.0.1",
+    "typescript": "^4.4.2"
+  },
+  "devDependencies": {
+    "@jest/globals": "^29.3.1",
+    "@typescript-eslint/eslint-plugin": "^5.48.0",
+    "@typescript-eslint/parser": "^5.48.0",
+    "depcheck": "^1.4.3",
+    "eslint": "^8.31.0",
+    "eslint-config-airbnb": "^19.0.4",
+    "eslint-config-react-app": "^7.0.1",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-jsx-a11y": "^6.6.1",
+    "eslint-plugin-react": "^7.31.11",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "prettier": "2.8.2",
+    "prettier-plugin-packagejson": "^2.3.0",
+    "prettier-plugin-sort-json": "^1.0.0"
+  }
+}

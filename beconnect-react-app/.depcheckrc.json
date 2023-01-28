@@ -1,0 +1,12 @@
+{
+  "ignores": [
+    "prettier-plugin-*",
+    "eslint-config-*",
+    "esling-plugin-*",
+    "@types/jest",
+    "@types/node",
+    "@testing-library/user-event",
+    "@testing-library/react",
+    "@jest/globals"
+  ]
+}
