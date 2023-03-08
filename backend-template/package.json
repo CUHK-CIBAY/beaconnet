@@ -9,7 +9,7 @@
     "format/js": "prettier --write \"./**/*.{js,ts,css,json}\" --config ./.prettierrc",
     "format/properties": "find . -name '*.properties' -print -exec sort -o {} {} \\;",
     "format/yaml": "git ls-files '*.yml' '*.yaml' | xargs -t -I {} yq -i -S -Y . {}",
-    "lint": "ls -d js-* | xargs -t -I {} eslint --ext .js,.tx {}",
+    "lint": "ls -d js-* | xargs -t -I {} eslint --ext .js,.ts {}",
     "test": "ls -d js-* | xargs -t -I {} jest {}"
   },
   "dependencies": {
