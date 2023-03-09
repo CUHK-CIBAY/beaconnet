@@ -1,0 +1,3 @@
+exports.Query = {
+    healthcheck: () => 'OK!',
+};

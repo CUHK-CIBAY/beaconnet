@@ -6,7 +6,7 @@
   "author": "sudoku",
   "main": "index.ts",
   "scripts": {
-    "dev": "nodemon index.ts"
+    "dev": "nodemon src/index.ts"
   },
   "dependencies": {
     "apollo-server": "^3.12.0",
