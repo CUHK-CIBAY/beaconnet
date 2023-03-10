@@ -1,0 +1,32 @@
+type User {
+  id: ID!
+  email: String!
+  "Use for login and identify, unique"
+  username: String!
+  "User custom name, can duplicate"
+  nickname: String
+  # bit: [Bit!]
+  "Hashed password"
+  password: String!
+  info: Info
+  following: [User!]
+  bits: [Bit]!
+}
+
+type Query {
+  "Get current User"
+  me: User
+  user: User
+  users: [User!]
+}
+
+enum Gender {
+  MALE
+  FEMALE
+  OTHER
+  HIDDEN
+}
+
+type Info {
+  gender: Gender
+}

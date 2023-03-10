@@ -1,0 +1,14 @@
+type Bit {
+  id: ID!
+  content: String!
+  "Date format in ISO8601"
+  createAt: String!
+  totalLike: Int
+  likeGivers: [User!]
+  # comment: ???
+}
+
+type Query {
+  bit: Bit
+  bits: [Bit!]
+}

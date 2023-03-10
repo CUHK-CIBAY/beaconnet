@@ -1,3 +1,9 @@
-exports.Query = {
-    healthcheck: () => 'OK!',
-};
+const healthcheck = () => 'OK';
+
+const resolvers = {
+    Query: {
+        healthcheck: () => 'OK'
+    }
+}
+
+module.exports = resolvers;
