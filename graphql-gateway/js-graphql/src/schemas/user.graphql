@@ -5,12 +5,11 @@ type User {
   username: String!
   "User custom name, can duplicate"
   nickname: String
-  # bit: [Bit!]
   "Hashed password"
   password: String!
   info: UserInfo
   following: [User!]
-  bits: [Bit]!
+  bits: [Bit!]
 }
 
 type Query {
