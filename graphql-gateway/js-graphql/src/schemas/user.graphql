@@ -8,7 +8,7 @@ type User {
   # bit: [Bit!]
   "Hashed password"
   password: String!
-  info: Info
+  info: UserInfo
   following: [User!]
   bits: [Bit]!
 }
@@ -27,6 +27,6 @@ enum Gender {
   HIDDEN
 }
 
-type Info {
+type UserInfo {
   gender: Gender
 }

@@ -61,7 +61,7 @@ const resolvers = {
         following: (p: User, _a: any, _c: any) => filterUsersByUserIds(p.followingIds || []),
         bits: (p: User) => findBitsByBitIds(p.bitsId || []) 
     },
-    Info: {
+    UserInfo: {
         gender: (p: UserInfo) => {
             switch (p.gender) {
                 case Gender.MALE:

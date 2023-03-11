@@ -29,11 +29,6 @@ export enum Gender {
   Other = 'OTHER'
 }
 
-export type Info = {
-  __typename?: 'Info';
-  gender?: Maybe<Gender>;
-};
-
 export type Query = {
   __typename?: 'Query';
   bit?: Maybe<Bit>;
@@ -52,11 +47,16 @@ export type User = {
   email: Scalars['String'];
   following?: Maybe<Array<User>>;
   id: Scalars['ID'];
-  info?: Maybe<Info>;
+  info?: Maybe<UserInfo>;
   /** User custom name, can duplicate */
   nickname?: Maybe<Scalars['String']>;
   /** Hashed password */
   password: Scalars['String'];
   /** Use for login and identify, unique */
   username: Scalars['String'];
+};
+
+export type UserInfo = {
+  __typename?: 'UserInfo';
+  gender?: Maybe<Gender>;
 };
