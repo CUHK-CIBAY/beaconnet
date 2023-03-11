@@ -18,16 +18,21 @@ export type Bit = {
   /** Date format in ISO8601 */
   createAt: Scalars['String'];
   id: Scalars['ID'];
-  likeGivers?: Maybe<Array<User>>;
+  likeGiversId?: Maybe<Array<Scalars['ID']>>;
   totalLike?: Maybe<Scalars['Int']>;
 };
 
 export enum Gender {
-  Female = 'FEMALE',
-  Hidden = 'HIDDEN',
-  Male = 'MALE',
-  Other = 'OTHER'
+  FEMALE = 'FEMALE',
+  HIDDEN = 'HIDDEN',
+  MALE = 'MALE',
+  OTHER = 'OTHER',
 }
+
+export type UserInfo = {
+  __typename?: 'Info';
+  gender?: Maybe<Gender>;
+};
 
 export type Query = {
   __typename?: 'Query';
@@ -43,9 +48,9 @@ export type Query = {
 
 export type User = {
   __typename?: 'User';
-  bits: Array<Maybe<Bit>>;
+  bitsId: Maybe<Array<Scalars['ID']>>;
   email: Scalars['String'];
-  following?: Maybe<Array<User>>;
+  followingIds?: Maybe<Array<Scalars['String']>>;
   id: Scalars['ID'];
   info?: Maybe<UserInfo>;
   /** User custom name, can duplicate */
@@ -54,9 +59,4 @@ export type User = {
   password: Scalars['String'];
   /** Use for login and identify, unique */
   username: Scalars['String'];
-};
-
-export type UserInfo = {
-  __typename?: 'UserInfo';
-  gender?: Maybe<Gender>;
 };
