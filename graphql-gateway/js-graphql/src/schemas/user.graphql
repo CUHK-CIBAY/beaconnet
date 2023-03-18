@@ -12,9 +12,16 @@ type User {
   bits: [Bit!]
 }
 
+input FindUserInput {
+    id: ID
+    email: String
+    username: String
+}
+
 type Query {
   "Get current User"
   me: User
+  findUser(input: FindUserInput!): User
   user: User
   users: [User!]
 }
