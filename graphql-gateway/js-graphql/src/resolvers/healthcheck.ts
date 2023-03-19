@@ -1,9 +1,3 @@
-const healthcheck = () => 'OK';
-
-const resolvers = {
-    Query: {
+export const Query = {
         healthcheck: () => 'OK'
-    }
 }
-
-module.exports = resolvers;

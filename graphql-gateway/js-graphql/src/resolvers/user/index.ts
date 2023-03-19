@@ -1,5 +1,5 @@
 import { users, bits } from '../../mock-data';
-import { User as UserType} from '../../gql.types';
+import { User as UserType } from '../../gql.types';
 
 const filterUsersByUserIds = (userIds: string[]) => users.filter(user => userIds.includes(user.id));
 
