@@ -1,9 +1,7 @@
 import { users, bits } from '../../mock-data';
 import { User as UserType } from '../../gql.types';
 
-const filterUsersByUserIds = (userIds: string[]) => users.filter(
-  (user) => userIds.includes(user.id),
-);
+const filterUsersByUserIds = (userIds: string[]) => users.filter((user) => userIds.includes(user.id));
 
 const findBitsByBitIds = (bitIds: string[]) => bits.filter((bit) => bitIds.includes(bit.id));
 
