@@ -4,15 +4,14 @@ import typeDefs from './schemas';
 import resolvers from './resolvers';
 
 const startServer = async () => {
-    const server = new ApolloServer({
-      typeDefs: await typeDefs,
-      resolvers,
-    });
-    
-    const { url } = await server.listen();
+  const server = new ApolloServer({
+    typeDefs: await typeDefs,
+    resolvers,
+  });
 
-    console.log(`? Server ready at ${url}`);
-}
+  const { url } = await server.listen();
+
+  console.log(`? Server ready at ${url}`);
+};
 
 startServer();
-

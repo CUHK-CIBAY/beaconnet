@@ -32,7 +32,7 @@ export enum Gender {
   Female = 'FEMALE',
   Hidden = 'HIDDEN',
   Male = 'MALE',
-  Other = 'OTHER'
+  Other = 'OTHER',
 }
 
 export type Query = {
@@ -47,7 +47,6 @@ export type Query = {
   user?: Maybe<User>;
   users?: Maybe<Array<User>>;
 };
-
 
 export type QueryFindUserArgs = {
   input?: InputMaybe<FindUserInput>;

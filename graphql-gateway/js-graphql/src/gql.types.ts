@@ -22,7 +22,6 @@ export type Bit = {
   totalLike?: Maybe<Scalars['Int']>;
 };
 
-
 export type FindUserInput = {
   email?: InputMaybe<Scalars['String']>;
   id?: InputMaybe<Scalars['ID']>;

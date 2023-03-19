@@ -1,3 +1,3 @@
 export const Query = {
-        healthcheck: () => 'OK'
-}
+  healthcheck: () => 'OK',
+};
