@@ -1,0 +1,38 @@
+type User {
+  id: ID!
+  email: String!
+  "Use for login and identify, unique"
+  username: String!
+  "User custom name, can duplicate"
+  nickname: String
+  "Hashed password"
+  password: String!
+  info: UserInfo
+  following: [User!]
+  bits: [Bit!]
+}
+
+input FindUserInput {
+    id: ID
+    email: String
+    username: String
+}
+
+type Query {
+  "Get current User"
+  me: User
+  findUser(input: FindUserInput!): User
+  user: User
+  users: [User!]
+}
+
+enum Gender {
+  MALE
+  FEMALE
+  OTHER
+  HIDDEN
+}
+
+type UserInfo {
+  gender: Gender
+}

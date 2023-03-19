@@ -1,0 +1,4 @@
+type Query {
+  "Simple check about gateway connectivity, return OK"
+  healthcheck: String!
+}
