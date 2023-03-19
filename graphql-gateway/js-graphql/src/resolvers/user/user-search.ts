@@ -7,7 +7,7 @@ const findUserByUsername = (username: string) => users.find((user) => user.usern
 
 const findUserByUserEmail = (email: string) => users.find((user) => user.email === email);
 
-const findUser = (_p: any, { input }: QueryFindUserArgs, _c: any) => {
+const findUser = (_p: any, { input }: QueryFindUserArgs) => {
   const { id, email, username } = input;
   if (id) return findUserByUserId(id);
   if (email) return findUserByUserEmail(email);

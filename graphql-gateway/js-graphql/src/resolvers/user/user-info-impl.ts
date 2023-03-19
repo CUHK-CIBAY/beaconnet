@@ -1,5 +1,5 @@
 import { User } from '../../gql.types';
 
-const userInfoResolver = ({ info }: User, _a: any, _c: any) => ({ gender: info?.gender });
+const userInfoResolver = ({ info }: User) => ({ gender: info?.gender });
 
-module.exports = userInfoResolver;
+export default userInfoResolver;
