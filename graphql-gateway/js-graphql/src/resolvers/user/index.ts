@@ -11,7 +11,7 @@ export const Query = {
 };
 
 export const User = {
- // following: (p: UserType) => filterUsersByUserIds(p.followingIds ?? []),
- // bits: (p: UserType) => findBitsByBitIds(p.bitsId ?? []),
+  // following: (p: UserType) => filterUsersByUserIds(p.followingIds ?? []),
+  // bits: (p: UserType) => findBitsByBitIds(p.bitsId ?? []),
   info: require('./user-info-impl'),
 };
