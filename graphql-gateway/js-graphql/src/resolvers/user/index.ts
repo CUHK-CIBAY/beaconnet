@@ -1,5 +1,6 @@
 // import { users, bits } from '../../mock-data';
 // import { User as UserType } from '../../gql.types';
+import { userInfoResolver, updateUserInfo } from './user-info-impl';
 
 // const filterUsersByUserIds = (userIds: string[]) => users.filter((user) => userIds.includes(user.id));
 
@@ -13,5 +14,9 @@ export const Query = {
 export const User = {
   // following: (p: UserType) => filterUsersByUserIds(p.followingIds ?? []),
   // bits: (p: UserType) => findBitsByBitIds(p.bitsId ?? []),
-  info: require('./user-info-impl'),
+  info: userInfoResolver,
+};
+
+export const Mutation = {
+  updateInfo: updateUserInfo,
 };

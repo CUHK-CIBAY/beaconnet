@@ -36,3 +36,12 @@ enum Gender {
 type UserInfo {
   gender: Gender
 }
+
+input UpdateInfoInput {
+    gender: Gender
+}
+
+type Mutation {
+    "Update My Info"
+    updateInfo(input: UpdateInfoInput!): User
+}

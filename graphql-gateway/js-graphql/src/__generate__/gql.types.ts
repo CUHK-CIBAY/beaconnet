@@ -35,6 +35,16 @@ export enum Gender {
   Other = 'OTHER',
 }
 
+export type Mutation = {
+  __typename?: 'Mutation';
+  /** Update My Info */
+  updateInfo?: Maybe<User>;
+};
+
+export type MutationUpdateInfoArgs = {
+  input: UpdateInfoInput;
+};
+
 export type Query = {
   __typename?: 'Query';
   bit?: Maybe<Bit>;
@@ -49,7 +59,11 @@ export type Query = {
 };
 
 export type QueryFindUserArgs = {
-  input?: InputMaybe<FindUserInput>;
+  input: FindUserInput;
+};
+
+export type UpdateInfoInput = {
+  gender?: InputMaybe<Gender>;
 };
 
 export type User = {
