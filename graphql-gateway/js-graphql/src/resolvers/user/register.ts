@@ -22,11 +22,8 @@ const userRegisterResolver = async (_p: any, { input }: MutationRegisterArgs) =>
                 status: 400
             }
         }
-        result = await session.run('MATCH (:User) WITH toString(COUNT(*) + 1) as count CREATE (u:User {username: $username, password: $password, email: $email}) SET u.id = count RETURN u, count', { username, password, email });
-        return {
-        ...result.records[0].get('u').properties,
-        ...result.records[0].get('count').properties
-        };
+        result = await session.run('MATCH (:User) WITH toString(COUNT(*) + 1) as count CREATE (u:User {id: count, username: $username, password: $password, email: $email}) RETURN u', { username, password, email });
+        return result.records[0].get('u').properties;
     } catch (error) {
         console.error(error);
         return null;
