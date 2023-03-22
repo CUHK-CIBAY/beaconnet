@@ -41,7 +41,15 @@ input UpdateInfoInput {
     gender: Gender
 }
 
+input RegisterInput {
+    email: String!
+    username: String!
+    nickname: String
+    password: String!
+}
+
 type Mutation {
     "Update My Info"
     updateInfo(input: UpdateInfoInput!): User
+    register(input: RegisterInput!): User
 }

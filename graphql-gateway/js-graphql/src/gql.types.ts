@@ -37,9 +37,14 @@ export enum Gender {
 
 export type Mutation = {
   __typename?: 'Mutation';
+  register?: Maybe<User>;
   /** Update My Info */
   updateInfo?: Maybe<User>;
 };
+
+export type MutationRegisterArgs = {
+    input: RegisterInput
+}
 
 export type MutationUpdateInfoArgs = {
   input: UpdateInfoInput;
@@ -60,6 +65,13 @@ export type Query = {
 
 export type QueryFindUserArgs = {
   input: FindUserInput;
+};
+
+export type RegisterInput = {
+    email: Scalars['String'];
+    nickname?: InputMaybe<Scalars['String']>;
+    password: Scalars['String'];
+    username: Scalars['String'];
 };
 
 export type UpdateInfoInput = {
