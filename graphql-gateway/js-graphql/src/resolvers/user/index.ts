@@ -8,6 +8,7 @@ import { userInfoResolver, updateUserInfo } from './user-info-impl';
 
 export const Query = {
   findUser: require('./user-search'),
+  me: require('./user-impl'),
   // users: () => users,
 };
 

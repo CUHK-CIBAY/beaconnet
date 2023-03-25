@@ -22,7 +22,7 @@ const startServer = async () => {
   const server = new ApolloServer({
     typeDefs: await typeDefs,
     resolvers,
-    context: baseContext,
+    context: await baseContext,
   });
 
   const { url } = await server.listen();
