@@ -48,8 +48,18 @@ input RegisterInput {
     password: String!
 }
 
+input LoginInput {
+  email: String!
+  password: String!
+}
+
+type Token {
+  token: String!
+}
+
 type Mutation {
     "Update My Info"
     updateInfo(input: UpdateInfoInput!): User
     register(input: RegisterInput!): User
+    login(input: LoginInput!): Token
 }
