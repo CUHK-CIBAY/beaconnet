@@ -1,21 +1,16 @@
 import { User } from '../../gql.types';
-import neo4j from 'neo4j-driver';
 import * as dotenv from 'dotenv';
+
 dotenv.config();
 
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
-const driver = neo4j.driver(
-  process.env.DB_URL ?? '',
-  neo4j.auth.basic(process.env.DB_USER ?? '', process.env.DB_PASSWORD ?? ''),
-);
-
 const createToken = async ({ id, email, username }: User) => (
     jwt.sign({ id, email, username }, process.env.SERCET, { expiresIn: '1d'})
 );
 
-const userLoginResolver = async (_p: any, { input }: any) => {
+const userLoginResolver = async (_p: any, { input }: any, { driver }:any ) => {
     const session = driver.session({ database: 'neo4j' });
     try {
         const { email, password } = input;
