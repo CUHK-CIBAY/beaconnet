@@ -36,3 +36,30 @@ enum Gender {
 type UserInfo {
   gender: Gender
 }
+
+input UpdateInfoInput {
+    gender: Gender
+}
+
+input RegisterInput {
+    email: String!
+    username: String!
+    nickname: String
+    password: String!
+}
+
+input LoginInput {
+  email: String!
+  password: String!
+}
+
+type Token {
+  token: String!
+}
+
+type Mutation {
+    "Update My Info"
+    updateInfo(input: UpdateInfoInput!): User
+    register(input: RegisterInput!): User
+    login(input: LoginInput!): Token
+}

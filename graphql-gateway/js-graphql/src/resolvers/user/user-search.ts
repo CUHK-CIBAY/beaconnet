@@ -1,18 +1,43 @@
-import { QueryFindUserArgs } from '../../gql.types';
-import { users } from '../../mock-data';
+import { QueryFindUserArgs, User } from '../../gql.types';
+import neo4j from 'neo4j-driver';
+import * as dotenv from 'dotenv';
 
-const findUserByUserId = (userId: string) => users.find((user) => user.id === userId);
+dotenv.config();
 
-const findUserByUsername = (username: string) => users.find((user) => user.username === username);
+const driver = neo4j.driver(
+  process.env.DB_URL ?? '',
+  neo4j.auth.basic(process.env.DB_USER ?? '', process.env.DB_PASSWORD ?? ''),
+);
 
-const findUserByUserEmail = (email: string) => users.find((user) => user.email === email);
-
-const findUser = (_p: any, { input }: QueryFindUserArgs) => {
-  const { id, email, username } = input;
-  if (id) return findUserByUserId(id);
-  if (email) return findUserByUserEmail(email);
-  if (username) return findUserByUsername(username);
-  return null;
+const findUser = async (_p: any, { input }: QueryFindUserArgs): Promise<User | null> => {
+  const session = driver.session({ database: 'neo4j' });
+  try {
+    const { id, email, username } = input;
+    let query = '';
+    let result: any;
+    if (id) {
+      query = 'MATCH (u:User {id: $id})-[:HAS]->(uInfo) RETURN u, uInfo';
+      result = await session.executeRead((tx) => tx.run(query, { id }));
+    } else if (email) {
+      query = 'MATCH (u:User {email: $email})-[:HAS]->(uInfo) = $email RETURN u, uInfo';
+      result = await session.executeRead((tx) => tx.run(query, { email }));
+    } else if (username) {
+      query = 'MATCH (u:User {username: $username})-[:HAS]->(uInfo) RETURN u, uInfo';
+      result = await session.executeRead((tx) => tx.run(query, { username }));
+    } else {
+      throw new Error('Please input ID/email/username');
+    }
+    if (result.records.length === 0) throw new Error('User not found');
+    return {
+      ...result.records[0].get('u').properties,
+      info: result.records[0].get('uInfo').properties,
+    };
+  } catch (error) {
+    console.error(error);
+    return null;
+  } finally {
+    await session.close();
+  }
 };
 
 module.exports = findUser;

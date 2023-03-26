@@ -32,8 +32,25 @@ export enum Gender {
   Female = 'FEMALE',
   Hidden = 'HIDDEN',
   Male = 'MALE',
-  Other = 'OTHER',
+  Other = 'OTHER'
 }
+
+export type Mutation = {
+  __typename?: 'Mutation';
+  register?: Maybe<User>;
+  /** Update My Info */
+  updateInfo?: Maybe<User>;
+};
+
+
+export type MutationRegisterArgs = {
+  input: RegisterInput;
+};
+
+
+export type MutationUpdateInfoArgs = {
+  input: UpdateInfoInput;
+};
 
 export type Query = {
   __typename?: 'Query';
@@ -48,8 +65,20 @@ export type Query = {
   users?: Maybe<Array<User>>;
 };
 
+
 export type QueryFindUserArgs = {
-  input?: InputMaybe<FindUserInput>;
+  input: FindUserInput;
+};
+
+export type RegisterInput = {
+  email: Scalars['String'];
+  nickname?: InputMaybe<Scalars['String']>;
+  password: Scalars['String'];
+  username: Scalars['String'];
+};
+
+export type UpdateInfoInput = {
+  gender?: InputMaybe<Gender>;
 };
 
 export type User = {
