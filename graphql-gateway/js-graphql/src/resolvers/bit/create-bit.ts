@@ -1,8 +1,9 @@
 import * as dotenv from 'dotenv';
+import driver from '../../util/neo4j-driver';
 
 dotenv.config();
 
-const bitPostResolver = async (_p: any, { content }: any, { me, driver }: any) => {
+const bitPostResolver = async (_p: any, { content }: any, { me}: any) => {
     const session = driver.session({ database: 'neo4j' });
     try {
         const query = `

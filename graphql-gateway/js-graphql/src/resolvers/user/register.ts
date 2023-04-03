@@ -1,11 +1,12 @@
 import { MutationRegisterArgs } from '../../gql.types';
+import driver from '../../util/neo4j-driver';
 import * as dotenv from 'dotenv';
 
 dotenv.config();
 
 const bcrypt = require('bcrypt');
 
-const userRegisterResolver = async (_p: any, { input }: MutationRegisterArgs, { driver }:any) => {
+const userRegisterResolver = async (_p: any, { input }: MutationRegisterArgs) => {
     const session = driver.session({ database: 'neo4j' });
     try {
         const { username, email, password } = input;

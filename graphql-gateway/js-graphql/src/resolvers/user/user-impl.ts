@@ -1,8 +1,9 @@
 import * as dotenv from 'dotenv';
+import driver from '../../util/neo4j-driver';
 
 dotenv.config();
 
-const userResolver = async (_p: any, _a: any, { me, driver }: any) => {
+const userResolver = async (_p: any, _a: any, { me }: any) => {
     if(!me) throw new Error('Please login first');
     console.log(me.id);
     console.log(typeof(me.id));
