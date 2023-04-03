@@ -1,10 +1,10 @@
 export const Query = {
-    findBit: require('./bit-find')
+  findBit: require('./bit-find'),
 };
 
 export const Bit = {};
 
 export const Mutation = {
-    postBit: require('./create-bit'),
-    likeBit: require('./bit-like')
+  postBit: require('./create-bit'),
+  likeBit: require('./bit-like'),
 };

@@ -43,8 +43,8 @@ export type Mutation = {
 };
 
 export type MutationRegisterArgs = {
-    input: RegisterInput
-}
+  input: RegisterInput;
+};
 
 export type MutationUpdateInfoArgs = {
   input: UpdateInfoInput;
@@ -68,10 +68,10 @@ export type QueryFindUserArgs = {
 };
 
 export type RegisterInput = {
-    email: Scalars['String'];
-    nickname?: InputMaybe<Scalars['String']>;
-    password: Scalars['String'];
-    username: Scalars['String'];
+  email: Scalars['String'];
+  nickname?: InputMaybe<Scalars['String']>;
+  password: Scalars['String'];
+  username: Scalars['String'];
 };
 
 export type UpdateInfoInput = {

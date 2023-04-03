@@ -1,4 +1,5 @@
-import { User, MutationUpdateInfoArgs } from '../../gql.types';import driver from '../../util/neo4j-driver';
+import { User, MutationUpdateInfoArgs } from '../../gql.types';
+import driver from '../../util/neo4j-driver';
 import * as dotenv from 'dotenv';
 
 dotenv.config();
