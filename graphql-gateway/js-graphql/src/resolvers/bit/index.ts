@@ -5,6 +5,6 @@ export const Query = {
 export const Bit = {};
 
 export const Mutation = {
-  postBit: require('./create-bit'),
+  postBit: require('./bit-create'),
   likeBit: require('./bit-like'),
 };
