@@ -32,7 +32,7 @@ export enum Gender {
   Female = 'FEMALE',
   Hidden = 'HIDDEN',
   Male = 'MALE',
-  Other = 'OTHER'
+  Other = 'OTHER',
 }
 
 export type Mutation = {
@@ -42,11 +42,9 @@ export type Mutation = {
   updateInfo?: Maybe<User>;
 };
 
-
 export type MutationRegisterArgs = {
   input: RegisterInput;
 };
-
 
 export type MutationUpdateInfoArgs = {
   input: UpdateInfoInput;
@@ -64,7 +62,6 @@ export type Query = {
   user?: Maybe<User>;
   users?: Maybe<Array<User>>;
 };
-
 
 export type QueryFindUserArgs = {
   input: FindUserInput;

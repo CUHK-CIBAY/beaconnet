@@ -9,6 +9,11 @@ type Bit {
 }
 
 type Query {
-  bit: Bit
+  findBit(id: String): Bit
   bits: [Bit!]
+}
+
+type Mutation {
+    postBit(content: String!): Bit
+    likeBit(id: ID!): Bit
 }

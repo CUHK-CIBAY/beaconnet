@@ -1,9 +1,10 @@
-import { QueryFindUserArgs, User } from '../../gql.types';
 import * as dotenv from 'dotenv';
+import { QueryFindUserArgs, User } from '../../gql.types';
+import driver from '../../util/neo4j-driver';
 
 dotenv.config();
 
-const findUser = async (_p: any, { input }: QueryFindUserArgs, { driver }: any): Promise<User | null> => {
+const findUser = async (_p: any, { input }: QueryFindUserArgs): Promise<User | null> => {
   const session = driver.session({ database: 'neo4j' });
   try {
     const { id, email, username } = input;
