@@ -21,7 +21,12 @@ const bitPostResolver = async (_p: any, { content }: any, { me }: any) => {
             CREATE (u)-[:POST]->(b)
             RETURN b
         `;
-    const result = await session.run(query, { id: me.id, content, createAt: new Date().toISOString(), totalLike: 0 });
+    const result = await session.run(query, {
+      id: me.id,
+      content,
+      createAt: new Date().toISOString(),
+      totalLike: 0,
+    });
     return result.records[0].get('b').properties;
   } catch (error) {
     console.error(error);

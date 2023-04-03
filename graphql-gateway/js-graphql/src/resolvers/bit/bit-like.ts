@@ -13,27 +13,25 @@ const likeBit = async (_p: any, { id }: any, { me }: any) => {
     if (!result.records[0]) {
       throw Error('Bit Not Exist');
     }
-    console.log(result.records[0].get('LIKED'));
-    if (!result.records[0].get('LIKED'))
+    if (!result.records[0].get('LIKED')) {
       query = `
-                MATCH (u:User {id: $uid})
-                MATCH (b:Bit {id: $bid})
-                SET b.totalLike = b.totalLike + 1
-                CREATE (u)-[:LIKED]->(b) RETURN b
-            `;
-    else
+            MATCH (u:User {id: $uid})
+            MATCH (b:Bit {id: $bid})
+            SET b.totalLike = b.totalLike + 1
+            CREATE (u)-[:LIKED]->(b) RETURN b
+        `;
+    } else {
       query = `
-                MATCH (:User {id: $uid})-[l:LIKED]->(b:Bit {id: $bid}) 
-                SET b.totalLike = b.totalLike - 1
-                DELETE l 
-                RETURN b
-            `;
-    console.log(query);
+            MATCH (:User {id: $uid})-[l:LIKED]->(b:Bit {id: $bid}) 
+            SET b.totalLike = b.totalLike - 1
+            DELETE l 
+            RETURN b
+        `;
+    }
     result = await session.run(query, { uid: me.id, bid: id });
-    console.log(result.records[0].get('b').properties);
     return result.records[0].get('b').properties;
   } catch (error) {
-    console.log(error);
+    console.error(error);
     return null;
   } finally {
     await session.close();

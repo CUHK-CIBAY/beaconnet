@@ -1,6 +1,6 @@
+import * as dotenv from 'dotenv';
 import { User } from '../../gql.types';
 import driver from '../../util/neo4j-driver';
-import * as dotenv from 'dotenv';
 
 dotenv.config();
 
@@ -14,8 +14,8 @@ const userLoginResolver = async (_p: any, { input }: any) => {
   const session = driver.session({ database: 'neo4j' });
   try {
     const { email, password } = input;
-    let query = `MATCH (u:User {email: $email}) RETURN u`;
-    let result = await session.run(query, { email });
+    const query = 'MATCH (u:User {email: $email}) RETURN u';
+    const result = await session.run(query, { email });
     if (result.records.length === 0) throw Error('Username Not Exist');
     const user = result.records[0].get('u').properties;
     const isPasswordValid = await bcrypt.compare(password, user.password);

@@ -21,6 +21,7 @@ const baseContext = async ({ req }: any) => {
       throw new Error('Your session expired. Please sign in again.');
     }
   }
+  return {};
 };
 
 export default baseContext;

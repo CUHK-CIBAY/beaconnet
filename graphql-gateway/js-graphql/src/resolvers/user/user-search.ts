@@ -1,6 +1,6 @@
+import * as dotenv from 'dotenv';
 import { QueryFindUserArgs, User } from '../../gql.types';
 import driver from '../../util/neo4j-driver';
-import * as dotenv from 'dotenv';
 
 dotenv.config();
 
