@@ -7,8 +7,10 @@ dotenv.config();
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
+/* eslint-disable */
 const createToken = async ({ id, email, username }: User) =>
   jwt.sign({ id, email, username }, process.env.SERCET, { expiresIn: '1d' });
+/* eslint-enable */
 
 const userLoginResolver = async (_p: any, { input }: any) => {
   const session = driver.session({ database: 'neo4j' });
