@@ -1,21 +1,23 @@
-import React from 'react';
-import './App.css';
+import React, { useState } from 'react';
+import { Routes, Route } from 'react-router-dom';
+import Login from './pages/Login/login';
+import Main from './pages/Main/main';
+import CheckLogin from './checklogin';
 
 function App() {
+  const [isLoggedIn] = useState(false);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src="/images/logo.svg" className="App-logo" alt="logo" />
-        <p>
-          Edit
-          <code>src/App.tsx</code>
-          and save to reload.
-        </p>
-        <a className="App-link" href="https://reactjs.org" target="_blank" rel="noopener noreferrer">
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Routes>
+      <Route
+        path="/"
+        element={
+          <CheckLogin isLoggedIn={isLoggedIn}>
+            <Main />
+          </CheckLogin>
+        }
+      />
+      <Route path="/login" element={<Login />} />
+    </Routes>
   );
 }
 
