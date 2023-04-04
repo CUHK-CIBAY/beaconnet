@@ -7,12 +7,6 @@
     "@types/node",
     "@testing-library/user-event",
     "@testing-library/react",
-    "@testing-library/jest-dom",
-    "@jest/globals",
-    "@graphql-codegen/client-preset",
-    "nodemon",
-    "ts-node",
-    "graphql-tools",
-    "typescript"
+    "@jest/globals"
   ]
 }

@@ -11,8 +11,6 @@
     "react/jsx-filename-extension": [2, { "extensions": [".js", ".jsx", ".ts", ".tsx"] }],
     "semi": ["error", "always"],
     "@typescript-eslint/semi": "off",
-    "react/jsx-wrap-multilines": "off",
-    "react/jsx-no-useless-fragment": "off",
     "import/no-extraneous-dependencies": ["error", { "devDependencies": ["**/*.test.ts", "**/*.test.tsx"] }],
     "import/extensions": [
       "error",
