@@ -9,6 +9,8 @@
   "plugins": ["@typescript-eslint", "react"],
   "rules": {
     "react/jsx-filename-extension": [2, { "extensions": [".js", ".jsx", ".ts", ".tsx"] }],
+    "react/jsx-wrap-multilines": ["error", { "declaration": false, "assignment": false }],
+    "react/jsx-no-useless-fragment": ["error", { "allowExpressions": true }],
     "semi": ["error", "always"],
     "@typescript-eslint/semi": "off",
     "import/no-extraneous-dependencies": ["error", { "devDependencies": ["**/*.test.ts", "**/*.test.tsx"] }],
