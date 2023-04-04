@@ -1,0 +1,126 @@
+.Login-Register-Wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  width: 100vw;
+  background: #ced5b2;
+}
+
+.Login-Register-Container {
+  position: absolute;
+  box-sizing: border-box;
+  width: 900px;
+  height: 500px;
+  overflow: hidden;
+  background: #ffffff;
+  box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.15);
+  border-radius: 20px;
+  padding: 0 0 0 450px;
+}
+
+.Login-Register-Image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 50%;
+  height: 100%;
+}
+
+.Login-Register-Image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.Login-Register-Form-Container {
+  display: flex;
+  height: 90%;
+  width: 100%;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.Login-Register-Form-Container h1 {
+  margin: 0 0 20px 0;
+  padding: 0 0 20px 0;
+  color: #333333;
+  text-align: center;
+  font-size: 32px;
+}
+
+.Login-Register-Form {
+  width: calc(100% - 80px);
+  padding: 0 40px;
+  text-align: center;
+}
+
+.Login-Register-Form-Field {
+  position: relative;
+  margin-bottom: 20px;
+}
+
+.Login-Register-Form-Field input {
+  border: 1px solid #9e9e9a;
+  box-sizing: border-box;
+  width: 100%;
+  padding: 15px;
+  border-radius: 5px;
+}
+
+.Login-Register-Form-Field .Login-Register-Form-Label {
+  display: block;
+  position: absolute;
+  top: 14px;
+  left: 10px;
+  width: fit-content;
+  padding: 0 8px;
+  font-size: 15px;
+  color: #9e9e9a;
+  background: #fff;
+  z-index: 1;
+  transition: left 0.1s ease-in-out, top 0.1s ease-in-out, font-size 0.1s ease-in-out;
+}
+
+.Login-Register-Form-Field input:focus {
+  border: 1px solid #038aff;
+}
+
+.Login-Register-Form-Field input:focus ~ .Login-Register-Form-Label {
+  color: #038aff;
+  font-size: 12px;
+}
+.Login-Register-Form-Field input:focus ~ .Login-Register-Form-Label,
+.Login-Register-Form-Field input:not(:placeholder-shown) ~ .Login-Register-Form-Label {
+  top: -7.5px;
+  left: 10px;
+}
+
+.Login-Register-Form-Button {
+  background: #e9edc9;
+  border-radius: 20px;
+  border: none;
+  padding: 10px 25%;
+  margin-top: 20px;
+}
+
+.Login-Register-Form-Footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 5%;
+  width: 80%;
+  margin: auto;
+  padding: 0.5% 0;
+  background-color: #fff;
+  border: 1px solid #9e9e9a;
+  border-width: 1px 0 0 0;
+}
+
+.Login-Register-Form-Footer a {
+  color: #545454;
+  text-decoration: none;
+  font-size: 12px;
+}
