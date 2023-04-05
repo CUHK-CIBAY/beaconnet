@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import Login from './pages/Login/login';
-import Main from './pages/Main/main';
 import LoginCheck from './LoginCheck';
+import Main from './pages/Main/main';
 
 function App() {
   const [isLoggedIn] = useState(false);
@@ -16,7 +16,8 @@ function App() {
           </LoginCheck>
         }
       />
-      <Route path="/login" element={<Login />} />
+      <Route path="/login" element={<Login loginType="Login" />} />
+      <Route path="/register" element={<Login loginType="Register" />} />
       <Route path="*" element={<Navigate to="/" />} />
     </Routes>
   );
