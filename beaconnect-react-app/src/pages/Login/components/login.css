@@ -1,0 +1,173 @@
+.Login-Register-Wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  width: 100vw;
+  background: #ced5b2;
+}
+
+.Login-Register-Container {
+  position: absolute;
+  box-sizing: border-box;
+  width: 900px;
+  height: 500px;
+  overflow: hidden;
+  background: #ffffff;
+  box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.15);
+  border-radius: 20px;
+  padding: 0 0 0 450px;
+  transition: padding 0.2s ease-in-out;
+}
+
+.Login-Register-Container.Register {
+  padding: 0 450px 0 0;
+}
+
+.Login-Register-Container .Login-Register-Image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 50%;
+  height: 100%;
+  transition: left 0.2s ease-in-out;
+  z-index: 2;
+}
+
+.Login-Register-Container.Register .Login-Register-Image {
+  left: auto;
+  left: 50%;
+}
+
+.Login-Register-Image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.Login-Register-Form-Container {
+  display: flex;
+  height: 90%;
+  width: 100%;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.Login-Register-Form-Container h1 {
+  margin: 0;
+  padding: 0 0 15px 0;
+  color: #333333;
+  text-align: center;
+  font-size: 32px;
+}
+
+.Login-Register-Form {
+  width: calc(100% - 80px);
+  padding: 0 40px;
+  text-align: center;
+}
+
+.Login-Register-Form-Field {
+  position: relative;
+  margin-bottom: 15px;
+}
+
+.Login-Register-Form-Field input {
+  border: 1px solid #9e9e9a;
+  box-sizing: border-box;
+  width: 100%;
+  padding: 15px;
+  border-radius: 5px;
+}
+
+.Login-Register-Form-Field .Login-Register-Form-Label {
+  display: block;
+  position: absolute;
+  top: 14px;
+  left: 10px;
+  width: 80%;
+  text-align: left;
+  padding: 0 8px;
+  font-size: 15px;
+  color: #9e9e9a;
+  background: #fff;
+  z-index: 1;
+  transition: left 0.1s ease-in-out, top 0.1s ease-in-out, font-size 0.1s ease-in-out, width 0.1s ease-in-out;
+  user-select: none;
+  cursor: text;
+}
+
+.Login-Register-Form-Field input:focus {
+  border: 1px solid #038aff;
+}
+
+.Login-Register-Form-Field input:focus ~ .Login-Register-Form-Label {
+  color: #038aff;
+}
+.Login-Register-Form-Field input:focus ~ .Login-Register-Form-Label,
+.Login-Register-Form-Field input:not(:placeholder-shown) ~ .Login-Register-Form-Label {
+  top: -7.5px;
+  left: 10px;
+  width: fit-content;
+  font-size: 12px;
+}
+
+.Login-Register-Form-Button {
+  background: #e9edc9;
+  border-radius: 20px;
+  border: none;
+  padding: 10px 0;
+  width: 75%;
+  margin-top: 5px;
+  color: #545454;
+  font-size: 16px;
+  transition: background 0.2s ease-in-out;
+  cursor: pointer;
+  user-select: none;
+}
+
+.Login-Register-Form-Button:hover {
+  background: #d8e0b2;
+}
+
+.Login-Register-Form-Footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 5%;
+  width: 80%;
+  margin: auto;
+  padding: 0.5% 0;
+  background-color: #fff;
+  border: 1px solid #9e9e9a;
+  border-width: 1px 0 0 0;
+}
+
+.Login-Register-Form-Footer button,
+a {
+  color: #545454;
+  text-decoration: none;
+  font-size: 12px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  user-select: none;
+}
+
+@media (max-width: 900px) {
+  .Login-Register-Container {
+    width: 80%;
+    height: 80%;
+    padding: 0;
+  }
+
+  .Login-Register-Container.Register {
+    padding: 0;
+  }
+
+  .Login-Register-Container .Login-Register-Image {
+    display: none;
+  }
+}

@@ -1,5 +1,5 @@
 {
-  "name": "reconnet-react-app",
+  "name": "beaconnet-react-app",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -10,7 +10,7 @@
     "format/js": "prettier --write \"./**/*.{js,jsx,ts,tsx,css,json}\" --config ./.prettierrc",
     "format/properties": "find . -name '*.properties' -print -exec sort -o {} {} \\;",
     "format/yaml": "git ls-files '*.yml' '*.yaml' | xargs -t -I {} yq -i -S -Y . {}",
-    "lint": "eslint \"src/*.{js,jsx,ts,tsx}\"",
+    "lint": "eslint \"src/**.*.{js,jsx,ts,tsx}\"",
     "start": "react-scripts start",
     "test": "react-scripts test"
   },
@@ -42,6 +42,7 @@
     "@types/react-dom": "^18.0.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-router-dom": "^6.10.0",
     "react-scripts": "5.0.1",
     "typescript": "^4.4.2"
   },
