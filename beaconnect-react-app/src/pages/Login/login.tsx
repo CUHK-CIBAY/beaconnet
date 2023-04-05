@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import Cover from './images/cover.jpg';
 import './components/login.css';
 
-function Login(props: { loginType: string }) {
+const Login = (props: { loginType: string }) => {
   const { loginType } = props;
   const [currentLoginType, setCurrentLoginType] = useState(loginType);
 
@@ -98,6 +98,6 @@ function Login(props: { loginType: string }) {
       </div>
     </div>
   );
-}
+};
 
 export default Login;

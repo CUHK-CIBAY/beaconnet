@@ -22,6 +22,7 @@
     "import/no-extraneous-dependencies": ["error", { "devDependencies": ["**/*.test.ts", "**/*.test.tsx"] }],
     "max-len": ["warn", { "code": 120 }],
     "object-curly-newline": "off",
+    "react/function-component-definition": [2, { "namedComponents": "arrow-function" }],
     "react/jsx-filename-extension": [2, { "extensions": [".js", ".jsx", ".ts", ".tsx"] }],
     "react/jsx-no-useless-fragment": ["error", { "allowExpressions": true }],
     "react/jsx-wrap-multilines": ["error", { "assignment": false, "declaration": false }],
