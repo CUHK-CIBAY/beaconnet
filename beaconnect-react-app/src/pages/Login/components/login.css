@@ -96,6 +96,7 @@
   z-index: 1;
   transition: left 0.1s ease-in-out, top 0.1s ease-in-out, font-size 0.1s ease-in-out, width 0.1s ease-in-out;
   user-select: none;
+  cursor: text;
 }
 
 .Login-Register-Form-Field input:focus {

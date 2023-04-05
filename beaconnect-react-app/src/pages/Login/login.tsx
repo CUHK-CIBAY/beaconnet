@@ -20,13 +20,13 @@ function Login(props: { loginType: string }) {
             {currentLoginType === 'Login' ? (
               <div className="Login-Register-Form-Group">
                 <div className="Login-Register-Form-Field">
-                  <input type="text" id="username" className="Login-Register-Form-Input" placeholder="enter here" />
+                  <input type="text" id="username" className="Login-Register-Form-Input" placeholder="Enter Here" />
                   <label htmlFor="username" className="Login-Register-Form-Label">
                     Username
                   </label>
                 </div>
                 <div className="Login-Register-Form-Field">
-                  <input type="password" id="password" className="Login-Register-Form-Input" placeholder="enter here" />
+                  <input type="password" id="password" className="Login-Register-Form-Input" placeholder="Enter Here" />
                   <label htmlFor="password" className="Login-Register-Form-Label">
                     Password
                   </label>
@@ -38,19 +38,19 @@ function Login(props: { loginType: string }) {
             ) : (
               <div className="Login-Register-Form-Group">
                 <div className="Login-Register-Form-Field">
-                  <input type="text" id="email" className="Login-Register-Form-Input" placeholder="enter here" />
+                  <input type="text" id="email" className="Login-Register-Form-Input" placeholder="Enter Here" />
                   <label htmlFor="email" className="Login-Register-Form-Label">
                     Email
                   </label>
                 </div>
                 <div className="Login-Register-Form-Field">
-                  <input type="text" id="username" className="Login-Register-Form-Input" placeholder="enter here" />
+                  <input type="text" id="username" className="Login-Register-Form-Input" placeholder="Enter Here" />
                   <label htmlFor="username" className="Login-Register-Form-Label">
                     Username
                   </label>
                 </div>
                 <div className="Login-Register-Form-Field">
-                  <input type="password" id="password" className="Login-Register-Form-Input" placeholder="enter here" />
+                  <input type="password" id="password" className="Login-Register-Form-Input" placeholder="Enter Here" />
                   <label htmlFor="password" className="Login-Register-Form-Label">
                     Password
                   </label>
@@ -60,7 +60,7 @@ function Login(props: { loginType: string }) {
                     type="password"
                     id="confirm-password"
                     className="Login-Register-Form-Input"
-                    placeholder="enter here"
+                    placeholder="Enter Here"
                   />
                   <label htmlFor="confirm-password" className="Login-Register-Form-Label">
                     Confirm Password
