@@ -10,7 +10,7 @@
     "format/js": "prettier --write \"./**/*.{js,jsx,ts,tsx,css,json}\" --config ./.prettierrc",
     "format/properties": "find . -name '*.properties' -print -exec sort -o {} {} \\;",
     "format/yaml": "git ls-files '*.yml' '*.yaml' | xargs -t -I {} yq -i -S -Y . {}",
-    "lint": "eslint \"src/*.{js,jsx,ts,tsx}\"",
+    "lint": "eslint \"src/**.*.{js,jsx,ts,tsx}\"",
     "start": "react-scripts start",
     "test": "react-scripts test"
   },
