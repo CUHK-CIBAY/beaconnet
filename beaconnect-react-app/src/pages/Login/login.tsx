@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable object-curly-newline */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useState } from 'react';
@@ -22,6 +23,7 @@ const Login = (props: { loginType: string }) => {
   const handleLoginType = (type: string) => () => {
     setCurrentLoginType(type === 'Login' ? 'Register' : 'Login');
     window.history.pushState({}, '', type === 'Login' ? '/register' : '/login');
+    document.querySelector('form')?.reset();
   };
 
   const handleSubmit = (event: React.FormEvent<LoginFormElement>) => {
