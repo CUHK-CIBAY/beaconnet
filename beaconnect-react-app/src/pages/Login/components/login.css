@@ -18,7 +18,6 @@
   box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.15);
   border-radius: 20px;
   padding: 0 0 0 450px;
-  transition: padding 0.2s ease-in-out;
 }
 
 .Login-Register-Container.Register {
