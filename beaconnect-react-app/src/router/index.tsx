@@ -1,11 +1,13 @@
-import React, { useState } from 'react';
+import React, { lazy, useState } from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
-import Login from '../pages/Login/login';
-import LoginCheck from './LoginCheck';
-import Main from '../pages/Main/main';
+
+const Login = lazy(() => import('../pages/Login/login'));
+const LoginCheck = lazy(() => import('./LoginCheck'));
+const Main = lazy(() => import('../pages/Main/main'));
 
 const Router = () => {
   const [isLoggedIn] = useState(false);
+
   return (
     <Routes>
       <Route
