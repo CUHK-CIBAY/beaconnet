@@ -4,6 +4,17 @@ import React, { useState } from 'react';
 import Cover from './images/cover.jpg';
 import './components/login.css';
 
+type FormElements = {
+  email: HTMLInputElement;
+  username: HTMLInputElement;
+  password: HTMLInputElement;
+  'confirm-password': HTMLInputElement;
+} & HTMLFormControlsCollection;
+
+type LoginFormElement = {
+  readonly elements: FormElements;
+} & HTMLFormElement;
+
 const Login = (props: { loginType: string }) => {
   const { loginType } = props;
   const [currentLoginType, setCurrentLoginType] = useState(loginType);
@@ -11,6 +22,18 @@ const Login = (props: { loginType: string }) => {
   const handleLoginType = (type: string) => () => {
     setCurrentLoginType(type === 'Login' ? 'Register' : 'Login');
     window.history.pushState({}, '', type === 'Login' ? '/register' : '/login');
+  };
+
+  const handleSubmit = (event: React.FormEvent<LoginFormElement>) => {
+    event.preventDefault();
+    const { elements } = event.currentTarget;
+    if (currentLoginType === 'Login') {
+      const { username, password } = elements;
+      console.log(username.value, password.value);
+    } else {
+      const { email, username, password, 'confirm-password': confirmPassword } = elements;
+      console.log(email.value, username.value, password.value, confirmPassword.value);
+    }
   };
 
   const RegisterField = [
@@ -64,7 +87,7 @@ const Login = (props: { loginType: string }) => {
         <div className="Login-Register-Form-Container">
           <h1>{currentLoginType}</h1>
 
-          <form className="Login-Register-Form">
+          <form className="Login-Register-Form" onSubmit={handleSubmit}>
             <div className="Login-Register-Form-Group">
               {(currentLoginType === 'Login' ? LoginField : RegisterField).map(({ id, type, placeholder, label }) => (
                 <div className="Login-Register-Form-Field">
