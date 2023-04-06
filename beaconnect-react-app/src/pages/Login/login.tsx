@@ -90,7 +90,7 @@ const Login = (props: { loginType: string }) => {
           <form className="Login-Register-Form" onSubmit={handleSubmit}>
             <div className="Login-Register-Form-Group">
               {(currentLoginType === 'Login' ? LoginField : RegisterField).map(({ id, type, placeholder, label }) => (
-                <div className="Login-Register-Form-Field">
+                <div className="Login-Register-Form-Field" key={id}>
                   <input type={type} id={id} className="Login-Register-Form-Input" placeholder={placeholder} />
                   <label htmlFor={id} className="Login-Register-Form-Label">
                     {label}
