@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable object-curly-newline */
 /* eslint-disable jsx-a11y/label-has-associated-control */
-import React, { useState } from 'react';
+import React from 'react';
 import { ApolloError } from '@apollo/client';
 import Cover from './images/cover.jpg';
 import './components/login.css';
@@ -22,8 +22,14 @@ const Login = (props: {
   changeLoginType: (type: string) => () => void;
   onLogin: (email: string, password: string) => void;
   onRegister: (email: string, username: string, password: string, confirmPassword: string) => void;
+  loginError: ApolloError | undefined;
+  registerError: ApolloError | undefined;
+  loginLoading: boolean;
+  registerLoading: boolean;
 }) => {
-  const { loginType, onLogin, onRegister, changeLoginType } = props;
+  // eslint-disable-next-line
+  const { loginType, onLogin, onRegister, changeLoginType, loginError, registerError, loginLoading, registerLoading } =
+    props;
 
   const handleFormSubmit = (event: React.FormEvent<FormElement>) => {
     event.preventDefault();
@@ -87,6 +93,12 @@ const Login = (props: {
         </div>
         <div className="Login-Register-Form-Container">
           <h1>{loginType}</h1>
+
+          {loginError || registerError ? (
+            <div className="Login-Register-Form-Error">
+              <p>{loginError?.message || registerError?.message}</p>
+            </div>
+          ) : null}
 
           <form className="Login-Register-Form" onSubmit={handleFormSubmit}>
             <div className="Login-Register-Form-Group">

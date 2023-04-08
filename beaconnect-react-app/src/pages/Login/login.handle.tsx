@@ -39,7 +39,11 @@ const LoginCompound = (props: { loginType: string }) => {
     window.history.pushState({}, '', type === 'Login' ? '/register' : '/login');
     document.querySelector('form')?.reset();
   };
-  const [login] = useMutation<LoginMutationResult, LoginMutationVariables>(loginQuery, {
+
+  const [login, { loading: loginLoading, error: loginError }] = useMutation<
+    LoginMutationResult,
+    LoginMutationVariables
+  >(loginQuery, {
     onCompleted: (data) => {
       const {
         login: { token },
@@ -48,9 +52,12 @@ const LoginCompound = (props: { loginType: string }) => {
       navigate('/', { replace: true });
     },
   });
-  const [register] = useMutation<RegisterMutationResult, RegisterMutationVariables>(registerQuery, {
+
+  const [register, { loading: registerLoading, error: registerError }] = useMutation<
+    RegisterMutationResult,
+    RegisterMutationVariables
+  >(registerQuery, {
     onCompleted: (data) => {
-      console.log(data);
       const {
         register: { id },
       } = data;
@@ -71,6 +78,10 @@ const LoginCompound = (props: { loginType: string }) => {
       changeLoginType={changeLoginType}
       onLogin={handleLogin}
       onRegister={handleRegister}
+      loginLoading={loginLoading}
+      loginError={loginError}
+      registerLoading={registerLoading}
+      registerError={registerError}
     />
   );
 };

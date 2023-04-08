@@ -20,6 +20,14 @@
   padding: 0 0 0 450px;
 }
 
+.Login-Register-Form-Error {
+  color: #ff0000;
+  font-size: 12px;
+  margin: 0;
+  padding: 0;
+  text-align: left;
+}
+
 .Login-Register-Container.Register {
   padding: 0 450px 0 0;
 }
@@ -56,7 +64,7 @@
 
 .Login-Register-Form-Container h1 {
   margin: 0;
-  padding: 0 0 15px 0;
+  padding: 0 0 5px 0;
   color: #333333;
   text-align: center;
   font-size: 32px;
@@ -66,6 +74,10 @@
   width: calc(100% - 80px);
   padding: 0 40px;
   text-align: center;
+}
+
+.Login-Register-Form-Field:first-child {
+  margin-top: 15px;
 }
 
 .Login-Register-Form-Field {
