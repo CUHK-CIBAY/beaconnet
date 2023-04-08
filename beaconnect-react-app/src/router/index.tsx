@@ -3,7 +3,7 @@ import { Routes, Route, Navigate } from 'react-router-dom';
 
 import Loading from '../pages/Essentials/Loading/loading';
 
-const Login = lazy(() => import('../pages/Login/login'));
+const Login = lazy(() => import('../pages/Login/login.handle'));
 const LoginCheck = lazy(() => import('./LoginCheck'));
 const Main = lazy(() => import('../pages/Main/main'));
 

@@ -2,39 +2,44 @@
 /* eslint-disable object-curly-newline */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useState } from 'react';
+import { ApolloError } from '@apollo/client';
 import Cover from './images/cover.jpg';
 import './components/login.css';
 
-type FormElements = {
+type FormFieldElements = {
   email: HTMLInputElement;
   username: HTMLInputElement;
   password: HTMLInputElement;
   'confirm-password': HTMLInputElement;
 } & HTMLFormControlsCollection;
 
-type LoginFormElement = {
-  readonly elements: FormElements;
+type FormElement = {
+  readonly elements: FormFieldElements;
 } & HTMLFormElement;
 
-const Login = (props: { loginType: string }) => {
-  const { loginType } = props;
+const Login = (props: {
+  loginType: string;
+  onLogin: (email: string, password: string) => void;
+  onRegister: (email: string, username: string, password: string, confirmPassword: string) => void;
+}) => {
+  const { loginType, onLogin, onRegister } = props;
   const [currentLoginType, setCurrentLoginType] = useState(loginType);
 
-  const handleLoginType = (type: string) => () => {
+  const handleFormButton = (type: string) => () => {
     setCurrentLoginType(type === 'Login' ? 'Register' : 'Login');
     window.history.pushState({}, '', type === 'Login' ? '/register' : '/login');
     document.querySelector('form')?.reset();
   };
 
-  const handleSubmit = (event: React.FormEvent<LoginFormElement>) => {
+  const handleFormSubmit = (event: React.FormEvent<FormElement>) => {
     event.preventDefault();
     const { elements } = event.currentTarget;
     if (currentLoginType === 'Login') {
       const { username, password } = elements;
-      console.log(username.value, password.value);
+      onLogin(username.value, password.value);
     } else {
       const { email, username, password, 'confirm-password': confirmPassword } = elements;
-      console.log(email.value, username.value, password.value, confirmPassword.value);
+      onRegister(email.value, username.value, password.value, confirmPassword.value);
     }
   };
 
@@ -89,11 +94,11 @@ const Login = (props: { loginType: string }) => {
         <div className="Login-Register-Form-Container">
           <h1>{currentLoginType}</h1>
 
-          <form className="Login-Register-Form" onSubmit={handleSubmit}>
+          <form className="Login-Register-Form" onSubmit={handleFormSubmit}>
             <div className="Login-Register-Form-Group">
               {(currentLoginType === 'Login' ? LoginField : RegisterField).map(({ id, type, placeholder, label }) => (
                 <div className="Login-Register-Form-Field" key={id}>
-                  <input type={type} id={id} className="Login-Register-Form-Input" placeholder={placeholder} />
+                  <input type={type} id={id} className="Login-Register-Form-Input" placeholder={placeholder} required />
                   <label htmlFor={id} className="Login-Register-Form-Label">
                     {label}
                   </label>
@@ -107,7 +112,7 @@ const Login = (props: { loginType: string }) => {
         </div>
         <div className="Login-Register-Form-Footer">
           <p>
-            <button type="button" onClick={handleLoginType(currentLoginType)}>
+            <button type="button" onClick={handleFormButton(currentLoginType)}>
               {currentLoginType === 'Login' ? 'Create Account' : 'Already have an account?'}
             </button>
           </p>
