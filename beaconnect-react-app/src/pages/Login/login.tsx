@@ -19,22 +19,16 @@ type FormElement = {
 
 const Login = (props: {
   loginType: string;
+  changeLoginType: (type: string) => () => void;
   onLogin: (email: string, password: string) => void;
   onRegister: (email: string, username: string, password: string, confirmPassword: string) => void;
 }) => {
-  const { loginType, onLogin, onRegister } = props;
-  const [currentLoginType, setCurrentLoginType] = useState(loginType);
-
-  const handleFormButton = (type: string) => () => {
-    setCurrentLoginType(type === 'Login' ? 'Register' : 'Login');
-    window.history.pushState({}, '', type === 'Login' ? '/register' : '/login');
-    document.querySelector('form')?.reset();
-  };
+  const { loginType, onLogin, onRegister, changeLoginType } = props;
 
   const handleFormSubmit = (event: React.FormEvent<FormElement>) => {
     event.preventDefault();
     const { elements } = event.currentTarget;
-    if (currentLoginType === 'Login') {
+    if (loginType === 'Login') {
       const { username, password } = elements;
       onLogin(username.value, password.value);
     } else {
@@ -87,16 +81,16 @@ const Login = (props: {
 
   return (
     <div className="Login-Register-Wrapper">
-      <div className={`Login-Register-Container ${currentLoginType === 'Login' ? 'Login' : 'Register'}`}>
+      <div className={`Login-Register-Container ${loginType === 'Login' ? 'Login' : 'Register'}`}>
         <div className="Login-Register-Image">
           <img src={Cover} alt="Cover" />
         </div>
         <div className="Login-Register-Form-Container">
-          <h1>{currentLoginType}</h1>
+          <h1>{loginType}</h1>
 
           <form className="Login-Register-Form" onSubmit={handleFormSubmit}>
             <div className="Login-Register-Form-Group">
-              {(currentLoginType === 'Login' ? LoginField : RegisterField).map(({ id, type, placeholder, label }) => (
+              {(loginType === 'Login' ? LoginField : RegisterField).map(({ id, type, placeholder, label }) => (
                 <div className="Login-Register-Form-Field" key={id}>
                   <input type={type} id={id} className="Login-Register-Form-Input" placeholder={placeholder} required />
                   <label htmlFor={id} className="Login-Register-Form-Label">
@@ -105,15 +99,15 @@ const Login = (props: {
                 </div>
               ))}
               <button type="submit" className="Login-Register-Form-Button">
-                {currentLoginType}
+                {loginType}
               </button>
             </div>
           </form>
         </div>
         <div className="Login-Register-Form-Footer">
           <p>
-            <button type="button" onClick={handleFormButton(currentLoginType)}>
-              {currentLoginType === 'Login' ? 'Create Account' : 'Already have an account?'}
+            <button type="button" onClick={changeLoginType(loginType)}>
+              {loginType === 'Login' ? 'Create Account' : 'Already have an account?'}
             </button>
           </p>
 
