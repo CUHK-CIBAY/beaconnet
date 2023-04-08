@@ -10,6 +10,9 @@ const startServer = async () => {
     typeDefs: await typeDefs,
     resolvers,
     context: baseContext,
+    cors: {
+      origin: ["http://localhost:3000", "https://localhost:3000"],
+    },
   });
 
   const { url } = await server.listen();
