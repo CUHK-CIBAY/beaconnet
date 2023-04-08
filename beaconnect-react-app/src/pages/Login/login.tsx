@@ -111,7 +111,7 @@ const Login = (props: {
                 </div>
               ))}
               <button type="submit" className="Login-Register-Form-Button">
-                {loginType}
+                {loginLoading || registerLoading ? 'Loading...' : loginType}
               </button>
             </div>
           </form>

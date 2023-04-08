@@ -4,6 +4,7 @@ import { useMutation } from '@apollo/client';
 import { useNavigate } from 'react-router-dom';
 
 import Login from './login';
+import { useUserContext } from '../../userContext';
 import { loginQuery, registerQuery } from './components/login.query';
 
 type LoginMutationVariables = {
@@ -32,6 +33,7 @@ type RegisterMutationResult = {
 // eslint-disable-next-line no-undef
 const LoginCompound = (props: { loginType: string }) => {
   const { loginType } = props;
+  const { signIn } = useUserContext();
   const [currentLoginType, setCurrentLoginType] = useState(loginType);
   const navigate = useNavigate();
   const changeLoginType = (type: string) => () => {
@@ -48,7 +50,7 @@ const LoginCompound = (props: { loginType: string }) => {
       const {
         login: { token },
       } = data;
-      console.log(token);
+      signIn(token);
       navigate('/', { replace: true });
     },
   });
