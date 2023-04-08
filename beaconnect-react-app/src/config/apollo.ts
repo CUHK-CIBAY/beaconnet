@@ -1,9 +1,38 @@
-import { ApolloClient, InMemoryCache } from '@apollo/client';
+import { ApolloClient, InMemoryCache, createHttpLink } from '@apollo/client';
+import { setContext } from '@apollo/client/link/context';
+import { onError } from '@apollo/client/link/error';
+import AUTH from './constants';
+
+const httpLink = createHttpLink({
+  uri: 'http://localhost:4000/',
+});
+
+const authLink = setContext((_, { headers }) => {
+  const token = localStorage.getItem(AUTH.token);
+  return {
+    headers: {
+      ...headers,
+      authorization: token ? `Bearer ${token}` : '',
+    },
+  };
+});
+
+const errorLink = onError(({ graphQLErrors, networkError, response }) => {
+  if (graphQLErrors) {
+    graphQLErrors.forEach(({ message, locations, path }) => {
+      console.log(`[GraphQL error]: Message: ${message}, Location: ${locations}, Path: ${path}, Response: ${response}`);
+    });
+  }
+  if (networkError) {
+    if ('statusCode' in networkError && networkError.statusCode === 401) {
+      localStorage.removeItem(AUTH.token);
+      window.location.reload();
+    }
+  }
+});
 
 const client = new ApolloClient({
-  // Warning: This is a local server, not the production server
-  // Warning: Please switch to https when deploying to production
-  uri: 'http://localhost:4000/',
+  link: authLink.concat(errorLink.concat(httpLink)),
   cache: new InMemoryCache(),
 });
 
