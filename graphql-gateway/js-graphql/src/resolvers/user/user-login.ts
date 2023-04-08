@@ -15,11 +15,18 @@ const createToken = async ({ id, email, username }: User) =>
 const userLoginResolver = async (_p: any, { input }: any) => {
   const session = driver.session({ database: 'neo4j' });
   try {
-    const { email, password } = input;
+    const { email, username, password } = input;
     const query = 'MATCH (u:User {email: $email}) RETURN u';
     const result = await session.run(query, { email });
-    if (result.records.length === 0) throw Error('Username Not Exist');
-    const user = result.records[0].get('u').properties;
+    let user;
+    if (result.records.length === 0) {
+      const query2 = 'MATCH (u:User {username: $username}) RETURN u';
+      const result2 = await session.run(query2, { username });
+      if (result2.records.length === 0) throw Error('Username Not Exist');
+      user = result2.records[0].get('u').properties;
+    } else {
+      user = result.records[0].get('u').properties;
+    }
     const isPasswordValid = await bcrypt.compare(password, user.password);
     if (!isPasswordValid) throw Error('Wrong Password');
     return { token: await createToken(user) };
