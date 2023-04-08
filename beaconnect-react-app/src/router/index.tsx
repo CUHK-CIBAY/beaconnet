@@ -29,8 +29,8 @@ const Router = () => {
             </LoginCheck>
           }
         />
-        <Route path="/login" element={<Login loginType="Login" />} />
-        <Route path="/register" element={<Login loginType="Register" />} />
+        <Route path="/login" element={<Login loginType="Login" isLoggedIn={isLoggedIn} />} />
+        <Route path="/register" element={<Login loginType="Register" isLoggedIn={isLoggedIn} />} />
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>
     </Suspense>

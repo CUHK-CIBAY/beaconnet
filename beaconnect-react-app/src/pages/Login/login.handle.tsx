@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 import { useMutation } from '@apollo/client';
-import { useNavigate } from 'react-router-dom';
+import { Navigate, useNavigate } from 'react-router-dom';
 
 import Login from './login';
 import { useUserContext } from '../../userContext';
@@ -31,8 +31,9 @@ type RegisterMutationResult = {
 };
 
 // eslint-disable-next-line no-undef
-const LoginCompound = (props: { loginType: string }) => {
-  const { loginType } = props;
+const LoginCompound = (props: { loginType: string; isLoggedIn: boolean }) => {
+  const { loginType, isLoggedIn } = props;
+  if (isLoggedIn) return <Navigate to="/" replace />;
   const { signIn } = useUserContext();
   const [currentLoginType, setCurrentLoginType] = useState(loginType);
   const navigate = useNavigate();
