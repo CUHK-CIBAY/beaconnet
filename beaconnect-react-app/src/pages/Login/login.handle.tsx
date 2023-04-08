@@ -55,7 +55,6 @@ const LoginCompound = (props: { loginType: string }) => {
     login({ variables: { email, password } });
   };
   const handleRegister = (email: string, username: string, password: string, confirmPassword: string) => {
-    console.log(email, username, password, confirmPassword);
     if (password !== confirmPassword) window.alert('Password and Confirm Password must be same');
     else register({ variables: { email, password, username } });
   };
