@@ -79,6 +79,7 @@
   width: 100%;
   padding: 15px;
   border-radius: 5px;
+  user-select: none;
 }
 
 .Login-Register-Form-Field .Login-Register-Form-Label {
