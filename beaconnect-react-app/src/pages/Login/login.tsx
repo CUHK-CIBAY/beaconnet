@@ -22,14 +22,12 @@ const Login = (props: {
   changeLoginType: (type: string) => () => void;
   onLogin: (email: string, password: string) => void;
   onRegister: (email: string, username: string, password: string, confirmPassword: string) => void;
-  loginError: ApolloError | undefined;
-  registerError: ApolloError | undefined;
+  errorMessage: string;
   loginLoading: boolean;
   registerLoading: boolean;
 }) => {
   // eslint-disable-next-line
-  const { loginType, onLogin, onRegister, changeLoginType, loginError, registerError, loginLoading, registerLoading } =
-    props;
+  const { loginType, onLogin, onRegister, changeLoginType, errorMessage, loginLoading, registerLoading } = props;
 
   const handleFormSubmit = (event: React.FormEvent<FormElement>) => {
     event.preventDefault();
@@ -94,9 +92,9 @@ const Login = (props: {
         <div className="Login-Register-Form-Container">
           <h1>{loginType}</h1>
 
-          {loginError || registerError ? (
+          {errorMessage ? (
             <div className="Login-Register-Form-Error">
-              <p>{loginError?.message || registerError?.message}</p>
+              <p>{errorMessage}</p>
             </div>
           ) : null}
 
