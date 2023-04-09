@@ -11,8 +11,10 @@ const startServer = async () => {
     resolvers,
     context: baseContext,
     cors: {
-      origin: ["http://localhost:3000", "https://localhost:3000", "http://beaconnet.online:3000", "https://studio.apollographql.com"],
-      credentials: true,
+      // origin: ["http://localhost:3000", "https://localhost:3000", "http://beaconnet.online:3000", "https://studio.apollographql.com"],
+      origin: true,
+      optionsSuccessStatus: 200, 
+      credentials: true, 
     },
   });
 
