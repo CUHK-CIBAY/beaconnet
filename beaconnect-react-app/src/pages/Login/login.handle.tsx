@@ -5,34 +5,23 @@ import { Navigate, useNavigate } from 'react-router-dom';
 
 import Login from './login';
 import { useUserContext } from '../../userContext';
-import { loginQuery, registerQuery } from './components/login.query';
-
-type LoginMutationVariables = {
-  email: string;
-  password: string;
-};
-
-type LoginMutationResult = {
-  login: {
-    token: string;
-  };
-};
-
-type RegisterMutationVariables = {
-  email: string;
-  password: string;
-  username: string;
-};
-
-type RegisterMutationResult = {
-  register: {
-    id: string;
-  };
-};
+import {
+  loginQuery,
+  registerQuery,
+  LoginMutationResult,
+  LoginMutationVariables,
+  RegisterMutationResult,
+  RegisterMutationVariables,
+} from './components/login.query';
 
 // eslint-disable-next-line no-undef
-const LoginCompound = (props: { loginType: string; isLoggedIn: boolean }) => {
-  const { loginType, isLoggedIn } = props;
+const LoginCompound = (props: {
+  loginType: string;
+  isLoggedIn: boolean;
+  // eslint-disable-next-line no-unused-vars
+  setIsLoggedIn: (isLoggedIn: boolean) => void;
+}) => {
+  const { loginType, isLoggedIn, setIsLoggedIn } = props;
   if (isLoggedIn) return <Navigate to="/" replace />;
   const navigate = useNavigate();
   const { signIn } = useUserContext();
@@ -51,6 +40,7 @@ const LoginCompound = (props: { loginType: string; isLoggedIn: boolean }) => {
         login: { token },
       } = data;
       signIn(token);
+      setIsLoggedIn(true);
       navigate('/', { replace: true });
     },
     onError: (error) => {
