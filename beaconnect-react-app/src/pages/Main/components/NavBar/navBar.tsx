@@ -23,7 +23,7 @@ const NavBar = () => {
       <div className="nav-wrapper">
         <div className="logo">
           <div className="logo-icon">B</div>
-          <div className="logo-name">eaconnect</div>
+          <div className="logo-name">Beaconnet</div>
         </div>
 
         <div className="nav-links">
