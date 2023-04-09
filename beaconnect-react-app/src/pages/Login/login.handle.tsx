@@ -87,8 +87,7 @@ const LoginCompound = (props: { loginType: string; isLoggedIn: boolean }) => {
       changeLoginType={changeLoginType}
       onLogin={handleLogin}
       onRegister={handleRegister}
-      loginLoading={loginLoading}
-      registerLoading={registerLoading}
+      Loading={registerLoading || loginLoading}
       errorMessage={errorMessage}
     />
   );

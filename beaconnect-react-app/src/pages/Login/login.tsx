@@ -5,17 +5,7 @@ import React from 'react';
 import { ApolloError } from '@apollo/client';
 import Cover from './images/cover.jpg';
 import './components/login.css';
-
-type FormFieldElements = {
-  email: HTMLInputElement;
-  username: HTMLInputElement;
-  password: HTMLInputElement;
-  'confirm-password': HTMLInputElement;
-} & HTMLFormControlsCollection;
-
-type FormElement = {
-  readonly elements: FormFieldElements;
-} & HTMLFormElement;
+import { LoginField, RegisterField, FormElement } from './components/login.field';
 
 const Login = (props: {
   loginType: string;
@@ -23,65 +13,17 @@ const Login = (props: {
   onLogin: (email: string, password: string) => void;
   onRegister: (email: string, username: string, password: string, confirmPassword: string) => void;
   errorMessage: string;
-  loginLoading: boolean;
-  registerLoading: boolean;
+  Loading: boolean;
 }) => {
-  // eslint-disable-next-line
-  const { loginType, onLogin, onRegister, changeLoginType, errorMessage, loginLoading, registerLoading } = props;
+  const { loginType, onLogin, onRegister, changeLoginType, errorMessage, Loading } = props;
 
   const handleFormSubmit = (event: React.FormEvent<FormElement>) => {
     event.preventDefault();
     const { elements } = event.currentTarget;
-    if (loginType === 'Login') {
-      const { username, password } = elements;
-      onLogin(username.value, password.value);
-    } else {
-      const { email, username, password, 'confirm-password': confirmPassword } = elements;
-      onRegister(email.value, username.value, password.value, confirmPassword.value);
-    }
+    const { email, username, password, 'confirm-password': confirmPassword } = elements;
+    if (loginType === 'Login') onLogin(username.value, password.value);
+    else onRegister(email.value, username.value, password.value, confirmPassword.value);
   };
-
-  const RegisterField = [
-    {
-      id: 'email',
-      type: 'text',
-      placeholder: 'Enter Here',
-      label: 'Email',
-    },
-    {
-      id: 'username',
-      type: 'text',
-      placeholder: 'Enter Here',
-      label: 'Username',
-    },
-    {
-      id: 'password',
-      type: 'password',
-      placeholder: 'Enter Here',
-      label: 'Password',
-    },
-    {
-      id: 'confirm-password',
-      type: 'password',
-      placeholder: 'Enter Here',
-      label: 'Confirm Password',
-    },
-  ];
-
-  const LoginField = [
-    {
-      id: 'username',
-      type: 'text',
-      placeholder: 'Enter Here',
-      label: 'Username',
-    },
-    {
-      id: 'password',
-      type: 'password',
-      placeholder: 'Enter Here',
-      label: 'Password',
-    },
-  ];
 
   return (
     <div className="Login-Register-Wrapper">
@@ -109,7 +51,7 @@ const Login = (props: {
                 </div>
               ))}
               <button type="submit" className="Login-Register-Form-Button">
-                {loginLoading || registerLoading ? 'Loading...' : loginType}
+                {Loading ? 'Loading...' : loginType}
               </button>
             </div>
           </form>
