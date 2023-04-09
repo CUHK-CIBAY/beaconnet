@@ -1,0 +1,93 @@
+nav {
+  position: fixed;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 75px;
+  background-color: #e9edc9;
+  border-radius: 0 25px 25px 0;
+  transition: width 0.5s ease-in-out;
+}
+
+.logo {
+  width: 90%;
+  margin: 3vh auto;
+  display: flex;
+  justify-content: center;
+  align-items: baseline;
+  gap: 0;
+  transition: gap 0.5s ease-in-out;
+}
+
+.logo-icon {
+  background: #fff;
+  border-radius: 5px;
+  width: 50px;
+  aspect-ratio: 1 / 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 30px;
+}
+
+.logo-name {
+  height: 25px;
+  overflow: hidden;
+  width: 0;
+  transition: width 0.5s ease-in-out;
+}
+
+.nav-control,
+.nav-link {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: scale 0.2s ease-in-out;
+}
+
+.nav-control:hover,
+.nav-link:hover {
+  scale: 1.1;
+}
+
+.nav-controls {
+  position: absolute;
+  bottom: 3%;
+  width: 100%;
+}
+
+.nav-control svg,
+.nav-link svg {
+  display: inline-block;
+  scale: 1.3;
+}
+
+.nav-control p,
+.nav-link p {
+  display: inline-block;
+  font-weight: bolder;
+  overflow: hidden;
+  margin-left: 0;
+  width: 0;
+  transition: margin-left 0.5s ease-in-out, width 0.5s ease-in-out;
+}
+
+nav:hover {
+  width: 200px;
+}
+
+nav:hover .logo {
+  gap: 10px;
+}
+
+nav:hover .nav-control p,
+nav:hover .nav-link p {
+  margin-left: 20px;
+  width: 75px;
+}
+
+nav:hover .logo-name {
+  width: 76px;
+}
