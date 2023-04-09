@@ -1,23 +1,40 @@
 import React from 'react';
 import './nav.css';
-import {
-  AiOutlineBarChart,
-  AiOutlineMessage,
-  AiOutlineQuestionCircle,
-  AiOutlineSearch,
-  AiOutlineSetting,
-} from 'react-icons/ai';
+import { AiOutlineMessage, AiOutlineQuestionCircle, AiOutlineSearch, AiOutlineSetting } from 'react-icons/ai';
 import { BiHomeAlt2 } from 'react-icons/bi';
 import { CgProfile } from 'react-icons/cg';
 import { FiLogOut, FiUser } from 'react-icons/fi';
 import { useNavigate } from 'react-router-dom';
 
-const NavBar = () => {
+// eslint-disable-next-line no-undef
+const NavItem = ({ icon, text, path }: { icon: JSX.Element; text: string; path: string }) => {
   const navigate = useNavigate();
-  const redirectTo = (path: string) => () => {
-    navigate(path);
+  const redirectTo = (redirectPath: string) => () => {
+    navigate(redirectPath);
   };
 
+  return (
+    <div className="nav-link" onClick={redirectTo(path)} onKeyDown={redirectTo(path)} role="button" tabIndex={0}>
+      {icon}
+      <p className="nav-link-desc">{text}</p>
+    </div>
+  );
+};
+
+const NavBar = () => {
+  const NavLinks = [
+    { icon: <BiHomeAlt2 />, text: 'Home', path: '/' },
+    { icon: <CgProfile />, text: 'Profile', path: 'profile' },
+    { icon: <AiOutlineMessage />, text: 'Message', path: 'message' },
+    { icon: <AiOutlineSearch />, text: 'Search', path: 'search' },
+    { icon: <AiOutlineQuestionCircle />, text: 'Help', path: 'help' },
+    { icon: <AiOutlineSetting />, text: 'Settings', path: 'settings' },
+  ];
+
+  const NavControls = [
+    { icon: <FiLogOut />, text: 'Logout', path: 'logout' },
+    { icon: <FiUser />, text: 'Account', path: 'account' },
+  ];
   return (
     <nav>
       <div className="nav-wrapper">
@@ -27,92 +44,14 @@ const NavBar = () => {
         </div>
 
         <div className="nav-links">
-          <div className="nav-link" onClick={redirectTo('/')} onKeyDown={redirectTo('/')} role="button" tabIndex={0}>
-            <BiHomeAlt2 />
-            <p className="nav-link-desc">Home</p>
-          </div>
-          <div
-            className="nav-link"
-            onClick={redirectTo('profile')}
-            onKeyDown={redirectTo('profile')}
-            role="button"
-            tabIndex={0}
-          >
-            <CgProfile />
-            <p className="nav-link-desc">Profile</p>
-          </div>
-          <div
-            className="nav-link"
-            onClick={redirectTo('message')}
-            onKeyDown={redirectTo('message')}
-            role="button"
-            tabIndex={0}
-          >
-            <AiOutlineMessage />
-            <p className="nav-link-desc">Message</p>
-          </div>
-          <div
-            className="nav-link"
-            onClick={redirectTo('statistic')}
-            onKeyDown={redirectTo('statistic')}
-            role="button"
-            tabIndex={0}
-          >
-            <AiOutlineBarChart />
-            <p className="nav-link-desc">Statistic</p>
-          </div>
-          <div
-            className="nav-link"
-            onClick={redirectTo('search')}
-            onKeyDown={redirectTo('search')}
-            role="button"
-            tabIndex={0}
-          >
-            <AiOutlineSearch />
-            <p className="nav-link-desc">Search</p>
-          </div>
-          <div
-            className="nav-link"
-            onClick={redirectTo('help')}
-            onKeyDown={redirectTo('help')}
-            role="button"
-            tabIndex={0}
-          >
-            <AiOutlineQuestionCircle />
-            <p className="nav-link-desc">Help</p>
-          </div>
-          <div
-            className="nav-link"
-            onClick={redirectTo('settings')}
-            onKeyDown={redirectTo('settings')}
-            role="button"
-            tabIndex={0}
-          >
-            <AiOutlineSetting />
-            <p className="nav-link-desc">Settings</p>
-          </div>
+          {NavLinks.map((link) => (
+            <NavItem icon={link.icon} text={link.text} path={link.path} />
+          ))}
         </div>
         <div className="nav-controls">
-          <div
-            className="nav-control"
-            onClick={redirectTo('logout')}
-            onKeyDown={redirectTo('logout')}
-            role="button"
-            tabIndex={0}
-          >
-            <FiLogOut />
-            <p className="nav-link-desc">Logout</p>
-          </div>
-          <div
-            className="nav-control"
-            onClick={redirectTo('account')}
-            onKeyDown={redirectTo('account')}
-            role="button"
-            tabIndex={0}
-          >
-            <FiUser />
-            <p className="nav-link-desc">Account</p>
-          </div>
+          {NavControls.map((link) => (
+            <NavItem icon={link.icon} text={link.text} path={link.path} />
+          ))}
         </div>
       </div>
     </nav>
