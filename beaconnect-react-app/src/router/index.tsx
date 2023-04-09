@@ -7,6 +7,7 @@ import Loading from '../pages/Essentials/Loading/loading';
 const Login = lazy(() => import('../pages/Login/login.handle'));
 const LoginCheck = lazy(() => import('./LoginCheck'));
 const Main = lazy(() => import('../pages/Main/main'));
+const Logout = lazy(() => import('../pages/Logout/logout'));
 
 const Router = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -29,6 +30,7 @@ const Router = () => {
             </LoginCheck>
           }
         />
+        <Route path="/logout" element={<Logout setIsLoggedIn={setIsLoggedIn} />} />
         <Route
           path="/login"
           element={<Login loginType="Login" isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />}
