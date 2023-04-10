@@ -31,15 +31,15 @@ const Router = () => {
           path="/login"
           element={<Login loginType="Login" isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />}
         />
+        <Route
+          path="*"
+          element={
+            <LoginCheck isLoggedIn={isLoggedIn}>
+              <Main />
+            </LoginCheck>
+          }
+        />
       </Routes>
-      <Route
-        path="*"
-        element={
-          <LoginCheck isLoggedIn={isLoggedIn}>
-            <Main />
-          </LoginCheck>
-        }
-      />
     </Suspense>
   );
 };
