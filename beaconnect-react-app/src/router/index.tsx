@@ -1,25 +1,45 @@
-import React, { useState } from 'react';
+import React, { Suspense, lazy, useEffect, useState } from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
-import Login from '../pages/Login/login';
-import LoginCheck from './LoginCheck';
-import Main from '../pages/Main/main';
+
+import AUTH from '../config/constants';
+import Loading from '../pages/Essentials/Loading/loading';
+
+const Login = lazy(() => import('../pages/Login/login.handle'));
+const LoginCheck = lazy(() => import('./LoginCheck'));
+const Main = lazy(() => import('../pages/Main/main'));
 
 const Router = () => {
-  const [isLoggedIn] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  useEffect(() => {
+    const token = localStorage.getItem(AUTH.token);
+    if (token) {
+      setIsLoggedIn(true);
+    }
+  }, []);
+
   return (
-    <Routes>
-      <Route
-        path="/"
-        element={
-          <LoginCheck isLoggedIn={isLoggedIn}>
-            <Main />
-          </LoginCheck>
-        }
-      />
-      <Route path="/login" element={<Login loginType="Login" />} />
-      <Route path="/register" element={<Login loginType="Register" />} />
-      <Route path="*" element={<Navigate to="/" />} />
-    </Routes>
+    <Suspense fallback={<Loading />}>
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <LoginCheck isLoggedIn={isLoggedIn}>
+              <Main />
+            </LoginCheck>
+          }
+        />
+        <Route
+          path="/login"
+          element={<Login loginType="Login" isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />}
+        />
+        <Route
+          path="/register"
+          element={<Login loginType="Register" isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />}
+        />
+        <Route path="*" element={<Navigate to="/" />} />
+      </Routes>
+    </Suspense>
   );
 };
 
