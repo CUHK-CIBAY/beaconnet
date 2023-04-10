@@ -8,6 +8,8 @@ nav {
   border-radius: 0 25px 25px 0;
   transition: width 0.5s ease-in-out;
   overflow: hidden;
+  box-shadow: 1px 2px 8px #e4e5ed;
+  z-index: 999;
 }
 
 .logo {
