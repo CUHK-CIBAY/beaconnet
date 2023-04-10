@@ -1,5 +1,5 @@
 import React, { Suspense, lazy, useEffect, useState } from 'react';
-import { Routes, Route, Navigate } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 
 import AUTH from '../config/constants';
 import Loading from '../pages/Essentials/Loading/loading';
@@ -23,7 +23,11 @@ const Router = () => {
     <Suspense fallback={<Loading />}>
       <Routes>
         <Route
-          path="/"
+          path="/register"
+          element={<Login loginType="Register" isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />}
+        />
+        <Route
+          path="*"
           element={
             <LoginCheck isLoggedIn={isLoggedIn}>
               <Main />
@@ -35,11 +39,6 @@ const Router = () => {
           path="/login"
           element={<Login loginType="Login" isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />}
         />
-        <Route
-          path="/register"
-          element={<Login loginType="Register" isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />}
-        />
-        <Route path="*" element={<Navigate to="/" />} />
       </Routes>
     </Suspense>
   );
