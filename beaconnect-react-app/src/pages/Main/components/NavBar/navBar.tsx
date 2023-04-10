@@ -45,12 +45,12 @@ const NavBar = () => {
 
         <div className="nav-links">
           {NavLinks.map((link) => (
-            <NavItem icon={link.icon} text={link.text} path={link.path} />
+            <NavItem icon={link.icon} text={link.text} path={link.path} key={link.text} />
           ))}
         </div>
         <div className="nav-controls">
           {NavControls.map((link) => (
-            <NavItem icon={link.icon} text={link.text} path={link.path} />
+            <NavItem icon={link.icon} text={link.text} path={link.path} key={link.text} />
           ))}
         </div>
       </div>
