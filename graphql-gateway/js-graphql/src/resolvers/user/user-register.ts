@@ -4,7 +4,7 @@ import driver from '../../util/neo4j-driver';
 
 dotenv.config();
 
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
 
 const userRegisterResolver = async (_p: any, { input }: MutationRegisterArgs) => {
   const session = driver.session({ database: 'neo4j' });

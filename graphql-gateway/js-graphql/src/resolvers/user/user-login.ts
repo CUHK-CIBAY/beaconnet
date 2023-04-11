@@ -4,7 +4,7 @@ import driver from '../../util/neo4j-driver';
 
 dotenv.config();
 
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 
 /* eslint-disable */
