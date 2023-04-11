@@ -10,6 +10,15 @@ import './pages/Home/components/home.css';
 
 import userIcon from './pages/Home/components/icon.png';
 
+const SubmitBit = (e: React.KeyboardEvent | React.MouseEvent) => {
+  const { currentTarget } = e;
+  const textArea = currentTarget.parentElement?.parentElement?.querySelector('textarea') as HTMLTextAreaElement;
+  const text = textArea.value;
+  if (text.length > 0) {
+    console.log(text);
+  }
+};
+
 const WriteBitBox = () => (
   <div className="write-bit-box bit-box-container">
     <img className="bit-box-icon" src={userIcon} alt="profile" />
@@ -21,7 +30,13 @@ const WriteBitBox = () => (
           <FiVideo className="write-bit-box-options-icon" />
           <BsSoundwave className="write-bit-box-options-icon" />
         </div>
-        <div className="write-bit-box-options-submit">
+        <div
+          className="write-bit-box-options-submit"
+          onClick={SubmitBit}
+          onKeyDown={SubmitBit}
+          role="button"
+          tabIndex={0}
+        >
           <TbSend className="write-bit-box-options-submit-icon" />
           <input type="submit" value="Send Bit" />
         </div>
