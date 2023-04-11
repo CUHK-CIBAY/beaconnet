@@ -8,7 +8,7 @@ const baseContext = async ({ request }: any) => {
   const token = request.headers.get('x-token');
   if (token) {
     try {
-      const me = await jwt.verify(token, process.env.SERCET);
+      const me = await jwt.verify(token, process.env.SECRET);
       return { me };
     } catch (error) {
       console.error(error);

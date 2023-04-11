@@ -14,7 +14,7 @@ Resources:
       BuildProperties:
         EntryPoints:
           - src/index.ts
-        Minify: true
+        Minify: false
         Target: 'es2020'
     Properties:
       CodeUri: ./js-graphql
