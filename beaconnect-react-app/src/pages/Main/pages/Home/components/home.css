@@ -141,12 +141,12 @@
   height: 0;
   padding: 0 0 0 36px;
   overflow: hidden;
-  transition: height 0.3s ease-in-out, padding 0.3s ease-in-out, margin 0.3s ease-in-out, border-top 0.2s ease-in-out;
+  transition: height 0.3s ease-in-out, padding 0.3s ease-in-out, margin 0.3s ease-in-out;
 }
 
 .bit-box-content-footer-comment-input input {
   position: absolute;
-  top: 10px;
+  top: 0;
   left: 0;
   width: calc(100% - 22px);
   bottom: 0;
@@ -159,7 +159,7 @@
 
 .bit-box-content-footer-comment-submit {
   position: absolute;
-  top: 10px;
+  top: 0;
   right: 20px;
   bottom: 0;
   background-color: transparent;
@@ -173,14 +173,15 @@
   transition: opacity 0.2s ease-in-out;
 }
 
-.bit-box:hover .bit-box-content-footer-comment {
-  border-top: 1px solid #757575;
+.bit-box:hover .bit-box-content-footer-comment,
+.bit-box.active .bit-box-content-footer-comment {
   height: 22px;
-  padding: 20px 0 10px 36px;
+  padding: 10px 0 10px 36px;
   margin: 0 0 10px 0;
 }
 
-.bit-box:hover .bit-box-content-footer-comment-submit {
+.bit-box:hover .bit-box-content-footer-comment-submit,
+.bit-box.active .bit-box-content-footer-comment-submit {
   opacity: 1;
 }
 
