@@ -4,8 +4,8 @@ dotenv.config();
 
 const jwt = require('jsonwebtoken');
 
-const baseContext = async ({ req }: any) => {
-  const token = req.headers['x-token'];
+const baseContext = async ({ request }: any) => {
+  const token = request.headers.get('x-token');
   if (token) {
     try {
       const me = await jwt.verify(token, process.env.SERCET);
