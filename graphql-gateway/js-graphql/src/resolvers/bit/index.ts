@@ -1,5 +1,6 @@
 export const Query = {
   findBit: require('./bit-find'),
+  islikedBit: require('./bit-isliked'),
 };
 
 export const Bit = {};
