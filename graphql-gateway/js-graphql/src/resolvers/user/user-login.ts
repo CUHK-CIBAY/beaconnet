@@ -20,10 +20,10 @@ const userLoginResolver = async (_p: any, { input }: any) => {
     let result;
 
     if (email) {
-      query = 'MATCH (u:User {email: $email})-[:HAS]->(uInfo) RETURN u, uInfo';
+      query = 'MATCH (u:User {email: $email}) RETURN u';
       result = await session.run(query, { email });
     } else if (username) {
-      query = 'MATCH (u:User {username: $username})-[:HAS]->(uInfo) RETURN u, uInfo';
+      query = 'MATCH (u:User {username: $username}) RETURN u';
       result = await session.run(query, { username });
     } else {
       throw new Error('Please input email/username');
