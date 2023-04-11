@@ -1,0 +1,9 @@
+.page-content {
+  background: #f3f4f5;
+  width: calc(100vw - 75px);
+  height: 100vh;
+  padding: 0 0 0 75px;
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  grid-template-rows: 1fr;
+}
