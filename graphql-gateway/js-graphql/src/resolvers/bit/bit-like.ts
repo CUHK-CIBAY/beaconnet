@@ -3,7 +3,7 @@ import driver from '../../util/neo4j-driver';
 
 dotenv.config();
 
-const likeBit = async (_p: any, { id }: any, { me }: any) => {
+export const likeBit = async (_p: any, { id }: any, { me }: any) => {
   const session = driver.session({ database: 'neo4j' });
   try {
     let query = `
@@ -38,4 +38,19 @@ const likeBit = async (_p: any, { id }: any, { me }: any) => {
   }
 };
 
-module.exports = likeBit;
+export const isLikedBit = async (_p: any, { id }: any, { me }: any) => {
+  const session = driver.session({ database: 'neo4j' });
+  try {
+    const query = `
+      MATCH (b:Bit {id: $bid})
+      RETURN EXISTS((:User {id: $uid})-[:LIKED]->(b)) AS isLiked
+    `;
+    const result = await session.run(query, { bid: id, uid: me.id });
+    return result.records[0].get('isLiked');
+  } catch (error) {
+    console.error(error);
+    return null;
+  } finally {
+    await session.close();
+  }
+};
