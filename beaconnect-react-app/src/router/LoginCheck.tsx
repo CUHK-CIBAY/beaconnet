@@ -1,12 +1,12 @@
 import React from 'react';
-import { Navigate } from 'react-router-dom';
+import { Navigate, useLocation } from 'react-router-dom';
 
 const LoginCheck = ({ isLoggedIn, children }: { isLoggedIn: boolean; children: React.ReactNode }) => {
-  if (!isLoggedIn) {
-    return <Navigate to="/login" replace />;
+  const location = useLocation();
+  if (isLoggedIn) {
+    return <>{children}</>;
   }
-
-  return <>{children}</>;
+  return <Navigate to="/login" state={{ from: location }} replace />;
 };
 
 export default LoginCheck;

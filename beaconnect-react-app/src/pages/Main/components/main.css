@@ -1,0 +1,18 @@
+.page-content {
+  background: #f3f4f5;
+  width: calc(100vw - 75px);
+  height: 100vh;
+  padding: 0 0 0 75px;
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  grid-template-rows: 1fr;
+}
+
+.page-center-content {
+  height: 100vh;
+  overflow: scroll;
+}
+
+.page-right-content {
+  padding: 20px 30px 0px 10px;
+}
