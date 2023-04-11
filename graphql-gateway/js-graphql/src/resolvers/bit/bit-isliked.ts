@@ -1,23 +1,23 @@
 import * as dotenv from 'dotenv';
-import { User } from '../../gql.types';
 import driver from '../../util/neo4j-driver';
 
 dotenv.config();
 
-const islikedBit = async (_p: any, {bid}: any, {me}: any) => {
+const isLikedBit = async (_p: any, { id }: any, { me }: any) => {
   const session = driver.session({ database: 'neo4j' });
   try {
-    const query = ` MATCH (b:Bit {id: $bid}) MATCH(u:User {id: $uid})
-    RETURN if(((:User {id: $uid}) EXISTS (b:Bit {id: $likeGivers})) != NULL) AS isliked`;;
-    const result = await session.run(query, {id: bid, uid: me.id });
-    //return boolean where Bit.likeGivers === User.id 
-    return result.records[0].get('isliked');
+    const query = `
+			MATCH (:User {id: $uid})-[r:LIKED]->(:Bit {id: $bid})
+    	RETURN EXISTS(r) AS isLiked
+		`;
+    const result = await session.run(query, {id: id, uid: me.id }); 
+    return result.records[0].get('isLiked');
   } catch (error) {
-    console.log(error);
+    console.error(error);
     return null;
   } finally {
     await session.close();
   }
 };
 
-module.exports = islikedBit;
+module.exports = isLikedBit;

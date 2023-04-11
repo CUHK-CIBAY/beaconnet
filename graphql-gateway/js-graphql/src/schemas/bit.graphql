@@ -11,7 +11,7 @@ type Bit {
 type Query {
   findBit(id: String): Bit
   bits: [Bit!]
-  islikedBit (bid: ID!): Boolean
+  isLikedBit(id: ID!): Boolean
 }
 
 type Mutation {
