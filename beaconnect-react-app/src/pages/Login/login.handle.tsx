@@ -67,7 +67,8 @@ const LoginCompound = (props: {
     login({ variables: { email, password } });
   };
   const handleRegister = (email: string, username: string, password: string, confirmPassword: string) => {
-    if (password !== confirmPassword) setErrorMessage('Passwords do not match');
+    if (!email.match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i)) setErrorMessage('Invalid email');
+    else if (password !== confirmPassword) setErrorMessage('Passwords do not match');
     else register({ variables: { email, password, username } });
   };
 
