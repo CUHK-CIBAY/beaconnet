@@ -42,10 +42,10 @@ export const isLikedBit = async (_p: any, { id }: any, { me }: any) => {
   const session = driver.session({ database: 'neo4j' });
   try {
     const query = `
-      MATCH (:User {id: $uid})-[r:LIKED]->(:Bit {id: $bid})
-      RETURN EXISTS(r) AS isLiked
+      MATCH (b:Bit {id: $bid})
+      RETURN EXISTS((:User {id: $uid})-[:LIKED]->(b)) AS isLiked
     `;
-    const result = await session.run(query, { id, uid: me.id });
+    const result = await session.run(query, { bid: id, uid: me.id });
     return result.records[0].get('isLiked');
   } catch (error) {
     console.error(error);
