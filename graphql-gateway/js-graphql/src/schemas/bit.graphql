@@ -12,6 +12,7 @@ type Query {
   findBit(id: String): Bit
   bits: [Bit!]
   isLikedBit(id: ID!): Boolean
+  showBits(following: Boolean): [Bit!]
 }
 
 type Mutation {
