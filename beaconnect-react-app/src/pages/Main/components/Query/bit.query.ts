@@ -18,34 +18,33 @@ export const postBitQuery = gql`
   }
 `;
 
-
 export type getBitsQueryVariables = {
-    limit: number;
-    offset: number;
+  limit: number;
+  offset: number;
 };
 
 export type getBitsQueryResult = {
-    bits: {
-        id: string;
-        content: string;
-        createdAt: string;
-        user: {
-            id: string;
-            name: string;
-        };
-    }[];
+  bits: {
+    id: string;
+    content: string;
+    createdAt: string;
+    user: {
+      id: string;
+      name: string;
+    };
+  }[];
 };
 
 export const getBitsQuery = gql`
-    query GetBits($limit: Int!, $offset: Int!) {
-        bits(limit: $limit, offset: $offset) {
-            id
-            content
-            createdAt
-            user {
-                id
-                name
-            }
-        }
+  query GetBits($limit: Int!, $offset: Int!) {
+    bits(limit: $limit, offset: $offset) {
+      id
+      content
+      createdAt
+      user {
+        id
+        name
+      }
     }
+  }
 `;
