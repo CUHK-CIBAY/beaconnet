@@ -1,12 +1,16 @@
 /* eslint-disable no-unused-vars */
 import React from 'react';
-
-import { BiSearchAlt } from 'react-icons/bi';
-import { WriteBitBox, BitBox } from './components/Bits/bits';
+import { AiOutlineHeart } from 'react-icons/ai';
+import { BiComment, BiSearchAlt } from 'react-icons/bi';
+import { BsSoundwave, BsImage } from 'react-icons/bs';
+import { FiVideo } from 'react-icons/fi';
+import { TbSend } from 'react-icons/tb';
 import NavBar from './components/NavBar/navBar';
-import seasonalEvent from './pages/Home/components/seasonalpic.jpg';
 import './components/main.css';
 import './pages/Home/components/home.css';
+
+import { WriteBitBox, BitBox } from './components/Bits/bits';
+import seasonalEvent from './pages/Home/components/seasonalpic.jpg';
 
 const Main = () => (
   <div className="homePage">
