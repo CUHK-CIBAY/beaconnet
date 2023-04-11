@@ -17,8 +17,8 @@ const userLoginResolver = async (_p: any, { input }: any) => {
   try {
     const { email, username, password } = input;
     let query = '';
-    let result: any;
-    let user;
+    let result;
+
     if (email) {
       query = 'MATCH (u:User {email: $email})-[:HAS]->(uInfo) RETURN u, uInfo';
       result = await session.run(query, { email });
@@ -29,13 +29,13 @@ const userLoginResolver = async (_p: any, { input }: any) => {
       throw new Error('Please input email/username');
     }
 
-    if (result.records.length === 0) throw Error('Username Not Exist');
-    user = result.records[0].get('u').properties;
+    if (result.records.length === 0) throw Error('Username/Email Not Exist');
+
+    const user = result.records[0].get('u').properties;
     const isPasswordValid = await bcrypt.compare(password, user.password);
     if (!isPasswordValid) throw Error('Wrong Password');
     return { token: await createToken(user) };
-  }
-  catch (error) {
+  } catch (error) {
     console.error(error);
     return null;
   } finally {
