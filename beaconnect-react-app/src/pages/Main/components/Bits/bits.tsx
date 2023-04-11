@@ -1,30 +1,58 @@
 import React from 'react';
+import { useMutation } from '@apollo/client';
 import { AiOutlineHeart } from 'react-icons/ai';
 import { BiComment, BiRepost } from 'react-icons/bi';
 import { BsSoundwave, BsImage } from 'react-icons/bs';
 import { FiVideo } from 'react-icons/fi';
 import { TbSend } from 'react-icons/tb';
+import { postBitQuery, postBitMutationVariables, postBitMutationResult } from '../Query/bit.query';
 import userIcon from '../../pages/Home/components/icon.png';
 
-export const WriteBitBox = () => (
-  <div className="write-bit-box bit-box-container">
-    <img className="bit-box-icon" src={userIcon} alt="profile" />
-    <div className="write-bit-box-content">
-      <textarea className="write-bit-box-content-text" placeholder="Write something..." />
-      <div className="write-bit-box-options">
-        <div className="write-bit-box-options-attachment">
-          <BsImage className="write-bit-box-options-icon" />
-          <FiVideo className="write-bit-box-options-icon" />
-          <BsSoundwave className="write-bit-box-options-icon" />
-        </div>
-        <div className="write-bit-box-options-submit">
-          <TbSend className="write-bit-box-options-submit-icon" />
-          <input type="submit" value="Send Bit" />
+export const WriteBitBox = () => {
+  const [postBit] = useMutation<postBitMutationResult, postBitMutationVariables>(postBitQuery, {
+    onCompleted: (data) => {
+      const {
+        postBit: { id },
+      } = data;
+      console.log(id);
+    },
+  });
+
+  const postBitHandler = (e: React.KeyboardEvent | React.MouseEvent) => {
+    const { currentTarget } = e;
+    const textArea = currentTarget.parentElement?.parentElement?.querySelector('textarea') as HTMLTextAreaElement;
+    const text = textArea.value;
+    if (text.length > 0) {
+      postBit({ variables: { content: text } });
+    }
+  };
+
+  return (
+    <div className="write-bit-box bit-box-container">
+      <img className="bit-box-icon" src={userIcon} alt="profile" />
+      <div className="write-bit-box-content">
+        <textarea className="write-bit-box-content-text" placeholder="Write something..." />
+        <div className="write-bit-box-options">
+          <div className="write-bit-box-options-attachment">
+            <BsImage className="write-bit-box-options-icon" />
+            <FiVideo className="write-bit-box-options-icon" />
+            <BsSoundwave className="write-bit-box-options-icon" />
+          </div>
+          <div
+            className="write-bit-box-options-submit"
+            onClick={postBitHandler}
+            onKeyDown={postBitHandler}
+            role="button"
+            tabIndex={0}
+          >
+            <TbSend className="write-bit-box-options-submit-icon" />
+            <input type="submit" value="Send Bit" />
+          </div>
         </div>
       </div>
     </div>
-  </div>
-);
+  );
+};
 
 export const BitBox = ({ haveCaption, isRepost }: { haveCaption?: boolean; isRepost?: boolean }) => (
   <div className="bit-box bit-box-container">

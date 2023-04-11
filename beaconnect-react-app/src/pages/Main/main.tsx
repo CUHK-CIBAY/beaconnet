@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React from 'react';
 import { BiSearchAlt } from 'react-icons/bi';
 import { WriteBitBox, BitBox } from './components/Bits/bits';
