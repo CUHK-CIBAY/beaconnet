@@ -6,6 +6,7 @@ import { BsSoundwave, BsImage } from 'react-icons/bs';
 import { FiVideo } from 'react-icons/fi';
 import { TbSend } from 'react-icons/tb';
 import { TiTick } from 'react-icons/ti';
+import { formatDistance } from 'date-fns';
 import { postBitQuery, postBitMutationVariables, postBitMutationResult } from '../Query/bit.query';
 import userIcon from '../../pages/Home/components/icon.png';
 
@@ -81,7 +82,7 @@ export const WriteBitBox = () => {
   );
 };
 
-export const BitBox = ({ haveCaption, isRepost }: { haveCaption?: boolean; isRepost?: boolean }) => {
+export const BitBox = (data: any) => {
   const addActiveStatus = (e: React.FocusEvent) => {
     const { currentTarget } = e;
     const parent = currentTarget.parentElement?.parentElement?.parentElement as HTMLDivElement;
@@ -100,26 +101,24 @@ export const BitBox = ({ haveCaption, isRepost }: { haveCaption?: boolean; isRep
 
   return (
     <div className="bit-box bit-box-container">
-      {isRepost && (
+      {/* {isRepost && (
         <div className="bit-box-repost-statement">
           <BiRepost className="bit-box-repost-statement-icon" />
           <p>Rebit by Username</p>
         </div>
-      )}
+      )} */}
       <div className="bit-box-content-header">
         <img className="bit-box-icon" src={userIcon} alt="profile" />
         <div className="bit-box-content-header-name">John Doe</div>
         <div className="bit-box-content-header-userID">@johndoe</div>
-        <div className="bit-box-content-header-time">2 hours ago</div>
-      </div>
-      <div className="bit-box-content">
-        <div className="bit-box-content-text">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec auctor, nisl eget tincidunt lacinia, nisl nisl
-          aliquet nisl, eget aliquet nisl nisl eget nisl. Donec auctor, nisl eget tincidunt lacinia, nisl nisl aliquet
-          nisl, eget aliquet nisl nisl eget nisl.
+        <div className="bit-box-content-header-time">
+          {formatDistance(new Date(data?.createAt), new Date(), { addSuffix: true })}
         </div>
       </div>
-      {haveCaption && (
+      <div className="bit-box-content">
+        <div className="bit-box-content-text">{data?.content}</div>
+      </div>
+      {/* {haveCaption && (
         <div className="bit-box-rebit-with-caption">
           <div className="bit-box-content-header">
             <img className="bit-box-icon" src={userIcon} alt="profile" />
@@ -135,11 +134,11 @@ export const BitBox = ({ haveCaption, isRepost }: { haveCaption?: boolean; isRep
             </div>
           </div>
         </div>
-      )}
+      )} */}
       <div className="bit-box-content-footer">
         <div className="bit-box-content-footer-likes bit-box-content-footer-icons">
           <AiOutlineHeart />
-          <p>10 likes</p>
+          <p>{data?.totalLike}</p>
         </div>
         <div className="bit-box-content-footer-comments bit-box-content-footer-icons">
           <BiComment />

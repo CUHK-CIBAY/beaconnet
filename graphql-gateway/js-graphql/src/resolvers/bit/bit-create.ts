@@ -10,14 +10,14 @@ const bitPostResolver = async (_p: any, { content }: any, { me }: any) => {
             MATCH (u:User {id: $id})
             WITH u
             MATCH (:Bit)
-            WITH u,toString(COUNT(*) + 1) as count
+            WITH u, toString(COUNT(*) + 1) as count
             CREATE (b:Bit {
                    id: count,
                    content: $content,
                    createAt: $createAt,
                    totalLike: $totalLike,
                    likeGivers: []
-            }) 
+            })
             CREATE (u)-[:POST]->(b)
             RETURN b
         `;

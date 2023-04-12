@@ -11,8 +11,7 @@ const bitResolver = async ({ id }: any) => {
             RETURN u
         `;
     const result = await session.run(query, { id });
-    return result.records[0].get('u').properties
-    ;
+    return result.records[0].get('u').properties;
   } catch (error) {
     console.error(error);
     return null;

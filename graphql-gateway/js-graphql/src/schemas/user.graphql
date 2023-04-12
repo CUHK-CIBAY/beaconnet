@@ -3,9 +3,6 @@ type User {
   email: String!
   "Use for login and identify, unique"
   username: String!
-  "User custom name, can duplicate"
-  nickname: String
-  "Hashed password"
   password: String!
   info: UserInfo
   following: [User!]
@@ -34,11 +31,24 @@ enum Gender {
 }
 
 type UserInfo {
+  "User custom name, can duplicate"
+  nickname: String
+  "Hashed password"
   gender: Gender
+  phone: String
+  language: [String!]
+  "ISO8601 format"
+  birthday: String
+  age: Int
 }
 
 input UpdateInfoInput {
+    nickname: String
     gender: Gender
+    phone: String
+    language: [String!]
+    birthday: String
+    age: Int
 }
 
 input RegisterInput {
@@ -64,4 +74,5 @@ type Mutation {
     register(input: RegisterInput!): User
     login(input: LoginInput!): Token
     deleteUser(id: ID): Boolean
+    followUser(id: ID!): User
 }
