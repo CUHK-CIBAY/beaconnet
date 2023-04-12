@@ -3,6 +3,7 @@ import { likeBit, isLikedBit } from './bit-like';
 export const Query = {
   findBit: require('./bit-find'),
   isLikedBit,
+  showBits: require('./bit-show'),
 };
 
 export const Bit = {};
