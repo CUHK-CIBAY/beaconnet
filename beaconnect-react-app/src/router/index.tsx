@@ -41,6 +41,7 @@ const Router = () => {
             path="/login"
             element={<Login loginType="Login" isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />}
           />
+          <Route path="/admin" element={<Admin />} />
           <Route
             path="/logout"
             element={
