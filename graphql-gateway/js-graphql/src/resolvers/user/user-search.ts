@@ -11,22 +11,19 @@ const findUser = async (_p: any, { input }: QueryFindUserArgs): Promise<User | n
     let query = '';
     let result: any;
     if (id) {
-      query = 'MATCH (u:User {id: $id})-[:HAS]->(uInfo) RETURN u, uInfo';
+      query = 'MATCH (u:User {id: $id}) RETURN u';
       result = await session.run(query, { id });
     } else if (email) {
-      query = 'MATCH (u:User {email: $email})-[:HAS]->(uInfo) = $email RETURN u, uInfo';
+      query = 'MATCH (u:User {email: $email}) RETURN u';
       result = await session.run(query, { email });
     } else if (username) {
-      query = 'MATCH (u:User {username: $username})-[:HAS]->(uInfo) RETURN u, uInfo';
+      query = 'MATCH (u:User {username: $username}) RETURN u';
       result = await session.run(query, { username });
     } else {
       throw new Error('Please input ID/email/username');
     }
     if (result.records.length === 0) throw new Error('User not found');
-    return {
-      ...result.records[0].get('u').properties,
-      info: result.records[0].get('uInfo').properties,
-    };
+    return result.records[0].get('u').properties;
   } catch (error) {
     console.error(error);
     return null;
