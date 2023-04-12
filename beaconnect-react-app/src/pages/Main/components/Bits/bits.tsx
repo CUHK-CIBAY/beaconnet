@@ -162,5 +162,4 @@ export const BitBox = (data: any) => {
 BitBox.defaultProps = {
   haveCaption: false,
   isRepost: false,
-  havePhoto: false,
 };

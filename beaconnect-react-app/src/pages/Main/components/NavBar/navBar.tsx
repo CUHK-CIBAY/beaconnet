@@ -1,7 +1,6 @@
 /* eslint-disable no-undef */
 import React from 'react';
 import './nav.css';
-// eslint-disable-next-line no-unused-vars
 import { AiOutlineMessage, AiOutlineQuestionCircle, AiOutlineSearch, AiOutlineSetting } from 'react-icons/ai';
 import { BiHomeAlt2 } from 'react-icons/bi';
 import { CgProfile } from 'react-icons/cg';
@@ -30,7 +29,7 @@ const NavBar = ({ isLoggedIn }: { isLoggedIn: boolean }) => {
     NavLinks = [
       { icon: <BiHomeAlt2 />, text: 'Home', path: '/' },
       { icon: <CgProfile />, text: 'Profile', path: 'profile' },
-      // { icon: <AiOutlineMessage />, text: 'Message', path: 'message' },
+      { icon: <AiOutlineMessage />, text: 'Message', path: 'message' },
       { icon: <AiOutlineSearch />, text: 'Search', path: 'search' },
       { icon: <AiOutlineQuestionCircle />, text: 'Help', path: 'help' },
       { icon: <AiOutlineSetting />, text: 'Settings', path: 'settings' },
