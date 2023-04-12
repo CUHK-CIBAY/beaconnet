@@ -1,4 +1,3 @@
-// findComment getUserComment getBitComment
 import * as dotenv from 'dotenv';
 import driver from '../../util/neo4j-driver';
 
