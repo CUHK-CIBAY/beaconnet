@@ -27,7 +27,8 @@ const Profile = () => (
             <p className="user-info-userID">@joNNA389</p>
           </div>
           <div className="user-info-descriptionBox">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam tristique odio quam, vel finibus lorem aliquam in. Donec interdum quam non lacus lacinia egestas. Nulla accumsan cursus lectus consequat euismod.
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam tristique odio quam, vel finibus lorem
+            aliquam in. Donec interdum quam non lacus lacinia egestas. Nulla accumsan cursus lectus consequat euismod.
           </div>
           <div className="user-info-followItem">
             <p className="user-info-following">123 Following</p>
@@ -51,9 +52,7 @@ const Profile = () => (
             Like
           </button>
         </div>
-        <div className="user-bits-show">
-          there is the bits
-        </div>
+        <div className="user-bits-show">there is the bits</div>
       </div>
     </div>
   </div>
