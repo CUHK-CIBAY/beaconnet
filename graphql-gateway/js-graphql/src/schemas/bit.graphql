@@ -7,7 +7,7 @@ type Bit {
   totalLike: Int
   likeGivers: [User!]
   "The Bit being ReBit"
-  rebit: Bit
+  reBit: Bit
   # comment: ???
 }
 
