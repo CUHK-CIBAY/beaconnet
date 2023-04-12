@@ -9,7 +9,9 @@ const UserProfileCheck = ({ isLoggedIn, children }: { isLoggedIn: boolean; child
 
   const userProfileChecker = useQuery(getUserProfileQuery, {
     onCompleted: (data) => {
-      if (data.me.nickname) setUserProfile(true);
+      console.log(data);
+      //   if (data.me.nickname)
+      setUserProfile(true);
       setGetStatus(true);
     },
   });
