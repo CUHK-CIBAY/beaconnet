@@ -13,7 +13,7 @@ Resources:
       BuildMethod: esbuild
       BuildProperties:
         EntryPoints:
-          - src/index.ts
+          - src/index.deploy.ts
         Minify: false
         Target: 'es2020'
     Properties:
