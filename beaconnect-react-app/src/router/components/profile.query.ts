@@ -47,10 +47,11 @@ export type UpdateOptionalInfoMutationResult = {
 };
 
 export const updateOptionalInfoQuery = gql`
-  mutation MyMutation($nickname: String) {
-    updateInfo(input: { nickname: $nickname }) {
+  mutation MyMutation($bio: String, $phone: String) {
+    updateInfo(input: { bio: $bio, phone: $phone }) {
       info {
-        nickname
+        bio
+        phone
       }
     }
   }

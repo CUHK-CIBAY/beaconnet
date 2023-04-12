@@ -22,7 +22,6 @@ const UserProfileCheck = ({
   const userProfileChecker = useQuery(getUserProfileQuery, {
     onCompleted: (data) => {
       setGetStatus(true);
-      console.log(data);
       if (data.me.info.nickname) setUserProfile(true);
     },
   });

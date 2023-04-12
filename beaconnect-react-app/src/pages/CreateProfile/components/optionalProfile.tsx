@@ -13,6 +13,7 @@ const OptionalProfile = ({ setUserProfile }: { setUserProfile: (done: boolean) =
     updateOptionalInfoQuery,
     {
       onCompleted: (data: UpdateOptionalInfoMutationResult) => {
+        console.log(data);
         if (data.updateInfo.info.bio || data.updateInfo.info.phone) setUserProfile(true);
       },
       onError: () => {
