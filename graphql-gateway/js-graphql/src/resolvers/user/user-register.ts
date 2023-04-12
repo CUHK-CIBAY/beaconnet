@@ -22,7 +22,7 @@ const userRegisterResolver = async (_p: any, { input }: MutationRegisterArgs) =>
     query = `
         MATCH (:User)
         WITH toString(COUNT(*) + 1) as count
-        CREATE (u:User {id: count, username: $username, password: $password, email: $email}) 
+        CREATE (u:User {id: count, username: $username, password: $password, email: $email, role: "NORMAL"}) 
         RETURN u
     `;
     result = await session.run(query, { username, password: hashedPassword, email });

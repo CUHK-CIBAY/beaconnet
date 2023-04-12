@@ -9,6 +9,7 @@ const LoginCheck = lazy(() => import('./LoginCheck'));
 const UserProfileCheck = lazy(() => import('./UserProfileCheck'));
 const Main = lazy(() => import('../pages/Main/main'));
 const Logout = lazy(() => import('../pages/Logout/logout'));
+const Admin = lazy(() => import('../pages/Admin/admin'));
 
 const Router = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);

@@ -8,8 +8,8 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 
 /* eslint-disable */
-const createToken = async ({ id, email, username }: User) =>
-  jwt.sign({ id, email, username }, process.env.SECRET, { expiresIn: '1d' });
+const createToken = async ({ id, email, username, role }: User) =>
+  jwt.sign({ id, email, username, role }, process.env.SECRET, { expiresIn: '1d' });
 /* eslint-enable */
 
 const userLoginResolver = async (_p: any, { input }: any) => {
@@ -34,7 +34,7 @@ const userLoginResolver = async (_p: any, { input }: any) => {
     const user = result.records[0].get('u').properties;
     const isPasswordValid = await bcrypt.compare(password, user.password);
     if (!isPasswordValid) throw Error('Wrong Password');
-    return { token: await createToken(user) };
+    return { token: await createToken(user), role: user.role };
   } catch (error) {
     console.error(error);
     return null;
