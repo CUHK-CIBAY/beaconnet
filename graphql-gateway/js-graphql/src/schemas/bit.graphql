@@ -6,6 +6,8 @@ type Bit {
   createAt: String!
   totalLike: Int
   likeGivers: [User!]
+  "The Bit being ReBit"
+  rebit: Bit
   # comment: ???
 }
 
@@ -18,5 +20,6 @@ type Query {
 
 type Mutation {
     postBit(content: String!): Bit
+    reBit(content: String!, id:ID): Bit
     likeBit(id: ID!): Bit
 }

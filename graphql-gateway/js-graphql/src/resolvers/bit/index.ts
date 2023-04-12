@@ -1,4 +1,5 @@
 import { likeBit, isLikedBit } from './bit-like';
+import { postBitResolver, reBitResolver} from './bit-create';
 
 export const Query = {
   findBit: require('./bit-find'),
@@ -11,6 +12,7 @@ export const Bit = {
 };
 
 export const Mutation = {
-  postBit: require('./bit-create'),
+  postBit: postBitResolver,
   likeBit,
+  reBit: reBitResolver,
 };
