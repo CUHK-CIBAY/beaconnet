@@ -16,8 +16,8 @@ const showBits = async (_p: any, { following }: any, { me }: any) => {
       query = 'MATCH (b:Bit) RETURN b';
     }
     const result = await session.run(query, { id: me?.id });
-    const bits = result.records.map(record => record.get('b').properties);
-    return bits
+    const bits = result.records.map((record) => record.get('b').properties);
+    return bits;
   } catch (error) {
     console.error(error);
     return null;
