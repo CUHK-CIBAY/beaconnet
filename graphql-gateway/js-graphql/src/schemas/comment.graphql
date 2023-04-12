@@ -3,6 +3,8 @@ type Comment {
     owner: User
     onBit: Bit
     content: String!
+    "ISO 8601 format date String"
+    createAt: String!
 }
 
 type Query {
@@ -16,7 +18,7 @@ type Query {
 
 type Mutation {
     "login User comment on Bit id"
-    commentBit(id: ID): Comment
+    commentBit(id: ID!, content: String!): Comment
     "delete certain comment by comment id"
-    deleteComment(id: ID!) Boolean
+    deleteComment(id: ID!): Boolean
 }
