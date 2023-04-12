@@ -3,9 +3,6 @@ type User {
   email: String!
   "Use for login and identify, unique"
   username: String!
-  "User custom name, can duplicate"
-  nickname: String
-  "Hashed password"
   password: String!
   info: UserInfo
   following: [User!]
@@ -34,6 +31,9 @@ enum Gender {
 }
 
 type UserInfo {
+  "User custom name, can duplicate"
+  nickname: String
+  "Hashed password"
   gender: Gender
   phone: String
   language: [String!]
@@ -43,6 +43,7 @@ type UserInfo {
 }
 
 input UpdateInfoInput {
+    nickname: String
     gender: Gender
     phone: String
     language: [String!]
