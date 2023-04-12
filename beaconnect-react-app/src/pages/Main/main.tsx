@@ -7,9 +7,9 @@ import './components/main.css';
 import './pages/Home/components/home.css';
 import Homepage from './pages/Home/components/homepage';
 
-const Main = () => (
+const Main = ({ isLoggedIn }: { isLoggedIn: boolean }) => (
   <div className="homePage">
-    <NavBar />
+    <NavBar isLoggedIn={isLoggedIn} />
     <Suspense fallback={<p>loading</p>}>
       <Routes>
         <Route path="/search" element={<Search />} />
