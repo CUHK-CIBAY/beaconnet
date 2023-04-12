@@ -22,13 +22,16 @@ const UserProfileCheck = ({
   const userProfileChecker = useQuery(getUserProfileQuery, {
     onCompleted: (data) => {
       setGetStatus(true);
+      console.log(data);
       if (data.me.info.nickname) setUserProfile(true);
     },
   });
 
   useEffect(() => {
     // eslint-disable-next-line no-unused-expressions
-    isLoggedIn && !getStatus && userProfileChecker.refetch();
+    setGetStatus(false);
+    setUserProfile(false);
+    userProfileChecker.refetch();
   }, [isLoggedIn]);
 
   if (!isLoggedIn) return <>{children}</>;
