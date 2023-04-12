@@ -6,6 +6,7 @@ import Loading from '../pages/Essentials/Loading/loading';
 
 const Login = lazy(() => import('../pages/Login/login.handle'));
 const LoginCheck = lazy(() => import('./LoginCheck'));
+const UserProfileCheck = lazy(() => import('./UserProfileCheck'));
 const Main = lazy(() => import('../pages/Main/main'));
 const Logout = lazy(() => import('../pages/Logout/logout'));
 
@@ -20,27 +21,29 @@ const Router = () => {
   }, []);
 
   return (
-    <Suspense fallback={<Loading />}>
-      <Routes>
-        <Route
-          path="/register"
-          element={<Login loginType="Register" isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />}
-        />
-        <Route
-          path="/login"
-          element={<Login loginType="Login" isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />}
-        />
-        <Route
-          path="/logout"
-          element={
-            <LoginCheck isLoggedIn={isLoggedIn}>
-              <Logout setIsLoggedIn={setIsLoggedIn} />
-            </LoginCheck>
-          }
-        />
-        <Route path="*" element={<Main isLoggedIn={isLoggedIn} />} />
-      </Routes>
-    </Suspense>
+    <UserProfileCheck isLoggedIn={isLoggedIn}>
+      <Suspense fallback={<Loading />}>
+        <Routes>
+          <Route
+            path="/register"
+            element={<Login loginType="Register" isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />}
+          />
+          <Route
+            path="/login"
+            element={<Login loginType="Login" isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />}
+          />
+          <Route
+            path="/logout"
+            element={
+              <LoginCheck isLoggedIn={isLoggedIn}>
+                <Logout setIsLoggedIn={setIsLoggedIn} />
+              </LoginCheck>
+            }
+          />
+          <Route path="*" element={<Main isLoggedIn={isLoggedIn} />} />
+        </Routes>
+      </Suspense>
+    </UserProfileCheck>
   );
 };
 

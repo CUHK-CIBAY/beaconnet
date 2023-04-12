@@ -2,7 +2,6 @@
 /* eslint-disable object-curly-newline */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React from 'react';
-import { ApolloError } from '@apollo/client';
 import { RxCross2 } from 'react-icons/rx';
 import Cover from './images/cover.jpg';
 import './components/login.css';
