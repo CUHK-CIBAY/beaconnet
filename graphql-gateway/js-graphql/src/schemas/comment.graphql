@@ -1,0 +1,22 @@
+type Comment {
+    id: ID!
+    owner: User
+    onBit: Bit
+    content: String!
+}
+
+type Query {
+    "Find a comment by comment ID"
+    findComment(id: ID!): Comment
+    "Get list of comment by an User by User id, if id not provide, default is self"
+    getUserComment(id: ID): [Comment!]
+    "Get list of comment on an Bit by Bit id"
+    getBitComment(id: ID!): [Comment!]
+}
+
+type Mutation {
+    "login User comment on Bit id"
+    commentBit(id: ID): Comment
+    "delete certain comment by comment id"
+    deleteComment(id: ID!) Boolean
+}
