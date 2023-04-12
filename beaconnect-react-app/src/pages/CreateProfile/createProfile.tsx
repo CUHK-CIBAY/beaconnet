@@ -16,7 +16,7 @@ const createProfile = () => (
         Welcome
         <span>👋🏻</span>
         <br />
-        Initial your profile!
+        Getting started...
       </h1>
       <form className="create-profile-form">
         <div className="create-profile-form-group">
