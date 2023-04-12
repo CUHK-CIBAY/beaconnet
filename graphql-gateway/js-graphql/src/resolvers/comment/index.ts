@@ -6,7 +6,11 @@ export const Comment = {
   onBit: getCommentBit,
 };
 
-export const Query = {};
+export const Query = {
+  findComment,
+  getUserComment,
+  getBitComment,
+};
 
 export const Mutation = {
   commentBit: require('./comment-create'),
