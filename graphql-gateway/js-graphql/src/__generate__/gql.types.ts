@@ -35,11 +35,32 @@ export enum Gender {
   Other = 'OTHER',
 }
 
+export type LoginInput = {
+  email?: InputMaybe<Scalars['String']>;
+  password: Scalars['String'];
+  username?: InputMaybe<Scalars['String']>;
+};
+
 export type Mutation = {
   __typename?: 'Mutation';
+  likeBit?: Maybe<Bit>;
+  login?: Maybe<Token>;
+  postBit?: Maybe<Bit>;
   register?: Maybe<User>;
   /** Update My Info */
   updateInfo?: Maybe<User>;
+};
+
+export type MutationLikeBitArgs = {
+  id: Scalars['ID'];
+};
+
+export type MutationLoginArgs = {
+  input: LoginInput;
+};
+
+export type MutationPostBitArgs = {
+  content: Scalars['String'];
 };
 
 export type MutationRegisterArgs = {
@@ -52,19 +73,33 @@ export type MutationUpdateInfoArgs = {
 
 export type Query = {
   __typename?: 'Query';
-  bit?: Maybe<Bit>;
   bits?: Maybe<Array<Bit>>;
+  findBit?: Maybe<Bit>;
   findUser?: Maybe<User>;
   /** Simple check about gateway connectivity, return OK */
   healthcheck: Scalars['String'];
+  isLikedBit?: Maybe<Scalars['Boolean']>;
   /** Get current User */
   me?: Maybe<User>;
+  showBits?: Maybe<Array<Bit>>;
   user?: Maybe<User>;
   users?: Maybe<Array<User>>;
 };
 
+export type QueryFindBitArgs = {
+  id?: InputMaybe<Scalars['String']>;
+};
+
 export type QueryFindUserArgs = {
   input: FindUserInput;
+};
+
+export type QueryIsLikedBitArgs = {
+  id: Scalars['ID'];
+};
+
+export type QueryShowBitsArgs = {
+  following?: InputMaybe<Scalars['Boolean']>;
 };
 
 export type RegisterInput = {
@@ -72,6 +107,11 @@ export type RegisterInput = {
   nickname?: InputMaybe<Scalars['String']>;
   password: Scalars['String'];
   username: Scalars['String'];
+};
+
+export type Token = {
+  __typename?: 'Token';
+  token: Scalars['String'];
 };
 
 export type UpdateInfoInput = {
