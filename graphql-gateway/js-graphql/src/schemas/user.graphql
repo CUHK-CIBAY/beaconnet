@@ -46,6 +46,7 @@ type UserInfo {
   "ISO8601 format"
   birthday: String
   age: Int
+  bio: String
 }
 
 input UpdateInfoInput {
@@ -55,6 +56,7 @@ input UpdateInfoInput {
     language: [String!]
     birthday: String
     age: Int
+    bio: String
 }
 
 input RegisterInput {
