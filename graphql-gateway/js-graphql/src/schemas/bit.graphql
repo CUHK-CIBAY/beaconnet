@@ -1,10 +1,13 @@
 type Bit {
+  author: User
   id: ID!
   content: String!
   "Date format in ISO8601"
   createAt: String!
   totalLike: Int
   likeGivers: [User!]
+  "The Bit being ReBit"
+  reBit: Bit
   # comment: ???
 }
 
@@ -12,9 +15,11 @@ type Query {
   findBit(id: String): Bit
   bits: [Bit!]
   isLikedBit(id: ID!): Boolean
+  showBits(following: Boolean): [Bit!]
 }
 
 type Mutation {
     postBit(content: String!): Bit
+    reBit(content: String!, id: ID!): Bit
     likeBit(id: ID!): Bit
 }

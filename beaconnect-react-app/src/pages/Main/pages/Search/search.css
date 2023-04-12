@@ -177,19 +177,19 @@
   box-shadow: 0 2px 2px 0 #ddd;
 }
 
-.search-result-lastest-header{
-    display: flex;
-    justify-content: space-around;
-    width: 100%;
-    border-bottom: 1px solid #ddd;
+.search-result-lastest-header {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  border-bottom: 1px solid #ddd;
 }
 
-.search-result-islastest-header p{
-  text-decoration:underline;
+.search-result-islastest-header p {
+  text-decoration: underline;
 }
 
 .search-result-isnotpeople-header p {
-    color:#757575;
+  color: #757575;
 }
 
 .search-result-lastest {
@@ -198,67 +198,66 @@
 }
 /* result of searching user */
 .search-result-people-header {
-    display: flex;
-    justify-content: space-around;
-    width: 100%;
-    border-bottom: 1px solid #ddd;
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  border-bottom: 1px solid #ddd;
 }
 
 .search-result-isnotlastest-header p {
-    color: #757575;
+  color: #757575;
 }
 
 .search-result-people-header p {
-    text-decoration: underline;
+  text-decoration: underline;
 }
 
 .search-result-people {
-    max-height: calc(100vh - 200px);
-    overflow: scroll;
+  max-height: calc(100vh - 200px);
+  overflow: scroll;
 }
 /* search username container css */
 
-.search-result-people-container{
-    position: relative;
-    display: grid;
-    grid-template-columns: 50px 1fr 80px;
-    justify-content: center;
-    align-items: center;
-    width: calc(100% - 22px);
-    border: 1px solid #ccc;
-    border-radius: 20px;
-    padding: 10px 10px;
-    margin: 10px 0;
+.search-result-people-container {
+  position: relative;
+  display: grid;
+  grid-template-columns: 50px 1fr 80px;
+  justify-content: center;
+  align-items: center;
+  width: calc(100% - 22px);
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  padding: 10px 10px;
+  margin: 10px 0;
 }
 .search-result-user-icon {
-    width: 55%;
-    aspect-ratio: 1 / 1;
-    margin: auto;
+  width: 55%;
+  aspect-ratio: 1 / 1;
+  margin: auto;
 }
 
-
 .search-result-user-names {
-    display: flex;
-    margin-bottom: 5px;
+  display: flex;
+  margin-bottom: 5px;
 }
 
 .search-result-user-names p {
-    margin: 0 10px 0 0;
+  margin: 0 10px 0 0;
 }
 
 .search-result-user-nameid {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: #757575;
-    font-size: 13px;
-} 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #757575;
+  font-size: 13px;
+}
 .search-user-follow-button {
-    background: #e9edc9;
-    outline: none;
-    border: none;
-    color: #757575;
-    border-radius: 20px;
-    padding: 10px 10px;
-    width: 60px;
+  background: #e9edc9;
+  outline: none;
+  border: none;
+  color: #757575;
+  border-radius: 20px;
+  padding: 10px 10px;
+  width: 60px;
 }
