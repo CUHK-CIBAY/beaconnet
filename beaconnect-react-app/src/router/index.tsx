@@ -3,12 +3,12 @@ import { Routes, Route } from 'react-router-dom';
 
 import AUTH from '../config/constants';
 import Loading from '../pages/Essentials/Loading/loading';
-import Admin from '../pages/Admin/admin';
 
 const Login = lazy(() => import('../pages/Login/login.handle'));
 const LoginCheck = lazy(() => import('./LoginCheck'));
 const Main = lazy(() => import('../pages/Main/main'));
 const Logout = lazy(() => import('../pages/Logout/logout'));
+const Admin = lazy(() => import('../pages/Admin/admin'));
 
 const Router = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
