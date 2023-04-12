@@ -1,4 +1,7 @@
-export const Comment = {};
+export const Comment = {
+  owner: require('./comment-impl'),
+  onBit: require('./comment-impl'),
+};
 
 export const Query = {};
 
