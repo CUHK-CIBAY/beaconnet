@@ -20,6 +20,6 @@ type Query {
 
 type Mutation {
     postBit(content: String!): Bit
-    reBit(content: String!, id:ID): Bit
+    reBit(content: String!, id: ID!): Bit
     likeBit(id: ID!): Bit
 }
