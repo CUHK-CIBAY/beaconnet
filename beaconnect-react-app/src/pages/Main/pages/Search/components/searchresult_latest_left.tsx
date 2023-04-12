@@ -1,5 +1,5 @@
 import React from 'react';
-import { BitBox } from '../Bits/bits';
+import { BitBox } from '../../../components/Bits/bits';
 
 const fakeData = {
   id: '1',

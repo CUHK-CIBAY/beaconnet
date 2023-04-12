@@ -5,18 +5,18 @@ import React from 'react';
 import './search.css';
 import { BiSearchAlt } from 'react-icons/bi';
 import { AiOutlineLeft } from 'react-icons/ai';
-import TrendSuggestionSection from '../../components/Search/searchindex_left';
-import AdvancedSearch from '../../components/Search/searchindex_right';
+import TrendSuggestionSection from './components/searchindex_left';
+import AdvancedSearch from './components/searchindex_right';
 import { BitBox } from '../../components/Bits/bits';
-import SearchResultLatest from '../../components/Search/searchresult_latest_left';
+import SearchResultLatest from './components/searchresult_latest_left';
 
-import TrendSuggestionShort from '../../components/Suggestion/trendsuggestion_short';
+import TrendSuggestionShort from './components/trendsuggestion_short';
 
 // for seach result latest page
 import seasonalEvent from '../Home/components/seasonalpic.jpg';
-import SearchResultRight from '../../components/Search/searchresult_right';
+import SearchResultRight from './components/searchresult_right';
 import userIcon from '../Home/components/icon.png';
-import SearchResultPeople from '../../components/Search/searchresult_people_left';
+import SearchResultPeople from './components/searchresult_people_left';
 
 const Search = () => (
   <div className="page-content">
@@ -36,15 +36,15 @@ const Search = () => (
           </div>
           <input className="trend-search-input" type="text" placeholder="search" />
         </div>
-        {/* <TrendSuggestionSection /> */}
+        <TrendSuggestionSection />
         {/* <SearchResultLatest /> */}
-        <SearchResultPeople />
+        {/* <SearchResultPeople /> */}
       </div>
     </div>
 
     <div className="page-right-content">
-      {/* <AdvancedSearch /> */}
-      <SearchResultRight />
+      <AdvancedSearch />
+      {/* <SearchResultRight /> */}
     </div>
   </div>
 );

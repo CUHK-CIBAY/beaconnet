@@ -5,7 +5,7 @@ import Profile from './pages/Profile/profile';
 import NavBar from './components/NavBar/navBar';
 import './components/main.css';
 import './pages/Home/components/home.css';
-import Homepage from './pages/Home/components/homepage';
+import Homepage from './pages/Home/homepage';
 
 const Main = ({ isLoggedIn }: { isLoggedIn: boolean }) => (
   <div className="homePage">
