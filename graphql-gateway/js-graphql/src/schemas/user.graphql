@@ -7,6 +7,7 @@ type User {
   info: UserInfo
   following: [User!]
   bits: [Bit!]
+  role: UserRole
 }
 
 input FindUserInput {
@@ -28,6 +29,11 @@ enum Gender {
   FEMALE
   OTHER
   HIDDEN
+}
+
+enum UserRole {
+  NORMAL
+  ADMIN
 }
 
 type UserInfo {
@@ -64,15 +70,17 @@ input LoginInput {
   password: String!
 }
 
-type Token {
-  token: String!
+type LoginResponse {
+    token: String!
+    role: UserRole
 }
+
 
 type Mutation {
     "Update My Info"
     updateInfo(input: UpdateInfoInput!): User
     register(input: RegisterInput!): User
-    login(input: LoginInput!): Token
+    login(input: LoginInput!): LoginResponse
     deleteUser(id: ID): Boolean
     followUser(id: ID!): User
 }
