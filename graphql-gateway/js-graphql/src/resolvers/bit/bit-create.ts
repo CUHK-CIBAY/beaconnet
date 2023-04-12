@@ -71,6 +71,4 @@ export const reBitResolver = async (_p: any, { content, id }: any, { me }: any) 
   } finally {
     await session.close();
   }
-  
-}
-
+};

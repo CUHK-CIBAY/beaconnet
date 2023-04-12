@@ -1,5 +1,5 @@
 import { likeBit, isLikedBit } from './bit-like';
-import { postBitResolver, reBitResolver} from './bit-create';
+import { postBitResolver, reBitResolver } from './bit-create';
 import { authorResolver, reBitResolver as reBit } from './bit-impl';
 
 export const Query = {
