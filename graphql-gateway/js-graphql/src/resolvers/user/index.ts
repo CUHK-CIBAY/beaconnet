@@ -16,4 +16,5 @@ export const Mutation = {
   register: require('./user-register'),
   login: require('./user-login'),
   deleteUser: require('./user-delete'),
+  followUser: require('./user-follow'),
 };

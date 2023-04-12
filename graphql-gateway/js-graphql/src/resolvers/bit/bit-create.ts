@@ -17,7 +17,7 @@ const bitPostResolver = async (_p: any, { content }: any, { me }: any) => {
                    createAt: $createAt,
                    totalLike: $totalLike,
                    likeGivers: []
-            }) 
+            })
             CREATE (u)-[:POST]->(b)
             RETURN b
         `;
