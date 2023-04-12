@@ -7,6 +7,7 @@ import { FiVideo } from 'react-icons/fi';
 import { TbSend } from 'react-icons/tb';
 import { postBitQuery, postBitMutationVariables, postBitMutationResult } from '../Query/bit.query';
 import userIcon from '../../pages/Home/components/icon.png';
+import seasonalEvent from '../../pages/Home/components/seasonalpic.jpg';
 
 export const WriteBitBox = () => {
   const [postBit] = useMutation<postBitMutationResult, postBitMutationVariables>(postBitQuery, {
@@ -54,7 +55,15 @@ export const WriteBitBox = () => {
   );
 };
 
-export const BitBox = ({ haveCaption, isRepost }: { haveCaption?: boolean; isRepost?: boolean }) => {
+export const BitBox = ({
+  havePhoto,
+  haveCaption,
+  isRepost,
+}: {
+  havePhoto?: boolean;
+  haveCaption?: boolean;
+  isRepost?: boolean;
+}) => {
   const addActiveStatus = (e: React.FocusEvent) => {
     const { currentTarget } = e;
     const parent = currentTarget.parentElement?.parentElement?.parentElement as HTMLDivElement;
@@ -91,7 +100,13 @@ export const BitBox = ({ haveCaption, isRepost }: { haveCaption?: boolean; isRep
           aliquet nisl, eget aliquet nisl nisl eget nisl. Donec auctor, nisl eget tincidunt lacinia, nisl nisl aliquet
           nisl, eget aliquet nisl nisl eget nisl.
         </div>
+        {havePhoto && (
+          <div className="bit-box-rebit-with-photo">
+            <img className="bit-box-photo" src={seasonalEvent} alt="bit-box" />
+          </div>
+        )}
       </div>
+
       {haveCaption && (
         <div className="bit-box-rebit-with-caption">
           <div className="bit-box-content-header">
@@ -136,4 +151,5 @@ export const BitBox = ({ haveCaption, isRepost }: { haveCaption?: boolean; isRep
 BitBox.defaultProps = {
   haveCaption: false,
   isRepost: false,
+  havePhoto: false,
 };
