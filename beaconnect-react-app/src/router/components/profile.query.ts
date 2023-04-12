@@ -1,6 +1,6 @@
 import { gql } from '@apollo/client';
 
-const getUserProfileQuery = gql`
+export const getUserProfileQuery = gql`
   query getUserProfile {
     me {
       nickname
@@ -8,4 +8,22 @@ const getUserProfileQuery = gql`
   }
 `;
 
-export default getUserProfileQuery;
+export type RegisterMutationVariables = {
+  input: {
+    nickname: string;
+  };
+};
+
+export type RegisterMutationResult = {
+  register: {
+    nickname: string;
+  };
+};
+
+export const updateInfoQuery = gql`
+  mutation UpdateInfo($input: UpdateInfoInput = {}) {
+    updateInfo(input: $input) {
+      nickname
+    }
+  }
+`;

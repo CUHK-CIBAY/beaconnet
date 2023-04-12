@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useQuery } from '@apollo/client';
-import getUserProfileQuery from './components/profile.query';
+import { getUserProfileQuery } from './components/profile.query';
 import Loading from '../pages/Essentials/Loading/loading';
 import CreateProfile from '../pages/CreateProfile/createProfile';
 
