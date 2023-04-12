@@ -2,14 +2,23 @@ import React, { useEffect } from 'react';
 import { Navigate, useLocation } from 'react-router-dom';
 import { useUserContext } from '../../userContext';
 
-const Logout = (props: any) => {
+const Logout = ({
+  setIsLoggedIn,
+  setGetStatus,
+  setUserProfile,
+}: {
+  setIsLoggedIn: React.Dispatch<React.SetStateAction<boolean>>;
+  setGetStatus: React.Dispatch<React.SetStateAction<boolean>>;
+  setUserProfile: React.Dispatch<React.SetStateAction<boolean>>;
+}) => {
   const { signOut } = useUserContext();
-  const { setIsLoggedIn } = props;
   const location = useLocation();
 
   useEffect(() => {
     localStorage.clear();
     signOut();
+    setGetStatus(false);
+    setUserProfile(false);
     setIsLoggedIn(false);
   }, []);
 

@@ -3,27 +3,55 @@ import { gql } from '@apollo/client';
 export const getUserProfileQuery = gql`
   query getUserProfile {
     me {
-      nickname
+      info {
+        nickname
+      }
     }
   }
 `;
 
-export type RegisterMutationVariables = {
-  input: {
-    nickname: string;
+export type UpdateRequiredInfoMutationVariables = {
+  nickname: string;
+};
+
+export type UpdateRequiredInfoMutationResult = {
+  updateInfo: {
+    info: {
+      nickname: string;
+    };
   };
 };
 
-export type RegisterMutationResult = {
-  register: {
-    nickname: string;
+export const updateRequiredInfoQuery = gql`
+  mutation MyMutation($nickname: String) {
+    updateInfo(input: { nickname: $nickname }) {
+      info {
+        nickname
+      }
+    }
+  }
+`;
+
+export type UpdateOptionalInfoMutationVariables = {
+  bio: string;
+  phone: string;
+};
+
+export type UpdateOptionalInfoMutationResult = {
+  updateInfo: {
+    info: {
+      bio: string;
+      phone: string;
+    };
   };
 };
 
-export const updateInfoQuery = gql`
-  mutation UpdateInfo($input: UpdateInfoInput = {}) {
-    updateInfo(input: $input) {
-      nickname
+export const updateOptionalInfoQuery = gql`
+  mutation MyMutation($nickname: String) {
+    updateInfo(input: { nickname: $nickname }) {
+      info {
+        nickname
+      }
     }
   }
 `;

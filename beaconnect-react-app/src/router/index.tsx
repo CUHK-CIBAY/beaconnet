@@ -12,6 +12,8 @@ const Logout = lazy(() => import('../pages/Logout/logout'));
 
 const Router = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [getStatus, setGetStatus] = useState(false);
+  const [userProfile, setUserProfile] = useState(false);
 
   useEffect(() => {
     const token = localStorage.getItem(AUTH.token);
@@ -21,7 +23,13 @@ const Router = () => {
   }, []);
 
   return (
-    <UserProfileCheck isLoggedIn={isLoggedIn}>
+    <UserProfileCheck
+      isLoggedIn={isLoggedIn}
+      setGetStatus={setGetStatus}
+      setUserProfile={setUserProfile}
+      getStatus={getStatus}
+      userProfile={userProfile}
+    >
       <Suspense fallback={<Loading />}>
         <Routes>
           <Route
@@ -36,7 +44,7 @@ const Router = () => {
             path="/logout"
             element={
               <LoginCheck isLoggedIn={isLoggedIn}>
-                <Logout setIsLoggedIn={setIsLoggedIn} />
+                <Logout setIsLoggedIn={setIsLoggedIn} setGetStatus={setGetStatus} setUserProfile={setUserProfile} />
               </LoginCheck>
             }
           />

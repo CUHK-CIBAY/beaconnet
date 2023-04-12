@@ -11,7 +11,6 @@
   position: relative;
   box-sizing: border-box;
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
   width: 450px;
@@ -21,6 +20,20 @@
   box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.15);
   border-radius: 20px;
   padding: 0;
+  transition: width 0.2s ease-in-out;
+}
+
+.create-profile-container.doneRequired {
+  width: 900px;
+}
+
+.create-required-profile,
+.create-optional-profile {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .create-profile-container h1 {
@@ -59,20 +72,37 @@
   justify-content: space-around;
 }
 
-.create-profile-form-field input {
-  width: calc(100% - 80px);
+.create-profile-form-field.with-submit {
+  width: calc(100% - 0px);
+}
+
+.create-profile-form-field input,
+.create-profile-form-field textarea {
+  width: calc(100% - 42px);
   height: 40px;
   border: 1px solid #ced5b2;
   border-radius: 5px;
   padding: 0 10px;
-  margin: 0;
+  margin: 0 10px;
   outline: none;
   user-select: none;
   transition: border 0.2s ease-in-out;
 }
 
+.create-profile-form-field textarea {
+  height: 220px;
+  padding: 10px 10px;
+  resize: none;
+}
+
+.create-profile-container.doneRequired .create-required-profile .create-profile-form-field input {
+  pointer-events: none;
+}
+
 .create-profile-form-field input:focus,
-.create-profile-form-field input:not(:placeholder-shown) {
+.create-profile-form-field input:not(:placeholder-shown),
+.create-profile-form-field textarea:focus,
+.create-profile-form-field textarea:not(:placeholder-shown) {
   border: 1px solid #9e9e9a;
 }
 
@@ -83,6 +113,16 @@
   align-items: center;
   scale: 1.5;
   cursor: pointer;
+}
+
+.create-profile-container.doneRequired .create-required-profile .create-profile-form-submit-button {
+  width: 0;
+}
+
+.create-profile-form-submit-button-container {
+  margin: 30px auto 0 auto;
+  display: flex;
+  justify-content: center;
 }
 
 .create-profile-form-upload-image {
@@ -112,6 +152,10 @@
   opacity: 0.5;
 }
 
+.create-profile-container.doneRequired .create-profile-form-upload-image-container:hover img {
+  opacity: 1;
+}
+
 .create-profile-form-upload-image-button {
   position: absolute;
   bottom: 15px;
@@ -121,5 +165,18 @@
   width: 1em;
   background: #fff;
   border-radius: 50%;
+  cursor: pointer;
+  transition: opacity 0.2s ease-in-out;
+}
+
+.create-profile-container.doneRequired .create-profile-form-upload-image-button {
+  opacity: 0;
+}
+
+.create-optional-profile-skip {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  font-size: 0.8rem;
   cursor: pointer;
 }

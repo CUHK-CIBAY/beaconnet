@@ -1,21 +1,28 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useQuery } from '@apollo/client';
 import { getUserProfileQuery } from './components/profile.query';
 import Loading from '../pages/Essentials/Loading/loading';
 import CreateProfile from '../pages/CreateProfile/createProfile';
 
-const UserProfileCheck = ({ isLoggedIn, children }: { isLoggedIn: boolean; children: React.ReactNode }) => {
-  const [getStatus, setGetStatus] = useState(false);
-  const [userProfile, setUserProfile] = useState(false);
-
+const UserProfileCheck = ({
+  isLoggedIn,
+  children,
+  setGetStatus,
+  setUserProfile,
+  getStatus,
+  userProfile,
+}: {
+  isLoggedIn: boolean;
+  children: React.ReactNode;
+  setGetStatus: React.Dispatch<React.SetStateAction<boolean>>;
+  setUserProfile: React.Dispatch<React.SetStateAction<boolean>>;
+  getStatus: boolean;
+  userProfile: boolean;
+}) => {
   const userProfileChecker = useQuery(getUserProfileQuery, {
     onCompleted: (data) => {
-      console.log(data, isLoggedIn, getStatus, userProfile);
       setGetStatus(true);
-      if (data.me.nickname) setUserProfile(true);
-    },
-    onError: (error) => {
-      console.log(error);
+      if (data.me.info.nickname) setUserProfile(true);
     },
   });
 
@@ -26,7 +33,7 @@ const UserProfileCheck = ({ isLoggedIn, children }: { isLoggedIn: boolean; child
 
   if (!isLoggedIn) return <>{children}</>;
   if (!getStatus) return <Loading />;
-  if (!userProfile) return <CreateProfile />;
+  if (!userProfile) return <CreateProfile setUserProfile={setUserProfile} />;
   return <>{children}</>;
 };
 
