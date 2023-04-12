@@ -1,6 +1,6 @@
 import React from 'react';
-import TrendSuggestionShort from '../Suggestion/trendsuggestion_short';
-import seasonalEvent from '../../pages/Home/components/seasonalpic.jpg';
+import TrendSuggestionShort from './trendsuggestion_short';
+import seasonalEvent from '../../Home/components/seasonalpic.jpg';
 
 const SearchResultRight = () => (
   <div className="search-result-right">

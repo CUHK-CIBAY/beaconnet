@@ -9,7 +9,6 @@ const LoginCheck = lazy(() => import('./LoginCheck'));
 const UserProfileCheck = lazy(() => import('./UserProfileCheck'));
 const Main = lazy(() => import('../pages/Main/main'));
 const Logout = lazy(() => import('../pages/Logout/logout'));
-const Profile = lazy(() => import('../pages/Profile/profile'));
 const Admin = lazy(() => import('../pages/Admin/admin'));
 
 const Router = () => {

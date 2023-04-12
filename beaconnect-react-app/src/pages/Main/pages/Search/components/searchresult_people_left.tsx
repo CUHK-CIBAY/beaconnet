@@ -1,5 +1,5 @@
 import React from 'react';
-import userIcon from '../../pages/Home/components/icon.png';
+import userIcon from '../../Home/components/icon.png';
 
 export const SearchResultPeopleList = () => (
   <div className="search-result-people-container">

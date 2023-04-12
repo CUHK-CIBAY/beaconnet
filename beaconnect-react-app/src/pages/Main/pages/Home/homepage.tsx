@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { useQuery } from '@apollo/client';
 import { BiSearchAlt } from 'react-icons/bi';
-import { WriteBitBox, BitBox } from '../../../components/Bits/bits';
-import { showBitsQuery, showBitsQueryVariables, showBitsQueryResult } from '../../../components/Query/bit.query';
-import seasonalEvent from './seasonalpic.jpg';
+import { WriteBitBox, BitBox } from '../../components/Bits/bits';
+import { showBitsQuery, showBitsQueryVariables, showBitsQueryResult } from '../../components/Query/bit.query';
+import seasonalEvent from './components/seasonalpic.jpg';
 
 const Home = () => {
   const [result, setResult] = useState<any>([]);
