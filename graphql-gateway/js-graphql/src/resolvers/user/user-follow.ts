@@ -1,37 +1,34 @@
 import * as dotenv from 'dotenv';
-import { User } from '../../gql.types';
 import driver from '../../util/neo4j-driver';
 
+dotenv.config();
 
-
-const userFollowResolver = async (_p: any, { input }: any,
-  context: any) => {
+const userFollowResolver = async (_p: any, { id }: any, { me }: any) => {
   const session = driver.session({ database: 'neo4j' });
   try {
-    const { userIdToFollow } = input;
-
-    if (!context.user) {
-      throw new Error('Authentication required');
-    }
-
-    const { id: uid } = context.user;
-
     const checkQuery = `
-      MATCH (u:User {id: $uid})-[:FOLLOWS]->(target:User {id: $userIdToFollow})
-      RETURN target
+      MATCH (u:User {id: $followId})
+      RETURN EXISTS((:User {id: $meId})-[:FOLLOWED]->(u)) AS FOLLOWED
     `;
-    const checkResult = await session.run(checkQuery, { uid, userIdToFollow });
-    if (checkResult.records.length > 0) {
-      throw new Error('User is already following the target user');
+    const checkResult = await session.run(checkQuery, { followId: id, meId: me.id });
+    
+    let createQuery = '';
+    if (!checkResult.records[0].get('FOLLOWED')) {
+      createQuery = `
+        MATCH (me:User {id: $meId})
+        MATCH (target:User {id: $followId})
+        CREATE (me)-[:FOLLOWED]->(target)
+        RETURN target
+      `
+    } else {
+      createQuery = `
+        MATCH (:User {id: $meId})-[f:FOLLOWED]->(target:User {id: $followId})
+        DELETE f
+        RETURN target
+      `;
     }
 
-    const createQuery = `
-      MATCH (u:User {id: $uid}), (target:User {id: $userIdToFollow})
-      CREATE (u)-[:FOLLOWS]->(target)
-      RETURN target
-    `;
-    const createResult = await session.run(createQuery, { uid, userIdToFollow });
-
+    const createResult = await session.run(createQuery, { followId: id, meId: me.id });
     return createResult.records[0].get('target').properties;
   } catch (error) {
     console.error(error);
@@ -41,4 +38,4 @@ const userFollowResolver = async (_p: any, { input }: any,
   }
 }
 
-  module.exports = userFollowResolver;
+module.exports = userFollowResolver;

@@ -64,4 +64,5 @@ type Mutation {
     register(input: RegisterInput!): User
     login(input: LoginInput!): Token
     deleteUser(id: ID): Boolean
+    followUser(id: ID!): User
 }
