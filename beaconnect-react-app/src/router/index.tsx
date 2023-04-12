@@ -3,6 +3,7 @@ import { Routes, Route } from 'react-router-dom';
 
 import AUTH from '../config/constants';
 import Loading from '../pages/Essentials/Loading/loading';
+import Admin from '../pages/Admin/admin';
 
 const Login = lazy(() => import('../pages/Login/login.handle'));
 const LoginCheck = lazy(() => import('./LoginCheck'));
@@ -22,6 +23,14 @@ const Router = () => {
   return (
     <Suspense fallback={<Loading />}>
       <Routes>
+        <Route
+          path="/admin"
+          element={
+            <LoginCheck isLoggedIn={isLoggedIn}>
+              <Admin />
+            </LoginCheck>
+          }
+        />
         <Route
           path="/register"
           element={<Login loginType="Register" isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />}
