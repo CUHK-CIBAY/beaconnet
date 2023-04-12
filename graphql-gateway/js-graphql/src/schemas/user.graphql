@@ -63,4 +63,5 @@ type Mutation {
     updateInfo(input: UpdateInfoInput!): User
     register(input: RegisterInput!): User
     login(input: LoginInput!): Token
+    deleteUser(id: ID): Boolean
 }
