@@ -4,7 +4,7 @@ import driver from '../../util/neo4j-driver';
 
 dotenv.config();
 
-export const userInfoResolver = ({ info }: User) => ({ gender: info?.gender });
+export const userInfoResolver = ({ info }: User) => ({ gender: info?.gender});
 
 export const updateUserInfo = async (_p: any, { input }: MutationUpdateInfoArgs): Promise<User | null> => {
   const session = driver.session({ database: 'neo4j' });

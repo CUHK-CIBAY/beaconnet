@@ -22,9 +22,9 @@ const likeBit = async (_p: any, { id }: any, { me }: any) => {
         `;
     } else {
       query = `
-            MATCH (:User {id: $uid})-[l:LIKED]->(b:Bit {id: $bid}) 
+              MATCH (:User {id: $uid})-[l:LIKED]->(b:Bit {id: $bid})
             SET b.totalLike = b.totalLike - 1
-            DELETE l 
+            DELETE l
             RETURN b
         `;
     }
