@@ -34,7 +34,7 @@ const userLoginResolver = async (_p: any, { input }: any) => {
     const user = result.records[0].get('u').properties;
     const isPasswordValid = await bcrypt.compare(password, user.password);
     if (!isPasswordValid) throw Error('Wrong Password');
-    return {token: await createToken(user) };
+    return { token: await createToken(user) };
   } catch (error) {
     console.error(error);
     return null;
