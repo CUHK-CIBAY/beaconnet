@@ -1,4 +1,5 @@
 type Bit {
+  author: User
   id: ID!
   content: String!
   "Date format in ISO8601"
