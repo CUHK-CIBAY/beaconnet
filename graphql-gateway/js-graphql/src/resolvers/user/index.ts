@@ -14,4 +14,5 @@ export const Mutation = {
   updateInfo: updateUserInfo,
   register: require('./user-register'),
   login: require('./user-login'),
+  deleteUser: require('./user-delete'),
 };
