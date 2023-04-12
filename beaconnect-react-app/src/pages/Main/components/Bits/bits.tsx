@@ -67,12 +67,12 @@ export const BitBox = (data: any) => (
       <img className="bit-box-icon" src={userIcon} alt="profile" />
       <div className="bit-box-content-header-name">John Doe</div>
       <div className="bit-box-content-header-userID">@johndoe</div>
-      <div className="bit-box-content-header-time">{formatDistance(new Date(data?.createAt), new Date(), { addSuffix: true })}</div>
+      <div className="bit-box-content-header-time">
+        {formatDistance(new Date(data?.createAt), new Date(), { addSuffix: true })}
+      </div>
     </div>
     <div className="bit-box-content">
-      <div className="bit-box-content-text">
-        {data?.content}
-      </div>
+      <div className="bit-box-content-text">{data?.content}</div>
     </div>
     {/* {haveCaption && (
       <div className="bit-box-rebit-with-caption">

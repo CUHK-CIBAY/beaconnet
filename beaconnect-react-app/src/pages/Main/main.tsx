@@ -34,7 +34,7 @@ const Main = () => {
         <div className="page-center-content">
           <WriteBitBox />
           {result?.showBits?.map((item: any) => (
-            <BitBox {...item}/>
+            <BitBox {...item} />
           ))}
         </div>
         <div className="page-right-content">

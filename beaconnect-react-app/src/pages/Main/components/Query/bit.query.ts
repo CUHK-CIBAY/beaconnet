@@ -19,19 +19,21 @@ export const postBitQuery = gql`
 `;
 
 export type showBitsQueryVariables = {
-  following: Boolean
+  following: Boolean;
 };
 
 export type showBitsQueryResult = {
-  bits: [{
-    id: string;
-    content: string;
-    createAt: string;
-    author: {
+  bits: [
+    {
       id: string;
-      username: string;
-    };
-  }];
+      content: string;
+      createAt: string;
+      author: {
+        id: string;
+        username: string;
+      };
+    },
+  ];
 };
 
 export const showBitsQuery = gql`
