@@ -31,9 +31,8 @@
 }
 
 .trend-suggestion-list {
-  display: grid;
-  grid-template-columns: 20px 1fr 20px;
-  align-items: center;
+  display: flex;
+  margin: 0 0 0 30px;
   justify-items: center;
   margin-bottom: 10px;
 }
@@ -178,7 +177,22 @@
   box-shadow: 0 2px 2px 0 #ddd;
 }
 
+.search-result-lastest-header{
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    border-bottom: 1px solid #ddd;
+}
+
+.search-result-islastest-header p{
+  text-decoration:underline;
+}
+
+.search-result-isnotpeople-header p {
+    color:#757575;
+}
+
 .search-result-lastest {
-  max-height: calc(100vh - 150px);
+  max-height: calc(100vh - 200px);
   overflow: scroll;
 }

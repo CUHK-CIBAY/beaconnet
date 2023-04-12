@@ -17,15 +17,15 @@
   aspect-ratio: 1 / 1;
 }
 
-.bit-box-rebit-with-photo{
+.bit-box-rebit-with-photo {
   position: relative;
   border-radius: 20px;
-  overflow:hidden;
+  overflow: hidden;
   margin: 20px 20px 0 10px;
   box-shadow: 0 10px 50px 0 #e4e5ed;
 }
 
-.bit-box-rebit-with-photo img{
+.bit-box-rebit-with-photo img {
   width: 100%;
   height: 70%;
   display: flex;
@@ -229,13 +229,14 @@
 }
 
 .trend-searching-container {
+  position: relative;
   margin-top: 15px;
   background: #fff;
   padding: 20px;
   border-radius: 20px;
   height: calc(100vh - 70px);
 }
-  
+
 .trend-search-bar {
   position: relative;
   height: 40px;
@@ -264,21 +265,20 @@
   align-items: center;
 }
 
-.search .trend-search-bar-icon
-
-.trend-suggestion-list {
+.search .trend-search-bar-icon .trend-suggestion-list {
   display: flex;
   margin: 0 0 0 30px;
 }
 
 .trend-suggestion-item-size {
-  color: #A8A8A8;
+  color: #a8a8a8;
 }
 
 .trend-suggestion-item-size::before {
   content: '•';
   margin: 0 5px;
 }
+
 
 .trend-suggestion-list p {
   margin: 0;

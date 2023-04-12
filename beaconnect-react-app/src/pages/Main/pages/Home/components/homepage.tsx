@@ -8,11 +8,11 @@ const Home = () => (
     <div className="page-center-content">
       <WriteBitBox />
       <BitBox isRepost haveCaption />
+      <BitBox havePhoto isRepost />
+      <BitBox havePhoto />
       <BitBox isRepost />
-      <BitBox isRepost />
-      <BitBox isRepost />
-      <BitBox isRepost />
-      <BitBox isRepost />
+      <BitBox haveCaption />
+      <BitBox />
     </div>
     <div className="page-right-content">
       <img className="profile-background-picture" src={seasonalEvent} alt="profile" />
