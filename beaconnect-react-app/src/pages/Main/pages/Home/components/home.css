@@ -90,6 +90,21 @@
   aspect-ratio: 1 / 1;
 }
 
+.bit-box-rebit-with-photo {
+  position: relative;
+  border-radius: 20px;
+  overflow: hidden;
+  margin: 20px 20px 0 10px;
+  box-shadow: 0 10px 50px 0 #e4e5ed;
+}
+
+.bit-box-rebit-with-photo img {
+  width: 100%;
+  height: 70%;
+  display: flex;
+  justify-content: center;
+}
+
 .write-bit-box-content .write-bit-box-content-text {
   font-family: Arial, Helvetica, sans-serif;
   outline: none;
@@ -287,6 +302,7 @@
 }
 
 .trend-searching-container {
+  position: relative;
   margin-top: 15px;
   background: #fff;
   padding: 20px;
@@ -322,7 +338,7 @@
   align-items: center;
 }
 
-.trend-suggestion-list {
+.search .trend-search-bar-icon .trend-suggestion-list {
   display: flex;
   margin: 0 0 0 30px;
 }
