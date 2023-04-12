@@ -1,0 +1,135 @@
+.profile-container {
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    position:relative;
+    display: inline;
+}
+
+.info-container {
+    background: #f3f4f5;
+    width: calc(100vw - 75px);
+    height: 100vh;
+    padding: 0 0 0 75px;
+}
+
+.profile-banner-container {
+    width: calc(100vw + 20px);
+    translate: -20px 0px;
+    height: 200px;
+    overflow: hidden;
+}
+
+.profile-banner-image { 
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+}
+
+.profile-icon-image {
+    margin-top: -70px;
+    border-radius: 50%;
+    object-fit: cover;
+    width: 150px;
+    height: 150px;
+    margin-left: 10px;
+    border: 3px #ffffff solid;
+}
+
+.user-icon-container {
+    align-items: center;
+}
+
+.profile-edit-button {
+    border: none;
+    border-radius: 15px;
+    position: absolute;
+    top: 20px;
+    right: 40px;
+    padding: 5px 25px;
+    background-color: #E9EDC9;
+}
+
+.user-info-usernameUserID {
+    display: flex;
+    margin: 10px 0;
+    align-items: center;
+    font-weight: bold;
+}
+
+.user-info-username,
+.user-info-userID {
+    margin: 0;
+    padding-right: 10px;
+}
+
+.user-info-userID {
+    color: #757575;
+    font-size: 11px;
+}
+
+.user-info-detail {
+    padding: 0 15px;
+}
+
+.user-info-descriptionBox {
+    margin: 15px 0;
+}
+
+.user-info-followItem {
+    display: flex;
+    margin: 10px 0;
+}
+
+.user-info-following,
+.user-info-follower {
+    font-weight: 400;
+    padding: 0 40px 0 0;
+    margin: 0;
+}
+
+.horizontal-line hr {
+    border: #757575 1px solid;
+}
+
+.user-profile-button {
+    margin: 10px 0;
+    display: flex;
+    justify-content: space-around;
+}
+
+.user-bits-show {
+    overflow: scroll;
+}
+
+.profile-Bit-button,
+.profile-ReBit-button,
+.profile-Comment-button,
+.profile-Like-button {
+    border: none;
+    background-color: #ffffff;
+    text-decoration: underline;
+}
+
+.profile-Bit-button:hover {
+    color: #A1AB7D;
+}
+
+.profile-ReBit-button:hover {
+    color: #A1AB7D;
+}
+
+.profile-Comment-button:hover {
+    color: #A1AB7D;
+}
+
+.profile-Like-button:hover {
+    color: #A1AB7D;
+}
+
+.user-info-container {
+    margin: 0px 80px;
+    padding: 0 40px;
+    height: 100vh;
+    background-color: #ffffff;
+    position: relative;
+}
