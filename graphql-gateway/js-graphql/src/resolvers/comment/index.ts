@@ -1,5 +1,5 @@
-import { findComment, getUserComment, getBitComment } from "./comment-get";
-import { getCommenOwner, getCommentBit } from "./comment-impl";
+import { findComment, getUserComment, getBitComment } from './comment-get';
+import { getCommenOwner, getCommentBit } from './comment-impl';
 
 export const Comment = {
   owner: getCommenOwner,
@@ -15,4 +15,4 @@ export const Query = {
 export const Mutation = {
   commentBit: require('./comment-create'),
   deleteComment: require('./comment-delete'),
-}
+};

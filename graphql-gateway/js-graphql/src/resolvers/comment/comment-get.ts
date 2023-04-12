@@ -4,7 +4,7 @@ import driver from '../../util/neo4j-driver';
 
 dotenv.config();
 
-export const findComment = async (_p: any, { id }: any)=> {
+export const findComment = async (_p: any, { id }: any) => {
   const session = driver.session({ database: 'neo4j' });
   try {
     const query = 'MATCH (c:Comment {id: $id}) RETURN c';
@@ -18,7 +18,7 @@ export const findComment = async (_p: any, { id }: any)=> {
   }
 };
 
-export const getUserComment = async (_p: any, { id }: any)=> {
+export const getUserComment = async (_p: any, { id }: any) => {
   const session = driver.session({ database: 'neo4j' });
   try {
     const query = 'MATCH (:User { id: $id })-[:COMMENTED]->(c:Comment) RETURN c';
@@ -32,7 +32,7 @@ export const getUserComment = async (_p: any, { id }: any)=> {
   }
 };
 
-export const getBitComment = async (_p: any, { id }: any)=> {
+export const getBitComment = async (_p: any, { id }: any) => {
   const session = driver.session({ database: 'neo4j' });
   try {
     const query = 'MATCH (c:Comment)-[:ON]->(b:Bit { id: $id }) RETURN c';

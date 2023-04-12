@@ -36,4 +36,3 @@ export const getCommentBit = async (p: any) => {
     await session.close();
   }
 };
-
