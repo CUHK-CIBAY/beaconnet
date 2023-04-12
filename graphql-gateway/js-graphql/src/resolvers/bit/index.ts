@@ -6,7 +6,9 @@ export const Query = {
   showBits: require('./bit-show'),
 };
 
-export const Bit = {};
+export const Bit = {
+  author: require('./bit-impl'),
+};
 
 export const Mutation = {
   postBit: require('./bit-create'),
