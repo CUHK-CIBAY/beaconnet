@@ -35,10 +35,19 @@ enum Gender {
 
 type UserInfo {
   gender: Gender
+  phone: String
+  language: [String!]
+  "ISO8601 format"
+  birthday: String
+  age: Int
 }
 
 input UpdateInfoInput {
     gender: Gender
+    phone: String
+    language: [String!]
+    birthday: String
+    age: Int
 }
 
 input RegisterInput {
