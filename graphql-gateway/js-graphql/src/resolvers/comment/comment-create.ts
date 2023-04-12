@@ -10,9 +10,9 @@ const commentBitResolver = async (_p: any, { id, content }: any, { me }: any) =>
             MATCH (u:User {id: $uid})
             WITH u
             MATCH (b:Bit {id: $bid})
-            WITH b
+            WITH u, b
             MATCH (:Comment)
-            WITH toString(COUNT(*) + 1) as count
+            WITH u, b, toString(COUNT(*) + 1) as count
             CREATE (c:Comment {
                    id: count,
                    content: $content,
