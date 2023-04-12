@@ -9,11 +9,14 @@ import TrendSuggestionSection from '../../components/Search/searchindex_left';
 import AdvancedSearch from '../../components/Search/searchindex_right';
 import { BitBox } from '../../components/Bits/bits';
 import SearchResultLatest from '../../components/Search/searchresult_latest_left';
+
 import TrendSuggestionShort from '../../components/Suggestion/trendsuggestion_short';
 
 // for seach result latest page
 import seasonalEvent from '../Home/components/seasonalpic.jpg';
-import SearchResultLatestRight from '../../components/Search/searchresult_right';
+import SearchResultRight from '../../components/Search/searchresult_right';
+import userIcon from '../Home/components/icon.png';
+import SearchResultPeople from '../../components/Search/searchresult_people_left';
 
 const Search = () => (
   <div className="page-content">
@@ -34,13 +37,14 @@ const Search = () => (
           <input className="trend-search-input" type="text" placeholder="search" />
         </div>
         {/* <TrendSuggestionSection /> */}
-        <SearchResultLatest />
+        {/* <SearchResultLatest /> */}
+        <SearchResultPeople />
       </div>
     </div>
 
     <div className="page-right-content">
       {/* <AdvancedSearch /> */}
-      <SearchResultLatestRight />
+      <SearchResultRight />
     </div>
   </div>
 );
