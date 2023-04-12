@@ -3,7 +3,7 @@ import driver from '../../util/neo4j-driver';
 
 dotenv.config();
 
-const bitResolver = async ({ id }: any) => {
+export const authorResolver = async ({ id }: any) => {
   const session = driver.session({ database: 'neo4j' });
   try {
     const query = `
@@ -20,4 +20,19 @@ const bitResolver = async ({ id }: any) => {
   }
 };
 
-module.exports = bitResolver;
+export const reBitResolver = async ({ id }: any) => {
+  const session = driver.session({ database: 'neo4j' });
+  try {
+    const query = `
+            MATCH (:Bit {id: $id})-[:REBITED]->(b:Bit)
+            RETURN b
+        `;
+    const result = await session.run(query, { id });
+    return result.records[0].get('b').properties;
+  } catch (error) {
+    console.error(error);
+    return null;
+  } finally {
+    await session.close();
+  }
+};

@@ -2,7 +2,7 @@
 /* eslint-disable object-curly-newline */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React from 'react';
-import { ApolloError } from '@apollo/client';
+import { RxCross2 } from 'react-icons/rx';
 import Cover from './images/cover.jpg';
 import './components/login.css';
 import { LoginField, RegisterField, FormElement } from './components/login.field';
@@ -16,6 +16,10 @@ const Login = (props: {
   Loading: boolean;
 }) => {
   const { loginType, onLogin, onRegister, changeLoginType, errorMessage, Loading } = props;
+
+  const navigateToHome = () => {
+    window.location.href = '/';
+  };
 
   const handleFormSubmit = (event: React.FormEvent<FormElement>) => {
     event.preventDefault();
@@ -32,6 +36,15 @@ const Login = (props: {
           <img src={Cover} alt="Cover" />
         </div>
         <div className="Login-Register-Form-Container">
+          <div
+            className="Login-Register-Close-Form"
+            onClick={navigateToHome}
+            onKeyDown={navigateToHome}
+            role="button"
+            tabIndex={0}
+          >
+            <RxCross2 />
+          </div>
           <h1>{loginType}</h1>
 
           {errorMessage ? (

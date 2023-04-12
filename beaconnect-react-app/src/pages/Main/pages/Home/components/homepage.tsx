@@ -25,7 +25,7 @@ const Home = () => {
         <WriteBitBox />
         {result?.showBits?.map((item: any) => (
           /* eslint-disable-next-line */
-          <BitBox {...item} />
+          <BitBox {...item} key={item.id} />
         ))}
       </div>
       <div className="page-right-content">

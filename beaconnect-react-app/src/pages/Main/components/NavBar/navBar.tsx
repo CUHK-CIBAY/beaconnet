@@ -1,5 +1,7 @@
+/* eslint-disable no-undef */
 import React from 'react';
 import './nav.css';
+// eslint-disable-next-line no-unused-vars
 import { AiOutlineMessage, AiOutlineQuestionCircle, AiOutlineSearch, AiOutlineSetting } from 'react-icons/ai';
 import { BiHomeAlt2 } from 'react-icons/bi';
 import { CgProfile } from 'react-icons/cg';
@@ -21,20 +23,37 @@ const NavItem = ({ icon, text, path }: { icon: JSX.Element; text: string; path: 
   );
 };
 
-const NavBar = () => {
-  const NavLinks = [
-    { icon: <BiHomeAlt2 />, text: 'Home', path: '/' },
-    { icon: <CgProfile />, text: 'Profile', path: 'profile' },
-    { icon: <AiOutlineMessage />, text: 'Message', path: 'message' },
-    { icon: <AiOutlineSearch />, text: 'Search', path: 'search' },
-    { icon: <AiOutlineQuestionCircle />, text: 'Help', path: 'help' },
-    { icon: <AiOutlineSetting />, text: 'Settings', path: 'settings' },
-  ];
+const NavBar = ({ isLoggedIn }: { isLoggedIn: boolean }) => {
+  let NavLinks: { icon: JSX.Element; text: string; path: string }[] = [];
+  let NavControls: { icon: JSX.Element; text: string; path: string }[] = [];
+  if (isLoggedIn) {
+    NavLinks = [
+      { icon: <BiHomeAlt2 />, text: 'Home', path: '/' },
+      { icon: <CgProfile />, text: 'Profile', path: 'profile' },
+      // { icon: <AiOutlineMessage />, text: 'Message', path: 'message' },
+      { icon: <AiOutlineSearch />, text: 'Search', path: 'search' },
+      { icon: <AiOutlineQuestionCircle />, text: 'Help', path: 'help' },
+      { icon: <AiOutlineSetting />, text: 'Settings', path: 'settings' },
+    ];
 
-  const NavControls = [
-    { icon: <FiLogOut />, text: 'Logout', path: 'logout' },
-    { icon: <FiUser />, text: 'Account', path: 'account' },
-  ];
+    NavControls = [
+      { icon: <FiLogOut />, text: 'Logout', path: 'logout' },
+      { icon: <FiUser />, text: 'Account', path: 'account' },
+    ];
+  } else {
+    NavLinks = [
+      { icon: <BiHomeAlt2 />, text: 'Home', path: '/' },
+      { icon: <AiOutlineSearch />, text: 'Search', path: 'search' },
+    ];
+
+    NavControls = [
+      {
+        icon: <FiUser />,
+        text: 'Login',
+        path: 'login',
+      },
+    ];
+  }
   return (
     <nav>
       <div className="nav-wrapper">

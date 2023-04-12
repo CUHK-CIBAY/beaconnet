@@ -35,6 +35,11 @@ export enum Gender {
   OTHER = 'OTHER',
 }
 
+export enum UserRole {
+  NORMAL = 'NORMAL',
+  ADMIN = 'ADMIN',
+}
+
 export type Mutation = {
   __typename?: 'Mutation';
   register?: Maybe<User>;
@@ -91,6 +96,7 @@ export type User = {
   password: Scalars['String'];
   /** Use for login and identify, unique */
   username: Scalars['String'];
+  role: UserRole;
 };
 
 export type UserInfo = {
