@@ -56,27 +56,27 @@
   justify-content: space-between;
   font-size: 15px;
   border-right: transparent 2px solid;
-  transition: background-color 200ms ease-in-out
+  transition: background-color 200ms ease-in-out;
 }
 
 .setting-bar-your-account:hover {
   background-color: #e4e9d3;
-  border-right: #CCD5AE 2px solid;
+  border-right: #ccd5ae 2px solid;
 }
 
 .setting-bar-privacy-safety:hover {
   background-color: #e4e9d3;
-  border-right: #CCD5AE 2px solid;
+  border-right: #ccd5ae 2px solid;
 }
 
 .setting-bar-notification:hover {
   background-color: #e4e9d3;
-  border-right: #CCD5AE 2px solid;
+  border-right: #ccd5ae 2px solid;
 }
 
 .setting-bar-accessibility:hover {
   background-color: #e4e9d3;
-  border-right: #CCD5AE 2px solid;
+  border-right: #ccd5ae 2px solid;
 }
 
 .setting-bar-your-account-arrow,
@@ -169,17 +169,17 @@
 }
 
 .setting-reset-password-current-input:focus {
-  border: #A1AB7D 2px solid;
+  border: #a1ab7d 2px solid;
   border-radius: 4px;
 }
 
 .setting-reset-password-new-input:focus {
-  border: #A1AB7D 2px solid;
+  border: #a1ab7d 2px solid;
   border-radius: 4px;
 }
 
 .setting-reset-password-confirm-input:focus {
-  border: #A1AB7D 2px solid;
+  border: #a1ab7d 2px solid;
   border-radius: 4px;
 }
 
@@ -188,8 +188,8 @@
 .setting-reset-password-confirm-input {
   margin: 10px;
   padding: 10px;
-  width: calc( 100% - 45px );
-  border: #CCD5AE 2px solid;
+  width: calc(100% - 45px);
+  border: #ccd5ae 2px solid;
   border-radius: 4px;
   outline: none;
 }
@@ -205,12 +205,12 @@
 }
 
 .setting-reset-password-submit:hover {
-  background-color: #A1AB7D;
+  background-color: #a1ab7d;
 }
 
 .setting-reset-password-submit {
   padding: 5px 20px;
   border: none;
   border-radius: 15px;
-  background-color: #CCD5AE;
+  background-color: #ccd5ae;
 }

@@ -7,13 +7,12 @@ const SettingResetPassword = () => (
       <div className="setting-reset-password-header-icon">
         <AiOutlineLeft />
       </div>
-      <div className="setting-reset-password-header-content">
-        Reset Password
-      </div>
+      <div className="setting-reset-password-header-content">Reset Password</div>
     </div>
     <div className="setting-reset-password-content">
       <p>
-        Change your password with morethan 10 character. Also, must contain at least one uppercase letter, one lowercase letter and one special character.
+        Change your password with morethan 10 character. Also, must contain at least one uppercase letter, one lowercase
+        letter and one special character.
       </p>
       <div className="setting-reset-password-current">
         <input type="password" className="setting-reset-password-current-input" placeholder="Current Password" />
