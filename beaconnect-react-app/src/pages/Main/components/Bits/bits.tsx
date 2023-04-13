@@ -7,9 +7,26 @@ import { FiVideo } from 'react-icons/fi';
 import { RxCross2 } from 'react-icons/rx';
 import { TbSend } from 'react-icons/tb';
 import { TiTick } from 'react-icons/ti';
+import fetch from 'node-fetch';
 import { formatDistance } from 'date-fns';
-import { postBitQuery, postBitMutationVariables, postBitMutationResult } from '../Query/bit.query';
+import {
+  postBitQuery,
+  postBitMutationVariables,
+  postBitMutationResult,
+  postBitWithAttachmentMutationResult,
+  postBitWithAttachmentMutationVariables,
+} from '../Query/bit.query';
 import userIcon from '../../pages/Home/components/icon.png';
+
+/* eslint-disable */
+const toBase64 = (file: any) =>
+  new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => resolve(reader.result);
+    reader.onerror = (error) => reject(error);
+  });
+/* eslint-enable */
 
 export const WriteBitBox = () => {
   const [draggingState, setDraggingState] = useState(false);
@@ -39,19 +56,38 @@ export const WriteBitBox = () => {
     },
   });
 
-  const uploadAttachment = (file: any | null, content: string) => {
-    const formData = new FormData();
-    formData.append('file', file);
-    fetch('https://iayeuuhkq5.execute-api.ap-southeast-1.amazonaws.com/Prod/image', {
-      method: 'POST',
-      body: formData,
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data, content);
-        // const { url } = data;
-        // postBit({ variables: { image: url, content } });
-      });
+  const [postBitWithAttachment] = useMutation<
+    postBitWithAttachmentMutationResult,
+    postBitWithAttachmentMutationVariables
+  >(postBitQuery, {
+    onCompleted: (data) => {
+      const {
+        postBit: { id },
+      } = data;
+      if (id) {
+        setTimeout(() => {
+          sendBitSuccess();
+        }, 2000);
+      }
+    },
+  });
+
+  const uploadAttachment = async (file: any | null, content: string) => {
+    toBase64(file).then((data) => {
+      const base64 = data as string;
+      base64.indexOf(',');
+      const base64Data = base64.substring(base64.indexOf(',') + 1);
+      fetch('https://iayeuuhkq5.execute-api.ap-southeast-1.amazonaws.com/Prod/image', {
+        method: 'post',
+        body: base64Data,
+      })
+        .then((res) => res.json())
+        .then((returnData) => {
+          console.log(returnData, content);
+          const { key } = returnData as any;
+          postBitWithAttachment({ variables: { image: key as string, content } });
+        });
+    });
   };
 
   const postBitHandler = (e: React.KeyboardEvent | React.MouseEvent) => {
