@@ -14,6 +14,11 @@ export type UpdateRequiredInfoMutationVariables = {
   nickname: string;
 };
 
+export type UpdateRequiredInfoWithAttachmentMutationVariables = {
+  nickname: string;
+  image: string;
+};
+
 export type UpdateRequiredInfoMutationResult = {
   updateInfo: {
     info: {
@@ -23,8 +28,8 @@ export type UpdateRequiredInfoMutationResult = {
 };
 
 export const updateRequiredInfoQuery = gql`
-  mutation MyMutation($nickname: String) {
-    updateInfo(input: { nickname: $nickname }) {
+  mutation MyMutation($nickname: String, $image: String) {
+    updateInfo(input: { nickname: $nickname, image: $image }) {
       info {
         nickname
       }

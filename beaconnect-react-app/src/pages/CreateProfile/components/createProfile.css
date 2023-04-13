@@ -36,6 +36,10 @@
   align-items: center;
 }
 
+.create-required-profile.dragging {
+  opacity: 0.5;
+}
+
 .create-profile-container h1 {
   margin: 0;
   text-align: left;
@@ -145,6 +149,7 @@
   border-radius: 50%;
   object-fit: cover;
   opacity: 1;
+  border: 5px solid #ced5b2;
   transition: opacity 0.2s ease-in-out;
 }
 

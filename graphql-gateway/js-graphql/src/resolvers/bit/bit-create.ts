@@ -16,8 +16,7 @@ export const postBitResolver = async (_p: any, { content, image = "" }: any, { m
                    content: $content,
                    createAt: $createAt,
                    totalLike: $totalLike,
-                   image: $image,
-                   likeGivers: []
+                   image: $image
             })
             MERGE (u)-[:POST]->(b)
             RETURN b

@@ -17,7 +17,7 @@ const createProfile = ({ setUserProfile }: { setUserProfile: (done: boolean) => 
   return (
     <div className="create-profile-wrapper">
       <div className="create-profile-container">
-        <RequiredProfile setDoneRequired={setDoneRequired} />
+        <RequiredProfile setDoneRequired={setDoneRequired} doneRequired={doneRequired} />
         {doneRequired && <OptionalProfile setUserProfile={setUserProfile} />}
       </div>
     </div>
