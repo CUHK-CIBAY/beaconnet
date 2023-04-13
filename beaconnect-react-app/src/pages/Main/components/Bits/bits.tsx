@@ -79,7 +79,7 @@ export const WriteBitBox = () => {
   const uploadAttachment = (file: any | null, content: string) => {
     if (file.size > 6_000_000) {
       // !AWS lambda function max size is 6MB
-      alert('Filesize exceed 6MB');
+      alert('File size exceed 6MB');
     } else {
       toBase64(file).then((data) => {
         const base64 = data as string;
@@ -91,7 +91,6 @@ export const WriteBitBox = () => {
         })
           .then((res) => res.json())
           .then((returnData) => {
-            console.log(returnData, content);
             const { key } = returnData as any;
             postBitWithAttachment({ variables: { image: key as string, content } });
           });

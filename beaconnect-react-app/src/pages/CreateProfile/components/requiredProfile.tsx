@@ -6,6 +6,7 @@ import profileCover from '../../Login/images/cover.jpg';
 import {
   UpdateRequiredInfoMutationResult,
   UpdateRequiredInfoMutationVariables,
+  UpdateRequiredInfoWithAttachmentMutationVariables,
   updateRequiredInfoQuery,
 } from '../../../router/components/profile.query';
 
@@ -30,6 +31,28 @@ const RequiredProfile = ({
       },
     },
   );
+
+  const [updateInfoWithAttachment] = useMutation<
+    UpdateRequiredInfoMutationResult,
+    UpdateRequiredInfoWithAttachmentMutationVariables
+  >(updateRequiredInfoQuery, {
+    onCompleted: (data: UpdateRequiredInfoMutationResult) => {
+      if (data.updateInfo.info.nickname) setDoneRequired(true);
+    },
+    onError: () => {
+      window.alert('Failed to communicate with server. Please try again later.');
+    },
+  });
+
+  /* eslint-disable */
+  const toBase64 = (file: any) =>
+    new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = () => resolve(reader.result);
+      reader.onerror = (error) => reject(error);
+    });
+  /* eslint-enable */
 
   const handleRequiredProfileDragOver = (e: React.DragEvent) => {
     e.preventDefault();
@@ -68,10 +91,35 @@ const RequiredProfile = ({
     fileInput.click();
   };
 
+  const uploadAttachment = (file: any, nickname: string) => {
+    if (file.size > 6_000_000) {
+      alert('File size exceed 6MB');
+    } else {
+      toBase64(file).then((data) => {
+        const base64 = data as string;
+        base64.indexOf(',');
+        const base64Data = base64.substring(base64.indexOf(',') + 1);
+        fetch('https://iayeuuhkq5.execute-api.ap-southeast-1.amazonaws.com/Prod/image', {
+          method: 'post',
+          body: base64Data,
+        })
+          .then((res) => res.json())
+          .then((returnData) => {
+            const { key } = returnData as any;
+            updateInfoWithAttachment({ variables: { nickname, image: key } });
+          });
+      });
+    }
+  };
+
   const handleFormSubmit = () => {
     const nickname = document.getElementById('nickname') as HTMLInputElement;
     if (nickname.value) {
-      updateInfo({ variables: { nickname: nickname.value } });
+      if (!profileIcon) {
+        updateInfo({ variables: { nickname: nickname.value } });
+      } else {
+        uploadAttachment(profileIcon, nickname.value);
+      }
     }
   };
 
