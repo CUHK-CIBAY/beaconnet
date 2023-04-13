@@ -41,7 +41,7 @@ export const LoginField = [
     id: 'username',
     type: 'text',
     placeholder: 'Enter Here',
-    label: 'Username',
+    label: 'Username / Email',
   },
   {
     id: 'password',
