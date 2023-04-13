@@ -31,15 +31,17 @@ export const RecentSuggestionItem = () => (
 const TrendSuggestionSection = () => (
   <div className="recent-and-trend-suggestion-section">
     <div className="trend-suggestion-section">
-      <h2>Trends for you</h2>
-      <TrendSuggestionItem />
-      <TrendSuggestionItem />
-      <TrendSuggestionItem />
-      <TrendSuggestionItem />
-      <TrendSuggestionItem />
-      <TrendSuggestionItem />
-      <TrendSuggestionItem />
-      <TrendSuggestionItem />
+      <div className="trend-suggestion-trends">
+        <h2>Trends for you</h2>
+        <TrendSuggestionItem />
+        <TrendSuggestionItem />
+        <TrendSuggestionItem />
+        <TrendSuggestionItem />
+        <TrendSuggestionItem />
+        <TrendSuggestionItem />
+        <TrendSuggestionItem />
+        <TrendSuggestionItem />
+      </div>
       <div className="recent-suggestion-section">
         <h2>Recent</h2>
         <RecentSuggestionItem />
