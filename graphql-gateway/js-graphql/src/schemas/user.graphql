@@ -77,7 +77,7 @@ input LoginInput {
 
 type LoginResponse {
     token: String!
-    role: UserRole
+    me: User
 }
 
 
