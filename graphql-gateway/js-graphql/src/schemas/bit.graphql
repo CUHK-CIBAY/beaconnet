@@ -8,6 +8,8 @@ type Bit {
   likeGivers: [User!]
   "The Bit being ReBit"
   reBit: Bit
+  "If include image return URL"
+  image: String
   # comment: ???
 }
 
@@ -19,7 +21,7 @@ type Query {
 }
 
 type Mutation {
-    postBit(content: String!): Bit
+    postBit(content: String!, image: String): Bit
     reBit(content: String!, id: ID!): Bit
     likeBit(id: ID!): Bit
 }

@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { useQuery } from '@apollo/client';
 import { getUserProfileQuery } from './components/profile.query';
+import { useUserContext } from '../userContext';
 import Loading from '../pages/Essentials/Loading/loading';
 import CreateProfile from '../pages/CreateProfile/createProfile';
 
@@ -19,10 +20,20 @@ const UserProfileCheck = ({
   getStatus: boolean;
   userProfile: boolean;
 }) => {
+  const { signOut } = useUserContext();
   const userProfileChecker = useQuery(getUserProfileQuery, {
     onCompleted: (data) => {
       setGetStatus(true);
       if (data.me.info.nickname) setUserProfile(true);
+    },
+    onError: (error) => {
+      if (
+        // eslint-disable-next-line operator-linebreak
+        error.message === 'Response not successful: Received status code 500'
+      ) {
+        signOut();
+        window.location.reload();
+      }
     },
   });
 

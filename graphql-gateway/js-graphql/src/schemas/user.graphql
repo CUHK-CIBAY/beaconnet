@@ -8,6 +8,8 @@ type User {
   following: [User!]
   bits: [Bit!]
   role: UserRole
+  "Profile image url"
+  image: String
 }
 
 input FindUserInput {
@@ -47,6 +49,8 @@ type UserInfo {
   birthday: String
   age: Int
   bio: String
+  "Profile image url"
+  image: String
 }
 
 input UpdateInfoInput {

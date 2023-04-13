@@ -3,7 +3,7 @@ import driver from '../../util/neo4j-driver';
 
 dotenv.config();
 
-export const postBitResolver = async (_p: any, { content }: any, { me }: any) => {
+export const postBitResolver = async (_p: any, { content, image = "" }: any, { me }: any) => {
   const session = driver.session({ database: 'neo4j' });
   try {
     const query = `
@@ -16,6 +16,7 @@ export const postBitResolver = async (_p: any, { content }: any, { me }: any) =>
                    content: $content,
                    createAt: $createAt,
                    totalLike: $totalLike,
+                   image: $image,
                    likeGivers: []
             })
             MERGE (u)-[:POST]->(b)
@@ -23,6 +24,7 @@ export const postBitResolver = async (_p: any, { content }: any, { me }: any) =>
         `;
     const result = await session.run(query, {
       id: me.id,
+      image,
       content,
       createAt: new Date().toISOString(),
       totalLike: 0,

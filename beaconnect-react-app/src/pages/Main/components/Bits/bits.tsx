@@ -1,16 +1,37 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useMutation } from '@apollo/client';
 import { AiOutlineHeart } from 'react-icons/ai';
 import { BiComment, BiRepost } from 'react-icons/bi';
-import { BsSoundwave, BsImage } from 'react-icons/bs';
+import { BsImage } from 'react-icons/bs';
 import { FiVideo } from 'react-icons/fi';
+import { RxCross2 } from 'react-icons/rx';
 import { TbSend } from 'react-icons/tb';
 import { TiTick } from 'react-icons/ti';
 import { formatDistance } from 'date-fns';
-import { postBitQuery, postBitMutationVariables, postBitMutationResult } from '../Query/bit.query';
+import {
+  postBitQuery,
+  postBitMutationVariables,
+  postBitMutationResult,
+  postBitWithAttachmentMutationResult,
+  postBitWithAttachmentMutationVariables,
+  postBitWithAttachmentQuery,
+} from '../Query/bit.query';
 import userIcon from '../../pages/Home/components/icon.png';
 
+/* eslint-disable */
+const toBase64 = (file: any) =>
+  new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => resolve(reader.result);
+    reader.onerror = (error) => reject(error);
+  });
+/* eslint-enable */
+
 export const WriteBitBox = () => {
+  const [draggingState, setDraggingState] = useState(false);
+  const [bitAttachment, setBitAttachment] = useState<any>(null);
+
   const sendBitSuccess = () => {
     const writeBitBox = document.querySelector('.write-bit-box') as HTMLDivElement;
     const textArea = writeBitBox.querySelector('textarea') as HTMLTextAreaElement;
@@ -35,29 +56,148 @@ export const WriteBitBox = () => {
     },
   });
 
+  const [postBitWithAttachment] = useMutation<
+    postBitWithAttachmentMutationResult,
+    postBitWithAttachmentMutationVariables
+  >(postBitWithAttachmentQuery, {
+    onCompleted: (data) => {
+      const {
+        postBit: { id },
+      } = data;
+      if (id) {
+        setTimeout(() => {
+          setBitAttachment(null);
+          sendBitSuccess();
+        }, 2000);
+      }
+    },
+    onError: (error) => {
+      console.log(error);
+    },
+  });
+
+  const uploadAttachment = (file: any | null, content: string) => {
+    if (file.size > 6_000_000) {
+    // !AWS lambda function max size is 6MB
+      alert('Filesize exceed 6MB');
+    } else {
+      toBase64(file).then((data) => {
+        const base64 = data as string;
+        base64.indexOf(',');
+        const base64Data = base64.substring(base64.indexOf(',') + 1);
+        fetch('https://iayeuuhkq5.execute-api.ap-southeast-1.amazonaws.com/Prod/image', {
+          method: 'post',
+          body: base64Data,
+        })
+          .then((res) => res.json())
+          .then((returnData) => {
+            console.log(returnData, content);
+            const { key } = returnData as any;
+            postBitWithAttachment({ variables: { image: key as string, content } });
+          });
+      });
+    }
+  };
+
   const postBitHandler = (e: React.KeyboardEvent | React.MouseEvent) => {
     const { currentTarget } = e;
     const textArea = currentTarget.parentElement?.parentElement?.querySelector('textarea') as HTMLTextAreaElement;
     const text = textArea.value;
     if (text.length > 0) {
-      postBit({ variables: { content: text } });
+      if (bitAttachment) {
+        uploadAttachment(bitAttachment, text);
+      } else {
+        postBit({ variables: { content: text } });
+      }
       // add loading status
       const writeBitBox = document.querySelector('.write-bit-box') as HTMLDivElement;
       writeBitBox.classList.add('loading');
     }
   };
 
+  const handleDragFile = (e: React.DragEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    e.currentTarget.classList.add('dragging');
+    setDraggingState(true);
+  };
+
+  const handleDropFile = (e: React.DragEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    e.currentTarget.classList.remove('dragging');
+    setDraggingState(false);
+    if (e.dataTransfer?.files[0].type.includes('image') || e.dataTransfer?.files[0].type.includes('video')) {
+      setBitAttachment(e.dataTransfer?.files[0]);
+    } else {
+      alert('Only image or video file is allowed');
+    }
+  };
+
+  const handleDragLeave = (e: React.DragEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    e.currentTarget.classList.remove('dragging');
+    setDraggingState(false);
+  };
+
+  const FileUpload = (type: string) => {
+    const fileInput = document.createElement('input');
+    fileInput.type = 'file';
+    fileInput.accept = type;
+    fileInput.onchange = (e) => {
+      const file = (e.target as HTMLInputElement).files?.[0];
+      if (file) {
+        setBitAttachment(file);
+      }
+    };
+    fileInput.click();
+  };
+
   return (
-    <div className="write-bit-box bit-box-container">
+    <div
+      className="write-bit-box bit-box-container"
+      onDragOver={handleDragFile}
+      onDrop={handleDropFile}
+      onDragLeave={handleDragLeave}
+    >
       <div className="write-bit-box-container">
         <img className="bit-box-icon" src={userIcon} alt="profile" />
         <div className="write-bit-box-content">
           <textarea className="write-bit-box-content-text" placeholder="Write something..." />
+          {bitAttachment && (
+            <div className="write-bit-box-added-attachment">
+              <div className="write-bit-box-added-attachment-item">
+                <div className="write-bit-box-added-attachment-item-icon">
+                  {bitAttachment.type.includes('image') ? <BsImage /> : <FiVideo />}
+                </div>
+                <div className="write-bit-box-added-attachment-item-name">{bitAttachment.name}</div>
+                <div
+                  className="write-bit-box-added-attachment-item-remove"
+                  onClick={() => setBitAttachment(null)}
+                  onKeyDown={() => setBitAttachment(null)}
+                  role="button"
+                  tabIndex={0}
+                >
+                  <RxCross2 />
+                </div>
+              </div>
+            </div>
+          )}
           <div className="write-bit-box-options">
             <div className="write-bit-box-options-attachment">
-              <BsImage className="write-bit-box-options-icon" />
-              <FiVideo className="write-bit-box-options-icon" />
-              <BsSoundwave className="write-bit-box-options-icon" />
+              <BsImage
+                className="write-bit-box-options-icon"
+                onClick={() => {
+                  FileUpload('image/*');
+                }}
+              />
+              <FiVideo
+                className="write-bit-box-options-icon"
+                onClick={() => {
+                  FileUpload('video/*');
+                }}
+              />
             </div>
             <div
               className="write-bit-box-options-submit"
@@ -78,6 +218,11 @@ export const WriteBitBox = () => {
           <TiTick className="write-bit-box-tick-icon" />
         </div>
       </div>
+      {draggingState && (
+        <div className="write-bit-box-upload">
+          <div className="write-bit-box-upload-text">Drop your files here</div>
+        </div>
+      )}
     </div>
   );
 };
