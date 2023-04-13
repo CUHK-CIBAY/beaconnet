@@ -12,7 +12,7 @@ export type searchUserResult = {
 
 export const searchUserQuery = gql`
   query searchUserQuery($username: String!) {
-    findUser(input: {username: $username}) {
+    findUser(input: { username: $username }) {
       username
     }
   }
