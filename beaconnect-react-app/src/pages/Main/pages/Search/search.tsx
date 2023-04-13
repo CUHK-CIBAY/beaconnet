@@ -1,7 +1,9 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 /* eslint-disable no-unused-vars */
 
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useLazyQuery } from '@apollo/client';
+import { addAbortSignal } from 'stream';
 import './search.css';
 import { BiSearchAlt } from 'react-icons/bi';
 import { AiOutlineLeft } from 'react-icons/ai';
@@ -9,7 +11,7 @@ import TrendSuggestionSection from './components/searchindex_left';
 import AdvancedSearch from './components/searchindex_right';
 import { BitBox } from '../../components/Bits/bits';
 import SearchResultLatest from './components/searchresult_latest_left';
-
+import { searchUserQuery, searchUserVariables, searchUserResult } from '../../components/Query/search.query';
 import TrendSuggestionShort from './components/trendsuggestion_short';
 
 // for seach result latest page
@@ -17,6 +19,28 @@ import seasonalEvent from '../Home/components/seasonalpic.jpg';
 import SearchResultRight from './components/searchresult_right';
 import userIcon from '../Home/components/icon.png';
 import SearchResultPeople from './components/searchresult_people_left';
+
+export const SearchUserBar = () => {
+  const [searchUser] = useLazyQuery<searchUserResult, searchUserVariables>(searchUserQuery);
+
+  const searchUserHandler = (e: React.KeyboardEvent) => {
+    if (e.key === 'Enter') {
+      const { currentTarget } = e;
+      const searchInput = currentTarget as HTMLInputElement;
+      const username = searchInput.value;
+
+      if (username.length > 0) {
+        searchUser({ variables: { username } }).then((res) => {
+          console.log(res.data);
+        });
+      }
+    }
+  };
+
+  return (
+    <input className="trend-search-input" type="text" placeholder="search" onKeyDown={searchUserHandler} tabIndex={0} />
+  );
+};
 
 const Search = () => (
   <div className="page-content">
@@ -34,17 +58,17 @@ const Search = () => (
           <div className="trend-search-bar-icon">
             <BiSearchAlt />
           </div>
-          <input className="trend-search-input" type="text" placeholder="search" />
+          <SearchUserBar />
         </div>
-        <TrendSuggestionSection />
+        {/* <TrendSuggestionSection /> */}
         {/* <SearchResultLatest /> */}
-        {/* <SearchResultPeople /> */}
+        <SearchResultPeople />
       </div>
     </div>
 
     <div className="page-right-content">
-      <AdvancedSearch />
-      {/* <SearchResultRight /> */}
+      {/* <AdvancedSearch /> */}
+      <SearchResultRight />
     </div>
   </div>
 );
