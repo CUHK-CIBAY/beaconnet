@@ -343,7 +343,6 @@
 
 .trend-searching-container {
   position: relative;
-  margin: 15px 0 0 15px;
   background: #fff;
   padding: 20px;
   border-radius: 20px;
@@ -576,4 +575,23 @@
   width: 100px;
   padding: 5px 20px;
   font-weight: bolder;
+}
+
+.welcome-speech-container {
+  font-size: 15px;
+  display: grid;
+}
+
+.welcome-speech-container div {
+  margin: 10px;
+}
+
+.welcome-speech-container div ul {
+  margin: 0px;
+}
+
+.welcome-speech-container-header {
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
 }
