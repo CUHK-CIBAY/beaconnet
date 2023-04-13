@@ -25,7 +25,7 @@ const Home = ({ isLoggedIn }: { isLoggedIn: boolean }) => {
         {isLoggedIn && <WriteBitBox />}
         {result?.showBits?.map((item: any) => (
           /* eslint-disable-next-line */
-          <BitBox {...item} key={item.id} />
+          <BitBox showBits={showBits} {...item} key={item.id} />
         ))}
       </div>
       <div className="page-right-content">

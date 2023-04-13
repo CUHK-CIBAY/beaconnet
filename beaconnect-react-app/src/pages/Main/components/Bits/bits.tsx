@@ -15,6 +15,9 @@ import {
   postBitWithAttachmentMutationResult,
   postBitWithAttachmentMutationVariables,
   postBitWithAttachmentQuery,
+  likeBitMutationVariables,
+  likeBitQuery,
+  likeBitMutationResult,
 } from '../Query/bit.query';
 import userIcon from '../../pages/Home/components/icon.png';
 
@@ -78,8 +81,8 @@ export const WriteBitBox = () => {
 
   const uploadAttachment = (file: any | null, content: string) => {
     if (file.size > 6_000_000) {
-    // !AWS lambda function max size is 6MB
-      alert('Filesize exceed 6MB');
+      // !AWS lambda function max size is 6MB
+      alert('File size exceed 6MB');
     } else {
       toBase64(file).then((data) => {
         const base64 = data as string;
@@ -91,7 +94,6 @@ export const WriteBitBox = () => {
         })
           .then((res) => res.json())
           .then((returnData) => {
-            console.log(returnData, content);
             const { key } = returnData as any;
             postBitWithAttachment({ variables: { image: key as string, content } });
           });
@@ -227,7 +229,7 @@ export const WriteBitBox = () => {
   );
 };
 
-export const BitBox = (data: any) => {
+export const BitBox = (data: any, showBits: any) => {
   const addActiveStatus = (e: React.FocusEvent) => {
     const { currentTarget } = e;
     const parent = currentTarget.parentElement?.parentElement?.parentElement as HTMLDivElement;
@@ -244,6 +246,21 @@ export const BitBox = (data: any) => {
     }
   };
 
+  const [giveLikeToBit] = useMutation<likeBitMutationResult, likeBitMutationVariables>(likeBitQuery, {
+    onCompleted: () => {
+      // eslint-disable-next-line no-unused-expressions
+      showBits;
+    },
+  });
+
+  const handleGiveLike = (id: string) => {
+    giveLikeToBit({
+      variables: {
+        id,
+      },
+    });
+  };
+
   return (
     <div className="bit-box bit-box-container">
       {/* {isRepost && (
@@ -253,9 +270,17 @@ export const BitBox = (data: any) => {
         </div>
       )} */}
       <div className="bit-box-content-header">
-        <img className="bit-box-icon" src={userIcon} alt="profile" />
-        <div className="bit-box-content-header-name">John Doe</div>
-        <div className="bit-box-content-header-userID">@johndoe</div>
+        <img
+          className="bit-box-icon"
+          src={
+            // eslint-disable-next-line operator-linebreak, max-len
+            `https://beaconnect-image-imagebucket-ft90dpqhkbr1.s3.ap-southeast-1.amazonaws.com/${data?.author?.info?.image}` ||
+            userIcon
+          }
+          alt="profile"
+        />
+        <div className="bit-box-content-header-name">{data?.author?.info?.nickname}</div>
+        <div className="bit-box-content-header-userID">{data?.author?.username}</div>
         <div className="bit-box-content-header-time">
           {formatDistance(new Date(data?.createAt), new Date(), { addSuffix: true })}
         </div>
@@ -281,7 +306,17 @@ export const BitBox = (data: any) => {
         </div>
       )} */}
       <div className="bit-box-content-footer">
-        <div className="bit-box-content-footer-likes bit-box-content-footer-icons">
+        <div
+          className="bit-box-content-footer-likes bit-box-content-footer-icons"
+          onClick={() => {
+            handleGiveLike(data?.id);
+          }}
+          onKeyDown={() => {
+            handleGiveLike(data?.id);
+          }}
+          role="button"
+          tabIndex={0}
+        >
           <AiOutlineHeart />
           <p>{data?.totalLike}</p>
         </div>
