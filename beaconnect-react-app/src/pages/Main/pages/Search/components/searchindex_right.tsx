@@ -12,8 +12,16 @@ const AdvancedSearch = () => (
         <h3>Date</h3>
         <div className="advance-search-date-from">
           <p>from</p>
-          <select name="date" id="day">
-            <option value="day">Day</option>
+          <select name="date" id="day" defaultValue="day">
+            <option value="day" disabled>
+              Date
+            </option>
+            {[...Array(31)].map((_, i) => (
+              // eslint-disable-next-line react/no-array-index-key
+              <option value={i + 1} key={i + 1}>
+                {i + 1}
+              </option>
+            ))}
           </select>
           <select name="date" id="month">
             <option value="month">Month</option>
@@ -35,23 +43,14 @@ const AdvancedSearch = () => (
           </select>
         </div>
       </div>
-      <div className="advance-search-location">
-        <h3>Location</h3>
-        <div className="advance-search-location-same">
-          <input type="radio" id="location-same" name="location" value="same" />
-          <label htmlFor="location-same" className="location-same">
-            same
-          </label>
-        </div>
-        <div className="advance-search-location-anywhere">
-          <input type="radio" id="location-anywhere" name="location" value="anywere" />
-          <label htmlFor="location-anywhere" className="location-anywhere">
-            anywhere
-          </label>
-        </div>
-      </div>
       <div className="advance-search-content-with">
         <h3>Content with</h3>
+        <div className="advance-search-content-photo">
+          <input type="radio" id="content-with-none" name="content-with" value="none" defaultChecked />
+          <label htmlFor="content-with-none" className="content-with-none">
+            none
+          </label>
+        </div>
         <div className="advance-search-content-photo">
           <input type="radio" id="content-with-photo" name="content-with" value="photo" />
           <label htmlFor="content-with-photo" className="content-with-photo">

@@ -18,6 +18,25 @@ export const postBitQuery = gql`
   }
 `;
 
+export type postBitWithAttachmentMutationVariables = {
+  image: string;
+  content: string;
+};
+
+export type postBitWithAttachmentMutationResult = {
+  postBit: {
+    id: string;
+  };
+};
+
+export const postBitWithAttachmentQuery = gql`
+  mutation PostBit($content: String!, $image: String) {
+    postBit(content: $content, image: $image) {
+      id
+    }
+  }
+`;
+
 export type showBitsQueryVariables = {
   following: Boolean;
 };

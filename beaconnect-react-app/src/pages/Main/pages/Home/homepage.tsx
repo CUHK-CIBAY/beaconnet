@@ -5,7 +5,7 @@ import { WriteBitBox, BitBox } from '../../components/Bits/bits';
 import { showBitsQuery, showBitsQueryVariables, showBitsQueryResult } from '../../components/Query/bit.query';
 import seasonalEvent from './components/seasonalpic.jpg';
 
-const Home = () => {
+const Home = ({ isLoggedIn }: { isLoggedIn: boolean }) => {
   const [result, setResult] = useState<any>([]);
   const showBits = useQuery<showBitsQueryResult, showBitsQueryVariables>(showBitsQuery, {
     onCompleted: (data: any) => {
@@ -22,7 +22,7 @@ const Home = () => {
   return (
     <div className="page-content">
       <div className="page-center-content">
-        <WriteBitBox />
+        {isLoggedIn && <WriteBitBox />}
         {result?.showBits?.map((item: any) => (
           /* eslint-disable-next-line */
           <BitBox {...item} key={item.id} />
