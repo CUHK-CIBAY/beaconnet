@@ -18,6 +18,26 @@ export const postBitQuery = gql`
   }
 `;
 
+export type likeBitMutationVariables = {
+  id: string;
+};
+
+export type likeBitMutationResult = {
+  likeBit: {
+    totalLike: number;
+    id: string;
+  };
+};
+
+export const likeBitQuery = gql`
+  mutation LikeBit($id: ID!) {
+    likeBit(id: $id) {
+      totalLike
+      id
+    }
+  }
+`;
+
 export type postBitWithAttachmentMutationVariables = {
   image: string;
   content: string;
@@ -50,6 +70,10 @@ export type showBitsQueryResult = {
       author: {
         id: string;
         username: string;
+        info: {
+          image: string;
+          nickname: string;
+        }
       };
     },
   ];
@@ -65,6 +89,10 @@ export const showBitsQuery = gql`
       author {
         id
         username
+        info {
+          image
+          nickname
+        }
       }
     }
   }
