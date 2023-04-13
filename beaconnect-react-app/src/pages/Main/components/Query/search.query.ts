@@ -11,7 +11,7 @@ export type searchUserResult = {
 };
 
 export const searchUserQuery = gql`
-  Query searchUserQuery($username: String!) {
+  query searchUserQuery($username: String!) {
     searchUser(username: $username) {
       username
     }
