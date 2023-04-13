@@ -3,10 +3,13 @@ import { useQuery } from '@apollo/client';
 import { BiSearchAlt } from 'react-icons/bi';
 import { WriteBitBox, BitBox } from '../../components/Bits/bits';
 import { showBitsQuery, showBitsQueryVariables, showBitsQueryResult } from '../../components/Query/bit.query';
+import ViewBit from './viewBit';
 import seasonalEvent from './components/seasonalpic.jpg';
 
 const Home = ({ isLoggedIn }: { isLoggedIn: boolean }) => {
   const [result, setResult] = useState<any>([]);
+  const [viewBitID, setViewBitID] = useState<String | null>('123');
+
   const showBits = useQuery<showBitsQueryResult, showBitsQueryVariables>(showBitsQuery, {
     onCompleted: (data: any) => {
       setResult(data);
@@ -20,32 +23,35 @@ const Home = ({ isLoggedIn }: { isLoggedIn: boolean }) => {
   /* eslint-enable */
 
   return (
-    <div className="page-content">
-      <div className="page-center-content">
-        {isLoggedIn && <WriteBitBox />}
-        {result?.showBits?.map((item: any) => (
-          /* eslint-disable-next-line */
-          <BitBox showBits={showBits} {...item} key={item.id} />
-        ))}
-      </div>
-      <div className="page-right-content">
-        <img className="profile-background-picture" src={seasonalEvent} alt="profile" />
-        <div className="trend-searching-container">
-          <div className="trend-search-bar">
-            <div className="trend-search-bar-icon">
-              <BiSearchAlt />
+    <div className="home-page-container">
+      <div className="page-content">
+        <div className="page-center-content">
+          {isLoggedIn && <WriteBitBox />}
+          {result?.showBits?.map((item: any) => (
+            /* eslint-disable-next-line */
+            <BitBox setViewBitID={setViewBitID} showBits={showBits} {...item} key={item.id} />
+          ))}
+        </div>
+        <div className="page-right-content">
+          <img className="profile-background-picture" src={seasonalEvent} alt="profile" />
+          <div className="trend-searching-container">
+            <div className="trend-search-bar">
+              <div className="trend-search-bar-icon">
+                <BiSearchAlt />
+              </div>
+              <input type="text" placeholder="search" />
             </div>
-            <input type="text" placeholder="search" />
-          </div>
-          <div className="trend-suggestion-section">
-            <h2>Trends for you</h2>
-            <div className="trend-suggestion-list">
-              <p className="trend-suggestion-item">GitHub</p>
-              <p className="trend-suggestion-item-size">2.5M Bit</p>
+            <div className="trend-suggestion-section">
+              <h2>Trends for you</h2>
+              <div className="trend-suggestion-list">
+                <p className="trend-suggestion-item">GitHub</p>
+                <p className="trend-suggestion-item-size">2.5M Bit</p>
+              </div>
             </div>
           </div>
         </div>
       </div>
+      {viewBitID && <ViewBit viewBitID={viewBitID} setViewBitId={setViewBitID} />}
     </div>
   );
 };

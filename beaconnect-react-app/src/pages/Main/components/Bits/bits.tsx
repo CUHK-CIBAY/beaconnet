@@ -230,7 +230,7 @@ export const WriteBitBox = () => {
   );
 };
 
-export const BitBox = (data: any, showBits: any) => {
+export const BitBox = (data: any, showBits: any, setViewBitID: any) => {
   const addActiveStatus = (e: React.FocusEvent) => {
     const { currentTarget } = e;
     const parent = currentTarget.parentElement?.parentElement?.parentElement as HTMLDivElement;
@@ -286,7 +286,13 @@ export const BitBox = (data: any, showBits: any) => {
           {formatDistance(new Date(data?.createAt), new Date(), { addSuffix: true })}
         </div>
       </div>
-      <div className="bit-box-content">
+      <div
+        className="bit-box-content"
+        onClick={() => setViewBitID(data?.id)}
+        onKeyDown={() => {}}
+        role="button"
+        tabIndex={0}
+      >
         <div className="bit-box-content-text">{data?.content}</div>
       </div>
       {/* {haveCaption && (
@@ -306,6 +312,13 @@ export const BitBox = (data: any, showBits: any) => {
           </div>
         </div>
       )} */}
+      {data?.image && (
+        <img
+          className="bit-box-content-image"
+          src={`https://beaconnect-image-imagebucket-ft90dpqhkbr1.s3.ap-southeast-1.amazonaws.com/${data?.image}`}
+          alt="bit"
+        />
+      )}
       <div className="bit-box-content-footer">
         <div
           className="bit-box-content-footer-likes bit-box-content-footer-icons"

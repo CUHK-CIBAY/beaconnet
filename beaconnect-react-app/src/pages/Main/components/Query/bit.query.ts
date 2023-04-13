@@ -68,6 +68,7 @@ export type showBitsQueryResult = {
       content: string;
       createAt: string;
       totalLike: number;
+      image: string;
       author: {
         id: string;
         username: string;
@@ -87,6 +88,7 @@ export const showBitsQuery = gql`
       content
       createAt
       totalLike
+      image
       author {
         id
         username
