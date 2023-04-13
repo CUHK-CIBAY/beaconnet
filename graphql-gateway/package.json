@@ -11,7 +11,7 @@
     "format/yaml": "git ls-files '*.yml' '*.yaml' | xargs -t -I {} yq -i -S -Y . {}",
     "lint": "ls -d js-* | xargs -t -I {} eslint --ext .js,.ts {}",
     "test": "ls -d js-* | xargs -t -I {} jest {}",
-    "preBuild": "cp ./js-graphql/index.deploy.ts ./js-graphql/index.ts",
+    "preBuild": "cp ./js-graphql/src/index.deploy.ts ./js-graphql/src/index.ts",
     "build": "sam build --beta-features",
     "schema": "cp -r js-graphql/src/schemas .aws-sam/build/GraphQL",
     "postBuild": "git restore .",
