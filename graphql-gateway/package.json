@@ -10,7 +10,11 @@
     "format/properties": "find . -name '*.properties' -print -exec sort -o {} {} \\;",
     "format/yaml": "git ls-files '*.yml' '*.yaml' | xargs -t -I {} yq -i -S -Y . {}",
     "lint": "ls -d js-* | xargs -t -I {} eslint --ext .js,.ts {}",
-    "test": "ls -d js-* | xargs -t -I {} jest {}"
+    "test": "ls -d js-* | xargs -t -I {} jest {}",
+    "build": "sam build --beta-features",
+    "schema": "cp -r js-graphql/src/schemas .aws-sam/build/GraphQL",
+    "deploy": "sam deploy --stack-name beaconnect --resolve-s3 --capabilities CAPABILITY_IAM",
+    "prod": "yarn build && yarn schema && yarn deploy"
   },
   "dependencies": {
     "typescript": "^4.4.2"
