@@ -7,7 +7,6 @@ import { FiVideo } from 'react-icons/fi';
 import { RxCross2 } from 'react-icons/rx';
 import { TbSend } from 'react-icons/tb';
 import { TiTick } from 'react-icons/ti';
-import fetch from 'node-fetch';
 import { formatDistance } from 'date-fns';
 import {
   postBitQuery,
