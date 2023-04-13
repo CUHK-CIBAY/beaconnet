@@ -15,6 +15,7 @@ import {
   postBitMutationResult,
   postBitWithAttachmentMutationResult,
   postBitWithAttachmentMutationVariables,
+  postBitWithAttachmentQuery,
 } from '../Query/bit.query';
 import userIcon from '../../pages/Home/components/icon.png';
 
@@ -59,16 +60,20 @@ export const WriteBitBox = () => {
   const [postBitWithAttachment] = useMutation<
     postBitWithAttachmentMutationResult,
     postBitWithAttachmentMutationVariables
-  >(postBitQuery, {
+  >(postBitWithAttachmentQuery, {
     onCompleted: (data) => {
       const {
         postBit: { id },
       } = data;
       if (id) {
         setTimeout(() => {
+          setBitAttachment(null);
           sendBitSuccess();
         }, 2000);
       }
+    },
+    onError: (error) => {
+      console.log(error);
     },
   });
 

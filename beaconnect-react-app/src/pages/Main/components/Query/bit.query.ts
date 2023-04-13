@@ -30,7 +30,7 @@ export type postBitWithAttachmentMutationResult = {
 };
 
 export const postBitWithAttachmentQuery = gql`
-  mutation PostBit($content: String!, $image: String!) {
+  mutation PostBit($content: String!, $image: String) {
     postBit(content: $content, image: $image) {
       id
     }
