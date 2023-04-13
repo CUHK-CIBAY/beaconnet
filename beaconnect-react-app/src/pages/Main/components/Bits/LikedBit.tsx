@@ -1,8 +1,9 @@
 import { useMutation, gql } from '@apollo/client';
 import React, { useState } from 'react';
+import { AiOutlineHeart } from 'react-icons/ai';
 
-const LIKE_POST_MUTATION = gql`
-  mutation LikedBit($postId: id!) {
+export const LIKE_POST_MUTATION = gql`
+  mutation LikedBit($postId: ID!) {
     likedBit(postId: $postId) {
       id
       likes {
@@ -10,24 +11,27 @@ const LIKE_POST_MUTATION = gql`
         user {
           id
           username
+          open
         }
       }
     }
   }
 `;
 
-const likedBitHandler = (
+export const likedBitHandler = (
   e: React.KeyboardEvent | React.MouseEvent,
   likedBit: any,
   postId: string,
   likes: number,
   setLikes: (likes: number) => void,
 ) => {
+  console.log('test');
   setLikes(likes + 1);
 
   likedBit({ variables: { postId } })
     .then((result: any) => {
       const updatedLikes = result.data.likedBit.likes.length;
+      console.log(updatedLikes);
       setLikes(updatedLikes);
     })
     .catch((error: any) => {
@@ -36,23 +40,22 @@ const likedBitHandler = (
     });
 };
 
-const Bits = () => {
+export const Bits = () => {
   const [likedBit] = useMutation(LIKE_POST_MUTATION);
   const postId = '';
   const [likes, setLikes] = useState(0);
 
   return (
-    <div>
-      <div
-        className="bit-box-content-footer-likes bit-box-content-footer-icons"
-        onClick={(e) => likedBitHandler(e, likedBit, postId, likes, setLikes)}
-        onKeyDown={(e) => likedBitHandler(e, likedBit, postId, likes, setLikes)}
-        role="button"
-        tabIndex={0}
-      >
-        Like
-      </div>
+    <div
+      className="bit-box-content-footer-likes bit-box-content-footer-icons"
+      onClick={(e) => likedBitHandler(e, likedBit, postId, likes, setLikes)}
+      onKeyDown={(e) => likedBitHandler(e, likedBit, postId, likes, setLikes)}
+      role="button"
+      tabIndex={0}
+    >
+      Like
       <div>{likes} Likes</div>
+      <AiOutlineHeart />
     </div>
   );
 };
