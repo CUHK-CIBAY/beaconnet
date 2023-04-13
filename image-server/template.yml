@@ -4,12 +4,16 @@ Outputs:
     Description: 'Image server Api endpoint'
     Value: !Sub "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/image"
 Resources:
+  ImageBucket:
+    Properties:
+      AccessControl: PublicReadWrite
+    Type: AWS::S3::Bucket
   ImageServer:
     Properties:
       CodeUri: ./py-image-server
       Environment:
         Variables:
-          BUCKET_NAME: !Ref ImageBucket
+          BUCKET_NAME: !Ref 'ImageBucket'
       Events:
         ImageApi:
           Properties:
@@ -17,9 +21,9 @@ Resources:
             Path: /image
           Type: Api
       Handler: main.handler
-      Timeout: 30
       Role: !GetAtt 'ImageServerRole.Arn'
       Runtime: python3.7
+      Timeout: 30
     Type: AWS::Serverless::Function
   ImageServerRole:
     Properties:
@@ -45,8 +49,4 @@ Resources:
             Version: '2012-10-17'
           PolicyName: ImageServerPolicy
     Type: 'AWS::IAM::Role'
-  ImageBucket:
-    Type: AWS::S3::Bucket
-    Properties:
-      AccessControl: PublicReadWrite
 Transform: AWS::Serverless-2016-10-31
