@@ -3,12 +3,12 @@ import { useQuery } from '@apollo/client';
 import { BiSearchAlt } from 'react-icons/bi';
 import { WriteBitBox, BitBox } from '../../components/Bits/bits';
 import { showBitsQuery, showBitsQueryVariables, showBitsQueryResult } from '../../components/Query/bit.query';
-import ViewBit from './viewBit';
 import seasonalEvent from './components/seasonalpic.jpg';
 
 const Home = ({ isLoggedIn }: { isLoggedIn: boolean }) => {
   const [result, setResult] = useState<any>([]);
-  const [viewBitID, setViewBitID] = useState<String | null>('123');
+  const [reBit, setReBit] = useState(null);
+  const [bitAttachment, setBitAttachment] = useState<any>(null);
 
   const showBits = useQuery<showBitsQueryResult, showBitsQueryVariables>(showBitsQuery, {
     onCompleted: (data: any) => {
@@ -26,10 +26,23 @@ const Home = ({ isLoggedIn }: { isLoggedIn: boolean }) => {
     <div className="home-page-container">
       <div className="page-content">
         <div className="page-center-content">
-          {isLoggedIn && <WriteBitBox />}
+          {isLoggedIn && (
+            <WriteBitBox
+              reBit={reBit}
+              setReBit={setReBit}
+              bitAttachment={bitAttachment}
+              setBitAttachment={setBitAttachment}
+            />
+          )}
           {result?.showBits?.map((item: any) => (
-            /* eslint-disable-next-line */
-            <BitBox setViewBitID={setViewBitID} showBits={showBits} {...item} key={item.id} />
+            <BitBox
+              setReBit={setReBit}
+              showBits={showBits}
+              setBitAttachment={setBitAttachment}
+              key={item.id}
+              // eslint-disable-next-line react/jsx-props-no-spreading
+              {...item}
+            />
           ))}
         </div>
         <div className="page-right-content">
@@ -51,7 +64,6 @@ const Home = ({ isLoggedIn }: { isLoggedIn: boolean }) => {
           </div>
         </div>
       </div>
-      {viewBitID && <ViewBit viewBitID={viewBitID} setViewBitId={setViewBitID} />}
     </div>
   );
 };

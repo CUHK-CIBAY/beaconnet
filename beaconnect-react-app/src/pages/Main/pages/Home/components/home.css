@@ -590,3 +590,11 @@
   padding: 5px 20px;
   font-weight: bolder;
 }
+
+.write-bit-box-rebit {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  border: 1px dashed #000;
+  border-radius: 10px;
+}

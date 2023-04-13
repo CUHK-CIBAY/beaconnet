@@ -18,6 +18,25 @@ export const postBitQuery = gql`
   }
 `;
 
+export type reBitMutationVariables = {
+  content: string;
+  id: string;
+};
+
+export type reBitMutationResult = {
+  reBit: {
+    id: string;
+  };
+};
+
+export const reBitQuery = gql`
+  mutation ReBit($content: String!, $id: ID!) {
+    reBit(content: $content, id: $id) {
+      id
+    }
+  }
+`;
+
 export type likeBitMutationVariables = {
   id: string;
 };

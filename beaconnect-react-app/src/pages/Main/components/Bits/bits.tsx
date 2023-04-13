@@ -19,6 +19,9 @@ import {
   likeBitMutationVariables,
   likeBitQuery,
   likeBitMutationResult,
+  reBitMutationVariables,
+  reBitQuery,
+  reBitMutationResult,
 } from '../Query/bit.query';
 import userIcon from '../../pages/Home/components/icon.png';
 
@@ -32,9 +35,19 @@ const toBase64 = (file: any) =>
   });
 /* eslint-enable */
 
-export const WriteBitBox = () => {
+export const WriteBitBox = ({
+  reBit,
+  setReBit,
+  bitAttachment,
+  setBitAttachment,
+}: {
+  reBit: any;
+  // eslint-disable-next-line no-shadow, no-unused-vars
+  setReBit: any;
+  bitAttachment: any;
+  setBitAttachment: any;
+}) => {
   const [draggingState, setDraggingState] = useState(false);
-  const [bitAttachment, setBitAttachment] = useState<any>(null);
 
   const sendBitSuccess = () => {
     const writeBitBox = document.querySelector('.write-bit-box') as HTMLDivElement;
@@ -52,9 +65,24 @@ export const WriteBitBox = () => {
       const {
         postBit: { id },
       } = data;
+      console.log(data, id);
       if (id) {
         setTimeout(() => {
           sendBitSuccess();
+        }, 2000);
+      }
+    },
+  });
+
+  const [postReBit] = useMutation<reBitMutationResult, reBitMutationVariables>(reBitQuery, {
+    onCompleted: (data) => {
+      const {
+        reBit: { id },
+      } = data;
+      if (id) {
+        setTimeout(() => {
+          sendBitSuccess();
+          setReBit(null);
         }, 2000);
       }
     },
@@ -107,6 +135,9 @@ export const WriteBitBox = () => {
     const textArea = currentTarget.parentElement?.parentElement?.querySelector('textarea') as HTMLTextAreaElement;
     const text = textArea.value;
     if (text.length > 0) {
+      if (reBit) {
+        postReBit({ variables: { content: reBit[1], id: reBit[0] } });
+      }
       if (bitAttachment) {
         uploadAttachment(bitAttachment, text);
       } else {
@@ -187,21 +218,37 @@ export const WriteBitBox = () => {
               </div>
             </div>
           )}
-          <div className="write-bit-box-options">
-            <div className="write-bit-box-options-attachment">
-              <BsImage
-                className="write-bit-box-options-icon"
-                onClick={() => {
-                  FileUpload('image/*');
-                }}
-              />
-              <FiVideo
-                className="write-bit-box-options-icon"
-                onClick={() => {
-                  FileUpload('video/*');
-                }}
-              />
+          {reBit && (
+            <div className="write-bit-box-rebit">
+              <div className="write-bit-box-rebit-content">{reBit[1]}</div>
+              <div
+                className="write-bit-box-rebit-remove"
+                onClick={() => setReBit(null)}
+                onKeyDown={() => setReBit(null)}
+                role="button"
+                tabIndex={0}
+              >
+                <RxCross2 />
+              </div>
             </div>
+          )}
+          <div className="write-bit-box-options">
+            {!reBit && (
+              <div className="write-bit-box-options-attachment">
+                <BsImage
+                  className="write-bit-box-options-icon"
+                  onClick={() => {
+                    FileUpload('image/*');
+                  }}
+                />
+                <FiVideo
+                  className="write-bit-box-options-icon"
+                  onClick={() => {
+                    FileUpload('video/*');
+                  }}
+                />
+              </div>
+            )}
             <div
               className="write-bit-box-options-submit"
               onClick={postBitHandler}
@@ -230,7 +277,7 @@ export const WriteBitBox = () => {
   );
 };
 
-export const BitBox = (data: any, showBits: any, setViewBitID: any) => {
+export const BitBox = (data: any) => {
   const addActiveStatus = (e: React.FocusEvent) => {
     const { currentTarget } = e;
     const parent = currentTarget.parentElement?.parentElement?.parentElement as HTMLDivElement;
@@ -249,8 +296,8 @@ export const BitBox = (data: any, showBits: any, setViewBitID: any) => {
 
   const [giveLikeToBit] = useMutation<likeBitMutationResult, likeBitMutationVariables>(likeBitQuery, {
     onCompleted: () => {
-      // eslint-disable-next-line no-unused-expressions
-      showBits;
+      // eslint-disable-next-line no-unused-expressions, react/destructuring-assignment
+      data.showBits;
     },
   });
 
@@ -260,6 +307,12 @@ export const BitBox = (data: any, showBits: any, setViewBitID: any) => {
         id,
       },
     });
+  };
+
+  const handleRepost = (id: string, content: string) => {
+    // eslint-disable-next-line react/destructuring-assignment
+    data.setReBit([id, content]);
+    document.querySelector('.write-bit-box-content-text')?.scrollIntoView({ behavior: 'smooth' });
   };
 
   return (
@@ -286,13 +339,7 @@ export const BitBox = (data: any, showBits: any, setViewBitID: any) => {
           {formatDistance(new Date(data?.createAt), new Date(), { addSuffix: true })}
         </div>
       </div>
-      <div
-        className="bit-box-content"
-        onClick={() => setViewBitID(data?.id)}
-        onKeyDown={() => {}}
-        role="button"
-        tabIndex={0}
-      >
+      <div className="bit-box-content">
         <div className="bit-box-content-text">{data?.content}</div>
       </div>
       {/* {haveCaption && (
@@ -338,7 +385,19 @@ export const BitBox = (data: any, showBits: any, setViewBitID: any) => {
           <BiComment />
           <p>5 comments</p>
         </div>
-        <div className="bit-box-content-footer-repost bit-box-content-footer-icons">
+        <div
+          className="bit-box-content-footer-repost bit-box-content-footer-icons"
+          onClick={() => {
+            handleRepost(data?.id, data?.content);
+            data?.setBitAttachment(null);
+          }}
+          onKeyDown={() => {
+            handleRepost(data?.id, data?.content);
+            data?.setBitAttachment(null);
+          }}
+          role="button"
+          tabIndex={0}
+        >
           <BiRepost />
         </div>
       </div>
