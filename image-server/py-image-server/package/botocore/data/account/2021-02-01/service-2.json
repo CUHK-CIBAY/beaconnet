@@ -1,0 +1,265 @@
+{
+  "documentation": "<p>Operations for Amazon Web Services Account Management</p>",
+  "metadata": {
+    "apiVersion": "2021-02-01",
+    "endpointPrefix": "account",
+    "jsonVersion": "1.1",
+    "protocol": "rest-json",
+    "serviceFullName": "AWS Account",
+    "serviceId": "Account",
+    "signatureVersion": "v4",
+    "signingName": "account",
+    "uid": "account-2021-02-01"
+  },
+  "operations": {
+    "DeleteAlternateContact": {
+      "documentation": "<p>Deletes the specified alternate contact from an Amazon Web Services account.</p> <p>For complete details about how to use the alternate contact operations, see <a href=\"https://docs.aws.amazon.com/accounts/latest/reference/manage-acct-update-contact.html\">Access or updating the alternate contacts</a>.</p>",
+      "errors": [
+        { "shape": "ResourceNotFoundException" },
+        { "shape": "ValidationException" },
+        { "shape": "AccessDeniedException" },
+        { "shape": "TooManyRequestsException" },
+        { "shape": "InternalServerException" }
+      ],
+      "http": {
+        "method": "POST",
+        "requestUri": "/deleteAlternateContact",
+        "responseCode": 200
+      },
+      "idempotent": true,
+      "input": { "shape": "DeleteAlternateContactRequest" },
+      "name": "DeleteAlternateContact"
+    },
+    "GetAlternateContact": {
+      "documentation": "<p>Retrieves the specified alternate contact attached to an Amazon Web Services account.</p> <p>For complete details about how to use the alternate contact operations, see <a href=\"https://docs.aws.amazon.com/accounts/latest/reference/manage-acct-update-contact.html\">Access or updating the alternate contacts</a>.</p>",
+      "errors": [
+        { "shape": "ResourceNotFoundException" },
+        { "shape": "ValidationException" },
+        { "shape": "AccessDeniedException" },
+        { "shape": "TooManyRequestsException" },
+        { "shape": "InternalServerException" }
+      ],
+      "http": {
+        "method": "POST",
+        "requestUri": "/getAlternateContact",
+        "responseCode": 200
+      },
+      "input": { "shape": "GetAlternateContactRequest" },
+      "name": "GetAlternateContact",
+      "output": { "shape": "GetAlternateContactResponse" }
+    },
+    "PutAlternateContact": {
+      "documentation": "<p>Modifies the specified alternate contact attached to an Amazon Web Services account.</p> <p>For complete details about how to use the alternate contact operations, see <a href=\"https://docs.aws.amazon.com/accounts/latest/reference/manage-acct-update-contact.html\">Access or updating the alternate contacts</a>.</p>",
+      "errors": [
+        { "shape": "ValidationException" },
+        { "shape": "AccessDeniedException" },
+        { "shape": "TooManyRequestsException" },
+        { "shape": "InternalServerException" }
+      ],
+      "http": {
+        "method": "POST",
+        "requestUri": "/putAlternateContact",
+        "responseCode": 200
+      },
+      "idempotent": true,
+      "input": { "shape": "PutAlternateContactRequest" },
+      "name": "PutAlternateContact"
+    }
+  },
+  "shapes": {
+    "AccessDeniedException": {
+      "documentation": "<p>The operation failed because the calling identity doesn't have the minimum required permissions.</p>",
+      "error": {
+        "httpStatusCode": 403,
+        "senderFault": true
+      },
+      "exception": true,
+      "members": {
+        "message": { "shape": "String" }
+      },
+      "required": ["message"],
+      "type": "structure"
+    },
+    "AccountId": {
+      "pattern": "^\\d{12}$",
+      "type": "string"
+    },
+    "AlternateContact": {
+      "documentation": "<p>A structure that contains the details of an alternate contact associated with an Amazon Web Services account</p>",
+      "members": {
+        "AlternateContactType": {
+          "documentation": "<p>The type of alternate contact.</p>",
+          "shape": "AlternateContactType"
+        },
+        "EmailAddress": {
+          "documentation": "<p>The email address associated with this alternate contact.</p>",
+          "shape": "EmailAddress"
+        },
+        "Name": {
+          "documentation": "<p>The name associated with this alternate contact.</p>",
+          "shape": "Name"
+        },
+        "PhoneNumber": {
+          "documentation": "<p>The phone number associated with this alternate contact.</p>",
+          "shape": "PhoneNumber"
+        },
+        "Title": {
+          "documentation": "<p>The title associated with this alternate contact.</p>",
+          "shape": "Title"
+        }
+      },
+      "type": "structure"
+    },
+    "AlternateContactType": {
+      "enum": ["BILLING", "OPERATIONS", "SECURITY"],
+      "type": "string"
+    },
+    "DeleteAlternateContactRequest": {
+      "members": {
+        "AccountId": {
+          "documentation": "<p>Specifies the 12 digit account ID number of the Amazon Web Services account that you want to access or modify with this operation.</p> <p>If you do not specify this parameter, it defaults to the Amazon Web Services account of the identity used to call the operation.</p> <p>To use this parameter, the caller must be an identity in the <a href=\"https://docs.aws.amazon.com/organizations/latest/userguide/orgs_getting-started_concepts.html#account\">organization's management account</a> or a delegated administrator account, and the specified account ID must be a member account in the same organization. The organization must have <a href=\"https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_org_support-all-features.html\">all features enabled</a>, and the organization must have <a href=\"https://docs.aws.amazon.com/organizations/latest/userguide/using-orgs-trusted-access.html\">trusted access</a> enabled for the Account Management service, and optionally a <a href=\"https://docs.aws.amazon.com/organizations/latest/userguide/using-orgs-delegated-admin.html\">delegated admin</a> account assigned.</p> <note> <p>The management account can't specify its own <code>AccountId</code>; it must call the operation in standalone context by not including the <code>AccountId</code> parameter.</p> </note> <p>To call this operation on an account that is not a member of an organization, then don't specify this parameter, and call the operation using an identity belonging to the account whose contacts you wish to retrieve or modify.</p>",
+          "shape": "AccountId"
+        },
+        "AlternateContactType": {
+          "documentation": "<p>Specifies which of the alternate contacts to delete. </p>",
+          "shape": "AlternateContactType"
+        }
+      },
+      "required": ["AlternateContactType"],
+      "type": "structure"
+    },
+    "EmailAddress": {
+      "max": 64,
+      "min": 1,
+      "pattern": "[\\w+=,.-]+@[\\w.-]+\\.[\\w]+",
+      "sensitive": true,
+      "type": "string"
+    },
+    "GetAlternateContactRequest": {
+      "members": {
+        "AccountId": {
+          "documentation": "<p>Specifies the 12 digit account ID number of the Amazon Web Services account that you want to access or modify with this operation.</p> <p>If you do not specify this parameter, it defaults to the Amazon Web Services account of the identity used to call the operation.</p> <p>To use this parameter, the caller must be an identity in the <a href=\"https://docs.aws.amazon.com/organizations/latest/userguide/orgs_getting-started_concepts.html#account\">organization's management account</a> or a delegated administrator account, and the specified account ID must be a member account in the same organization. The organization must have <a href=\"https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_org_support-all-features.html\">all features enabled</a>, and the organization must have <a href=\"https://docs.aws.amazon.com/organizations/latest/userguide/using-orgs-trusted-access.html\">trusted access</a> enabled for the Account Management service, and optionally a <a href=\"https://docs.aws.amazon.com/organizations/latest/userguide/using-orgs-delegated-admin.html\">delegated admin</a> account assigned.</p> <note> <p>The management account can't specify its own <code>AccountId</code>; it must call the operation in standalone context by not including the <code>AccountId</code> parameter.</p> </note> <p>To call this operation on an account that is not a member of an organization, then don't specify this parameter, and call the operation using an identity belonging to the account whose contacts you wish to retrieve or modify.</p>",
+          "shape": "AccountId"
+        },
+        "AlternateContactType": {
+          "documentation": "<p>Specifies which alternate contact you want to retrieve.</p>",
+          "shape": "AlternateContactType"
+        }
+      },
+      "required": ["AlternateContactType"],
+      "type": "structure"
+    },
+    "GetAlternateContactResponse": {
+      "members": {
+        "AlternateContact": {
+          "documentation": "<p>A structure that contains the details for the specified alternate contact.</p>",
+          "shape": "AlternateContact"
+        }
+      },
+      "type": "structure"
+    },
+    "InternalServerException": {
+      "documentation": "<p>The operation failed because of an error internal to Amazon Web Services. Try your operation again later.</p>",
+      "error": { "httpStatusCode": 500 },
+      "exception": true,
+      "fault": true,
+      "members": {
+        "message": { "shape": "String" }
+      },
+      "required": ["message"],
+      "retryable": { "throttling": false },
+      "type": "structure"
+    },
+    "Name": {
+      "max": 64,
+      "min": 1,
+      "sensitive": true,
+      "type": "string"
+    },
+    "PhoneNumber": {
+      "max": 25,
+      "min": 1,
+      "pattern": "^[\\s0-9()+-]+$",
+      "sensitive": true,
+      "type": "string"
+    },
+    "PutAlternateContactRequest": {
+      "members": {
+        "AccountId": {
+          "documentation": "<p>Specifies the 12 digit account ID number of the Amazon Web Services account that you want to access or modify with this operation.</p> <p>If you do not specify this parameter, it defaults to the Amazon Web Services account of the identity used to call the operation.</p> <p>To use this parameter, the caller must be an identity in the <a href=\"https://docs.aws.amazon.com/organizations/latest/userguide/orgs_getting-started_concepts.html#account\">organization's management account</a> or a delegated administrator account, and the specified account ID must be a member account in the same organization. The organization must have <a href=\"https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_org_support-all-features.html\">all features enabled</a>, and the organization must have <a href=\"https://docs.aws.amazon.com/organizations/latest/userguide/using-orgs-trusted-access.html\">trusted access</a> enabled for the Account Management service, and optionally a <a href=\"https://docs.aws.amazon.com/organizations/latest/userguide/using-orgs-delegated-admin.html\">delegated admin</a> account assigned.</p> <note> <p>The management account can't specify its own <code>AccountId</code>; it must call the operation in standalone context by not including the <code>AccountId</code> parameter.</p> </note> <p>To call this operation on an account that is not a member of an organization, then don't specify this parameter, and call the operation using an identity belonging to the account whose contacts you wish to retrieve or modify.</p>",
+          "shape": "AccountId"
+        },
+        "AlternateContactType": {
+          "documentation": "<p>Specifies which alternate contact you want to create or update.</p>",
+          "shape": "AlternateContactType"
+        },
+        "EmailAddress": {
+          "documentation": "<p>Specifies an email address for the alternate contact. </p>",
+          "shape": "EmailAddress"
+        },
+        "Name": {
+          "documentation": "<p>Specifies a name for the alternate contact.</p>",
+          "shape": "Name"
+        },
+        "PhoneNumber": {
+          "documentation": "<p>Specifies a phone number for the alternate contact.</p>",
+          "shape": "PhoneNumber"
+        },
+        "Title": {
+          "documentation": "<p>Specifies a title for the alternate contact.</p>",
+          "shape": "Title"
+        }
+      },
+      "required": ["AlternateContactType", "EmailAddress", "Name", "PhoneNumber", "Title"],
+      "type": "structure"
+    },
+    "ResourceNotFoundException": {
+      "documentation": "<p>The operation failed because it specified a resource that can't be found.</p>",
+      "error": {
+        "httpStatusCode": 404,
+        "senderFault": true
+      },
+      "exception": true,
+      "members": {
+        "message": { "shape": "String" }
+      },
+      "required": ["message"],
+      "type": "structure"
+    },
+    "String": { "type": "string" },
+    "Title": {
+      "max": 50,
+      "min": 1,
+      "sensitive": true,
+      "type": "string"
+    },
+    "TooManyRequestsException": {
+      "documentation": "<p>The operation failed because it was called too frequently and exceeded a throttle limit.</p>",
+      "error": {
+        "httpStatusCode": 429,
+        "senderFault": true
+      },
+      "exception": true,
+      "members": {
+        "message": { "shape": "String" }
+      },
+      "required": ["message"],
+      "retryable": { "throttling": true },
+      "type": "structure"
+    },
+    "ValidationException": {
+      "documentation": "<p>The operation failed because one of the input parameters was invalid.</p>",
+      "error": {
+        "httpStatusCode": 400,
+        "senderFault": true
+      },
+      "exception": true,
+      "members": {
+        "message": { "shape": "String" }
+      },
+      "required": ["message"],
+      "type": "structure"
+    }
+  },
+  "version": "2.0"
+}

@@ -1,0 +1,30 @@
+{
+  "version": 2,
+  "waiters": {
+    "StreamExists": {
+      "acceptors": [
+        {
+          "argument": "StreamDescription.StreamStatus",
+          "expected": "ACTIVE",
+          "matcher": "path",
+          "state": "success"
+        }
+      ],
+      "delay": 10,
+      "maxAttempts": 18,
+      "operation": "DescribeStream"
+    },
+    "StreamNotExists": {
+      "acceptors": [
+        {
+          "expected": "ResourceNotFoundException",
+          "matcher": "error",
+          "state": "success"
+        }
+      ],
+      "delay": 10,
+      "maxAttempts": 18,
+      "operation": "DescribeStream"
+    }
+  }
+}

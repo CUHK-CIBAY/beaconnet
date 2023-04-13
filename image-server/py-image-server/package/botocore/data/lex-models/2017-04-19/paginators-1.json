@@ -1,0 +1,64 @@
+{
+  "pagination": {
+    "GetBotAliases": {
+      "input_token": "nextToken",
+      "limit_key": "maxResults",
+      "output_token": "nextToken",
+      "result_key": "BotAliases"
+    },
+    "GetBotChannelAssociations": {
+      "input_token": "nextToken",
+      "limit_key": "maxResults",
+      "output_token": "nextToken",
+      "result_key": "botChannelAssociations"
+    },
+    "GetBotVersions": {
+      "input_token": "nextToken",
+      "limit_key": "maxResults",
+      "output_token": "nextToken",
+      "result_key": "bots"
+    },
+    "GetBots": {
+      "input_token": "nextToken",
+      "limit_key": "maxResults",
+      "output_token": "nextToken",
+      "result_key": "bots"
+    },
+    "GetBuiltinIntents": {
+      "input_token": "nextToken",
+      "limit_key": "maxResults",
+      "output_token": "nextToken",
+      "result_key": "intents"
+    },
+    "GetBuiltinSlotTypes": {
+      "input_token": "nextToken",
+      "limit_key": "maxResults",
+      "output_token": "nextToken",
+      "result_key": "slotTypes"
+    },
+    "GetIntentVersions": {
+      "input_token": "nextToken",
+      "limit_key": "maxResults",
+      "output_token": "nextToken",
+      "result_key": "intents"
+    },
+    "GetIntents": {
+      "input_token": "nextToken",
+      "limit_key": "maxResults",
+      "output_token": "nextToken",
+      "result_key": "intents"
+    },
+    "GetSlotTypeVersions": {
+      "input_token": "nextToken",
+      "limit_key": "maxResults",
+      "output_token": "nextToken",
+      "result_key": "slotTypes"
+    },
+    "GetSlotTypes": {
+      "input_token": "nextToken",
+      "limit_key": "maxResults",
+      "output_token": "nextToken",
+      "result_key": "slotTypes"
+    }
+  }
+}

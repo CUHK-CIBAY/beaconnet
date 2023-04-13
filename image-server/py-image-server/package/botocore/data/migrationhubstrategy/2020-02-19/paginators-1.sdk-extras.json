@@ -1,0 +1,10 @@
+{
+  "merge": {
+    "pagination": {
+      "GetServerDetails": {
+        "non_aggregate_keys": ["serverDetail"]
+      }
+    }
+  },
+  "version": 1.0
+}

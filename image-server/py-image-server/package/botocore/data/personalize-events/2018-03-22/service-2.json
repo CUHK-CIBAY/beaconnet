@@ -1,0 +1,273 @@
+{
+  "documentation": "<p>Amazon Personalize can consume real-time user event data, such as <i>stream</i> or <i>click</i> data, and use it for model training either alone or combined with historical data. For more information see <a href=\"https://docs.aws.amazon.com/personalize/latest/dg/recording-events.html\">Recording Events</a>.</p>",
+  "metadata": {
+    "apiVersion": "2018-03-22",
+    "endpointPrefix": "personalize-events",
+    "jsonVersion": "1.1",
+    "protocol": "rest-json",
+    "serviceFullName": "Amazon Personalize Events",
+    "serviceId": "Personalize Events",
+    "signatureVersion": "v4",
+    "signingName": "personalize",
+    "uid": "personalize-events-2018-03-22"
+  },
+  "operations": {
+    "PutEvents": {
+      "documentation": "<p>Records user interaction event data. For more information see <a href=\"https://docs.aws.amazon.com/personalize/latest/dg/recording-events.html\">Recording Events</a>.</p>",
+      "errors": [{ "shape": "InvalidInputException" }],
+      "http": {
+        "method": "POST",
+        "requestUri": "/events"
+      },
+      "input": { "shape": "PutEventsRequest" },
+      "name": "PutEvents"
+    },
+    "PutItems": {
+      "documentation": "<p>Adds one or more items to an Items dataset. For more information see <a href=\"https://docs.aws.amazon.com/personalize/latest/dg/importing-items.html\">Importing Items Incrementally</a>. </p>",
+      "errors": [
+        { "shape": "InvalidInputException" },
+        { "shape": "ResourceNotFoundException" },
+        { "shape": "ResourceInUseException" }
+      ],
+      "http": {
+        "method": "POST",
+        "requestUri": "/items"
+      },
+      "input": { "shape": "PutItemsRequest" },
+      "name": "PutItems"
+    },
+    "PutUsers": {
+      "documentation": "<p>Adds one or more users to a Users dataset. For more information see <a href=\"https://docs.aws.amazon.com/personalize/latest/dg/importing-users.html\">Importing Users Incrementally</a>.</p>",
+      "errors": [
+        { "shape": "InvalidInputException" },
+        { "shape": "ResourceNotFoundException" },
+        { "shape": "ResourceInUseException" }
+      ],
+      "http": {
+        "method": "POST",
+        "requestUri": "/users"
+      },
+      "input": { "shape": "PutUsersRequest" },
+      "name": "PutUsers"
+    }
+  },
+  "shapes": {
+    "Arn": {
+      "max": 256,
+      "pattern": "arn:([a-z\\d-]+):personalize:.*:.*:.+",
+      "type": "string"
+    },
+    "Date": { "type": "timestamp" },
+    "ErrorMessage": { "type": "string" },
+    "Event": {
+      "documentation": "<p>Represents user interaction event information sent using the <code>PutEvents</code> API.</p>",
+      "members": {
+        "eventId": {
+          "documentation": "<p>An ID associated with the event. If an event ID is not provided, Amazon Personalize generates a unique ID for the event. An event ID is not used as an input to the model. Amazon Personalize uses the event ID to distinquish unique events. Any subsequent events after the first with the same event ID are not used in model training.</p>",
+          "shape": "StringType"
+        },
+        "eventType": {
+          "documentation": "<p>The type of event, such as click or download. This property corresponds to the <code>EVENT_TYPE</code> field of your Interactions schema and depends on the types of events you are tracking.</p>",
+          "shape": "StringType"
+        },
+        "eventValue": {
+          "documentation": "<p>The event value that corresponds to the <code>EVENT_VALUE</code> field of the Interactions schema.</p>",
+          "shape": "FloatType"
+        },
+        "impression": {
+          "documentation": "<p>A list of item IDs that represents the sequence of items you have shown the user. For example, <code>[\"itemId1\", \"itemId2\", \"itemId3\"]</code>.</p>",
+          "shape": "Impression"
+        },
+        "itemId": {
+          "documentation": "<p>The item ID key that corresponds to the <code>ITEM_ID</code> field of the Interactions schema.</p>",
+          "shape": "ItemId"
+        },
+        "properties": {
+          "documentation": "<p>A string map of event-specific data that you might choose to record. For example, if a user rates a movie on your site, other than movie ID (<code>itemId</code>) and rating (<code>eventValue</code>) , you might also send the number of movie ratings made by the user.</p> <p>Each item in the map consists of a key-value pair. For example,</p> <p> <code>{\"numberOfRatings\": \"12\"}</code> </p> <p>The keys use camel case names that match the fields in the Interactions schema. In the above example, the <code>numberOfRatings</code> would match the 'NUMBER_OF_RATINGS' field defined in the Interactions schema.</p>",
+          "jsonvalue": true,
+          "shape": "EventPropertiesJSON"
+        },
+        "recommendationId": {
+          "documentation": "<p>The ID of the recommendation.</p>",
+          "shape": "RecommendationId"
+        },
+        "sentAt": {
+          "documentation": "<p>The timestamp (in Unix time) on the client side when the event occurred.</p>",
+          "shape": "Date"
+        }
+      },
+      "required": ["eventType", "sentAt"],
+      "type": "structure"
+    },
+    "EventList": {
+      "max": 10,
+      "member": { "shape": "Event" },
+      "min": 1,
+      "type": "list"
+    },
+    "EventPropertiesJSON": {
+      "max": 1024,
+      "min": 1,
+      "type": "string"
+    },
+    "FloatType": { "type": "float" },
+    "Impression": {
+      "max": 25,
+      "member": { "shape": "ItemId" },
+      "min": 1,
+      "type": "list"
+    },
+    "InvalidInputException": {
+      "documentation": "<p>Provide a valid value for the field or parameter.</p>",
+      "error": { "httpStatusCode": 400 },
+      "exception": true,
+      "members": {
+        "message": { "shape": "ErrorMessage" }
+      },
+      "type": "structure"
+    },
+    "Item": {
+      "documentation": "<p>Represents item metadata added to an Items dataset using the <code>PutItems</code> API. For more information see <a href=\"https://docs.aws.amazon.com/personalize/latest/dg/importing-items.html\">Importing Items Incrementally</a>. </p>",
+      "members": {
+        "itemId": {
+          "documentation": "<p>The ID associated with the item.</p>",
+          "shape": "StringType"
+        },
+        "properties": {
+          "documentation": "<p>A string map of item-specific metadata. Each element in the map consists of a key-value pair. For example, <code>{\"numberOfRatings\": \"12\"}</code>.</p> <p>The keys use camel case names that match the fields in the schema for the Items dataset. In the previous example, the <code>numberOfRatings</code> matches the 'NUMBER_OF_RATINGS' field defined in the Items schema. For categorical string data, to include multiple categories for a single item, separate each category with a pipe separator (<code>|</code>). For example, <code>\\\"Horror|Action\\\"</code>.</p>",
+          "jsonvalue": true,
+          "shape": "ItemProperties"
+        }
+      },
+      "required": ["itemId"],
+      "type": "structure"
+    },
+    "ItemId": {
+      "max": 256,
+      "min": 1,
+      "type": "string"
+    },
+    "ItemList": {
+      "max": 10,
+      "member": { "shape": "Item" },
+      "min": 1,
+      "type": "list"
+    },
+    "ItemProperties": {
+      "max": 24262,
+      "min": 1,
+      "type": "string"
+    },
+    "PutEventsRequest": {
+      "members": {
+        "eventList": {
+          "documentation": "<p>A list of event data from the session.</p>",
+          "shape": "EventList"
+        },
+        "sessionId": {
+          "documentation": "<p>The session ID associated with the user's visit. Your application generates the sessionId when a user first visits your website or uses your application. Amazon Personalize uses the sessionId to associate events with the user before they log in. For more information, see <a href=\"https://docs.aws.amazon.com/personalize/latest/dg/recording-events.html\">Recording Events</a>.</p>",
+          "shape": "StringType"
+        },
+        "trackingId": {
+          "documentation": "<p>The tracking ID for the event. The ID is generated by a call to the <a href=\"https://docs.aws.amazon.com/personalize/latest/dg/API_CreateEventTracker.html\">CreateEventTracker</a> API.</p>",
+          "shape": "StringType"
+        },
+        "userId": {
+          "documentation": "<p>The user associated with the event.</p>",
+          "shape": "UserId"
+        }
+      },
+      "required": ["trackingId", "sessionId", "eventList"],
+      "type": "structure"
+    },
+    "PutItemsRequest": {
+      "members": {
+        "datasetArn": {
+          "documentation": "<p>The Amazon Resource Name (ARN) of the Items dataset you are adding the item or items to.</p>",
+          "shape": "Arn"
+        },
+        "items": {
+          "documentation": "<p>A list of item data.</p>",
+          "shape": "ItemList"
+        }
+      },
+      "required": ["datasetArn", "items"],
+      "type": "structure"
+    },
+    "PutUsersRequest": {
+      "members": {
+        "datasetArn": {
+          "documentation": "<p>The Amazon Resource Name (ARN) of the Users dataset you are adding the user or users to.</p>",
+          "shape": "Arn"
+        },
+        "users": {
+          "documentation": "<p>A list of user data.</p>",
+          "shape": "UserList"
+        }
+      },
+      "required": ["datasetArn", "users"],
+      "type": "structure"
+    },
+    "RecommendationId": {
+      "max": 40,
+      "min": 1,
+      "type": "string"
+    },
+    "ResourceInUseException": {
+      "documentation": "<p>The specified resource is in use.</p>",
+      "error": { "httpStatusCode": 409 },
+      "exception": true,
+      "members": {
+        "message": { "shape": "ErrorMessage" }
+      },
+      "type": "structure"
+    },
+    "ResourceNotFoundException": {
+      "documentation": "<p>Could not find the specified resource.</p>",
+      "error": { "httpStatusCode": 404 },
+      "exception": true,
+      "members": {
+        "message": { "shape": "ErrorMessage" }
+      },
+      "type": "structure"
+    },
+    "StringType": {
+      "max": 256,
+      "min": 1,
+      "type": "string"
+    },
+    "User": {
+      "documentation": "<p>Represents user metadata added to a Users dataset using the <code>PutUsers</code> API. For more information see <a href=\"https://docs.aws.amazon.com/personalize/latest/dg/importing-users.html\">Importing Users Incrementally</a>.</p>",
+      "members": {
+        "properties": {
+          "documentation": "<p>A string map of user-specific metadata. Each element in the map consists of a key-value pair. For example, <code>{\"numberOfVideosWatched\": \"45\"}</code>.</p> <p>The keys use camel case names that match the fields in the schema for the Users dataset. In the previous example, the <code>numberOfVideosWatched</code> matches the 'NUMBER_OF_VIDEOS_WATCHED' field defined in the Users schema. For categorical string data, to include multiple categories for a single user, separate each category with a pipe separator (<code>|</code>). For example, <code>\\\"Member|Frequent shopper\\\"</code>.</p>",
+          "jsonvalue": true,
+          "shape": "UserProperties"
+        },
+        "userId": {
+          "documentation": "<p>The ID associated with the user.</p>",
+          "shape": "StringType"
+        }
+      },
+      "required": ["userId"],
+      "type": "structure"
+    },
+    "UserId": {
+      "max": 256,
+      "min": 1,
+      "type": "string"
+    },
+    "UserList": {
+      "max": 10,
+      "member": { "shape": "User" },
+      "min": 1,
+      "type": "list"
+    },
+    "UserProperties": {
+      "max": 4096,
+      "min": 1,
+      "type": "string"
+    }
+  },
+  "version": "2.0"
+}

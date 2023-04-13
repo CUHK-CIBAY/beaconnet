@@ -1,0 +1,52 @@
+{
+  "pagination": {
+    "ListClusterOperations": {
+      "input_token": "NextToken",
+      "limit_key": "MaxResults",
+      "output_token": "NextToken",
+      "result_key": "ClusterOperationInfoList"
+    },
+    "ListClusters": {
+      "input_token": "NextToken",
+      "limit_key": "MaxResults",
+      "output_token": "NextToken",
+      "result_key": "ClusterInfoList"
+    },
+    "ListClustersV2": {
+      "input_token": "NextToken",
+      "limit_key": "MaxResults",
+      "output_token": "NextToken",
+      "result_key": "ClusterInfoList"
+    },
+    "ListConfigurationRevisions": {
+      "input_token": "NextToken",
+      "limit_key": "MaxResults",
+      "output_token": "NextToken",
+      "result_key": "Revisions"
+    },
+    "ListConfigurations": {
+      "input_token": "NextToken",
+      "limit_key": "MaxResults",
+      "output_token": "NextToken",
+      "result_key": "Configurations"
+    },
+    "ListKafkaVersions": {
+      "input_token": "NextToken",
+      "limit_key": "MaxResults",
+      "output_token": "NextToken",
+      "result_key": "KafkaVersions"
+    },
+    "ListNodes": {
+      "input_token": "NextToken",
+      "limit_key": "MaxResults",
+      "output_token": "NextToken",
+      "result_key": "NodeInfoList"
+    },
+    "ListScramSecrets": {
+      "input_token": "NextToken",
+      "limit_key": "MaxResults",
+      "output_token": "NextToken",
+      "result_key": "SecretArnList"
+    }
+  }
+}

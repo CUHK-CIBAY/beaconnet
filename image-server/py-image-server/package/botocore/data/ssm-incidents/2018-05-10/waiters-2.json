@@ -1,0 +1,62 @@
+{
+  "version": 2,
+  "waiters": {
+    "WaitForReplicationSetActive": {
+      "acceptors": [
+        {
+          "argument": "replicationSet.status",
+          "expected": "ACTIVE",
+          "matcher": "path",
+          "state": "success"
+        },
+        {
+          "argument": "replicationSet.status",
+          "expected": "CREATING",
+          "matcher": "path",
+          "state": "retry"
+        },
+        {
+          "argument": "replicationSet.status",
+          "expected": "UPDATING",
+          "matcher": "path",
+          "state": "retry"
+        },
+        {
+          "argument": "replicationSet.status",
+          "expected": "FAILED",
+          "matcher": "path",
+          "state": "failure"
+        }
+      ],
+      "delay": 30,
+      "description": "Wait for a replication set to become ACTIVE",
+      "maxAttempts": 5,
+      "operation": "GetReplicationSet"
+    },
+    "WaitForReplicationSetDeleted": {
+      "acceptors": [
+        {
+          "expected": "ResourceNotFoundException",
+          "matcher": "error",
+          "state": "success"
+        },
+        {
+          "argument": "replicationSet.status",
+          "expected": "DELETING",
+          "matcher": "path",
+          "state": "retry"
+        },
+        {
+          "argument": "replicationSet.status",
+          "expected": "FAILED",
+          "matcher": "path",
+          "state": "failure"
+        }
+      ],
+      "delay": 30,
+      "description": "Wait for a replication set to be deleted",
+      "maxAttempts": 5,
+      "operation": "GetReplicationSet"
+    }
+  }
+}

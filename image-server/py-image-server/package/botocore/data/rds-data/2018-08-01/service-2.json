@@ -1,0 +1,888 @@
+{
+  "documentation": "<p><fullname>Amazon RDS Data Service</fullname> <p>Amazon RDS provides an HTTP endpoint to run SQL statements on an Amazon Aurora Serverless DB cluster. To run these statements, you work with the Data Service API.</p> <p>For more information about the Data Service API, see <a href=\"https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/data-api.html\">Using the Data API</a> in the <i>Amazon Aurora User Guide</i>.</p></p>",
+  "metadata": {
+    "apiVersion": "2018-08-01",
+    "endpointPrefix": "rds-data",
+    "jsonVersion": "1.1",
+    "protocol": "rest-json",
+    "serviceFullName": "AWS RDS DataService",
+    "serviceId": "RDS Data",
+    "signatureVersion": "v4",
+    "signingName": "rds-data",
+    "uid": "rds-data-2018-08-01"
+  },
+  "operations": {
+    "BatchExecuteStatement": {
+      "documentation": "<p>Runs a batch SQL statement over an array of data.</p> <p>You can run bulk update and insert operations for multiple records using a DML statement with different parameter sets. Bulk operations can provide a significant performance improvement over individual insert and update operations.</p> <important> <p>If a call isn't part of a transaction because it doesn't include the <code>transactionID</code> parameter, changes that result from the call are committed automatically.</p> </important>",
+      "errors": [
+        { "shape": "AccessDeniedException" },
+        { "shape": "BadRequestException" },
+        { "shape": "StatementTimeoutException" },
+        { "shape": "InternalServerErrorException" },
+        { "shape": "ForbiddenException" },
+        { "shape": "ServiceUnavailableError" }
+      ],
+      "http": {
+        "method": "POST",
+        "requestUri": "/BatchExecute",
+        "responseCode": 200
+      },
+      "input": { "shape": "BatchExecuteStatementRequest" },
+      "name": "BatchExecuteStatement",
+      "output": { "shape": "BatchExecuteStatementResponse" }
+    },
+    "BeginTransaction": {
+      "documentation": "<p>Starts a SQL transaction.</p> <pre><code> &lt;important&gt; &lt;p&gt;A transaction can run for a maximum of 24 hours. A transaction is terminated and rolled back automatically after 24 hours.&lt;/p&gt; &lt;p&gt;A transaction times out if no calls use its transaction ID in three minutes. If a transaction times out before it's committed, it's rolled back automatically.&lt;/p&gt; &lt;p&gt;DDL statements inside a transaction cause an implicit commit. We recommend that you run each DDL statement in a separate &lt;code&gt;ExecuteStatement&lt;/code&gt; call with &lt;code&gt;continueAfterTimeout&lt;/code&gt; enabled.&lt;/p&gt; &lt;/important&gt; </code></pre>",
+      "errors": [
+        { "shape": "AccessDeniedException" },
+        { "shape": "BadRequestException" },
+        { "shape": "StatementTimeoutException" },
+        { "shape": "InternalServerErrorException" },
+        { "shape": "ForbiddenException" },
+        { "shape": "ServiceUnavailableError" }
+      ],
+      "http": {
+        "method": "POST",
+        "requestUri": "/BeginTransaction",
+        "responseCode": 200
+      },
+      "input": { "shape": "BeginTransactionRequest" },
+      "name": "BeginTransaction",
+      "output": { "shape": "BeginTransactionResponse" }
+    },
+    "CommitTransaction": {
+      "documentation": "<p>Ends a SQL transaction started with the <code>BeginTransaction</code> operation and commits the changes.</p>",
+      "errors": [
+        { "shape": "AccessDeniedException" },
+        { "shape": "BadRequestException" },
+        { "shape": "StatementTimeoutException" },
+        { "shape": "InternalServerErrorException" },
+        { "shape": "ForbiddenException" },
+        { "shape": "ServiceUnavailableError" },
+        { "shape": "NotFoundException" }
+      ],
+      "http": {
+        "method": "POST",
+        "requestUri": "/CommitTransaction",
+        "responseCode": 200
+      },
+      "input": { "shape": "CommitTransactionRequest" },
+      "name": "CommitTransaction",
+      "output": { "shape": "CommitTransactionResponse" }
+    },
+    "ExecuteSql": {
+      "deprecated": true,
+      "deprecatedMessage": "The ExecuteSql API is deprecated, please use the ExecuteStatement API.",
+      "documentation": "<p>Runs one or more SQL statements.</p> <important> <p>This operation is deprecated. Use the <code>BatchExecuteStatement</code> or <code>ExecuteStatement</code> operation.</p> </important>",
+      "errors": [
+        { "shape": "AccessDeniedException" },
+        { "shape": "BadRequestException" },
+        { "shape": "InternalServerErrorException" },
+        { "shape": "ForbiddenException" },
+        { "shape": "ServiceUnavailableError" }
+      ],
+      "http": {
+        "method": "POST",
+        "requestUri": "/ExecuteSql",
+        "responseCode": 200
+      },
+      "input": { "shape": "ExecuteSqlRequest" },
+      "name": "ExecuteSql",
+      "output": { "shape": "ExecuteSqlResponse" }
+    },
+    "ExecuteStatement": {
+      "documentation": "<p>Runs a SQL statement against a database.</p> <important> <p>If a call isn't part of a transaction because it doesn't include the <code>transactionID</code> parameter, changes that result from the call are committed automatically.</p> </important> <p>If the binary response data from the database is more than 1 MB, the call is terminated.</p>",
+      "errors": [
+        { "shape": "AccessDeniedException" },
+        { "shape": "BadRequestException" },
+        { "shape": "StatementTimeoutException" },
+        { "shape": "InternalServerErrorException" },
+        { "shape": "ForbiddenException" },
+        { "shape": "ServiceUnavailableError" }
+      ],
+      "http": {
+        "method": "POST",
+        "requestUri": "/Execute",
+        "responseCode": 200
+      },
+      "input": { "shape": "ExecuteStatementRequest" },
+      "name": "ExecuteStatement",
+      "output": { "shape": "ExecuteStatementResponse" }
+    },
+    "RollbackTransaction": {
+      "documentation": "<p>Performs a rollback of a transaction. Rolling back a transaction cancels its changes.</p>",
+      "errors": [
+        { "shape": "AccessDeniedException" },
+        { "shape": "BadRequestException" },
+        { "shape": "StatementTimeoutException" },
+        { "shape": "InternalServerErrorException" },
+        { "shape": "ForbiddenException" },
+        { "shape": "ServiceUnavailableError" },
+        { "shape": "NotFoundException" }
+      ],
+      "http": {
+        "method": "POST",
+        "requestUri": "/RollbackTransaction",
+        "responseCode": 200
+      },
+      "input": { "shape": "RollbackTransactionRequest" },
+      "name": "RollbackTransaction",
+      "output": { "shape": "RollbackTransactionResponse" }
+    }
+  },
+  "shapes": {
+    "AccessDeniedException": {
+      "documentation": "<p>You do not have sufficient access to perform this action.</p>",
+      "error": {
+        "httpStatusCode": 403,
+        "senderFault": true
+      },
+      "exception": true,
+      "members": {
+        "message": { "shape": "ErrorMessage" }
+      },
+      "type": "structure"
+    },
+    "Arn": {
+      "max": 100,
+      "min": 11,
+      "type": "string"
+    },
+    "ArrayOfArray": {
+      "documentation": "<p>An array of arrays.</p> <note> <p>Some array entries can be null.</p> </note>",
+      "member": { "shape": "ArrayValue" },
+      "type": "list"
+    },
+    "ArrayValue": {
+      "documentation": "<p>Contains an array.</p>",
+      "members": {
+        "arrayValues": {
+          "documentation": "<p>An array of arrays.</p>",
+          "shape": "ArrayOfArray"
+        },
+        "booleanValues": {
+          "documentation": "<p>An array of Boolean values.</p>",
+          "shape": "BooleanArray"
+        },
+        "doubleValues": {
+          "documentation": "<p>An array of floating-point numbers.</p>",
+          "shape": "DoubleArray"
+        },
+        "longValues": {
+          "documentation": "<p>An array of integers.</p>",
+          "shape": "LongArray"
+        },
+        "stringValues": {
+          "documentation": "<p>An array of strings.</p>",
+          "shape": "StringArray"
+        }
+      },
+      "type": "structure",
+      "union": true
+    },
+    "ArrayValueList": {
+      "member": { "shape": "Value" },
+      "type": "list"
+    },
+    "BadRequestException": {
+      "documentation": "<p>There is an error in the call or in a SQL statement.</p>",
+      "error": {
+        "httpStatusCode": 400,
+        "senderFault": true
+      },
+      "exception": true,
+      "members": {
+        "message": {
+          "documentation": "<p>The error message returned by this <code>BadRequestException</code> error.</p>",
+          "shape": "ErrorMessage"
+        }
+      },
+      "type": "structure"
+    },
+    "BatchExecuteStatementRequest": {
+      "documentation": "<p>The request parameters represent the input of a SQL statement over an array of data.</p>",
+      "members": {
+        "database": {
+          "documentation": "<p>The name of the database.</p>",
+          "shape": "DbName"
+        },
+        "parameterSets": {
+          "documentation": "<p>The parameter set for the batch operation.</p> <p>The SQL statement is executed as many times as the number of parameter sets provided. To execute a SQL statement with no parameters, use one of the following options:</p> <ul> <li> <p>Specify one or more empty parameter sets.</p> </li> <li> <p>Use the <code>ExecuteStatement</code> operation instead of the <code>BatchExecuteStatement</code> operation.</p> </li> </ul> <note> <p>Array parameters are not supported.</p> </note>",
+          "shape": "SqlParameterSets"
+        },
+        "resourceArn": {
+          "documentation": "<p>The Amazon Resource Name (ARN) of the Aurora Serverless DB cluster.</p>",
+          "shape": "Arn"
+        },
+        "schema": {
+          "documentation": "<p>The name of the database schema.</p>",
+          "shape": "DbName"
+        },
+        "secretArn": {
+          "documentation": "<p>The name or ARN of the secret that enables access to the DB cluster.</p>",
+          "shape": "Arn"
+        },
+        "sql": {
+          "documentation": "<p>The SQL statement to run.</p>",
+          "shape": "SqlStatement"
+        },
+        "transactionId": {
+          "documentation": "<p>The identifier of a transaction that was started by using the <code>BeginTransaction</code> operation. Specify the transaction ID of the transaction that you want to include the SQL statement in.</p> <p>If the SQL statement is not part of a transaction, don't set this parameter.</p>",
+          "shape": "Id"
+        }
+      },
+      "required": ["resourceArn", "secretArn", "sql"],
+      "type": "structure"
+    },
+    "BatchExecuteStatementResponse": {
+      "documentation": "<p>The response elements represent the output of a SQL statement over an array of data.</p>",
+      "members": {
+        "updateResults": {
+          "documentation": "<p>The execution results of each batch entry.</p>",
+          "shape": "UpdateResults"
+        }
+      },
+      "type": "structure"
+    },
+    "BeginTransactionRequest": {
+      "documentation": "<p>The request parameters represent the input of a request to start a SQL transaction.</p>",
+      "members": {
+        "database": {
+          "documentation": "<p>The name of the database.</p>",
+          "shape": "DbName"
+        },
+        "resourceArn": {
+          "documentation": "<p>The Amazon Resource Name (ARN) of the Aurora Serverless DB cluster.</p>",
+          "shape": "Arn"
+        },
+        "schema": {
+          "documentation": "<p>The name of the database schema.</p>",
+          "shape": "DbName"
+        },
+        "secretArn": {
+          "documentation": "<p>The name or ARN of the secret that enables access to the DB cluster.</p>",
+          "shape": "Arn"
+        }
+      },
+      "required": ["resourceArn", "secretArn"],
+      "type": "structure"
+    },
+    "BeginTransactionResponse": {
+      "documentation": "<p>The response elements represent the output of a request to start a SQL transaction.</p>",
+      "members": {
+        "transactionId": {
+          "documentation": "<p>The transaction ID of the transaction started by the call.</p>",
+          "shape": "Id"
+        }
+      },
+      "type": "structure"
+    },
+    "Blob": { "type": "blob" },
+    "Boolean": { "type": "boolean" },
+    "BooleanArray": {
+      "documentation": "<p>An array of Boolean values.</p> <note> <p>Some array entries can be null.</p> </note>",
+      "member": { "shape": "BoxedBoolean" },
+      "type": "list"
+    },
+    "BoxedBoolean": {
+      "box": true,
+      "type": "boolean"
+    },
+    "BoxedDouble": {
+      "box": true,
+      "type": "double"
+    },
+    "BoxedFloat": {
+      "box": true,
+      "type": "float"
+    },
+    "BoxedInteger": {
+      "box": true,
+      "type": "integer"
+    },
+    "BoxedLong": {
+      "box": true,
+      "type": "long"
+    },
+    "ColumnMetadata": {
+      "documentation": "<p>Contains the metadata for a column.</p>",
+      "members": {
+        "arrayBaseColumnType": {
+          "documentation": "<p>The type of the column.</p>",
+          "shape": "Integer"
+        },
+        "isAutoIncrement": {
+          "documentation": "<p>A value that indicates whether the column increments automatically.</p>",
+          "shape": "Boolean"
+        },
+        "isCaseSensitive": {
+          "documentation": "<p>A value that indicates whether the column is case-sensitive.</p>",
+          "shape": "Boolean"
+        },
+        "isCurrency": {
+          "documentation": "<p>A value that indicates whether the column contains currency values.</p>",
+          "shape": "Boolean"
+        },
+        "isSigned": {
+          "documentation": "<p>A value that indicates whether an integer column is signed.</p>",
+          "shape": "Boolean"
+        },
+        "label": {
+          "documentation": "<p>The label for the column.</p>",
+          "shape": "String"
+        },
+        "name": {
+          "documentation": "<p>The name of the column.</p>",
+          "shape": "String"
+        },
+        "nullable": {
+          "documentation": "<p>A value that indicates whether the column is nullable.</p>",
+          "shape": "Integer"
+        },
+        "precision": {
+          "documentation": "<p>The precision value of a decimal number column.</p>",
+          "shape": "Integer"
+        },
+        "scale": {
+          "documentation": "<p>The scale value of a decimal number column.</p>",
+          "shape": "Integer"
+        },
+        "schemaName": {
+          "documentation": "<p>The name of the schema that owns the table that includes the column.</p>",
+          "shape": "String"
+        },
+        "tableName": {
+          "documentation": "<p>The name of the table that includes the column.</p>",
+          "shape": "String"
+        },
+        "type": {
+          "documentation": "<p>The type of the column.</p>",
+          "shape": "Integer"
+        },
+        "typeName": {
+          "documentation": "<p>The database-specific data type of the column.</p>",
+          "shape": "String"
+        }
+      },
+      "type": "structure"
+    },
+    "CommitTransactionRequest": {
+      "documentation": "<p>The request parameters represent the input of a commit transaction request.</p>",
+      "members": {
+        "resourceArn": {
+          "documentation": "<p>The Amazon Resource Name (ARN) of the Aurora Serverless DB cluster.</p>",
+          "shape": "Arn"
+        },
+        "secretArn": {
+          "documentation": "<p>The name or ARN of the secret that enables access to the DB cluster.</p>",
+          "shape": "Arn"
+        },
+        "transactionId": {
+          "documentation": "<p>The identifier of the transaction to end and commit.</p>",
+          "shape": "Id"
+        }
+      },
+      "required": ["resourceArn", "secretArn", "transactionId"],
+      "type": "structure"
+    },
+    "CommitTransactionResponse": {
+      "documentation": "<p>The response elements represent the output of a commit transaction request.</p>",
+      "members": {
+        "transactionStatus": {
+          "documentation": "<p>The status of the commit operation.</p>",
+          "shape": "TransactionStatus"
+        }
+      },
+      "type": "structure"
+    },
+    "DbName": {
+      "max": 64,
+      "min": 0,
+      "type": "string"
+    },
+    "DecimalReturnType": {
+      "enum": ["STRING", "DOUBLE_OR_LONG"],
+      "type": "string"
+    },
+    "DoubleArray": {
+      "documentation": "<p>An array of floating-point numbers.</p> <note> <p>Some array entries can be null.</p> </note>",
+      "member": { "shape": "BoxedDouble" },
+      "type": "list"
+    },
+    "ErrorMessage": { "type": "string" },
+    "ExecuteSqlRequest": {
+      "documentation": "<p>The request parameters represent the input of a request to run one or more SQL statements.</p>",
+      "members": {
+        "awsSecretStoreArn": {
+          "documentation": "<p>The Amazon Resource Name (ARN) of the secret that enables access to the DB cluster.</p>",
+          "shape": "Arn"
+        },
+        "database": {
+          "documentation": "<p>The name of the database.</p>",
+          "shape": "DbName"
+        },
+        "dbClusterOrInstanceArn": {
+          "documentation": "<p>The ARN of the Aurora Serverless DB cluster.</p>",
+          "shape": "Arn"
+        },
+        "schema": {
+          "documentation": "<p>The name of the database schema.</p>",
+          "shape": "DbName"
+        },
+        "sqlStatements": {
+          "documentation": "<p>One or more SQL statements to run on the DB cluster.</p> <p>You can separate SQL statements from each other with a semicolon (;). Any valid SQL statement is permitted, including data definition, data manipulation, and commit statements. </p>",
+          "shape": "SqlStatement"
+        }
+      },
+      "required": ["awsSecretStoreArn", "dbClusterOrInstanceArn", "sqlStatements"],
+      "type": "structure"
+    },
+    "ExecuteSqlResponse": {
+      "documentation": "<p>The response elements represent the output of a request to run one or more SQL statements.</p>",
+      "members": {
+        "sqlStatementResults": {
+          "documentation": "<p>The results of the SQL statement or statements.</p>",
+          "shape": "SqlStatementResults"
+        }
+      },
+      "type": "structure"
+    },
+    "ExecuteStatementRequest": {
+      "documentation": "<p>The request parameters represent the input of a request to run a SQL statement against a database.</p>",
+      "members": {
+        "continueAfterTimeout": {
+          "documentation": "<p>A value that indicates whether to continue running the statement after the call times out. By default, the statement stops running when the call times out.</p> <important> <p>For DDL statements, we recommend continuing to run the statement after the call times out. When a DDL statement terminates before it is finished running, it can result in errors and possibly corrupted data structures.</p> </important>",
+          "shape": "Boolean"
+        },
+        "database": {
+          "documentation": "<p>The name of the database.</p>",
+          "shape": "DbName"
+        },
+        "formatRecordsAs": {
+          "documentation": "<p>A value that indicates whether to format the result set as a single JSON string. This parameter only applies to <code>SELECT</code> statements and is ignored for other types of statements. Allowed values are <code>NONE</code> and <code>JSON</code>. The default value is <code>NONE</code>. The result is returned in the <code>formattedRecords</code> field.</p> <p>For usage information about the JSON format for result sets, see <a href=\"https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/data-api.html\">Using the Data API</a> in the <i>Amazon Aurora User Guide</i>.</p>",
+          "shape": "RecordsFormatType"
+        },
+        "includeResultMetadata": {
+          "documentation": "<p>A value that indicates whether to include metadata in the results.</p>",
+          "shape": "Boolean"
+        },
+        "parameters": {
+          "documentation": "<p>The parameters for the SQL statement.</p> <note> <p>Array parameters are not supported.</p> </note>",
+          "shape": "SqlParametersList"
+        },
+        "resourceArn": {
+          "documentation": "<p>The Amazon Resource Name (ARN) of the Aurora Serverless DB cluster.</p>",
+          "shape": "Arn"
+        },
+        "resultSetOptions": {
+          "documentation": "<p>Options that control how the result set is returned.</p>",
+          "shape": "ResultSetOptions"
+        },
+        "schema": {
+          "documentation": "<p>The name of the database schema.</p> <note> <p>Currently, the <code>schema</code> parameter isn't supported.</p> </note>",
+          "shape": "DbName"
+        },
+        "secretArn": {
+          "documentation": "<p>The name or ARN of the secret that enables access to the DB cluster.</p>",
+          "shape": "Arn"
+        },
+        "sql": {
+          "documentation": "<p>The SQL statement to run.</p>",
+          "shape": "SqlStatement"
+        },
+        "transactionId": {
+          "documentation": "<p>The identifier of a transaction that was started by using the <code>BeginTransaction</code> operation. Specify the transaction ID of the transaction that you want to include the SQL statement in.</p> <p>If the SQL statement is not part of a transaction, don't set this parameter.</p>",
+          "shape": "Id"
+        }
+      },
+      "required": ["resourceArn", "secretArn", "sql"],
+      "type": "structure"
+    },
+    "ExecuteStatementResponse": {
+      "documentation": "<p>The response elements represent the output of a request to run a SQL statement against a database.</p>",
+      "members": {
+        "columnMetadata": {
+          "documentation": "<p>Metadata for the columns included in the results. This field is blank if the <code>formatRecordsAs</code> parameter is set to <code>JSON</code>.</p>",
+          "shape": "Metadata"
+        },
+        "formattedRecords": {
+          "documentation": "<p>A string value that represents the result set of a <code>SELECT</code> statement in JSON format. This value is only present when the <code>formatRecordsAs</code> parameter is set to <code>JSON</code>.</p> <p>The size limit for this field is currently 10 MB. If the JSON-formatted string representing the result set requires more than 10 MB, the call returns an error.</p>",
+          "shape": "FormattedSqlRecords"
+        },
+        "generatedFields": {
+          "documentation": "<p>Values for fields generated during a DML request.</p> <pre><code> &lt;note&gt; &lt;p&gt;The &lt;code&gt;generatedFields&lt;/code&gt; data isn't supported by Aurora PostgreSQL. To get the values of generated fields, use the &lt;code&gt;RETURNING&lt;/code&gt; clause. For more information, see &lt;a href=&quot;https://www.postgresql.org/docs/10/dml-returning.html&quot;&gt;Returning Data From Modified Rows&lt;/a&gt; in the PostgreSQL documentation.&lt;/p&gt; &lt;/note&gt; </code></pre>",
+          "shape": "FieldList"
+        },
+        "numberOfRecordsUpdated": {
+          "documentation": "<p>The number of records updated by the request.</p>",
+          "shape": "RecordsUpdated"
+        },
+        "records": {
+          "documentation": "<p>The records returned by the SQL statement. This field is blank if the <code>formatRecordsAs</code> parameter is set to <code>JSON</code>.</p>",
+          "shape": "SqlRecords"
+        }
+      },
+      "type": "structure"
+    },
+    "Field": {
+      "documentation": "<p>Contains a value.</p>",
+      "members": {
+        "arrayValue": {
+          "documentation": "<p>An array of values.</p>",
+          "shape": "ArrayValue"
+        },
+        "blobValue": {
+          "documentation": "<p>A value of BLOB data type.</p>",
+          "shape": "Blob"
+        },
+        "booleanValue": {
+          "documentation": "<p>A value of Boolean data type.</p>",
+          "shape": "BoxedBoolean"
+        },
+        "doubleValue": {
+          "documentation": "<p>A value of double data type.</p>",
+          "shape": "BoxedDouble"
+        },
+        "isNull": {
+          "documentation": "<p>A NULL value.</p>",
+          "shape": "BoxedBoolean"
+        },
+        "longValue": {
+          "documentation": "<p>A value of long data type.</p>",
+          "shape": "BoxedLong"
+        },
+        "stringValue": {
+          "documentation": "<p>A value of string data type.</p>",
+          "shape": "String"
+        }
+      },
+      "type": "structure",
+      "union": true
+    },
+    "FieldList": {
+      "member": { "shape": "Field" },
+      "type": "list"
+    },
+    "ForbiddenException": {
+      "documentation": "<p>There are insufficient privileges to make the call.</p>",
+      "error": {
+        "httpStatusCode": 403,
+        "senderFault": true
+      },
+      "exception": true,
+      "members": {
+        "message": {
+          "documentation": "<p>The error message returned by this <code>ForbiddenException</code> error.</p>",
+          "shape": "ErrorMessage"
+        }
+      },
+      "type": "structure"
+    },
+    "FormattedSqlRecords": { "type": "string" },
+    "Id": {
+      "max": 192,
+      "min": 0,
+      "type": "string"
+    },
+    "Integer": { "type": "integer" },
+    "InternalServerErrorException": {
+      "documentation": "<p>An internal error occurred.</p>",
+      "error": { "httpStatusCode": 500 },
+      "exception": true,
+      "fault": true,
+      "members": {},
+      "type": "structure"
+    },
+    "Long": { "type": "long" },
+    "LongArray": {
+      "documentation": "<p>An array of integers.</p> <note> <p>Some array entries can be null.</p> </note>",
+      "member": { "shape": "BoxedLong" },
+      "type": "list"
+    },
+    "LongReturnType": {
+      "enum": ["STRING", "LONG"],
+      "type": "string"
+    },
+    "Metadata": {
+      "member": { "shape": "ColumnMetadata" },
+      "type": "list"
+    },
+    "NotFoundException": {
+      "documentation": "<p>The <code>resourceArn</code>, <code>secretArn</code>, or <code>transactionId</code> value can't be found.</p>",
+      "error": {
+        "httpStatusCode": 404,
+        "senderFault": true
+      },
+      "exception": true,
+      "members": {
+        "message": {
+          "documentation": "<p>The error message returned by this <code>NotFoundException</code> error.</p>",
+          "shape": "ErrorMessage"
+        }
+      },
+      "type": "structure"
+    },
+    "ParameterName": { "type": "string" },
+    "Record": {
+      "documentation": "<p>A record returned by a call.</p> <important> <p>This data structure is only used with the deprecated <code>ExecuteSql</code> operation. Use the <code>BatchExecuteStatement</code> or <code>ExecuteStatement</code> operation instead.</p> </important>",
+      "members": {
+        "values": {
+          "documentation": "<p>The values returned in the record.</p>",
+          "shape": "Row"
+        }
+      },
+      "type": "structure"
+    },
+    "Records": {
+      "member": { "shape": "Record" },
+      "type": "list"
+    },
+    "RecordsFormatType": {
+      "enum": ["NONE", "JSON"],
+      "type": "string"
+    },
+    "RecordsUpdated": { "type": "long" },
+    "ResultFrame": {
+      "documentation": "<p>The result set returned by a SQL statement.</p> <important> <p>This data structure is only used with the deprecated <code>ExecuteSql</code> operation. Use the <code>BatchExecuteStatement</code> or <code>ExecuteStatement</code> operation instead.</p> </important>",
+      "members": {
+        "records": {
+          "documentation": "<p>The records in the result set.</p>",
+          "shape": "Records"
+        },
+        "resultSetMetadata": {
+          "documentation": "<p>The result-set metadata in the result set.</p>",
+          "shape": "ResultSetMetadata"
+        }
+      },
+      "type": "structure"
+    },
+    "ResultSetMetadata": {
+      "documentation": "<p>The metadata of the result set returned by a SQL statement.</p>",
+      "members": {
+        "columnCount": {
+          "documentation": "<p>The number of columns in the result set.</p>",
+          "shape": "Long"
+        },
+        "columnMetadata": {
+          "documentation": "<p>The metadata of the columns in the result set.</p>",
+          "shape": "Metadata"
+        }
+      },
+      "type": "structure"
+    },
+    "ResultSetOptions": {
+      "documentation": "<p>Options that control how the result set is returned.</p>",
+      "members": {
+        "decimalReturnType": {
+          "documentation": "<p>A value that indicates how a field of <code>DECIMAL</code> type is represented in the response. The value of <code>STRING</code>, the default, specifies that it is converted to a String value. The value of <code>DOUBLE_OR_LONG</code> specifies that it is converted to a Long value if its scale is 0, or to a Double value otherwise.</p> <important> <p>Conversion to Double or Long can result in roundoff errors due to precision loss. We recommend converting to String, especially when working with currency values.</p> </important>",
+          "shape": "DecimalReturnType"
+        },
+        "longReturnType": {
+          "documentation": "<p>A value that indicates how a field of <code>LONG</code> type is represented. Allowed values are <code>LONG</code> and <code>STRING</code>. The default is <code>LONG</code>. Specify <code>STRING</code> if the length or precision of numeric values might cause truncation or rounding errors. </p>",
+          "shape": "LongReturnType"
+        }
+      },
+      "type": "structure"
+    },
+    "RollbackTransactionRequest": {
+      "documentation": "<p>The request parameters represent the input of a request to perform a rollback of a transaction.</p>",
+      "members": {
+        "resourceArn": {
+          "documentation": "<p>The Amazon Resource Name (ARN) of the Aurora Serverless DB cluster.</p>",
+          "shape": "Arn"
+        },
+        "secretArn": {
+          "documentation": "<p>The name or ARN of the secret that enables access to the DB cluster.</p>",
+          "shape": "Arn"
+        },
+        "transactionId": {
+          "documentation": "<p>The identifier of the transaction to roll back.</p>",
+          "shape": "Id"
+        }
+      },
+      "required": ["resourceArn", "secretArn", "transactionId"],
+      "type": "structure"
+    },
+    "RollbackTransactionResponse": {
+      "documentation": "<p>The response elements represent the output of a request to perform a rollback of a transaction.</p>",
+      "members": {
+        "transactionStatus": {
+          "documentation": "<p>The status of the rollback operation.</p>",
+          "shape": "TransactionStatus"
+        }
+      },
+      "type": "structure"
+    },
+    "Row": {
+      "member": { "shape": "Value" },
+      "type": "list"
+    },
+    "ServiceUnavailableError": {
+      "documentation": "<p>The service specified by the <code>resourceArn</code> parameter is not available.</p>",
+      "error": { "httpStatusCode": 503 },
+      "exception": true,
+      "fault": true,
+      "members": {},
+      "type": "structure"
+    },
+    "SqlParameter": {
+      "documentation": "<p>A parameter used in a SQL statement.</p>",
+      "members": {
+        "name": {
+          "documentation": "<p>The name of the parameter.</p>",
+          "shape": "ParameterName"
+        },
+        "typeHint": {
+          "documentation": "<p>A hint that specifies the correct object type for data type mapping. Possible values are as follows:</p> <ul> <li> <p> <code>DATE</code> - The corresponding <code>String</code> parameter value is sent as an object of <code>DATE</code> type to the database. The accepted format is <code>YYYY-MM-DD</code>.</p> </li> <li> <p> <code>DECIMAL</code> - The corresponding <code>String</code> parameter value is sent as an object of <code>DECIMAL</code> type to the database.</p> </li> <li> <p> <code>JSON</code> - The corresponding <code>String</code> parameter value is sent as an object of <code>JSON</code> type to the database.</p> </li> <li> <p> <code>TIME</code> - The corresponding <code>String</code> parameter value is sent as an object of <code>TIME</code> type to the database. The accepted format is <code>HH:MM:SS[.FFF]</code>.</p> </li> <li> <p> <code>TIMESTAMP</code> - The corresponding <code>String</code> parameter value is sent as an object of <code>TIMESTAMP</code> type to the database. The accepted format is <code>YYYY-MM-DD HH:MM:SS[.FFF]</code>.</p> </li> <li> <p> <code>UUID</code> - The corresponding <code>String</code> parameter value is sent as an object of <code>UUID</code> type to the database. </p> </li> </ul>",
+          "shape": "TypeHint"
+        },
+        "value": {
+          "documentation": "<p>The value of the parameter.</p>",
+          "shape": "Field"
+        }
+      },
+      "type": "structure"
+    },
+    "SqlParameterSets": {
+      "member": { "shape": "SqlParametersList" },
+      "type": "list"
+    },
+    "SqlParametersList": {
+      "member": { "shape": "SqlParameter" },
+      "type": "list"
+    },
+    "SqlRecords": {
+      "member": { "shape": "FieldList" },
+      "type": "list"
+    },
+    "SqlStatement": {
+      "max": 65536,
+      "min": 0,
+      "type": "string"
+    },
+    "SqlStatementResult": {
+      "documentation": "<p>The result of a SQL statement.</p> <pre><code> &lt;important&gt; &lt;p&gt;This data structure is only used with the deprecated &lt;code&gt;ExecuteSql&lt;/code&gt; operation. Use the &lt;code&gt;BatchExecuteStatement&lt;/code&gt; or &lt;code&gt;ExecuteStatement&lt;/code&gt; operation instead.&lt;/p&gt; &lt;/important&gt; </code></pre>",
+      "members": {
+        "numberOfRecordsUpdated": {
+          "documentation": "<p>The number of records updated by a SQL statement.</p>",
+          "shape": "RecordsUpdated"
+        },
+        "resultFrame": {
+          "documentation": "<p>The result set of the SQL statement.</p>",
+          "shape": "ResultFrame"
+        }
+      },
+      "type": "structure"
+    },
+    "SqlStatementResults": {
+      "member": { "shape": "SqlStatementResult" },
+      "type": "list"
+    },
+    "StatementTimeoutException": {
+      "documentation": "<p>The execution of the SQL statement timed out.</p>",
+      "error": {
+        "httpStatusCode": 400,
+        "senderFault": true
+      },
+      "exception": true,
+      "members": {
+        "dbConnectionId": {
+          "documentation": "<p>The database connection ID that executed the SQL statement.</p>",
+          "shape": "Long"
+        },
+        "message": {
+          "documentation": "<p>The error message returned by this <code>StatementTimeoutException</code> error.</p>",
+          "shape": "ErrorMessage"
+        }
+      },
+      "type": "structure"
+    },
+    "String": { "type": "string" },
+    "StringArray": {
+      "documentation": "<p>An array of strings.</p> <note> <p>Some array entries can be null.</p> </note>",
+      "member": { "shape": "String" },
+      "type": "list"
+    },
+    "StructValue": {
+      "documentation": "<p>A structure value returned by a call.</p> <important> <p>This data structure is only used with the deprecated <code>ExecuteSql</code> operation. Use the <code>BatchExecuteStatement</code> or <code>ExecuteStatement</code> operation instead.</p> </important>",
+      "members": {
+        "attributes": {
+          "documentation": "<p>The attributes returned in the record.</p>",
+          "shape": "ArrayValueList"
+        }
+      },
+      "type": "structure"
+    },
+    "TransactionStatus": {
+      "max": 128,
+      "min": 0,
+      "type": "string"
+    },
+    "TypeHint": {
+      "enum": ["JSON", "UUID", "TIMESTAMP", "DATE", "TIME", "DECIMAL"],
+      "type": "string"
+    },
+    "UpdateResult": {
+      "documentation": "<p>The response elements represent the results of an update.</p>",
+      "members": {
+        "generatedFields": {
+          "documentation": "<p>Values for fields generated during the request.</p>",
+          "shape": "FieldList"
+        }
+      },
+      "type": "structure"
+    },
+    "UpdateResults": {
+      "member": { "shape": "UpdateResult" },
+      "type": "list"
+    },
+    "Value": {
+      "documentation": "<p>Contains the value of a column.</p> <pre><code> &lt;important&gt; &lt;p&gt;This data structure is only used with the deprecated &lt;code&gt;ExecuteSql&lt;/code&gt; operation. Use the &lt;code&gt;BatchExecuteStatement&lt;/code&gt; or &lt;code&gt;ExecuteStatement&lt;/code&gt; operation instead.&lt;/p&gt; &lt;/important&gt; </code></pre>",
+      "members": {
+        "arrayValues": {
+          "documentation": "<p>An array of column values.</p>",
+          "shape": "ArrayValueList"
+        },
+        "bigIntValue": {
+          "documentation": "<p>A value for a column of big integer data type.</p>",
+          "shape": "BoxedLong"
+        },
+        "bitValue": {
+          "documentation": "<p>A value for a column of BIT data type.</p>",
+          "shape": "BoxedBoolean"
+        },
+        "blobValue": {
+          "documentation": "<p>A value for a column of BLOB data type.</p>",
+          "shape": "Blob"
+        },
+        "doubleValue": {
+          "documentation": "<p>A value for a column of double data type.</p>",
+          "shape": "BoxedDouble"
+        },
+        "intValue": {
+          "documentation": "<p>A value for a column of integer data type.</p>",
+          "shape": "BoxedInteger"
+        },
+        "isNull": {
+          "documentation": "<p>A NULL value.</p>",
+          "shape": "BoxedBoolean"
+        },
+        "realValue": {
+          "documentation": "<p>A value for a column of real data type.</p>",
+          "shape": "BoxedFloat"
+        },
+        "stringValue": {
+          "documentation": "<p>A value for a column of string data type.</p>",
+          "shape": "String"
+        },
+        "structValue": {
+          "documentation": "<p>A value for a column of STRUCT data type.</p>",
+          "shape": "StructValue"
+        }
+      },
+      "type": "structure",
+      "union": true
+    }
+  },
+  "version": "2.0"
+}

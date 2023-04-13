@@ -1,0 +1,720 @@
+{
+  "documentation": "<p> AWS Mobile Service provides mobile app and website developers with capabilities required to configure AWS resources and bootstrap their developer desktop projects with the necessary SDKs, constants, tools and samples to make use of those resources. </p>",
+  "metadata": {
+    "apiVersion": "2017-07-01",
+    "endpointPrefix": "mobile",
+    "jsonVersion": "1.1",
+    "protocol": "rest-json",
+    "serviceFullName": "AWS Mobile",
+    "serviceId": "Mobile",
+    "signatureVersion": "v4",
+    "signingName": "AWSMobileHubService",
+    "uid": "mobile-2017-07-01"
+  },
+  "operations": {
+    "CreateProject": {
+      "documentation": "<p> Creates an AWS Mobile Hub project. </p>",
+      "errors": [
+        { "shape": "InternalFailureException" },
+        { "shape": "ServiceUnavailableException" },
+        { "shape": "UnauthorizedException" },
+        { "shape": "TooManyRequestsException" },
+        { "shape": "BadRequestException" },
+        { "shape": "NotFoundException" },
+        { "shape": "LimitExceededException" }
+      ],
+      "http": {
+        "method": "POST",
+        "requestUri": "/projects"
+      },
+      "input": { "shape": "CreateProjectRequest" },
+      "name": "CreateProject",
+      "output": { "shape": "CreateProjectResult" }
+    },
+    "DeleteProject": {
+      "documentation": "<p> Delets a project in AWS Mobile Hub. </p>",
+      "errors": [
+        { "shape": "InternalFailureException" },
+        { "shape": "ServiceUnavailableException" },
+        { "shape": "UnauthorizedException" },
+        { "shape": "TooManyRequestsException" },
+        { "shape": "NotFoundException" }
+      ],
+      "http": {
+        "method": "DELETE",
+        "requestUri": "/projects/{projectId}"
+      },
+      "input": { "shape": "DeleteProjectRequest" },
+      "name": "DeleteProject",
+      "output": { "shape": "DeleteProjectResult" }
+    },
+    "DescribeBundle": {
+      "documentation": "<p> Get the bundle details for the requested bundle id. </p>",
+      "errors": [
+        { "shape": "InternalFailureException" },
+        { "shape": "ServiceUnavailableException" },
+        { "shape": "UnauthorizedException" },
+        { "shape": "TooManyRequestsException" },
+        { "shape": "BadRequestException" },
+        { "shape": "NotFoundException" }
+      ],
+      "http": {
+        "method": "GET",
+        "requestUri": "/bundles/{bundleId}"
+      },
+      "input": { "shape": "DescribeBundleRequest" },
+      "name": "DescribeBundle",
+      "output": { "shape": "DescribeBundleResult" }
+    },
+    "DescribeProject": {
+      "documentation": "<p> Gets details about a project in AWS Mobile Hub. </p>",
+      "errors": [
+        { "shape": "InternalFailureException" },
+        { "shape": "ServiceUnavailableException" },
+        { "shape": "UnauthorizedException" },
+        { "shape": "TooManyRequestsException" },
+        { "shape": "BadRequestException" },
+        { "shape": "NotFoundException" }
+      ],
+      "http": {
+        "method": "GET",
+        "requestUri": "/project"
+      },
+      "input": { "shape": "DescribeProjectRequest" },
+      "name": "DescribeProject",
+      "output": { "shape": "DescribeProjectResult" }
+    },
+    "ExportBundle": {
+      "documentation": "<p> Generates customized software development kit (SDK) and or tool packages used to integrate mobile web or mobile app clients with backend AWS resources. </p>",
+      "errors": [
+        { "shape": "InternalFailureException" },
+        { "shape": "ServiceUnavailableException" },
+        { "shape": "UnauthorizedException" },
+        { "shape": "TooManyRequestsException" },
+        { "shape": "BadRequestException" },
+        { "shape": "NotFoundException" }
+      ],
+      "http": {
+        "method": "POST",
+        "requestUri": "/bundles/{bundleId}"
+      },
+      "input": { "shape": "ExportBundleRequest" },
+      "name": "ExportBundle",
+      "output": { "shape": "ExportBundleResult" }
+    },
+    "ExportProject": {
+      "documentation": "<p> Exports project configuration to a snapshot which can be downloaded and shared. Note that mobile app push credentials are encrypted in exported projects, so they can only be shared successfully within the same AWS account. </p>",
+      "errors": [
+        { "shape": "InternalFailureException" },
+        { "shape": "ServiceUnavailableException" },
+        { "shape": "UnauthorizedException" },
+        { "shape": "TooManyRequestsException" },
+        { "shape": "BadRequestException" },
+        { "shape": "NotFoundException" }
+      ],
+      "http": {
+        "method": "POST",
+        "requestUri": "/exports/{projectId}"
+      },
+      "input": { "shape": "ExportProjectRequest" },
+      "name": "ExportProject",
+      "output": { "shape": "ExportProjectResult" }
+    },
+    "ListBundles": {
+      "documentation": "<p> List all available bundles. </p>",
+      "errors": [
+        { "shape": "InternalFailureException" },
+        { "shape": "ServiceUnavailableException" },
+        { "shape": "UnauthorizedException" },
+        { "shape": "TooManyRequestsException" },
+        { "shape": "BadRequestException" }
+      ],
+      "http": {
+        "method": "GET",
+        "requestUri": "/bundles"
+      },
+      "input": { "shape": "ListBundlesRequest" },
+      "name": "ListBundles",
+      "output": { "shape": "ListBundlesResult" }
+    },
+    "ListProjects": {
+      "documentation": "<p> Lists projects in AWS Mobile Hub. </p>",
+      "errors": [
+        { "shape": "InternalFailureException" },
+        { "shape": "ServiceUnavailableException" },
+        { "shape": "UnauthorizedException" },
+        { "shape": "TooManyRequestsException" },
+        { "shape": "BadRequestException" }
+      ],
+      "http": {
+        "method": "GET",
+        "requestUri": "/projects"
+      },
+      "input": { "shape": "ListProjectsRequest" },
+      "name": "ListProjects",
+      "output": { "shape": "ListProjectsResult" }
+    },
+    "UpdateProject": {
+      "documentation": "<p> Update an existing project. </p>",
+      "errors": [
+        { "shape": "InternalFailureException" },
+        { "shape": "ServiceUnavailableException" },
+        { "shape": "UnauthorizedException" },
+        { "shape": "TooManyRequestsException" },
+        { "shape": "BadRequestException" },
+        { "shape": "NotFoundException" },
+        { "shape": "AccountActionRequiredException" },
+        { "shape": "LimitExceededException" }
+      ],
+      "http": {
+        "method": "POST",
+        "requestUri": "/update"
+      },
+      "input": { "shape": "UpdateProjectRequest" },
+      "name": "UpdateProject",
+      "output": { "shape": "UpdateProjectResult" }
+    }
+  },
+  "shapes": {
+    "AccountActionRequiredException": {
+      "documentation": "<p> Account Action is required in order to continue the request. </p>",
+      "error": { "httpStatusCode": 403 },
+      "exception": true,
+      "members": {
+        "message": { "shape": "ErrorMessage" }
+      },
+      "type": "structure"
+    },
+    "AttributeKey": {
+      "documentation": "<p> Key part of key-value attribute pairs. </p>",
+      "type": "string"
+    },
+    "AttributeValue": {
+      "documentation": "<p> Value part of key-value attribute pairs. </p>",
+      "type": "string"
+    },
+    "Attributes": {
+      "documentation": "<p> Key-value attribute pairs. </p>",
+      "key": { "shape": "AttributeKey" },
+      "type": "map",
+      "value": { "shape": "AttributeValue" }
+    },
+    "BadRequestException": {
+      "documentation": "<p> The request cannot be processed because some parameter is not valid or the project state prevents the operation from being performed. </p>",
+      "error": { "httpStatusCode": 400 },
+      "exception": true,
+      "members": {
+        "message": { "shape": "ErrorMessage" }
+      },
+      "type": "structure"
+    },
+    "Boolean": { "type": "boolean" },
+    "BundleDescription": {
+      "documentation": "<p> Description of the download bundle. </p>",
+      "type": "string"
+    },
+    "BundleDetails": {
+      "documentation": "<p> The details of the bundle. </p>",
+      "members": {
+        "availablePlatforms": { "shape": "Platforms" },
+        "bundleId": { "shape": "BundleId" },
+        "description": { "shape": "BundleDescription" },
+        "iconUrl": { "shape": "IconUrl" },
+        "title": { "shape": "BundleTitle" },
+        "version": { "shape": "BundleVersion" }
+      },
+      "type": "structure"
+    },
+    "BundleId": {
+      "documentation": "<p> Unique bundle identifier. </p>",
+      "type": "string"
+    },
+    "BundleList": {
+      "documentation": "<p> A list of bundles. </p>",
+      "member": { "shape": "BundleDetails" },
+      "type": "list"
+    },
+    "BundleTitle": {
+      "documentation": "<p> Title of the download bundle. </p>",
+      "type": "string"
+    },
+    "BundleVersion": {
+      "documentation": "<p> Version of the download bundle. </p>",
+      "type": "string"
+    },
+    "ConsoleUrl": { "type": "string" },
+    "Contents": {
+      "documentation": "<p> Binary file data. </p>",
+      "type": "blob"
+    },
+    "CreateProjectRequest": {
+      "documentation": "<p> Request structure used to request a project be created. </p>",
+      "members": {
+        "contents": {
+          "documentation": "<p> ZIP or YAML file which contains configuration settings to be used when creating the project. This may be the contents of the file downloaded from the URL provided in an export project operation. </p>",
+          "shape": "Contents"
+        },
+        "name": {
+          "documentation": "<p> Name of the project. </p>",
+          "location": "querystring",
+          "locationName": "name",
+          "shape": "ProjectName"
+        },
+        "region": {
+          "documentation": "<p> Default region where project resources should be created. </p>",
+          "location": "querystring",
+          "locationName": "region",
+          "shape": "ProjectRegion"
+        },
+        "snapshotId": {
+          "documentation": "<p> Unique identifier for an exported snapshot of project configuration. This snapshot identifier is included in the share URL when a project is exported. </p>",
+          "location": "querystring",
+          "locationName": "snapshotId",
+          "shape": "SnapshotId"
+        }
+      },
+      "payload": "contents",
+      "type": "structure"
+    },
+    "CreateProjectResult": {
+      "documentation": "<p> Result structure used in response to a request to create a project. </p>",
+      "members": {
+        "details": {
+          "documentation": "<p> Detailed information about the created AWS Mobile Hub project. </p>",
+          "shape": "ProjectDetails"
+        }
+      },
+      "type": "structure"
+    },
+    "Date": { "type": "timestamp" },
+    "DeleteProjectRequest": {
+      "documentation": "<p> Request structure used to request a project be deleted. </p>",
+      "members": {
+        "projectId": {
+          "documentation": "<p> Unique project identifier. </p>",
+          "location": "uri",
+          "locationName": "projectId",
+          "shape": "ProjectId"
+        }
+      },
+      "required": ["projectId"],
+      "type": "structure"
+    },
+    "DeleteProjectResult": {
+      "documentation": "<p> Result structure used in response to request to delete a project. </p>",
+      "members": {
+        "deletedResources": {
+          "documentation": "<p> Resources which were deleted. </p>",
+          "shape": "Resources"
+        },
+        "orphanedResources": {
+          "documentation": "<p> Resources which were not deleted, due to a risk of losing potentially important data or files. </p>",
+          "shape": "Resources"
+        }
+      },
+      "type": "structure"
+    },
+    "DescribeBundleRequest": {
+      "documentation": "<p> Request structure to request the details of a specific bundle. </p>",
+      "members": {
+        "bundleId": {
+          "documentation": "<p> Unique bundle identifier. </p>",
+          "location": "uri",
+          "locationName": "bundleId",
+          "shape": "BundleId"
+        }
+      },
+      "required": ["bundleId"],
+      "type": "structure"
+    },
+    "DescribeBundleResult": {
+      "documentation": "<p> Result structure contains the details of the bundle. </p>",
+      "members": {
+        "details": {
+          "documentation": "<p> The details of the bundle. </p>",
+          "shape": "BundleDetails"
+        }
+      },
+      "type": "structure"
+    },
+    "DescribeProjectRequest": {
+      "documentation": "<p> Request structure used to request details about a project. </p>",
+      "members": {
+        "projectId": {
+          "documentation": "<p> Unique project identifier. </p>",
+          "location": "querystring",
+          "locationName": "projectId",
+          "shape": "ProjectId"
+        },
+        "syncFromResources": {
+          "documentation": "<p> If set to true, causes AWS Mobile Hub to synchronize information from other services, e.g., update state of AWS CloudFormation stacks in the AWS Mobile Hub project. </p>",
+          "location": "querystring",
+          "locationName": "syncFromResources",
+          "shape": "Boolean"
+        }
+      },
+      "required": ["projectId"],
+      "type": "structure"
+    },
+    "DescribeProjectResult": {
+      "documentation": "<p> Result structure used for requests of project details. </p>",
+      "members": {
+        "details": { "shape": "ProjectDetails" }
+      },
+      "type": "structure"
+    },
+    "DownloadUrl": {
+      "documentation": "<p> The download Url. </p>",
+      "type": "string"
+    },
+    "ErrorMessage": {
+      "documentation": "<p> The Exception Error Message. </p>",
+      "type": "string"
+    },
+    "ExportBundleRequest": {
+      "documentation": "<p> Request structure used to request generation of custom SDK and tool packages required to integrate mobile web or app clients with backed AWS resources. </p>",
+      "members": {
+        "bundleId": {
+          "documentation": "<p> Unique bundle identifier. </p>",
+          "location": "uri",
+          "locationName": "bundleId",
+          "shape": "BundleId"
+        },
+        "platform": {
+          "documentation": "<p> Developer desktop or target application platform. </p>",
+          "location": "querystring",
+          "locationName": "platform",
+          "shape": "Platform"
+        },
+        "projectId": {
+          "documentation": "<p> Unique project identifier. </p>",
+          "location": "querystring",
+          "locationName": "projectId",
+          "shape": "ProjectId"
+        }
+      },
+      "required": ["bundleId"],
+      "type": "structure"
+    },
+    "ExportBundleResult": {
+      "documentation": "<p> Result structure which contains link to download custom-generated SDK and tool packages used to integrate mobile web or app clients with backed AWS resources. </p>",
+      "members": {
+        "downloadUrl": {
+          "documentation": "<p> URL which contains the custom-generated SDK and tool packages used to integrate the client mobile app or web app with the AWS resources created by the AWS Mobile Hub project. </p>",
+          "shape": "DownloadUrl"
+        }
+      },
+      "type": "structure"
+    },
+    "ExportProjectRequest": {
+      "documentation": "<p> Request structure used in requests to export project configuration details. </p>",
+      "members": {
+        "projectId": {
+          "documentation": "<p> Unique project identifier. </p>",
+          "location": "uri",
+          "locationName": "projectId",
+          "shape": "ProjectId"
+        }
+      },
+      "required": ["projectId"],
+      "type": "structure"
+    },
+    "ExportProjectResult": {
+      "documentation": "<p> Result structure used for requests to export project configuration details. </p>",
+      "members": {
+        "downloadUrl": {
+          "documentation": "<p> URL which can be used to download the exported project configuation file(s). </p>",
+          "shape": "DownloadUrl"
+        },
+        "shareUrl": {
+          "documentation": "<p> URL which can be shared to allow other AWS users to create their own project in AWS Mobile Hub with the same configuration as the specified project. This URL pertains to a snapshot in time of the project configuration that is created when this API is called. If you want to share additional changes to your project configuration, then you will need to create and share a new snapshot by calling this method again. </p>",
+          "shape": "ShareUrl"
+        },
+        "snapshotId": {
+          "documentation": "<p> Unique identifier for the exported snapshot of the project configuration. This snapshot identifier is included in the share URL. </p>",
+          "shape": "SnapshotId"
+        }
+      },
+      "type": "structure"
+    },
+    "Feature": {
+      "documentation": "<p> Identifies which feature in AWS Mobile Hub is associated with this AWS resource. </p>",
+      "type": "string"
+    },
+    "IconUrl": {
+      "documentation": "<p> Icon for the download bundle. </p>",
+      "type": "string"
+    },
+    "InternalFailureException": {
+      "documentation": "<p> The service has encountered an unexpected error condition which prevents it from servicing the request. </p>",
+      "error": { "httpStatusCode": 500 },
+      "exception": true,
+      "fault": true,
+      "members": {
+        "message": { "shape": "ErrorMessage" }
+      },
+      "type": "structure"
+    },
+    "LimitExceededException": {
+      "documentation": "<p> There are too many AWS Mobile Hub projects in the account or the account has exceeded the maximum number of resources in some AWS service. You should create another sub-account using AWS Organizations or remove some resources and retry your request. </p>",
+      "error": { "httpStatusCode": 429 },
+      "exception": true,
+      "members": {
+        "message": { "shape": "ErrorMessage" },
+        "retryAfterSeconds": {
+          "location": "header",
+          "locationName": "Retry-After",
+          "shape": "ErrorMessage"
+        }
+      },
+      "type": "structure"
+    },
+    "ListBundlesRequest": {
+      "documentation": "<p> Request structure to request all available bundles. </p>",
+      "members": {
+        "maxResults": {
+          "documentation": "<p> Maximum number of records to list in a single response. </p>",
+          "location": "querystring",
+          "locationName": "maxResults",
+          "shape": "MaxResults"
+        },
+        "nextToken": {
+          "documentation": "<p> Pagination token. Set to null to start listing bundles from start. If non-null pagination token is returned in a result, then pass its value in here in another request to list more bundles. </p>",
+          "location": "querystring",
+          "locationName": "nextToken",
+          "shape": "NextToken"
+        }
+      },
+      "type": "structure"
+    },
+    "ListBundlesResult": {
+      "documentation": "<p> Result structure contains a list of all available bundles with details. </p>",
+      "members": {
+        "bundleList": {
+          "documentation": "<p> A list of bundles. </p>",
+          "shape": "BundleList"
+        },
+        "nextToken": {
+          "documentation": "<p> Pagination token. If non-null pagination token is returned in a result, then pass its value in another request to fetch more entries. </p>",
+          "shape": "NextToken"
+        }
+      },
+      "type": "structure"
+    },
+    "ListProjectsRequest": {
+      "documentation": "<p> Request structure used to request projects list in AWS Mobile Hub. </p>",
+      "members": {
+        "maxResults": {
+          "documentation": "<p> Maximum number of records to list in a single response. </p>",
+          "location": "querystring",
+          "locationName": "maxResults",
+          "shape": "MaxResults"
+        },
+        "nextToken": {
+          "documentation": "<p> Pagination token. Set to null to start listing projects from start. If non-null pagination token is returned in a result, then pass its value in here in another request to list more projects. </p>",
+          "location": "querystring",
+          "locationName": "nextToken",
+          "shape": "NextToken"
+        }
+      },
+      "type": "structure"
+    },
+    "ListProjectsResult": {
+      "documentation": "<p> Result structure used for requests to list projects in AWS Mobile Hub. </p>",
+      "members": {
+        "nextToken": { "shape": "NextToken" },
+        "projects": { "shape": "ProjectSummaries" }
+      },
+      "type": "structure"
+    },
+    "MaxResults": {
+      "documentation": "<p> Maximum number of records to list in a single response. </p>",
+      "type": "integer"
+    },
+    "NextToken": {
+      "documentation": "<p> Pagination token. Set to null to start listing records from start. If non-null pagination token is returned in a result, then pass its value in here in another request to list more entries. </p>",
+      "type": "string"
+    },
+    "NotFoundException": {
+      "documentation": "<p> No entity can be found with the specified identifier. </p>",
+      "error": { "httpStatusCode": 404 },
+      "exception": true,
+      "members": {
+        "message": { "shape": "ErrorMessage" }
+      },
+      "type": "structure"
+    },
+    "Platform": {
+      "documentation": "<p> Developer desktop or target mobile app or website platform. </p>",
+      "enum": ["OSX", "WINDOWS", "LINUX", "OBJC", "SWIFT", "ANDROID", "JAVASCRIPT"],
+      "type": "string"
+    },
+    "Platforms": {
+      "documentation": "<p> Developer desktop or mobile app or website platforms. </p>",
+      "member": { "shape": "Platform" },
+      "type": "list"
+    },
+    "ProjectDetails": {
+      "documentation": "<p> Detailed information about an AWS Mobile Hub project. </p>",
+      "members": {
+        "consoleUrl": {
+          "documentation": "<p> Website URL for this project in the AWS Mobile Hub console. </p>",
+          "shape": "ConsoleUrl"
+        },
+        "createdDate": {
+          "documentation": "<p> Date the project was created. </p>",
+          "shape": "Date"
+        },
+        "lastUpdatedDate": {
+          "documentation": "<p> Date of the last modification of the project. </p>",
+          "shape": "Date"
+        },
+        "name": { "shape": "ProjectName" },
+        "projectId": { "shape": "ProjectId" },
+        "region": { "shape": "ProjectRegion" },
+        "resources": { "shape": "Resources" },
+        "state": { "shape": "ProjectState" }
+      },
+      "type": "structure"
+    },
+    "ProjectId": {
+      "documentation": "<p> Unique project identifier. </p>",
+      "type": "string"
+    },
+    "ProjectName": {
+      "documentation": "<p> Name of the project. </p>",
+      "type": "string"
+    },
+    "ProjectRegion": {
+      "documentation": "<p> Default region to use for AWS resource creation in the AWS Mobile Hub project. </p>",
+      "type": "string"
+    },
+    "ProjectState": {
+      "documentation": "<p> Synchronization state for a project. </p>",
+      "enum": ["NORMAL", "SYNCING", "IMPORTING"],
+      "type": "string"
+    },
+    "ProjectSummaries": {
+      "documentation": "<p> List of projects. </p>",
+      "member": { "shape": "ProjectSummary" },
+      "type": "list"
+    },
+    "ProjectSummary": {
+      "documentation": "<p> Summary information about an AWS Mobile Hub project. </p>",
+      "members": {
+        "name": {
+          "documentation": "<p> Name of the project. </p>",
+          "shape": "ProjectName"
+        },
+        "projectId": {
+          "documentation": "<p> Unique project identifier. </p>",
+          "shape": "ProjectId"
+        }
+      },
+      "type": "structure"
+    },
+    "Resource": {
+      "documentation": "<p> Information about an instance of an AWS resource associated with a project. </p>",
+      "members": {
+        "arn": { "shape": "ResourceArn" },
+        "attributes": { "shape": "Attributes" },
+        "feature": { "shape": "Feature" },
+        "name": { "shape": "ResourceName" },
+        "type": { "shape": "ResourceType" }
+      },
+      "type": "structure"
+    },
+    "ResourceArn": {
+      "documentation": "<p> AWS resource name which uniquely identifies the resource in AWS systems. </p>",
+      "type": "string"
+    },
+    "ResourceName": {
+      "documentation": "<p> Name of the AWS resource (e.g., for an Amazon S3 bucket this is the name of the bucket). </p>",
+      "type": "string"
+    },
+    "ResourceType": {
+      "documentation": "<p> Simplified name for type of AWS resource (e.g., bucket is an Amazon S3 bucket). </p>",
+      "type": "string"
+    },
+    "Resources": {
+      "documentation": "<p> List of AWS resources associated with a project. </p>",
+      "member": { "shape": "Resource" },
+      "type": "list"
+    },
+    "ServiceUnavailableException": {
+      "documentation": "<p> The service is temporarily unavailable. The request should be retried after some time delay. </p>",
+      "error": { "httpStatusCode": 503 },
+      "exception": true,
+      "fault": true,
+      "members": {
+        "message": { "shape": "ErrorMessage" },
+        "retryAfterSeconds": {
+          "location": "header",
+          "locationName": "Retry-After",
+          "shape": "ErrorMessage"
+        }
+      },
+      "type": "structure"
+    },
+    "ShareUrl": {
+      "documentation": "<p> URL which can be shared to allow other AWS users to create their own project in AWS Mobile Hub with the same configuration as the specified project. This URL pertains to a snapshot in time of the project configuration that is created when this API is called. If you want to share additional changes to your project configuration, then you will need to create and share a new snapshot by calling this method again. </p>",
+      "type": "string"
+    },
+    "SnapshotId": {
+      "documentation": "<p> Unique identifier for the exported snapshot of the project configuration. This snapshot identifier is included in the share URL. </p>",
+      "type": "string"
+    },
+    "TooManyRequestsException": {
+      "documentation": "<p> Too many requests have been received for this AWS account in too short a time. The request should be retried after some time delay. </p>",
+      "error": { "httpStatusCode": 429 },
+      "exception": true,
+      "members": {
+        "message": { "shape": "ErrorMessage" },
+        "retryAfterSeconds": {
+          "location": "header",
+          "locationName": "Retry-After",
+          "shape": "ErrorMessage"
+        }
+      },
+      "type": "structure"
+    },
+    "UnauthorizedException": {
+      "documentation": "<p> Credentials of the caller are insufficient to authorize the request. </p>",
+      "error": { "httpStatusCode": 401 },
+      "exception": true,
+      "members": {
+        "message": { "shape": "ErrorMessage" }
+      },
+      "type": "structure"
+    },
+    "UpdateProjectRequest": {
+      "documentation": "<p> Request structure used for requests to update project configuration. </p>",
+      "members": {
+        "contents": {
+          "documentation": "<p> ZIP or YAML file which contains project configuration to be updated. This should be the contents of the file downloaded from the URL provided in an export project operation. </p>",
+          "shape": "Contents"
+        },
+        "projectId": {
+          "documentation": "<p> Unique project identifier. </p>",
+          "location": "querystring",
+          "locationName": "projectId",
+          "shape": "ProjectId"
+        }
+      },
+      "payload": "contents",
+      "required": ["projectId"],
+      "type": "structure"
+    },
+    "UpdateProjectResult": {
+      "documentation": "<p> Result structure used for requests to updated project configuration. </p>",
+      "members": {
+        "details": {
+          "documentation": "<p> Detailed information about the updated AWS Mobile Hub project. </p>",
+          "shape": "ProjectDetails"
+        }
+      },
+      "type": "structure"
+    }
+  },
+  "version": "2.0"
+}

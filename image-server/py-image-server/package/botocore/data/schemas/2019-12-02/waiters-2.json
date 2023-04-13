@@ -1,0 +1,36 @@
+{
+  "version": 2,
+  "waiters": {
+    "CodeBindingExists": {
+      "acceptors": [
+        {
+          "argument": "Status",
+          "expected": "CREATE_COMPLETE",
+          "matcher": "path",
+          "state": "success"
+        },
+        {
+          "argument": "Status",
+          "expected": "CREATE_IN_PROGRESS",
+          "matcher": "path",
+          "state": "retry"
+        },
+        {
+          "argument": "Status",
+          "expected": "CREATE_FAILED",
+          "matcher": "path",
+          "state": "failure"
+        },
+        {
+          "expected": "NotFoundException",
+          "matcher": "error",
+          "state": "failure"
+        }
+      ],
+      "delay": 2,
+      "description": "Wait until code binding is generated",
+      "maxAttempts": 30,
+      "operation": "DescribeCodeBinding"
+    }
+  }
+}

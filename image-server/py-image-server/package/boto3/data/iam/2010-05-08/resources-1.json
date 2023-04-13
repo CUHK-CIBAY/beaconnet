@@ -1,0 +1,1484 @@
+{
+  "resources": {
+    "AccessKey": {
+      "actions": {
+        "Activate": {
+          "request": {
+            "operation": "UpdateAccessKey",
+            "params": [
+              { "name": "UserName", "source": "identifier", "target": "UserName" },
+              { "name": "Id", "source": "identifier", "target": "AccessKeyId" },
+              { "source": "string", "target": "Status", "value": "Active" }
+            ]
+          }
+        },
+        "Deactivate": {
+          "request": {
+            "operation": "UpdateAccessKey",
+            "params": [
+              { "name": "UserName", "source": "identifier", "target": "UserName" },
+              { "name": "Id", "source": "identifier", "target": "AccessKeyId" },
+              { "source": "string", "target": "Status", "value": "Inactive" }
+            ]
+          }
+        },
+        "Delete": {
+          "request": {
+            "operation": "DeleteAccessKey",
+            "params": [
+              { "name": "UserName", "source": "identifier", "target": "UserName" },
+              { "name": "Id", "source": "identifier", "target": "AccessKeyId" }
+            ]
+          }
+        }
+      },
+      "has": {
+        "User": {
+          "resource": {
+            "identifiers": [{ "name": "UserName", "source": "identifier", "target": "Name" }],
+            "type": "User"
+          }
+        }
+      },
+      "identifiers": [
+        {
+          "memberName": "UserName",
+          "name": "UserName"
+        },
+        {
+          "memberName": "AccessKeyId",
+          "name": "Id"
+        }
+      ],
+      "shape": "AccessKeyMetadata"
+    },
+    "AccessKeyPair": {
+      "actions": {
+        "Activate": {
+          "request": {
+            "operation": "UpdateAccessKey",
+            "params": [
+              { "name": "UserName", "source": "identifier", "target": "UserName" },
+              { "name": "Id", "source": "identifier", "target": "AccessKeyId" },
+              { "source": "string", "target": "Status", "value": "Active" }
+            ]
+          }
+        },
+        "Deactivate": {
+          "request": {
+            "operation": "UpdateAccessKey",
+            "params": [
+              { "name": "UserName", "source": "identifier", "target": "UserName" },
+              { "name": "Id", "source": "identifier", "target": "AccessKeyId" },
+              { "source": "string", "target": "Status", "value": "Inactive" }
+            ]
+          }
+        },
+        "Delete": {
+          "request": {
+            "operation": "DeleteAccessKey",
+            "params": [
+              { "name": "UserName", "source": "identifier", "target": "UserName" },
+              { "name": "Id", "source": "identifier", "target": "AccessKeyId" }
+            ]
+          }
+        }
+      },
+      "identifiers": [
+        {
+          "memberName": "UserName",
+          "name": "UserName"
+        },
+        {
+          "memberName": "AccessKeyId",
+          "name": "Id"
+        },
+        {
+          "memberName": "SecretAccessKey",
+          "name": "Secret"
+        }
+      ],
+      "shape": "AccessKey"
+    },
+    "AccountPasswordPolicy": {
+      "actions": {
+        "Delete": {
+          "request": { "operation": "DeleteAccountPasswordPolicy" }
+        },
+        "Update": {
+          "request": { "operation": "UpdateAccountPasswordPolicy" }
+        }
+      },
+      "identifiers": [],
+      "load": {
+        "path": "PasswordPolicy",
+        "request": { "operation": "GetAccountPasswordPolicy" }
+      },
+      "shape": "PasswordPolicy"
+    },
+    "AccountSummary": {
+      "identifiers": [],
+      "load": {
+        "path": "@",
+        "request": { "operation": "GetAccountSummary" }
+      },
+      "shape": "GetAccountSummaryResponse"
+    },
+    "AssumeRolePolicy": {
+      "actions": {
+        "Update": {
+          "request": {
+            "operation": "UpdateAssumeRolePolicy",
+            "params": [{ "name": "RoleName", "source": "identifier", "target": "RoleName" }]
+          }
+        }
+      },
+      "has": {
+        "Role": {
+          "resource": {
+            "identifiers": [{ "name": "RoleName", "source": "identifier", "target": "Name" }],
+            "type": "Role"
+          }
+        }
+      },
+      "identifiers": [{ "name": "RoleName" }]
+    },
+    "CurrentUser": {
+      "has": {
+        "User": {
+          "resource": {
+            "identifiers": [{ "path": "UserName", "source": "data", "target": "Name" }],
+            "type": "User"
+          }
+        }
+      },
+      "hasMany": {
+        "AccessKeys": {
+          "request": { "operation": "ListAccessKeys" },
+          "resource": {
+            "identifiers": [
+              { "path": "AccessKeyMetadata[].UserName", "source": "response", "target": "UserName" },
+              { "path": "AccessKeyMetadata[].AccessKeyId", "source": "response", "target": "Id" }
+            ],
+            "path": "AccessKeyMetadata[]",
+            "type": "AccessKey"
+          }
+        },
+        "MfaDevices": {
+          "request": { "operation": "ListMFADevices" },
+          "resource": {
+            "identifiers": [
+              { "path": "MFADevices[].UserName", "source": "response", "target": "UserName" },
+              { "path": "MFADevices[].SerialNumber", "source": "response", "target": "SerialNumber" }
+            ],
+            "path": "MFADevices[]",
+            "type": "MfaDevice"
+          }
+        },
+        "SigningCertificates": {
+          "request": { "operation": "ListSigningCertificates" },
+          "resource": {
+            "identifiers": [
+              { "path": "Certificates[].UserName", "source": "response", "target": "UserName" },
+              { "path": "Certificates[].CertificateId", "source": "response", "target": "Id" }
+            ],
+            "path": "Certificates[]",
+            "type": "SigningCertificate"
+          }
+        }
+      },
+      "identifiers": [],
+      "load": {
+        "path": "User",
+        "request": { "operation": "GetUser" }
+      },
+      "shape": "User"
+    },
+    "Group": {
+      "actions": {
+        "AddUser": {
+          "request": {
+            "operation": "AddUserToGroup",
+            "params": [{ "name": "Name", "source": "identifier", "target": "GroupName" }]
+          }
+        },
+        "AttachPolicy": {
+          "request": {
+            "operation": "AttachGroupPolicy",
+            "params": [{ "name": "Name", "source": "identifier", "target": "GroupName" }]
+          }
+        },
+        "Create": {
+          "request": {
+            "operation": "CreateGroup",
+            "params": [{ "name": "Name", "source": "identifier", "target": "GroupName" }]
+          },
+          "resource": {
+            "identifiers": [{ "path": "GroupName", "source": "requestParameter", "target": "Name" }],
+            "path": "Group",
+            "type": "Group"
+          }
+        },
+        "CreatePolicy": {
+          "request": {
+            "operation": "PutGroupPolicy",
+            "params": [{ "name": "Name", "source": "identifier", "target": "GroupName" }]
+          },
+          "resource": {
+            "identifiers": [
+              { "name": "Name", "source": "identifier", "target": "GroupName" },
+              { "path": "PolicyName", "source": "requestParameter", "target": "Name" }
+            ],
+            "type": "GroupPolicy"
+          }
+        },
+        "Delete": {
+          "request": {
+            "operation": "DeleteGroup",
+            "params": [{ "name": "Name", "source": "identifier", "target": "GroupName" }]
+          }
+        },
+        "DetachPolicy": {
+          "request": {
+            "operation": "DetachGroupPolicy",
+            "params": [{ "name": "Name", "source": "identifier", "target": "GroupName" }]
+          }
+        },
+        "RemoveUser": {
+          "request": {
+            "operation": "RemoveUserFromGroup",
+            "params": [{ "name": "Name", "source": "identifier", "target": "GroupName" }]
+          }
+        },
+        "Update": {
+          "request": {
+            "operation": "UpdateGroup",
+            "params": [{ "name": "Name", "source": "identifier", "target": "GroupName" }]
+          },
+          "resource": {
+            "identifiers": [{ "path": "NewGroupName", "source": "requestParameter", "target": "Name" }],
+            "type": "Group"
+          }
+        }
+      },
+      "has": {
+        "Policy": {
+          "resource": {
+            "identifiers": [
+              { "name": "Name", "source": "identifier", "target": "GroupName" },
+              { "source": "input", "target": "Name" }
+            ],
+            "type": "GroupPolicy"
+          }
+        }
+      },
+      "hasMany": {
+        "AttachedPolicies": {
+          "request": {
+            "operation": "ListAttachedGroupPolicies",
+            "params": [{ "name": "Name", "source": "identifier", "target": "GroupName" }]
+          },
+          "resource": {
+            "identifiers": [{ "path": "AttachedPolicies[].PolicyArn", "source": "response", "target": "Arn" }],
+            "type": "Policy"
+          }
+        },
+        "Policies": {
+          "request": {
+            "operation": "ListGroupPolicies",
+            "params": [{ "name": "Name", "source": "identifier", "target": "GroupName" }]
+          },
+          "resource": {
+            "identifiers": [
+              { "name": "Name", "source": "identifier", "target": "GroupName" },
+              { "path": "PolicyNames[]", "source": "response", "target": "Name" }
+            ],
+            "type": "GroupPolicy"
+          }
+        },
+        "Users": {
+          "request": {
+            "operation": "GetGroup",
+            "params": [{ "name": "Name", "source": "identifier", "target": "GroupName" }]
+          },
+          "resource": {
+            "identifiers": [{ "path": "Users[].UserName", "source": "response", "target": "Name" }],
+            "path": "Users[]",
+            "type": "User"
+          }
+        }
+      },
+      "identifiers": [
+        {
+          "memberName": "GroupName",
+          "name": "Name"
+        }
+      ],
+      "load": {
+        "path": "Group",
+        "request": {
+          "operation": "GetGroup",
+          "params": [{ "name": "Name", "source": "identifier", "target": "GroupName" }]
+        }
+      },
+      "shape": "Group"
+    },
+    "GroupPolicy": {
+      "actions": {
+        "Delete": {
+          "request": {
+            "operation": "DeleteGroupPolicy",
+            "params": [
+              { "name": "GroupName", "source": "identifier", "target": "GroupName" },
+              { "name": "Name", "source": "identifier", "target": "PolicyName" }
+            ]
+          }
+        },
+        "Put": {
+          "request": {
+            "operation": "PutGroupPolicy",
+            "params": [
+              { "name": "GroupName", "source": "identifier", "target": "GroupName" },
+              { "name": "Name", "source": "identifier", "target": "PolicyName" }
+            ]
+          }
+        }
+      },
+      "has": {
+        "Group": {
+          "resource": {
+            "identifiers": [{ "name": "GroupName", "source": "identifier", "target": "Name" }],
+            "type": "Group"
+          }
+        }
+      },
+      "identifiers": [
+        {
+          "memberName": "GroupName",
+          "name": "GroupName"
+        },
+        {
+          "memberName": "PolicyName",
+          "name": "Name"
+        }
+      ],
+      "load": {
+        "path": "@",
+        "request": {
+          "operation": "GetGroupPolicy",
+          "params": [
+            { "name": "GroupName", "source": "identifier", "target": "GroupName" },
+            { "name": "Name", "source": "identifier", "target": "PolicyName" }
+          ]
+        }
+      },
+      "shape": "GetGroupPolicyResponse"
+    },
+    "InstanceProfile": {
+      "actions": {
+        "AddRole": {
+          "request": {
+            "operation": "AddRoleToInstanceProfile",
+            "params": [{ "name": "Name", "source": "identifier", "target": "InstanceProfileName" }]
+          }
+        },
+        "Delete": {
+          "request": {
+            "operation": "DeleteInstanceProfile",
+            "params": [{ "name": "Name", "source": "identifier", "target": "InstanceProfileName" }]
+          }
+        },
+        "RemoveRole": {
+          "request": {
+            "operation": "RemoveRoleFromInstanceProfile",
+            "params": [{ "name": "Name", "source": "identifier", "target": "InstanceProfileName" }]
+          }
+        }
+      },
+      "has": {
+        "Roles": {
+          "resource": {
+            "identifiers": [{ "path": "Roles[].RoleName", "source": "data", "target": "Name" }],
+            "path": "Roles[]",
+            "type": "Role"
+          }
+        }
+      },
+      "identifiers": [
+        {
+          "memberName": "InstanceProfileName",
+          "name": "Name"
+        }
+      ],
+      "load": {
+        "path": "InstanceProfile",
+        "request": {
+          "operation": "GetInstanceProfile",
+          "params": [{ "name": "Name", "source": "identifier", "target": "InstanceProfileName" }]
+        }
+      },
+      "shape": "InstanceProfile"
+    },
+    "LoginProfile": {
+      "actions": {
+        "Create": {
+          "request": {
+            "operation": "CreateLoginProfile",
+            "params": [{ "name": "UserName", "source": "identifier", "target": "UserName" }]
+          },
+          "resource": {
+            "identifiers": [{ "path": "LoginProfile.UserName", "source": "response", "target": "UserName" }],
+            "path": "LoginProfile",
+            "type": "LoginProfile"
+          }
+        },
+        "Delete": {
+          "request": {
+            "operation": "DeleteLoginProfile",
+            "params": [{ "name": "UserName", "source": "identifier", "target": "UserName" }]
+          }
+        },
+        "Update": {
+          "request": {
+            "operation": "UpdateLoginProfile",
+            "params": [{ "name": "UserName", "source": "identifier", "target": "UserName" }]
+          }
+        }
+      },
+      "has": {
+        "User": {
+          "resource": {
+            "identifiers": [{ "name": "UserName", "source": "identifier", "target": "Name" }],
+            "type": "User"
+          }
+        }
+      },
+      "identifiers": [
+        {
+          "memberName": "UserName",
+          "name": "UserName"
+        }
+      ],
+      "load": {
+        "path": "LoginProfile",
+        "request": {
+          "operation": "GetLoginProfile",
+          "params": [{ "name": "UserName", "source": "identifier", "target": "UserName" }]
+        }
+      },
+      "shape": "LoginProfile"
+    },
+    "MfaDevice": {
+      "actions": {
+        "Associate": {
+          "request": {
+            "operation": "EnableMFADevice",
+            "params": [
+              { "name": "UserName", "source": "identifier", "target": "UserName" },
+              { "name": "SerialNumber", "source": "identifier", "target": "SerialNumber" }
+            ]
+          }
+        },
+        "Disassociate": {
+          "request": {
+            "operation": "DeactivateMFADevice",
+            "params": [
+              { "name": "UserName", "source": "identifier", "target": "UserName" },
+              { "name": "SerialNumber", "source": "identifier", "target": "SerialNumber" }
+            ]
+          }
+        },
+        "Resync": {
+          "request": {
+            "operation": "ResyncMFADevice",
+            "params": [
+              { "name": "UserName", "source": "identifier", "target": "UserName" },
+              { "name": "SerialNumber", "source": "identifier", "target": "SerialNumber" }
+            ]
+          }
+        }
+      },
+      "has": {
+        "User": {
+          "resource": {
+            "identifiers": [{ "name": "UserName", "source": "identifier", "target": "Name" }],
+            "type": "User"
+          }
+        }
+      },
+      "identifiers": [
+        {
+          "memberName": "UserName",
+          "name": "UserName"
+        },
+        {
+          "memberName": "SerialNumber",
+          "name": "SerialNumber"
+        }
+      ],
+      "shape": "MFADevice"
+    },
+    "Policy": {
+      "actions": {
+        "AttachGroup": {
+          "request": {
+            "operation": "AttachGroupPolicy",
+            "params": [{ "name": "Arn", "source": "identifier", "target": "PolicyArn" }]
+          }
+        },
+        "AttachRole": {
+          "request": {
+            "operation": "AttachRolePolicy",
+            "params": [{ "name": "Arn", "source": "identifier", "target": "PolicyArn" }]
+          }
+        },
+        "AttachUser": {
+          "request": {
+            "operation": "AttachUserPolicy",
+            "params": [{ "name": "Arn", "source": "identifier", "target": "PolicyArn" }]
+          }
+        },
+        "CreateVersion": {
+          "request": {
+            "operation": "CreatePolicyVersion",
+            "params": [{ "name": "Arn", "source": "identifier", "target": "PolicyArn" }]
+          },
+          "resource": {
+            "identifiers": [
+              { "name": "Arn", "source": "identifier", "target": "Arn" },
+              { "path": "PolicyVersion.VersionId", "source": "response", "target": "VersionId" }
+            ],
+            "type": "PolicyVersion"
+          }
+        },
+        "Delete": {
+          "request": {
+            "operation": "DeletePolicy",
+            "params": [{ "name": "Arn", "source": "identifier", "target": "PolicyArn" }]
+          }
+        },
+        "DetachGroup": {
+          "request": {
+            "operation": "DetachGroupPolicy",
+            "params": [{ "name": "Arn", "source": "identifier", "target": "PolicyArn" }]
+          }
+        },
+        "DetachRole": {
+          "request": {
+            "operation": "DetachRolePolicy",
+            "params": [{ "name": "Arn", "source": "identifier", "target": "PolicyArn" }]
+          }
+        },
+        "DetachUser": {
+          "request": {
+            "operation": "DetachUserPolicy",
+            "params": [{ "name": "Arn", "source": "identifier", "target": "PolicyArn" }]
+          }
+        }
+      },
+      "has": {
+        "DefaultVersion": {
+          "resource": {
+            "identifiers": [
+              { "name": "Arn", "source": "identifier", "target": "Arn" },
+              { "path": "DefaultVersionId", "source": "data", "target": "VersionId" }
+            ],
+            "type": "PolicyVersion"
+          }
+        }
+      },
+      "hasMany": {
+        "AttachedGroups": {
+          "request": {
+            "operation": "ListEntitiesForPolicy",
+            "params": [
+              { "name": "Arn", "source": "identifier", "target": "PolicyArn" },
+              { "source": "string", "target": "EntityFilter", "value": "Group" }
+            ]
+          },
+          "resource": {
+            "identifiers": [{ "path": "PolicyGroups[].GroupName", "source": "response", "target": "Name" }],
+            "type": "Group"
+          }
+        },
+        "AttachedRoles": {
+          "request": {
+            "operation": "ListEntitiesForPolicy",
+            "params": [
+              { "name": "Arn", "source": "identifier", "target": "PolicyArn" },
+              { "source": "string", "target": "EntityFilter", "value": "Role" }
+            ]
+          },
+          "resource": {
+            "identifiers": [{ "path": "PolicyRoles[].RoleName", "source": "response", "target": "Name" }],
+            "type": "Role"
+          }
+        },
+        "AttachedUsers": {
+          "request": {
+            "operation": "ListEntitiesForPolicy",
+            "params": [
+              { "name": "Arn", "source": "identifier", "target": "PolicyArn" },
+              { "source": "string", "target": "EntityFilter", "value": "User" }
+            ]
+          },
+          "resource": {
+            "identifiers": [{ "path": "PolicyUsers[].UserName", "source": "response", "target": "Name" }],
+            "type": "User"
+          }
+        },
+        "Versions": {
+          "request": {
+            "operation": "ListPolicyVersions",
+            "params": [{ "name": "Arn", "source": "identifier", "target": "PolicyArn" }]
+          },
+          "resource": {
+            "identifiers": [
+              { "name": "Arn", "source": "identifier", "target": "Arn" },
+              { "path": "Versions[].VersionId", "source": "response", "target": "VersionId" }
+            ],
+            "path": "Versions[]",
+            "type": "PolicyVersion"
+          }
+        }
+      },
+      "identifiers": [
+        {
+          "memberName": "Arn",
+          "name": "Arn"
+        }
+      ],
+      "load": {
+        "path": "Policy",
+        "request": {
+          "operation": "GetPolicy",
+          "params": [{ "name": "Arn", "source": "identifier", "target": "PolicyArn" }]
+        }
+      },
+      "shape": "Policy"
+    },
+    "PolicyVersion": {
+      "actions": {
+        "Delete": {
+          "request": {
+            "operation": "DeletePolicyVersion",
+            "params": [
+              { "name": "Arn", "source": "identifier", "target": "PolicyArn" },
+              { "name": "VersionId", "source": "identifier", "target": "VersionId" }
+            ]
+          }
+        },
+        "SetAsDefault": {
+          "request": {
+            "operation": "SetDefaultPolicyVersion",
+            "params": [
+              { "name": "Arn", "source": "identifier", "target": "PolicyArn" },
+              { "name": "VersionId", "source": "identifier", "target": "VersionId" }
+            ]
+          }
+        }
+      },
+      "identifiers": [{ "name": "Arn" }, { "name": "VersionId" }],
+      "load": {
+        "path": "PolicyVersion",
+        "request": {
+          "operation": "GetPolicyVersion",
+          "params": [
+            { "name": "Arn", "source": "identifier", "target": "PolicyArn" },
+            { "name": "VersionId", "source": "identifier", "target": "VersionId" }
+          ]
+        }
+      },
+      "shape": "PolicyVersion"
+    },
+    "Role": {
+      "actions": {
+        "AttachPolicy": {
+          "request": {
+            "operation": "AttachRolePolicy",
+            "params": [{ "name": "Name", "source": "identifier", "target": "RoleName" }]
+          }
+        },
+        "Delete": {
+          "request": {
+            "operation": "DeleteRole",
+            "params": [{ "name": "Name", "source": "identifier", "target": "RoleName" }]
+          }
+        },
+        "DetachPolicy": {
+          "request": {
+            "operation": "DetachRolePolicy",
+            "params": [{ "name": "Name", "source": "identifier", "target": "RoleName" }]
+          }
+        }
+      },
+      "has": {
+        "AssumeRolePolicy": {
+          "resource": {
+            "identifiers": [{ "name": "Name", "source": "identifier", "target": "RoleName" }],
+            "type": "AssumeRolePolicy"
+          }
+        },
+        "Policy": {
+          "resource": {
+            "identifiers": [
+              { "name": "Name", "source": "identifier", "target": "RoleName" },
+              { "source": "input", "target": "Name" }
+            ],
+            "type": "RolePolicy"
+          }
+        }
+      },
+      "hasMany": {
+        "AttachedPolicies": {
+          "request": {
+            "operation": "ListAttachedRolePolicies",
+            "params": [{ "name": "Name", "source": "identifier", "target": "RoleName" }]
+          },
+          "resource": {
+            "identifiers": [{ "path": "AttachedPolicies[].PolicyArn", "source": "response", "target": "Arn" }],
+            "type": "Policy"
+          }
+        },
+        "InstanceProfiles": {
+          "request": {
+            "operation": "ListInstanceProfilesForRole",
+            "params": [{ "name": "Name", "source": "identifier", "target": "RoleName" }]
+          },
+          "resource": {
+            "identifiers": [
+              { "path": "InstanceProfiles[].InstanceProfileName", "source": "response", "target": "Name" }
+            ],
+            "path": "InstanceProfiles[]",
+            "type": "InstanceProfile"
+          }
+        },
+        "Policies": {
+          "request": {
+            "operation": "ListRolePolicies",
+            "params": [{ "name": "Name", "source": "identifier", "target": "RoleName" }]
+          },
+          "resource": {
+            "identifiers": [
+              { "name": "Name", "source": "identifier", "target": "RoleName" },
+              { "path": "PolicyNames[]", "source": "response", "target": "Name" }
+            ],
+            "type": "RolePolicy"
+          }
+        }
+      },
+      "identifiers": [
+        {
+          "memberName": "RoleName",
+          "name": "Name"
+        }
+      ],
+      "load": {
+        "path": "Role",
+        "request": {
+          "operation": "GetRole",
+          "params": [{ "name": "Name", "source": "identifier", "target": "RoleName" }]
+        }
+      },
+      "shape": "Role"
+    },
+    "RolePolicy": {
+      "actions": {
+        "Delete": {
+          "request": {
+            "operation": "DeleteRolePolicy",
+            "params": [
+              { "name": "RoleName", "source": "identifier", "target": "RoleName" },
+              { "name": "Name", "source": "identifier", "target": "PolicyName" }
+            ]
+          }
+        },
+        "Put": {
+          "request": {
+            "operation": "PutRolePolicy",
+            "params": [
+              { "name": "RoleName", "source": "identifier", "target": "RoleName" },
+              { "name": "Name", "source": "identifier", "target": "PolicyName" }
+            ]
+          }
+        }
+      },
+      "has": {
+        "Role": {
+          "resource": {
+            "identifiers": [{ "name": "RoleName", "source": "identifier", "target": "Name" }],
+            "type": "Role"
+          }
+        }
+      },
+      "identifiers": [
+        {
+          "memberName": "RoleName",
+          "name": "RoleName"
+        },
+        {
+          "memberName": "PolicyName",
+          "name": "Name"
+        }
+      ],
+      "load": {
+        "path": "@",
+        "request": {
+          "operation": "GetRolePolicy",
+          "params": [
+            { "name": "RoleName", "source": "identifier", "target": "RoleName" },
+            { "name": "Name", "source": "identifier", "target": "PolicyName" }
+          ]
+        }
+      },
+      "shape": "GetRolePolicyResponse"
+    },
+    "SamlProvider": {
+      "actions": {
+        "Delete": {
+          "request": {
+            "operation": "DeleteSAMLProvider",
+            "params": [{ "name": "Arn", "source": "identifier", "target": "SAMLProviderArn" }]
+          }
+        },
+        "Update": {
+          "request": {
+            "operation": "UpdateSAMLProvider",
+            "params": [{ "name": "Arn", "source": "identifier", "target": "SAMLProviderArn" }]
+          }
+        }
+      },
+      "identifiers": [{ "name": "Arn" }],
+      "load": {
+        "path": "@",
+        "request": {
+          "operation": "GetSAMLProvider",
+          "params": [{ "name": "Arn", "source": "identifier", "target": "SAMLProviderArn" }]
+        }
+      },
+      "shape": "GetSAMLProviderResponse"
+    },
+    "ServerCertificate": {
+      "actions": {
+        "Delete": {
+          "request": {
+            "operation": "DeleteServerCertificate",
+            "params": [{ "name": "Name", "source": "identifier", "target": "ServerCertificateName" }]
+          }
+        },
+        "Update": {
+          "request": {
+            "operation": "UpdateServerCertificate",
+            "params": [{ "name": "Name", "source": "identifier", "target": "ServerCertificateName" }]
+          },
+          "resource": {
+            "identifiers": [{ "path": "NewServerCertificateName", "source": "requestParameter", "target": "Name" }],
+            "type": "ServerCertificate"
+          }
+        }
+      },
+      "identifiers": [{ "name": "Name" }],
+      "load": {
+        "path": "ServerCertificate",
+        "request": {
+          "operation": "GetServerCertificate",
+          "params": [{ "name": "Name", "source": "identifier", "target": "ServerCertificateName" }]
+        }
+      },
+      "shape": "ServerCertificate"
+    },
+    "SigningCertificate": {
+      "actions": {
+        "Activate": {
+          "request": {
+            "operation": "UpdateSigningCertificate",
+            "params": [
+              { "name": "UserName", "source": "identifier", "target": "UserName" },
+              { "name": "Id", "source": "identifier", "target": "CertificateId" },
+              { "source": "string", "target": "Status", "value": "Active" }
+            ]
+          }
+        },
+        "Deactivate": {
+          "request": {
+            "operation": "UpdateSigningCertificate",
+            "params": [
+              { "name": "UserName", "source": "identifier", "target": "UserName" },
+              { "name": "Id", "source": "identifier", "target": "CertificateId" },
+              { "source": "string", "target": "Status", "value": "Inactive" }
+            ]
+          }
+        },
+        "Delete": {
+          "request": {
+            "operation": "DeleteSigningCertificate",
+            "params": [
+              { "name": "UserName", "source": "identifier", "target": "UserName" },
+              { "name": "Id", "source": "identifier", "target": "CertificateId" }
+            ]
+          }
+        }
+      },
+      "has": {
+        "User": {
+          "resource": {
+            "identifiers": [{ "name": "UserName", "source": "identifier", "target": "Name" }],
+            "type": "User"
+          }
+        }
+      },
+      "identifiers": [
+        {
+          "memberName": "UserName",
+          "name": "UserName"
+        },
+        {
+          "memberName": "CertificateId",
+          "name": "Id"
+        }
+      ],
+      "shape": "SigningCertificate"
+    },
+    "User": {
+      "actions": {
+        "AddGroup": {
+          "request": {
+            "operation": "AddUserToGroup",
+            "params": [{ "name": "Name", "source": "identifier", "target": "UserName" }]
+          }
+        },
+        "AttachPolicy": {
+          "request": {
+            "operation": "AttachUserPolicy",
+            "params": [{ "name": "Name", "source": "identifier", "target": "UserName" }]
+          }
+        },
+        "Create": {
+          "request": {
+            "operation": "CreateUser",
+            "params": [{ "name": "Name", "source": "identifier", "target": "UserName" }]
+          },
+          "resource": {
+            "identifiers": [{ "path": "UserName", "source": "requestParameter", "target": "Name" }],
+            "path": "User",
+            "type": "User"
+          }
+        },
+        "CreateAccessKeyPair": {
+          "request": {
+            "operation": "CreateAccessKey",
+            "params": [{ "name": "Name", "source": "identifier", "target": "UserName" }]
+          },
+          "resource": {
+            "identifiers": [
+              { "name": "Name", "source": "identifier", "target": "UserName" },
+              { "path": "AccessKey.AccessKeyId", "source": "response", "target": "Id" },
+              { "path": "AccessKey.SecretAccessKey", "source": "response", "target": "Secret" }
+            ],
+            "path": "AccessKey",
+            "type": "AccessKeyPair"
+          }
+        },
+        "CreateLoginProfile": {
+          "request": {
+            "operation": "CreateLoginProfile",
+            "params": [{ "name": "Name", "source": "identifier", "target": "UserName" }]
+          },
+          "resource": {
+            "identifiers": [{ "path": "LoginProfile.UserName", "source": "response", "target": "UserName" }],
+            "path": "LoginProfile",
+            "type": "LoginProfile"
+          }
+        },
+        "CreatePolicy": {
+          "request": {
+            "operation": "PutUserPolicy",
+            "params": [{ "name": "Name", "source": "identifier", "target": "UserName" }]
+          },
+          "resource": {
+            "identifiers": [
+              { "name": "Name", "source": "identifier", "target": "UserName" },
+              { "path": "PolicyName", "source": "requestParameter", "target": "Name" }
+            ],
+            "type": "UserPolicy"
+          }
+        },
+        "Delete": {
+          "request": {
+            "operation": "DeleteUser",
+            "params": [{ "name": "Name", "source": "identifier", "target": "UserName" }]
+          }
+        },
+        "DetachPolicy": {
+          "request": {
+            "operation": "DetachUserPolicy",
+            "params": [{ "name": "Name", "source": "identifier", "target": "UserName" }]
+          }
+        },
+        "EnableMfa": {
+          "request": {
+            "operation": "EnableMFADevice",
+            "params": [{ "name": "Name", "source": "identifier", "target": "UserName" }]
+          },
+          "resource": {
+            "identifiers": [
+              { "name": "Name", "source": "identifier", "target": "UserName" },
+              { "path": "SerialNumber", "source": "requestParameter", "target": "SerialNumber" }
+            ],
+            "type": "MfaDevice"
+          }
+        },
+        "RemoveGroup": {
+          "request": {
+            "operation": "RemoveUserFromGroup",
+            "params": [{ "name": "Name", "source": "identifier", "target": "UserName" }]
+          }
+        },
+        "Update": {
+          "request": {
+            "operation": "UpdateUser",
+            "params": [{ "name": "Name", "source": "identifier", "target": "UserName" }]
+          },
+          "resource": {
+            "identifiers": [{ "path": "NewUserName", "source": "requestParameter", "target": "Name" }],
+            "type": "User"
+          }
+        }
+      },
+      "has": {
+        "AccessKey": {
+          "resource": {
+            "identifiers": [
+              { "name": "Name", "source": "identifier", "target": "UserName" },
+              { "source": "input", "target": "Id" }
+            ],
+            "type": "AccessKey"
+          }
+        },
+        "LoginProfile": {
+          "resource": {
+            "identifiers": [{ "name": "Name", "source": "identifier", "target": "UserName" }],
+            "type": "LoginProfile"
+          }
+        },
+        "MfaDevice": {
+          "resource": {
+            "identifiers": [
+              { "name": "Name", "source": "identifier", "target": "UserName" },
+              { "source": "input", "target": "SerialNumber" }
+            ],
+            "type": "MfaDevice"
+          }
+        },
+        "Policy": {
+          "resource": {
+            "identifiers": [
+              { "name": "Name", "source": "identifier", "target": "UserName" },
+              { "source": "input", "target": "Name" }
+            ],
+            "type": "UserPolicy"
+          }
+        },
+        "SigningCertificate": {
+          "resource": {
+            "identifiers": [
+              { "name": "Name", "source": "identifier", "target": "UserName" },
+              { "source": "input", "target": "Id" }
+            ],
+            "type": "SigningCertificate"
+          }
+        }
+      },
+      "hasMany": {
+        "AccessKeys": {
+          "request": {
+            "operation": "ListAccessKeys",
+            "params": [{ "name": "Name", "source": "identifier", "target": "UserName" }]
+          },
+          "resource": {
+            "identifiers": [
+              { "name": "Name", "source": "identifier", "target": "UserName" },
+              { "path": "AccessKeyMetadata[].AccessKeyId", "source": "response", "target": "Id" }
+            ],
+            "path": "AccessKeyMetadata[]",
+            "type": "AccessKey"
+          }
+        },
+        "AttachedPolicies": {
+          "request": {
+            "operation": "ListAttachedUserPolicies",
+            "params": [{ "name": "Name", "source": "identifier", "target": "UserName" }]
+          },
+          "resource": {
+            "identifiers": [{ "path": "AttachedPolicies[].PolicyArn", "source": "response", "target": "Arn" }],
+            "type": "Policy"
+          }
+        },
+        "Groups": {
+          "request": {
+            "operation": "ListGroupsForUser",
+            "params": [{ "name": "Name", "source": "identifier", "target": "UserName" }]
+          },
+          "resource": {
+            "identifiers": [{ "path": "Groups[].GroupName", "source": "response", "target": "Name" }],
+            "path": "Groups[]",
+            "type": "Group"
+          }
+        },
+        "MfaDevices": {
+          "request": {
+            "operation": "ListMFADevices",
+            "params": [{ "name": "Name", "source": "identifier", "target": "UserName" }]
+          },
+          "resource": {
+            "identifiers": [
+              { "name": "Name", "source": "identifier", "target": "UserName" },
+              { "path": "MFADevices[].SerialNumber", "source": "response", "target": "SerialNumber" }
+            ],
+            "path": "MFADevices[]",
+            "type": "MfaDevice"
+          }
+        },
+        "Policies": {
+          "request": {
+            "operation": "ListUserPolicies",
+            "params": [{ "name": "Name", "source": "identifier", "target": "UserName" }]
+          },
+          "resource": {
+            "identifiers": [
+              { "name": "Name", "source": "identifier", "target": "UserName" },
+              { "path": "PolicyNames[]", "source": "response", "target": "Name" }
+            ],
+            "type": "UserPolicy"
+          }
+        },
+        "SigningCertificates": {
+          "request": {
+            "operation": "ListSigningCertificates",
+            "params": [{ "name": "Name", "source": "identifier", "target": "UserName" }]
+          },
+          "resource": {
+            "identifiers": [
+              { "name": "Name", "source": "identifier", "target": "UserName" },
+              { "path": "Certificates[].CertificateId", "source": "response", "target": "Id" }
+            ],
+            "path": "Certificates[]",
+            "type": "SigningCertificate"
+          }
+        }
+      },
+      "identifiers": [
+        {
+          "memberName": "UserName",
+          "name": "Name"
+        }
+      ],
+      "load": {
+        "path": "User",
+        "request": {
+          "operation": "GetUser",
+          "params": [{ "name": "Name", "source": "identifier", "target": "UserName" }]
+        }
+      },
+      "shape": "User"
+    },
+    "UserPolicy": {
+      "actions": {
+        "Delete": {
+          "request": {
+            "operation": "DeleteUserPolicy",
+            "params": [
+              { "name": "UserName", "source": "identifier", "target": "UserName" },
+              { "name": "Name", "source": "identifier", "target": "PolicyName" }
+            ]
+          }
+        },
+        "Put": {
+          "request": {
+            "operation": "PutUserPolicy",
+            "params": [
+              { "name": "UserName", "source": "identifier", "target": "UserName" },
+              { "name": "Name", "source": "identifier", "target": "PolicyName" }
+            ]
+          }
+        }
+      },
+      "has": {
+        "User": {
+          "resource": {
+            "identifiers": [{ "name": "UserName", "source": "identifier", "target": "Name" }],
+            "type": "User"
+          }
+        }
+      },
+      "identifiers": [
+        {
+          "memberName": "UserName",
+          "name": "UserName"
+        },
+        {
+          "memberName": "PolicyName",
+          "name": "Name"
+        }
+      ],
+      "load": {
+        "path": "@",
+        "request": {
+          "operation": "GetUserPolicy",
+          "params": [
+            { "name": "UserName", "source": "identifier", "target": "UserName" },
+            { "name": "Name", "source": "identifier", "target": "PolicyName" }
+          ]
+        }
+      },
+      "shape": "GetUserPolicyResponse"
+    },
+    "VirtualMfaDevice": {
+      "actions": {
+        "Delete": {
+          "request": {
+            "operation": "DeleteVirtualMFADevice",
+            "params": [{ "name": "SerialNumber", "source": "identifier", "target": "SerialNumber" }]
+          }
+        }
+      },
+      "has": {
+        "User": {
+          "resource": {
+            "identifiers": [{ "path": "User.UserName", "source": "data", "target": "Name" }],
+            "type": "User"
+          }
+        }
+      },
+      "identifiers": [
+        {
+          "memberName": "SerialNumber",
+          "name": "SerialNumber"
+        }
+      ],
+      "shape": "VirtualMFADevice"
+    }
+  },
+  "service": {
+    "actions": {
+      "ChangePassword": {
+        "request": { "operation": "ChangePassword" }
+      },
+      "CreateAccountAlias": {
+        "request": { "operation": "CreateAccountAlias" }
+      },
+      "CreateAccountPasswordPolicy": {
+        "request": { "operation": "UpdateAccountPasswordPolicy" },
+        "resource": {
+          "identifiers": [],
+          "type": "AccountPasswordPolicy"
+        }
+      },
+      "CreateGroup": {
+        "request": { "operation": "CreateGroup" },
+        "resource": {
+          "identifiers": [{ "path": "GroupName", "source": "requestParameter", "target": "Name" }],
+          "path": "Group",
+          "type": "Group"
+        }
+      },
+      "CreateInstanceProfile": {
+        "request": { "operation": "CreateInstanceProfile" },
+        "resource": {
+          "identifiers": [{ "path": "InstanceProfileName", "source": "requestParameter", "target": "Name" }],
+          "path": "InstanceProfile",
+          "type": "InstanceProfile"
+        }
+      },
+      "CreatePolicy": {
+        "request": { "operation": "CreatePolicy" },
+        "resource": {
+          "identifiers": [{ "path": "Policy.Arn", "source": "response", "target": "Arn" }],
+          "type": "Policy"
+        }
+      },
+      "CreateRole": {
+        "request": { "operation": "CreateRole" },
+        "resource": {
+          "identifiers": [{ "path": "RoleName", "source": "requestParameter", "target": "Name" }],
+          "path": "Role",
+          "type": "Role"
+        }
+      },
+      "CreateSamlProvider": {
+        "request": { "operation": "CreateSAMLProvider" },
+        "resource": {
+          "identifiers": [{ "path": "SAMLProviderArn", "source": "response", "target": "Arn" }],
+          "type": "SamlProvider"
+        }
+      },
+      "CreateServerCertificate": {
+        "request": { "operation": "UploadServerCertificate" },
+        "resource": {
+          "identifiers": [{ "path": "ServerCertificateName", "source": "requestParameter", "target": "Name" }],
+          "type": "ServerCertificate"
+        }
+      },
+      "CreateSigningCertificate": {
+        "request": { "operation": "UploadSigningCertificate" },
+        "resource": {
+          "identifiers": [{ "path": "Certificate.CertificateId", "source": "response", "target": "Id" }],
+          "path": "Certificate",
+          "type": "SigningCertificate"
+        }
+      },
+      "CreateUser": {
+        "request": { "operation": "CreateUser" },
+        "resource": {
+          "identifiers": [{ "path": "UserName", "source": "requestParameter", "target": "Name" }],
+          "path": "User",
+          "type": "User"
+        }
+      },
+      "CreateVirtualMfaDevice": {
+        "request": { "operation": "CreateVirtualMFADevice" },
+        "resource": {
+          "identifiers": [{ "path": "VirtualMFADevice.SerialNumber", "source": "response", "target": "SerialNumber" }],
+          "path": "VirtualMFADevice",
+          "type": "VirtualMfaDevice"
+        }
+      }
+    },
+    "has": {
+      "AccountPasswordPolicy": {
+        "resource": {
+          "identifiers": [],
+          "type": "AccountPasswordPolicy"
+        }
+      },
+      "AccountSummary": {
+        "resource": {
+          "identifiers": [],
+          "type": "AccountSummary"
+        }
+      },
+      "CurrentUser": {
+        "resource": {
+          "identifiers": [],
+          "type": "CurrentUser"
+        }
+      },
+      "Group": {
+        "resource": {
+          "identifiers": [{ "source": "input", "target": "Name" }],
+          "type": "Group"
+        }
+      },
+      "InstanceProfile": {
+        "resource": {
+          "identifiers": [{ "source": "input", "target": "Name" }],
+          "type": "InstanceProfile"
+        }
+      },
+      "Policy": {
+        "resource": {
+          "identifiers": [{ "source": "input", "target": "PolicyArn" }],
+          "type": "Policy"
+        }
+      },
+      "Role": {
+        "resource": {
+          "identifiers": [{ "source": "input", "target": "Name" }],
+          "type": "Role"
+        }
+      },
+      "SamlProvider": {
+        "resource": {
+          "identifiers": [{ "source": "input", "target": "Arn" }],
+          "type": "SamlProvider"
+        }
+      },
+      "ServerCertificate": {
+        "resource": {
+          "identifiers": [{ "source": "input", "target": "Name" }],
+          "type": "ServerCertificate"
+        }
+      },
+      "User": {
+        "resource": {
+          "identifiers": [{ "source": "input", "target": "Name" }],
+          "type": "User"
+        }
+      },
+      "VirtualMfaDevice": {
+        "resource": {
+          "identifiers": [{ "source": "input", "target": "SerialNumber" }],
+          "type": "VirtualMfaDevice"
+        }
+      }
+    },
+    "hasMany": {
+      "Groups": {
+        "request": { "operation": "ListGroups" },
+        "resource": {
+          "identifiers": [{ "path": "Groups[].GroupName", "source": "response", "target": "Name" }],
+          "path": "Groups[]",
+          "type": "Group"
+        }
+      },
+      "InstanceProfiles": {
+        "request": { "operation": "ListInstanceProfiles" },
+        "resource": {
+          "identifiers": [{ "path": "InstanceProfiles[].InstanceProfileName", "source": "response", "target": "Name" }],
+          "path": "InstanceProfiles[]",
+          "type": "InstanceProfile"
+        }
+      },
+      "Policies": {
+        "request": { "operation": "ListPolicies" },
+        "resource": {
+          "identifiers": [{ "path": "Policies[].Arn", "source": "response", "target": "Arn" }],
+          "path": "Policies[]",
+          "type": "Policy"
+        }
+      },
+      "Roles": {
+        "request": { "operation": "ListRoles" },
+        "resource": {
+          "identifiers": [{ "path": "Roles[].RoleName", "source": "response", "target": "Name" }],
+          "path": "Roles[]",
+          "type": "Role"
+        }
+      },
+      "SamlProviders": {
+        "request": { "operation": "ListSAMLProviders" },
+        "resource": {
+          "identifiers": [{ "path": "SAMLProviderList[].Arn", "source": "response", "target": "Arn" }],
+          "type": "SamlProvider"
+        }
+      },
+      "ServerCertificates": {
+        "request": { "operation": "ListServerCertificates" },
+        "resource": {
+          "identifiers": [
+            { "path": "ServerCertificateMetadataList[].ServerCertificateName", "source": "response", "target": "Name" }
+          ],
+          "type": "ServerCertificate"
+        }
+      },
+      "Users": {
+        "request": { "operation": "ListUsers" },
+        "resource": {
+          "identifiers": [{ "path": "Users[].UserName", "source": "response", "target": "Name" }],
+          "path": "Users[]",
+          "type": "User"
+        }
+      },
+      "VirtualMfaDevices": {
+        "request": { "operation": "ListVirtualMFADevices" },
+        "resource": {
+          "identifiers": [
+            { "path": "VirtualMFADevices[].SerialNumber", "source": "response", "target": "SerialNumber" }
+          ],
+          "path": "VirtualMFADevices[]",
+          "type": "VirtualMfaDevice"
+        }
+      }
+    }
+  }
+}

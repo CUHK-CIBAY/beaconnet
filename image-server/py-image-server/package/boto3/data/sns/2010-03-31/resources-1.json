@@ -1,0 +1,251 @@
+{
+  "resources": {
+    "PlatformApplication": {
+      "actions": {
+        "CreatePlatformEndpoint": {
+          "request": {
+            "operation": "CreatePlatformEndpoint",
+            "params": [{ "name": "Arn", "source": "identifier", "target": "PlatformApplicationArn" }]
+          },
+          "resource": {
+            "identifiers": [{ "path": "EndpointArn", "source": "response", "target": "Arn" }],
+            "type": "PlatformEndpoint"
+          }
+        },
+        "Delete": {
+          "request": {
+            "operation": "DeletePlatformApplication",
+            "params": [{ "name": "Arn", "source": "identifier", "target": "PlatformApplicationArn" }]
+          }
+        },
+        "SetAttributes": {
+          "request": {
+            "operation": "SetPlatformApplicationAttributes",
+            "params": [{ "name": "Arn", "source": "identifier", "target": "PlatformApplicationArn" }]
+          }
+        }
+      },
+      "hasMany": {
+        "Endpoints": {
+          "request": {
+            "operation": "ListEndpointsByPlatformApplication",
+            "params": [{ "name": "Arn", "source": "identifier", "target": "PlatformApplicationArn" }]
+          },
+          "resource": {
+            "identifiers": [{ "path": "Endpoints[].EndpointArn", "source": "response", "target": "Arn" }],
+            "type": "PlatformEndpoint"
+          }
+        }
+      },
+      "identifiers": [{ "name": "Arn" }],
+      "load": {
+        "path": "@",
+        "request": {
+          "operation": "GetPlatformApplicationAttributes",
+          "params": [{ "name": "Arn", "source": "identifier", "target": "PlatformApplicationArn" }]
+        }
+      },
+      "shape": "GetPlatformApplicationAttributesResponse"
+    },
+    "PlatformEndpoint": {
+      "actions": {
+        "Delete": {
+          "request": {
+            "operation": "DeleteEndpoint",
+            "params": [{ "name": "Arn", "source": "identifier", "target": "EndpointArn" }]
+          }
+        },
+        "Publish": {
+          "request": {
+            "operation": "Publish",
+            "params": [{ "name": "Arn", "source": "identifier", "target": "TargetArn" }]
+          }
+        },
+        "SetAttributes": {
+          "request": {
+            "operation": "SetEndpointAttributes",
+            "params": [{ "name": "Arn", "source": "identifier", "target": "EndpointArn" }]
+          }
+        }
+      },
+      "identifiers": [{ "name": "Arn" }],
+      "load": {
+        "path": "@",
+        "request": {
+          "operation": "GetEndpointAttributes",
+          "params": [{ "name": "Arn", "source": "identifier", "target": "EndpointArn" }]
+        }
+      },
+      "shape": "GetEndpointAttributesResponse"
+    },
+    "Subscription": {
+      "actions": {
+        "Delete": {
+          "request": {
+            "operation": "Unsubscribe",
+            "params": [{ "name": "Arn", "source": "identifier", "target": "SubscriptionArn" }]
+          }
+        },
+        "SetAttributes": {
+          "request": {
+            "operation": "SetSubscriptionAttributes",
+            "params": [{ "name": "Arn", "source": "identifier", "target": "SubscriptionArn" }]
+          }
+        }
+      },
+      "identifiers": [{ "name": "Arn" }],
+      "load": {
+        "path": "@",
+        "request": {
+          "operation": "GetSubscriptionAttributes",
+          "params": [{ "name": "Arn", "source": "identifier", "target": "SubscriptionArn" }]
+        }
+      },
+      "shape": "GetSubscriptionAttributesResponse"
+    },
+    "Topic": {
+      "actions": {
+        "AddPermission": {
+          "request": {
+            "operation": "AddPermission",
+            "params": [{ "name": "Arn", "source": "identifier", "target": "TopicArn" }]
+          }
+        },
+        "ConfirmSubscription": {
+          "request": {
+            "operation": "ConfirmSubscription",
+            "params": [{ "name": "Arn", "source": "identifier", "target": "TopicArn" }]
+          },
+          "resource": {
+            "identifiers": [{ "path": "SubscriptionArn", "source": "response", "target": "Arn" }],
+            "type": "Subscription"
+          }
+        },
+        "Delete": {
+          "request": {
+            "operation": "DeleteTopic",
+            "params": [{ "name": "Arn", "source": "identifier", "target": "TopicArn" }]
+          }
+        },
+        "Publish": {
+          "request": {
+            "operation": "Publish",
+            "params": [{ "name": "Arn", "source": "identifier", "target": "TopicArn" }]
+          }
+        },
+        "RemovePermission": {
+          "request": {
+            "operation": "RemovePermission",
+            "params": [{ "name": "Arn", "source": "identifier", "target": "TopicArn" }]
+          }
+        },
+        "SetAttributes": {
+          "request": {
+            "operation": "SetTopicAttributes",
+            "params": [{ "name": "Arn", "source": "identifier", "target": "TopicArn" }]
+          }
+        },
+        "Subscribe": {
+          "request": {
+            "operation": "Subscribe",
+            "params": [{ "name": "Arn", "source": "identifier", "target": "TopicArn" }]
+          },
+          "resource": {
+            "identifiers": [{ "path": "SubscriptionArn", "source": "response", "target": "Arn" }],
+            "type": "Subscription"
+          }
+        }
+      },
+      "hasMany": {
+        "Subscriptions": {
+          "request": {
+            "operation": "ListSubscriptionsByTopic",
+            "params": [{ "name": "Arn", "source": "identifier", "target": "TopicArn" }]
+          },
+          "resource": {
+            "identifiers": [{ "path": "Subscriptions[].SubscriptionArn", "source": "response", "target": "Arn" }],
+            "type": "Subscription"
+          }
+        }
+      },
+      "identifiers": [{ "name": "Arn" }],
+      "load": {
+        "path": "@",
+        "request": {
+          "operation": "GetTopicAttributes",
+          "params": [{ "name": "Arn", "source": "identifier", "target": "TopicArn" }]
+        }
+      },
+      "shape": "GetTopicAttributesResponse"
+    }
+  },
+  "service": {
+    "actions": {
+      "CreatePlatformApplication": {
+        "request": { "operation": "CreatePlatformApplication" },
+        "resource": {
+          "identifiers": [{ "path": "PlatformApplicationArn", "source": "response", "target": "Arn" }],
+          "type": "PlatformApplication"
+        }
+      },
+      "CreateTopic": {
+        "request": { "operation": "CreateTopic" },
+        "resource": {
+          "identifiers": [{ "path": "TopicArn", "source": "response", "target": "Arn" }],
+          "type": "Topic"
+        }
+      }
+    },
+    "has": {
+      "PlatformApplication": {
+        "resource": {
+          "identifiers": [{ "source": "input", "target": "Arn" }],
+          "type": "PlatformApplication"
+        }
+      },
+      "PlatformEndpoint": {
+        "resource": {
+          "identifiers": [{ "source": "input", "target": "Arn" }],
+          "type": "PlatformEndpoint"
+        }
+      },
+      "Subscription": {
+        "resource": {
+          "identifiers": [{ "source": "input", "target": "Arn" }],
+          "type": "Subscription"
+        }
+      },
+      "Topic": {
+        "resource": {
+          "identifiers": [{ "source": "input", "target": "Arn" }],
+          "type": "Topic"
+        }
+      }
+    },
+    "hasMany": {
+      "PlatformApplications": {
+        "request": { "operation": "ListPlatformApplications" },
+        "resource": {
+          "identifiers": [
+            { "path": "PlatformApplications[].PlatformApplicationArn", "source": "response", "target": "Arn" }
+          ],
+          "type": "PlatformApplication"
+        }
+      },
+      "Subscriptions": {
+        "request": { "operation": "ListSubscriptions" },
+        "resource": {
+          "identifiers": [{ "path": "Subscriptions[].SubscriptionArn", "source": "response", "target": "Arn" }],
+          "type": "Subscription"
+        }
+      },
+      "Topics": {
+        "request": { "operation": "ListTopics" },
+        "resource": {
+          "identifiers": [{ "path": "Topics[].TopicArn", "source": "response", "target": "Arn" }],
+          "type": "Topic"
+        }
+      }
+    }
+  }
+}

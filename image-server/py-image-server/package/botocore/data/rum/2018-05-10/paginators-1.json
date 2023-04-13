@@ -1,0 +1,16 @@
+{
+  "pagination": {
+    "GetAppMonitorData": {
+      "input_token": "NextToken",
+      "limit_key": "MaxResults",
+      "output_token": "NextToken",
+      "result_key": "Events"
+    },
+    "ListAppMonitors": {
+      "input_token": "NextToken",
+      "limit_key": "MaxResults",
+      "output_token": "NextToken",
+      "result_key": "AppMonitorSummaries"
+    }
+  }
+}

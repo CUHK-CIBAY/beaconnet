@@ -1,0 +1,10 @@
+{
+  "merge": {
+    "pagination": {
+      "ListResources": {
+        "non_aggregate_keys": ["TypeName"]
+      }
+    }
+  },
+  "version": 1.0
+}

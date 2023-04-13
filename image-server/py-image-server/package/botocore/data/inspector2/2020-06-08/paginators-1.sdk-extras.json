@@ -1,0 +1,13 @@
+{
+  "merge": {
+    "pagination": {
+      "ListCoverageStatistics": {
+        "non_aggregate_keys": ["totalCounts"]
+      },
+      "ListFindingAggregations": {
+        "non_aggregate_keys": ["aggregationType"]
+      }
+    }
+  },
+  "version": 1.0
+}

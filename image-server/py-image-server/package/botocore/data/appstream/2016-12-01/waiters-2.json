@@ -1,0 +1,55 @@
+{
+  "version": 2,
+  "waiters": {
+    "FleetStarted": {
+      "acceptors": [
+        {
+          "argument": "Fleets[].State",
+          "expected": "ACTIVE",
+          "matcher": "pathAll",
+          "state": "success"
+        },
+        {
+          "argument": "Fleets[].State",
+          "expected": "PENDING_DEACTIVATE",
+          "matcher": "pathAny",
+          "state": "failure"
+        },
+        {
+          "argument": "Fleets[].State",
+          "expected": "INACTIVE",
+          "matcher": "pathAny",
+          "state": "failure"
+        }
+      ],
+      "delay": 30,
+      "maxAttempts": 40,
+      "operation": "DescribeFleets"
+    },
+    "FleetStopped": {
+      "acceptors": [
+        {
+          "argument": "Fleets[].State",
+          "expected": "INACTIVE",
+          "matcher": "pathAll",
+          "state": "success"
+        },
+        {
+          "argument": "Fleets[].State",
+          "expected": "PENDING_ACTIVATE",
+          "matcher": "pathAny",
+          "state": "failure"
+        },
+        {
+          "argument": "Fleets[].State",
+          "expected": "ACTIVE",
+          "matcher": "pathAny",
+          "state": "failure"
+        }
+      ],
+      "delay": 30,
+      "maxAttempts": 40,
+      "operation": "DescribeFleets"
+    }
+  }
+}
