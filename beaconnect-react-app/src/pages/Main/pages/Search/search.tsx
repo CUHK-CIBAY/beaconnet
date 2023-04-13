@@ -60,15 +60,15 @@ const Search = () => (
           </div>
           <SearchUserBar />
         </div>
-        <TrendSuggestionSection />
+        {/* <TrendSuggestionSection /> */}
         {/* <SearchResultLatest /> */}
-        {/* <SearchResultPeople /> */}
+        <SearchResultPeople />
       </div>
     </div>
 
     <div className="page-right-content">
-      <AdvancedSearch />
-      {/* <SearchResultRight /> */}
+      {/* <AdvancedSearch /> */}
+      <SearchResultRight />
     </div>
   </div>
 );
