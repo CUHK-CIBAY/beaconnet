@@ -76,22 +76,27 @@ export const WriteBitBox = () => {
     },
   });
 
-  const uploadAttachment = async (file: any | null, content: string) => {
-    toBase64(file).then((data) => {
-      const base64 = data as string;
-      base64.indexOf(',');
-      const base64Data = base64.substring(base64.indexOf(',') + 1);
-      fetch('https://iayeuuhkq5.execute-api.ap-southeast-1.amazonaws.com/Prod/image', {
-        method: 'post',
-        body: base64Data,
-      })
-        .then((res) => res.json())
-        .then((returnData) => {
-          console.log(returnData, content);
-          const { key } = returnData as any;
-          postBitWithAttachment({ variables: { image: key as string, content } });
-        });
-    });
+  const uploadAttachment = (file: any | null, content: string) => {
+    if (file.size > 6_000_000) {
+    // !AWS lambda function max size is 6MB
+      alert('Filesize exceed 6MB');
+    } else {
+      toBase64(file).then((data) => {
+        const base64 = data as string;
+        base64.indexOf(',');
+        const base64Data = base64.substring(base64.indexOf(',') + 1);
+        fetch('https://iayeuuhkq5.execute-api.ap-southeast-1.amazonaws.com/Prod/image', {
+          method: 'post',
+          body: base64Data,
+        })
+          .then((res) => res.json())
+          .then((returnData) => {
+            console.log(returnData, content);
+            const { key } = returnData as any;
+            postBitWithAttachment({ variables: { image: key as string, content } });
+          });
+      });
+    }
   };
 
   const postBitHandler = (e: React.KeyboardEvent | React.MouseEvent) => {
