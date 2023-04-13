@@ -1,4 +1,5 @@
 /* eslint-disable max-len */
+/* eslint-disable max-len */
 import React, { useState } from 'react';
 import { useMutation } from '@apollo/client';
 import { AiOutlineHeart } from 'react-icons/ai';
@@ -40,12 +41,14 @@ export const WriteBitBox = ({
   setReBit,
   bitAttachment,
   setBitAttachment,
+  showBits,
 }: {
   reBit: any;
   // eslint-disable-next-line no-shadow, no-unused-vars
   setReBit: any;
   bitAttachment: any;
   setBitAttachment: any;
+  showBits: any;
 }) => {
   const [draggingState, setDraggingState] = useState(false);
 
@@ -57,6 +60,8 @@ export const WriteBitBox = ({
     setTimeout(() => {
       writeBitBox.classList.remove('loading');
       writeBitBox.classList.remove('success');
+      // eslint-disable-next-line no-unused-expressions
+      showBits;
     }, 2000);
   };
 
@@ -342,23 +347,29 @@ export const BitBox = (data: any) => {
       <div className="bit-box-content">
         <div className="bit-box-content-text">{data?.content}</div>
       </div>
-      {/* {haveCaption && (
+      {data?.reBit && (
         <div className="bit-box-rebit-with-caption">
           <div className="bit-box-content-header">
-            <img className="bit-box-icon" src={userIcon} alt="profile" />
-            <div className="bit-box-content-header-name">John Doe</div>
-            <div className="bit-box-content-header-userID">@johndoe</div>
-            <div className="bit-box-content-header-time">2 hours ago</div>
-          </div>
-          <div className="bit-box-content">
-            <div className="bit-box-content-text">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec auctor, nisl eget tincidunt lacinia, nisl
-              nisl aliquet nisl, eget aliquet nisl nisl eget nisl. Donec auctor, nisl eget tincidunt lacinia, nisl nisl
-              aliquet nisl, eget aliquet nisl nisl eget nisl.
+            <img
+              className="bit-box-icon"
+              src={
+                data?.reBit?.author?.info?.image
+                  ? `https://beaconnect-image-imagebucket-ft90dpqhkbr1.s3.ap-southeast-1.amazonaws.com/${data?.reBit?.author?.info?.image}`
+                  : userIcon
+              }
+              alt="profile"
+            />
+            <div className="bit-box-content-header-name">{data?.reBit?.author?.info?.nickname}</div>
+            <div className="bit-box-content-header-userID">{data?.reBit?.author?.username}</div>
+            <div className="bit-box-content-header-time">
+              {formatDistance(new Date(data?.reBit?.createAt), new Date(), { addSuffix: true })}
             </div>
           </div>
+          <div className="bit-box-content">
+            <div className="bit-box-content-text">{data?.reBit?.content}</div>
+          </div>
         </div>
-      )} */}
+      )}
       {data?.image && (
         <img
           className="bit-box-content-image"

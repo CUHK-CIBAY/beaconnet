@@ -32,6 +32,7 @@ const Home = ({ isLoggedIn }: { isLoggedIn: boolean }) => {
               setReBit={setReBit}
               bitAttachment={bitAttachment}
               setBitAttachment={setBitAttachment}
+              showBits={showBits}
             />
           )}
           {result?.showBits?.map((item: any) => (

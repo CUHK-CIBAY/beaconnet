@@ -96,6 +96,17 @@ export type showBitsQueryResult = {
           nickname: string;
         };
       };
+      reBit: {
+        content: string;
+        createAt: string;
+        author: {
+          username: string;
+          info: {
+            image: string;
+            nickname: string;
+          };
+        };
+      };
     },
   ];
 };
@@ -114,6 +125,17 @@ export const showBitsQuery = gql`
         info {
           image
           nickname
+        }
+      }
+      reBit {
+        content
+        createAt
+        author {
+          username
+          info {
+            image
+            nickname
+          }
         }
       }
     }
