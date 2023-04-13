@@ -353,6 +353,7 @@
 .trend-search-bar {
   position: relative;
   height: 40px;
+  margin-top: 10px;
 }
 
 .trend-search-bar input {
