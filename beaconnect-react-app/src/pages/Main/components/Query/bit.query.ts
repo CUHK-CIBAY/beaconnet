@@ -67,13 +67,14 @@ export type showBitsQueryResult = {
       id: string;
       content: string;
       createAt: string;
+      totalLike: number;
       author: {
         id: string;
         username: string;
         info: {
           image: string;
           nickname: string;
-        }
+        };
       };
     },
   ];
