@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useMutation } from '@apollo/client';
 import { AiOutlineHeart } from 'react-icons/ai';
 import { BiComment, BiRepost } from 'react-icons/bi';
@@ -11,6 +11,8 @@ import { postBitQuery, postBitMutationVariables, postBitMutationResult } from '.
 import userIcon from '../../pages/Home/components/icon.png';
 
 export const WriteBitBox = () => {
+  const [draggingState, setDraggingState] = useState(false);
+
   const sendBitSuccess = () => {
     const writeBitBox = document.querySelector('.write-bit-box') as HTMLDivElement;
     const textArea = writeBitBox.querySelector('textarea') as HTMLTextAreaElement;
@@ -47,8 +49,34 @@ export const WriteBitBox = () => {
     }
   };
 
+  const handleDragFile = (e: React.DragEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    e.currentTarget.classList.add('dragging');
+    setDraggingState(true);
+  };
+
+  const handleDropFile = (e: React.DragEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    e.currentTarget.classList.remove('dragging');
+    setDraggingState(false);
+  };
+
+  const handleDragLeave = (e: React.DragEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    e.currentTarget.classList.remove('dragging');
+    setDraggingState(false);
+  };
+
   return (
-    <div className="write-bit-box bit-box-container">
+    <div
+      className="write-bit-box bit-box-container"
+      onDragOver={handleDragFile}
+      onDrop={handleDropFile}
+      onDragLeave={handleDragLeave}
+    >
       <div className="write-bit-box-container">
         <img className="bit-box-icon" src={userIcon} alt="profile" />
         <div className="write-bit-box-content">
@@ -78,6 +106,11 @@ export const WriteBitBox = () => {
           <TiTick className="write-bit-box-tick-icon" />
         </div>
       </div>
+      {draggingState && (
+        <div className="write-bit-box-upload">
+          <div className="write-bit-box-upload-text">Drop your files here</div>
+        </div>
+      )}
     </div>
   );
 };

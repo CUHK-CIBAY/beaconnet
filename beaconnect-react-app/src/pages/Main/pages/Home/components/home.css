@@ -163,6 +163,28 @@
   color: #a3ab82;
 }
 
+.write-bit-box-upload {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.5rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  background-color: rgba(255, 255, 255, 0.9);
+  overflow: hidden;
+  opacity: 0;
+  transition: opacity 0.2s ease-in-out;
+}
+
+.write-bit-box.dragging .write-bit-box-upload {
+  opacity: 1;
+}
+
 .bit-box {
   padding: 15px 20px 5px 20px;
 }
