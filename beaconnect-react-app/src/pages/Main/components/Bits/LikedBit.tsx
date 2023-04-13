@@ -16,15 +16,16 @@ const LIKE_POST_MUTATION = gql`
   }
 `;
 
-const likedBitHandler = async (postId) => {
-  try {
-    const { data } = await likedBit({
-      variables: { postId },
+const likedBitHandler = (postId: string) => {
+  likedBit({ variables: { postId } })
+    .then((result) => {
+      const updatedLikes = result.data.likedBit.likes.length;
+      setLikes(updatedLikes);
+    })
+    .catch((error) => {
+      console.log(error);
     });
-    return data.likedBit.likes.length;
-  } catch (error) {
-    console.log(error);
-  }
 };
+
 
 const [likedBit] = useMutation(LIKE_POST_MUTATION);
