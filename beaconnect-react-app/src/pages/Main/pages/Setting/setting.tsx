@@ -1,10 +1,11 @@
 import React from 'react';
 import { AiOutlineLeft } from 'react-icons/ai';
 import { RiArrowRightSLine } from 'react-icons/ri';
-import SettingYourAccount from './components/setting_Your_Account';
+// import SettingYourAccount from './components/setting_Your_Account';
 // import SettingPrivacy from './components/setting_Privacy_Safety';
 // import SettingNotification from './components/setting_Notification';
 // import SettingAccessibility from './components/setting_Accessibility';
+import SettingResetPassword from './components/setting_Your_Account_ResetPassword';
 import './setting.css';
 
 const Setting = () => (
@@ -47,10 +48,11 @@ const Setting = () => (
     </div>
     <div className="page-right-content">
       <div className="setting-function-container">
-        <SettingYourAccount />
+        {/* <SettingYourAccount /> */}
         {/* <SettingPrivacy /> */}
         {/* <SettingNotification /> */}
         {/* <SettingAccessibility /> */}
+        <SettingResetPassword />
       </div>
     </div>
   </div>
