@@ -17,7 +17,7 @@ const commentBitResolver = async (_p: any, { id, content }: any, { me }: any) =>
                    id: count,
                    content: $content,
                    createAt: $createAt
-            }) 
+            })
             CREATE (u)-[:COMMENTED]->(c)-[:ON]->(b)
             RETURN c
         `;
