@@ -14,7 +14,7 @@ const Main = ({ isLoggedIn }: { isLoggedIn: boolean }) => (
       <Routes>
         <Route path="/search" element={<Search />} />
         <Route path="/profile" element={<Profile />} />
-        <Route path="*" element={<Homepage />} />
+        <Route path="*" element={<Homepage isLoggedIn={isLoggedIn} />} />
       </Routes>
     </Suspense>
   </div>
