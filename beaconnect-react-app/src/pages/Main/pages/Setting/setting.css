@@ -1,0 +1,216 @@
+.setting-page-container {
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+  position: relative;
+  display: flex;
+  background: #f3f4f5;
+  width: calc(100vw - 75px);
+  height: 100vh;
+  padding: 0px 0px 0px 75px;
+}
+
+.setting-page-container .page-center-content {
+  width: 35%;
+  margin: 0px 20px;
+}
+
+.setting-page-container .page-right-content {
+  position: absolute;
+  top: 0px;
+  right: 10px;
+  width: 55%;
+}
+
+.setting-container {
+  margin-top: 15px;
+  background: #fff;
+  padding: 20px 0px;
+  border-radius: 20px;
+  height: calc(100vh - 70px);
+}
+
+.setting-header {
+  display: flex;
+  align-items: center;
+  font-size: 20px;
+  padding: 0px 20px;
+}
+
+.setting-header-icon {
+  margin-top: 3px;
+  padding-right: 10px;
+}
+
+.setting-header-text {
+  font-weight: bold;
+}
+
+.setting-bar-your-account,
+.setting-bar-privacy-safety,
+.setting-bar-notification,
+.setting-bar-accessibility {
+  margin: 12px 0px;
+  padding: 8px 25px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 15px;
+  border-right: transparent 2px solid;
+  transition: background-color 200ms ease-in-out;
+}
+
+.setting-bar-your-account:hover {
+  background-color: #e4e9d3;
+  border-right: #ccd5ae 2px solid;
+}
+
+.setting-bar-privacy-safety:hover {
+  background-color: #e4e9d3;
+  border-right: #ccd5ae 2px solid;
+}
+
+.setting-bar-notification:hover {
+  background-color: #e4e9d3;
+  border-right: #ccd5ae 2px solid;
+}
+
+.setting-bar-accessibility:hover {
+  background-color: #e4e9d3;
+  border-right: #ccd5ae 2px solid;
+}
+
+.setting-bar-your-account-arrow,
+.setting-bar-privacy-safety-arrow,
+.setting-bar-notification-arrow,
+.setting-bar-accessibility-arrow {
+  margin-top: 3px;
+}
+
+.setting-function-container {
+  margin-top: 15px;
+  background: #fff;
+  padding: 20px;
+  border-radius: 20px;
+  height: calc(100vh - 70px);
+}
+
+.setting-your-account-container {
+  padding: 0px 10px;
+  font-weight: bold;
+}
+
+.setting-your-account-header,
+.setting-privacy-safety-header,
+.setting-notification-header,
+.setting-accessibility-header,
+.setting-reset-password-header {
+  font-size: 18px;
+  margin-bottom: 15px;
+  font-weight: bold;
+}
+
+.setting-reset-password-header {
+  display: flex;
+  align-items: center;
+}
+
+.setting-reset-password-header-icon {
+  margin-top: 3px;
+  padding-right: 10px;
+}
+
+.your-account-change-password-header,
+.your-account-deactive-account-header,
+.privacy-safety-your-bits-header,
+.privacy-safety-content-see-header,
+.notification-filter-header,
+.notification-perferences-header,
+.accessibility-font-size-header,
+.accessibility-color-header {
+  margin: 0px;
+}
+
+.your-account-change-password-content,
+.your-account-deactive-account-content,
+.privacy-safety-your-bits-content,
+.privacy-safety-content-see-content,
+.notification-filter-content,
+.notification-perferences-content,
+.accessibility-font-size-content,
+.accessibility-color-content {
+  padding: 10px 15px;
+  font-weight: 500;
+  color: #757575;
+}
+
+.your-account-change-password-arrow,
+.your-account-deactive-account-arrow,
+.privacy-safety-your-bits-arrow,
+.privacy-safety-content-see-arrow,
+.notification-filter-arrow,
+.notification-perferences-arrow,
+.accessibility-font-size-arrow,
+.accessibility-color-arrow {
+  float: right;
+}
+
+.your-account-change-password,
+.your-account-deactive-account,
+.privacy-safety-your-bits,
+.privacy-safety-content-see,
+.notification-filter,
+.notification-perferences,
+.accessibility-font-size,
+.accessibility-color {
+  margin-top: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.setting-reset-password-current-input:focus {
+  border: #a1ab7d 2px solid;
+  border-radius: 4px;
+}
+
+.setting-reset-password-new-input:focus {
+  border: #a1ab7d 2px solid;
+  border-radius: 4px;
+}
+
+.setting-reset-password-confirm-input:focus {
+  border: #a1ab7d 2px solid;
+  border-radius: 4px;
+}
+
+.setting-reset-password-current-input,
+.setting-reset-password-new-input,
+.setting-reset-password-confirm-input {
+  margin: 10px;
+  padding: 10px;
+  width: calc(100% - 45px);
+  border: #ccd5ae 2px solid;
+  border-radius: 4px;
+  outline: none;
+}
+
+.setting-reset-password-content p {
+  margin: 13px;
+}
+
+.setting-reset-password-submit-container {
+  margin: 10px;
+  display: flex;
+  justify-content: center;
+}
+
+.setting-reset-password-submit:hover {
+  background-color: #a1ab7d;
+}
+
+.setting-reset-password-submit {
+  padding: 5px 20px;
+  border: none;
+  border-radius: 15px;
+  background-color: #ccd5ae;
+}

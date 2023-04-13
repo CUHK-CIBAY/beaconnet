@@ -63,8 +63,15 @@ const LoginCompound = (props: {
     },
   );
 
-  const handleLogin = (email: string, password: string) => {
-    login({ variables: { email, password } });
+  const handleLogin = (loginInput: string, password: string) => {
+    let email: string | null = null;
+    let username: string | null = null;
+    if (!loginInput.match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{3,})$/i)) {
+      username = loginInput;
+    } else {
+      email = loginInput;
+    }
+    login({ variables: { email, username, password } });
   };
   const handleRegister = (email: string, username: string, password: string, confirmPassword: string) => {
     if (!email.match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i)) setErrorMessage('Invalid email');

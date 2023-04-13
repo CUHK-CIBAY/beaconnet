@@ -2,6 +2,7 @@ import React, { Suspense } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import Search from './pages/Search/search';
 import Profile from './pages/Profile/profile';
+import Setting from './pages/Setting/setting';
 import NavBar from './components/NavBar/navBar';
 import './components/main.css';
 import './pages/Home/components/home.css';
@@ -14,7 +15,8 @@ const Main = ({ isLoggedIn }: { isLoggedIn: boolean }) => (
       <Routes>
         <Route path="/search" element={<Search />} />
         <Route path="/profile" element={<Profile />} />
-        <Route path="*" element={<Homepage />} />
+        <Route path="/settings" element={<Setting />} />
+        <Route path="*" element={<Homepage isLoggedIn={isLoggedIn} />} />
       </Routes>
     </Suspense>
   </div>

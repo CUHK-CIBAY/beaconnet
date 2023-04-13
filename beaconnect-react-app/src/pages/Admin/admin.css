@@ -38,9 +38,18 @@
 .row {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
+  font-weight: bolder;
 }
 
-.block {
+.show-user-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.block,
+.panel-show-user-name,
+.panel-show-user-id,
+.panel-show-user-nickname {
   display: flex;
   justify-content: center;
   align-items: center;
