@@ -1,0 +1,138 @@
+.setting-page-container {
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+  position: relative;
+  display: flex;
+  background: #f3f4f5;
+  width: calc(100vw - 75px);
+  height: 100vh;
+  padding: 0px 0px 0px 75px;
+}
+
+.page-center-content {
+  width: 35%;
+  margin: 0px 20px;
+}
+
+.page-right-content {
+  position: absolute;
+  top: 0px;
+  right: 10px;
+  width: 55%;
+}
+
+.setting-container {
+  margin-top: 15px;
+  background: #fff;
+  padding: 20px;
+  border-radius: 20px;
+  height: calc(100vh - 70px);
+}
+
+.setting-header {
+  display: flex;
+  align-items: center;
+  font-size: 20px;
+}
+
+.setting-header-icon {
+  margin-top: 3px;
+  padding-right: 10px;
+}
+
+.setting-header-text {
+  font-weight: bold;
+}
+
+.setting-bar {
+  padding: 10px;
+}
+
+.setting-bar-your-account,
+.setting-bar-privacy-safety,
+.setting-bar-notification,
+.setting-bar-accessibility {
+  padding: 10px 5px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 15px;
+}
+
+.setting-bar-your-account-arrow,
+.setting-bar-privacy-safety-arrow,
+.setting-bar-notification-arrow,
+.setting-bar-accessibility-arrow {
+  margin-top: 3px;
+}
+
+.setting-function-container {
+  margin-top: 15px;
+  background: #fff;
+  padding: 20px;
+  border-radius: 20px;
+  height: calc(100vh - 70px);
+}
+
+.setting-your-account-container {
+  padding: 0px 10px;
+  font-weight: bold;
+}
+
+.setting-your-account-header,
+.setting-privacy-safety-header,
+.setting-notification-header,
+.setting-accessibility-header {
+  font-size: 18px;
+  margin-bottom: 15px;
+  font-weight: bold;
+}
+
+.your-account-change-password-header,
+.your-account-deactive-account-header,
+.privacy-safety-your-bits-header,
+.privacy-safety-content-see-header,
+.notification-filter-header,
+.notification-perferences-header,
+.accessibility-font-size-header,
+.accessibility-color-header {
+  margin: 0px;
+}
+
+.your-account-change-password-content,
+.your-account-deactive-account-content,
+.privacy-safety-your-bits-content,
+.privacy-safety-content-see-content,
+.notification-filter-content,
+.notification-perferences-content,
+.accessibility-font-size-content,
+.accessibility-color-content {
+  padding: 10px 15px;
+  font-weight: 500;
+  color: #757575;
+}
+
+.your-account-change-password-arrow,
+.your-account-deactive-account-arrow,
+.privacy-safety-your-bits-arrow,
+.privacy-safety-content-see-arrow,
+.notification-filter-arrow,
+.notification-perferences-arrow,
+.accessibility-font-size-arrow,
+.accessibility-color-arrow {
+  float: right;
+}
+
+.your-account-change-password,
+.your-account-deactive-account,
+.privacy-safety-your-bits,
+.privacy-safety-content-see,
+.notification-filter,
+.notification-perferences,
+.accessibility-font-size,
+.accessibility-color {
+  margin-top: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
