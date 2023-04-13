@@ -30,7 +30,9 @@ export const SearchUserBar = () => {
       const username = searchInput.value;
 
       if (username.length > 0) {
-        searchUser({ variables: { username } });
+        searchUser({ variables: { username } }).then((res) => {
+          console.log(res.data);
+        });
       }
     }
   };
