@@ -6,7 +6,6 @@ type Bit {
   createAt: String!
   totalLike: Int
   likeGivers: [User!]
-  isLiked: Boolean
   "The Bit being ReBit"
   reBit: Bit
   "If include image return URL"
