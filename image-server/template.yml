@@ -21,9 +21,6 @@ Resources:
             Path: /image
           Type: Api
       Handler: main.handler
-      Timeout: 30
-      Role: !GetAtt 'ImageServerRole.Arn'
-      Runtime: python3.7
       Role: !GetAtt 'ImageServerRole.Arn'
       Runtime: python3.7
       Timeout: 30
