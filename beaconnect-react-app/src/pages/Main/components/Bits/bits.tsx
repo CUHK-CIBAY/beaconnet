@@ -39,15 +39,31 @@ export const WriteBitBox = () => {
     },
   });
 
+  const uploadAttachment = (file: any | null, content: string) => {
+    const formData = new FormData();
+    formData.append('file', file);
+    fetch('https://iayeuuhkq5.execute-api.ap-southeast-1.amazonaws.com/Prod/image', {
+      method: 'POST',
+      body: formData,
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data, content);
+        // const { url } = data;
+        // postBit({ variables: { image: url, content } });
+      });
+  };
+
   const postBitHandler = (e: React.KeyboardEvent | React.MouseEvent) => {
     const { currentTarget } = e;
     const textArea = currentTarget.parentElement?.parentElement?.querySelector('textarea') as HTMLTextAreaElement;
     const text = textArea.value;
     if (text.length > 0) {
       if (bitAttachment) {
-        console.log(bitAttachment);
+        uploadAttachment(bitAttachment, text);
+      } else {
+        postBit({ variables: { content: text } });
       }
-      postBit({ variables: { content: text } });
       // add loading status
       const writeBitBox = document.querySelector('.write-bit-box') as HTMLDivElement;
       writeBitBox.classList.add('loading');
