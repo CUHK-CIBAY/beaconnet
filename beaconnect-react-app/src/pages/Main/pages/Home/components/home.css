@@ -193,8 +193,14 @@
 
 .write-bit-box-added-attachment-item {
   display: grid;
-  grid-template-columns: 40px 1fr 10px;
+  grid-template-columns: 40px 1fr 20px;
   align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.write-bit-box-added-attachment-item-name {
+  text-overflow: ellipsis;
 }
 
 .bit-box {

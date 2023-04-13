@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useMutation } from '@apollo/client';
 import { AiOutlineHeart } from 'react-icons/ai';
 import { BiComment, BiRepost } from 'react-icons/bi';
-import { BsSoundwave, BsImage } from 'react-icons/bs';
+import { BsImage } from 'react-icons/bs';
 import { FiVideo } from 'react-icons/fi';
 import { RxCross2 } from 'react-icons/rx';
 import { TbSend } from 'react-icons/tb';
@@ -13,6 +13,7 @@ import userIcon from '../../pages/Home/components/icon.png';
 
 export const WriteBitBox = () => {
   const [draggingState, setDraggingState] = useState(false);
+  const [bitAttachment, setBitAttachment] = useState<any>(null);
 
   const sendBitSuccess = () => {
     const writeBitBox = document.querySelector('.write-bit-box') as HTMLDivElement;
@@ -43,6 +44,9 @@ export const WriteBitBox = () => {
     const textArea = currentTarget.parentElement?.parentElement?.querySelector('textarea') as HTMLTextAreaElement;
     const text = textArea.value;
     if (text.length > 0) {
+      if (bitAttachment) {
+        console.log(bitAttachment);
+      }
       postBit({ variables: { content: text } });
       // add loading status
       const writeBitBox = document.querySelector('.write-bit-box') as HTMLDivElement;
@@ -62,6 +66,11 @@ export const WriteBitBox = () => {
     e.stopPropagation();
     e.currentTarget.classList.remove('dragging');
     setDraggingState(false);
+    if (e.dataTransfer?.files[0].type.includes('image') || e.dataTransfer?.files[0].type.includes('video')) {
+      setBitAttachment(e.dataTransfer?.files[0]);
+    } else {
+      alert('Only image or video file is allowed');
+    }
   };
 
   const handleDragLeave = (e: React.DragEvent) => {
@@ -69,6 +78,19 @@ export const WriteBitBox = () => {
     e.stopPropagation();
     e.currentTarget.classList.remove('dragging');
     setDraggingState(false);
+  };
+
+  const FileUpload = (type: string) => {
+    const fileInput = document.createElement('input');
+    fileInput.type = 'file';
+    fileInput.accept = type;
+    fileInput.onchange = (e) => {
+      const file = (e.target as HTMLInputElement).files?.[0];
+      if (file) {
+        setBitAttachment(file);
+      }
+    };
+    fileInput.click();
   };
 
   return (
@@ -82,22 +104,39 @@ export const WriteBitBox = () => {
         <img className="bit-box-icon" src={userIcon} alt="profile" />
         <div className="write-bit-box-content">
           <textarea className="write-bit-box-content-text" placeholder="Write something..." />
-          <div className="write-bit-box-added-attachment">
-            <div className="write-bit-box-added-attachment-item">
-              <div className="write-bit-box-added-attachment-item-icon">
-                <BsImage />
-              </div>
-              <div className="write-bit-box-added-attachment-item-name">image.png</div>
-              <div className="write-bit-box-added-attachment-item-remove">
-                <RxCross2 />
+          {bitAttachment && (
+            <div className="write-bit-box-added-attachment">
+              <div className="write-bit-box-added-attachment-item">
+                <div className="write-bit-box-added-attachment-item-icon">
+                  {bitAttachment.type.includes('image') ? <BsImage /> : <FiVideo />}
+                </div>
+                <div className="write-bit-box-added-attachment-item-name">{bitAttachment.name}</div>
+                <div
+                  className="write-bit-box-added-attachment-item-remove"
+                  onClick={() => setBitAttachment(null)}
+                  onKeyDown={() => setBitAttachment(null)}
+                  role="button"
+                  tabIndex={0}
+                >
+                  <RxCross2 />
+                </div>
               </div>
             </div>
-          </div>
+          )}
           <div className="write-bit-box-options">
             <div className="write-bit-box-options-attachment">
-              <BsImage className="write-bit-box-options-icon" />
-              <FiVideo className="write-bit-box-options-icon" />
-              <BsSoundwave className="write-bit-box-options-icon" />
+              <BsImage
+                className="write-bit-box-options-icon"
+                onClick={() => {
+                  FileUpload('image/*');
+                }}
+              />
+              <FiVideo
+                className="write-bit-box-options-icon"
+                onClick={() => {
+                  FileUpload('video/*');
+                }}
+              />
             </div>
             <div
               className="write-bit-box-options-submit"
