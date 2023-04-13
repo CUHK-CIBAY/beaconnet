@@ -32,15 +32,9 @@ const Home = ({ isLoggedIn }: { isLoggedIn: boolean }) => {
         <img className="profile-background-picture" src={seasonalEvent} alt="profile" />
         <div className="trend-searching-container">
           <div className="welcome-speech-container">
-            <div className="welcome-speech-container-header">
-              Welcome to Beaconnnect!!!
-            </div>
-            <div>
-              You can sending Bits to your friend with picture, video and voice.
-            </div>
-            <div>
-              There are some function at the left hand side, such as
-            </div>
+            <div className="welcome-speech-container-header">Welcome to Beaconnnect!!!</div>
+            <div>You can sending Bits to your friend with picture, video and voice.</div>
+            <div>There are some function at the left hand side, such as</div>
             <div>
               <ul>
                 <li>Home</li>
@@ -50,9 +44,7 @@ const Home = ({ isLoggedIn }: { isLoggedIn: boolean }) => {
                 <li>Setting</li>
               </ul>
             </div>
-            <div>
-              If you help any problem, you can find the help center at the left hand side.
-            </div>
+            <div>If you help any problem, you can find the help center at the left hand side.</div>
           </div>
           {/* <div className="trend-search-bar">
             <div className="trend-search-bar-icon">
