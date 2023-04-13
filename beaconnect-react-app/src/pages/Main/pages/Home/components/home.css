@@ -112,7 +112,6 @@
   width: 100%;
   resize: none;
   border: none;
-  border-bottom: 1px solid #757575;
   font-size: 16px;
   font-weight: normal;
   color: #000;
@@ -127,7 +126,8 @@
   justify-content: space-between;
   align-items: center;
   margin-top: 10px;
-  padding-left: 5px;
+  padding: 10px 0 0 5px;
+  border-top: 1px solid #757575;
 }
 
 .write-bit-box-options-icon {
@@ -183,6 +183,18 @@
 
 .write-bit-box.dragging .write-bit-box-upload {
   opacity: 1;
+}
+
+.write-bit-box-added-attachment {
+  border: 1px #000 dashed;
+  padding: 10px 15px;
+  border-radius: 10px;
+}
+
+.write-bit-box-added-attachment-item {
+  display: grid;
+  grid-template-columns: 40px 1fr 10px;
+  align-items: center;
 }
 
 .bit-box {

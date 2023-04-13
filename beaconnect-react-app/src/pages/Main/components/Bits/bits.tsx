@@ -4,6 +4,7 @@ import { AiOutlineHeart } from 'react-icons/ai';
 import { BiComment, BiRepost } from 'react-icons/bi';
 import { BsSoundwave, BsImage } from 'react-icons/bs';
 import { FiVideo } from 'react-icons/fi';
+import { RxCross2 } from 'react-icons/rx';
 import { TbSend } from 'react-icons/tb';
 import { TiTick } from 'react-icons/ti';
 import { formatDistance } from 'date-fns';
@@ -81,6 +82,17 @@ export const WriteBitBox = () => {
         <img className="bit-box-icon" src={userIcon} alt="profile" />
         <div className="write-bit-box-content">
           <textarea className="write-bit-box-content-text" placeholder="Write something..." />
+          <div className="write-bit-box-added-attachment">
+            <div className="write-bit-box-added-attachment-item">
+              <div className="write-bit-box-added-attachment-item-icon">
+                <BsImage />
+              </div>
+              <div className="write-bit-box-added-attachment-item-name">image.png</div>
+              <div className="write-bit-box-added-attachment-item-remove">
+                <RxCross2 />
+              </div>
+            </div>
+          </div>
           <div className="write-bit-box-options">
             <div className="write-bit-box-options-attachment">
               <BsImage className="write-bit-box-options-icon" />
