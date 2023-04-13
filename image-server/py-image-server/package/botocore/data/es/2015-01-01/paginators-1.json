@@ -1,0 +1,34 @@
+{
+  "pagination": {
+    "DescribeReservedElasticsearchInstanceOfferings": {
+      "input_token": "NextToken",
+      "limit_key": "MaxResults",
+      "output_token": "NextToken",
+      "result_key": "ReservedElasticsearchInstanceOfferings"
+    },
+    "DescribeReservedElasticsearchInstances": {
+      "input_token": "NextToken",
+      "limit_key": "MaxResults",
+      "output_token": "NextToken",
+      "result_key": "ReservedElasticsearchInstances"
+    },
+    "GetUpgradeHistory": {
+      "input_token": "NextToken",
+      "limit_key": "MaxResults",
+      "output_token": "NextToken",
+      "result_key": "UpgradeHistories"
+    },
+    "ListElasticsearchInstanceTypes": {
+      "input_token": "NextToken",
+      "limit_key": "MaxResults",
+      "output_token": "NextToken",
+      "result_key": "ElasticsearchInstanceTypes"
+    },
+    "ListElasticsearchVersions": {
+      "input_token": "NextToken",
+      "limit_key": "MaxResults",
+      "output_token": "NextToken",
+      "result_key": "ElasticsearchVersions"
+    }
+  }
+}

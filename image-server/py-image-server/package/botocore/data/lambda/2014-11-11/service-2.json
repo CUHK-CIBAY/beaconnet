@@ -1,0 +1,860 @@
+{
+  "documentation": "<fullname>AWS Lambda</fullname> <p><b>Overview</b></p> <p>This is the AWS Lambda API Reference. The AWS Lambda Developer Guide provides additional information. For the service overview, go to <a href=\"http://docs.aws.amazon.com/lambda/latest/dg/welcome.html\">What is AWS Lambda</a>, and for information about how the service works, go to <a href=\"http://docs.aws.amazon.com/lambda/latest/dg/lambda-introduction.html\">AWS LambdaL How it Works</a> in the AWS Lambda Developer Guide.</p>",
+  "metadata": {
+    "apiVersion": "2014-11-11",
+    "endpointPrefix": "lambda",
+    "protocol": "rest-json",
+    "serviceFullName": "AWS Lambda",
+    "serviceId": "Lambda",
+    "signatureVersion": "v4"
+  },
+  "operations": {
+    "AddEventSource": {
+      "documentation": "<p>Identifies a stream as an event source for an AWS Lambda function. It can be either an Amazon Kinesis stream or a Amazon DynamoDB stream. AWS Lambda invokes the specified function when records are posted to the stream.</p> <p>This is the pull model, where AWS Lambda invokes the function. For more information, go to <a href=\"http://docs.aws.amazon.com/lambda/latest/dg/lambda-introduction.html\">AWS Lambda: How it Works</a> in the AWS Lambda Developer Guide.</p> <p>This association between an Amazon Kinesis stream and an AWS Lambda function is called the event source mapping. You provide the configuration information (for example, which stream to read from and which AWS Lambda function to invoke) for the event source mapping in the request body.</p> <p> Each event source, such as a Kinesis stream, can only be associated with one AWS Lambda function. If you call <a>AddEventSource</a> for an event source that is already mapped to another AWS Lambda function, the existing mapping is updated to call the new function instead of the old one. </p> <p>This operation requires permission for the <code>iam:PassRole</code> action for the IAM role. It also requires permission for the <code>lambda:AddEventSource</code> action.</p>",
+      "errors": [
+        {
+          "documentation": "<p>The AWS Lambda service encountered an internal error.</p>",
+          "error": { "httpStatusCode": 500 },
+          "exception": true,
+          "shape": "ServiceException"
+        },
+        {
+          "documentation": "<p>One of the parameters in the request is invalid. For example, if you provided an IAM role for AWS Lambda to assume in the <code>UploadFunction</code> or the <code>UpdateFunctionConfiguration</code> API, that AWS Lambda is unable to assume you will get this exception. </p>",
+          "error": { "httpStatusCode": 400 },
+          "exception": true,
+          "shape": "InvalidParameterValueException"
+        }
+      ],
+      "http": {
+        "method": "POST",
+        "requestUri": "/2014-11-13/event-source-mappings/"
+      },
+      "input": { "shape": "AddEventSourceRequest" },
+      "name": "AddEventSource",
+      "output": {
+        "documentation": "<p>Describes mapping between an Amazon Kinesis stream and a Lambda function.</p>",
+        "shape": "EventSourceConfiguration"
+      }
+    },
+    "DeleteFunction": {
+      "documentation": "<p>Deletes the specified Lambda function code and configuration.</p> <p>This operation requires permission for the <code>lambda:DeleteFunction</code> action.</p>",
+      "errors": [
+        {
+          "documentation": "<p>The AWS Lambda service encountered an internal error.</p>",
+          "error": { "httpStatusCode": 500 },
+          "exception": true,
+          "shape": "ServiceException"
+        },
+        {
+          "documentation": "<p>The function or the event source specified in the request does not exist.</p>",
+          "error": { "httpStatusCode": 404 },
+          "exception": true,
+          "shape": "ResourceNotFoundException"
+        }
+      ],
+      "http": {
+        "method": "DELETE",
+        "requestUri": "/2014-11-13/functions/{FunctionName}",
+        "responseCode": 204
+      },
+      "input": { "shape": "DeleteFunctionRequest" },
+      "name": "DeleteFunction"
+    },
+    "GetEventSource": {
+      "documentation": "<p>Returns configuration information for the specified event source mapping (see <a>AddEventSource</a>).</p> <p>This operation requires permission for the <code>lambda:GetEventSource</code> action.</p>",
+      "errors": [
+        {
+          "documentation": "<p>The AWS Lambda service encountered an internal error.</p>",
+          "error": { "httpStatusCode": 500 },
+          "exception": true,
+          "shape": "ServiceException"
+        },
+        {
+          "documentation": "<p>The function or the event source specified in the request does not exist.</p>",
+          "error": { "httpStatusCode": 404 },
+          "exception": true,
+          "shape": "ResourceNotFoundException"
+        },
+        {
+          "documentation": "<p>One of the parameters in the request is invalid. For example, if you provided an IAM role for AWS Lambda to assume in the <code>UploadFunction</code> or the <code>UpdateFunctionConfiguration</code> API, that AWS Lambda is unable to assume you will get this exception. </p>",
+          "error": { "httpStatusCode": 400 },
+          "exception": true,
+          "shape": "InvalidParameterValueException"
+        }
+      ],
+      "http": {
+        "method": "GET",
+        "requestUri": "/2014-11-13/event-source-mappings/{UUID}",
+        "responseCode": 200
+      },
+      "input": { "shape": "GetEventSourceRequest" },
+      "name": "GetEventSource",
+      "output": {
+        "documentation": "<p>Describes mapping between an Amazon Kinesis stream and a Lambda function.</p>",
+        "shape": "EventSourceConfiguration"
+      }
+    },
+    "GetFunction": {
+      "documentation": "<p>Returns the configuration information of the Lambda function and a presigned URL link to the .zip file you uploaded with <a>UploadFunction</a> so you can download the .zip file. Note that the URL is valid for up to 10 minutes. The configuration information is the same information you provided as parameters when uploading the function.</p> <p>This operation requires permission for the <code>lambda:GetFunction</code> action.</p>",
+      "errors": [
+        {
+          "documentation": "<p>The AWS Lambda service encountered an internal error.</p>",
+          "error": { "httpStatusCode": 500 },
+          "exception": true,
+          "shape": "ServiceException"
+        },
+        {
+          "documentation": "<p>The function or the event source specified in the request does not exist.</p>",
+          "error": { "httpStatusCode": 404 },
+          "exception": true,
+          "shape": "ResourceNotFoundException"
+        }
+      ],
+      "http": {
+        "method": "GET",
+        "requestUri": "/2014-11-13/functions/{FunctionName}",
+        "responseCode": 200
+      },
+      "input": { "shape": "GetFunctionRequest" },
+      "name": "GetFunction",
+      "output": {
+        "documentation": "<p>This response contains the object for AWS Lambda function location (see <a>API_FunctionCodeLocation</a></p>",
+        "shape": "GetFunctionResponse"
+      }
+    },
+    "GetFunctionConfiguration": {
+      "documentation": "<p>Returns the configuration information of the Lambda function. This the same information you provided as parameters when uploading the function by using <a>UploadFunction</a>.</p> <p>This operation requires permission for the <code>lambda:GetFunctionConfiguration</code> operation.</p>",
+      "errors": [
+        {
+          "documentation": "<p>The AWS Lambda service encountered an internal error.</p>",
+          "error": { "httpStatusCode": 500 },
+          "exception": true,
+          "shape": "ServiceException"
+        },
+        {
+          "documentation": "<p>The function or the event source specified in the request does not exist.</p>",
+          "error": { "httpStatusCode": 404 },
+          "exception": true,
+          "shape": "ResourceNotFoundException"
+        }
+      ],
+      "http": {
+        "method": "GET",
+        "requestUri": "/2014-11-13/functions/{FunctionName}/configuration",
+        "responseCode": 200
+      },
+      "input": { "shape": "GetFunctionConfigurationRequest" },
+      "name": "GetFunctionConfiguration",
+      "output": {
+        "documentation": "<p>A complex type that describes function metadata.</p>",
+        "shape": "FunctionConfiguration"
+      }
+    },
+    "InvokeAsync": {
+      "documentation": "<p>Submits an invocation request to AWS Lambda. Upon receiving the request, Lambda executes the specified function asynchronously. To see the logs generated by the Lambda function execution, see the CloudWatch logs console.</p> <p>This operation requires permission for the <code>lambda:InvokeAsync</code> action.</p>",
+      "errors": [
+        {
+          "documentation": "<p>The AWS Lambda service encountered an internal error.</p>",
+          "error": { "httpStatusCode": 500 },
+          "exception": true,
+          "shape": "ServiceException"
+        },
+        {
+          "documentation": "<p>The function or the event source specified in the request does not exist.</p>",
+          "error": { "httpStatusCode": 404 },
+          "exception": true,
+          "shape": "ResourceNotFoundException"
+        },
+        {
+          "documentation": "<p>The request body could not be parsed as JSON.</p>",
+          "error": { "httpStatusCode": 400 },
+          "exception": true,
+          "shape": "InvalidRequestContentException"
+        }
+      ],
+      "http": {
+        "method": "POST",
+        "requestUri": "/2014-11-13/functions/{FunctionName}/invoke-async/",
+        "responseCode": 202
+      },
+      "input": { "shape": "InvokeAsyncRequest" },
+      "name": "InvokeAsync",
+      "output": {
+        "documentation": "<p>Upon success, it returns empty response. Otherwise, throws an exception.</p>",
+        "shape": "InvokeAsyncResponse"
+      }
+    },
+    "ListEventSources": {
+      "documentation": "<p>Returns a list of event source mappings you created using the <code>AddEventSource</code> (see <a>AddEventSource</a>), where you identify a stream as event source. This list does not include Amazon S3 event sources. </p> <p>For each mapping, the API returns configuration information. You can optionally specify filters to retrieve specific event source mappings.</p> <p>This operation requires permission for the <code>lambda:ListEventSources</code> action.</p>",
+      "errors": [
+        {
+          "documentation": "<p>The AWS Lambda service encountered an internal error.</p>",
+          "error": { "httpStatusCode": 500 },
+          "exception": true,
+          "shape": "ServiceException"
+        },
+        {
+          "documentation": "<p>The function or the event source specified in the request does not exist.</p>",
+          "error": { "httpStatusCode": 404 },
+          "exception": true,
+          "shape": "ResourceNotFoundException"
+        },
+        {
+          "documentation": "<p>One of the parameters in the request is invalid. For example, if you provided an IAM role for AWS Lambda to assume in the <code>UploadFunction</code> or the <code>UpdateFunctionConfiguration</code> API, that AWS Lambda is unable to assume you will get this exception. </p>",
+          "error": { "httpStatusCode": 400 },
+          "exception": true,
+          "shape": "InvalidParameterValueException"
+        }
+      ],
+      "http": {
+        "method": "GET",
+        "requestUri": "/2014-11-13/event-source-mappings/",
+        "responseCode": 200
+      },
+      "input": { "shape": "ListEventSourcesRequest" },
+      "name": "ListEventSources",
+      "output": {
+        "documentation": "<p>Contains a list of event sources (see <a>API_EventSourceConfiguration</a>)</p>",
+        "shape": "ListEventSourcesResponse"
+      }
+    },
+    "ListFunctions": {
+      "documentation": "<p>Returns a list of your Lambda functions. For each function, the response includes the function configuration information. You must use <a>GetFunction</a> to retrieve the code for your function.</p> <p>This operation requires permission for the <code>lambda:ListFunctions</code> action.</p>",
+      "errors": [
+        {
+          "documentation": "<p>The AWS Lambda service encountered an internal error.</p>",
+          "error": { "httpStatusCode": 500 },
+          "exception": true,
+          "shape": "ServiceException"
+        }
+      ],
+      "http": {
+        "method": "GET",
+        "requestUri": "/2014-11-13/functions/",
+        "responseCode": 200
+      },
+      "input": { "shape": "ListFunctionsRequest" },
+      "name": "ListFunctions",
+      "output": {
+        "documentation": "<p>Contains a list of AWS Lambda function configurations (see <a>API_FunctionConfiguration</a>.</p>",
+        "shape": "ListFunctionsResponse"
+      }
+    },
+    "RemoveEventSource": {
+      "documentation": "<p>Removes an event source mapping. This means AWS Lambda will no longer invoke the function for events in the associated source.</p> <p>This operation requires permission for the <code>lambda:RemoveEventSource</code> action.</p>",
+      "errors": [
+        {
+          "documentation": "<p>The AWS Lambda service encountered an internal error.</p>",
+          "error": { "httpStatusCode": 500 },
+          "exception": true,
+          "shape": "ServiceException"
+        },
+        {
+          "documentation": "<p>The function or the event source specified in the request does not exist.</p>",
+          "error": { "httpStatusCode": 404 },
+          "exception": true,
+          "shape": "ResourceNotFoundException"
+        },
+        {
+          "documentation": "<p>One of the parameters in the request is invalid. For example, if you provided an IAM role for AWS Lambda to assume in the <code>UploadFunction</code> or the <code>UpdateFunctionConfiguration</code> API, that AWS Lambda is unable to assume you will get this exception. </p>",
+          "error": { "httpStatusCode": 400 },
+          "exception": true,
+          "shape": "InvalidParameterValueException"
+        }
+      ],
+      "http": {
+        "method": "DELETE",
+        "requestUri": "/2014-11-13/event-source-mappings/{UUID}",
+        "responseCode": 204
+      },
+      "input": { "shape": "RemoveEventSourceRequest" },
+      "name": "RemoveEventSource"
+    },
+    "UpdateFunctionConfiguration": {
+      "documentation": "<p>Updates the configuration parameters for the specified Lambda function by using the values provided in the request. You provide only the parameters you want to change. This operation must only be used on an existing Lambda function and cannot be used to update the function's code. </p> <p>This operation requires permission for the <code>lambda:UpdateFunctionConfiguration</code> action.</p>",
+      "errors": [
+        {
+          "documentation": "<p>The AWS Lambda service encountered an internal error.</p>",
+          "error": { "httpStatusCode": 500 },
+          "exception": true,
+          "shape": "ServiceException"
+        },
+        {
+          "documentation": "<p>The function or the event source specified in the request does not exist.</p>",
+          "error": { "httpStatusCode": 404 },
+          "exception": true,
+          "shape": "ResourceNotFoundException"
+        },
+        {
+          "documentation": "<p>One of the parameters in the request is invalid. For example, if you provided an IAM role for AWS Lambda to assume in the <code>UploadFunction</code> or the <code>UpdateFunctionConfiguration</code> API, that AWS Lambda is unable to assume you will get this exception. </p>",
+          "error": { "httpStatusCode": 400 },
+          "exception": true,
+          "shape": "InvalidParameterValueException"
+        }
+      ],
+      "http": {
+        "method": "PUT",
+        "requestUri": "/2014-11-13/functions/{FunctionName}/configuration",
+        "responseCode": 200
+      },
+      "input": { "shape": "UpdateFunctionConfigurationRequest" },
+      "name": "UpdateFunctionConfiguration",
+      "output": {
+        "documentation": "<p>A complex type that describes function metadata.</p>",
+        "shape": "FunctionConfiguration"
+      }
+    },
+    "UploadFunction": {
+      "documentation": "<p>Creates a new Lambda function or updates an existing function. The function metadata is created from the request parameters, and the code for the function is provided by a .zip file in the request body. If the function name already exists, the existing Lambda function is updated with the new code and metadata. </p> <p>This operation requires permission for the <code>lambda:UploadFunction</code> action.</p>",
+      "errors": [
+        {
+          "documentation": "<p>The AWS Lambda service encountered an internal error.</p>",
+          "error": { "httpStatusCode": 500 },
+          "exception": true,
+          "shape": "ServiceException"
+        },
+        {
+          "documentation": "<p>One of the parameters in the request is invalid. For example, if you provided an IAM role for AWS Lambda to assume in the <code>UploadFunction</code> or the <code>UpdateFunctionConfiguration</code> API, that AWS Lambda is unable to assume you will get this exception. </p>",
+          "error": { "httpStatusCode": 400 },
+          "exception": true,
+          "shape": "InvalidParameterValueException"
+        },
+        {
+          "documentation": "<p>The function or the event source specified in the request does not exist.</p>",
+          "error": { "httpStatusCode": 404 },
+          "exception": true,
+          "shape": "ResourceNotFoundException"
+        }
+      ],
+      "http": {
+        "method": "PUT",
+        "requestUri": "/2014-11-13/functions/{FunctionName}",
+        "responseCode": 201
+      },
+      "input": { "shape": "UploadFunctionRequest" },
+      "name": "UploadFunction",
+      "output": {
+        "documentation": "<p>A complex type that describes function metadata.</p>",
+        "shape": "FunctionConfiguration"
+      }
+    }
+  },
+  "shapes": {
+    "AddEventSourceRequest": {
+      "members": {
+        "BatchSize": {
+          "documentation": "<p>The largest number of records that AWS Lambda will give to your function in a single event. The default is 100 records.</p>",
+          "shape": "Integer"
+        },
+        "EventSource": {
+          "documentation": "<p>The Amazon Resource Name (ARN) of the Amazon Kinesis stream that is the event source. Any record added to this stream causes AWS Lambda to invoke your Lambda function. AWS Lambda POSTs the Amazon Kinesis event, containing records, to your Lambda function as JSON.</p>",
+          "shape": "String"
+        },
+        "FunctionName": {
+          "documentation": "<p>The Lambda function to invoke when AWS Lambda detects an event on the stream.</p>",
+          "shape": "FunctionName"
+        },
+        "Parameters": {
+          "documentation": "<p>A map (key-value pairs) defining the configuration for AWS Lambda to use when reading the event source. Currently, AWS Lambda supports only the <code>InitialPositionInStream</code> key. The valid values are: \"TRIM_HORIZON\" and \"LATEST\". The default value is \"TRIM_HORIZON\". For more information, go to <a href=\"http://docs.aws.amazon.com/kinesis/latest/APIReference/API_GetShardIterator.html#Kinesis-GetShardIterator-request-ShardIteratorType\">ShardIteratorType</a> in the Amazon Kinesis Service API Reference. </p>",
+          "shape": "Map"
+        },
+        "Role": {
+          "documentation": "<p>The ARN of the IAM role (invocation role) that AWS Lambda can assume to read from the stream and invoke the function.</p>",
+          "shape": "RoleArn"
+        }
+      },
+      "required": ["EventSource", "FunctionName", "Role"],
+      "type": "structure"
+    },
+    "Blob": {
+      "streaming": true,
+      "type": "blob"
+    },
+    "Boolean": { "type": "boolean" },
+    "DeleteFunctionRequest": {
+      "members": {
+        "FunctionName": {
+          "documentation": "<p>The Lambda function to delete.</p>",
+          "location": "uri",
+          "locationName": "FunctionName",
+          "shape": "FunctionName"
+        }
+      },
+      "required": ["FunctionName"],
+      "type": "structure"
+    },
+    "Description": {
+      "max": 256,
+      "min": 0,
+      "type": "string"
+    },
+    "EventSourceConfiguration": {
+      "documentation": "<p>Describes mapping between an Amazon Kinesis stream and a Lambda function.</p>",
+      "members": {
+        "BatchSize": {
+          "documentation": "<p>The largest number of records that AWS Lambda will POST in the invocation request to your function.</p>",
+          "shape": "Integer"
+        },
+        "EventSource": {
+          "documentation": "<p>The Amazon Resource Name (ARN) of the Amazon Kinesis stream that is the source of events.</p>",
+          "shape": "String"
+        },
+        "FunctionName": {
+          "documentation": "<p>The Lambda function to invoke when AWS Lambda detects an event on the stream.</p>",
+          "shape": "FunctionName"
+        },
+        "IsActive": {
+          "documentation": "<p>Indicates whether the event source mapping is currently honored. Events are only processes if IsActive is true.</p>",
+          "shape": "Boolean"
+        },
+        "LastModified": {
+          "documentation": "<p>The UTC time string indicating the last time the event mapping was updated.</p>",
+          "shape": "Timestamp"
+        },
+        "Parameters": {
+          "documentation": "<p>The map (key-value pairs) defining the configuration for AWS Lambda to use when reading the event source.</p>",
+          "shape": "Map"
+        },
+        "Role": {
+          "documentation": "<p>The ARN of the IAM role (invocation role) that AWS Lambda can assume to read from the stream and invoke the function.</p>",
+          "shape": "RoleArn"
+        },
+        "Status": {
+          "documentation": "<p>The description of the health of the event source mapping. Valid values are: \"PENDING\", \"OK\", and \"PROBLEM:<i>message</i>\". Initially this staus is \"PENDING\". When AWS Lambda begins processing events, it changes the status to \"OK\".</p>",
+          "shape": "String"
+        },
+        "UUID": {
+          "documentation": "<p>The AWS Lambda assigned opaque identifier for the mapping.</p>",
+          "shape": "String"
+        }
+      },
+      "type": "structure"
+    },
+    "EventSourceList": {
+      "member": { "shape": "EventSourceConfiguration" },
+      "type": "list"
+    },
+    "FunctionArn": {
+      "pattern": "arn:aws:lambda:[a-z]{2}-[a-z]+-\\d{1}:\\d{12}:function:[a-zA-Z0-9-_]+(\\/[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})?",
+      "type": "string"
+    },
+    "FunctionCodeLocation": {
+      "documentation": "<p>The object for the Lambda function location.</p>",
+      "members": {
+        "Location": {
+          "documentation": "<p>The presigned URL you can use to download the function's .zip file that you previously uploaded. The URL is valid for up to 10 minutes.</p>",
+          "shape": "String"
+        },
+        "RepositoryType": {
+          "documentation": "<p>The repository from which you can download the function.</p>",
+          "shape": "String"
+        }
+      },
+      "type": "structure"
+    },
+    "FunctionConfiguration": {
+      "documentation": "<p>A complex type that describes function metadata.</p>",
+      "members": {
+        "CodeSize": {
+          "documentation": "<p>The size, in bytes, of the function .zip file you uploaded.</p>",
+          "shape": "Long"
+        },
+        "ConfigurationId": {
+          "documentation": "<p>A Lambda-assigned unique identifier for the current function code and related configuration.</p>",
+          "shape": "String"
+        },
+        "Description": {
+          "documentation": "<p>The user-provided description.</p>",
+          "shape": "Description"
+        },
+        "FunctionARN": {
+          "documentation": "<p>The Amazon Resource Name (ARN) assigned to the function.</p>",
+          "shape": "FunctionArn"
+        },
+        "FunctionName": {
+          "documentation": "<p>The name of the function.</p>",
+          "shape": "FunctionName"
+        },
+        "Handler": {
+          "documentation": "<p>The function Lambda calls to begin executing your function.</p>",
+          "shape": "Handler"
+        },
+        "LastModified": {
+          "documentation": "<p>The timestamp of the last time you updated the function.</p>",
+          "shape": "Timestamp"
+        },
+        "MemorySize": {
+          "documentation": "<p>The memory size, in MB, you configured for the function. Must be a multiple of 64 MB.</p>",
+          "shape": "MemorySize"
+        },
+        "Mode": {
+          "documentation": "<p>The type of the Lambda function you uploaded. </p>",
+          "shape": "Mode"
+        },
+        "Role": {
+          "documentation": "<p>The Amazon Resource Name (ARN) of the IAM role that Lambda assumes when it executes your function to access any other Amazon Web Services (AWS) resources.</p>",
+          "shape": "RoleArn"
+        },
+        "Runtime": {
+          "documentation": "<p>The runtime environment for the Lambda function.</p>",
+          "shape": "Runtime"
+        },
+        "Timeout": {
+          "documentation": "<p>The function execution time at which Lambda should terminate the function. Because the execution time has cost implications, we recommend you set this value based on your expected execution time. The default is 3 seconds. </p>",
+          "shape": "Timeout"
+        }
+      },
+      "type": "structure"
+    },
+    "FunctionList": {
+      "member": { "shape": "FunctionConfiguration" },
+      "type": "list"
+    },
+    "FunctionName": {
+      "max": 64,
+      "min": 1,
+      "pattern": "[a-zA-Z0-9-_]+",
+      "type": "string"
+    },
+    "GetEventSourceRequest": {
+      "members": {
+        "UUID": {
+          "documentation": "<p>The AWS Lambda assigned ID of the event source mapping.</p>",
+          "location": "uri",
+          "locationName": "UUID",
+          "shape": "String"
+        }
+      },
+      "required": ["UUID"],
+      "type": "structure"
+    },
+    "GetFunctionConfigurationRequest": {
+      "members": {
+        "FunctionName": {
+          "documentation": "<p>The name of the Lambda function for which you want to retrieve the configuration information.</p>",
+          "location": "uri",
+          "locationName": "FunctionName",
+          "shape": "FunctionName"
+        }
+      },
+      "required": ["FunctionName"],
+      "type": "structure"
+    },
+    "GetFunctionRequest": {
+      "members": {
+        "FunctionName": {
+          "documentation": "<p>The Lambda function name.</p>",
+          "location": "uri",
+          "locationName": "FunctionName",
+          "shape": "FunctionName"
+        }
+      },
+      "required": ["FunctionName"],
+      "type": "structure"
+    },
+    "GetFunctionResponse": {
+      "documentation": "<p>This response contains the object for AWS Lambda function location (see <a>API_FunctionCodeLocation</a></p>",
+      "members": {
+        "Code": { "shape": "FunctionCodeLocation" },
+        "Configuration": { "shape": "FunctionConfiguration" }
+      },
+      "type": "structure"
+    },
+    "Handler": {
+      "pattern": "[a-zA-Z0-9./\\-_]+",
+      "type": "string"
+    },
+    "HttpStatus": { "type": "integer" },
+    "Integer": { "type": "integer" },
+    "InvalidParameterValueException": {
+      "documentation": "<p>One of the parameters in the request is invalid. For example, if you provided an IAM role for AWS Lambda to assume in the <code>UploadFunction</code> or the <code>UpdateFunctionConfiguration</code> API, that AWS Lambda is unable to assume you will get this exception. </p>",
+      "error": { "httpStatusCode": 400 },
+      "exception": true,
+      "members": {
+        "Type": { "shape": "String" },
+        "message": { "shape": "String" }
+      },
+      "type": "structure"
+    },
+    "InvalidRequestContentException": {
+      "documentation": "<p>The request body could not be parsed as JSON.</p>",
+      "error": { "httpStatusCode": 400 },
+      "exception": true,
+      "members": {
+        "Type": { "shape": "String" },
+        "message": { "shape": "String" }
+      },
+      "type": "structure"
+    },
+    "InvokeAsyncRequest": {
+      "members": {
+        "FunctionName": {
+          "documentation": "<p>The Lambda function name.</p>",
+          "location": "uri",
+          "locationName": "FunctionName",
+          "shape": "FunctionName"
+        },
+        "InvokeArgs": {
+          "documentation": "<p>JSON that you want to provide to your Lambda function as input.</p>",
+          "shape": "Blob"
+        }
+      },
+      "payload": "InvokeArgs",
+      "required": ["FunctionName", "InvokeArgs"],
+      "type": "structure"
+    },
+    "InvokeAsyncResponse": {
+      "documentation": "<p>Upon success, it returns empty response. Otherwise, throws an exception.</p>",
+      "members": {
+        "Status": {
+          "documentation": "<p>It will be 202 upon success.</p>",
+          "location": "statusCode",
+          "shape": "HttpStatus"
+        }
+      },
+      "type": "structure"
+    },
+    "ListEventSourcesRequest": {
+      "members": {
+        "EventSourceArn": {
+          "documentation": "<p>The Amazon Resource Name (ARN) of the Amazon Kinesis stream.</p>",
+          "location": "querystring",
+          "locationName": "EventSource",
+          "shape": "String"
+        },
+        "FunctionName": {
+          "documentation": "<p>The name of the AWS Lambda function.</p>",
+          "location": "querystring",
+          "locationName": "FunctionName",
+          "shape": "FunctionName"
+        },
+        "Marker": {
+          "documentation": "<p>Optional string. An opaque pagination token returned from a previous <code>ListEventSources</code> operation. If present, specifies to continue the list from where the returning call left off. </p>",
+          "location": "querystring",
+          "locationName": "Marker",
+          "shape": "String"
+        },
+        "MaxItems": {
+          "documentation": "<p>Optional integer. Specifies the maximum number of event sources to return in response. This value must be greater than 0.</p>",
+          "location": "querystring",
+          "locationName": "MaxItems",
+          "shape": "MaxListItems"
+        }
+      },
+      "type": "structure"
+    },
+    "ListEventSourcesResponse": {
+      "documentation": "<p>Contains a list of event sources (see <a>API_EventSourceConfiguration</a>)</p>",
+      "members": {
+        "EventSources": {
+          "documentation": "<p>An arrary of <code>EventSourceConfiguration</code> objects.</p>",
+          "shape": "EventSourceList"
+        },
+        "NextMarker": {
+          "documentation": "<p>A string, present if there are more event source mappings.</p>",
+          "shape": "String"
+        }
+      },
+      "type": "structure"
+    },
+    "ListFunctionsRequest": {
+      "members": {
+        "Marker": {
+          "documentation": "<p>Optional string. An opaque pagination token returned from a previous <code>ListFunctions</code> operation. If present, indicates where to continue the listing. </p>",
+          "location": "querystring",
+          "locationName": "Marker",
+          "shape": "String"
+        },
+        "MaxItems": {
+          "documentation": "<p>Optional integer. Specifies the maximum number of AWS Lambda functions to return in response. This parameter value must be greater than 0.</p>",
+          "location": "querystring",
+          "locationName": "MaxItems",
+          "shape": "MaxListItems"
+        }
+      },
+      "type": "structure"
+    },
+    "ListFunctionsResponse": {
+      "documentation": "<p>Contains a list of AWS Lambda function configurations (see <a>API_FunctionConfiguration</a>.</p>",
+      "members": {
+        "Functions": {
+          "documentation": "<p>A list of Lambda functions.</p>",
+          "shape": "FunctionList"
+        },
+        "NextMarker": {
+          "documentation": "<p>A string, present if there are more functions.</p>",
+          "shape": "String"
+        }
+      },
+      "type": "structure"
+    },
+    "Long": { "type": "long" },
+    "Map": {
+      "key": { "shape": "String" },
+      "type": "map",
+      "value": { "shape": "String" }
+    },
+    "MaxListItems": {
+      "max": 10000,
+      "min": 1,
+      "type": "integer"
+    },
+    "MemorySize": {
+      "max": 1024,
+      "min": 128,
+      "type": "integer"
+    },
+    "Mode": {
+      "enum": ["event"],
+      "type": "string"
+    },
+    "RemoveEventSourceRequest": {
+      "members": {
+        "UUID": {
+          "documentation": "<p>The event source mapping ID.</p>",
+          "location": "uri",
+          "locationName": "UUID",
+          "shape": "String"
+        }
+      },
+      "required": ["UUID"],
+      "type": "structure"
+    },
+    "ResourceNotFoundException": {
+      "documentation": "<p>The function or the event source specified in the request does not exist.</p>",
+      "error": { "httpStatusCode": 404 },
+      "exception": true,
+      "members": {
+        "Message": { "shape": "String" },
+        "Type": { "shape": "String" }
+      },
+      "type": "structure"
+    },
+    "RoleArn": {
+      "pattern": "arn:aws:iam::\\d{12}:role/?[a-zA-Z_0-9+=,.@\\-_/]+",
+      "type": "string"
+    },
+    "Runtime": {
+      "enum": ["nodejs"],
+      "type": "string"
+    },
+    "ServiceException": {
+      "documentation": "<p>The AWS Lambda service encountered an internal error.</p>",
+      "error": { "httpStatusCode": 500 },
+      "exception": true,
+      "members": {
+        "Message": { "shape": "String" },
+        "Type": { "shape": "String" }
+      },
+      "type": "structure"
+    },
+    "String": { "type": "string" },
+    "Timeout": {
+      "max": 60,
+      "min": 1,
+      "type": "integer"
+    },
+    "Timestamp": { "type": "string" },
+    "UpdateFunctionConfigurationRequest": {
+      "members": {
+        "Description": {
+          "documentation": "<p>A short user-defined function description. Lambda does not use this value. Assign a meaningful description as you see fit.</p>",
+          "location": "querystring",
+          "locationName": "Description",
+          "shape": "Description"
+        },
+        "FunctionName": {
+          "documentation": "<p>The name of the Lambda function.</p>",
+          "location": "uri",
+          "locationName": "FunctionName",
+          "shape": "FunctionName"
+        },
+        "Handler": {
+          "documentation": "<p>The function that Lambda calls to begin executing your function. For Node.js, it is the <i>module-name.export</i> value in your function. </p>",
+          "location": "querystring",
+          "locationName": "Handler",
+          "shape": "Handler"
+        },
+        "MemorySize": {
+          "documentation": "<p>The amount of memory, in MB, your Lambda function is given. Lambda uses this memory size to infer the amount of CPU allocated to your function. Your function use-case determines your CPU and memory requirements. For example, a database operation might need less memory compared to an image processing function. The default value is 128 MB. The value must be a multiple of 64 MB.</p>",
+          "location": "querystring",
+          "locationName": "MemorySize",
+          "shape": "MemorySize"
+        },
+        "Role": {
+          "documentation": "<p>The Amazon Resource Name (ARN) of the IAM role that Lambda will assume when it executes your function. </p>",
+          "location": "querystring",
+          "locationName": "Role",
+          "shape": "RoleArn"
+        },
+        "Timeout": {
+          "documentation": "<p>The function execution time at which Lambda should terminate the function. Because the execution time has cost implications, we recommend you set this value based on your expected execution time. The default is 3 seconds. </p>",
+          "location": "querystring",
+          "locationName": "Timeout",
+          "shape": "Timeout"
+        }
+      },
+      "required": ["FunctionName"],
+      "type": "structure"
+    },
+    "UploadFunctionRequest": {
+      "members": {
+        "Description": {
+          "documentation": "<p>A short, user-defined function description. Lambda does not use this value. Assign a meaningful description as you see fit.</p>",
+          "location": "querystring",
+          "locationName": "Description",
+          "shape": "Description"
+        },
+        "FunctionName": {
+          "documentation": "<p>The name you want to assign to the function you are uploading. The function names appear in the console and are returned in the <a>ListFunctions</a> API. Function names are used to specify functions to other AWS Lambda APIs, such as <a>InvokeAsync</a>. </p>",
+          "location": "uri",
+          "locationName": "FunctionName",
+          "shape": "FunctionName"
+        },
+        "FunctionZip": {
+          "documentation": "<p>A .zip file containing your packaged source code. For more information about creating a .zip file, go to <a href=\"http://docs.aws.amazon.com/lambda/latest/dg/walkthrough-custom-events.html\">AWS LambdaL How it Works</a> in the AWS Lambda Developer Guide. </p>",
+          "shape": "Blob"
+        },
+        "Handler": {
+          "documentation": "<p>The function that Lambda calls to begin execution. For Node.js, it is the <i>module-name</i>.<i>export</i> value in your function. </p>",
+          "location": "querystring",
+          "locationName": "Handler",
+          "shape": "Handler"
+        },
+        "MemorySize": {
+          "documentation": "<p>The amount of memory, in MB, your Lambda function is given. Lambda uses this memory size to infer the amount of CPU allocated to your function. Your function use-case determines your CPU and memory requirements. For example, database operation might need less memory compared to image processing function. The default value is 128 MB. The value must be a multiple of 64 MB.</p>",
+          "location": "querystring",
+          "locationName": "MemorySize",
+          "shape": "MemorySize"
+        },
+        "Mode": {
+          "documentation": "<p>How the Lambda function will be invoked. Lambda supports only the \"event\" mode. </p>",
+          "location": "querystring",
+          "locationName": "Mode",
+          "shape": "Mode"
+        },
+        "Role": {
+          "documentation": "<p>The Amazon Resource Name (ARN) of the IAM role that Lambda assumes when it executes your function to access any other Amazon Web Services (AWS) resources. </p>",
+          "location": "querystring",
+          "locationName": "Role",
+          "shape": "RoleArn"
+        },
+        "Runtime": {
+          "documentation": "<p>The runtime environment for the Lambda function you are uploading. Currently, Lambda supports only \"nodejs\" as the runtime.</p>",
+          "location": "querystring",
+          "locationName": "Runtime",
+          "shape": "Runtime"
+        },
+        "Timeout": {
+          "documentation": "<p>The function execution time at which Lambda should terminate the function. Because the execution time has cost implications, we recommend you set this value based on your expected execution time. The default is 3 seconds. </p>",
+          "location": "querystring",
+          "locationName": "Timeout",
+          "shape": "Timeout"
+        }
+      },
+      "payload": "FunctionZip",
+      "required": ["FunctionName", "FunctionZip", "Runtime", "Role", "Handler", "Mode"],
+      "type": "structure"
+    }
+  }
+}

@@ -1,0 +1,70 @@
+{
+  "pagination": {
+    "ListDeploymentJobs": {
+      "input_token": "nextToken",
+      "limit_key": "maxResults",
+      "output_token": "nextToken",
+      "result_key": "deploymentJobs"
+    },
+    "ListFleets": {
+      "input_token": "nextToken",
+      "limit_key": "maxResults",
+      "output_token": "nextToken",
+      "result_key": "fleetDetails"
+    },
+    "ListRobotApplications": {
+      "input_token": "nextToken",
+      "limit_key": "maxResults",
+      "output_token": "nextToken",
+      "result_key": "robotApplicationSummaries"
+    },
+    "ListRobots": {
+      "input_token": "nextToken",
+      "limit_key": "maxResults",
+      "output_token": "nextToken",
+      "result_key": "robots"
+    },
+    "ListSimulationApplications": {
+      "input_token": "nextToken",
+      "limit_key": "maxResults",
+      "output_token": "nextToken",
+      "result_key": "simulationApplicationSummaries"
+    },
+    "ListSimulationJobBatches": {
+      "input_token": "nextToken",
+      "limit_key": "maxResults",
+      "output_token": "nextToken",
+      "result_key": "simulationJobBatchSummaries"
+    },
+    "ListSimulationJobs": {
+      "input_token": "nextToken",
+      "limit_key": "maxResults",
+      "output_token": "nextToken",
+      "result_key": "simulationJobSummaries"
+    },
+    "ListWorldExportJobs": {
+      "input_token": "nextToken",
+      "limit_key": "maxResults",
+      "output_token": "nextToken",
+      "result_key": "worldExportJobSummaries"
+    },
+    "ListWorldGenerationJobs": {
+      "input_token": "nextToken",
+      "limit_key": "maxResults",
+      "output_token": "nextToken",
+      "result_key": "worldGenerationJobSummaries"
+    },
+    "ListWorldTemplates": {
+      "input_token": "nextToken",
+      "limit_key": "maxResults",
+      "output_token": "nextToken",
+      "result_key": "templateSummaries"
+    },
+    "ListWorlds": {
+      "input_token": "nextToken",
+      "limit_key": "maxResults",
+      "output_token": "nextToken",
+      "result_key": "worldSummaries"
+    }
+  }
+}

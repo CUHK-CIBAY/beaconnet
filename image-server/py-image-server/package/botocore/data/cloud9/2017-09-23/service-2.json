@@ -1,0 +1,897 @@
+{
+  "documentation": "<fullname>Cloud9</fullname> <p>Cloud9 is a collection of tools that you can use to code, build, run, test, debug, and release software in the cloud.</p> <p>For more information about Cloud9, see the <a href=\"https://docs.aws.amazon.com/cloud9/latest/user-guide\">Cloud9 User Guide</a>.</p> <p>Cloud9 supports these operations:</p> <ul> <li> <p> <code>CreateEnvironmentEC2</code>: Creates an Cloud9 development environment, launches an Amazon EC2 instance, and then connects from the instance to the environment.</p> </li> <li> <p> <code>CreateEnvironmentMembership</code>: Adds an environment member to an environment.</p> </li> <li> <p> <code>DeleteEnvironment</code>: Deletes an environment. If an Amazon EC2 instance is connected to the environment, also terminates the instance.</p> </li> <li> <p> <code>DeleteEnvironmentMembership</code>: Deletes an environment member from an environment.</p> </li> <li> <p> <code>DescribeEnvironmentMemberships</code>: Gets information about environment members for an environment.</p> </li> <li> <p> <code>DescribeEnvironments</code>: Gets information about environments.</p> </li> <li> <p> <code>DescribeEnvironmentStatus</code>: Gets status information for an environment.</p> </li> <li> <p> <code>ListEnvironments</code>: Gets a list of environment identifiers.</p> </li> <li> <p> <code>ListTagsForResource</code>: Gets the tags for an environment.</p> </li> <li> <p> <code>TagResource</code>: Adds tags to an environment.</p> </li> <li> <p> <code>UntagResource</code>: Removes tags from an environment.</p> </li> <li> <p> <code>UpdateEnvironment</code>: Changes the settings of an existing environment.</p> </li> <li> <p> <code>UpdateEnvironmentMembership</code>: Changes the settings of an existing environment member for an environment.</p> </li> </ul>",
+  "metadata": {
+    "apiVersion": "2017-09-23",
+    "endpointPrefix": "cloud9",
+    "jsonVersion": "1.1",
+    "protocol": "json",
+    "serviceFullName": "AWS Cloud9",
+    "serviceId": "Cloud9",
+    "signatureVersion": "v4",
+    "targetPrefix": "AWSCloud9WorkspaceManagementService",
+    "uid": "cloud9-2017-09-23"
+  },
+  "operations": {
+    "CreateEnvironmentEC2": {
+      "documentation": "<p>Creates an Cloud9 development environment, launches an Amazon Elastic Compute Cloud (Amazon EC2) instance, and then connects from the instance to the environment.</p>",
+      "errors": [
+        { "shape": "BadRequestException" },
+        { "shape": "ConflictException" },
+        { "shape": "NotFoundException" },
+        { "shape": "ForbiddenException" },
+        { "shape": "TooManyRequestsException" },
+        { "shape": "LimitExceededException" },
+        { "shape": "InternalServerErrorException" }
+      ],
+      "http": {
+        "method": "POST",
+        "requestUri": "/"
+      },
+      "idempotent": true,
+      "input": { "shape": "CreateEnvironmentEC2Request" },
+      "name": "CreateEnvironmentEC2",
+      "output": { "shape": "CreateEnvironmentEC2Result" }
+    },
+    "CreateEnvironmentMembership": {
+      "documentation": "<p>Adds an environment member to an Cloud9 development environment.</p>",
+      "errors": [
+        { "shape": "BadRequestException" },
+        { "shape": "ConflictException" },
+        { "shape": "NotFoundException" },
+        { "shape": "ForbiddenException" },
+        { "shape": "TooManyRequestsException" },
+        { "shape": "LimitExceededException" },
+        { "shape": "InternalServerErrorException" }
+      ],
+      "http": {
+        "method": "POST",
+        "requestUri": "/"
+      },
+      "idempotent": true,
+      "input": { "shape": "CreateEnvironmentMembershipRequest" },
+      "name": "CreateEnvironmentMembership",
+      "output": { "shape": "CreateEnvironmentMembershipResult" }
+    },
+    "DeleteEnvironment": {
+      "documentation": "<p>Deletes an Cloud9 development environment. If an Amazon EC2 instance is connected to the environment, also terminates the instance.</p>",
+      "errors": [
+        { "shape": "BadRequestException" },
+        { "shape": "ConflictException" },
+        { "shape": "NotFoundException" },
+        { "shape": "ForbiddenException" },
+        { "shape": "TooManyRequestsException" },
+        { "shape": "LimitExceededException" },
+        { "shape": "InternalServerErrorException" }
+      ],
+      "http": {
+        "method": "POST",
+        "requestUri": "/"
+      },
+      "idempotent": true,
+      "input": { "shape": "DeleteEnvironmentRequest" },
+      "name": "DeleteEnvironment",
+      "output": { "shape": "DeleteEnvironmentResult" }
+    },
+    "DeleteEnvironmentMembership": {
+      "documentation": "<p>Deletes an environment member from an Cloud9 development environment.</p>",
+      "errors": [
+        { "shape": "BadRequestException" },
+        { "shape": "ConflictException" },
+        { "shape": "NotFoundException" },
+        { "shape": "ForbiddenException" },
+        { "shape": "TooManyRequestsException" },
+        { "shape": "LimitExceededException" },
+        { "shape": "InternalServerErrorException" }
+      ],
+      "http": {
+        "method": "POST",
+        "requestUri": "/"
+      },
+      "idempotent": true,
+      "input": { "shape": "DeleteEnvironmentMembershipRequest" },
+      "name": "DeleteEnvironmentMembership",
+      "output": { "shape": "DeleteEnvironmentMembershipResult" }
+    },
+    "DescribeEnvironmentMemberships": {
+      "documentation": "<p>Gets information about environment members for an Cloud9 development environment.</p>",
+      "errors": [
+        { "shape": "BadRequestException" },
+        { "shape": "ConflictException" },
+        { "shape": "NotFoundException" },
+        { "shape": "ForbiddenException" },
+        { "shape": "TooManyRequestsException" },
+        { "shape": "LimitExceededException" },
+        { "shape": "InternalServerErrorException" }
+      ],
+      "http": {
+        "method": "POST",
+        "requestUri": "/"
+      },
+      "input": { "shape": "DescribeEnvironmentMembershipsRequest" },
+      "name": "DescribeEnvironmentMemberships",
+      "output": { "shape": "DescribeEnvironmentMembershipsResult" }
+    },
+    "DescribeEnvironmentStatus": {
+      "documentation": "<p>Gets status information for an Cloud9 development environment.</p>",
+      "errors": [
+        { "shape": "BadRequestException" },
+        { "shape": "ConflictException" },
+        { "shape": "NotFoundException" },
+        { "shape": "ForbiddenException" },
+        { "shape": "TooManyRequestsException" },
+        { "shape": "LimitExceededException" },
+        { "shape": "InternalServerErrorException" }
+      ],
+      "http": {
+        "method": "POST",
+        "requestUri": "/"
+      },
+      "input": { "shape": "DescribeEnvironmentStatusRequest" },
+      "name": "DescribeEnvironmentStatus",
+      "output": { "shape": "DescribeEnvironmentStatusResult" }
+    },
+    "DescribeEnvironments": {
+      "documentation": "<p>Gets information about Cloud9 development environments.</p>",
+      "errors": [
+        { "shape": "BadRequestException" },
+        { "shape": "ConflictException" },
+        { "shape": "NotFoundException" },
+        { "shape": "ForbiddenException" },
+        { "shape": "TooManyRequestsException" },
+        { "shape": "LimitExceededException" },
+        { "shape": "InternalServerErrorException" }
+      ],
+      "http": {
+        "method": "POST",
+        "requestUri": "/"
+      },
+      "input": { "shape": "DescribeEnvironmentsRequest" },
+      "name": "DescribeEnvironments",
+      "output": { "shape": "DescribeEnvironmentsResult" }
+    },
+    "ListEnvironments": {
+      "documentation": "<p>Gets a list of Cloud9 development environment identifiers.</p>",
+      "errors": [
+        { "shape": "BadRequestException" },
+        { "shape": "ConflictException" },
+        { "shape": "NotFoundException" },
+        { "shape": "ForbiddenException" },
+        { "shape": "TooManyRequestsException" },
+        { "shape": "LimitExceededException" },
+        { "shape": "InternalServerErrorException" }
+      ],
+      "http": {
+        "method": "POST",
+        "requestUri": "/"
+      },
+      "input": { "shape": "ListEnvironmentsRequest" },
+      "name": "ListEnvironments",
+      "output": { "shape": "ListEnvironmentsResult" }
+    },
+    "ListTagsForResource": {
+      "documentation": "<p>Gets a list of the tags associated with an Cloud9 development environment.</p>",
+      "errors": [
+        { "shape": "NotFoundException" },
+        { "shape": "InternalServerErrorException" },
+        { "shape": "BadRequestException" }
+      ],
+      "http": {
+        "method": "POST",
+        "requestUri": "/"
+      },
+      "input": { "shape": "ListTagsForResourceRequest" },
+      "name": "ListTagsForResource",
+      "output": { "shape": "ListTagsForResourceResponse" }
+    },
+    "TagResource": {
+      "documentation": "<p>Adds tags to an Cloud9 development environment.</p> <important> <p>Tags that you add to an Cloud9 environment by using this method will NOT be automatically propagated to underlying resources.</p> </important>",
+      "errors": [
+        { "shape": "NotFoundException" },
+        { "shape": "InternalServerErrorException" },
+        { "shape": "BadRequestException" },
+        { "shape": "ConcurrentAccessException" }
+      ],
+      "http": {
+        "method": "POST",
+        "requestUri": "/"
+      },
+      "input": { "shape": "TagResourceRequest" },
+      "name": "TagResource",
+      "output": { "shape": "TagResourceResponse" }
+    },
+    "UntagResource": {
+      "documentation": "<p>Removes tags from an Cloud9 development environment.</p>",
+      "errors": [
+        { "shape": "NotFoundException" },
+        { "shape": "InternalServerErrorException" },
+        { "shape": "BadRequestException" },
+        { "shape": "ConcurrentAccessException" }
+      ],
+      "http": {
+        "method": "POST",
+        "requestUri": "/"
+      },
+      "input": { "shape": "UntagResourceRequest" },
+      "name": "UntagResource",
+      "output": { "shape": "UntagResourceResponse" }
+    },
+    "UpdateEnvironment": {
+      "documentation": "<p>Changes the settings of an existing Cloud9 development environment.</p>",
+      "errors": [
+        { "shape": "BadRequestException" },
+        { "shape": "ConflictException" },
+        { "shape": "NotFoundException" },
+        { "shape": "ForbiddenException" },
+        { "shape": "TooManyRequestsException" },
+        { "shape": "LimitExceededException" },
+        { "shape": "InternalServerErrorException" }
+      ],
+      "http": {
+        "method": "POST",
+        "requestUri": "/"
+      },
+      "idempotent": true,
+      "input": { "shape": "UpdateEnvironmentRequest" },
+      "name": "UpdateEnvironment",
+      "output": { "shape": "UpdateEnvironmentResult" }
+    },
+    "UpdateEnvironmentMembership": {
+      "documentation": "<p>Changes the settings of an existing environment member for an Cloud9 development environment.</p>",
+      "errors": [
+        { "shape": "BadRequestException" },
+        { "shape": "ConflictException" },
+        { "shape": "NotFoundException" },
+        { "shape": "ForbiddenException" },
+        { "shape": "TooManyRequestsException" },
+        { "shape": "LimitExceededException" },
+        { "shape": "InternalServerErrorException" }
+      ],
+      "http": {
+        "method": "POST",
+        "requestUri": "/"
+      },
+      "idempotent": true,
+      "input": { "shape": "UpdateEnvironmentMembershipRequest" },
+      "name": "UpdateEnvironmentMembership",
+      "output": { "shape": "UpdateEnvironmentMembershipResult" }
+    }
+  },
+  "shapes": {
+    "AutomaticStopTimeMinutes": {
+      "box": true,
+      "max": 20160,
+      "type": "integer"
+    },
+    "BadRequestException": {
+      "documentation": "<p>The target request is invalid.</p>",
+      "exception": true,
+      "members": {},
+      "type": "structure"
+    },
+    "BoundedEnvironmentIdList": {
+      "max": 25,
+      "member": { "shape": "EnvironmentId" },
+      "min": 1,
+      "type": "list"
+    },
+    "ClientRequestToken": {
+      "pattern": "[\\x20-\\x7E]{10,128}",
+      "type": "string"
+    },
+    "ConcurrentAccessException": {
+      "documentation": "<p>A concurrent access issue occurred.</p>",
+      "exception": true,
+      "members": {},
+      "type": "structure"
+    },
+    "ConflictException": {
+      "documentation": "<p>A conflict occurred.</p>",
+      "exception": true,
+      "members": {},
+      "type": "structure"
+    },
+    "ConnectionType": {
+      "enum": ["CONNECT_SSH", "CONNECT_SSM"],
+      "type": "string"
+    },
+    "CreateEnvironmentEC2Request": {
+      "members": {
+        "automaticStopTimeMinutes": {
+          "documentation": "<p>The number of minutes until the running instance is shut down after the environment has last been used.</p>",
+          "shape": "AutomaticStopTimeMinutes"
+        },
+        "clientRequestToken": {
+          "documentation": "<p>A unique, case-sensitive string that helps Cloud9 to ensure this operation completes no more than one time.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html\">Client Tokens</a> in the <i>Amazon EC2 API Reference</i>.</p>",
+          "shape": "ClientRequestToken"
+        },
+        "connectionType": {
+          "documentation": "<p>The connection type used for connecting to an Amazon EC2 environment. Valid values are <code>CONNECT_SSH</code> (default) and <code>CONNECT_SSM</code> (connected through Amazon EC2 Systems Manager).</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/cloud9/latest/user-guide/ec2-ssm.html\">Accessing no-ingress EC2 instances with Amazon EC2 Systems Manager</a> in the <i>Cloud9 User Guide</i>.</p>",
+          "shape": "ConnectionType"
+        },
+        "description": {
+          "documentation": "<p>The description of the environment to create.</p>",
+          "shape": "EnvironmentDescription"
+        },
+        "dryRun": {
+          "documentation": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
+          "shape": "NullableBoolean"
+        },
+        "imageId": {
+          "documentation": "<p>The identifier for the Amazon Machine Image (AMI) that's used to create the EC2 instance. To choose an AMI for the instance, you must specify a valid AMI alias or a valid Amazon EC2 Systems Manager (SSM) path.</p> <p>The default AMI is used if the parameter isn't explicitly assigned a value in the request. Because Amazon Linux AMI has ended standard support as of December 31, 2020, we recommend you choose Amazon Linux 2, which includes long term support through 2023.</p> <p> <b>AMI aliases </b> </p> <ul> <li> <p> <b>Amazon Linux (default): <code>amazonlinux-1-x86_64</code> </b> </p> </li> <li> <p>Amazon Linux 2: <code>amazonlinux-2-x86_64</code> </p> </li> <li> <p>Ubuntu 18.04: <code>ubuntu-18.04-x86_64</code> </p> </li> </ul> <p> <b>SSM paths</b> </p> <ul> <li> <p> <b>Amazon Linux (default): <code>resolve:ssm:/aws/service/cloud9/amis/amazonlinux-1-x86_64</code> </b> </p> </li> <li> <p>Amazon Linux 2: <code>resolve:ssm:/aws/service/cloud9/amis/amazonlinux-2-x86_64</code> </p> </li> <li> <p>Ubuntu 18.04: <code>resolve:ssm:/aws/service/cloud9/amis/ubuntu-18.04-x86_64</code> </p> </li> </ul>",
+          "shape": "ImageId"
+        },
+        "instanceType": {
+          "documentation": "<p>The type of instance to connect to the environment (for example, <code>t2.micro</code>).</p>",
+          "shape": "InstanceType"
+        },
+        "name": {
+          "documentation": "<p>The name of the environment to create.</p> <p>This name is visible to other IAM users in the same Amazon Web Services account.</p>",
+          "shape": "EnvironmentName"
+        },
+        "ownerArn": {
+          "documentation": "<p>The Amazon Resource Name (ARN) of the environment owner. This ARN can be the ARN of any IAM principal. If this value is not specified, the ARN defaults to this environment's creator.</p>",
+          "shape": "UserArn"
+        },
+        "subnetId": {
+          "documentation": "<p>The ID of the subnet in Amazon VPC that Cloud9 will use to communicate with the Amazon EC2 instance.</p>",
+          "shape": "SubnetId"
+        },
+        "tags": {
+          "documentation": "<p>An array of key-value pairs that will be associated with the new Cloud9 development environment.</p>",
+          "shape": "TagList"
+        }
+      },
+      "required": ["name", "instanceType"],
+      "type": "structure"
+    },
+    "CreateEnvironmentEC2Result": {
+      "members": {
+        "environmentId": {
+          "documentation": "<p>The ID of the environment that was created.</p>",
+          "shape": "EnvironmentId"
+        }
+      },
+      "type": "structure"
+    },
+    "CreateEnvironmentMembershipRequest": {
+      "members": {
+        "environmentId": {
+          "documentation": "<p>The ID of the environment that contains the environment member you want to add.</p>",
+          "shape": "EnvironmentId"
+        },
+        "permissions": {
+          "documentation": "<p>The type of environment member permissions you want to associate with this environment member. Available values include:</p> <ul> <li> <p> <code>read-only</code>: Has read-only access to the environment.</p> </li> <li> <p> <code>read-write</code>: Has read-write access to the environment.</p> </li> </ul>",
+          "shape": "MemberPermissions"
+        },
+        "userArn": {
+          "documentation": "<p>The Amazon Resource Name (ARN) of the environment member you want to add.</p>",
+          "shape": "UserArn"
+        }
+      },
+      "required": ["environmentId", "userArn", "permissions"],
+      "type": "structure"
+    },
+    "CreateEnvironmentMembershipResult": {
+      "members": {
+        "membership": {
+          "documentation": "<p>Information about the environment member that was added.</p>",
+          "shape": "EnvironmentMember"
+        }
+      },
+      "required": ["membership"],
+      "type": "structure"
+    },
+    "DeleteEnvironmentMembershipRequest": {
+      "members": {
+        "environmentId": {
+          "documentation": "<p>The ID of the environment to delete the environment member from.</p>",
+          "shape": "EnvironmentId"
+        },
+        "userArn": {
+          "documentation": "<p>The Amazon Resource Name (ARN) of the environment member to delete from the environment.</p>",
+          "shape": "UserArn"
+        }
+      },
+      "required": ["environmentId", "userArn"],
+      "type": "structure"
+    },
+    "DeleteEnvironmentMembershipResult": {
+      "members": {},
+      "type": "structure"
+    },
+    "DeleteEnvironmentRequest": {
+      "members": {
+        "environmentId": {
+          "documentation": "<p>The ID of the environment to delete.</p>",
+          "shape": "EnvironmentId"
+        }
+      },
+      "required": ["environmentId"],
+      "type": "structure"
+    },
+    "DeleteEnvironmentResult": {
+      "members": {},
+      "type": "structure"
+    },
+    "DescribeEnvironmentMembershipsRequest": {
+      "members": {
+        "environmentId": {
+          "documentation": "<p>The ID of the environment to get environment member information about.</p>",
+          "shape": "EnvironmentId"
+        },
+        "maxResults": {
+          "documentation": "<p>The maximum number of environment members to get information about.</p>",
+          "shape": "MaxResults"
+        },
+        "nextToken": {
+          "documentation": "<p>During a previous call, if there are more than 25 items in the list, only the first 25 items are returned, along with a unique string called a <i>next token</i>. To get the next batch of items in the list, call this operation again, adding the next token to the call. To get all of the items in the list, keep calling this operation with each subsequent next token that is returned, until no more next tokens are returned.</p>",
+          "shape": "String"
+        },
+        "permissions": {
+          "documentation": "<p>The type of environment member permissions to get information about. Available values include:</p> <ul> <li> <p> <code>owner</code>: Owns the environment.</p> </li> <li> <p> <code>read-only</code>: Has read-only access to the environment.</p> </li> <li> <p> <code>read-write</code>: Has read-write access to the environment.</p> </li> </ul> <p>If no value is specified, information about all environment members are returned.</p>",
+          "shape": "PermissionsList"
+        },
+        "userArn": {
+          "documentation": "<p>The Amazon Resource Name (ARN) of an individual environment member to get information about. If no value is specified, information about all environment members are returned.</p>",
+          "shape": "UserArn"
+        }
+      },
+      "type": "structure"
+    },
+    "DescribeEnvironmentMembershipsResult": {
+      "members": {
+        "memberships": {
+          "documentation": "<p>Information about the environment members for the environment.</p>",
+          "shape": "EnvironmentMembersList"
+        },
+        "nextToken": {
+          "documentation": "<p>If there are more than 25 items in the list, only the first 25 items are returned, along with a unique string called a <i>next token</i>. To get the next batch of items in the list, call this operation again, adding the next token to the call.</p>",
+          "shape": "String"
+        }
+      },
+      "type": "structure"
+    },
+    "DescribeEnvironmentStatusRequest": {
+      "members": {
+        "environmentId": {
+          "documentation": "<p>The ID of the environment to get status information about.</p>",
+          "shape": "EnvironmentId"
+        }
+      },
+      "required": ["environmentId"],
+      "type": "structure"
+    },
+    "DescribeEnvironmentStatusResult": {
+      "members": {
+        "message": {
+          "documentation": "<p>Any informational message about the status of the environment.</p>",
+          "shape": "String"
+        },
+        "status": {
+          "documentation": "<p>The status of the environment. Available values include:</p> <ul> <li> <p> <code>connecting</code>: The environment is connecting.</p> </li> <li> <p> <code>creating</code>: The environment is being created.</p> </li> <li> <p> <code>deleting</code>: The environment is being deleted.</p> </li> <li> <p> <code>error</code>: The environment is in an error state.</p> </li> <li> <p> <code>ready</code>: The environment is ready.</p> </li> <li> <p> <code>stopped</code>: The environment is stopped.</p> </li> <li> <p> <code>stopping</code>: The environment is stopping.</p> </li> </ul>",
+          "shape": "EnvironmentStatus"
+        }
+      },
+      "required": ["status", "message"],
+      "type": "structure"
+    },
+    "DescribeEnvironmentsRequest": {
+      "members": {
+        "environmentIds": {
+          "documentation": "<p>The IDs of individual environments to get information about.</p>",
+          "shape": "BoundedEnvironmentIdList"
+        }
+      },
+      "required": ["environmentIds"],
+      "type": "structure"
+    },
+    "DescribeEnvironmentsResult": {
+      "members": {
+        "environments": {
+          "documentation": "<p>Information about the environments that are returned.</p>",
+          "shape": "EnvironmentList"
+        }
+      },
+      "type": "structure"
+    },
+    "Environment": {
+      "documentation": "<p>Information about an Cloud9 development environment.</p>",
+      "members": {
+        "arn": {
+          "documentation": "<p>The Amazon Resource Name (ARN) of the environment.</p>",
+          "shape": "String"
+        },
+        "connectionType": {
+          "documentation": "<p>The connection type used for connecting to an Amazon EC2 environment. <code>CONNECT_SSH</code> is selected by default.</p>",
+          "shape": "ConnectionType"
+        },
+        "description": {
+          "documentation": "<p>The description for the environment.</p>",
+          "shape": "EnvironmentDescription"
+        },
+        "id": {
+          "documentation": "<p>The ID of the environment.</p>",
+          "shape": "EnvironmentId"
+        },
+        "lifecycle": {
+          "documentation": "<p>The state of the environment in its creation or deletion lifecycle.</p>",
+          "shape": "EnvironmentLifecycle"
+        },
+        "managedCredentialsStatus": {
+          "documentation": "<p>Describes the status of Amazon Web Services managed temporary credentials for the Cloud9 environment. Available values are:</p> <ul> <li> <p> <code>ENABLED_ON_CREATE</code> </p> </li> <li> <p> <code>ENABLED_BY_OWNER</code> </p> </li> <li> <p> <code>DISABLED_BY_DEFAULT</code> </p> </li> <li> <p> <code>DISABLED_BY_OWNER</code> </p> </li> <li> <p> <code>DISABLED_BY_COLLABORATOR</code> </p> </li> <li> <p> <code>PENDING_REMOVAL_BY_COLLABORATOR</code> </p> </li> <li> <p> <code>PENDING_REMOVAL_BY_OWNER</code> </p> </li> <li> <p> <code>FAILED_REMOVAL_BY_COLLABORATOR</code> </p> </li> <li> <p> <code>ENABLED_BY_OWNER</code> </p> </li> <li> <p> <code>DISABLED_BY_DEFAULT</code> </p> </li> </ul>",
+          "shape": "ManagedCredentialsStatus"
+        },
+        "name": {
+          "documentation": "<p>The name of the environment.</p>",
+          "shape": "EnvironmentName"
+        },
+        "ownerArn": {
+          "documentation": "<p>The Amazon Resource Name (ARN) of the environment owner.</p>",
+          "shape": "String"
+        },
+        "type": {
+          "documentation": "<p>The type of environment. Valid values include the following:</p> <ul> <li> <p> <code>ec2</code>: An Amazon Elastic Compute Cloud (Amazon EC2) instance connects to the environment.</p> </li> <li> <p> <code>ssh</code>: Your own server connects to the environment.</p> </li> </ul>",
+          "shape": "EnvironmentType"
+        }
+      },
+      "required": ["type", "arn", "ownerArn"],
+      "type": "structure"
+    },
+    "EnvironmentArn": {
+      "pattern": "arn:(aws|aws-cn|aws-us-gov|aws-iso|aws-iso-b):cloud9:([a-z]{2}-[a-z]+-\\d{1}):[0-9]{12}:environment:[a-zA-Z0-9]{8,32}",
+      "type": "string"
+    },
+    "EnvironmentDescription": {
+      "max": 200,
+      "sensitive": true,
+      "type": "string"
+    },
+    "EnvironmentId": {
+      "pattern": "^[a-zA-Z0-9]{8,32}$",
+      "type": "string"
+    },
+    "EnvironmentIdList": {
+      "member": { "shape": "EnvironmentId" },
+      "type": "list"
+    },
+    "EnvironmentLifecycle": {
+      "documentation": "<p>Information about the current creation or deletion lifecycle state of an Cloud9 development environment.</p>",
+      "members": {
+        "failureResource": {
+          "documentation": "<p>If the environment failed to delete, the Amazon Resource Name (ARN) of the related Amazon Web Services resource.</p>",
+          "shape": "String"
+        },
+        "reason": {
+          "documentation": "<p>Any informational message about the lifecycle state of the environment.</p>",
+          "shape": "String"
+        },
+        "status": {
+          "documentation": "<p>The current creation or deletion lifecycle state of the environment.</p> <ul> <li> <p> <code>CREATING</code>: The environment is in the process of being created.</p> </li> <li> <p> <code>CREATED</code>: The environment was successfully created.</p> </li> <li> <p> <code>CREATE_FAILED</code>: The environment failed to be created.</p> </li> <li> <p> <code>DELETING</code>: The environment is in the process of being deleted.</p> </li> <li> <p> <code>DELETE_FAILED</code>: The environment failed to delete.</p> </li> </ul>",
+          "shape": "EnvironmentLifecycleStatus"
+        }
+      },
+      "type": "structure"
+    },
+    "EnvironmentLifecycleStatus": {
+      "enum": ["CREATING", "CREATED", "CREATE_FAILED", "DELETING", "DELETE_FAILED"],
+      "type": "string"
+    },
+    "EnvironmentList": {
+      "member": { "shape": "Environment" },
+      "type": "list"
+    },
+    "EnvironmentMember": {
+      "documentation": "<p>Information about an environment member for an Cloud9 development environment.</p>",
+      "members": {
+        "environmentId": {
+          "documentation": "<p>The ID of the environment for the environment member.</p>",
+          "shape": "EnvironmentId"
+        },
+        "lastAccess": {
+          "documentation": "<p>The time, expressed in epoch time format, when the environment member last opened the environment.</p>",
+          "shape": "Timestamp"
+        },
+        "permissions": {
+          "documentation": "<p>The type of environment member permissions associated with this environment member. Available values include:</p> <ul> <li> <p> <code>owner</code>: Owns the environment.</p> </li> <li> <p> <code>read-only</code>: Has read-only access to the environment.</p> </li> <li> <p> <code>read-write</code>: Has read-write access to the environment.</p> </li> </ul>",
+          "shape": "Permissions"
+        },
+        "userArn": {
+          "documentation": "<p>The Amazon Resource Name (ARN) of the environment member.</p>",
+          "shape": "UserArn"
+        },
+        "userId": {
+          "documentation": "<p>The user ID in Identity and Access Management (IAM) of the environment member.</p>",
+          "shape": "String"
+        }
+      },
+      "required": ["permissions", "userId", "userArn", "environmentId"],
+      "type": "structure"
+    },
+    "EnvironmentMembersList": {
+      "member": { "shape": "EnvironmentMember" },
+      "type": "list"
+    },
+    "EnvironmentName": {
+      "max": 60,
+      "min": 1,
+      "type": "string"
+    },
+    "EnvironmentStatus": {
+      "enum": ["error", "creating", "connecting", "ready", "stopping", "stopped", "deleting"],
+      "type": "string"
+    },
+    "EnvironmentType": {
+      "enum": ["ssh", "ec2"],
+      "type": "string"
+    },
+    "ForbiddenException": {
+      "documentation": "<p>An access permissions issue occurred.</p>",
+      "exception": true,
+      "members": {},
+      "type": "structure"
+    },
+    "ImageId": {
+      "max": 512,
+      "type": "string"
+    },
+    "InstanceType": {
+      "max": 20,
+      "min": 5,
+      "pattern": "^[a-z][1-9][.][a-z0-9]+$",
+      "type": "string"
+    },
+    "InternalServerErrorException": {
+      "documentation": "<p>An internal server error occurred.</p>",
+      "exception": true,
+      "fault": true,
+      "members": {},
+      "type": "structure"
+    },
+    "LimitExceededException": {
+      "documentation": "<p>A service limit was exceeded.</p>",
+      "exception": true,
+      "members": {},
+      "type": "structure"
+    },
+    "ListEnvironmentsRequest": {
+      "members": {
+        "maxResults": {
+          "documentation": "<p>The maximum number of environments to get identifiers for.</p>",
+          "shape": "MaxResults"
+        },
+        "nextToken": {
+          "documentation": "<p>During a previous call, if there are more than 25 items in the list, only the first 25 items are returned, along with a unique string called a <i>next token</i>. To get the next batch of items in the list, call this operation again, adding the next token to the call. To get all of the items in the list, keep calling this operation with each subsequent next token that is returned, until no more next tokens are returned.</p>",
+          "shape": "String"
+        }
+      },
+      "type": "structure"
+    },
+    "ListEnvironmentsResult": {
+      "members": {
+        "environmentIds": {
+          "documentation": "<p>The list of environment identifiers.</p>",
+          "shape": "EnvironmentIdList"
+        },
+        "nextToken": {
+          "documentation": "<p>If there are more than 25 items in the list, only the first 25 items are returned, along with a unique string called a <i>next token</i>. To get the next batch of items in the list, call this operation again, adding the next token to the call.</p>",
+          "shape": "String"
+        }
+      },
+      "type": "structure"
+    },
+    "ListTagsForResourceRequest": {
+      "members": {
+        "ResourceARN": {
+          "documentation": "<p>The Amazon Resource Name (ARN) of the Cloud9 development environment to get the tags for.</p>",
+          "shape": "EnvironmentArn"
+        }
+      },
+      "required": ["ResourceARN"],
+      "type": "structure"
+    },
+    "ListTagsForResourceResponse": {
+      "members": {
+        "Tags": {
+          "documentation": "<p>The list of tags associated with the Cloud9 development environment.</p>",
+          "shape": "TagList"
+        }
+      },
+      "type": "structure"
+    },
+    "ManagedCredentialsAction": {
+      "enum": ["ENABLE", "DISABLE"],
+      "type": "string"
+    },
+    "ManagedCredentialsStatus": {
+      "enum": [
+        "ENABLED_ON_CREATE",
+        "ENABLED_BY_OWNER",
+        "DISABLED_BY_DEFAULT",
+        "DISABLED_BY_OWNER",
+        "DISABLED_BY_COLLABORATOR",
+        "PENDING_REMOVAL_BY_COLLABORATOR",
+        "PENDING_START_REMOVAL_BY_COLLABORATOR",
+        "PENDING_REMOVAL_BY_OWNER",
+        "PENDING_START_REMOVAL_BY_OWNER",
+        "FAILED_REMOVAL_BY_COLLABORATOR",
+        "FAILED_REMOVAL_BY_OWNER"
+      ],
+      "type": "string"
+    },
+    "MaxResults": {
+      "box": true,
+      "max": 25,
+      "min": 0,
+      "type": "integer"
+    },
+    "MemberPermissions": {
+      "enum": ["read-write", "read-only"],
+      "type": "string"
+    },
+    "NotFoundException": {
+      "documentation": "<p>The target resource cannot be found.</p>",
+      "exception": true,
+      "members": {},
+      "type": "structure"
+    },
+    "NullableBoolean": { "type": "boolean" },
+    "Permissions": {
+      "enum": ["owner", "read-write", "read-only"],
+      "type": "string"
+    },
+    "PermissionsList": {
+      "member": { "shape": "Permissions" },
+      "type": "list"
+    },
+    "String": { "type": "string" },
+    "SubnetId": {
+      "max": 24,
+      "min": 15,
+      "pattern": "^(subnet-[0-9a-f]{8}|subnet-[0-9a-f]{17})$",
+      "type": "string"
+    },
+    "Tag": {
+      "documentation": "<p>Metadata that is associated with Amazon Web Services resources. In particular, a name-value pair that can be associated with an Cloud9 development environment. There are two types of tags: <i>user tags</i> and <i>system tags</i>. A user tag is created by the user. A system tag is automatically created by Amazon Web Services services. A system tag is prefixed with <code>\"aws:\"</code> and cannot be modified by the user.</p>",
+      "members": {
+        "Key": {
+          "documentation": "<p>The <b>name</b> part of a tag.</p>",
+          "shape": "TagKey"
+        },
+        "Value": {
+          "documentation": "<p>The <b>value</b> part of a tag.</p>",
+          "shape": "TagValue"
+        }
+      },
+      "required": ["Key", "Value"],
+      "sensitive": true,
+      "type": "structure"
+    },
+    "TagKey": {
+      "max": 128,
+      "min": 1,
+      "sensitive": true,
+      "type": "string"
+    },
+    "TagKeyList": {
+      "max": 200,
+      "member": { "shape": "TagKey" },
+      "min": 0,
+      "sensitive": true,
+      "type": "list"
+    },
+    "TagList": {
+      "max": 200,
+      "member": { "shape": "Tag" },
+      "min": 0,
+      "sensitive": true,
+      "type": "list"
+    },
+    "TagResourceRequest": {
+      "members": {
+        "ResourceARN": {
+          "documentation": "<p>The Amazon Resource Name (ARN) of the Cloud9 development environment to add tags to.</p>",
+          "shape": "EnvironmentArn"
+        },
+        "Tags": {
+          "documentation": "<p>The list of tags to add to the given Cloud9 development environment.</p>",
+          "shape": "TagList"
+        }
+      },
+      "required": ["ResourceARN", "Tags"],
+      "type": "structure"
+    },
+    "TagResourceResponse": {
+      "members": {},
+      "type": "structure"
+    },
+    "TagValue": {
+      "max": 256,
+      "min": 0,
+      "sensitive": true,
+      "type": "string"
+    },
+    "Timestamp": { "type": "timestamp" },
+    "TooManyRequestsException": {
+      "documentation": "<p>Too many service requests were made over the given time period.</p>",
+      "exception": true,
+      "members": {},
+      "type": "structure"
+    },
+    "UntagResourceRequest": {
+      "members": {
+        "ResourceARN": {
+          "documentation": "<p>The Amazon Resource Name (ARN) of the Cloud9 development environment to remove tags from.</p>",
+          "shape": "EnvironmentArn"
+        },
+        "TagKeys": {
+          "documentation": "<p>The tag names of the tags to remove from the given Cloud9 development environment.</p>",
+          "shape": "TagKeyList"
+        }
+      },
+      "required": ["ResourceARN", "TagKeys"],
+      "type": "structure"
+    },
+    "UntagResourceResponse": {
+      "members": {},
+      "type": "structure"
+    },
+    "UpdateEnvironmentMembershipRequest": {
+      "members": {
+        "environmentId": {
+          "documentation": "<p>The ID of the environment for the environment member whose settings you want to change.</p>",
+          "shape": "EnvironmentId"
+        },
+        "permissions": {
+          "documentation": "<p>The replacement type of environment member permissions you want to associate with this environment member. Available values include:</p> <ul> <li> <p> <code>read-only</code>: Has read-only access to the environment.</p> </li> <li> <p> <code>read-write</code>: Has read-write access to the environment.</p> </li> </ul>",
+          "shape": "MemberPermissions"
+        },
+        "userArn": {
+          "documentation": "<p>The Amazon Resource Name (ARN) of the environment member whose settings you want to change.</p>",
+          "shape": "UserArn"
+        }
+      },
+      "required": ["environmentId", "userArn", "permissions"],
+      "type": "structure"
+    },
+    "UpdateEnvironmentMembershipResult": {
+      "members": {
+        "membership": {
+          "documentation": "<p>Information about the environment member whose settings were changed.</p>",
+          "shape": "EnvironmentMember"
+        }
+      },
+      "type": "structure"
+    },
+    "UpdateEnvironmentRequest": {
+      "members": {
+        "description": {
+          "documentation": "<p>Any new or replacement description for the environment.</p>",
+          "shape": "EnvironmentDescription"
+        },
+        "environmentId": {
+          "documentation": "<p>The ID of the environment to change settings.</p>",
+          "shape": "EnvironmentId"
+        },
+        "managedCredentialsAction": {
+          "documentation": "<p>Allows the environment owner to turn on or turn off the Amazon Web Services managed temporary credentials for an Cloud9 environment by using one of the following values:</p> <ul> <li> <p> <code>ENABLE</code> </p> </li> <li> <p> <code>DISABLE</code> </p> </li> </ul> <note> <p>Only the environment owner can change the status of managed temporary credentials. An <code>AccessDeniedException</code> is thrown if an attempt to turn on or turn off managed temporary credentials is made by an account that's not the environment owner.</p> </note>",
+          "shape": "ManagedCredentialsAction"
+        },
+        "name": {
+          "documentation": "<p>A replacement name for the environment.</p>",
+          "shape": "EnvironmentName"
+        }
+      },
+      "required": ["environmentId"],
+      "type": "structure"
+    },
+    "UpdateEnvironmentResult": {
+      "members": {},
+      "type": "structure"
+    },
+    "UserArn": {
+      "pattern": "^arn:(aws|aws-cn|aws-us-gov|aws-iso|aws-iso-b):(iam|sts)::\\d+:(root|(user\\/[\\w+=/:,.@-]{1,64}|federated-user\\/[\\w+=/:,.@-]{2,32}|assumed-role\\/[\\w+=:,.@-]{1,64}\\/[\\w+=,.@-]{1,64}))$",
+      "type": "string"
+    }
+  },
+  "version": "2.0"
+}

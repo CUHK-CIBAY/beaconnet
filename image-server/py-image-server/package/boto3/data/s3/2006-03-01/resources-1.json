@@ -1,0 +1,1092 @@
+{
+  "resources": {
+    "Bucket": {
+      "actions": {
+        "Create": {
+          "request": {
+            "operation": "CreateBucket",
+            "params": [{ "name": "Name", "source": "identifier", "target": "Bucket" }]
+          }
+        },
+        "Delete": {
+          "request": {
+            "operation": "DeleteBucket",
+            "params": [{ "name": "Name", "source": "identifier", "target": "Bucket" }]
+          }
+        },
+        "DeleteObjects": {
+          "request": {
+            "operation": "DeleteObjects",
+            "params": [{ "name": "Name", "source": "identifier", "target": "Bucket" }]
+          }
+        },
+        "PutObject": {
+          "request": {
+            "operation": "PutObject",
+            "params": [{ "name": "Name", "source": "identifier", "target": "Bucket" }]
+          },
+          "resource": {
+            "identifiers": [
+              { "name": "Name", "source": "identifier", "target": "BucketName" },
+              { "path": "Key", "source": "requestParameter", "target": "Key" }
+            ],
+            "type": "Object"
+          }
+        }
+      },
+      "has": {
+        "Acl": {
+          "resource": {
+            "identifiers": [{ "name": "Name", "source": "identifier", "target": "BucketName" }],
+            "type": "BucketAcl"
+          }
+        },
+        "Cors": {
+          "resource": {
+            "identifiers": [{ "name": "Name", "source": "identifier", "target": "BucketName" }],
+            "type": "BucketCors"
+          }
+        },
+        "Lifecycle": {
+          "resource": {
+            "identifiers": [{ "name": "Name", "source": "identifier", "target": "BucketName" }],
+            "type": "BucketLifecycle"
+          }
+        },
+        "LifecycleConfiguration": {
+          "resource": {
+            "identifiers": [
+              {
+                "name": "Name",
+                "source": "identifier",
+                "target": "BucketName"
+              }
+            ],
+            "type": "BucketLifecycleConfiguration"
+          }
+        },
+        "Logging": {
+          "resource": {
+            "identifiers": [{ "name": "Name", "source": "identifier", "target": "BucketName" }],
+            "type": "BucketLogging"
+          }
+        },
+        "Notification": {
+          "resource": {
+            "identifiers": [{ "name": "Name", "source": "identifier", "target": "BucketName" }],
+            "type": "BucketNotification"
+          }
+        },
+        "Object": {
+          "resource": {
+            "identifiers": [
+              { "name": "Name", "source": "identifier", "target": "BucketName" },
+              { "source": "input", "target": "Key" }
+            ],
+            "type": "Object"
+          }
+        },
+        "Policy": {
+          "resource": {
+            "identifiers": [{ "name": "Name", "source": "identifier", "target": "BucketName" }],
+            "type": "BucketPolicy"
+          }
+        },
+        "RequestPayment": {
+          "resource": {
+            "identifiers": [{ "name": "Name", "source": "identifier", "target": "BucketName" }],
+            "type": "BucketRequestPayment"
+          }
+        },
+        "Tagging": {
+          "resource": {
+            "identifiers": [{ "name": "Name", "source": "identifier", "target": "BucketName" }],
+            "type": "BucketTagging"
+          }
+        },
+        "Versioning": {
+          "resource": {
+            "identifiers": [{ "name": "Name", "source": "identifier", "target": "BucketName" }],
+            "type": "BucketVersioning"
+          }
+        },
+        "Website": {
+          "resource": {
+            "identifiers": [{ "name": "Name", "source": "identifier", "target": "BucketName" }],
+            "type": "BucketWebsite"
+          }
+        }
+      },
+      "hasMany": {
+        "MultipartUploads": {
+          "request": {
+            "operation": "ListMultipartUploads",
+            "params": [{ "name": "Name", "source": "identifier", "target": "Bucket" }]
+          },
+          "resource": {
+            "identifiers": [
+              { "name": "Name", "source": "identifier", "target": "BucketName" },
+              { "path": "Uploads[].Key", "source": "response", "target": "ObjectKey" },
+              { "path": "Uploads[].UploadId", "source": "response", "target": "Id" }
+            ],
+            "path": "Uploads[]",
+            "type": "MultipartUpload"
+          }
+        },
+        "ObjectVersions": {
+          "request": {
+            "operation": "ListObjectVersions",
+            "params": [{ "name": "Name", "source": "identifier", "target": "Bucket" }]
+          },
+          "resource": {
+            "identifiers": [
+              { "name": "Name", "source": "identifier", "target": "BucketName" },
+              { "path": "[Versions,DeleteMarkers]|[].Key", "source": "response", "target": "ObjectKey" },
+              { "path": "[Versions,DeleteMarkers]|[].VersionId", "source": "response", "target": "Id" }
+            ],
+            "path": "[Versions,DeleteMarkers]|[]",
+            "type": "ObjectVersion"
+          }
+        },
+        "Objects": {
+          "request": {
+            "operation": "ListObjects",
+            "params": [{ "name": "Name", "source": "identifier", "target": "Bucket" }]
+          },
+          "resource": {
+            "identifiers": [
+              { "name": "Name", "source": "identifier", "target": "BucketName" },
+              { "path": "Contents[].Key", "source": "response", "target": "Key" }
+            ],
+            "path": "Contents[]",
+            "type": "ObjectSummary"
+          }
+        }
+      },
+      "identifiers": [{ "name": "Name" }],
+      "shape": "Bucket",
+      "waiters": {
+        "Exists": {
+          "params": [{ "name": "Name", "source": "identifier", "target": "Bucket" }],
+          "waiterName": "BucketExists"
+        },
+        "NotExists": {
+          "params": [{ "name": "Name", "source": "identifier", "target": "Bucket" }],
+          "waiterName": "BucketNotExists"
+        }
+      }
+    },
+    "BucketAcl": {
+      "actions": {
+        "Put": {
+          "request": {
+            "operation": "PutBucketAcl",
+            "params": [{ "name": "BucketName", "source": "identifier", "target": "Bucket" }]
+          }
+        }
+      },
+      "has": {
+        "Bucket": {
+          "resource": {
+            "identifiers": [{ "name": "BucketName", "source": "identifier", "target": "Name" }],
+            "type": "Bucket"
+          }
+        }
+      },
+      "identifiers": [{ "name": "BucketName" }],
+      "load": {
+        "path": "@",
+        "request": {
+          "operation": "GetBucketAcl",
+          "params": [{ "name": "BucketName", "source": "identifier", "target": "Bucket" }]
+        }
+      },
+      "shape": "GetBucketAclOutput"
+    },
+    "BucketCors": {
+      "actions": {
+        "Delete": {
+          "request": {
+            "operation": "DeleteBucketCors",
+            "params": [{ "name": "BucketName", "source": "identifier", "target": "Bucket" }]
+          }
+        },
+        "Put": {
+          "request": {
+            "operation": "PutBucketCors",
+            "params": [{ "name": "BucketName", "source": "identifier", "target": "Bucket" }]
+          }
+        }
+      },
+      "has": {
+        "Bucket": {
+          "resource": {
+            "identifiers": [{ "name": "BucketName", "source": "identifier", "target": "Name" }],
+            "type": "Bucket"
+          }
+        }
+      },
+      "identifiers": [{ "name": "BucketName" }],
+      "load": {
+        "path": "@",
+        "request": {
+          "operation": "GetBucketCors",
+          "params": [{ "name": "BucketName", "source": "identifier", "target": "Bucket" }]
+        }
+      },
+      "shape": "GetBucketCorsOutput"
+    },
+    "BucketLifecycle": {
+      "actions": {
+        "Delete": {
+          "request": {
+            "operation": "DeleteBucketLifecycle",
+            "params": [{ "name": "BucketName", "source": "identifier", "target": "Bucket" }]
+          }
+        },
+        "Put": {
+          "request": {
+            "operation": "PutBucketLifecycle",
+            "params": [{ "name": "BucketName", "source": "identifier", "target": "Bucket" }]
+          }
+        }
+      },
+      "has": {
+        "Bucket": {
+          "resource": {
+            "identifiers": [{ "name": "BucketName", "source": "identifier", "target": "Name" }],
+            "type": "Bucket"
+          }
+        }
+      },
+      "identifiers": [{ "name": "BucketName" }],
+      "load": {
+        "path": "@",
+        "request": {
+          "operation": "GetBucketLifecycle",
+          "params": [{ "name": "BucketName", "source": "identifier", "target": "Bucket" }]
+        }
+      },
+      "shape": "GetBucketLifecycleOutput"
+    },
+    "BucketLifecycleConfiguration": {
+      "actions": {
+        "Delete": {
+          "request": {
+            "operation": "DeleteBucketLifecycle",
+            "params": [
+              {
+                "name": "BucketName",
+                "source": "identifier",
+                "target": "Bucket"
+              }
+            ]
+          }
+        },
+        "Put": {
+          "request": {
+            "operation": "PutBucketLifecycleConfiguration",
+            "params": [
+              {
+                "name": "BucketName",
+                "source": "identifier",
+                "target": "Bucket"
+              }
+            ]
+          }
+        }
+      },
+      "has": {
+        "Bucket": {
+          "resource": {
+            "identifiers": [
+              {
+                "name": "BucketName",
+                "source": "identifier",
+                "target": "Name"
+              }
+            ],
+            "type": "Bucket"
+          }
+        }
+      },
+      "identifiers": [
+        {
+          "name": "BucketName"
+        }
+      ],
+      "load": {
+        "path": "@",
+        "request": {
+          "operation": "GetBucketLifecycleConfiguration",
+          "params": [
+            {
+              "name": "BucketName",
+              "source": "identifier",
+              "target": "Bucket"
+            }
+          ]
+        }
+      },
+      "shape": "GetBucketLifecycleConfigurationOutput"
+    },
+    "BucketLogging": {
+      "actions": {
+        "Put": {
+          "request": {
+            "operation": "PutBucketLogging",
+            "params": [{ "name": "BucketName", "source": "identifier", "target": "Bucket" }]
+          }
+        }
+      },
+      "has": {
+        "Bucket": {
+          "resource": {
+            "identifiers": [{ "name": "BucketName", "source": "identifier", "target": "Name" }],
+            "type": "Bucket"
+          }
+        }
+      },
+      "identifiers": [{ "name": "BucketName" }],
+      "load": {
+        "path": "@",
+        "request": {
+          "operation": "GetBucketLogging",
+          "params": [{ "name": "BucketName", "source": "identifier", "target": "Bucket" }]
+        }
+      },
+      "shape": "GetBucketLoggingOutput"
+    },
+    "BucketNotification": {
+      "actions": {
+        "Put": {
+          "request": {
+            "operation": "PutBucketNotificationConfiguration",
+            "params": [{ "name": "BucketName", "source": "identifier", "target": "Bucket" }]
+          }
+        }
+      },
+      "has": {
+        "Bucket": {
+          "resource": {
+            "identifiers": [{ "name": "BucketName", "source": "identifier", "target": "Name" }],
+            "type": "Bucket"
+          }
+        }
+      },
+      "identifiers": [{ "name": "BucketName" }],
+      "load": {
+        "path": "@",
+        "request": {
+          "operation": "GetBucketNotificationConfiguration",
+          "params": [{ "name": "BucketName", "source": "identifier", "target": "Bucket" }]
+        }
+      },
+      "shape": "NotificationConfiguration"
+    },
+    "BucketPolicy": {
+      "actions": {
+        "Delete": {
+          "request": {
+            "operation": "DeleteBucketPolicy",
+            "params": [{ "name": "BucketName", "source": "identifier", "target": "Bucket" }]
+          }
+        },
+        "Put": {
+          "request": {
+            "operation": "PutBucketPolicy",
+            "params": [{ "name": "BucketName", "source": "identifier", "target": "Bucket" }]
+          }
+        }
+      },
+      "has": {
+        "Bucket": {
+          "resource": {
+            "identifiers": [{ "name": "BucketName", "source": "identifier", "target": "Name" }],
+            "type": "Bucket"
+          }
+        }
+      },
+      "identifiers": [{ "name": "BucketName" }],
+      "load": {
+        "path": "@",
+        "request": {
+          "operation": "GetBucketPolicy",
+          "params": [{ "name": "BucketName", "source": "identifier", "target": "Bucket" }]
+        }
+      },
+      "shape": "GetBucketPolicyOutput"
+    },
+    "BucketRequestPayment": {
+      "actions": {
+        "Put": {
+          "request": {
+            "operation": "PutBucketRequestPayment",
+            "params": [{ "name": "BucketName", "source": "identifier", "target": "Bucket" }]
+          }
+        }
+      },
+      "has": {
+        "Bucket": {
+          "resource": {
+            "identifiers": [{ "name": "BucketName", "source": "identifier", "target": "Name" }],
+            "type": "Bucket"
+          }
+        }
+      },
+      "identifiers": [{ "name": "BucketName" }],
+      "load": {
+        "path": "@",
+        "request": {
+          "operation": "GetBucketRequestPayment",
+          "params": [{ "name": "BucketName", "source": "identifier", "target": "Bucket" }]
+        }
+      },
+      "shape": "GetBucketRequestPaymentOutput"
+    },
+    "BucketTagging": {
+      "actions": {
+        "Delete": {
+          "request": {
+            "operation": "DeleteBucketTagging",
+            "params": [{ "name": "BucketName", "source": "identifier", "target": "Bucket" }]
+          }
+        },
+        "Put": {
+          "request": {
+            "operation": "PutBucketTagging",
+            "params": [{ "name": "BucketName", "source": "identifier", "target": "Bucket" }]
+          }
+        }
+      },
+      "has": {
+        "Bucket": {
+          "resource": {
+            "identifiers": [{ "name": "BucketName", "source": "identifier", "target": "Name" }],
+            "type": "Bucket"
+          }
+        }
+      },
+      "identifiers": [{ "name": "BucketName" }],
+      "load": {
+        "path": "@",
+        "request": {
+          "operation": "GetBucketTagging",
+          "params": [{ "name": "BucketName", "source": "identifier", "target": "Bucket" }]
+        }
+      },
+      "shape": "GetBucketTaggingOutput"
+    },
+    "BucketVersioning": {
+      "actions": {
+        "Enable": {
+          "request": {
+            "operation": "PutBucketVersioning",
+            "params": [
+              { "name": "BucketName", "source": "identifier", "target": "Bucket" },
+              { "source": "string", "target": "VersioningConfiguration.Status", "value": "Enabled" }
+            ]
+          }
+        },
+        "Put": {
+          "request": {
+            "operation": "PutBucketVersioning",
+            "params": [{ "name": "BucketName", "source": "identifier", "target": "Bucket" }]
+          }
+        },
+        "Suspend": {
+          "request": {
+            "operation": "PutBucketVersioning",
+            "params": [
+              { "name": "BucketName", "source": "identifier", "target": "Bucket" },
+              { "source": "string", "target": "VersioningConfiguration.Status", "value": "Suspended" }
+            ]
+          }
+        }
+      },
+      "has": {
+        "Bucket": {
+          "resource": {
+            "identifiers": [{ "name": "BucketName", "source": "identifier", "target": "Name" }],
+            "type": "Bucket"
+          }
+        }
+      },
+      "identifiers": [{ "name": "BucketName" }],
+      "load": {
+        "path": "@",
+        "request": {
+          "operation": "GetBucketVersioning",
+          "params": [{ "name": "BucketName", "source": "identifier", "target": "Bucket" }]
+        }
+      },
+      "shape": "GetBucketVersioningOutput"
+    },
+    "BucketWebsite": {
+      "actions": {
+        "Delete": {
+          "request": {
+            "operation": "DeleteBucketWebsite",
+            "params": [{ "name": "BucketName", "source": "identifier", "target": "Bucket" }]
+          }
+        },
+        "Put": {
+          "request": {
+            "operation": "PutBucketWebsite",
+            "params": [{ "name": "BucketName", "source": "identifier", "target": "Bucket" }]
+          }
+        }
+      },
+      "has": {
+        "Bucket": {
+          "resource": {
+            "identifiers": [{ "name": "BucketName", "source": "identifier", "target": "Name" }],
+            "type": "Bucket"
+          }
+        }
+      },
+      "identifiers": [{ "name": "BucketName" }],
+      "load": {
+        "path": "@",
+        "request": {
+          "operation": "GetBucketWebsite",
+          "params": [{ "name": "BucketName", "source": "identifier", "target": "Bucket" }]
+        }
+      },
+      "shape": "GetBucketWebsiteOutput"
+    },
+    "MultipartUpload": {
+      "actions": {
+        "Abort": {
+          "request": {
+            "operation": "AbortMultipartUpload",
+            "params": [
+              { "name": "BucketName", "source": "identifier", "target": "Bucket" },
+              { "name": "ObjectKey", "source": "identifier", "target": "Key" },
+              { "name": "Id", "source": "identifier", "target": "UploadId" }
+            ]
+          }
+        },
+        "Complete": {
+          "request": {
+            "operation": "CompleteMultipartUpload",
+            "params": [
+              { "name": "BucketName", "source": "identifier", "target": "Bucket" },
+              { "name": "ObjectKey", "source": "identifier", "target": "Key" },
+              { "name": "Id", "source": "identifier", "target": "UploadId" }
+            ]
+          },
+          "resource": {
+            "identifiers": [
+              { "name": "BucketName", "source": "identifier", "target": "BucketName" },
+              { "name": "ObjectKey", "source": "identifier", "target": "Key" }
+            ],
+            "type": "Object"
+          }
+        }
+      },
+      "has": {
+        "Object": {
+          "resource": {
+            "identifiers": [
+              { "name": "BucketName", "source": "identifier", "target": "BucketName" },
+              { "name": "ObjectKey", "source": "identifier", "target": "Key" }
+            ],
+            "type": "Object"
+          }
+        },
+        "Part": {
+          "resource": {
+            "identifiers": [
+              { "name": "BucketName", "source": "identifier", "target": "BucketName" },
+              { "name": "ObjectKey", "source": "identifier", "target": "ObjectKey" },
+              { "name": "Id", "source": "identifier", "target": "MultipartUploadId" },
+              { "source": "input", "target": "PartNumber" }
+            ],
+            "type": "MultipartUploadPart"
+          }
+        }
+      },
+      "hasMany": {
+        "Parts": {
+          "request": {
+            "operation": "ListParts",
+            "params": [
+              { "name": "BucketName", "source": "identifier", "target": "Bucket" },
+              { "name": "ObjectKey", "source": "identifier", "target": "Key" },
+              { "name": "Id", "source": "identifier", "target": "UploadId" }
+            ]
+          },
+          "resource": {
+            "identifiers": [
+              { "path": "Bucket", "source": "requestParameter", "target": "BucketName" },
+              { "path": "Key", "source": "requestParameter", "target": "ObjectKey" },
+              { "path": "UploadId", "source": "requestParameter", "target": "MultipartUploadId" },
+              { "path": "Parts[].PartNumber", "source": "response", "target": "PartNumber" }
+            ],
+            "path": "Parts[]",
+            "type": "MultipartUploadPart"
+          }
+        }
+      },
+      "identifiers": [{ "name": "BucketName" }, { "name": "ObjectKey" }, { "name": "Id" }],
+      "shape": "MultipartUpload"
+    },
+    "MultipartUploadPart": {
+      "actions": {
+        "CopyFrom": {
+          "request": {
+            "operation": "UploadPartCopy",
+            "params": [
+              { "name": "BucketName", "source": "identifier", "target": "Bucket" },
+              { "name": "ObjectKey", "source": "identifier", "target": "Key" },
+              { "name": "MultipartUploadId", "source": "identifier", "target": "UploadId" },
+              { "name": "PartNumber", "source": "identifier", "target": "PartNumber" }
+            ]
+          }
+        },
+        "Upload": {
+          "request": {
+            "operation": "UploadPart",
+            "params": [
+              { "name": "BucketName", "source": "identifier", "target": "Bucket" },
+              { "name": "ObjectKey", "source": "identifier", "target": "Key" },
+              { "name": "MultipartUploadId", "source": "identifier", "target": "UploadId" },
+              { "name": "PartNumber", "source": "identifier", "target": "PartNumber" }
+            ]
+          }
+        }
+      },
+      "has": {
+        "MultipartUpload": {
+          "resource": {
+            "identifiers": [
+              { "name": "BucketName", "source": "identifier", "target": "BucketName" },
+              { "name": "ObjectKey", "source": "identifier", "target": "ObjectKey" },
+              { "name": "MultipartUploadId", "source": "identifier", "target": "Id" }
+            ],
+            "type": "MultipartUpload"
+          }
+        }
+      },
+      "identifiers": [
+        { "name": "BucketName" },
+        { "name": "ObjectKey" },
+        { "name": "MultipartUploadId" },
+        {
+          "memberName": "PartNumber",
+          "name": "PartNumber",
+          "type": "integer"
+        }
+      ],
+      "shape": "Part"
+    },
+    "Object": {
+      "actions": {
+        "CopyFrom": {
+          "request": {
+            "operation": "CopyObject",
+            "params": [
+              { "name": "BucketName", "source": "identifier", "target": "Bucket" },
+              { "name": "Key", "source": "identifier", "target": "Key" }
+            ]
+          }
+        },
+        "Delete": {
+          "request": {
+            "operation": "DeleteObject",
+            "params": [
+              { "name": "BucketName", "source": "identifier", "target": "Bucket" },
+              { "name": "Key", "source": "identifier", "target": "Key" }
+            ]
+          }
+        },
+        "Get": {
+          "request": {
+            "operation": "GetObject",
+            "params": [
+              { "name": "BucketName", "source": "identifier", "target": "Bucket" },
+              { "name": "Key", "source": "identifier", "target": "Key" }
+            ]
+          }
+        },
+        "InitiateMultipartUpload": {
+          "request": {
+            "operation": "CreateMultipartUpload",
+            "params": [
+              { "name": "BucketName", "source": "identifier", "target": "Bucket" },
+              { "name": "Key", "source": "identifier", "target": "Key" }
+            ]
+          },
+          "resource": {
+            "identifiers": [
+              { "name": "BucketName", "source": "identifier", "target": "BucketName" },
+              { "name": "Key", "source": "identifier", "target": "ObjectKey" },
+              { "path": "UploadId", "source": "response", "target": "Id" }
+            ],
+            "type": "MultipartUpload"
+          }
+        },
+        "Put": {
+          "request": {
+            "operation": "PutObject",
+            "params": [
+              { "name": "BucketName", "source": "identifier", "target": "Bucket" },
+              { "name": "Key", "source": "identifier", "target": "Key" }
+            ]
+          }
+        },
+        "RestoreObject": {
+          "request": {
+            "operation": "RestoreObject",
+            "params": [
+              { "name": "BucketName", "source": "identifier", "target": "Bucket" },
+              { "name": "Key", "source": "identifier", "target": "Key" }
+            ]
+          }
+        }
+      },
+      "batchActions": {
+        "Delete": {
+          "request": {
+            "operation": "DeleteObjects",
+            "params": [
+              { "name": "BucketName", "source": "identifier", "target": "Bucket" },
+              { "name": "Key", "source": "identifier", "target": "Delete.Objects[].Key" }
+            ]
+          }
+        }
+      },
+      "has": {
+        "Acl": {
+          "resource": {
+            "identifiers": [
+              { "name": "BucketName", "source": "identifier", "target": "BucketName" },
+              { "name": "Key", "source": "identifier", "target": "ObjectKey" }
+            ],
+            "type": "ObjectAcl"
+          }
+        },
+        "Bucket": {
+          "resource": {
+            "identifiers": [{ "name": "BucketName", "source": "identifier", "target": "Name" }],
+            "type": "Bucket"
+          }
+        },
+        "MultipartUpload": {
+          "resource": {
+            "identifiers": [
+              { "name": "BucketName", "source": "identifier", "target": "BucketName" },
+              { "name": "Key", "source": "identifier", "target": "ObjectKey" },
+              { "source": "input", "target": "Id" }
+            ],
+            "type": "MultipartUpload"
+          }
+        },
+        "Version": {
+          "resource": {
+            "identifiers": [
+              { "name": "BucketName", "source": "identifier", "target": "BucketName" },
+              { "name": "Key", "source": "identifier", "target": "ObjectKey" },
+              { "source": "input", "target": "Id" }
+            ],
+            "type": "ObjectVersion"
+          }
+        }
+      },
+      "identifiers": [{ "name": "BucketName" }, { "name": "Key" }],
+      "load": {
+        "path": "@",
+        "request": {
+          "operation": "HeadObject",
+          "params": [
+            { "name": "BucketName", "source": "identifier", "target": "Bucket" },
+            { "name": "Key", "source": "identifier", "target": "Key" }
+          ]
+        }
+      },
+      "shape": "HeadObjectOutput",
+      "waiters": {
+        "Exists": {
+          "params": [
+            { "name": "BucketName", "source": "identifier", "target": "Bucket" },
+            { "name": "Key", "source": "identifier", "target": "Key" }
+          ],
+          "waiterName": "ObjectExists"
+        },
+        "NotExists": {
+          "params": [
+            { "name": "BucketName", "source": "identifier", "target": "Bucket" },
+            { "name": "Key", "source": "identifier", "target": "Key" }
+          ],
+          "waiterName": "ObjectNotExists"
+        }
+      }
+    },
+    "ObjectAcl": {
+      "actions": {
+        "Put": {
+          "request": {
+            "operation": "PutObjectAcl",
+            "params": [
+              { "name": "BucketName", "source": "identifier", "target": "Bucket" },
+              { "name": "ObjectKey", "source": "identifier", "target": "Key" }
+            ]
+          }
+        }
+      },
+      "has": {
+        "Object": {
+          "resource": {
+            "identifiers": [
+              { "name": "BucketName", "source": "identifier", "target": "BucketName" },
+              { "name": "ObjectKey", "source": "identifier", "target": "Key" }
+            ],
+            "type": "Object"
+          }
+        }
+      },
+      "identifiers": [{ "name": "BucketName" }, { "name": "ObjectKey" }],
+      "load": {
+        "path": "@",
+        "request": {
+          "operation": "GetObjectAcl",
+          "params": [
+            { "name": "BucketName", "source": "identifier", "target": "Bucket" },
+            { "name": "ObjectKey", "source": "identifier", "target": "Key" }
+          ]
+        }
+      },
+      "shape": "GetObjectAclOutput"
+    },
+    "ObjectSummary": {
+      "actions": {
+        "CopyFrom": {
+          "request": {
+            "operation": "CopyObject",
+            "params": [
+              { "name": "BucketName", "source": "identifier", "target": "Bucket" },
+              { "name": "Key", "source": "identifier", "target": "Key" }
+            ]
+          }
+        },
+        "Delete": {
+          "request": {
+            "operation": "DeleteObject",
+            "params": [
+              { "name": "BucketName", "source": "identifier", "target": "Bucket" },
+              { "name": "Key", "source": "identifier", "target": "Key" }
+            ]
+          }
+        },
+        "Get": {
+          "request": {
+            "operation": "GetObject",
+            "params": [
+              { "name": "BucketName", "source": "identifier", "target": "Bucket" },
+              { "name": "Key", "source": "identifier", "target": "Key" }
+            ]
+          }
+        },
+        "InitiateMultipartUpload": {
+          "request": {
+            "operation": "CreateMultipartUpload",
+            "params": [
+              { "name": "BucketName", "source": "identifier", "target": "Bucket" },
+              { "name": "Key", "source": "identifier", "target": "Key" }
+            ]
+          },
+          "resource": {
+            "identifiers": [
+              { "name": "BucketName", "source": "identifier", "target": "BucketName" },
+              { "name": "Key", "source": "identifier", "target": "ObjectKey" },
+              { "path": "UploadId", "source": "response", "target": "Id" }
+            ],
+            "type": "MultipartUpload"
+          }
+        },
+        "Put": {
+          "request": {
+            "operation": "PutObject",
+            "params": [
+              { "name": "BucketName", "source": "identifier", "target": "Bucket" },
+              { "name": "Key", "source": "identifier", "target": "Key" }
+            ]
+          }
+        },
+        "RestoreObject": {
+          "request": {
+            "operation": "RestoreObject",
+            "params": [
+              { "name": "BucketName", "source": "identifier", "target": "Bucket" },
+              { "name": "Key", "source": "identifier", "target": "Key" }
+            ]
+          }
+        }
+      },
+      "batchActions": {
+        "Delete": {
+          "request": {
+            "operation": "DeleteObjects",
+            "params": [
+              { "name": "BucketName", "source": "identifier", "target": "Bucket" },
+              { "name": "Key", "source": "identifier", "target": "Delete.Objects[].Key" }
+            ]
+          }
+        }
+      },
+      "has": {
+        "Acl": {
+          "resource": {
+            "identifiers": [
+              { "name": "BucketName", "source": "identifier", "target": "BucketName" },
+              { "name": "Key", "source": "identifier", "target": "ObjectKey" }
+            ],
+            "type": "ObjectAcl"
+          }
+        },
+        "Bucket": {
+          "resource": {
+            "identifiers": [{ "name": "BucketName", "source": "identifier", "target": "Name" }],
+            "type": "Bucket"
+          }
+        },
+        "MultipartUpload": {
+          "resource": {
+            "identifiers": [
+              { "name": "BucketName", "source": "identifier", "target": "BucketName" },
+              { "name": "Key", "source": "identifier", "target": "ObjectKey" },
+              { "source": "input", "target": "Id" }
+            ],
+            "type": "MultipartUpload"
+          }
+        },
+        "Object": {
+          "resource": {
+            "identifiers": [
+              { "name": "BucketName", "source": "identifier", "target": "BucketName" },
+              { "name": "Key", "source": "identifier", "target": "Key" }
+            ],
+            "type": "Object"
+          }
+        },
+        "Version": {
+          "resource": {
+            "identifiers": [
+              { "name": "BucketName", "source": "identifier", "target": "BucketName" },
+              { "name": "Key", "source": "identifier", "target": "ObjectKey" },
+              { "source": "input", "target": "Id" }
+            ],
+            "type": "ObjectVersion"
+          }
+        }
+      },
+      "identifiers": [{ "name": "BucketName" }, { "name": "Key" }],
+      "shape": "Object",
+      "waiters": {
+        "Exists": {
+          "params": [
+            { "name": "BucketName", "source": "identifier", "target": "Bucket" },
+            { "name": "Key", "source": "identifier", "target": "Key" }
+          ],
+          "waiterName": "ObjectExists"
+        },
+        "NotExists": {
+          "params": [
+            { "name": "BucketName", "source": "identifier", "target": "Bucket" },
+            { "name": "Key", "source": "identifier", "target": "Key" }
+          ],
+          "waiterName": "ObjectNotExists"
+        }
+      }
+    },
+    "ObjectVersion": {
+      "actions": {
+        "Delete": {
+          "request": {
+            "operation": "DeleteObject",
+            "params": [
+              { "name": "BucketName", "source": "identifier", "target": "Bucket" },
+              { "name": "ObjectKey", "source": "identifier", "target": "Key" },
+              { "name": "Id", "source": "identifier", "target": "VersionId" }
+            ]
+          }
+        },
+        "Get": {
+          "request": {
+            "operation": "GetObject",
+            "params": [
+              { "name": "BucketName", "source": "identifier", "target": "Bucket" },
+              { "name": "ObjectKey", "source": "identifier", "target": "Key" },
+              { "name": "Id", "source": "identifier", "target": "VersionId" }
+            ]
+          }
+        },
+        "Head": {
+          "request": {
+            "operation": "HeadObject",
+            "params": [
+              { "name": "BucketName", "source": "identifier", "target": "Bucket" },
+              { "name": "ObjectKey", "source": "identifier", "target": "Key" },
+              { "name": "Id", "source": "identifier", "target": "VersionId" }
+            ]
+          }
+        }
+      },
+      "batchActions": {
+        "Delete": {
+          "request": {
+            "operation": "DeleteObjects",
+            "params": [
+              { "name": "BucketName", "source": "identifier", "target": "Bucket" },
+              { "name": "ObjectKey", "source": "identifier", "target": "Delete.Objects[*].Key" },
+              { "name": "Id", "source": "identifier", "target": "Delete.Objects[*].VersionId" }
+            ]
+          }
+        }
+      },
+      "has": {
+        "Object": {
+          "resource": {
+            "identifiers": [
+              { "name": "BucketName", "source": "identifier", "target": "BucketName" },
+              { "name": "ObjectKey", "source": "identifier", "target": "Key" }
+            ],
+            "type": "Object"
+          }
+        }
+      },
+      "identifiers": [{ "name": "BucketName" }, { "name": "ObjectKey" }, { "name": "Id" }],
+      "shape": "ObjectVersion"
+    }
+  },
+  "service": {
+    "actions": {
+      "CreateBucket": {
+        "request": { "operation": "CreateBucket" },
+        "resource": {
+          "identifiers": [{ "path": "Bucket", "source": "requestParameter", "target": "Name" }],
+          "type": "Bucket"
+        }
+      }
+    },
+    "has": {
+      "Bucket": {
+        "resource": {
+          "identifiers": [{ "source": "input", "target": "Name" }],
+          "type": "Bucket"
+        }
+      }
+    },
+    "hasMany": {
+      "Buckets": {
+        "request": { "operation": "ListBuckets" },
+        "resource": {
+          "identifiers": [{ "path": "Buckets[].Name", "source": "response", "target": "Name" }],
+          "path": "Buckets[]",
+          "type": "Bucket"
+        }
+      }
+    }
+  }
+}

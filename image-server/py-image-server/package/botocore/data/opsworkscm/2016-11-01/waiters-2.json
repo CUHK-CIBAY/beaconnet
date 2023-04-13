@@ -1,0 +1,25 @@
+{
+  "version": 2,
+  "waiters": {
+    "NodeAssociated": {
+      "acceptors": [
+        {
+          "argument": "NodeAssociationStatus",
+          "expected": "SUCCESS",
+          "matcher": "path",
+          "state": "success"
+        },
+        {
+          "argument": "NodeAssociationStatus",
+          "expected": "FAILED",
+          "matcher": "path",
+          "state": "failure"
+        }
+      ],
+      "delay": 15,
+      "description": "Wait until node is associated or disassociated.",
+      "maxAttempts": 15,
+      "operation": "DescribeNodeAssociationStatus"
+    }
+  }
+}

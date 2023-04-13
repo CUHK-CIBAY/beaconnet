@@ -1,0 +1,4045 @@
+{
+  "documentation": "<p>Amazon Inspector is a vulnerability discovery service that automates continuous scanning for security vulnerabilities within your Amazon EC2 and Amazon ECR environments.</p>",
+  "metadata": {
+    "apiVersion": "2020-06-08",
+    "endpointPrefix": "inspector2",
+    "jsonVersion": "1.1",
+    "protocol": "rest-json",
+    "serviceAbbreviation": "Inspector2",
+    "serviceFullName": "Inspector2",
+    "serviceId": "Inspector2",
+    "signatureVersion": "v4",
+    "signingName": "inspector2",
+    "uid": "inspector2-2020-06-08"
+  },
+  "operations": {
+    "AssociateMember": {
+      "documentation": "<p>Associates an Amazon Web Services account with an Amazon Inspector delegated administrator.</p>",
+      "errors": [
+        { "shape": "ValidationException" },
+        { "shape": "AccessDeniedException" },
+        { "shape": "ThrottlingException" },
+        { "shape": "InternalServerException" }
+      ],
+      "http": {
+        "method": "POST",
+        "requestUri": "/members/associate",
+        "responseCode": 200
+      },
+      "input": { "shape": "AssociateMemberRequest" },
+      "name": "AssociateMember",
+      "output": { "shape": "AssociateMemberResponse" }
+    },
+    "BatchGetAccountStatus": {
+      "documentation": "<p>Retrieves the Amazon Inspector status of multiple Amazon Web Services accounts within your environment.</p>",
+      "errors": [
+        { "shape": "ValidationException" },
+        { "shape": "AccessDeniedException" },
+        { "shape": "ResourceNotFoundException" },
+        { "shape": "ThrottlingException" },
+        { "shape": "InternalServerException" }
+      ],
+      "http": {
+        "method": "POST",
+        "requestUri": "/status/batch/get",
+        "responseCode": 200
+      },
+      "input": { "shape": "BatchGetAccountStatusRequest" },
+      "name": "BatchGetAccountStatus",
+      "output": { "shape": "BatchGetAccountStatusResponse" }
+    },
+    "BatchGetFreeTrialInfo": {
+      "documentation": "<p>Gets free trial status for multiple Amazon Web Services accounts.</p>",
+      "errors": [
+        { "shape": "ValidationException" },
+        { "shape": "AccessDeniedException" },
+        { "shape": "ThrottlingException" },
+        { "shape": "InternalServerException" }
+      ],
+      "http": {
+        "method": "POST",
+        "requestUri": "/freetrialinfo/batchget",
+        "responseCode": 200
+      },
+      "input": { "shape": "BatchGetFreeTrialInfoRequest" },
+      "name": "BatchGetFreeTrialInfo",
+      "output": { "shape": "BatchGetFreeTrialInfoResponse" }
+    },
+    "CancelFindingsReport": {
+      "documentation": "<p>Cancels the given findings report.</p>",
+      "errors": [
+        { "shape": "ValidationException" },
+        { "shape": "AccessDeniedException" },
+        { "shape": "ResourceNotFoundException" },
+        { "shape": "ThrottlingException" },
+        { "shape": "InternalServerException" }
+      ],
+      "http": {
+        "method": "POST",
+        "requestUri": "/reporting/cancel",
+        "responseCode": 200
+      },
+      "input": { "shape": "CancelFindingsReportRequest" },
+      "name": "CancelFindingsReport",
+      "output": { "shape": "CancelFindingsReportResponse" }
+    },
+    "CreateFilter": {
+      "documentation": "<p>Creates a filter resource using specified filter criteria.</p>",
+      "errors": [
+        { "shape": "ServiceQuotaExceededException" },
+        { "shape": "BadRequestException" },
+        { "shape": "ValidationException" },
+        { "shape": "AccessDeniedException" },
+        { "shape": "ThrottlingException" },
+        { "shape": "InternalServerException" }
+      ],
+      "http": {
+        "method": "POST",
+        "requestUri": "/filters/create",
+        "responseCode": 200
+      },
+      "input": { "shape": "CreateFilterRequest" },
+      "name": "CreateFilter",
+      "output": { "shape": "CreateFilterResponse" }
+    },
+    "CreateFindingsReport": {
+      "documentation": "<p>Creates a finding report.</p>",
+      "errors": [
+        { "shape": "ValidationException" },
+        { "shape": "AccessDeniedException" },
+        { "shape": "ResourceNotFoundException" },
+        { "shape": "ThrottlingException" },
+        { "shape": "InternalServerException" }
+      ],
+      "http": {
+        "method": "POST",
+        "requestUri": "/reporting/create",
+        "responseCode": 200
+      },
+      "input": { "shape": "CreateFindingsReportRequest" },
+      "name": "CreateFindingsReport",
+      "output": { "shape": "CreateFindingsReportResponse" }
+    },
+    "DeleteFilter": {
+      "documentation": "<p>Deletes a filter resource.</p>",
+      "errors": [
+        { "shape": "ValidationException" },
+        { "shape": "AccessDeniedException" },
+        { "shape": "ResourceNotFoundException" },
+        { "shape": "ThrottlingException" },
+        { "shape": "InternalServerException" }
+      ],
+      "http": {
+        "method": "POST",
+        "requestUri": "/filters/delete",
+        "responseCode": 200
+      },
+      "input": { "shape": "DeleteFilterRequest" },
+      "name": "DeleteFilter",
+      "output": { "shape": "DeleteFilterResponse" }
+    },
+    "DescribeOrganizationConfiguration": {
+      "documentation": "<p>Describe Amazon Inspector configuration settings for an Amazon Web Services organization</p>",
+      "errors": [
+        { "shape": "ValidationException" },
+        { "shape": "AccessDeniedException" },
+        { "shape": "ThrottlingException" },
+        { "shape": "InternalServerException" }
+      ],
+      "http": {
+        "method": "POST",
+        "requestUri": "/organizationconfiguration/describe",
+        "responseCode": 200
+      },
+      "input": { "shape": "DescribeOrganizationConfigurationRequest" },
+      "name": "DescribeOrganizationConfiguration",
+      "output": { "shape": "DescribeOrganizationConfigurationResponse" }
+    },
+    "Disable": {
+      "documentation": "<p>Disables Amazon Inspector scans for one or more Amazon Web Services accounts. Disabling all scan types in an account disables the Amazon Inspector service.</p>",
+      "errors": [
+        { "shape": "ValidationException" },
+        { "shape": "AccessDeniedException" },
+        { "shape": "ResourceNotFoundException" },
+        { "shape": "ThrottlingException" },
+        { "shape": "InternalServerException" }
+      ],
+      "http": {
+        "method": "POST",
+        "requestUri": "/disable",
+        "responseCode": 200
+      },
+      "input": { "shape": "DisableRequest" },
+      "name": "Disable",
+      "output": { "shape": "DisableResponse" }
+    },
+    "DisableDelegatedAdminAccount": {
+      "documentation": "<p>Disables the Amazon Inspector delegated administrator for your organization.</p>",
+      "errors": [
+        { "shape": "ConflictException" },
+        { "shape": "ValidationException" },
+        { "shape": "AccessDeniedException" },
+        { "shape": "ResourceNotFoundException" },
+        { "shape": "ThrottlingException" },
+        { "shape": "InternalServerException" }
+      ],
+      "http": {
+        "method": "POST",
+        "requestUri": "/delegatedadminaccounts/disable",
+        "responseCode": 200
+      },
+      "input": { "shape": "DisableDelegatedAdminAccountRequest" },
+      "name": "DisableDelegatedAdminAccount",
+      "output": { "shape": "DisableDelegatedAdminAccountResponse" }
+    },
+    "DisassociateMember": {
+      "documentation": "<p>Disassociates a member account from an Amazon Inspector delegated administrator.</p>",
+      "errors": [
+        { "shape": "ValidationException" },
+        { "shape": "AccessDeniedException" },
+        { "shape": "ThrottlingException" },
+        { "shape": "InternalServerException" }
+      ],
+      "http": {
+        "method": "POST",
+        "requestUri": "/members/disassociate",
+        "responseCode": 200
+      },
+      "input": { "shape": "DisassociateMemberRequest" },
+      "name": "DisassociateMember",
+      "output": { "shape": "DisassociateMemberResponse" }
+    },
+    "Enable": {
+      "documentation": "<p>Enables Amazon Inspector scans for one or more Amazon Web Services accounts.</p>",
+      "errors": [
+        { "shape": "ValidationException" },
+        { "shape": "AccessDeniedException" },
+        { "shape": "ResourceNotFoundException" },
+        { "shape": "ThrottlingException" },
+        { "shape": "InternalServerException" }
+      ],
+      "http": {
+        "method": "POST",
+        "requestUri": "/enable",
+        "responseCode": 200
+      },
+      "input": { "shape": "EnableRequest" },
+      "name": "Enable",
+      "output": { "shape": "EnableResponse" }
+    },
+    "EnableDelegatedAdminAccount": {
+      "documentation": "<p>Enables the Amazon Inspector delegated administrator for your Organizations organization.</p>",
+      "errors": [
+        { "shape": "ConflictException" },
+        { "shape": "ValidationException" },
+        { "shape": "AccessDeniedException" },
+        { "shape": "ResourceNotFoundException" },
+        { "shape": "ThrottlingException" },
+        { "shape": "InternalServerException" }
+      ],
+      "http": {
+        "method": "POST",
+        "requestUri": "/delegatedadminaccounts/enable",
+        "responseCode": 200
+      },
+      "input": { "shape": "EnableDelegatedAdminAccountRequest" },
+      "name": "EnableDelegatedAdminAccount",
+      "output": { "shape": "EnableDelegatedAdminAccountResponse" }
+    },
+    "GetDelegatedAdminAccount": {
+      "documentation": "<p>Retrieves information about the Amazon Inspector delegated administrator for your organization.</p>",
+      "errors": [
+        { "shape": "AccessDeniedException" },
+        { "shape": "ValidationException" },
+        { "shape": "ResourceNotFoundException" },
+        { "shape": "ThrottlingException" },
+        { "shape": "InternalServerException" }
+      ],
+      "http": {
+        "method": "POST",
+        "requestUri": "/delegatedadminaccounts/get",
+        "responseCode": 200
+      },
+      "input": { "shape": "GetDelegatedAdminAccountRequest" },
+      "name": "GetDelegatedAdminAccount",
+      "output": { "shape": "GetDelegatedAdminAccountResponse" }
+    },
+    "GetFindingsReportStatus": {
+      "documentation": "<p>Gets the status of a findings report.</p>",
+      "errors": [
+        { "shape": "ValidationException" },
+        { "shape": "AccessDeniedException" },
+        { "shape": "ResourceNotFoundException" },
+        { "shape": "ThrottlingException" },
+        { "shape": "InternalServerException" }
+      ],
+      "http": {
+        "method": "POST",
+        "requestUri": "/reporting/status/get",
+        "responseCode": 200
+      },
+      "input": { "shape": "GetFindingsReportStatusRequest" },
+      "name": "GetFindingsReportStatus",
+      "output": { "shape": "GetFindingsReportStatusResponse" }
+    },
+    "GetMember": {
+      "documentation": "<p>Gets member information for your organization.</p>",
+      "errors": [
+        { "shape": "ValidationException" },
+        { "shape": "AccessDeniedException" },
+        { "shape": "ResourceNotFoundException" },
+        { "shape": "ThrottlingException" },
+        { "shape": "InternalServerException" }
+      ],
+      "http": {
+        "method": "POST",
+        "requestUri": "/members/get",
+        "responseCode": 200
+      },
+      "input": { "shape": "GetMemberRequest" },
+      "name": "GetMember",
+      "output": { "shape": "GetMemberResponse" }
+    },
+    "ListAccountPermissions": {
+      "documentation": "<p>Lists the permissions an account has to configure Amazon Inspector.</p>",
+      "errors": [
+        { "shape": "ValidationException" },
+        { "shape": "AccessDeniedException" },
+        { "shape": "ThrottlingException" },
+        { "shape": "InternalServerException" }
+      ],
+      "http": {
+        "method": "POST",
+        "requestUri": "/accountpermissions/list",
+        "responseCode": 200
+      },
+      "input": { "shape": "ListAccountPermissionsRequest" },
+      "name": "ListAccountPermissions",
+      "output": { "shape": "ListAccountPermissionsResponse" }
+    },
+    "ListCoverage": {
+      "documentation": "<p>Lists coverage details for you environment.</p>",
+      "errors": [
+        { "shape": "ValidationException" },
+        { "shape": "ThrottlingException" },
+        { "shape": "InternalServerException" }
+      ],
+      "http": {
+        "method": "POST",
+        "requestUri": "/coverage/list",
+        "responseCode": 200
+      },
+      "input": { "shape": "ListCoverageRequest" },
+      "name": "ListCoverage",
+      "output": { "shape": "ListCoverageResponse" }
+    },
+    "ListCoverageStatistics": {
+      "documentation": "<p>Lists Amazon Inspector coverage statistics for your environment.</p>",
+      "errors": [
+        { "shape": "ValidationException" },
+        { "shape": "ThrottlingException" },
+        { "shape": "InternalServerException" }
+      ],
+      "http": {
+        "method": "POST",
+        "requestUri": "/coverage/statistics/list",
+        "responseCode": 200
+      },
+      "input": { "shape": "ListCoverageStatisticsRequest" },
+      "name": "ListCoverageStatistics",
+      "output": { "shape": "ListCoverageStatisticsResponse" }
+    },
+    "ListDelegatedAdminAccounts": {
+      "documentation": "<p>Lists information about the Amazon Inspector delegated administrator of your organization.</p>",
+      "errors": [
+        { "shape": "ValidationException" },
+        { "shape": "AccessDeniedException" },
+        { "shape": "ThrottlingException" },
+        { "shape": "InternalServerException" }
+      ],
+      "http": {
+        "method": "POST",
+        "requestUri": "/delegatedadminaccounts/list",
+        "responseCode": 200
+      },
+      "input": { "shape": "ListDelegatedAdminAccountsRequest" },
+      "name": "ListDelegatedAdminAccounts",
+      "output": { "shape": "ListDelegatedAdminAccountsResponse" }
+    },
+    "ListFilters": {
+      "documentation": "<p>Lists the filters associated with your account.</p>",
+      "errors": [
+        { "shape": "ValidationException" },
+        { "shape": "AccessDeniedException" },
+        { "shape": "ThrottlingException" },
+        { "shape": "InternalServerException" }
+      ],
+      "http": {
+        "method": "POST",
+        "requestUri": "/filters/list",
+        "responseCode": 200
+      },
+      "input": { "shape": "ListFiltersRequest" },
+      "name": "ListFilters",
+      "output": { "shape": "ListFiltersResponse" }
+    },
+    "ListFindingAggregations": {
+      "documentation": "<p>Lists aggregated finding data for your environment based on specific criteria.</p>",
+      "errors": [
+        { "shape": "ValidationException" },
+        { "shape": "ThrottlingException" },
+        { "shape": "InternalServerException" }
+      ],
+      "http": {
+        "method": "POST",
+        "requestUri": "/findings/aggregation/list",
+        "responseCode": 200
+      },
+      "input": { "shape": "ListFindingAggregationsRequest" },
+      "name": "ListFindingAggregations",
+      "output": { "shape": "ListFindingAggregationsResponse" }
+    },
+    "ListFindings": {
+      "documentation": "<p>Lists findings for your environment.</p>",
+      "errors": [
+        { "shape": "ValidationException" },
+        { "shape": "ThrottlingException" },
+        { "shape": "InternalServerException" }
+      ],
+      "http": {
+        "method": "POST",
+        "requestUri": "/findings/list",
+        "responseCode": 200
+      },
+      "input": { "shape": "ListFindingsRequest" },
+      "name": "ListFindings",
+      "output": { "shape": "ListFindingsResponse" }
+    },
+    "ListMembers": {
+      "documentation": "<p>List members associated with the Amazon Inspector delegated administrator for your organization.</p>",
+      "errors": [
+        { "shape": "ValidationException" },
+        { "shape": "AccessDeniedException" },
+        { "shape": "ThrottlingException" },
+        { "shape": "InternalServerException" }
+      ],
+      "http": {
+        "method": "POST",
+        "requestUri": "/members/list",
+        "responseCode": 200
+      },
+      "input": { "shape": "ListMembersRequest" },
+      "name": "ListMembers",
+      "output": { "shape": "ListMembersResponse" }
+    },
+    "ListTagsForResource": {
+      "documentation": "<p>Lists all tags attached to a given resource.</p>",
+      "errors": [
+        { "shape": "ValidationException" },
+        { "shape": "ResourceNotFoundException" },
+        { "shape": "ThrottlingException" },
+        { "shape": "InternalServerException" }
+      ],
+      "http": {
+        "method": "GET",
+        "requestUri": "/tags/{resourceArn}",
+        "responseCode": 200
+      },
+      "input": { "shape": "ListTagsForResourceRequest" },
+      "name": "ListTagsForResource",
+      "output": { "shape": "ListTagsForResourceResponse" }
+    },
+    "ListUsageTotals": {
+      "documentation": "<p>Lists the Amazon Inspector usage totals over the last 30 days.</p>",
+      "errors": [
+        { "shape": "ValidationException" },
+        { "shape": "AccessDeniedException" },
+        { "shape": "ThrottlingException" },
+        { "shape": "InternalServerException" }
+      ],
+      "http": {
+        "method": "POST",
+        "requestUri": "/usage/list",
+        "responseCode": 200
+      },
+      "input": { "shape": "ListUsageTotalsRequest" },
+      "name": "ListUsageTotals",
+      "output": { "shape": "ListUsageTotalsResponse" }
+    },
+    "TagResource": {
+      "documentation": "<p>Adds tags to a resource.</p>",
+      "errors": [
+        { "shape": "BadRequestException" },
+        { "shape": "ValidationException" },
+        { "shape": "ResourceNotFoundException" },
+        { "shape": "ThrottlingException" },
+        { "shape": "InternalServerException" }
+      ],
+      "http": {
+        "method": "POST",
+        "requestUri": "/tags/{resourceArn}",
+        "responseCode": 200
+      },
+      "idempotent": true,
+      "input": { "shape": "TagResourceRequest" },
+      "name": "TagResource",
+      "output": { "shape": "TagResourceResponse" }
+    },
+    "UntagResource": {
+      "documentation": "<p>Removes tags from a resource.</p>",
+      "errors": [
+        { "shape": "ValidationException" },
+        { "shape": "ResourceNotFoundException" },
+        { "shape": "ThrottlingException" },
+        { "shape": "InternalServerException" }
+      ],
+      "http": {
+        "method": "DELETE",
+        "requestUri": "/tags/{resourceArn}",
+        "responseCode": 200
+      },
+      "input": { "shape": "UntagResourceRequest" },
+      "name": "UntagResource",
+      "output": { "shape": "UntagResourceResponse" }
+    },
+    "UpdateFilter": {
+      "documentation": "<p>Specifies the action that is to be applied to the findings that match the filter.</p>",
+      "errors": [
+        { "shape": "ValidationException" },
+        { "shape": "AccessDeniedException" },
+        { "shape": "ResourceNotFoundException" },
+        { "shape": "ThrottlingException" },
+        { "shape": "InternalServerException" }
+      ],
+      "http": {
+        "method": "POST",
+        "requestUri": "/filters/update",
+        "responseCode": 200
+      },
+      "input": { "shape": "UpdateFilterRequest" },
+      "name": "UpdateFilter",
+      "output": { "shape": "UpdateFilterResponse" }
+    },
+    "UpdateOrganizationConfiguration": {
+      "documentation": "<p>Updates the configurations for your Amazon Inspector organization.</p>",
+      "errors": [
+        { "shape": "AccessDeniedException" },
+        { "shape": "ValidationException" },
+        { "shape": "ThrottlingException" },
+        { "shape": "InternalServerException" }
+      ],
+      "http": {
+        "method": "POST",
+        "requestUri": "/organizationconfiguration/update",
+        "responseCode": 200
+      },
+      "input": { "shape": "UpdateOrganizationConfigurationRequest" },
+      "name": "UpdateOrganizationConfiguration",
+      "output": { "shape": "UpdateOrganizationConfigurationResponse" }
+    }
+  },
+  "shapes": {
+    "AccessDeniedException": {
+      "documentation": "<p>You do not have sufficient access to perform this action.</p>",
+      "error": {
+        "httpStatusCode": 403,
+        "senderFault": true
+      },
+      "exception": true,
+      "members": {
+        "message": { "shape": "String" }
+      },
+      "required": ["message"],
+      "type": "structure"
+    },
+    "Account": {
+      "documentation": "<p>An Amazon Web Services account within your environment that Amazon Inspector has been enabled for.</p>",
+      "members": {
+        "accountId": {
+          "documentation": "<p>The ID of the Amazon Web Services account.</p>",
+          "shape": "AccountId"
+        },
+        "resourceStatus": {
+          "documentation": "<p>Details of the status of Amazon Inspector scans by resource type.</p>",
+          "shape": "ResourceStatus"
+        },
+        "status": {
+          "documentation": "<p>The status of Amazon Inspector for the account.</p>",
+          "shape": "Status"
+        }
+      },
+      "required": ["accountId", "resourceStatus", "status"],
+      "type": "structure"
+    },
+    "AccountAggregation": {
+      "documentation": "<p>An object that contains details about an aggregation response based on Amazon Web Services accounts.</p>",
+      "members": {
+        "findingType": {
+          "documentation": "<p>The type of finding.</p>",
+          "shape": "AggregationFindingType"
+        },
+        "resourceType": {
+          "documentation": "<p>The type of resource.</p>",
+          "shape": "AggregationResourceType"
+        },
+        "sortBy": {
+          "documentation": "<p>The value to sort by.</p>",
+          "shape": "AccountSortBy"
+        },
+        "sortOrder": {
+          "documentation": "<p>The sort order (ascending or descending).</p>",
+          "shape": "SortOrder"
+        }
+      },
+      "type": "structure"
+    },
+    "AccountAggregationResponse": {
+      "documentation": "<p>An aggregation of findings by Amazon Web Services account ID.</p>",
+      "members": {
+        "accountId": {
+          "documentation": "<p>The Amazon Web Services account ID.</p>",
+          "shape": "AccountId"
+        },
+        "severityCounts": {
+          "documentation": "<p>The number of findings by severity.</p>",
+          "shape": "SeverityCounts"
+        }
+      },
+      "type": "structure"
+    },
+    "AccountId": {
+      "max": 12,
+      "min": 12,
+      "pattern": "^\\d{12}$",
+      "type": "string"
+    },
+    "AccountIdSet": {
+      "max": 100,
+      "member": { "shape": "AccountId" },
+      "min": 0,
+      "type": "list"
+    },
+    "AccountList": {
+      "member": { "shape": "Account" },
+      "type": "list"
+    },
+    "AccountSortBy": {
+      "enum": ["CRITICAL", "HIGH", "ALL"],
+      "type": "string"
+    },
+    "AccountState": {
+      "documentation": "<p>An object with details the status of an Amazon Web Services account within your Amazon Inspector environment</p>",
+      "members": {
+        "accountId": {
+          "documentation": "<p>The Amazon Web Services account ID.</p>",
+          "shape": "AccountId"
+        },
+        "resourceState": {
+          "documentation": "<p>An object detailing which resources Amazon Inspector is enabled to scan for the account.</p>",
+          "shape": "ResourceState"
+        },
+        "state": {
+          "documentation": "<p>An object detailing the status of Amazon Inspector for the account.</p>",
+          "shape": "State"
+        }
+      },
+      "required": ["accountId", "resourceState", "state"],
+      "type": "structure"
+    },
+    "AccountStateList": {
+      "max": 100,
+      "member": { "shape": "AccountState" },
+      "min": 0,
+      "type": "list"
+    },
+    "AggCounts": { "type": "long" },
+    "AggregationFindingType": {
+      "enum": ["NETWORK_REACHABILITY", "PACKAGE_VULNERABILITY"],
+      "type": "string"
+    },
+    "AggregationRequest": {
+      "documentation": "<p>Contains details about an aggregation request.</p>",
+      "members": {
+        "accountAggregation": {
+          "documentation": "<p>An object that contains details about an aggregation request based on Amazon Web Services account IDs.</p>",
+          "shape": "AccountAggregation"
+        },
+        "amiAggregation": {
+          "documentation": "<p>An object that contains details about an aggregation request based on Amazon Machine Images (AMIs).</p>",
+          "shape": "AmiAggregation"
+        },
+        "awsEcrContainerAggregation": {
+          "documentation": "<p>An object that contains details about an aggregation request based on Amazon ECR container images.</p>",
+          "shape": "AwsEcrContainerAggregation"
+        },
+        "ec2InstanceAggregation": {
+          "documentation": "<p>An object that contains details about an aggregation request based on Amazon EC2 instances.</p>",
+          "shape": "Ec2InstanceAggregation"
+        },
+        "findingTypeAggregation": {
+          "documentation": "<p>An object that contains details about an aggregation request based on finding types.</p>",
+          "shape": "FindingTypeAggregation"
+        },
+        "imageLayerAggregation": {
+          "documentation": "<p>An object that contains details about an aggregation request based on container image layers.</p>",
+          "shape": "ImageLayerAggregation"
+        },
+        "packageAggregation": {
+          "documentation": "<p>An object that contains details about an aggregation request based on operating system package type.</p>",
+          "shape": "PackageAggregation"
+        },
+        "repositoryAggregation": {
+          "documentation": "<p>An object that contains details about an aggregation request based on Amazon ECR repositories.</p>",
+          "shape": "RepositoryAggregation"
+        },
+        "titleAggregation": {
+          "documentation": "<p>An object that contains details about an aggregation request based on finding title.</p>",
+          "shape": "TitleAggregation"
+        }
+      },
+      "type": "structure",
+      "union": true
+    },
+    "AggregationResourceType": {
+      "enum": ["AWS_EC2_INSTANCE", "AWS_ECR_CONTAINER_IMAGE"],
+      "type": "string"
+    },
+    "AggregationResponse": {
+      "documentation": "<p>A structure that contains details about the results of an aggregation type.</p>",
+      "members": {
+        "accountAggregation": {
+          "documentation": "<p>An object that contains details about an aggregation response based on Amazon Web Services account IDs.</p>",
+          "shape": "AccountAggregationResponse"
+        },
+        "amiAggregation": {
+          "documentation": "<p>An object that contains details about an aggregation response based on Amazon Machine Images (AMIs).</p>",
+          "shape": "AmiAggregationResponse"
+        },
+        "awsEcrContainerAggregation": {
+          "documentation": "<p>An object that contains details about an aggregation response based on Amazon ECR container images.</p>",
+          "shape": "AwsEcrContainerAggregationResponse"
+        },
+        "ec2InstanceAggregation": {
+          "documentation": "<p>An object that contains details about an aggregation response based on Amazon EC2 instances.</p>",
+          "shape": "Ec2InstanceAggregationResponse"
+        },
+        "findingTypeAggregation": {
+          "documentation": "<p>An object that contains details about an aggregation response based on finding types.</p>",
+          "shape": "FindingTypeAggregationResponse"
+        },
+        "imageLayerAggregation": {
+          "documentation": "<p>An object that contains details about an aggregation response based on container image layers.</p>",
+          "shape": "ImageLayerAggregationResponse"
+        },
+        "packageAggregation": {
+          "documentation": "<p>An object that contains details about an aggregation response based on operating system package type.</p>",
+          "shape": "PackageAggregationResponse"
+        },
+        "repositoryAggregation": {
+          "documentation": "<p>An object that contains details about an aggregation response based on Amazon ECR repositories.</p>",
+          "shape": "RepositoryAggregationResponse"
+        },
+        "titleAggregation": {
+          "documentation": "<p>An object that contains details about an aggregation response based on finding title.</p>",
+          "shape": "TitleAggregationResponse"
+        }
+      },
+      "type": "structure",
+      "union": true
+    },
+    "AggregationResponseList": {
+      "member": { "shape": "AggregationResponse" },
+      "type": "list"
+    },
+    "AggregationType": {
+      "enum": [
+        "FINDING_TYPE",
+        "PACKAGE",
+        "TITLE",
+        "REPOSITORY",
+        "AMI",
+        "AWS_EC2_INSTANCE",
+        "AWS_ECR_CONTAINER",
+        "IMAGE_LAYER",
+        "ACCOUNT"
+      ],
+      "type": "string"
+    },
+    "AmiAggregation": {
+      "documentation": "<p>The details that define an aggregation based on Amazon machine images (AMIs).</p>",
+      "members": {
+        "amis": {
+          "documentation": "<p>The IDs of AMIs to aggregate findings for.</p>",
+          "shape": "StringFilterList"
+        },
+        "sortBy": {
+          "documentation": "<p>The value to sort results by.</p>",
+          "shape": "AmiSortBy"
+        },
+        "sortOrder": {
+          "documentation": "<p>The order to sort results by.</p>",
+          "shape": "SortOrder"
+        }
+      },
+      "type": "structure"
+    },
+    "AmiAggregationResponse": {
+      "documentation": "<p>A response that contains the results of a finding aggregation by AMI.</p>",
+      "members": {
+        "accountId": {
+          "documentation": "<p>The Amazon Web Services account ID that the AMI belongs.</p>",
+          "shape": "AccountId"
+        },
+        "affectedInstances": {
+          "documentation": "<p>The IDs of Amazon EC2 instances using this AMI.</p>",
+          "shape": "Long"
+        },
+        "ami": {
+          "documentation": "<p>The ID of the AMI that findings were aggregated for.</p>",
+          "shape": "AmiId"
+        },
+        "severityCounts": {
+          "documentation": "<p>An object that contains the count of matched findings per severity.</p>",
+          "shape": "SeverityCounts"
+        }
+      },
+      "required": ["ami"],
+      "type": "structure"
+    },
+    "AmiId": {
+      "pattern": "^ami-([a-z0-9]{8}|[a-z0-9]{17}|\\*)$",
+      "type": "string"
+    },
+    "AmiSortBy": {
+      "enum": ["CRITICAL", "HIGH", "ALL", "AFFECTED_INSTANCES"],
+      "type": "string"
+    },
+    "Arn": {
+      "max": 1011,
+      "min": 1,
+      "type": "string"
+    },
+    "AssociateMemberRequest": {
+      "members": {
+        "accountId": {
+          "documentation": "<p>The Amazon Web Services account ID of the member account to be associated.</p>",
+          "shape": "AccountId"
+        }
+      },
+      "required": ["accountId"],
+      "type": "structure"
+    },
+    "AssociateMemberResponse": {
+      "members": {
+        "accountId": {
+          "documentation": "<p>The Amazon Web Services account ID of the successfully associated member account.</p>",
+          "shape": "AccountId"
+        }
+      },
+      "required": ["accountId"],
+      "type": "structure"
+    },
+    "AutoEnable": {
+      "documentation": "<p>Represents which scan types are automatically enabled for new members of your Amazon Inspector organization.</p>",
+      "members": {
+        "ec2": {
+          "documentation": "<p>Represents whether Amazon EC2 scans are automatically enabled for new members of your Amazon Inspector organization.</p>",
+          "shape": "Boolean"
+        },
+        "ecr": {
+          "documentation": "<p>Represents whether Amazon ECR scans are automatically enabled for new members of your Amazon Inspector organization.</p>",
+          "shape": "Boolean"
+        }
+      },
+      "required": ["ec2", "ecr"],
+      "type": "structure"
+    },
+    "AwsEc2InstanceDetails": {
+      "documentation": "<p>Details of the Amazon EC2 instance involved in a finding.</p>",
+      "members": {
+        "iamInstanceProfileArn": {
+          "documentation": "<p>The IAM instance profile ARN of the Amazon EC2 instance.</p>",
+          "shape": "NonEmptyString"
+        },
+        "imageId": {
+          "documentation": "<p>The image ID of the Amazon EC2 instance.</p>",
+          "shape": "NonEmptyString"
+        },
+        "ipV4Addresses": {
+          "documentation": "<p>The IPv4 addresses of the Amazon EC2 instance.</p>",
+          "shape": "IpV4AddressList"
+        },
+        "ipV6Addresses": {
+          "documentation": "<p>The IPv6 addresses of the Amazon EC2 instance.</p>",
+          "shape": "IpV6AddressList"
+        },
+        "keyName": {
+          "documentation": "<p>The name of the key pair used to launch the Amazon EC2 instance.</p>",
+          "shape": "NonEmptyString"
+        },
+        "launchedAt": {
+          "documentation": "<p>The date and time the Amazon EC2 instance was launched at.</p>",
+          "shape": "DateTimeTimestamp"
+        },
+        "platform": {
+          "documentation": "<p>The platform of the Amazon EC2 instance.</p>",
+          "shape": "Platform"
+        },
+        "subnetId": {
+          "documentation": "<p>The subnet ID of the Amazon EC2 instance.</p>",
+          "shape": "NonEmptyString"
+        },
+        "type": {
+          "documentation": "<p>The type of the Amazon EC2 instance.</p>",
+          "shape": "NonEmptyString"
+        },
+        "vpcId": {
+          "documentation": "<p>The VPC ID of the Amazon EC2 instance.</p>",
+          "shape": "NonEmptyString"
+        }
+      },
+      "type": "structure"
+    },
+    "AwsEcrContainerAggregation": {
+      "documentation": "<p>An aggregation of information about Amazon ECR containers.</p>",
+      "members": {
+        "architectures": {
+          "documentation": "<p>The architecture of the containers.</p>",
+          "shape": "StringFilterList"
+        },
+        "imageShas": {
+          "documentation": "<p>The image SHA values.</p>",
+          "shape": "StringFilterList"
+        },
+        "imageTags": {
+          "documentation": "<p>The image tags.</p>",
+          "shape": "StringFilterList"
+        },
+        "repositories": {
+          "documentation": "<p>The container repositories.</p>",
+          "shape": "StringFilterList"
+        },
+        "resourceIds": {
+          "documentation": "<p>The container resource IDs.</p>",
+          "shape": "StringFilterList"
+        },
+        "sortBy": {
+          "documentation": "<p>The value to sort by.</p>",
+          "shape": "AwsEcrContainerSortBy"
+        },
+        "sortOrder": {
+          "documentation": "<p>The sort order (ascending or descending).</p>",
+          "shape": "SortOrder"
+        }
+      },
+      "type": "structure"
+    },
+    "AwsEcrContainerAggregationResponse": {
+      "documentation": "<p>An aggregation of information about Amazon ECR containers.</p>",
+      "members": {
+        "accountId": {
+          "documentation": "<p>The Amazon Web Services account ID of the account that owns the container.</p>",
+          "shape": "AccountId"
+        },
+        "architecture": {
+          "documentation": "<p>The architecture of the container.</p>",
+          "shape": "String"
+        },
+        "imageSha": {
+          "documentation": "<p>The SHA value of the container image.</p>",
+          "shape": "String"
+        },
+        "imageTags": {
+          "documentation": "<p>The container image stags.</p>",
+          "shape": "StringList"
+        },
+        "repository": {
+          "documentation": "<p>The container repository.</p>",
+          "shape": "String"
+        },
+        "resourceId": {
+          "documentation": "<p>The resource ID of the container.</p>",
+          "shape": "NonEmptyString"
+        },
+        "severityCounts": {
+          "documentation": "<p>The number of finding by severity.</p>",
+          "shape": "SeverityCounts"
+        }
+      },
+      "required": ["resourceId"],
+      "type": "structure"
+    },
+    "AwsEcrContainerImageDetails": {
+      "documentation": "<p>The image details of the Amazon ECR container image.</p>",
+      "members": {
+        "architecture": {
+          "documentation": "<p>The architecture of the Amazon ECR container image.</p>",
+          "shape": "NonEmptyString"
+        },
+        "author": {
+          "documentation": "<p>The image author of the Amazon ECR container image.</p>",
+          "shape": "String"
+        },
+        "imageHash": {
+          "documentation": "<p>The image hash of the Amazon ECR container image.</p>",
+          "shape": "ImageHash"
+        },
+        "imageTags": {
+          "documentation": "<p>The image tags attached to the Amazon ECR container image.</p>",
+          "shape": "ImageTagList"
+        },
+        "platform": {
+          "documentation": "<p>The platform of the Amazon ECR container image.</p>",
+          "shape": "Platform"
+        },
+        "pushedAt": {
+          "documentation": "<p>The date and time the Amazon ECR container image was pushed.</p>",
+          "shape": "DateTimeTimestamp"
+        },
+        "registry": {
+          "documentation": "<p>The registry the Amazon ECR container image belongs to.</p>",
+          "shape": "NonEmptyString"
+        },
+        "repositoryName": {
+          "documentation": "<p>The name of the repository the Amazon ECR container image resides in.</p>",
+          "shape": "NonEmptyString"
+        }
+      },
+      "required": ["imageHash", "registry", "repositoryName"],
+      "type": "structure"
+    },
+    "AwsEcrContainerSortBy": {
+      "enum": ["CRITICAL", "HIGH", "ALL"],
+      "type": "string"
+    },
+    "BadRequestException": {
+      "documentation": "<p>One or more tags submitted as part of the request is not valid.</p>",
+      "error": {
+        "httpStatusCode": 400,
+        "senderFault": true
+      },
+      "exception": true,
+      "members": {
+        "message": { "shape": "String" }
+      },
+      "required": ["message"],
+      "type": "structure"
+    },
+    "BatchGetAccountStatusRequest": {
+      "members": {
+        "accountIds": {
+          "documentation": "<p>The 12-digit Amazon Web Services account IDs of the accounts to retrieve Amazon Inspector status for.</p>",
+          "shape": "AccountIdSet"
+        }
+      },
+      "type": "structure"
+    },
+    "BatchGetAccountStatusResponse": {
+      "members": {
+        "accounts": {
+          "documentation": "<p>An array of objects that provide details on the status of Amazon Inspector for each of the requested accounts.</p>",
+          "shape": "AccountStateList"
+        },
+        "failedAccounts": {
+          "documentation": "<p>An array of objects detailing any accounts that failed to enable Amazon Inspector and why.</p>",
+          "shape": "FailedAccountList"
+        }
+      },
+      "required": ["accounts"],
+      "type": "structure"
+    },
+    "BatchGetFreeTrialInfoRequest": {
+      "members": {
+        "accountIds": {
+          "documentation": "<p>The account IDs to get free trial status for.</p>",
+          "shape": "BatchGetFreeTrialInfoRequestAccountIdsList"
+        }
+      },
+      "required": ["accountIds"],
+      "type": "structure"
+    },
+    "BatchGetFreeTrialInfoRequestAccountIdsList": {
+      "max": 100,
+      "member": { "shape": "MeteringAccountId" },
+      "min": 1,
+      "type": "list"
+    },
+    "BatchGetFreeTrialInfoResponse": {
+      "members": {
+        "accounts": {
+          "documentation": "<p>An array of objects that provide Amazon Inspector free trial details for each of the requested accounts. </p>",
+          "shape": "FreeTrialAccountInfoList"
+        },
+        "failedAccounts": {
+          "documentation": "<p>An array of objects detailing any accounts that free trial data could not be returned for.</p>",
+          "shape": "FreeTrialInfoErrorList"
+        }
+      },
+      "required": ["accounts", "failedAccounts"],
+      "type": "structure"
+    },
+    "Boolean": {
+      "box": true,
+      "type": "boolean"
+    },
+    "CancelFindingsReportRequest": {
+      "members": {
+        "reportId": {
+          "documentation": "<p>The ID of the report to be canceled.</p>",
+          "shape": "ReportId"
+        }
+      },
+      "required": ["reportId"],
+      "type": "structure"
+    },
+    "CancelFindingsReportResponse": {
+      "members": {
+        "reportId": {
+          "documentation": "<p>The ID of the canceled report.</p>",
+          "shape": "ReportId"
+        }
+      },
+      "required": ["reportId"],
+      "type": "structure"
+    },
+    "ClientToken": {
+      "max": 64,
+      "min": 1,
+      "type": "string"
+    },
+    "Component": { "type": "string" },
+    "ComponentType": { "type": "string" },
+    "ConflictException": {
+      "documentation": "<p>A conflict occurred.</p>",
+      "error": {
+        "httpStatusCode": 409,
+        "senderFault": true
+      },
+      "exception": true,
+      "members": {
+        "message": { "shape": "String" },
+        "resourceId": {
+          "documentation": "<p>The ID of the conflicting resource.</p>",
+          "shape": "String"
+        },
+        "resourceType": {
+          "documentation": "<p>The type of the conflicting resource.</p>",
+          "shape": "String"
+        }
+      },
+      "required": ["message", "resourceId", "resourceType"],
+      "type": "structure"
+    },
+    "Counts": {
+      "documentation": "<p>a structure that contains information on the count of resources within a group.</p>",
+      "members": {
+        "count": {
+          "documentation": "<p>The number of resources.</p>",
+          "shape": "AggCounts"
+        },
+        "groupKey": {
+          "documentation": "<p>The key associated with this group</p>",
+          "shape": "GroupKey"
+        }
+      },
+      "type": "structure"
+    },
+    "CountsList": {
+      "max": 5,
+      "member": { "shape": "Counts" },
+      "min": 1,
+      "type": "list"
+    },
+    "CoverageFilterCriteria": {
+      "documentation": "<p>A structure that identifies filter criteria for <code>GetCoverageStatistics</code>.</p>",
+      "members": {
+        "accountId": {
+          "documentation": "<p>An array of Amazon Web Services account IDs to return coverage statistics for.</p>",
+          "shape": "CoverageStringFilterList"
+        },
+        "ec2InstanceTags": {
+          "documentation": "<p>The Amazon EC2 instance tags to filter on.</p>",
+          "shape": "CoverageMapFilterList"
+        },
+        "ecrImageTags": {
+          "documentation": "<p>The Amazon ECR image tags to filter on.</p>",
+          "shape": "CoverageStringFilterList"
+        },
+        "ecrRepositoryName": {
+          "documentation": "<p>The Amazon ECR repository name to filter on.</p>",
+          "shape": "CoverageStringFilterList"
+        },
+        "resourceId": {
+          "documentation": "<p>An array of Amazon Web Services resource IDs to return coverage statistics for.</p>",
+          "shape": "CoverageStringFilterList"
+        },
+        "resourceType": {
+          "documentation": "<p>An array of Amazon Web Services resource types to return coverage statistics for.</p>",
+          "shape": "CoverageStringFilterList"
+        },
+        "scanStatusCode": {
+          "documentation": "<p>The scan status code to filter on.</p>",
+          "shape": "CoverageStringFilterList"
+        },
+        "scanStatusReason": {
+          "documentation": "<p>The scan status reason to filter on.</p>",
+          "shape": "CoverageStringFilterList"
+        },
+        "scanType": {
+          "documentation": "<p>An array of Amazon Inspector scan types to return coverage statistics for.</p>",
+          "shape": "CoverageStringFilterList"
+        }
+      },
+      "type": "structure"
+    },
+    "CoverageMapComparison": {
+      "enum": ["EQUALS"],
+      "type": "string"
+    },
+    "CoverageMapFilter": {
+      "documentation": "<p>Contains details of a coverage map filter.</p>",
+      "members": {
+        "comparison": {
+          "documentation": "<p>The operator to compare coverage on.</p>",
+          "shape": "CoverageMapComparison"
+        },
+        "key": {
+          "documentation": "<p>The tag key associated with the coverage map filter.</p>",
+          "shape": "NonEmptyString"
+        },
+        "value": {
+          "documentation": "<p>The tag value associated with the coverage map filter.</p>",
+          "shape": "NonEmptyString"
+        }
+      },
+      "required": ["comparison", "key"],
+      "type": "structure"
+    },
+    "CoverageMapFilterList": {
+      "max": 10,
+      "member": { "shape": "CoverageMapFilter" },
+      "min": 1,
+      "type": "list"
+    },
+    "CoverageResourceType": {
+      "enum": ["AWS_EC2_INSTANCE", "AWS_ECR_CONTAINER_IMAGE", "AWS_ECR_REPOSITORY"],
+      "type": "string"
+    },
+    "CoverageStringComparison": {
+      "enum": ["EQUALS", "NOT_EQUALS"],
+      "type": "string"
+    },
+    "CoverageStringFilter": {
+      "documentation": "<p>Contains details of a coverage string filter.</p>",
+      "members": {
+        "comparison": {
+          "documentation": "<p>The operator to compare strings on.</p>",
+          "shape": "CoverageStringComparison"
+        },
+        "value": {
+          "documentation": "<p>The value to compare strings on.</p>",
+          "shape": "CoverageStringInput"
+        }
+      },
+      "required": ["comparison", "value"],
+      "type": "structure"
+    },
+    "CoverageStringFilterList": {
+      "max": 10,
+      "member": { "shape": "CoverageStringFilter" },
+      "min": 1,
+      "type": "list"
+    },
+    "CoverageStringInput": {
+      "max": 1024,
+      "min": 1,
+      "type": "string"
+    },
+    "CoveredResource": {
+      "documentation": "<p>An object that contains details about a resource covered by Amazon Inspector.</p>",
+      "members": {
+        "accountId": {
+          "documentation": "<p>The Amazon Web Services account ID of the covered resource.</p>",
+          "shape": "AccountId"
+        },
+        "resourceId": {
+          "documentation": "<p>The ID of the covered resource.</p>",
+          "shape": "ResourceId"
+        },
+        "resourceMetadata": {
+          "documentation": "<p>An object that contains details about the metadata.</p>",
+          "shape": "ResourceScanMetadata"
+        },
+        "resourceType": {
+          "documentation": "<p>The type of the covered resource.</p>",
+          "shape": "CoverageResourceType"
+        },
+        "scanStatus": {
+          "documentation": "<p>The status of the scan covering the resource.</p>",
+          "shape": "ScanStatus"
+        },
+        "scanType": {
+          "documentation": "<p>The Amazon Inspector scan type covering the resource.</p>",
+          "shape": "ScanType"
+        }
+      },
+      "required": ["accountId", "resourceId", "resourceType", "scanType"],
+      "type": "structure"
+    },
+    "CoveredResources": {
+      "member": { "shape": "CoveredResource" },
+      "type": "list"
+    },
+    "CreateFilterRequest": {
+      "members": {
+        "action": {
+          "documentation": "<p>Defines the action that is to be applied to the findings that match the filter.</p>",
+          "shape": "FilterAction"
+        },
+        "description": {
+          "documentation": "<p>A description of the filter.</p>",
+          "shape": "FilterDescription"
+        },
+        "filterCriteria": {
+          "documentation": "<p>Defines the criteria to be used in the filter for querying findings.</p>",
+          "shape": "FilterCriteria"
+        },
+        "name": {
+          "documentation": "<p>The name of the filter. Minimum length of 3. Maximum length of 64. Valid characters include alphanumeric characters, dot (.), underscore (_), and dash (-). Spaces are not allowed.</p>",
+          "shape": "FilterName"
+        },
+        "tags": {
+          "documentation": "<p>A list of tags for the filter.</p>",
+          "shape": "TagMap"
+        }
+      },
+      "required": ["action", "filterCriteria", "name"],
+      "type": "structure"
+    },
+    "CreateFilterResponse": {
+      "members": {
+        "arn": {
+          "documentation": "<p>The Amazon Resource Number (ARN) of the successfully created filter.</p>",
+          "shape": "FilterArn"
+        }
+      },
+      "required": ["arn"],
+      "type": "structure"
+    },
+    "CreateFindingsReportRequest": {
+      "members": {
+        "filterCriteria": {
+          "documentation": "<p>The filter criteria to apply to the results of the finding report.</p>",
+          "shape": "FilterCriteria"
+        },
+        "reportFormat": {
+          "documentation": "<p>The format to generate the report in.</p>",
+          "shape": "ReportFormat"
+        },
+        "s3Destination": {
+          "documentation": "<p>The Amazon S3 export destination for the report.</p>",
+          "shape": "Destination"
+        }
+      },
+      "required": ["reportFormat", "s3Destination"],
+      "type": "structure"
+    },
+    "CreateFindingsReportResponse": {
+      "members": {
+        "reportId": {
+          "documentation": "<p>The ID of the report.</p>",
+          "shape": "ReportId"
+        }
+      },
+      "type": "structure"
+    },
+    "Currency": {
+      "enum": ["USD"],
+      "type": "string"
+    },
+    "CvssScore": {
+      "documentation": "<p>The CVSS score for a finding.</p>",
+      "members": {
+        "baseScore": {
+          "documentation": "<p>The base CVSS score used for the finding.</p>",
+          "shape": "Double"
+        },
+        "scoringVector": {
+          "documentation": "<p>The vector string of the CVSS score.</p>",
+          "shape": "NonEmptyString"
+        },
+        "source": {
+          "documentation": "<p>The source of the CVSS score.</p>",
+          "shape": "NonEmptyString"
+        },
+        "version": {
+          "documentation": "<p>The version of CVSS used for the score.</p>",
+          "shape": "NonEmptyString"
+        }
+      },
+      "required": ["baseScore", "scoringVector", "source", "version"],
+      "type": "structure"
+    },
+    "CvssScoreAdjustment": {
+      "documentation": "<p>Details on adjustments Amazon Inspector made to the CVSS score for a finding.</p>",
+      "members": {
+        "metric": {
+          "documentation": "<p>The metric used to adjust the CVSS score.</p>",
+          "shape": "NonEmptyString"
+        },
+        "reason": {
+          "documentation": "<p>The reason the CVSS score has been adjustment.</p>",
+          "shape": "NonEmptyString"
+        }
+      },
+      "required": ["metric", "reason"],
+      "type": "structure"
+    },
+    "CvssScoreAdjustmentList": {
+      "member": { "shape": "CvssScoreAdjustment" },
+      "type": "list"
+    },
+    "CvssScoreDetails": {
+      "documentation": "<p>Information about the CVSS score.</p>",
+      "members": {
+        "adjustments": {
+          "documentation": "<p>An object that contains details about adjustment Amazon Inspector made to the CVSS score.</p>",
+          "shape": "CvssScoreAdjustmentList"
+        },
+        "cvssSource": {
+          "documentation": "<p>The source of the CVSS data.</p>",
+          "shape": "NonEmptyString"
+        },
+        "score": {
+          "documentation": "<p>The CVSS score.</p>",
+          "shape": "Double"
+        },
+        "scoreSource": {
+          "documentation": "<p>The source for the CVSS score.</p>",
+          "shape": "NonEmptyString"
+        },
+        "scoringVector": {
+          "documentation": "<p>The vector for the CVSS score.</p>",
+          "shape": "NonEmptyString"
+        },
+        "version": {
+          "documentation": "<p>The CVSS version used in scoring.</p>",
+          "shape": "NonEmptyString"
+        }
+      },
+      "required": ["score", "scoreSource", "scoringVector", "version"],
+      "type": "structure"
+    },
+    "CvssScoreList": {
+      "member": { "shape": "CvssScore" },
+      "type": "list"
+    },
+    "DateFilter": {
+      "documentation": "<p>Contains details on the time range used to filter findings.</p>",
+      "members": {
+        "endInclusive": {
+          "documentation": "<p>A timestamp representing the end of the time period filtered on.</p>",
+          "shape": "Timestamp"
+        },
+        "startInclusive": {
+          "documentation": "<p>A timestamp representing the start of the time period filtered on.</p>",
+          "shape": "Timestamp"
+        }
+      },
+      "type": "structure"
+    },
+    "DateFilterList": {
+      "max": 10,
+      "member": { "shape": "DateFilter" },
+      "min": 1,
+      "type": "list"
+    },
+    "DateTimeTimestamp": { "type": "timestamp" },
+    "DelegatedAdmin": {
+      "documentation": "<p>Details of the Amazon Inspector delegated administrator for your organization.</p>",
+      "members": {
+        "accountId": {
+          "documentation": "<p>The Amazon Web Services account ID of the Amazon Inspector delegated administrator for your organization.</p>",
+          "shape": "AccountId"
+        },
+        "relationshipStatus": {
+          "documentation": "<p>The status of the Amazon Inspector delegated administrator.</p>",
+          "shape": "RelationshipStatus"
+        }
+      },
+      "type": "structure"
+    },
+    "DelegatedAdminAccount": {
+      "documentation": "<p>Details of the Amazon Inspector delegated administrator for your organization.</p>",
+      "members": {
+        "accountId": {
+          "documentation": "<p>The Amazon Web Services account ID of the Amazon Inspector delegated administrator for your organization.</p>",
+          "shape": "AccountId"
+        },
+        "status": {
+          "documentation": "<p>The status of the Amazon Inspector delegated administrator.</p>",
+          "shape": "DelegatedAdminStatus"
+        }
+      },
+      "type": "structure"
+    },
+    "DelegatedAdminAccountList": {
+      "max": 5,
+      "member": { "shape": "DelegatedAdminAccount" },
+      "min": 0,
+      "type": "list"
+    },
+    "DelegatedAdminStatus": {
+      "enum": ["ENABLED", "DISABLE_IN_PROGRESS"],
+      "type": "string"
+    },
+    "DeleteFilterRequest": {
+      "members": {
+        "arn": {
+          "documentation": "<p>The Amazon Resource Number (ARN) of the filter to be deleted.</p>",
+          "shape": "FilterArn"
+        }
+      },
+      "required": ["arn"],
+      "type": "structure"
+    },
+    "DeleteFilterResponse": {
+      "members": {
+        "arn": {
+          "documentation": "<p>The Amazon Resource Number (ARN) of the filter that has been deleted.</p>",
+          "shape": "FilterArn"
+        }
+      },
+      "required": ["arn"],
+      "type": "structure"
+    },
+    "DescribeOrganizationConfigurationRequest": {
+      "members": {},
+      "type": "structure"
+    },
+    "DescribeOrganizationConfigurationResponse": {
+      "members": {
+        "autoEnable": {
+          "documentation": "<p>The scan types are automatically enabled for new members of your organization.</p>",
+          "shape": "AutoEnable"
+        },
+        "maxAccountLimitReached": {
+          "documentation": "<p>Represents whether your organization has reached the maximum Amazon Web Services account limit for Amazon Inspector.</p>",
+          "shape": "Boolean"
+        }
+      },
+      "type": "structure"
+    },
+    "Destination": {
+      "documentation": "<p>Contains details of the Amazon S3 bucket and KMS key used to export findings.</p>",
+      "members": {
+        "bucketName": {
+          "documentation": "<p>The name of the Amazon S3 bucket to export findings to.</p>",
+          "shape": "String"
+        },
+        "keyPrefix": {
+          "documentation": "<p>The prefix of the KMS key used to export findings.</p>",
+          "shape": "String"
+        },
+        "kmsKeyArn": {
+          "documentation": "<p>The ARN of the KMS key used to encrypt data when exporting findings.</p>",
+          "shape": "String"
+        }
+      },
+      "required": ["bucketName", "kmsKeyArn"],
+      "type": "structure"
+    },
+    "DisableDelegatedAdminAccountRequest": {
+      "members": {
+        "delegatedAdminAccountId": {
+          "documentation": "<p>The Amazon Web Services account ID of the current Amazon Inspector delegated administrator.</p>",
+          "shape": "AccountId"
+        }
+      },
+      "required": ["delegatedAdminAccountId"],
+      "type": "structure"
+    },
+    "DisableDelegatedAdminAccountResponse": {
+      "members": {
+        "delegatedAdminAccountId": {
+          "documentation": "<p>The Amazon Web Services account ID of the successfully disabled delegated administrator.</p>",
+          "shape": "AccountId"
+        }
+      },
+      "required": ["delegatedAdminAccountId"],
+      "type": "structure"
+    },
+    "DisableRequest": {
+      "members": {
+        "accountIds": {
+          "documentation": "<p>An array of account IDs you want to disable Amazon Inspector scans for.</p>",
+          "shape": "AccountIdSet"
+        },
+        "resourceTypes": {
+          "documentation": "<p>The resource scan types you want to disable.</p>",
+          "shape": "DisableResourceTypeList"
+        }
+      },
+      "type": "structure"
+    },
+    "DisableResourceTypeList": {
+      "max": 2,
+      "member": { "shape": "ResourceScanType" },
+      "min": 0,
+      "type": "list"
+    },
+    "DisableResponse": {
+      "members": {
+        "accounts": {
+          "documentation": "<p>Information on the accounts that have had Amazon Inspector scans successfully disabled. Details are provided for each account.</p>",
+          "shape": "AccountList"
+        },
+        "failedAccounts": {
+          "documentation": "<p>Information on any accounts for which Amazon Inspector scans could not be disabled. Details are provided for each account.</p>",
+          "shape": "FailedAccountList"
+        }
+      },
+      "required": ["accounts"],
+      "type": "structure"
+    },
+    "DisassociateMemberRequest": {
+      "members": {
+        "accountId": {
+          "documentation": "<p>The Amazon Web Services account ID of the member account to disassociate.</p>",
+          "shape": "AccountId"
+        }
+      },
+      "required": ["accountId"],
+      "type": "structure"
+    },
+    "DisassociateMemberResponse": {
+      "members": {
+        "accountId": {
+          "documentation": "<p>The Amazon Web Services account ID of the successfully disassociated member.</p>",
+          "shape": "AccountId"
+        }
+      },
+      "required": ["accountId"],
+      "type": "structure"
+    },
+    "Double": {
+      "box": true,
+      "type": "double"
+    },
+    "Ec2InstanceAggregation": {
+      "documentation": "<p>The details that define an aggregation based on Amazon EC2 instances.</p>",
+      "members": {
+        "amis": {
+          "documentation": "<p>The AMI IDs associated with the Amazon EC2 instances to aggregate findings for.</p>",
+          "shape": "StringFilterList"
+        },
+        "instanceIds": {
+          "documentation": "<p>The Amazon EC2 instance IDs to aggregate findings for.</p>",
+          "shape": "StringFilterList"
+        },
+        "instanceTags": {
+          "documentation": "<p>The Amazon EC2 instance tags to aggregate findings for.</p>",
+          "shape": "MapFilterList"
+        },
+        "operatingSystems": {
+          "documentation": "<p>The operating system types to aggregate findings for. Valid values must be uppercase and underscore separated, examples are <code>ORACLE_LINUX_7</code> and <code>ALPINE_LINUX_3_8</code>.</p>",
+          "shape": "StringFilterList"
+        },
+        "sortBy": {
+          "documentation": "<p>The value to sort results by.</p>",
+          "shape": "Ec2InstanceSortBy"
+        },
+        "sortOrder": {
+          "documentation": "<p>The order to sort results by.</p>",
+          "shape": "SortOrder"
+        }
+      },
+      "type": "structure"
+    },
+    "Ec2InstanceAggregationResponse": {
+      "documentation": "<p>A response that contains the results of a finding aggregation by Amazon EC2 instance.</p>",
+      "members": {
+        "accountId": {
+          "documentation": "<p>The Amazon Web Services account the Amazon EC2 instance belongs to.</p>",
+          "shape": "String"
+        },
+        "ami": {
+          "documentation": "<p>The Amazon Machine Image (AMI) of the Amazon EC2 instance.</p>",
+          "shape": "AmiId"
+        },
+        "instanceId": {
+          "documentation": "<p>The Amazon EC2 instance ID.</p>",
+          "shape": "NonEmptyString"
+        },
+        "instanceTags": {
+          "documentation": "<p>The tags attached to the instance.</p>",
+          "shape": "TagMap"
+        },
+        "networkFindings": {
+          "documentation": "<p>The number of network findings for the Amazon EC2 instance.</p>",
+          "shape": "Long"
+        },
+        "operatingSystem": {
+          "documentation": "<p>The operating system of the Amazon EC2 instance.</p>",
+          "shape": "String"
+        },
+        "severityCounts": {
+          "documentation": "<p>An object that contains the count of matched findings per severity.</p>",
+          "shape": "SeverityCounts"
+        }
+      },
+      "required": ["instanceId"],
+      "type": "structure"
+    },
+    "Ec2InstanceSortBy": {
+      "enum": ["NETWORK_FINDINGS", "CRITICAL", "HIGH", "ALL"],
+      "type": "string"
+    },
+    "Ec2Metadata": {
+      "documentation": "<p>Meta data details of an Amazon EC2 instance.</p>",
+      "members": {
+        "amiId": {
+          "documentation": "<p>The ID of the Amazon Machine Image (AMI) used to launch the instance.</p>",
+          "shape": "AmiId"
+        },
+        "platform": {
+          "documentation": "<p>The platform of the instance.</p>",
+          "shape": "Ec2Platform"
+        },
+        "tags": {
+          "documentation": "<p>The tags attached to the instance.</p>",
+          "shape": "TagMap"
+        }
+      },
+      "type": "structure"
+    },
+    "Ec2Platform": {
+      "enum": ["WINDOWS", "LINUX", "UNKNOWN"],
+      "type": "string"
+    },
+    "EcrContainerImageMetadata": {
+      "documentation": "<p>Information on the Amazon ECR image metadata associated with a finding.</p>",
+      "members": {
+        "tags": {
+          "documentation": "<p>Tags associated with the Amazon ECR image metadata.</p>",
+          "shape": "TagList"
+        }
+      },
+      "type": "structure"
+    },
+    "EcrRepositoryMetadata": {
+      "documentation": "<p>Information on the Amazon ECR repository metadata associated with a finding.</p>",
+      "members": {
+        "name": {
+          "documentation": "<p>The name of the Amazon ECR repository.</p>",
+          "shape": "String"
+        },
+        "scanFrequency": {
+          "documentation": "<p>The frequency of scans.</p>",
+          "shape": "EcrScanFrequency"
+        }
+      },
+      "type": "structure"
+    },
+    "EcrScanFrequency": {
+      "enum": ["MANUAL", "SCAN_ON_PUSH", "CONTINUOUS_SCAN"],
+      "type": "string"
+    },
+    "EnableDelegatedAdminAccountRequest": {
+      "members": {
+        "clientToken": {
+          "documentation": "<p>The idempotency token for the request.</p>",
+          "idempotencyToken": true,
+          "shape": "ClientToken"
+        },
+        "delegatedAdminAccountId": {
+          "documentation": "<p>The Amazon Web Services account ID of the Amazon Inspector delegated administrator.</p>",
+          "shape": "AccountId"
+        }
+      },
+      "required": ["delegatedAdminAccountId"],
+      "type": "structure"
+    },
+    "EnableDelegatedAdminAccountResponse": {
+      "members": {
+        "delegatedAdminAccountId": {
+          "documentation": "<p>The Amazon Web Services account ID of the successfully Amazon Inspector delegated administrator.</p>",
+          "shape": "AccountId"
+        }
+      },
+      "required": ["delegatedAdminAccountId"],
+      "type": "structure"
+    },
+    "EnableRequest": {
+      "members": {
+        "accountIds": {
+          "documentation": "<p>A list of account IDs you want to enable Amazon Inspector scans for.</p>",
+          "shape": "AccountIdSet"
+        },
+        "clientToken": {
+          "documentation": "<p>The idempotency token for the request.</p>",
+          "idempotencyToken": true,
+          "shape": "ClientToken"
+        },
+        "resourceTypes": {
+          "documentation": "<p>The resource scan types you want to enable.</p>",
+          "shape": "EnableResourceTypeList"
+        }
+      },
+      "required": ["resourceTypes"],
+      "type": "structure"
+    },
+    "EnableResourceTypeList": {
+      "max": 2,
+      "member": { "shape": "ResourceScanType" },
+      "min": 1,
+      "type": "list"
+    },
+    "EnableResponse": {
+      "members": {
+        "accounts": {
+          "documentation": "<p>Information on the accounts that have had Amazon Inspector scans successfully enabled. Details are provided for each account.</p>",
+          "shape": "AccountList"
+        },
+        "failedAccounts": {
+          "documentation": "<p>Information on any accounts for which Amazon Inspector scans could not be enabled. Details are provided for each account.</p>",
+          "shape": "FailedAccountList"
+        }
+      },
+      "required": ["accounts"],
+      "type": "structure"
+    },
+    "ErrorCode": {
+      "enum": [
+        "ALREADY_ENABLED",
+        "ENABLE_IN_PROGRESS",
+        "DISABLE_IN_PROGRESS",
+        "SUSPEND_IN_PROGRESS",
+        "RESOURCE_NOT_FOUND",
+        "ACCESS_DENIED",
+        "INTERNAL_ERROR",
+        "SSM_UNAVAILABLE",
+        "SSM_THROTTLED",
+        "EVENTBRIDGE_UNAVAILABLE",
+        "EVENTBRIDGE_THROTTLED",
+        "RESOURCE_SCAN_NOT_DISABLED",
+        "DISASSOCIATE_ALL_MEMBERS"
+      ],
+      "type": "string"
+    },
+    "ErrorMessage": { "type": "string" },
+    "ExternalReportStatus": {
+      "enum": ["SUCCEEDED", "IN_PROGRESS", "CANCELLED", "FAILED"],
+      "type": "string"
+    },
+    "FailedAccount": {
+      "documentation": "<p>An object with details on why an account failed to enable Amazon Inspector.</p>",
+      "members": {
+        "accountId": {
+          "documentation": "<p>The Amazon Web Services account ID.</p>",
+          "shape": "AccountId"
+        },
+        "errorCode": {
+          "documentation": "<p>The error code explaining why the account failed to enable Amazon Inspector.</p>",
+          "shape": "ErrorCode"
+        },
+        "errorMessage": {
+          "documentation": "<p>The error message received when the account failed to enable Amazon Inspector.</p>",
+          "shape": "NonEmptyString"
+        },
+        "resourceStatus": {
+          "documentation": "<p>An object detailing which resources Amazon Inspector is enabled to scan for the account.</p>",
+          "shape": "ResourceStatus"
+        },
+        "status": {
+          "documentation": "<p>The status of Amazon Inspector for the account.</p>",
+          "shape": "Status"
+        }
+      },
+      "required": ["accountId", "errorCode", "errorMessage"],
+      "type": "structure"
+    },
+    "FailedAccountList": {
+      "max": 100,
+      "member": { "shape": "FailedAccount" },
+      "min": 0,
+      "type": "list"
+    },
+    "FilePath": {
+      "max": 1024,
+      "min": 1,
+      "type": "string"
+    },
+    "Filter": {
+      "documentation": "<p>Details about a filter.</p>",
+      "members": {
+        "action": {
+          "documentation": "<p>The action that is to be applied to the findings that match the filter.</p>",
+          "shape": "FilterAction"
+        },
+        "arn": {
+          "documentation": "<p>The Amazon Resource Number (ARN) associated with this filter.</p>",
+          "shape": "FilterArn"
+        },
+        "createdAt": {
+          "documentation": "<p>The date and time this filter was created at.</p>",
+          "shape": "DateTimeTimestamp"
+        },
+        "criteria": {
+          "documentation": "<p>Details on the filter criteria associated with this filter.</p>",
+          "shape": "FilterCriteria"
+        },
+        "description": {
+          "documentation": "<p>A description of the filter.</p>",
+          "shape": "FilterDescription"
+        },
+        "name": {
+          "documentation": "<p>The name of the filter.</p>",
+          "shape": "FilterName"
+        },
+        "ownerId": {
+          "documentation": "<p>The Amazon Web Services account ID of the account that created the filter.</p>",
+          "shape": "OwnerId"
+        },
+        "reason": {
+          "documentation": "<p>The reason for the filter.</p>",
+          "shape": "FilterReason"
+        },
+        "tags": {
+          "documentation": "<p>The tags attached to the filter.</p>",
+          "shape": "TagMap"
+        },
+        "updatedAt": {
+          "documentation": "<p>The date and time the filter was last updated at.</p>",
+          "shape": "DateTimeTimestamp"
+        }
+      },
+      "required": ["action", "arn", "createdAt", "criteria", "name", "ownerId", "updatedAt"],
+      "type": "structure"
+    },
+    "FilterAction": {
+      "enum": ["NONE", "SUPPRESS"],
+      "type": "string"
+    },
+    "FilterArn": {
+      "max": 128,
+      "min": 1,
+      "type": "string"
+    },
+    "FilterArnList": {
+      "member": { "shape": "FilterArn" },
+      "type": "list"
+    },
+    "FilterCriteria": {
+      "documentation": "<p>Details on the criteria used to define the filter.</p>",
+      "members": {
+        "awsAccountId": {
+          "documentation": "<p>Details of the Amazon Web Services account IDs used to filter findings.</p>",
+          "shape": "StringFilterList"
+        },
+        "componentId": {
+          "documentation": "<p>Details of the component IDs used to filter findings.</p>",
+          "shape": "StringFilterList"
+        },
+        "componentType": {
+          "documentation": "<p>Details of the component types used to filter findings.</p>",
+          "shape": "StringFilterList"
+        },
+        "ec2InstanceImageId": {
+          "documentation": "<p>Details of the Amazon EC2 instance image IDs used to filter findings.</p>",
+          "shape": "StringFilterList"
+        },
+        "ec2InstanceSubnetId": {
+          "documentation": "<p>Details of the Amazon EC2 instance subnet IDs used to filter findings.</p>",
+          "shape": "StringFilterList"
+        },
+        "ec2InstanceVpcId": {
+          "documentation": "<p>Details of the Amazon EC2 instance VPC IDs used to filter findings.</p>",
+          "shape": "StringFilterList"
+        },
+        "ecrImageArchitecture": {
+          "documentation": "<p>Details of the Amazon ECR image architecture types used to filter findings.</p>",
+          "shape": "StringFilterList"
+        },
+        "ecrImageHash": {
+          "documentation": "<p>Details of the Amazon ECR image hashes used to filter findings.</p>",
+          "shape": "StringFilterList"
+        },
+        "ecrImagePushedAt": {
+          "documentation": "<p>Details on the Amazon ECR image push date and time used to filter findings.</p>",
+          "shape": "DateFilterList"
+        },
+        "ecrImageRegistry": {
+          "documentation": "<p>Details on the Amazon ECR registry used to filter findings.</p>",
+          "shape": "StringFilterList"
+        },
+        "ecrImageRepositoryName": {
+          "documentation": "<p>Details on the name of the Amazon ECR repository used to filter findings.</p>",
+          "shape": "StringFilterList"
+        },
+        "ecrImageTags": {
+          "documentation": "<p>The tags attached to the Amazon ECR container image.</p>",
+          "shape": "StringFilterList"
+        },
+        "findingArn": {
+          "documentation": "<p>Details on the finding ARNs used to filter findings.</p>",
+          "shape": "StringFilterList"
+        },
+        "findingStatus": {
+          "documentation": "<p>Details on the finding status types used to filter findings.</p>",
+          "shape": "StringFilterList"
+        },
+        "findingType": {
+          "documentation": "<p>Details on the finding types used to filter findings.</p>",
+          "shape": "StringFilterList"
+        },
+        "firstObservedAt": {
+          "documentation": "<p>Details on the date and time a finding was first seen used to filter findings.</p>",
+          "shape": "DateFilterList"
+        },
+        "inspectorScore": {
+          "documentation": "<p>The Amazon Inspector score to filter on.</p>",
+          "shape": "NumberFilterList"
+        },
+        "lastObservedAt": {
+          "documentation": "<p>Details on the date and time a finding was last seen used to filter findings.</p>",
+          "shape": "DateFilterList"
+        },
+        "networkProtocol": {
+          "documentation": "<p>Details on the ingress source addresses used to filter findings.</p>",
+          "shape": "StringFilterList"
+        },
+        "portRange": {
+          "documentation": "<p>Details on the port ranges used to filter findings.</p>",
+          "shape": "PortRangeFilterList"
+        },
+        "relatedVulnerabilities": {
+          "documentation": "<p>Details on the related vulnerabilities used to filter findings.</p>",
+          "shape": "StringFilterList"
+        },
+        "resourceId": {
+          "documentation": "<p>Details on the resource IDs used to filter findings.</p>",
+          "shape": "StringFilterList"
+        },
+        "resourceTags": {
+          "documentation": "<p>Details on the resource tags used to filter findings.</p>",
+          "shape": "MapFilterList"
+        },
+        "resourceType": {
+          "documentation": "<p>Details on the resource types used to filter findings.</p>",
+          "shape": "StringFilterList"
+        },
+        "severity": {
+          "documentation": "<p>Details on the severity used to filter findings.</p>",
+          "shape": "StringFilterList"
+        },
+        "title": {
+          "documentation": "<p>Details on the finding title used to filter findings.</p>",
+          "shape": "StringFilterList"
+        },
+        "updatedAt": {
+          "documentation": "<p>Details on the date and time a finding was last updated at used to filter findings.</p>",
+          "shape": "DateFilterList"
+        },
+        "vendorSeverity": {
+          "documentation": "<p>Details on the vendor severity used to filter findings.</p>",
+          "shape": "StringFilterList"
+        },
+        "vulnerabilityId": {
+          "documentation": "<p>Details on the vulnerability ID used to filter findings.</p>",
+          "shape": "StringFilterList"
+        },
+        "vulnerabilitySource": {
+          "documentation": "<p>Details on the vulnerability type used to filter findings.</p>",
+          "shape": "StringFilterList"
+        },
+        "vulnerablePackages": {
+          "documentation": "<p>Details on the vulnerable packages used to filter findings.</p>",
+          "shape": "PackageFilterList"
+        }
+      },
+      "type": "structure"
+    },
+    "FilterDescription": {
+      "max": 512,
+      "min": 1,
+      "type": "string"
+    },
+    "FilterList": {
+      "member": { "shape": "Filter" },
+      "type": "list"
+    },
+    "FilterName": {
+      "max": 128,
+      "min": 1,
+      "type": "string"
+    },
+    "FilterReason": {
+      "max": 512,
+      "min": 1,
+      "type": "string"
+    },
+    "Finding": {
+      "documentation": "<p>Details about an Amazon Inspector finding.</p>",
+      "members": {
+        "awsAccountId": {
+          "documentation": "<p>The Amazon Web Services account ID associated with the finding.</p>",
+          "shape": "AccountId"
+        },
+        "description": {
+          "documentation": "<p>The description of the finding.</p>",
+          "shape": "FindingDescription"
+        },
+        "findingArn": {
+          "documentation": "<p>The Amazon Resource Number (ARN) of the finding.</p>",
+          "shape": "FindingArn"
+        },
+        "firstObservedAt": {
+          "documentation": "<p>The date and time that the finding was first observed.</p>",
+          "shape": "DateTimeTimestamp"
+        },
+        "inspectorScore": {
+          "documentation": "<p>The Amazon Inspector score given to the finding.</p>",
+          "shape": "Double"
+        },
+        "inspectorScoreDetails": {
+          "documentation": "<p>An object that contains details of the Amazon Inspector score.</p>",
+          "shape": "InspectorScoreDetails"
+        },
+        "lastObservedAt": {
+          "documentation": "<p>The date and time that the finding was last observed.</p>",
+          "shape": "DateTimeTimestamp"
+        },
+        "networkReachabilityDetails": {
+          "documentation": "<p>An object that contains the details of a network reachability finding.</p>",
+          "shape": "NetworkReachabilityDetails"
+        },
+        "packageVulnerabilityDetails": {
+          "documentation": "<p>An object that contains the details of a package vulnerability finding.</p>",
+          "shape": "PackageVulnerabilityDetails"
+        },
+        "remediation": {
+          "documentation": "<p>An object that contains the details about how to remediate a finding.</p>",
+          "shape": "Remediation"
+        },
+        "resources": {
+          "documentation": "<p>Contains information on the resources involved in a finding.</p>",
+          "shape": "ResourceList"
+        },
+        "severity": {
+          "documentation": "<p>The severity of the finding.</p>",
+          "shape": "Severity"
+        },
+        "status": {
+          "documentation": "<p>The status of the finding.</p>",
+          "shape": "FindingStatus"
+        },
+        "title": {
+          "documentation": "<p>The title of the finding.</p>",
+          "shape": "FindingTitle"
+        },
+        "type": {
+          "documentation": "<p>The type of the finding.</p>",
+          "shape": "FindingType"
+        },
+        "updatedAt": {
+          "documentation": "<p>The date and time the finding was last updated at.</p>",
+          "shape": "DateTimeTimestamp"
+        }
+      },
+      "required": [
+        "awsAccountId",
+        "description",
+        "findingArn",
+        "firstObservedAt",
+        "lastObservedAt",
+        "remediation",
+        "resources",
+        "severity",
+        "status",
+        "type"
+      ],
+      "type": "structure"
+    },
+    "FindingArn": {
+      "max": 1024,
+      "min": 1,
+      "type": "string"
+    },
+    "FindingDescription": {
+      "max": 1024,
+      "min": 1,
+      "type": "string"
+    },
+    "FindingList": {
+      "max": 25,
+      "member": { "shape": "Finding" },
+      "min": 0,
+      "type": "list"
+    },
+    "FindingStatus": {
+      "enum": ["ACTIVE", "SUPPRESSED", "CLOSED"],
+      "type": "string"
+    },
+    "FindingTitle": {
+      "max": 1024,
+      "min": 1,
+      "type": "string"
+    },
+    "FindingType": {
+      "enum": ["NETWORK_REACHABILITY", "PACKAGE_VULNERABILITY"],
+      "type": "string"
+    },
+    "FindingTypeAggregation": {
+      "documentation": "<p>The details that define an aggregation based on finding type.</p>",
+      "members": {
+        "findingType": {
+          "documentation": "<p>The finding type to aggregate.</p>",
+          "shape": "AggregationFindingType"
+        },
+        "resourceType": {
+          "documentation": "<p>The resource type to aggregate.</p>",
+          "shape": "AggregationResourceType"
+        },
+        "sortBy": {
+          "documentation": "<p>The value to sort results by.</p>",
+          "shape": "FindingTypeSortBy"
+        },
+        "sortOrder": {
+          "documentation": "<p>The order to sort results by.</p>",
+          "shape": "SortOrder"
+        }
+      },
+      "type": "structure"
+    },
+    "FindingTypeAggregationResponse": {
+      "documentation": "<p>A response that contains the results of a finding type aggregation.</p>",
+      "members": {
+        "accountId": {
+          "documentation": "<p>The ID of the Amazon Web Services account associated with the findings.</p>",
+          "shape": "AccountId"
+        },
+        "severityCounts": {
+          "documentation": "<p>The value to sort results by.</p>",
+          "shape": "SeverityCounts"
+        }
+      },
+      "type": "structure"
+    },
+    "FindingTypeSortBy": {
+      "enum": ["CRITICAL", "HIGH", "ALL"],
+      "type": "string"
+    },
+    "FreeTrialAccountInfo": {
+      "documentation": "<p>Information about the Amazon Inspector free trial for an account.</p>",
+      "members": {
+        "accountId": {
+          "documentation": "<p>The account associated with the Amazon Inspector free trial information.</p>",
+          "shape": "MeteringAccountId"
+        },
+        "freeTrialInfo": {
+          "documentation": "<p>Contains information about the Amazon Inspector free trial for an account.</p>",
+          "shape": "FreeTrialInfoList"
+        }
+      },
+      "required": ["accountId", "freeTrialInfo"],
+      "type": "structure"
+    },
+    "FreeTrialAccountInfoList": {
+      "member": { "shape": "FreeTrialAccountInfo" },
+      "type": "list"
+    },
+    "FreeTrialInfo": {
+      "documentation": "<p>An object that contains information about the Amazon Inspector free trial for an account.</p>",
+      "members": {
+        "end": {
+          "documentation": "<p>The date and time that the Amazon Inspector free trail ends for a given account.</p>",
+          "shape": "Timestamp"
+        },
+        "start": {
+          "documentation": "<p>The date and time that the Amazon Inspector free trail started for a given account.</p>",
+          "shape": "Timestamp"
+        },
+        "status": {
+          "documentation": "<p>The order to sort results by.</p>",
+          "shape": "FreeTrialStatus"
+        },
+        "type": {
+          "documentation": "<p>The type of scan covered by the Amazon Inspector free trail.</p>",
+          "shape": "FreeTrialType"
+        }
+      },
+      "required": ["end", "start", "status", "type"],
+      "type": "structure"
+    },
+    "FreeTrialInfoError": {
+      "documentation": "<p>Information about an error received while accessing free trail data for an account.</p>",
+      "members": {
+        "accountId": {
+          "documentation": "<p>The account associated with the Amazon Inspector free trial information.</p>",
+          "shape": "MeteringAccountId"
+        },
+        "code": {
+          "documentation": "<p>The error code.</p>",
+          "shape": "FreeTrialInfoErrorCode"
+        },
+        "message": {
+          "documentation": "<p>The error message returned.</p>",
+          "shape": "String"
+        }
+      },
+      "required": ["accountId", "code", "message"],
+      "type": "structure"
+    },
+    "FreeTrialInfoErrorCode": {
+      "enum": ["ACCESS_DENIED", "INTERNAL_ERROR"],
+      "type": "string"
+    },
+    "FreeTrialInfoErrorList": {
+      "member": { "shape": "FreeTrialInfoError" },
+      "type": "list"
+    },
+    "FreeTrialInfoList": {
+      "member": { "shape": "FreeTrialInfo" },
+      "type": "list"
+    },
+    "FreeTrialStatus": {
+      "enum": ["ACTIVE", "INACTIVE"],
+      "type": "string"
+    },
+    "FreeTrialType": {
+      "enum": ["EC2", "ECR"],
+      "type": "string"
+    },
+    "GetDelegatedAdminAccountRequest": {
+      "members": {},
+      "type": "structure"
+    },
+    "GetDelegatedAdminAccountResponse": {
+      "members": {
+        "delegatedAdmin": {
+          "documentation": "<p>The Amazon Web Services account ID of the Amazon Inspector delegated administrator.</p>",
+          "shape": "DelegatedAdmin"
+        }
+      },
+      "type": "structure"
+    },
+    "GetFindingsReportStatusRequest": {
+      "members": {
+        "reportId": {
+          "documentation": "<p>The ID of the report to retrieve the status of.</p>",
+          "shape": "ReportId"
+        }
+      },
+      "type": "structure"
+    },
+    "GetFindingsReportStatusResponse": {
+      "members": {
+        "destination": {
+          "documentation": "<p>The destination of the report.</p>",
+          "shape": "Destination"
+        },
+        "errorCode": {
+          "documentation": "<p>The error code of the report.</p>",
+          "shape": "ReportingErrorCode"
+        },
+        "errorMessage": {
+          "documentation": "<p>The error message of the report.</p>",
+          "shape": "ErrorMessage"
+        },
+        "filterCriteria": {
+          "documentation": "<p>The filter criteria associated with the report.</p>",
+          "shape": "FilterCriteria"
+        },
+        "reportId": {
+          "documentation": "<p>The ID of the report.</p>",
+          "shape": "ReportId"
+        },
+        "status": {
+          "documentation": "<p>The status of the report.</p>",
+          "shape": "ExternalReportStatus"
+        }
+      },
+      "type": "structure"
+    },
+    "GetMemberRequest": {
+      "members": {
+        "accountId": {
+          "documentation": "<p>The Amazon Web Services account ID of the member account to retrieve information on.</p>",
+          "shape": "AccountId"
+        }
+      },
+      "required": ["accountId"],
+      "type": "structure"
+    },
+    "GetMemberResponse": {
+      "members": {
+        "member": {
+          "documentation": "<p>Details of the retrieved member account.</p>",
+          "shape": "Member"
+        }
+      },
+      "type": "structure"
+    },
+    "GroupKey": {
+      "enum": ["SCAN_STATUS_CODE", "SCAN_STATUS_REASON", "ACCOUNT_ID", "RESOURCE_TYPE", "ECR_REPOSITORY_NAME"],
+      "type": "string"
+    },
+    "ImageHash": {
+      "max": 71,
+      "min": 71,
+      "pattern": "^sha256:[a-z0-9]{64}$",
+      "type": "string"
+    },
+    "ImageLayerAggregation": {
+      "documentation": "<p>The details that define an aggregation based on container image layers.</p>",
+      "members": {
+        "layerHashes": {
+          "documentation": "<p>The hashes associated with the layers.</p>",
+          "shape": "StringFilterList"
+        },
+        "repositories": {
+          "documentation": "<p>The repository associated with the container image hosting the layers.</p>",
+          "shape": "StringFilterList"
+        },
+        "resourceIds": {
+          "documentation": "<p>The ID of the container image layer.</p>",
+          "shape": "StringFilterList"
+        },
+        "sortBy": {
+          "documentation": "<p>The value to sort results by.</p>",
+          "shape": "ImageLayerSortBy"
+        },
+        "sortOrder": {
+          "documentation": "<p>The order to sort results by.</p>",
+          "shape": "SortOrder"
+        }
+      },
+      "type": "structure"
+    },
+    "ImageLayerAggregationResponse": {
+      "documentation": "<p>A response that contains the results of a finding aggregation by image layer.</p>",
+      "members": {
+        "accountId": {
+          "documentation": "<p>The ID of the Amazon Web Services account that owns the container image hosting the layer image.</p>",
+          "shape": "AccountId"
+        },
+        "layerHash": {
+          "documentation": "<p>The layer hash.</p>",
+          "shape": "NonEmptyString"
+        },
+        "repository": {
+          "documentation": "<p>The repository the layer resides in.</p>",
+          "shape": "NonEmptyString"
+        },
+        "resourceId": {
+          "documentation": "<p>The resource ID of the container image layer.</p>",
+          "shape": "NonEmptyString"
+        },
+        "severityCounts": {
+          "documentation": "<p>An object that represents the count of matched findings per severity.</p>",
+          "shape": "SeverityCounts"
+        }
+      },
+      "required": ["accountId", "layerHash", "repository", "resourceId"],
+      "type": "structure"
+    },
+    "ImageLayerSortBy": {
+      "enum": ["CRITICAL", "HIGH", "ALL"],
+      "type": "string"
+    },
+    "ImageTagList": {
+      "member": { "shape": "NonEmptyString" },
+      "type": "list"
+    },
+    "InspectorScoreDetails": {
+      "documentation": "<p>Information about the Amazon Inspector score given to a finding.</p>",
+      "members": {
+        "adjustedCvss": {
+          "documentation": "<p>An object that contains details about the CVSS score given to a finding.</p>",
+          "shape": "CvssScoreDetails"
+        }
+      },
+      "type": "structure"
+    },
+    "Integer": {
+      "box": true,
+      "type": "integer"
+    },
+    "InternalServerException": {
+      "documentation": "<p>The request has failed due to an internal failure of the Amazon Inspector service.</p>",
+      "error": { "httpStatusCode": 500 },
+      "exception": true,
+      "fault": true,
+      "members": {
+        "message": { "shape": "String" },
+        "retryAfterSeconds": {
+          "documentation": "<p>The number of seconds to wait before retrying the request.</p>",
+          "location": "header",
+          "locationName": "Retry-After",
+          "shape": "Integer"
+        }
+      },
+      "required": ["message"],
+      "retryable": { "throttling": false },
+      "type": "structure"
+    },
+    "IpV4Address": {
+      "max": 15,
+      "min": 7,
+      "pattern": "^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])$",
+      "type": "string"
+    },
+    "IpV4AddressList": {
+      "member": { "shape": "IpV4Address" },
+      "type": "list"
+    },
+    "IpV6Address": {
+      "max": 47,
+      "min": 1,
+      "type": "string"
+    },
+    "IpV6AddressList": {
+      "member": { "shape": "IpV6Address" },
+      "type": "list"
+    },
+    "ListAccountPermissionsMaxResults": {
+      "box": true,
+      "max": 1024,
+      "min": 1,
+      "type": "integer"
+    },
+    "ListAccountPermissionsRequest": {
+      "members": {
+        "maxResults": {
+          "documentation": "<p>The maximum number of results to return in the response.</p>",
+          "shape": "ListAccountPermissionsMaxResults"
+        },
+        "nextToken": {
+          "documentation": "<p>A token to use for paginating results that are returned in the response. Set the value of this parameter to null for the first request to a list action. For subsequent calls, use the <code>NextToken</code> value returned from the previous request to continue listing results after the first page.</p>",
+          "shape": "NextToken"
+        },
+        "service": {
+          "documentation": "<p>The service scan type to check permissions for.</p>",
+          "shape": "Service"
+        }
+      },
+      "type": "structure"
+    },
+    "ListAccountPermissionsResponse": {
+      "members": {
+        "nextToken": {
+          "documentation": "<p>A token to use for paginating results that are returned in the response. Set the value of this parameter to null for the first request to a list action. For subsequent calls, use the <code>NextToken</code> value returned from the previous request to continue listing results after the first page.</p>",
+          "shape": "NextToken"
+        },
+        "permissions": {
+          "documentation": "<p>Contains details on the permissions an account has to configure Amazon Inspector.</p>",
+          "shape": "Permissions"
+        }
+      },
+      "required": ["permissions"],
+      "type": "structure"
+    },
+    "ListCoverageMaxResults": {
+      "box": true,
+      "max": 200,
+      "min": 1,
+      "type": "integer"
+    },
+    "ListCoverageRequest": {
+      "members": {
+        "filterCriteria": {
+          "documentation": "<p>An object that contains details on the filters to apply to the coverage data for your environment.</p>",
+          "shape": "CoverageFilterCriteria"
+        },
+        "maxResults": {
+          "documentation": "<p>The maximum number of results to return in the response.</p>",
+          "shape": "ListCoverageMaxResults"
+        },
+        "nextToken": {
+          "documentation": "<p>A token to use for paginating results that are returned in the response. Set the value of this parameter to null for the first request to a list action. For subsequent calls, use the <code>NextToken</code> value returned from the previous request to continue listing results after the first page.</p>",
+          "shape": "NextToken"
+        }
+      },
+      "type": "structure"
+    },
+    "ListCoverageResponse": {
+      "members": {
+        "coveredResources": {
+          "documentation": "<p>An object that contains details on the covered resources in your environment.</p>",
+          "shape": "CoveredResources"
+        },
+        "nextToken": {
+          "documentation": "<p>A token to use for paginating results that are returned in the response. Set the value of this parameter to null for the first request to a list action. For subsequent calls, use the <code>NextToken</code> value returned from the previous request to continue listing results after the first page.</p>",
+          "shape": "NextToken"
+        }
+      },
+      "type": "structure"
+    },
+    "ListCoverageStatisticsRequest": {
+      "members": {
+        "filterCriteria": {
+          "documentation": "<p>An object that contains details on the filters to apply to the coverage data for your environment.</p>",
+          "shape": "CoverageFilterCriteria"
+        },
+        "groupBy": {
+          "documentation": "<p>The value to group the results by.</p>",
+          "shape": "GroupKey"
+        },
+        "nextToken": {
+          "documentation": "<p>A token to use for paginating results that are returned in the response. Set the value of this parameter to null for the first request to a list action. For subsequent calls, use the <code>NextToken</code> value returned from the previous request to continue listing results after the first page.</p>",
+          "shape": "NextToken"
+        }
+      },
+      "type": "structure"
+    },
+    "ListCoverageStatisticsResponse": {
+      "members": {
+        "countsByGroup": {
+          "documentation": "<p>An array with the number for each group.</p>",
+          "shape": "CountsList"
+        },
+        "nextToken": {
+          "documentation": "<p>A token to use for paginating results that are returned in the response. Set the value of this parameter to null for the first request to a list action. For subsequent calls, use the <code>NextToken</code> value returned from the previous request to continue listing results after the first page.</p>",
+          "shape": "NextToken"
+        },
+        "totalCounts": {
+          "documentation": "<p>The total number for all groups.</p>",
+          "shape": "Long"
+        }
+      },
+      "required": ["totalCounts"],
+      "type": "structure"
+    },
+    "ListDelegatedAdminAccountsRequest": {
+      "members": {
+        "maxResults": {
+          "documentation": "<p>The maximum number of results to return in the response.</p>",
+          "shape": "ListDelegatedAdminMaxResults"
+        },
+        "nextToken": {
+          "documentation": "<p>A token to use for paginating results that are returned in the response. Set the value of this parameter to null for the first request to a list action. For subsequent calls, use the <code>NextToken</code> value returned from the previous request to continue listing results after the first page.</p>",
+          "shape": "NextToken"
+        }
+      },
+      "type": "structure"
+    },
+    "ListDelegatedAdminAccountsResponse": {
+      "members": {
+        "delegatedAdminAccounts": {
+          "documentation": "<p>Details of the Amazon Inspector delegated administrator of your organization.</p>",
+          "shape": "DelegatedAdminAccountList"
+        },
+        "nextToken": {
+          "documentation": "<p>A token to use for paginating results that are returned in the response. Set the value of this parameter to null for the first request to a list action. For subsequent calls, use the <code>NextToken</code> value returned from the previous request to continue listing results after the first page.</p>",
+          "shape": "NextToken"
+        }
+      },
+      "type": "structure"
+    },
+    "ListDelegatedAdminMaxResults": {
+      "box": true,
+      "max": 5,
+      "min": 1,
+      "type": "integer"
+    },
+    "ListFilterMaxResults": {
+      "box": true,
+      "max": 100,
+      "min": 1,
+      "type": "integer"
+    },
+    "ListFiltersRequest": {
+      "members": {
+        "action": {
+          "documentation": "<p>The action the filter applies to matched findings.</p>",
+          "shape": "FilterAction"
+        },
+        "arns": {
+          "documentation": "<p>The Amazon resource number (ARN) of the filter.</p>",
+          "shape": "FilterArnList"
+        },
+        "maxResults": {
+          "documentation": "<p>The maximum number of results to return in the response.</p>",
+          "shape": "ListFilterMaxResults"
+        },
+        "nextToken": {
+          "documentation": "<p>A token to use for paginating results that are returned in the response. Set the value of this parameter to null for the first request to a list action. For subsequent calls, use the <code>NextToken</code> value returned from the previous request to continue listing results after the first page.</p>",
+          "shape": "NextToken"
+        }
+      },
+      "type": "structure"
+    },
+    "ListFiltersResponse": {
+      "members": {
+        "filters": {
+          "documentation": "<p>Contains details on the filters associated with your account.</p>",
+          "shape": "FilterList"
+        },
+        "nextToken": {
+          "documentation": "<p>A token to use for paginating results that are returned in the response. Set the value of this parameter to null for the first request to a list action. For subsequent calls, use the <code>NextToken</code> value returned from the previous request to continue listing results after the first page.</p>",
+          "shape": "NextToken"
+        }
+      },
+      "required": ["filters"],
+      "type": "structure"
+    },
+    "ListFindingAggregationsMaxResults": {
+      "box": true,
+      "max": 100,
+      "min": 1,
+      "type": "integer"
+    },
+    "ListFindingAggregationsRequest": {
+      "members": {
+        "accountIds": {
+          "documentation": "<p>The Amazon Web Services account IDs to retrieve finding aggregation data for.</p>",
+          "shape": "StringFilterList"
+        },
+        "aggregationRequest": {
+          "documentation": "<p>Details of the aggregation request that is used to filter your aggregation results.</p>",
+          "shape": "AggregationRequest"
+        },
+        "aggregationType": {
+          "documentation": "<p>The type of the aggregation request.</p>",
+          "shape": "AggregationType"
+        },
+        "maxResults": {
+          "documentation": "<p>The maximum number of results to return in the response.</p>",
+          "shape": "ListFindingAggregationsMaxResults"
+        },
+        "nextToken": {
+          "documentation": "<p>A token to use for paginating results that are returned in the response. Set the value of this parameter to null for the first request to a list action. For subsequent calls, use the <code>NextToken</code> value returned from the previous request to continue listing results after the first page.</p>",
+          "shape": "NextToken"
+        }
+      },
+      "required": ["aggregationType"],
+      "type": "structure"
+    },
+    "ListFindingAggregationsResponse": {
+      "members": {
+        "aggregationType": {
+          "documentation": "<p>The type of aggregation to perform.</p>",
+          "shape": "AggregationType"
+        },
+        "nextToken": {
+          "documentation": "<p>A token to use for paginating results that are returned in the response. Set the value of this parameter to null for the first request to a list action. For subsequent calls, use the <code>NextToken</code> value returned from the previous request to continue listing results after the first page.</p>",
+          "shape": "NextToken"
+        },
+        "responses": {
+          "documentation": "<p>Objects that contain the results of an aggregation operation.</p>",
+          "shape": "AggregationResponseList"
+        }
+      },
+      "required": ["aggregationType"],
+      "type": "structure"
+    },
+    "ListFindingsMaxResults": {
+      "box": true,
+      "max": 100,
+      "min": 1,
+      "type": "integer"
+    },
+    "ListFindingsRequest": {
+      "members": {
+        "filterCriteria": {
+          "documentation": "<p>Details on the filters to apply to your finding results.</p>",
+          "shape": "FilterCriteria"
+        },
+        "maxResults": {
+          "documentation": "<p>The maximum number of results to return in the response.</p>",
+          "shape": "ListFindingsMaxResults"
+        },
+        "nextToken": {
+          "documentation": "<p>A token to use for paginating results that are returned in the response. Set the value of this parameter to null for the first request to a list action. For subsequent calls, use the <code>NextToken</code> value returned from the previous request to continue listing results after the first page.</p>",
+          "shape": "NextToken"
+        },
+        "sortCriteria": {
+          "documentation": "<p>Details on the sort criteria to apply to your finding results.</p>",
+          "shape": "SortCriteria"
+        }
+      },
+      "type": "structure"
+    },
+    "ListFindingsResponse": {
+      "members": {
+        "findings": {
+          "documentation": "<p>Contains details on the findings in your environment.</p>",
+          "shape": "FindingList"
+        },
+        "nextToken": {
+          "documentation": "<p>A token to use for paginating results that are returned in the response. Set the value of this parameter to null for the first request to a list action. For subsequent calls, use the <code>NextToken</code> value returned from the previous request to continue listing results after the first page.</p>",
+          "shape": "NextToken"
+        }
+      },
+      "type": "structure"
+    },
+    "ListMembersMaxResults": {
+      "box": true,
+      "max": 50,
+      "min": 1,
+      "type": "integer"
+    },
+    "ListMembersRequest": {
+      "members": {
+        "maxResults": {
+          "documentation": "<p>The maximum number of results to return in the response.</p>",
+          "shape": "ListMembersMaxResults"
+        },
+        "nextToken": {
+          "documentation": "<p>A token to use for paginating results that are returned in the response. Set the value of this parameter to null for the first request to a list action. For subsequent calls, use the <code>NextToken</code> value returned from the previous request to continue listing results after the first page.</p>",
+          "shape": "NextToken"
+        },
+        "onlyAssociated": {
+          "documentation": "<p>Specifies whether to list only currently associated members if <code>True</code> or to list all members within the organization if <code>False</code>.</p>",
+          "shape": "Boolean"
+        }
+      },
+      "type": "structure"
+    },
+    "ListMembersResponse": {
+      "members": {
+        "members": {
+          "documentation": "<p>An object that contains details for each member account.</p>",
+          "shape": "MemberList"
+        },
+        "nextToken": {
+          "documentation": "<p>The pagination parameter to be used on the next list operation to retrieve more items.</p>",
+          "shape": "NextToken"
+        }
+      },
+      "type": "structure"
+    },
+    "ListTagsForResourceRequest": {
+      "members": {
+        "resourceArn": {
+          "documentation": "<p>The Amazon resource number (ARN) of the resource to list tags of.</p>",
+          "location": "uri",
+          "locationName": "resourceArn",
+          "shape": "Arn"
+        }
+      },
+      "required": ["resourceArn"],
+      "type": "structure"
+    },
+    "ListTagsForResourceResponse": {
+      "members": {
+        "tags": {
+          "documentation": "<p>The tags associated with the resource.</p>",
+          "shape": "TagMap"
+        }
+      },
+      "type": "structure"
+    },
+    "ListUsageTotalsMaxResults": {
+      "box": true,
+      "max": 500,
+      "min": 1,
+      "type": "integer"
+    },
+    "ListUsageTotalsNextToken": {
+      "min": 1,
+      "type": "string"
+    },
+    "ListUsageTotalsRequest": {
+      "members": {
+        "accountIds": {
+          "documentation": "<p>The Amazon Web Services account IDs to retrieve usage totals for.</p>",
+          "shape": "UsageAccountIdList"
+        },
+        "maxResults": {
+          "documentation": "<p>The maximum number of results to return in the response.</p>",
+          "shape": "ListUsageTotalsMaxResults"
+        },
+        "nextToken": {
+          "documentation": "<p>A token to use for paginating results that are returned in the response. Set the value of this parameter to null for the first request to a list action. For subsequent calls, use the <code>NextToken</code> value returned from the previous request to continue listing results after the first page.</p>",
+          "shape": "ListUsageTotalsNextToken"
+        }
+      },
+      "type": "structure"
+    },
+    "ListUsageTotalsResponse": {
+      "members": {
+        "nextToken": {
+          "documentation": "<p>The pagination parameter to be used on the next list operation to retrieve more items.</p>",
+          "shape": "ListUsageTotalsNextToken"
+        },
+        "totals": {
+          "documentation": "<p>An object with details on the total usage for the requested account.</p>",
+          "shape": "UsageTotalList"
+        }
+      },
+      "type": "structure"
+    },
+    "Long": {
+      "box": true,
+      "type": "long"
+    },
+    "MapComparison": {
+      "enum": ["EQUALS"],
+      "type": "string"
+    },
+    "MapFilter": {
+      "documentation": "<p>An object that describes details of a map filter.</p>",
+      "members": {
+        "comparison": {
+          "documentation": "<p>The operator to use when comparing values in the filter.</p>",
+          "shape": "MapComparison"
+        },
+        "key": {
+          "documentation": "<p>The tag key used in the filter.</p>",
+          "shape": "MapKey"
+        },
+        "value": {
+          "documentation": "<p>The tag value used in the filter.</p>",
+          "shape": "MapValue"
+        }
+      },
+      "required": ["comparison", "key"],
+      "type": "structure"
+    },
+    "MapFilterList": {
+      "max": 10,
+      "member": { "shape": "MapFilter" },
+      "min": 1,
+      "type": "list"
+    },
+    "MapKey": {
+      "max": 128,
+      "min": 1,
+      "type": "string"
+    },
+    "MapValue": {
+      "max": 256,
+      "min": 0,
+      "type": "string"
+    },
+    "Member": {
+      "documentation": "<p>Details on a member account in your organization.</p>",
+      "members": {
+        "accountId": {
+          "documentation": "<p>The Amazon Web Services account ID of the member account.</p>",
+          "shape": "AccountId"
+        },
+        "delegatedAdminAccountId": {
+          "documentation": "<p>The Amazon Web Services account ID of the Amazon Inspector delegated administrator for this member account.</p>",
+          "shape": "AccountId"
+        },
+        "relationshipStatus": {
+          "documentation": "<p>The status of the member account.</p>",
+          "shape": "RelationshipStatus"
+        },
+        "updatedAt": {
+          "documentation": "<p>A timestamp showing when the status of this member was last updated.</p>",
+          "shape": "DateTimeTimestamp"
+        }
+      },
+      "type": "structure"
+    },
+    "MemberList": {
+      "max": 50,
+      "member": { "shape": "Member" },
+      "min": 0,
+      "type": "list"
+    },
+    "MeteringAccountId": {
+      "pattern": "[0-9]{12}",
+      "type": "string"
+    },
+    "MonthlyCostEstimate": {
+      "min": 0,
+      "type": "double"
+    },
+    "NetworkPath": {
+      "documentation": "<p>Information on the network path associated with a finding.</p>",
+      "members": {
+        "steps": {
+          "documentation": "<p>The details on the steps in the network path.</p>",
+          "shape": "StepList"
+        }
+      },
+      "type": "structure"
+    },
+    "NetworkProtocol": {
+      "enum": ["TCP", "UDP"],
+      "type": "string"
+    },
+    "NetworkReachabilityDetails": {
+      "documentation": "<p>Contains the details of a network reachability finding.</p>",
+      "members": {
+        "networkPath": {
+          "documentation": "<p>An object that contains details about a network path associated with a finding.</p>",
+          "shape": "NetworkPath"
+        },
+        "openPortRange": {
+          "documentation": "<p>An object that contains details about the open port range associated with a finding.</p>",
+          "shape": "PortRange"
+        },
+        "protocol": {
+          "documentation": "<p>The protocol associated with a finding.</p>",
+          "shape": "NetworkProtocol"
+        }
+      },
+      "required": ["networkPath", "openPortRange", "protocol"],
+      "type": "structure"
+    },
+    "NextToken": {
+      "max": 1000000,
+      "min": 0,
+      "type": "string"
+    },
+    "NonEmptyString": {
+      "min": 1,
+      "type": "string"
+    },
+    "NonEmptyStringList": {
+      "member": { "shape": "NonEmptyString" },
+      "type": "list"
+    },
+    "NumberFilter": {
+      "documentation": "<p>An object that describes the details of a number filter.</p>",
+      "members": {
+        "lowerInclusive": {
+          "documentation": "<p>The lowest number to be included in the filter.</p>",
+          "shape": "Double"
+        },
+        "upperInclusive": {
+          "documentation": "<p>The highest number to be included in the filter.</p>",
+          "shape": "Double"
+        }
+      },
+      "type": "structure"
+    },
+    "NumberFilterList": {
+      "max": 10,
+      "member": { "shape": "NumberFilter" },
+      "min": 1,
+      "type": "list"
+    },
+    "Operation": {
+      "enum": ["ENABLE_SCANNING", "DISABLE_SCANNING", "ENABLE_REPOSITORY", "DISABLE_REPOSITORY"],
+      "type": "string"
+    },
+    "OwnerId": {
+      "max": 34,
+      "min": 12,
+      "pattern": "(^\\d{12}$)|(^o-[a-z0-9]{10,32}$)",
+      "type": "string"
+    },
+    "PackageAggregation": {
+      "documentation": "<p>The details that define an aggregation based on operating system package type.</p>",
+      "members": {
+        "packageNames": {
+          "documentation": "<p>The names of packages to aggregate findings on.</p>",
+          "shape": "StringFilterList"
+        },
+        "sortBy": {
+          "documentation": "<p>The value to sort results by.</p>",
+          "shape": "PackageSortBy"
+        },
+        "sortOrder": {
+          "documentation": "<p>The order to sort results by.</p>",
+          "shape": "SortOrder"
+        }
+      },
+      "type": "structure"
+    },
+    "PackageAggregationResponse": {
+      "documentation": "<p>A response that contains the results of a finding aggregation by image layer.</p>",
+      "members": {
+        "accountId": {
+          "documentation": "<p>The ID of the Amazon Web Services account associated with the findings.</p>",
+          "shape": "AccountId"
+        },
+        "packageName": {
+          "documentation": "<p>The name of the operating system package.</p>",
+          "shape": "NonEmptyString"
+        },
+        "severityCounts": {
+          "documentation": "<p>An object that contains the count of matched findings per severity.</p>",
+          "shape": "SeverityCounts"
+        }
+      },
+      "required": ["packageName"],
+      "type": "structure"
+    },
+    "PackageArchitecture": {
+      "max": 64,
+      "min": 1,
+      "type": "string"
+    },
+    "PackageEpoch": { "type": "integer" },
+    "PackageFilter": {
+      "documentation": "<p>Contains information on the details of a package filter.</p>",
+      "members": {
+        "architecture": {
+          "documentation": "<p>An object that contains details on the package architecture type to filter on.</p>",
+          "shape": "StringFilter"
+        },
+        "epoch": {
+          "documentation": "<p>An object that contains details on the package epoch to filter on.</p>",
+          "shape": "NumberFilter"
+        },
+        "name": {
+          "documentation": "<p>An object that contains details on the name of the package to filter on.</p>",
+          "shape": "StringFilter"
+        },
+        "release": {
+          "documentation": "<p>An object that contains details on the package release to filter on.</p>",
+          "shape": "StringFilter"
+        },
+        "sourceLayerHash": {
+          "documentation": "<p>An object that contains details on the source layer hash to filter on.</p>",
+          "shape": "StringFilter"
+        },
+        "version": {
+          "documentation": "<p>The package version to filter on.</p>",
+          "shape": "StringFilter"
+        }
+      },
+      "type": "structure"
+    },
+    "PackageFilterList": {
+      "max": 10,
+      "member": { "shape": "PackageFilter" },
+      "min": 1,
+      "type": "list"
+    },
+    "PackageManager": {
+      "enum": [
+        "BUNDLER",
+        "CARGO",
+        "COMPOSER",
+        "NPM",
+        "NUGET",
+        "PIPENV",
+        "POETRY",
+        "YARN",
+        "GOBINARY",
+        "GOMOD",
+        "JAR",
+        "OS"
+      ],
+      "type": "string"
+    },
+    "PackageName": {
+      "max": 1024,
+      "min": 1,
+      "type": "string"
+    },
+    "PackageRelease": {
+      "max": 1024,
+      "min": 1,
+      "type": "string"
+    },
+    "PackageSortBy": {
+      "enum": ["CRITICAL", "HIGH", "ALL"],
+      "type": "string"
+    },
+    "PackageVersion": {
+      "max": 1024,
+      "min": 1,
+      "type": "string"
+    },
+    "PackageVulnerabilityDetails": {
+      "documentation": "<p>Information about a package vulnerability finding.</p>",
+      "members": {
+        "cvss": {
+          "documentation": "<p>An object that contains details about the CVSS score of a finding.</p>",
+          "shape": "CvssScoreList"
+        },
+        "referenceUrls": {
+          "documentation": "<p>One or more URLs that contain details about this vulnerability type.</p>",
+          "shape": "NonEmptyStringList"
+        },
+        "relatedVulnerabilities": {
+          "documentation": "<p>One or more vulnerabilities related to the one identified in this finding.</p>",
+          "shape": "VulnerabilityIdList"
+        },
+        "source": {
+          "documentation": "<p>The source of the vulnerability information.</p>",
+          "shape": "NonEmptyString"
+        },
+        "sourceUrl": {
+          "documentation": "<p>A URL to the source of the vulnerability information.</p>",
+          "shape": "NonEmptyString"
+        },
+        "vendorCreatedAt": {
+          "documentation": "<p>The date and time that this vulnerability was first added to the vendor's database.</p>",
+          "shape": "DateTimeTimestamp"
+        },
+        "vendorSeverity": {
+          "documentation": "<p>The severity the vendor has given to this vulnerability type.</p>",
+          "shape": "NonEmptyString"
+        },
+        "vendorUpdatedAt": {
+          "documentation": "<p>The date and time the vendor last updated this vulnerability in their database.</p>",
+          "shape": "DateTimeTimestamp"
+        },
+        "vulnerabilityId": {
+          "documentation": "<p>The ID given to this vulnerability.</p>",
+          "shape": "VulnerabilityId"
+        },
+        "vulnerablePackages": {
+          "documentation": "<p>The packages impacted by this vulnerability.</p>",
+          "shape": "VulnerablePackageList"
+        }
+      },
+      "required": ["source", "vulnerabilityId", "vulnerablePackages"],
+      "type": "structure"
+    },
+    "Permission": {
+      "documentation": "<p>Contains information on the permissions an account has within Amazon Inspector.</p>",
+      "members": {
+        "operation": {
+          "documentation": "<p>The operations that can be performed with the given permissions.</p>",
+          "shape": "Operation"
+        },
+        "service": {
+          "documentation": "<p>The services that the permissions allow an account to perform the given operations for.</p>",
+          "shape": "Service"
+        }
+      },
+      "required": ["operation", "service"],
+      "type": "structure"
+    },
+    "Permissions": {
+      "max": 1024,
+      "member": { "shape": "Permission" },
+      "min": 0,
+      "type": "list"
+    },
+    "Platform": {
+      "max": 1024,
+      "min": 1,
+      "type": "string"
+    },
+    "Port": {
+      "box": true,
+      "max": 65535,
+      "min": 0,
+      "type": "integer"
+    },
+    "PortRange": {
+      "documentation": "<p>Details about the port range associated with a finding.</p>",
+      "members": {
+        "begin": {
+          "documentation": "<p>The beginning port in a port range.</p>",
+          "shape": "Port"
+        },
+        "end": {
+          "documentation": "<p>The ending port in a port range.</p>",
+          "shape": "Port"
+        }
+      },
+      "required": ["begin", "end"],
+      "type": "structure"
+    },
+    "PortRangeFilter": {
+      "documentation": "<p>An object that describes the details of a port range filter.</p>",
+      "members": {
+        "beginInclusive": {
+          "documentation": "<p>The port number the port range begins at.</p>",
+          "shape": "Port"
+        },
+        "endInclusive": {
+          "documentation": "<p>The port number the port range ends at.</p>",
+          "shape": "Port"
+        }
+      },
+      "type": "structure"
+    },
+    "PortRangeFilterList": {
+      "max": 10,
+      "member": { "shape": "PortRangeFilter" },
+      "min": 1,
+      "type": "list"
+    },
+    "Recommendation": {
+      "documentation": "<p>Details about the recommended course of action to remediate the finding.</p>",
+      "members": {
+        "Url": {
+          "documentation": "<p>The URL address to the CVE remediation recommendations.</p>",
+          "shape": "NonEmptyString"
+        },
+        "text": {
+          "documentation": "<p>The recommended course of action to remediate the finding.</p>",
+          "shape": "NonEmptyString"
+        }
+      },
+      "type": "structure"
+    },
+    "RelationshipStatus": {
+      "enum": [
+        "CREATED",
+        "INVITED",
+        "DISABLED",
+        "ENABLED",
+        "REMOVED",
+        "RESIGNED",
+        "DELETED",
+        "EMAIL_VERIFICATION_IN_PROGRESS",
+        "EMAIL_VERIFICATION_FAILED",
+        "REGION_DISABLED",
+        "ACCOUNT_SUSPENDED",
+        "CANNOT_CREATE_DETECTOR_IN_ORG_MASTER"
+      ],
+      "type": "string"
+    },
+    "Remediation": {
+      "documentation": "<p>Information on how to remediate a finding.</p>",
+      "members": {
+        "recommendation": {
+          "documentation": "<p>An object that contains information about the recommended course of action to remediate the finding.</p>",
+          "shape": "Recommendation"
+        }
+      },
+      "type": "structure"
+    },
+    "ReportFormat": {
+      "enum": ["CSV", "JSON"],
+      "type": "string"
+    },
+    "ReportId": {
+      "pattern": "\\b[a-f0-9]{8}\\b-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-\\b[a-f0-9]{12}\\b",
+      "type": "string"
+    },
+    "ReportingErrorCode": {
+      "enum": ["INTERNAL_ERROR", "INVALID_PERMISSIONS"],
+      "type": "string"
+    },
+    "RepositoryAggregation": {
+      "documentation": "<p>The details that define an aggregation based on repository.</p>",
+      "members": {
+        "repositories": {
+          "documentation": "<p>The names of repositories to aggregate findings on.</p>",
+          "shape": "StringFilterList"
+        },
+        "sortBy": {
+          "documentation": "<p>The value to sort results by.</p>",
+          "shape": "RepositorySortBy"
+        },
+        "sortOrder": {
+          "documentation": "<p>The order to sort results by.</p>",
+          "shape": "SortOrder"
+        }
+      },
+      "type": "structure"
+    },
+    "RepositoryAggregationResponse": {
+      "documentation": "<p>A response that contains details on the results of a finding aggregation by repository.</p>",
+      "members": {
+        "accountId": {
+          "documentation": "<p>The ID of the Amazon Web Services account associated with the findings.</p>",
+          "shape": "AccountId"
+        },
+        "affectedImages": {
+          "documentation": "<p>The number of container images impacted by the findings.</p>",
+          "shape": "Long"
+        },
+        "repository": {
+          "documentation": "<p>The name of the repository associated with the findings.</p>",
+          "shape": "NonEmptyString"
+        },
+        "severityCounts": {
+          "documentation": "<p>An object that represent the count of matched findings per severity.</p>",
+          "shape": "SeverityCounts"
+        }
+      },
+      "required": ["repository"],
+      "type": "structure"
+    },
+    "RepositorySortBy": {
+      "enum": ["CRITICAL", "HIGH", "ALL", "AFFECTED_IMAGES"],
+      "type": "string"
+    },
+    "Resource": {
+      "documentation": "<p>Details about the resource involved in a finding.</p>",
+      "members": {
+        "details": {
+          "documentation": "<p>An object that contains details about the resource involved in a finding.</p>",
+          "shape": "ResourceDetails"
+        },
+        "id": {
+          "documentation": "<p>The ID of the resource.</p>",
+          "shape": "NonEmptyString"
+        },
+        "partition": {
+          "documentation": "<p>The partition of the resource.</p>",
+          "shape": "NonEmptyString"
+        },
+        "region": {
+          "documentation": "<p>The Amazon Web Services Region the impacted resource is located in.</p>",
+          "shape": "NonEmptyString"
+        },
+        "tags": {
+          "documentation": "<p>The tags attached to the resource.</p>",
+          "shape": "TagMap"
+        },
+        "type": {
+          "documentation": "<p>The type of resource.</p>",
+          "shape": "ResourceType"
+        }
+      },
+      "required": ["id", "type"],
+      "type": "structure"
+    },
+    "ResourceDetails": {
+      "documentation": "<p>Contains details about the resource involved in the finding.</p>",
+      "members": {
+        "awsEc2Instance": {
+          "documentation": "<p>An object that contains details about the Amazon EC2 instance involved in the finding.</p>",
+          "shape": "AwsEc2InstanceDetails"
+        },
+        "awsEcrContainerImage": {
+          "documentation": "<p>An object that contains details about the Amazon ECR container image involved in the finding.</p>",
+          "shape": "AwsEcrContainerImageDetails"
+        }
+      },
+      "type": "structure"
+    },
+    "ResourceId": {
+      "max": 341,
+      "min": 10,
+      "pattern": "(^arn:.*:ecr:.*:\\d{12}:repository\\/(?:[a-z0-9]+(?:[._-][a-z0-9]+)*\\/)*[a-z0-9]+(?:[._-][a-z0-9]+)*(\\/sha256:[a-z0-9]{64})?$)|(^i-([a-z0-9]{8}|[a-z0-9]{17}|\\\\*)$)",
+      "type": "string"
+    },
+    "ResourceList": {
+      "max": 10,
+      "member": { "shape": "Resource" },
+      "min": 1,
+      "type": "list"
+    },
+    "ResourceNotFoundException": {
+      "documentation": "<p>The operation tried to access an invalid resource. Make sure the resource is specified correctly.</p>",
+      "error": {
+        "httpStatusCode": 404,
+        "senderFault": true
+      },
+      "exception": true,
+      "members": {
+        "message": { "shape": "String" }
+      },
+      "required": ["message"],
+      "type": "structure"
+    },
+    "ResourceScanMetadata": {
+      "documentation": "<p>An object that contains details about the metadata for an Amazon ECR resource.</p>",
+      "members": {
+        "ec2": {
+          "documentation": "<p>An object that contains metadata details for an Amazon EC2 instance.</p>",
+          "shape": "Ec2Metadata"
+        },
+        "ecrImage": {
+          "documentation": "<p>An object that contains details about the container metadata for an Amazon ECR image.</p>",
+          "shape": "EcrContainerImageMetadata"
+        },
+        "ecrRepository": {
+          "documentation": "<p>An object that contains details about the repository an Amazon ECR image resides in.</p>",
+          "shape": "EcrRepositoryMetadata"
+        }
+      },
+      "type": "structure"
+    },
+    "ResourceScanType": {
+      "enum": ["EC2", "ECR"],
+      "type": "string"
+    },
+    "ResourceState": {
+      "documentation": "<p>Details the state of Amazon Inspector for each resource type Amazon Inspector scans.</p>",
+      "members": {
+        "ec2": {
+          "documentation": "<p>An object detailing the state of Amazon Inspector scanning for Amazon EC2 resources.</p>",
+          "shape": "State"
+        },
+        "ecr": {
+          "documentation": "<p>An object detailing the state of Amazon Inspector scanning for Amazon ECR resources.</p>",
+          "shape": "State"
+        }
+      },
+      "required": ["ec2", "ecr"],
+      "type": "structure"
+    },
+    "ResourceStatus": {
+      "documentation": "<p>Details the status of Amazon Inspector for each resource type Amazon Inspector scans.</p>",
+      "members": {
+        "ec2": {
+          "documentation": "<p>The status of Amazon Inspector scanning for Amazon EC2 resources.</p>",
+          "shape": "Status"
+        },
+        "ecr": {
+          "documentation": "<p>The status of Amazon Inspector scanning for Amazon ECR resources.</p>",
+          "shape": "Status"
+        }
+      },
+      "required": ["ec2", "ecr"],
+      "type": "structure"
+    },
+    "ResourceType": {
+      "enum": ["AWS_EC2_INSTANCE", "AWS_ECR_CONTAINER_IMAGE", "AWS_ECR_REPOSITORY"],
+      "type": "string"
+    },
+    "ScanStatus": {
+      "documentation": "<p>The status of the scan.</p>",
+      "members": {
+        "reason": {
+          "documentation": "<p>The reason for the scan.</p>",
+          "shape": "ScanStatusReason"
+        },
+        "statusCode": {
+          "documentation": "<p>The status code of the scan.</p>",
+          "shape": "ScanStatusCode"
+        }
+      },
+      "required": ["reason", "statusCode"],
+      "type": "structure"
+    },
+    "ScanStatusCode": {
+      "enum": ["ACTIVE", "INACTIVE"],
+      "type": "string"
+    },
+    "ScanStatusReason": {
+      "enum": [
+        "PENDING_INITIAL_SCAN",
+        "ACCESS_DENIED",
+        "INTERNAL_ERROR",
+        "UNMANAGED_EC2_INSTANCE",
+        "UNSUPPORTED_OS",
+        "SCAN_ELIGIBILITY_EXPIRED",
+        "RESOURCE_TERMINATED",
+        "SUCCESSFUL",
+        "NO_RESOURCES_FOUND",
+        "IMAGE_SIZE_EXCEEDED",
+        "SCAN_FREQUENCY_MANUAL",
+        "SCAN_FREQUENCY_SCAN_ON_PUSH",
+        "EC2_INSTANCE_STOPPED"
+      ],
+      "type": "string"
+    },
+    "ScanType": {
+      "enum": ["NETWORK", "PACKAGE"],
+      "type": "string"
+    },
+    "Service": {
+      "enum": ["EC2", "ECR"],
+      "type": "string"
+    },
+    "ServiceQuotaExceededException": {
+      "documentation": "<p>You have exceeded your service quota. To perform the requested action, remove some of the relevant resources, or use Service Quotas to request a service quota increase.</p>",
+      "error": {
+        "httpStatusCode": 402,
+        "senderFault": true
+      },
+      "exception": true,
+      "members": {
+        "message": { "shape": "String" },
+        "resourceId": {
+          "documentation": "<p>The ID of the resource that exceeds a service quota.</p>",
+          "shape": "String"
+        }
+      },
+      "required": ["message", "resourceId"],
+      "type": "structure"
+    },
+    "Severity": {
+      "enum": ["INFORMATIONAL", "LOW", "MEDIUM", "HIGH", "CRITICAL", "UNTRIAGED"],
+      "type": "string"
+    },
+    "SeverityCounts": {
+      "documentation": "<p>An object that contains the counts of aggregated finding per severity.</p>",
+      "members": {
+        "all": {
+          "documentation": "<p>The total count of findings from all severities.</p>",
+          "shape": "Long"
+        },
+        "critical": {
+          "documentation": "<p>The total count of critical severity findings.</p>",
+          "shape": "Long"
+        },
+        "high": {
+          "documentation": "<p>The total count of high severity findings.</p>",
+          "shape": "Long"
+        },
+        "medium": {
+          "documentation": "<p>The total count of medium severity findings.</p>",
+          "shape": "Long"
+        }
+      },
+      "type": "structure"
+    },
+    "SortCriteria": {
+      "documentation": "<p>Details about the criteria used to sort finding results.</p>",
+      "members": {
+        "field": {
+          "documentation": "<p>The finding detail field by which results are sorted.</p>",
+          "shape": "SortField"
+        },
+        "sortOrder": {
+          "documentation": "<p>The order by which findings are sorted.</p>",
+          "shape": "SortOrder"
+        }
+      },
+      "required": ["field", "sortOrder"],
+      "type": "structure"
+    },
+    "SortField": {
+      "enum": [
+        "AWS_ACCOUNT_ID",
+        "FINDING_TYPE",
+        "SEVERITY",
+        "FIRST_OBSERVED_AT",
+        "LAST_OBSERVED_AT",
+        "FINDING_STATUS",
+        "RESOURCE_TYPE",
+        "ECR_IMAGE_PUSHED_AT",
+        "ECR_IMAGE_REPOSITORY_NAME",
+        "ECR_IMAGE_REGISTRY",
+        "NETWORK_PROTOCOL",
+        "COMPONENT_TYPE",
+        "VULNERABILITY_ID",
+        "VULNERABILITY_SOURCE",
+        "INSPECTOR_SCORE",
+        "VENDOR_SEVERITY"
+      ],
+      "type": "string"
+    },
+    "SortOrder": {
+      "enum": ["ASC", "DESC"],
+      "type": "string"
+    },
+    "SourceLayerHash": {
+      "max": 71,
+      "min": 71,
+      "pattern": "^sha256:[a-z0-9]{64}$",
+      "type": "string"
+    },
+    "State": {
+      "documentation": "<p>An object that described the state of Amazon Inspector scans for an account.</p>",
+      "members": {
+        "errorCode": {
+          "documentation": "<p>The error code explaining why the account failed to enable Amazon Inspector.</p>",
+          "shape": "ErrorCode"
+        },
+        "errorMessage": {
+          "documentation": "<p>The error message received when the account failed to enable Amazon Inspector.</p>",
+          "shape": "NonEmptyString"
+        },
+        "status": {
+          "documentation": "<p>The status of Amazon Inspector for the account.</p>",
+          "shape": "Status"
+        }
+      },
+      "required": ["errorCode", "errorMessage", "status"],
+      "type": "structure"
+    },
+    "Status": {
+      "enum": ["ENABLING", "ENABLED", "DISABLING", "DISABLED", "SUSPENDING", "SUSPENDED"],
+      "type": "string"
+    },
+    "Step": {
+      "documentation": "<p>Details about the step associated with a finding.</p>",
+      "members": {
+        "componentId": {
+          "documentation": "<p>The component ID.</p>",
+          "shape": "Component"
+        },
+        "componentType": {
+          "documentation": "<p>The component type.</p>",
+          "shape": "ComponentType"
+        }
+      },
+      "required": ["componentId", "componentType"],
+      "type": "structure"
+    },
+    "StepList": {
+      "max": 30,
+      "member": { "shape": "Step" },
+      "min": 1,
+      "type": "list"
+    },
+    "String": { "type": "string" },
+    "StringComparison": {
+      "enum": ["EQUALS", "PREFIX", "NOT_EQUALS"],
+      "type": "string"
+    },
+    "StringFilter": {
+      "documentation": "<p>An object that describes the details of a string filter.</p>",
+      "members": {
+        "comparison": {
+          "documentation": "<p>The operator to use when comparing values in the filter</p>",
+          "shape": "StringComparison"
+        },
+        "value": {
+          "documentation": "<p>The value to filter on.</p>",
+          "shape": "StringInput"
+        }
+      },
+      "required": ["comparison", "value"],
+      "type": "structure"
+    },
+    "StringFilterList": {
+      "max": 10,
+      "member": { "shape": "StringFilter" },
+      "min": 1,
+      "type": "list"
+    },
+    "StringInput": {
+      "max": 1024,
+      "min": 1,
+      "type": "string"
+    },
+    "StringList": {
+      "member": { "shape": "NonEmptyString" },
+      "type": "list"
+    },
+    "TagKey": {
+      "max": 128,
+      "min": 1,
+      "pattern": "^(?!aws:)[a-zA-Z+-=._:/]+$",
+      "type": "string"
+    },
+    "TagKeyList": {
+      "max": 50,
+      "member": { "shape": "TagKey" },
+      "min": 0,
+      "type": "list"
+    },
+    "TagList": {
+      "member": { "shape": "String" },
+      "type": "list"
+    },
+    "TagMap": {
+      "key": { "shape": "MapKey" },
+      "type": "map",
+      "value": { "shape": "MapValue" }
+    },
+    "TagResourceRequest": {
+      "members": {
+        "resourceArn": {
+          "documentation": "<p>The Amazon Resource Name (ARN) of the resource to apply a tag to.</p>",
+          "location": "uri",
+          "locationName": "resourceArn",
+          "shape": "Arn"
+        },
+        "tags": {
+          "documentation": "<p>The tags to be added to a resource.</p>",
+          "shape": "TagMap"
+        }
+      },
+      "required": ["resourceArn", "tags"],
+      "type": "structure"
+    },
+    "TagResourceResponse": {
+      "members": {},
+      "type": "structure"
+    },
+    "ThrottlingException": {
+      "documentation": "<p>The limit on the number of requests per second was exceeded.</p>",
+      "error": {
+        "httpStatusCode": 429,
+        "senderFault": true
+      },
+      "exception": true,
+      "members": {
+        "message": { "shape": "String" }
+      },
+      "required": ["message"],
+      "type": "structure"
+    },
+    "Timestamp": { "type": "timestamp" },
+    "TitleAggregation": {
+      "documentation": "<p>The details that define an aggregation based on finding title.</p>",
+      "members": {
+        "resourceType": {
+          "documentation": "<p>The resource type to aggregate on.</p>",
+          "shape": "AggregationResourceType"
+        },
+        "sortBy": {
+          "documentation": "<p>The value to sort results by.</p>",
+          "shape": "TitleSortBy"
+        },
+        "sortOrder": {
+          "documentation": "<p>The order to sort results by.</p>",
+          "shape": "SortOrder"
+        },
+        "titles": {
+          "documentation": "<p>The finding titles to aggregate on.</p>",
+          "shape": "StringFilterList"
+        },
+        "vulnerabilityIds": {
+          "documentation": "<p>The vulnerability IDs of the findings.</p>",
+          "shape": "StringFilterList"
+        }
+      },
+      "type": "structure"
+    },
+    "TitleAggregationResponse": {
+      "documentation": "<p>A response that contains details on the results of a finding aggregation by title.</p>",
+      "members": {
+        "accountId": {
+          "documentation": "<p>The ID of the Amazon Web Services account associated with the findings.</p>",
+          "shape": "AccountId"
+        },
+        "severityCounts": {
+          "documentation": "<p>An object that represent the count of matched findings per severity.</p>",
+          "shape": "SeverityCounts"
+        },
+        "title": {
+          "documentation": "<p>The title that the findings were aggregated on.</p>",
+          "shape": "NonEmptyString"
+        },
+        "vulnerabilityId": {
+          "documentation": "<p>The vulnerability ID of the finding.</p>",
+          "shape": "String"
+        }
+      },
+      "required": ["title"],
+      "type": "structure"
+    },
+    "TitleSortBy": {
+      "enum": ["CRITICAL", "HIGH", "ALL"],
+      "type": "string"
+    },
+    "UntagResourceRequest": {
+      "members": {
+        "resourceArn": {
+          "documentation": "<p>The Amazon Resource Name (ARN) for the resource to remove tags from.</p>",
+          "location": "uri",
+          "locationName": "resourceArn",
+          "shape": "Arn"
+        },
+        "tagKeys": {
+          "documentation": "<p>The tag keys to remove from the resource.</p>",
+          "location": "querystring",
+          "locationName": "tagKeys",
+          "shape": "TagKeyList"
+        }
+      },
+      "required": ["resourceArn", "tagKeys"],
+      "type": "structure"
+    },
+    "UntagResourceResponse": {
+      "members": {},
+      "type": "structure"
+    },
+    "UpdateFilterRequest": {
+      "members": {
+        "action": {
+          "documentation": "<p>Specifies the action that is to be applied to the findings that match the filter.</p>",
+          "shape": "FilterAction"
+        },
+        "description": {
+          "documentation": "<p>A description of the filter.</p>",
+          "shape": "FilterDescription"
+        },
+        "filterArn": {
+          "documentation": "<p>The Amazon Resource Number (ARN) of the filter to update.</p>",
+          "shape": "FilterArn"
+        },
+        "filterCriteria": {
+          "documentation": "<p>Defines the criteria to be update in the filter.</p>",
+          "shape": "FilterCriteria"
+        },
+        "name": {
+          "documentation": "<p>The name of the filter.</p>",
+          "shape": "FilterName"
+        }
+      },
+      "required": ["filterArn"],
+      "type": "structure"
+    },
+    "UpdateFilterResponse": {
+      "members": {
+        "arn": {
+          "documentation": "<p>The Amazon Resource Number (ARN) of the successfully updated filter.</p>",
+          "shape": "FilterArn"
+        }
+      },
+      "required": ["arn"],
+      "type": "structure"
+    },
+    "UpdateOrganizationConfigurationRequest": {
+      "members": {
+        "autoEnable": {
+          "documentation": "<p>Defines which scan types are enabled automatically for new members of your Amazon Inspector organization.</p>",
+          "shape": "AutoEnable"
+        }
+      },
+      "required": ["autoEnable"],
+      "type": "structure"
+    },
+    "UpdateOrganizationConfigurationResponse": {
+      "members": {
+        "autoEnable": {
+          "documentation": "<p>The updated status of scan types automatically enabled for new members of your Amazon Inspector organization.</p>",
+          "shape": "AutoEnable"
+        }
+      },
+      "required": ["autoEnable"],
+      "type": "structure"
+    },
+    "Usage": {
+      "documentation": "<p>Contains usage information about the cost of Amazon Inspector operation.</p>",
+      "members": {
+        "currency": {
+          "documentation": "<p>The currency type used when calculating usage data.</p>",
+          "shape": "Currency"
+        },
+        "estimatedMonthlyCost": {
+          "documentation": "<p>The estimated monthly cost of Amazon Inspector.</p>",
+          "shape": "MonthlyCostEstimate"
+        },
+        "total": {
+          "documentation": "<p>The total of usage.</p>",
+          "shape": "UsageValue"
+        },
+        "type": {
+          "documentation": "<p>The type scan.</p>",
+          "shape": "UsageType"
+        }
+      },
+      "type": "structure"
+    },
+    "UsageAccountId": {
+      "pattern": "[0-9]{12}",
+      "type": "string"
+    },
+    "UsageAccountIdList": {
+      "max": 5000,
+      "member": { "shape": "UsageAccountId" },
+      "min": 1,
+      "type": "list"
+    },
+    "UsageList": {
+      "member": { "shape": "Usage" },
+      "type": "list"
+    },
+    "UsageTotal": {
+      "documentation": "<p>The total of usage for an account ID.</p>",
+      "members": {
+        "accountId": {
+          "documentation": "<p>The account ID of the account that usage data was retrieved for.</p>",
+          "shape": "MeteringAccountId"
+        },
+        "usage": {
+          "documentation": "<p>An object representing the total usage for an account.</p>",
+          "shape": "UsageList"
+        }
+      },
+      "type": "structure"
+    },
+    "UsageTotalList": {
+      "member": { "shape": "UsageTotal" },
+      "type": "list"
+    },
+    "UsageType": {
+      "enum": ["EC2_INSTANCE_HOURS", "ECR_INITIAL_SCAN", "ECR_RESCAN"],
+      "type": "string"
+    },
+    "UsageValue": {
+      "min": 0,
+      "type": "double"
+    },
+    "ValidationException": {
+      "documentation": "<p>The request has failed validation due to missing required fields or having invalid inputs.</p>",
+      "error": {
+        "httpStatusCode": 400,
+        "senderFault": true
+      },
+      "exception": true,
+      "members": {
+        "fields": {
+          "documentation": "<p>The fields that failed validation.</p>",
+          "shape": "ValidationExceptionFields"
+        },
+        "message": { "shape": "String" },
+        "reason": {
+          "documentation": "<p>The reason for the validation failure.</p>",
+          "shape": "ValidationExceptionReason"
+        }
+      },
+      "required": ["message", "reason"],
+      "type": "structure"
+    },
+    "ValidationExceptionField": {
+      "documentation": "<p>An object that describes a validation exception.</p>",
+      "members": {
+        "message": {
+          "documentation": "<p>The validation exception message.</p>",
+          "shape": "String"
+        },
+        "name": {
+          "documentation": "<p>The name of the validation exception.</p>",
+          "shape": "String"
+        }
+      },
+      "required": ["message", "name"],
+      "type": "structure"
+    },
+    "ValidationExceptionFields": {
+      "member": { "shape": "ValidationExceptionField" },
+      "type": "list"
+    },
+    "ValidationExceptionReason": {
+      "enum": ["CANNOT_PARSE", "FIELD_VALIDATION_FAILED", "OTHER"],
+      "type": "string"
+    },
+    "VulnerabilityId": {
+      "max": 64,
+      "min": 1,
+      "type": "string"
+    },
+    "VulnerabilityIdList": {
+      "member": { "shape": "VulnerabilityId" },
+      "type": "list"
+    },
+    "VulnerablePackage": {
+      "documentation": "<p>Information on the vulnerable package identified by a finding.</p>",
+      "members": {
+        "arch": {
+          "documentation": "<p>The architecture of the vulnerable package.</p>",
+          "shape": "PackageArchitecture"
+        },
+        "epoch": {
+          "documentation": "<p>The epoch of the vulnerable package.</p>",
+          "shape": "PackageEpoch"
+        },
+        "filePath": {
+          "documentation": "<p>The file path of the vulnerable package.</p>",
+          "shape": "FilePath"
+        },
+        "fixedInVersion": {
+          "documentation": "<p>The version of the package that contains the vulnerability fix.</p>",
+          "shape": "PackageVersion"
+        },
+        "name": {
+          "documentation": "<p>The name of the vulnerable package.</p>",
+          "shape": "PackageName"
+        },
+        "packageManager": {
+          "documentation": "<p>The package manager of the vulnerable package.</p>",
+          "shape": "PackageManager"
+        },
+        "release": {
+          "documentation": "<p>The release of the vulnerable package.</p>",
+          "shape": "PackageRelease"
+        },
+        "sourceLayerHash": {
+          "documentation": "<p>The source layer hash of the vulnerable package.</p>",
+          "shape": "SourceLayerHash"
+        },
+        "version": {
+          "documentation": "<p>The version of the vulnerable package.</p>",
+          "shape": "PackageVersion"
+        }
+      },
+      "required": ["name", "version"],
+      "type": "structure"
+    },
+    "VulnerablePackageList": {
+      "member": { "shape": "VulnerablePackage" },
+      "type": "list"
+    }
+  },
+  "version": "2.0"
+}

@@ -1,0 +1,10 @@
+{
+  "merge": {
+    "pagination": {
+      "GetWorkUnits": {
+        "non_aggregate_keys": ["QueryId"]
+      }
+    }
+  },
+  "version": 1.0
+}

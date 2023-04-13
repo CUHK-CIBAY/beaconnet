@@ -1,0 +1,35 @@
+{
+  "pagination": {
+    "ListBackups": {
+      "input_token": "ExclusiveStartBackupArn",
+      "limit_key": "Limit",
+      "output_token": "LastEvaluatedBackupArn",
+      "result_key": "BackupSummaries"
+    },
+    "ListTables": {
+      "input_token": "ExclusiveStartTableName",
+      "limit_key": "Limit",
+      "output_token": "LastEvaluatedTableName",
+      "result_key": "TableNames"
+    },
+    "ListTagsOfResource": {
+      "input_token": "NextToken",
+      "output_token": "NextToken",
+      "result_key": "Tags"
+    },
+    "Query": {
+      "input_token": "ExclusiveStartKey",
+      "limit_key": "Limit",
+      "non_aggregate_keys": ["ConsumedCapacity"],
+      "output_token": "LastEvaluatedKey",
+      "result_key": ["Items", "Count", "ScannedCount"]
+    },
+    "Scan": {
+      "input_token": "ExclusiveStartKey",
+      "limit_key": "Limit",
+      "non_aggregate_keys": ["ConsumedCapacity"],
+      "output_token": "LastEvaluatedKey",
+      "result_key": ["Items", "Count", "ScannedCount"]
+    }
+  }
+}

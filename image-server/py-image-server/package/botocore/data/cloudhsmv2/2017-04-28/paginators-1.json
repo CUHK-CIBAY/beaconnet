@@ -1,0 +1,22 @@
+{
+  "pagination": {
+    "DescribeBackups": {
+      "input_token": "NextToken",
+      "limit_key": "MaxResults",
+      "output_token": "NextToken",
+      "result_key": "Backups"
+    },
+    "DescribeClusters": {
+      "input_token": "NextToken",
+      "limit_key": "MaxResults",
+      "output_token": "NextToken",
+      "result_key": "Clusters"
+    },
+    "ListTags": {
+      "input_token": "NextToken",
+      "limit_key": "MaxResults",
+      "output_token": "NextToken",
+      "result_key": "TagList"
+    }
+  }
+}

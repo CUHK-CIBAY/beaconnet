@@ -1,0 +1,52 @@
+{
+  "pagination": {
+    "ListDocumentClassificationJobs": {
+      "input_token": "NextToken",
+      "limit_key": "MaxResults",
+      "output_token": "NextToken",
+      "result_key": "DocumentClassificationJobPropertiesList"
+    },
+    "ListDocumentClassifiers": {
+      "input_token": "NextToken",
+      "limit_key": "MaxResults",
+      "output_token": "NextToken",
+      "result_key": "DocumentClassifierPropertiesList"
+    },
+    "ListDominantLanguageDetectionJobs": {
+      "input_token": "NextToken",
+      "limit_key": "MaxResults",
+      "output_token": "NextToken",
+      "result_key": "DominantLanguageDetectionJobPropertiesList"
+    },
+    "ListEntitiesDetectionJobs": {
+      "input_token": "NextToken",
+      "limit_key": "MaxResults",
+      "output_token": "NextToken",
+      "result_key": "EntitiesDetectionJobPropertiesList"
+    },
+    "ListEntityRecognizers": {
+      "input_token": "NextToken",
+      "limit_key": "MaxResults",
+      "output_token": "NextToken",
+      "result_key": "EntityRecognizerPropertiesList"
+    },
+    "ListKeyPhrasesDetectionJobs": {
+      "input_token": "NextToken",
+      "limit_key": "MaxResults",
+      "output_token": "NextToken",
+      "result_key": "KeyPhrasesDetectionJobPropertiesList"
+    },
+    "ListSentimentDetectionJobs": {
+      "input_token": "NextToken",
+      "limit_key": "MaxResults",
+      "output_token": "NextToken",
+      "result_key": "SentimentDetectionJobPropertiesList"
+    },
+    "ListTopicsDetectionJobs": {
+      "input_token": "NextToken",
+      "limit_key": "MaxResults",
+      "output_token": "NextToken",
+      "result_key": "TopicsDetectionJobPropertiesList"
+    }
+  }
+}

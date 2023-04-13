@@ -1,0 +1,48 @@
+{
+  "pagination": {
+    "DescribeAccountModifications": {
+      "input_token": "NextToken",
+      "output_token": "NextToken",
+      "result_key": "AccountModifications"
+    },
+    "DescribeIpGroups": {
+      "input_token": "NextToken",
+      "limit_key": "MaxResults",
+      "output_token": "NextToken",
+      "result_key": "Result"
+    },
+    "DescribeWorkspaceBundles": {
+      "input_token": "NextToken",
+      "output_token": "NextToken",
+      "result_key": "Bundles"
+    },
+    "DescribeWorkspaceDirectories": {
+      "input_token": "NextToken",
+      "output_token": "NextToken",
+      "result_key": "Directories"
+    },
+    "DescribeWorkspaceImages": {
+      "input_token": "NextToken",
+      "limit_key": "MaxResults",
+      "output_token": "NextToken",
+      "result_key": "Images"
+    },
+    "DescribeWorkspaces": {
+      "input_token": "NextToken",
+      "limit_key": "Limit",
+      "output_token": "NextToken",
+      "result_key": "Workspaces"
+    },
+    "DescribeWorkspacesConnectionStatus": {
+      "input_token": "NextToken",
+      "output_token": "NextToken",
+      "result_key": "WorkspacesConnectionStatus"
+    },
+    "ListAvailableManagementCidrRanges": {
+      "input_token": "NextToken",
+      "limit_key": "MaxResults",
+      "output_token": "NextToken",
+      "result_key": "ManagementCidrRanges"
+    }
+  }
+}

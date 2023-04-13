@@ -1,0 +1,2011 @@
+{
+  "documentation": "<fullname>Amazon CloudSearch Configuration Service</fullname> <p>You use the configuration service to create, configure, and manage search domains. Configuration service requests are submitted using the AWS Query protocol. AWS Query requests are HTTP or HTTPS requests submitted via HTTP GET or POST with a query parameter named Action.</p> <p>The endpoint for configuration service requests is region-specific: cloudsearch.<i>region</i>.amazonaws.com. For example, cloudsearch.us-east-1.amazonaws.com. For a current list of supported regions and endpoints, see <a href=\"http://docs.aws.amazon.com/general/latest/gr/rande.html#cloudsearch_region\">Regions and Endpoints</a>.</p>",
+  "examples": {},
+  "metadata": {
+    "apiVersion": "2011-02-01",
+    "endpointPrefix": "cloudsearch",
+    "protocol": "query",
+    "serviceFullName": "Amazon CloudSearch",
+    "serviceId": "CloudSearch",
+    "signatureVersion": "v4",
+    "xmlNamespace": "http://cloudsearch.amazonaws.com/doc/2011-02-01/"
+  },
+  "operations": {
+    "CreateDomain": {
+      "documentation": "<p>Creates a new search domain.</p>",
+      "errors": [
+        {
+          "documentation": "<p>An error occurred while processing the request.</p>",
+          "exception": true,
+          "shape": "BaseException"
+        },
+        {
+          "documentation": "<p>An internal error occurred while processing the request. If this problem persists, report an issue from the <a href=\"http://status.aws.amazon.com/\">Service Health Dashboard</a>.</p>",
+          "error": {
+            "code": "InternalException",
+            "httpStatusCode": 500
+          },
+          "exception": true,
+          "shape": "InternalException"
+        },
+        {
+          "documentation": "<p>The request was rejected because a resource limit has already been met.</p>",
+          "error": {
+            "code": "LimitExceeded",
+            "httpStatusCode": 409,
+            "senderFault": true
+          },
+          "exception": true,
+          "shape": "LimitExceededException"
+        }
+      ],
+      "http": {
+        "method": "POST",
+        "requestUri": "/"
+      },
+      "input": { "shape": "CreateDomainRequest" },
+      "name": "CreateDomain",
+      "output": {
+        "documentation": "<p>A response message that contains the status of a newly created domain.</p>",
+        "resultWrapper": "CreateDomainResult",
+        "shape": "CreateDomainResponse"
+      }
+    },
+    "DefineIndexField": {
+      "documentation": "<p>Configures an <code>IndexField</code> for the search domain. Used to create new fields and modify existing ones. If the field exists, the new configuration replaces the old one. You can configure a maximum of 200 index fields.</p>",
+      "errors": [
+        {
+          "documentation": "<p>An error occurred while processing the request.</p>",
+          "exception": true,
+          "shape": "BaseException"
+        },
+        {
+          "documentation": "<p>An internal error occurred while processing the request. If this problem persists, report an issue from the <a href=\"http://status.aws.amazon.com/\">Service Health Dashboard</a>.</p>",
+          "error": {
+            "code": "InternalException",
+            "httpStatusCode": 500
+          },
+          "exception": true,
+          "shape": "InternalException"
+        },
+        {
+          "documentation": "<p>The request was rejected because a resource limit has already been met.</p>",
+          "error": {
+            "code": "LimitExceeded",
+            "httpStatusCode": 409,
+            "senderFault": true
+          },
+          "exception": true,
+          "shape": "LimitExceededException"
+        },
+        {
+          "documentation": "<p>The request was rejected because it specified an invalid type definition.</p>",
+          "error": {
+            "code": "InvalidType",
+            "httpStatusCode": 409,
+            "senderFault": true
+          },
+          "exception": true,
+          "shape": "InvalidTypeException"
+        },
+        {
+          "documentation": "<p>The request was rejected because it attempted to reference a resource that does not exist.</p>",
+          "error": {
+            "code": "ResourceNotFound",
+            "httpStatusCode": 409,
+            "senderFault": true
+          },
+          "exception": true,
+          "shape": "ResourceNotFoundException"
+        }
+      ],
+      "http": {
+        "method": "POST",
+        "requestUri": "/"
+      },
+      "input": { "shape": "DefineIndexFieldRequest" },
+      "name": "DefineIndexField",
+      "output": {
+        "documentation": "<p>A response message that contains the status of an updated index field.</p>",
+        "resultWrapper": "DefineIndexFieldResult",
+        "shape": "DefineIndexFieldResponse"
+      }
+    },
+    "DefineRankExpression": {
+      "documentation": "<p>Configures a <code>RankExpression</code> for the search domain. Used to create new rank expressions and modify existing ones. If the expression exists, the new configuration replaces the old one. You can configure a maximum of 50 rank expressions.</p>",
+      "errors": [
+        {
+          "documentation": "<p>An error occurred while processing the request.</p>",
+          "exception": true,
+          "shape": "BaseException"
+        },
+        {
+          "documentation": "<p>An internal error occurred while processing the request. If this problem persists, report an issue from the <a href=\"http://status.aws.amazon.com/\">Service Health Dashboard</a>.</p>",
+          "error": {
+            "code": "InternalException",
+            "httpStatusCode": 500
+          },
+          "exception": true,
+          "shape": "InternalException"
+        },
+        {
+          "documentation": "<p>The request was rejected because a resource limit has already been met.</p>",
+          "error": {
+            "code": "LimitExceeded",
+            "httpStatusCode": 409,
+            "senderFault": true
+          },
+          "exception": true,
+          "shape": "LimitExceededException"
+        },
+        {
+          "documentation": "<p>The request was rejected because it specified an invalid type definition.</p>",
+          "error": {
+            "code": "InvalidType",
+            "httpStatusCode": 409,
+            "senderFault": true
+          },
+          "exception": true,
+          "shape": "InvalidTypeException"
+        },
+        {
+          "documentation": "<p>The request was rejected because it attempted to reference a resource that does not exist.</p>",
+          "error": {
+            "code": "ResourceNotFound",
+            "httpStatusCode": 409,
+            "senderFault": true
+          },
+          "exception": true,
+          "shape": "ResourceNotFoundException"
+        }
+      ],
+      "http": {
+        "method": "POST",
+        "requestUri": "/"
+      },
+      "input": { "shape": "DefineRankExpressionRequest" },
+      "name": "DefineRankExpression",
+      "output": {
+        "documentation": "<p>A response message that contains the status of an updated <code>RankExpression</code>.</p>",
+        "resultWrapper": "DefineRankExpressionResult",
+        "shape": "DefineRankExpressionResponse"
+      }
+    },
+    "DeleteDomain": {
+      "documentation": "<p>Permanently deletes a search domain and all of its data.</p>",
+      "errors": [
+        {
+          "documentation": "<p>An error occurred while processing the request.</p>",
+          "exception": true,
+          "shape": "BaseException"
+        },
+        {
+          "documentation": "<p>An internal error occurred while processing the request. If this problem persists, report an issue from the <a href=\"http://status.aws.amazon.com/\">Service Health Dashboard</a>.</p>",
+          "error": {
+            "code": "InternalException",
+            "httpStatusCode": 500
+          },
+          "exception": true,
+          "shape": "InternalException"
+        }
+      ],
+      "http": {
+        "method": "POST",
+        "requestUri": "/"
+      },
+      "input": { "shape": "DeleteDomainRequest" },
+      "name": "DeleteDomain",
+      "output": {
+        "documentation": "<p>A response message that contains the status of a newly deleted domain, or no status if the domain has already been completely deleted.</p>",
+        "resultWrapper": "DeleteDomainResult",
+        "shape": "DeleteDomainResponse"
+      }
+    },
+    "DeleteIndexField": {
+      "documentation": "<p>Removes an <code>IndexField</code> from the search domain.</p>",
+      "errors": [
+        {
+          "documentation": "<p>An error occurred while processing the request.</p>",
+          "exception": true,
+          "shape": "BaseException"
+        },
+        {
+          "documentation": "<p>An internal error occurred while processing the request. If this problem persists, report an issue from the <a href=\"http://status.aws.amazon.com/\">Service Health Dashboard</a>.</p>",
+          "error": {
+            "code": "InternalException",
+            "httpStatusCode": 500
+          },
+          "exception": true,
+          "shape": "InternalException"
+        },
+        {
+          "documentation": "<p>The request was rejected because it specified an invalid type definition.</p>",
+          "error": {
+            "code": "InvalidType",
+            "httpStatusCode": 409,
+            "senderFault": true
+          },
+          "exception": true,
+          "shape": "InvalidTypeException"
+        },
+        {
+          "documentation": "<p>The request was rejected because it attempted to reference a resource that does not exist.</p>",
+          "error": {
+            "code": "ResourceNotFound",
+            "httpStatusCode": 409,
+            "senderFault": true
+          },
+          "exception": true,
+          "shape": "ResourceNotFoundException"
+        }
+      ],
+      "http": {
+        "method": "POST",
+        "requestUri": "/"
+      },
+      "input": { "shape": "DeleteIndexFieldRequest" },
+      "name": "DeleteIndexField",
+      "output": {
+        "documentation": "<p>A response message that contains the status of a deleted index field.</p>",
+        "resultWrapper": "DeleteIndexFieldResult",
+        "shape": "DeleteIndexFieldResponse"
+      }
+    },
+    "DeleteRankExpression": {
+      "documentation": "<p>Removes a <code>RankExpression</code> from the search domain.</p>",
+      "errors": [
+        {
+          "documentation": "<p>An error occurred while processing the request.</p>",
+          "exception": true,
+          "shape": "BaseException"
+        },
+        {
+          "documentation": "<p>An internal error occurred while processing the request. If this problem persists, report an issue from the <a href=\"http://status.aws.amazon.com/\">Service Health Dashboard</a>.</p>",
+          "error": {
+            "code": "InternalException",
+            "httpStatusCode": 500
+          },
+          "exception": true,
+          "shape": "InternalException"
+        },
+        {
+          "documentation": "<p>The request was rejected because it specified an invalid type definition.</p>",
+          "error": {
+            "code": "InvalidType",
+            "httpStatusCode": 409,
+            "senderFault": true
+          },
+          "exception": true,
+          "shape": "InvalidTypeException"
+        },
+        {
+          "documentation": "<p>The request was rejected because it attempted to reference a resource that does not exist.</p>",
+          "error": {
+            "code": "ResourceNotFound",
+            "httpStatusCode": 409,
+            "senderFault": true
+          },
+          "exception": true,
+          "shape": "ResourceNotFoundException"
+        }
+      ],
+      "http": {
+        "method": "POST",
+        "requestUri": "/"
+      },
+      "input": { "shape": "DeleteRankExpressionRequest" },
+      "name": "DeleteRankExpression",
+      "output": {
+        "documentation": "<p>A response message that contains the status of a deleted <code>RankExpression</code>.</p>",
+        "resultWrapper": "DeleteRankExpressionResult",
+        "shape": "DeleteRankExpressionResponse"
+      }
+    },
+    "DescribeAvailabilityOptions": {
+      "documentation": "<p>Gets the availability options configured for a domain. By default, shows the configuration with any pending changes. Set the <code>Deployed</code> option to <code>true</code> to show the active configuration and exclude pending changes. For more information, see <a href=\"http://docs.aws.amazon.com/cloudsearch/latest/developerguide/configuring-availability-options.html\" target=\"_blank\">Configuring Availability Options</a> in the <i>Amazon CloudSearch Developer Guide</i>.</p>",
+      "errors": [
+        {
+          "documentation": "<p>An error occurred while processing the request.</p>",
+          "exception": true,
+          "shape": "BaseException"
+        },
+        {
+          "documentation": "<p>An internal error occurred while processing the request. If this problem persists, report an issue from the <a href=\"http://status.aws.amazon.com/\">Service Health Dashboard</a>.</p>",
+          "error": {
+            "code": "InternalException",
+            "httpStatusCode": 500
+          },
+          "exception": true,
+          "shape": "InternalException"
+        },
+        {
+          "documentation": "<p>The request was rejected because it specified an invalid type definition.</p>",
+          "error": {
+            "code": "InvalidType",
+            "httpStatusCode": 409,
+            "senderFault": true
+          },
+          "exception": true,
+          "shape": "InvalidTypeException"
+        },
+        {
+          "documentation": "<p>The request was rejected because a resource limit has already been met.</p>",
+          "error": {
+            "code": "LimitExceeded",
+            "httpStatusCode": 409,
+            "senderFault": true
+          },
+          "exception": true,
+          "shape": "LimitExceededException"
+        },
+        {
+          "documentation": "<p>The request was rejected because it attempted to reference a resource that does not exist.</p>",
+          "error": {
+            "code": "ResourceNotFound",
+            "httpStatusCode": 409,
+            "senderFault": true
+          },
+          "exception": true,
+          "shape": "ResourceNotFoundException"
+        },
+        {
+          "documentation": "<p>The request was rejected because it attempted an operation which is not enabled.</p>",
+          "error": {
+            "code": "DisabledAction",
+            "httpStatusCode": 409,
+            "senderFault": true
+          },
+          "exception": true,
+          "shape": "DisabledOperationException"
+        }
+      ],
+      "http": {
+        "method": "POST",
+        "requestUri": "/"
+      },
+      "input": {
+        "documentation": "<p>Container for the parameters to the <code><a>DescribeAvailabilityOptions</a></code> operation. Specifies the name of the domain you want to describe. To show the active configuration and exclude any pending changes, set the Deployed option to <code>true</code>.</p>",
+        "shape": "DescribeAvailabilityOptionsRequest"
+      },
+      "name": "DescribeAvailabilityOptions",
+      "output": {
+        "documentation": "<p>The result of a <code>DescribeAvailabilityOptions</code> request. Indicates whether or not the Multi-AZ option is enabled for the domain specified in the request. </p>",
+        "resultWrapper": "DescribeAvailabilityOptionsResult",
+        "shape": "DescribeAvailabilityOptionsResponse"
+      }
+    },
+    "DescribeDefaultSearchField": {
+      "documentation": "<p>Gets the default search field configured for the search domain.</p>",
+      "errors": [
+        {
+          "documentation": "<p>An error occurred while processing the request.</p>",
+          "exception": true,
+          "shape": "BaseException"
+        },
+        {
+          "documentation": "<p>An internal error occurred while processing the request. If this problem persists, report an issue from the <a href=\"http://status.aws.amazon.com/\">Service Health Dashboard</a>.</p>",
+          "error": {
+            "code": "InternalException",
+            "httpStatusCode": 500
+          },
+          "exception": true,
+          "shape": "InternalException"
+        },
+        {
+          "documentation": "<p>The request was rejected because it attempted to reference a resource that does not exist.</p>",
+          "error": {
+            "code": "ResourceNotFound",
+            "httpStatusCode": 409,
+            "senderFault": true
+          },
+          "exception": true,
+          "shape": "ResourceNotFoundException"
+        }
+      ],
+      "http": {
+        "method": "POST",
+        "requestUri": "/"
+      },
+      "input": { "shape": "DescribeDefaultSearchFieldRequest" },
+      "name": "DescribeDefaultSearchField",
+      "output": {
+        "documentation": "<p>A response message that contains the default search field for a search domain.</p>",
+        "resultWrapper": "DescribeDefaultSearchFieldResult",
+        "shape": "DescribeDefaultSearchFieldResponse"
+      }
+    },
+    "DescribeDomains": {
+      "documentation": "<p>Gets information about the search domains owned by this account. Can be limited to specific domains. Shows all domains by default.</p>",
+      "errors": [
+        {
+          "documentation": "<p>An error occurred while processing the request.</p>",
+          "exception": true,
+          "shape": "BaseException"
+        },
+        {
+          "documentation": "<p>An internal error occurred while processing the request. If this problem persists, report an issue from the <a href=\"http://status.aws.amazon.com/\">Service Health Dashboard</a>.</p>",
+          "error": {
+            "code": "InternalException",
+            "httpStatusCode": 500
+          },
+          "exception": true,
+          "shape": "InternalException"
+        }
+      ],
+      "http": {
+        "method": "POST",
+        "requestUri": "/"
+      },
+      "input": { "shape": "DescribeDomainsRequest" },
+      "name": "DescribeDomains",
+      "output": {
+        "documentation": "<p>A response message that contains the status of one or more domains.</p>",
+        "resultWrapper": "DescribeDomainsResult",
+        "shape": "DescribeDomainsResponse"
+      }
+    },
+    "DescribeIndexFields": {
+      "documentation": "<p>Gets information about the index fields configured for the search domain. Can be limited to specific fields by name. Shows all fields by default.</p>",
+      "errors": [
+        {
+          "documentation": "<p>An error occurred while processing the request.</p>",
+          "exception": true,
+          "shape": "BaseException"
+        },
+        {
+          "documentation": "<p>An internal error occurred while processing the request. If this problem persists, report an issue from the <a href=\"http://status.aws.amazon.com/\">Service Health Dashboard</a>.</p>",
+          "error": {
+            "code": "InternalException",
+            "httpStatusCode": 500
+          },
+          "exception": true,
+          "shape": "InternalException"
+        },
+        {
+          "documentation": "<p>The request was rejected because it attempted to reference a resource that does not exist.</p>",
+          "error": {
+            "code": "ResourceNotFound",
+            "httpStatusCode": 409,
+            "senderFault": true
+          },
+          "exception": true,
+          "shape": "ResourceNotFoundException"
+        }
+      ],
+      "http": {
+        "method": "POST",
+        "requestUri": "/"
+      },
+      "input": { "shape": "DescribeIndexFieldsRequest" },
+      "name": "DescribeIndexFields",
+      "output": {
+        "documentation": "<p>A response message that contains the index fields for a search domain.</p>",
+        "resultWrapper": "DescribeIndexFieldsResult",
+        "shape": "DescribeIndexFieldsResponse"
+      }
+    },
+    "DescribeRankExpressions": {
+      "documentation": "<p>Gets the rank expressions configured for the search domain. Can be limited to specific rank expressions by name. Shows all rank expressions by default. </p>",
+      "errors": [
+        {
+          "documentation": "<p>An error occurred while processing the request.</p>",
+          "exception": true,
+          "shape": "BaseException"
+        },
+        {
+          "documentation": "<p>An internal error occurred while processing the request. If this problem persists, report an issue from the <a href=\"http://status.aws.amazon.com/\">Service Health Dashboard</a>.</p>",
+          "error": {
+            "code": "InternalException",
+            "httpStatusCode": 500
+          },
+          "exception": true,
+          "shape": "InternalException"
+        },
+        {
+          "documentation": "<p>The request was rejected because it attempted to reference a resource that does not exist.</p>",
+          "error": {
+            "code": "ResourceNotFound",
+            "httpStatusCode": 409,
+            "senderFault": true
+          },
+          "exception": true,
+          "shape": "ResourceNotFoundException"
+        }
+      ],
+      "http": {
+        "method": "POST",
+        "requestUri": "/"
+      },
+      "input": { "shape": "DescribeRankExpressionsRequest" },
+      "name": "DescribeRankExpressions",
+      "output": {
+        "documentation": "<p>A response message that contains the rank expressions for a search domain.</p>",
+        "resultWrapper": "DescribeRankExpressionsResult",
+        "shape": "DescribeRankExpressionsResponse"
+      }
+    },
+    "DescribeServiceAccessPolicies": {
+      "documentation": "<p>Gets information about the resource-based policies that control access to the domain's document and search services.</p>",
+      "errors": [
+        {
+          "documentation": "<p>An error occurred while processing the request.</p>",
+          "exception": true,
+          "shape": "BaseException"
+        },
+        {
+          "documentation": "<p>An internal error occurred while processing the request. If this problem persists, report an issue from the <a href=\"http://status.aws.amazon.com/\">Service Health Dashboard</a>.</p>",
+          "error": {
+            "code": "InternalException",
+            "httpStatusCode": 500
+          },
+          "exception": true,
+          "shape": "InternalException"
+        },
+        {
+          "documentation": "<p>The request was rejected because it attempted to reference a resource that does not exist.</p>",
+          "error": {
+            "code": "ResourceNotFound",
+            "httpStatusCode": 409,
+            "senderFault": true
+          },
+          "exception": true,
+          "shape": "ResourceNotFoundException"
+        }
+      ],
+      "http": {
+        "method": "POST",
+        "requestUri": "/"
+      },
+      "input": { "shape": "DescribeServiceAccessPoliciesRequest" },
+      "name": "DescribeServiceAccessPolicies",
+      "output": {
+        "documentation": "<p>A response message that contains the access policies for a domain.</p>",
+        "resultWrapper": "DescribeServiceAccessPoliciesResult",
+        "shape": "DescribeServiceAccessPoliciesResponse"
+      }
+    },
+    "DescribeStemmingOptions": {
+      "documentation": "<p>Gets the stemming dictionary configured for the search domain.</p>",
+      "errors": [
+        {
+          "documentation": "<p>An error occurred while processing the request.</p>",
+          "exception": true,
+          "shape": "BaseException"
+        },
+        {
+          "documentation": "<p>An internal error occurred while processing the request. If this problem persists, report an issue from the <a href=\"http://status.aws.amazon.com/\">Service Health Dashboard</a>.</p>",
+          "error": {
+            "code": "InternalException",
+            "httpStatusCode": 500
+          },
+          "exception": true,
+          "shape": "InternalException"
+        },
+        {
+          "documentation": "<p>The request was rejected because it attempted to reference a resource that does not exist.</p>",
+          "error": {
+            "code": "ResourceNotFound",
+            "httpStatusCode": 409,
+            "senderFault": true
+          },
+          "exception": true,
+          "shape": "ResourceNotFoundException"
+        }
+      ],
+      "http": {
+        "method": "POST",
+        "requestUri": "/"
+      },
+      "input": { "shape": "DescribeStemmingOptionsRequest" },
+      "name": "DescribeStemmingOptions",
+      "output": {
+        "documentation": "<p>A response message that contains the stemming options for a search domain.</p>",
+        "resultWrapper": "DescribeStemmingOptionsResult",
+        "shape": "DescribeStemmingOptionsResponse"
+      }
+    },
+    "DescribeStopwordOptions": {
+      "documentation": "<p>Gets the stopwords configured for the search domain.</p>",
+      "errors": [
+        {
+          "documentation": "<p>An error occurred while processing the request.</p>",
+          "exception": true,
+          "shape": "BaseException"
+        },
+        {
+          "documentation": "<p>An internal error occurred while processing the request. If this problem persists, report an issue from the <a href=\"http://status.aws.amazon.com/\">Service Health Dashboard</a>.</p>",
+          "error": {
+            "code": "InternalException",
+            "httpStatusCode": 500
+          },
+          "exception": true,
+          "shape": "InternalException"
+        },
+        {
+          "documentation": "<p>The request was rejected because it attempted to reference a resource that does not exist.</p>",
+          "error": {
+            "code": "ResourceNotFound",
+            "httpStatusCode": 409,
+            "senderFault": true
+          },
+          "exception": true,
+          "shape": "ResourceNotFoundException"
+        }
+      ],
+      "http": {
+        "method": "POST",
+        "requestUri": "/"
+      },
+      "input": { "shape": "DescribeStopwordOptionsRequest" },
+      "name": "DescribeStopwordOptions",
+      "output": {
+        "documentation": "<p>A response message that contains the stopword options for a search domain.</p>",
+        "resultWrapper": "DescribeStopwordOptionsResult",
+        "shape": "DescribeStopwordOptionsResponse"
+      }
+    },
+    "DescribeSynonymOptions": {
+      "documentation": "<p>Gets the synonym dictionary configured for the search domain.</p>",
+      "errors": [
+        {
+          "documentation": "<p>An error occurred while processing the request.</p>",
+          "exception": true,
+          "shape": "BaseException"
+        },
+        {
+          "documentation": "<p>An internal error occurred while processing the request. If this problem persists, report an issue from the <a href=\"http://status.aws.amazon.com/\">Service Health Dashboard</a>.</p>",
+          "error": {
+            "code": "InternalException",
+            "httpStatusCode": 500
+          },
+          "exception": true,
+          "shape": "InternalException"
+        },
+        {
+          "documentation": "<p>The request was rejected because it attempted to reference a resource that does not exist.</p>",
+          "error": {
+            "code": "ResourceNotFound",
+            "httpStatusCode": 409,
+            "senderFault": true
+          },
+          "exception": true,
+          "shape": "ResourceNotFoundException"
+        }
+      ],
+      "http": {
+        "method": "POST",
+        "requestUri": "/"
+      },
+      "input": { "shape": "DescribeSynonymOptionsRequest" },
+      "name": "DescribeSynonymOptions",
+      "output": {
+        "documentation": "<p>A response message that contains the synonym options for a search domain.</p>",
+        "resultWrapper": "DescribeSynonymOptionsResult",
+        "shape": "DescribeSynonymOptionsResponse"
+      }
+    },
+    "IndexDocuments": {
+      "documentation": "<p>Tells the search domain to start indexing its documents using the latest text processing options and <code>IndexFields</code>. This operation must be invoked to make options whose <a>OptionStatus</a> has <code>OptionState</code> of <code>RequiresIndexDocuments</code> visible in search results.</p>",
+      "errors": [
+        {
+          "documentation": "<p>An error occurred while processing the request.</p>",
+          "exception": true,
+          "shape": "BaseException"
+        },
+        {
+          "documentation": "<p>An internal error occurred while processing the request. If this problem persists, report an issue from the <a href=\"http://status.aws.amazon.com/\">Service Health Dashboard</a>.</p>",
+          "error": {
+            "code": "InternalException",
+            "httpStatusCode": 500
+          },
+          "exception": true,
+          "shape": "InternalException"
+        },
+        {
+          "documentation": "<p>The request was rejected because it attempted to reference a resource that does not exist.</p>",
+          "error": {
+            "code": "ResourceNotFound",
+            "httpStatusCode": 409,
+            "senderFault": true
+          },
+          "exception": true,
+          "shape": "ResourceNotFoundException"
+        }
+      ],
+      "http": {
+        "method": "POST",
+        "requestUri": "/"
+      },
+      "input": { "shape": "IndexDocumentsRequest" },
+      "name": "IndexDocuments",
+      "output": {
+        "documentation": "<p>The result of an <code>IndexDocuments</code> action.</p>",
+        "resultWrapper": "IndexDocumentsResult",
+        "shape": "IndexDocumentsResponse"
+      }
+    },
+    "UpdateAvailabilityOptions": {
+      "documentation": "<p>Configures the availability options for a domain. Enabling the Multi-AZ option expands an Amazon CloudSearch domain to an additional Availability Zone in the same Region to increase fault tolerance in the event of a service disruption. Changes to the Multi-AZ option can take about half an hour to become active. For more information, see <a href=\"http://docs.aws.amazon.com/cloudsearch/latest/developerguide/configuring-availability-options.html\" target=\"_blank\">Configuring Availability Options</a> in the <i>Amazon CloudSearch Developer Guide</i>.</p>",
+      "errors": [
+        {
+          "documentation": "<p>An error occurred while processing the request.</p>",
+          "exception": true,
+          "shape": "BaseException"
+        },
+        {
+          "documentation": "<p>An internal error occurred while processing the request. If this problem persists, report an issue from the <a href=\"http://status.aws.amazon.com/\">Service Health Dashboard</a>.</p>",
+          "error": {
+            "code": "InternalException",
+            "httpStatusCode": 500
+          },
+          "exception": true,
+          "shape": "InternalException"
+        },
+        {
+          "documentation": "<p>The request was rejected because it specified an invalid type definition.</p>",
+          "error": {
+            "code": "InvalidType",
+            "httpStatusCode": 409,
+            "senderFault": true
+          },
+          "exception": true,
+          "shape": "InvalidTypeException"
+        },
+        {
+          "documentation": "<p>The request was rejected because a resource limit has already been met.</p>",
+          "error": {
+            "code": "LimitExceeded",
+            "httpStatusCode": 409,
+            "senderFault": true
+          },
+          "exception": true,
+          "shape": "LimitExceededException"
+        },
+        {
+          "documentation": "<p>The request was rejected because it attempted to reference a resource that does not exist.</p>",
+          "error": {
+            "code": "ResourceNotFound",
+            "httpStatusCode": 409,
+            "senderFault": true
+          },
+          "exception": true,
+          "shape": "ResourceNotFoundException"
+        },
+        {
+          "documentation": "<p>The request was rejected because it attempted an operation which is not enabled.</p>",
+          "error": {
+            "code": "DisabledAction",
+            "httpStatusCode": 409,
+            "senderFault": true
+          },
+          "exception": true,
+          "shape": "DisabledOperationException"
+        }
+      ],
+      "http": {
+        "method": "POST",
+        "requestUri": "/"
+      },
+      "input": {
+        "documentation": "<p>Container for the parameters to the <code><a>UpdateAvailabilityOptions</a></code> operation. Specifies the name of the domain you want to update and the Multi-AZ availability option.</p>",
+        "shape": "UpdateAvailabilityOptionsRequest"
+      },
+      "name": "UpdateAvailabilityOptions",
+      "output": {
+        "documentation": "<p>The result of a <code>UpdateAvailabilityOptions</code> request. Contains the status of the domain's availability options. </p>",
+        "resultWrapper": "UpdateAvailabilityOptionsResult",
+        "shape": "UpdateAvailabilityOptionsResponse"
+      }
+    },
+    "UpdateDefaultSearchField": {
+      "documentation": "<p>Configures the default search field for the search domain. The default search field is the text field that is searched when a search request does not specify which fields to search. By default, it is configured to include the contents of all of the domain's text fields. </p>",
+      "errors": [
+        {
+          "documentation": "<p>An error occurred while processing the request.</p>",
+          "exception": true,
+          "shape": "BaseException"
+        },
+        {
+          "documentation": "<p>An internal error occurred while processing the request. If this problem persists, report an issue from the <a href=\"http://status.aws.amazon.com/\">Service Health Dashboard</a>.</p>",
+          "error": {
+            "code": "InternalException",
+            "httpStatusCode": 500
+          },
+          "exception": true,
+          "shape": "InternalException"
+        },
+        {
+          "documentation": "<p>The request was rejected because it specified an invalid type definition.</p>",
+          "error": {
+            "code": "InvalidType",
+            "httpStatusCode": 409,
+            "senderFault": true
+          },
+          "exception": true,
+          "shape": "InvalidTypeException"
+        },
+        {
+          "documentation": "<p>The request was rejected because it attempted to reference a resource that does not exist.</p>",
+          "error": {
+            "code": "ResourceNotFound",
+            "httpStatusCode": 409,
+            "senderFault": true
+          },
+          "exception": true,
+          "shape": "ResourceNotFoundException"
+        }
+      ],
+      "http": {
+        "method": "POST",
+        "requestUri": "/"
+      },
+      "input": { "shape": "UpdateDefaultSearchFieldRequest" },
+      "name": "UpdateDefaultSearchField",
+      "output": {
+        "documentation": "<p>A response message that contains the status of an updated default search field.</p>",
+        "resultWrapper": "UpdateDefaultSearchFieldResult",
+        "shape": "UpdateDefaultSearchFieldResponse"
+      }
+    },
+    "UpdateServiceAccessPolicies": {
+      "documentation": "<p>Configures the policies that control access to the domain's document and search services. The maximum size of an access policy document is 100 KB.</p>",
+      "errors": [
+        {
+          "documentation": "<p>An error occurred while processing the request.</p>",
+          "exception": true,
+          "shape": "BaseException"
+        },
+        {
+          "documentation": "<p>An internal error occurred while processing the request. If this problem persists, report an issue from the <a href=\"http://status.aws.amazon.com/\">Service Health Dashboard</a>.</p>",
+          "error": {
+            "code": "InternalException",
+            "httpStatusCode": 500
+          },
+          "exception": true,
+          "shape": "InternalException"
+        },
+        {
+          "documentation": "<p>The request was rejected because a resource limit has already been met.</p>",
+          "error": {
+            "code": "LimitExceeded",
+            "httpStatusCode": 409,
+            "senderFault": true
+          },
+          "exception": true,
+          "shape": "LimitExceededException"
+        },
+        {
+          "documentation": "<p>The request was rejected because it attempted to reference a resource that does not exist.</p>",
+          "error": {
+            "code": "ResourceNotFound",
+            "httpStatusCode": 409,
+            "senderFault": true
+          },
+          "exception": true,
+          "shape": "ResourceNotFoundException"
+        },
+        {
+          "documentation": "<p>The request was rejected because it specified an invalid type definition.</p>",
+          "error": {
+            "code": "InvalidType",
+            "httpStatusCode": 409,
+            "senderFault": true
+          },
+          "exception": true,
+          "shape": "InvalidTypeException"
+        }
+      ],
+      "http": {
+        "method": "POST",
+        "requestUri": "/"
+      },
+      "input": { "shape": "UpdateServiceAccessPoliciesRequest" },
+      "name": "UpdateServiceAccessPolicies",
+      "output": {
+        "documentation": "<p>A response message that contains the status of updated access policies.</p>",
+        "resultWrapper": "UpdateServiceAccessPoliciesResult",
+        "shape": "UpdateServiceAccessPoliciesResponse"
+      }
+    },
+    "UpdateStemmingOptions": {
+      "documentation": "<p>Configures a stemming dictionary for the search domain. The stemming dictionary is used during indexing and when processing search requests. The maximum size of the stemming dictionary is 500 KB.</p>",
+      "errors": [
+        {
+          "documentation": "<p>An error occurred while processing the request.</p>",
+          "exception": true,
+          "shape": "BaseException"
+        },
+        {
+          "documentation": "<p>An internal error occurred while processing the request. If this problem persists, report an issue from the <a href=\"http://status.aws.amazon.com/\">Service Health Dashboard</a>.</p>",
+          "error": {
+            "code": "InternalException",
+            "httpStatusCode": 500
+          },
+          "exception": true,
+          "shape": "InternalException"
+        },
+        {
+          "documentation": "<p>The request was rejected because it specified an invalid type definition.</p>",
+          "error": {
+            "code": "InvalidType",
+            "httpStatusCode": 409,
+            "senderFault": true
+          },
+          "exception": true,
+          "shape": "InvalidTypeException"
+        },
+        {
+          "documentation": "<p>The request was rejected because a resource limit has already been met.</p>",
+          "error": {
+            "code": "LimitExceeded",
+            "httpStatusCode": 409,
+            "senderFault": true
+          },
+          "exception": true,
+          "shape": "LimitExceededException"
+        },
+        {
+          "documentation": "<p>The request was rejected because it attempted to reference a resource that does not exist.</p>",
+          "error": {
+            "code": "ResourceNotFound",
+            "httpStatusCode": 409,
+            "senderFault": true
+          },
+          "exception": true,
+          "shape": "ResourceNotFoundException"
+        }
+      ],
+      "http": {
+        "method": "POST",
+        "requestUri": "/"
+      },
+      "input": { "shape": "UpdateStemmingOptionsRequest" },
+      "name": "UpdateStemmingOptions",
+      "output": {
+        "documentation": "<p>A response message that contains the status of updated stemming options.</p>",
+        "resultWrapper": "UpdateStemmingOptionsResult",
+        "shape": "UpdateStemmingOptionsResponse"
+      }
+    },
+    "UpdateStopwordOptions": {
+      "documentation": "<p>Configures stopwords for the search domain. Stopwords are used during indexing and when processing search requests. The maximum size of the stopwords dictionary is 10 KB.</p>",
+      "errors": [
+        {
+          "documentation": "<p>An error occurred while processing the request.</p>",
+          "exception": true,
+          "shape": "BaseException"
+        },
+        {
+          "documentation": "<p>An internal error occurred while processing the request. If this problem persists, report an issue from the <a href=\"http://status.aws.amazon.com/\">Service Health Dashboard</a>.</p>",
+          "error": {
+            "code": "InternalException",
+            "httpStatusCode": 500
+          },
+          "exception": true,
+          "shape": "InternalException"
+        },
+        {
+          "documentation": "<p>The request was rejected because it specified an invalid type definition.</p>",
+          "error": {
+            "code": "InvalidType",
+            "httpStatusCode": 409,
+            "senderFault": true
+          },
+          "exception": true,
+          "shape": "InvalidTypeException"
+        },
+        {
+          "documentation": "<p>The request was rejected because a resource limit has already been met.</p>",
+          "error": {
+            "code": "LimitExceeded",
+            "httpStatusCode": 409,
+            "senderFault": true
+          },
+          "exception": true,
+          "shape": "LimitExceededException"
+        },
+        {
+          "documentation": "<p>The request was rejected because it attempted to reference a resource that does not exist.</p>",
+          "error": {
+            "code": "ResourceNotFound",
+            "httpStatusCode": 409,
+            "senderFault": true
+          },
+          "exception": true,
+          "shape": "ResourceNotFoundException"
+        }
+      ],
+      "http": {
+        "method": "POST",
+        "requestUri": "/"
+      },
+      "input": { "shape": "UpdateStopwordOptionsRequest" },
+      "name": "UpdateStopwordOptions",
+      "output": {
+        "documentation": "<p>A response message that contains the status of updated stopword options.</p>",
+        "resultWrapper": "UpdateStopwordOptionsResult",
+        "shape": "UpdateStopwordOptionsResponse"
+      }
+    },
+    "UpdateSynonymOptions": {
+      "documentation": "<p>Configures a synonym dictionary for the search domain. The synonym dictionary is used during indexing to configure mappings for terms that occur in text fields. The maximum size of the synonym dictionary is 100 KB. </p>",
+      "errors": [
+        {
+          "documentation": "<p>An error occurred while processing the request.</p>",
+          "exception": true,
+          "shape": "BaseException"
+        },
+        {
+          "documentation": "<p>An internal error occurred while processing the request. If this problem persists, report an issue from the <a href=\"http://status.aws.amazon.com/\">Service Health Dashboard</a>.</p>",
+          "error": {
+            "code": "InternalException",
+            "httpStatusCode": 500
+          },
+          "exception": true,
+          "shape": "InternalException"
+        },
+        {
+          "documentation": "<p>The request was rejected because it specified an invalid type definition.</p>",
+          "error": {
+            "code": "InvalidType",
+            "httpStatusCode": 409,
+            "senderFault": true
+          },
+          "exception": true,
+          "shape": "InvalidTypeException"
+        },
+        {
+          "documentation": "<p>The request was rejected because a resource limit has already been met.</p>",
+          "error": {
+            "code": "LimitExceeded",
+            "httpStatusCode": 409,
+            "senderFault": true
+          },
+          "exception": true,
+          "shape": "LimitExceededException"
+        },
+        {
+          "documentation": "<p>The request was rejected because it attempted to reference a resource that does not exist.</p>",
+          "error": {
+            "code": "ResourceNotFound",
+            "httpStatusCode": 409,
+            "senderFault": true
+          },
+          "exception": true,
+          "shape": "ResourceNotFoundException"
+        }
+      ],
+      "http": {
+        "method": "POST",
+        "requestUri": "/"
+      },
+      "input": { "shape": "UpdateSynonymOptionsRequest" },
+      "name": "UpdateSynonymOptions",
+      "output": {
+        "documentation": "<p>A response message that contains the status of updated synonym options.</p>",
+        "resultWrapper": "UpdateSynonymOptionsResult",
+        "shape": "UpdateSynonymOptionsResponse"
+      }
+    }
+  },
+  "shapes": {
+    "AccessPoliciesStatus": {
+      "documentation": "<p>A <code>PolicyDocument</code> that specifies access policies for the search domain's services, and the current status of those policies.</p>",
+      "members": {
+        "Options": { "shape": "PolicyDocument" },
+        "Status": { "shape": "OptionStatus" }
+      },
+      "required": ["Options", "Status"],
+      "type": "structure"
+    },
+    "Arn": {
+      "documentation": "<p>An Amazon Resource Name (ARN). See <a href=\"http://docs.aws.amazon.com/IAM/latest/UserGuide/index.html?Using_Identifiers.html\" target=\"_blank\">Identifiers for IAM Entities</a> in <i>Using AWS Identity and Access Management</i> for more information.</p>",
+      "type": "string"
+    },
+    "AvailabilityOptionsStatus": {
+      "documentation": "<p>The status and configuration of the domain's availability options.</p>",
+      "members": {
+        "Options": {
+          "documentation": "<p>The availability options configured for the domain.</p>",
+          "shape": "MultiAZ"
+        },
+        "Status": { "shape": "OptionStatus" }
+      },
+      "required": ["Options", "Status"],
+      "type": "structure"
+    },
+    "BaseException": {
+      "documentation": "<p>An error occurred while processing the request.</p>",
+      "exception": true,
+      "members": {
+        "Code": { "shape": "ErrorCode" },
+        "Message": { "shape": "ErrorMessage" }
+      },
+      "type": "structure"
+    },
+    "Boolean": { "type": "boolean" },
+    "CreateDomainRequest": {
+      "members": {
+        "DomainName": { "shape": "DomainName" }
+      },
+      "required": ["DomainName"],
+      "type": "structure"
+    },
+    "CreateDomainResponse": {
+      "documentation": "<p>A response message that contains the status of a newly created domain.</p>",
+      "members": {
+        "DomainStatus": { "shape": "DomainStatus" }
+      },
+      "type": "structure"
+    },
+    "DefaultSearchFieldStatus": {
+      "documentation": "<p>The value of the <code>DefaultSearchField</code> configured for this search domain and its current status.</p>",
+      "members": {
+        "Options": {
+          "documentation": "<p>The name of the <code>IndexField</code> to use as the default search field. The default is an empty string, which automatically searches all text fields.</p>",
+          "shape": "FieldName"
+        },
+        "Status": { "shape": "OptionStatus" }
+      },
+      "required": ["Options", "Status"],
+      "type": "structure"
+    },
+    "DefineIndexFieldRequest": {
+      "members": {
+        "DomainName": { "shape": "DomainName" },
+        "IndexField": { "shape": "IndexField" }
+      },
+      "required": ["DomainName", "IndexField"],
+      "type": "structure"
+    },
+    "DefineIndexFieldResponse": {
+      "documentation": "<p>A response message that contains the status of an updated index field.</p>",
+      "members": {
+        "IndexField": { "shape": "IndexFieldStatus" }
+      },
+      "required": ["IndexField"],
+      "type": "structure"
+    },
+    "DefineRankExpressionRequest": {
+      "members": {
+        "DomainName": { "shape": "DomainName" },
+        "RankExpression": { "shape": "NamedRankExpression" }
+      },
+      "required": ["DomainName", "RankExpression"],
+      "type": "structure"
+    },
+    "DefineRankExpressionResponse": {
+      "documentation": "<p>A response message that contains the status of an updated <code>RankExpression</code>.</p>",
+      "members": {
+        "RankExpression": { "shape": "RankExpressionStatus" }
+      },
+      "required": ["RankExpression"],
+      "type": "structure"
+    },
+    "DeleteDomainRequest": {
+      "members": {
+        "DomainName": { "shape": "DomainName" }
+      },
+      "required": ["DomainName"],
+      "type": "structure"
+    },
+    "DeleteDomainResponse": {
+      "documentation": "<p>A response message that contains the status of a newly deleted domain, or no status if the domain has already been completely deleted.</p>",
+      "members": {
+        "DomainStatus": { "shape": "DomainStatus" }
+      },
+      "type": "structure"
+    },
+    "DeleteIndexFieldRequest": {
+      "members": {
+        "DomainName": { "shape": "DomainName" },
+        "IndexFieldName": { "shape": "FieldName" }
+      },
+      "required": ["DomainName", "IndexFieldName"],
+      "type": "structure"
+    },
+    "DeleteIndexFieldResponse": {
+      "documentation": "<p>A response message that contains the status of a deleted index field.</p>",
+      "members": {
+        "IndexField": { "shape": "IndexFieldStatus" }
+      },
+      "required": ["IndexField"],
+      "type": "structure"
+    },
+    "DeleteRankExpressionRequest": {
+      "members": {
+        "DomainName": { "shape": "DomainName" },
+        "RankName": {
+          "documentation": "<p>The name of the <code>RankExpression</code> to delete.</p>",
+          "shape": "FieldName"
+        }
+      },
+      "required": ["DomainName", "RankName"],
+      "type": "structure"
+    },
+    "DeleteRankExpressionResponse": {
+      "documentation": "<p>A response message that contains the status of a deleted <code>RankExpression</code>.</p>",
+      "members": {
+        "RankExpression": { "shape": "RankExpressionStatus" }
+      },
+      "required": ["RankExpression"],
+      "type": "structure"
+    },
+    "DescribeAvailabilityOptionsRequest": {
+      "documentation": "<p>Container for the parameters to the <code><a>DescribeAvailabilityOptions</a></code> operation. Specifies the name of the domain you want to describe. To show the active configuration and exclude any pending changes, set the Deployed option to <code>true</code>.</p>",
+      "members": {
+        "DomainName": {
+          "documentation": "<p>The name of the domain you want to describe.</p>",
+          "shape": "DomainName"
+        }
+      },
+      "required": ["DomainName"],
+      "type": "structure"
+    },
+    "DescribeAvailabilityOptionsResponse": {
+      "documentation": "<p>The result of a <code>DescribeAvailabilityOptions</code> request. Indicates whether or not the Multi-AZ option is enabled for the domain specified in the request. </p>",
+      "members": {
+        "AvailabilityOptions": {
+          "documentation": "<p>The availability options configured for the domain. Indicates whether Multi-AZ is enabled for the domain. </p>",
+          "shape": "AvailabilityOptionsStatus"
+        }
+      },
+      "type": "structure"
+    },
+    "DescribeDefaultSearchFieldRequest": {
+      "members": {
+        "DomainName": { "shape": "DomainName" }
+      },
+      "required": ["DomainName"],
+      "type": "structure"
+    },
+    "DescribeDefaultSearchFieldResponse": {
+      "documentation": "<p>A response message that contains the default search field for a search domain.</p>",
+      "members": {
+        "DefaultSearchField": {
+          "documentation": "<p>The name of the <code>IndexField</code> to use for search requests issued with the <code>q</code> parameter. The default is the empty string, which automatically searches all text fields.</p>",
+          "shape": "DefaultSearchFieldStatus"
+        }
+      },
+      "required": ["DefaultSearchField"],
+      "type": "structure"
+    },
+    "DescribeDomainsRequest": {
+      "members": {
+        "DomainNames": {
+          "documentation": "<p>Limits the DescribeDomains response to the specified search domains.</p>",
+          "shape": "DomainNameList"
+        }
+      },
+      "type": "structure"
+    },
+    "DescribeDomainsResponse": {
+      "documentation": "<p>A response message that contains the status of one or more domains.</p>",
+      "members": {
+        "DomainStatusList": { "shape": "DomainStatusList" }
+      },
+      "required": ["DomainStatusList"],
+      "type": "structure"
+    },
+    "DescribeIndexFieldsRequest": {
+      "members": {
+        "DomainName": { "shape": "DomainName" },
+        "FieldNames": {
+          "documentation": "<p>Limits the <code>DescribeIndexFields</code> response to the specified fields.</p>",
+          "shape": "FieldNameList"
+        }
+      },
+      "required": ["DomainName"],
+      "type": "structure"
+    },
+    "DescribeIndexFieldsResponse": {
+      "documentation": "<p>A response message that contains the index fields for a search domain.</p>",
+      "members": {
+        "IndexFields": {
+          "documentation": "<p>The index fields configured for the domain.</p>",
+          "shape": "IndexFieldStatusList"
+        }
+      },
+      "required": ["IndexFields"],
+      "type": "structure"
+    },
+    "DescribeRankExpressionsRequest": {
+      "members": {
+        "DomainName": { "shape": "DomainName" },
+        "RankNames": {
+          "documentation": "<p>Limits the <code>DescribeRankExpressions</code> response to the specified fields.</p>",
+          "shape": "FieldNameList"
+        }
+      },
+      "required": ["DomainName"],
+      "type": "structure"
+    },
+    "DescribeRankExpressionsResponse": {
+      "documentation": "<p>A response message that contains the rank expressions for a search domain.</p>",
+      "members": {
+        "RankExpressions": {
+          "documentation": "<p>The rank expressions configured for the domain.</p>",
+          "shape": "RankExpressionStatusList"
+        }
+      },
+      "required": ["RankExpressions"],
+      "type": "structure"
+    },
+    "DescribeServiceAccessPoliciesRequest": {
+      "members": {
+        "DomainName": { "shape": "DomainName" }
+      },
+      "required": ["DomainName"],
+      "type": "structure"
+    },
+    "DescribeServiceAccessPoliciesResponse": {
+      "documentation": "<p>A response message that contains the access policies for a domain.</p>",
+      "members": {
+        "AccessPolicies": { "shape": "AccessPoliciesStatus" }
+      },
+      "required": ["AccessPolicies"],
+      "type": "structure"
+    },
+    "DescribeStemmingOptionsRequest": {
+      "members": {
+        "DomainName": { "shape": "DomainName" }
+      },
+      "required": ["DomainName"],
+      "type": "structure"
+    },
+    "DescribeStemmingOptionsResponse": {
+      "documentation": "<p>A response message that contains the stemming options for a search domain.</p>",
+      "members": {
+        "Stems": { "shape": "StemmingOptionsStatus" }
+      },
+      "required": ["Stems"],
+      "type": "structure"
+    },
+    "DescribeStopwordOptionsRequest": {
+      "members": {
+        "DomainName": { "shape": "DomainName" }
+      },
+      "required": ["DomainName"],
+      "type": "structure"
+    },
+    "DescribeStopwordOptionsResponse": {
+      "documentation": "<p>A response message that contains the stopword options for a search domain.</p>",
+      "members": {
+        "Stopwords": { "shape": "StopwordOptionsStatus" }
+      },
+      "required": ["Stopwords"],
+      "type": "structure"
+    },
+    "DescribeSynonymOptionsRequest": {
+      "members": {
+        "DomainName": { "shape": "DomainName" }
+      },
+      "required": ["DomainName"],
+      "type": "structure"
+    },
+    "DescribeSynonymOptionsResponse": {
+      "documentation": "<p>A response message that contains the synonym options for a search domain.</p>",
+      "members": {
+        "Synonyms": { "shape": "SynonymOptionsStatus" }
+      },
+      "required": ["Synonyms"],
+      "type": "structure"
+    },
+    "DisabledOperationException": {
+      "documentation": "<p>The request was rejected because it attempted an operation which is not enabled.</p>",
+      "error": {
+        "code": "DisabledAction",
+        "httpStatusCode": 409,
+        "senderFault": true
+      },
+      "exception": true,
+      "members": {},
+      "type": "structure"
+    },
+    "DocumentCount": {
+      "min": 0,
+      "type": "long"
+    },
+    "DomainId": {
+      "documentation": "<p>An internally generated unique identifier for a domain.</p>",
+      "max": 64,
+      "min": 1,
+      "type": "string"
+    },
+    "DomainName": {
+      "documentation": "<p>A string that represents the name of a domain. Domain names must be unique across the domains owned by an account within an AWS region. Domain names must start with a letter or number and can contain the following characters: a-z (lowercase), 0-9, and - (hyphen). Uppercase letters and underscores are not allowed.</p>",
+      "max": 28,
+      "min": 3,
+      "pattern": "[a-z][a-z0-9\\-]+",
+      "type": "string"
+    },
+    "DomainNameList": {
+      "documentation": "<p>A list of domain names.</p>",
+      "member": { "shape": "DomainName" },
+      "type": "list"
+    },
+    "DomainStatus": {
+      "documentation": "<p>The current status of the search domain.</p>",
+      "members": {
+        "Created": {
+          "documentation": "<p>True if the search domain is created. It can take several minutes to initialize a domain when <a>CreateDomain</a> is called. Newly created search domains are returned from <a>DescribeDomains</a> with a false value for Created until domain creation is complete.</p>",
+          "shape": "Boolean"
+        },
+        "Deleted": {
+          "documentation": "<p>True if the search domain has been deleted. The system must clean up resources dedicated to the search domain when <a>DeleteDomain</a> is called. Newly deleted search domains are returned from <a>DescribeDomains</a> with a true value for IsDeleted for several minutes until resource cleanup is complete.</p>",
+          "shape": "Boolean"
+        },
+        "DocService": {
+          "documentation": "<p>The service endpoint for updating documents in a search domain.</p>",
+          "shape": "ServiceEndpoint"
+        },
+        "DomainId": { "shape": "DomainId" },
+        "DomainName": { "shape": "DomainName" },
+        "NumSearchableDocs": {
+          "documentation": "<p>The number of documents that have been submitted to the domain and indexed.</p>",
+          "shape": "DocumentCount"
+        },
+        "Processing": {
+          "documentation": "<p>True if processing is being done to activate the current domain configuration.</p>",
+          "shape": "Boolean"
+        },
+        "RequiresIndexDocuments": {
+          "documentation": "<p>True if <a>IndexDocuments</a> needs to be called to activate the current domain configuration.</p>",
+          "shape": "Boolean"
+        },
+        "SearchInstanceCount": {
+          "documentation": "<p>The number of search instances that are available to process search requests.</p>",
+          "shape": "InstanceCount"
+        },
+        "SearchInstanceType": {
+          "documentation": "<p>The instance type (such as search.m1.small) that is being used to process search requests.</p>",
+          "shape": "SearchInstanceType"
+        },
+        "SearchPartitionCount": {
+          "documentation": "<p>The number of partitions across which the search index is spread.</p>",
+          "shape": "PartitionCount"
+        },
+        "SearchService": {
+          "documentation": "<p>The service endpoint for requesting search results from a search domain.</p>",
+          "shape": "ServiceEndpoint"
+        }
+      },
+      "required": ["DomainId", "DomainName", "RequiresIndexDocuments"],
+      "type": "structure"
+    },
+    "DomainStatusList": {
+      "documentation": "<p>The current status of all of your search domains.</p>",
+      "member": { "shape": "DomainStatus" },
+      "type": "list"
+    },
+    "ErrorCode": {
+      "documentation": "<p>A machine-parsable string error or warning code.</p>",
+      "type": "string"
+    },
+    "ErrorMessage": {
+      "documentation": "<p>A human-readable string error or warning message.</p>",
+      "type": "string"
+    },
+    "FieldName": {
+      "documentation": "<p>A string that represents the name of an index field. Field names must begin with a letter and can contain the following characters: a-z (lowercase), 0-9, and _ (underscore). Uppercase letters and hyphens are not allowed. The names \"body\", \"docid\", and \"text_relevance\" are reserved and cannot be specified as field or rank expression names.</p>",
+      "max": 64,
+      "min": 1,
+      "pattern": "[a-z][a-z0-9_]*",
+      "type": "string"
+    },
+    "FieldNameList": {
+      "member": { "shape": "FieldName" },
+      "type": "list"
+    },
+    "FieldValue": {
+      "documentation": "<p>The value of a field or source document attribute.</p>",
+      "max": 1024,
+      "min": 0,
+      "type": "string"
+    },
+    "IndexDocumentsRequest": {
+      "members": {
+        "DomainName": { "shape": "DomainName" }
+      },
+      "required": ["DomainName"],
+      "type": "structure"
+    },
+    "IndexDocumentsResponse": {
+      "documentation": "<p>The result of an <code>IndexDocuments</code> action.</p>",
+      "members": {
+        "FieldNames": {
+          "documentation": "<p>The names of the fields that are currently being processed due to an <code>IndexDocuments</code> action.</p>",
+          "shape": "FieldNameList"
+        }
+      },
+      "type": "structure"
+    },
+    "IndexField": {
+      "documentation": "<p>Defines a field in the index, including its name, type, and the source of its data. The <code>IndexFieldType</code> indicates which of the options will be present. It is invalid to specify options for a type other than the <code>IndexFieldType</code>.</p>",
+      "members": {
+        "IndexFieldName": {
+          "documentation": "<p>The name of a field in the search index. Field names must begin with a letter and can contain the following characters: a-z (lowercase), 0-9, and _ (underscore). Uppercase letters and hyphens are not allowed. The names \"body\", \"docid\", and \"text_relevance\" are reserved and cannot be specified as field or rank expression names.</p>",
+          "shape": "FieldName"
+        },
+        "IndexFieldType": {
+          "documentation": "<p>The type of field. Based on this type, exactly one of the <a>UIntOptions</a>, <a>LiteralOptions</a> or <a>TextOptions</a> must be present.</p>",
+          "shape": "IndexFieldType"
+        },
+        "LiteralOptions": {
+          "documentation": "<p>Options for literal field. Present if <code>IndexFieldType</code> specifies the field is of type literal.</p>",
+          "shape": "LiteralOptions"
+        },
+        "SourceAttributes": {
+          "documentation": "<p>An optional list of source attributes that provide data for this index field. If not specified, the data is pulled from a source attribute with the same name as this <code>IndexField</code>. When one or more source attributes are specified, an optional data transformation can be applied to the source data when populating the index field. You can configure a maximum of 20 sources for an <code>IndexField</code>.</p>",
+          "shape": "SourceAttributeList"
+        },
+        "TextOptions": {
+          "documentation": "<p>Options for text field. Present if <code>IndexFieldType</code> specifies the field is of type text.</p>",
+          "shape": "TextOptions"
+        },
+        "UIntOptions": {
+          "documentation": "<p>Options for an unsigned integer field. Present if <code>IndexFieldType</code> specifies the field is of type unsigned integer.</p>",
+          "shape": "UIntOptions"
+        }
+      },
+      "required": ["IndexFieldName", "IndexFieldType"],
+      "type": "structure"
+    },
+    "IndexFieldStatus": {
+      "documentation": "<p>The value of an <code>IndexField</code> and its current status.</p>",
+      "members": {
+        "Options": { "shape": "IndexField" },
+        "Status": { "shape": "OptionStatus" }
+      },
+      "required": ["Options", "Status"],
+      "type": "structure"
+    },
+    "IndexFieldStatusList": {
+      "member": { "shape": "IndexFieldStatus" },
+      "type": "list"
+    },
+    "IndexFieldType": {
+      "documentation": "<p>The type of <code>IndexField</code>.</p>",
+      "enum": ["uint", "literal", "text"],
+      "type": "string"
+    },
+    "InstanceCount": {
+      "min": 1,
+      "type": "integer"
+    },
+    "InternalException": {
+      "documentation": "<p>An internal error occurred while processing the request. If this problem persists, report an issue from the <a href=\"http://status.aws.amazon.com/\">Service Health Dashboard</a>.</p>",
+      "error": {
+        "code": "InternalException",
+        "httpStatusCode": 500
+      },
+      "exception": true,
+      "members": {},
+      "type": "structure"
+    },
+    "InvalidTypeException": {
+      "documentation": "<p>The request was rejected because it specified an invalid type definition.</p>",
+      "error": {
+        "code": "InvalidType",
+        "httpStatusCode": 409,
+        "senderFault": true
+      },
+      "exception": true,
+      "members": {},
+      "type": "structure"
+    },
+    "Language": {
+      "documentation": "<p>An <a href=\"http://tools.ietf.org/html/rfc4646\">IETF RFC 4646</a> language code. Only the primary language is considered. English (en) is currently the only supported language.</p>",
+      "pattern": "[a-zA-Z]{2,8}(?:-[a-zA-Z]{2,8})*",
+      "type": "string"
+    },
+    "LimitExceededException": {
+      "documentation": "<p>The request was rejected because a resource limit has already been met.</p>",
+      "error": {
+        "code": "LimitExceeded",
+        "httpStatusCode": 409,
+        "senderFault": true
+      },
+      "exception": true,
+      "members": {},
+      "type": "structure"
+    },
+    "LiteralOptions": {
+      "documentation": "<p>Options that define a literal field in the search index.</p>",
+      "members": {
+        "DefaultValue": {
+          "documentation": "<p>The default value for a literal field. Optional.</p>",
+          "shape": "FieldValue"
+        },
+        "FacetEnabled": {
+          "documentation": "<p>Specifies whether facets are enabled for this field. Default: False.</p>",
+          "shape": "Boolean"
+        },
+        "ResultEnabled": {
+          "documentation": "<p>Specifies whether values of this field can be returned in search results and used for ranking. Default: False.</p>",
+          "shape": "Boolean"
+        },
+        "SearchEnabled": {
+          "documentation": "<p>Specifies whether search is enabled for this field. Default: False.</p>",
+          "shape": "Boolean"
+        }
+      },
+      "type": "structure"
+    },
+    "MultiAZ": { "type": "boolean" },
+    "NamedRankExpression": {
+      "documentation": "<p>A named expression that can be evaluated at search time and used for ranking or thresholding in a search query. </p>",
+      "members": {
+        "RankExpression": {
+          "documentation": "<p>The expression to evaluate for ranking or thresholding while processing a search request. The <code>RankExpression</code> syntax is based on JavaScript expressions and supports:</p> <ul> <li>Integer, floating point, hex and octal literals</li> <li>Shortcut evaluation of logical operators such that an expression <code>a || b</code> evaluates to the value <code>a</code>, if <code>a</code> is true, without evaluating <code>b</code> at all</li> <li>JavaScript order of precedence for operators</li> <li>Arithmetic operators: <code>+ - * / %</code> </li> <li>Boolean operators (including the ternary operator)</li> <li>Bitwise operators</li> <li>Comparison operators</li> <li>Common mathematic functions: <code>abs ceil erf exp floor lgamma ln log2 log10 max min sqrt pow</code> </li> <li>Trigonometric library functions: <code>acosh acos asinh asin atanh atan cosh cos sinh sin tanh tan</code> </li> <li>Random generation of a number between 0 and 1: <code>rand</code> </li> <li>Current time in epoch: <code>time</code> </li> <li>The <code>min max</code> functions that operate on a variable argument list</li> </ul> <p>Intermediate results are calculated as double precision floating point values. The final return value of a <code>RankExpression</code> is automatically converted from floating point to a 32-bit unsigned integer by rounding to the nearest integer, with a natural floor of 0 and a ceiling of max(uint32_t), 4294967295. Mathematical errors such as dividing by 0 will fail during evaluation and return a value of 0.</p> <p>The source data for a <code>RankExpression</code> can be the name of an <code>IndexField</code> of type uint, another <code>RankExpression</code> or the reserved name <i>text_relevance</i>. The text_relevance source is defined to return an integer from 0 to 1000 (inclusive) to indicate how relevant a document is to the search request, taking into account repetition of search terms in the document and proximity of search terms to each other in each matching <code>IndexField</code> in the document.</p> <p>For more information about using rank expressions to customize ranking, see the Amazon CloudSearch Developer Guide.</p>",
+          "shape": "RankExpression"
+        },
+        "RankName": {
+          "documentation": "<p>The name of a rank expression. Rank expression names must begin with a letter and can contain the following characters: a-z (lowercase), 0-9, and _ (underscore). Uppercase letters and hyphens are not allowed. The names \"body\", \"docid\", and \"text_relevance\" are reserved and cannot be specified as field or rank expression names.</p>",
+          "shape": "FieldName"
+        }
+      },
+      "required": ["RankName", "RankExpression"],
+      "type": "structure"
+    },
+    "OptionState": {
+      "documentation": "<p>The state of processing a change to an option.</p>",
+      "enum": ["RequiresIndexDocuments", "Processing", "Active"],
+      "type": "string"
+    },
+    "OptionStatus": {
+      "documentation": "<p>The status of an option, including when it was last updated and whether it is actively in use for searches.</p>",
+      "members": {
+        "CreationDate": {
+          "documentation": "<p>A timestamp for when this option was created.</p>",
+          "shape": "UpdateTimestamp"
+        },
+        "PendingDeletion": {
+          "documentation": "<p>Indicates that the option will be deleted once processing is complete.</p>",
+          "shape": "Boolean"
+        },
+        "State": {
+          "documentation": "<p>The state of processing a change to an option. Possible values:</p> <ul> <li> <code>RequiresIndexDocuments</code>: the option's latest value will not be visible in searches until <a>IndexDocuments</a> has been called and indexing is complete.</li> <li> <code>Processing</code>: the option's latest value is not yet visible in all searches but is in the process of being activated. </li> <li> <code>Active</code>: the option's latest value is completely visible. Any warnings or messages generated during processing are provided in <code>Diagnostics</code>.</li> </ul>",
+          "shape": "OptionState"
+        },
+        "UpdateDate": {
+          "documentation": "<p>A timestamp for when this option was last updated.</p>",
+          "shape": "UpdateTimestamp"
+        },
+        "UpdateVersion": {
+          "documentation": "<p>A unique integer that indicates when this option was last updated.</p>",
+          "shape": "UIntValue"
+        }
+      },
+      "required": ["CreationDate", "UpdateDate", "State"],
+      "type": "structure"
+    },
+    "PartitionCount": {
+      "min": 1,
+      "type": "integer"
+    },
+    "PolicyDocument": {
+      "documentation": "<p>An IAM access policy as described in <a href=\"http://docs.aws.amazon.com/IAM/latest/UserGuide/index.html?AccessPolicyLanguage.html\" target=\"_blank\">The Access Policy Language</a> in <i>Using AWS Identity and Access Management</i>. The maximum size of an access policy document is 100 KB.</p> <p>Example: <code>{\"Statement\": [{\"Effect\":\"Allow\", \"Action\": \"*\", \"Resource\": \"arn:aws:cs:us-east-1:1234567890:search/movies\", \"Condition\": { \"IpAddress\": { \"aws:SourceIp\": [\"203.0.113.1/32\"] } }}, {\"Effect\":\"Allow\", \"Action\": \"*\", \"Resource\": \"arn:aws:cs:us-east-1:1234567890:documents/movies\", \"Condition\": { \"IpAddress\": { \"aws:SourceIp\": [\"203.0.113.1/32\"] } }} ] }</code></p>",
+      "type": "string"
+    },
+    "RankExpression": {
+      "documentation": "<p>The current status of the rank expression.</p>",
+      "max": 10240,
+      "min": 1,
+      "type": "string"
+    },
+    "RankExpressionStatus": {
+      "documentation": "<p>The value of a <code>RankExpression</code> and its current status.</p>",
+      "members": {
+        "Options": {
+          "documentation": "<p>The expression that is evaluated for ranking or thresholding while processing a search request.</p>",
+          "shape": "NamedRankExpression"
+        },
+        "Status": { "shape": "OptionStatus" }
+      },
+      "required": ["Options", "Status"],
+      "type": "structure"
+    },
+    "RankExpressionStatusList": {
+      "member": { "shape": "RankExpressionStatus" },
+      "type": "list"
+    },
+    "ResourceNotFoundException": {
+      "documentation": "<p>The request was rejected because it attempted to reference a resource that does not exist.</p>",
+      "error": {
+        "code": "ResourceNotFound",
+        "httpStatusCode": 409,
+        "senderFault": true
+      },
+      "exception": true,
+      "members": {},
+      "type": "structure"
+    },
+    "SearchInstanceType": { "type": "string" },
+    "ServiceEndpoint": {
+      "documentation": "<p>The endpoint to which service requests can be submitted, including the actual URL prefix for sending requests and the Amazon Resource Name (ARN) so the endpoint can be referenced in other API calls such as <a>UpdateServiceAccessPolicies</a>.</p>",
+      "members": {
+        "Arn": { "shape": "Arn" },
+        "Endpoint": { "shape": "ServiceUrl" }
+      },
+      "type": "structure"
+    },
+    "ServiceUrl": {
+      "documentation": "<p>The URL (including /version/pathPrefix) to which service requests can be submitted.</p>",
+      "type": "string"
+    },
+    "SourceAttribute": {
+      "documentation": "<p>Identifies the source data for an index field. An optional data transformation can be applied to the source data when populating the index field. By default, the value of the source attribute is copied to the index field.</p>",
+      "members": {
+        "SourceDataCopy": {
+          "documentation": "<p>Copies data from a source document attribute to an <code>IndexField</code>.</p>",
+          "shape": "SourceData"
+        },
+        "SourceDataFunction": {
+          "documentation": "<p>Identifies the transformation to apply when copying data from a source attribute.</p>",
+          "shape": "SourceDataFunction"
+        },
+        "SourceDataMap": {
+          "documentation": "<p>Maps source document attribute values to new values when populating the <code>IndexField</code>.</p>",
+          "shape": "SourceDataMap"
+        },
+        "SourceDataTrimTitle": {
+          "documentation": "<p>Trims common title words from a source document attribute when populating an <code>IndexField</code>. This can be used to create an <code>IndexField</code> you can use for sorting.</p>",
+          "shape": "SourceDataTrimTitle"
+        }
+      },
+      "required": ["SourceDataFunction"],
+      "type": "structure"
+    },
+    "SourceAttributeList": {
+      "member": { "shape": "SourceAttribute" },
+      "type": "list"
+    },
+    "SourceData": {
+      "documentation": "<p>The source attribute name and an optional default value to use if a document doesn't have an attribute of that name.</p>",
+      "members": {
+        "DefaultValue": {
+          "documentation": "<p>The default value to use if the source attribute is not specified in a document. Optional.</p>",
+          "shape": "FieldValue"
+        },
+        "SourceName": {
+          "documentation": "<p>The name of the document source field to add to this <code>IndexField</code>.</p>",
+          "shape": "FieldName"
+        }
+      },
+      "required": ["SourceName"],
+      "type": "structure"
+    },
+    "SourceDataFunction": {
+      "enum": ["Copy", "TrimTitle", "Map"],
+      "type": "string"
+    },
+    "SourceDataMap": {
+      "documentation": "<p>Specifies how to map source attribute values to custom values when populating an <code>IndexField</code>.</p>",
+      "members": {
+        "Cases": {
+          "documentation": "<p>A map that translates source field values to custom values.</p>",
+          "shape": "StringCaseMap"
+        },
+        "DefaultValue": {
+          "documentation": "<p>The default value to use if the source attribute is not specified in a document. Optional.</p>",
+          "shape": "FieldValue"
+        },
+        "SourceName": {
+          "documentation": "<p>The name of the document source field to add to this <code>IndexField</code>.</p>",
+          "shape": "FieldName"
+        }
+      },
+      "required": ["SourceName"],
+      "type": "structure"
+    },
+    "SourceDataTrimTitle": {
+      "documentation": "<p>Specifies how to trim common words from the beginning of a field to enable title sorting by that field.</p>",
+      "members": {
+        "DefaultValue": {
+          "documentation": "<p>The default value to use if the source attribute is not specified in a document. Optional.</p>",
+          "shape": "FieldValue"
+        },
+        "Language": { "shape": "Language" },
+        "Separator": {
+          "documentation": "<p>The separator that follows the text to trim.</p>",
+          "shape": "String"
+        },
+        "SourceName": {
+          "documentation": "<p>The name of the document source field to add to this <code>IndexField</code>.</p>",
+          "shape": "FieldName"
+        }
+      },
+      "required": ["SourceName"],
+      "type": "structure"
+    },
+    "StemmingOptionsStatus": {
+      "documentation": "<p>The stemming options configured for this search domain and the current status of those options.</p>",
+      "members": {
+        "Options": { "shape": "StemsDocument" },
+        "Status": { "shape": "OptionStatus" }
+      },
+      "required": ["Options", "Status"],
+      "type": "structure"
+    },
+    "StemsDocument": {
+      "documentation": "<p>Maps terms to their stems, serialized as a JSON document. The document has a single object with one property \"stems\" whose value is an object mapping terms to their stems. The maximum size of a stemming document is 500 KB. Example: <code>{ \"stems\": {\"people\": \"person\", \"walking\": \"walk\"} }</code></p>",
+      "type": "string"
+    },
+    "StopwordOptionsStatus": {
+      "documentation": "<p>The stopword options configured for this search domain and the current status of those options.</p>",
+      "members": {
+        "Options": { "shape": "StopwordsDocument" },
+        "Status": { "shape": "OptionStatus" }
+      },
+      "required": ["Options", "Status"],
+      "type": "structure"
+    },
+    "StopwordsDocument": {
+      "documentation": "<p>Lists stopwords serialized as a JSON document. The document has a single object with one property \"stopwords\" whose value is an array of strings. The maximum size of a stopwords document is 10 KB. Example: <code>{ \"stopwords\": [\"a\", \"an\", \"the\", \"of\"] }</code></p>",
+      "type": "string"
+    },
+    "String": { "type": "string" },
+    "StringCaseMap": {
+      "key": { "shape": "FieldValue" },
+      "type": "map",
+      "value": { "shape": "FieldValue" }
+    },
+    "SynonymOptionsStatus": {
+      "documentation": "<p>The synonym options configured for this search domain and the current status of those options.</p>",
+      "members": {
+        "Options": { "shape": "SynonymsDocument" },
+        "Status": { "shape": "OptionStatus" }
+      },
+      "required": ["Options", "Status"],
+      "type": "structure"
+    },
+    "SynonymsDocument": {
+      "documentation": "<p>Maps terms to their synonyms, serialized as a JSON document. The document has a single object with one property \"synonyms\" whose value is an object mapping terms to their synonyms. Each synonym is a simple string or an array of strings. The maximum size of a stopwords document is 100 KB. Example: <code>{ \"synonyms\": {\"cat\": [\"feline\", \"kitten\"], \"puppy\": \"dog\"} }</code></p>",
+      "type": "string"
+    },
+    "TextOptions": {
+      "documentation": "<p>Options that define a text field in the search index.</p>",
+      "members": {
+        "DefaultValue": {
+          "documentation": "<p>The default value for a text field. Optional.</p>",
+          "shape": "FieldValue"
+        },
+        "FacetEnabled": {
+          "documentation": "<p>Specifies whether facets are enabled for this field. Default: False.</p>",
+          "shape": "Boolean"
+        },
+        "ResultEnabled": {
+          "documentation": "<p>Specifies whether values of this field can be returned in search results and used for ranking. Default: False.</p>",
+          "shape": "Boolean"
+        },
+        "TextProcessor": {
+          "documentation": "<p>The text processor to apply to this field. Optional. Possible values:</p> <ul> <li> <code>cs_text_no_stemming</code>: turns off stemming for the field.</li> </ul> <p>Default: none</p>",
+          "shape": "FieldName"
+        }
+      },
+      "type": "structure"
+    },
+    "UIntOptions": {
+      "documentation": "<p>Options that define a <code>uint</code> field in the search index.</p>",
+      "members": {
+        "DefaultValue": {
+          "documentation": "<p>The default value for an unsigned integer field. Optional.</p>",
+          "shape": "UIntValue"
+        }
+      },
+      "type": "structure"
+    },
+    "UIntValue": {
+      "min": 0,
+      "type": "integer"
+    },
+    "UpdateAvailabilityOptionsRequest": {
+      "documentation": "<p>Container for the parameters to the <code><a>UpdateAvailabilityOptions</a></code> operation. Specifies the name of the domain you want to update and the Multi-AZ availability option.</p>",
+      "members": {
+        "DomainName": { "shape": "DomainName" },
+        "MultiAZ": {
+          "documentation": "<p>You expand an existing search domain to a second Availability Zone by setting the Multi-AZ option to true. Similarly, you can turn off the Multi-AZ option to downgrade the domain to a single Availability Zone by setting the Multi-AZ option to <code>false</code>. </p>",
+          "shape": "Boolean"
+        }
+      },
+      "required": ["DomainName", "MultiAZ"],
+      "type": "structure"
+    },
+    "UpdateAvailabilityOptionsResponse": {
+      "documentation": "<p>The result of a <code>UpdateAvailabilityOptions</code> request. Contains the status of the domain's availability options. </p>",
+      "members": {
+        "AvailabilityOptions": {
+          "documentation": "<p>The newly-configured availability options. Indicates whether Multi-AZ is enabled for the domain. </p>",
+          "shape": "AvailabilityOptionsStatus"
+        }
+      },
+      "type": "structure"
+    },
+    "UpdateDefaultSearchFieldRequest": {
+      "members": {
+        "DefaultSearchField": {
+          "documentation": "<p>The text field to search if the search request does not specify which field to search. The default search field is used when search terms are specified with the <code>q</code> parameter, or if a match expression specified with the <code>bq</code> parameter does not constrain the search to a particular field. The default is an empty string, which automatically searches all text fields.</p>",
+          "shape": "String"
+        },
+        "DomainName": { "shape": "DomainName" }
+      },
+      "required": ["DomainName", "DefaultSearchField"],
+      "type": "structure"
+    },
+    "UpdateDefaultSearchFieldResponse": {
+      "documentation": "<p>A response message that contains the status of an updated default search field.</p>",
+      "members": {
+        "DefaultSearchField": { "shape": "DefaultSearchFieldStatus" }
+      },
+      "required": ["DefaultSearchField"],
+      "type": "structure"
+    },
+    "UpdateServiceAccessPoliciesRequest": {
+      "members": {
+        "AccessPolicies": { "shape": "PolicyDocument" },
+        "DomainName": { "shape": "DomainName" }
+      },
+      "required": ["DomainName", "AccessPolicies"],
+      "type": "structure"
+    },
+    "UpdateServiceAccessPoliciesResponse": {
+      "documentation": "<p>A response message that contains the status of updated access policies.</p>",
+      "members": {
+        "AccessPolicies": { "shape": "AccessPoliciesStatus" }
+      },
+      "required": ["AccessPolicies"],
+      "type": "structure"
+    },
+    "UpdateStemmingOptionsRequest": {
+      "members": {
+        "DomainName": { "shape": "DomainName" },
+        "Stems": { "shape": "StemsDocument" }
+      },
+      "required": ["DomainName", "Stems"],
+      "type": "structure"
+    },
+    "UpdateStemmingOptionsResponse": {
+      "documentation": "<p>A response message that contains the status of updated stemming options.</p>",
+      "members": {
+        "Stems": { "shape": "StemmingOptionsStatus" }
+      },
+      "required": ["Stems"],
+      "type": "structure"
+    },
+    "UpdateStopwordOptionsRequest": {
+      "members": {
+        "DomainName": { "shape": "DomainName" },
+        "Stopwords": { "shape": "StopwordsDocument" }
+      },
+      "required": ["DomainName", "Stopwords"],
+      "type": "structure"
+    },
+    "UpdateStopwordOptionsResponse": {
+      "documentation": "<p>A response message that contains the status of updated stopword options.</p>",
+      "members": {
+        "Stopwords": { "shape": "StopwordOptionsStatus" }
+      },
+      "required": ["Stopwords"],
+      "type": "structure"
+    },
+    "UpdateSynonymOptionsRequest": {
+      "members": {
+        "DomainName": { "shape": "DomainName" },
+        "Synonyms": { "shape": "SynonymsDocument" }
+      },
+      "required": ["DomainName", "Synonyms"],
+      "type": "structure"
+    },
+    "UpdateSynonymOptionsResponse": {
+      "documentation": "<p>A response message that contains the status of updated synonym options.</p>",
+      "members": {
+        "Synonyms": { "shape": "SynonymOptionsStatus" }
+      },
+      "required": ["Synonyms"],
+      "type": "structure"
+    },
+    "UpdateTimestamp": { "type": "timestamp" }
+  },
+  "version": "2.0"
+}

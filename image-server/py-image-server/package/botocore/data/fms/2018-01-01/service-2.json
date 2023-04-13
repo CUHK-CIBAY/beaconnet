@@ -1,0 +1,3251 @@
+{
+  "documentation": "<p>This is the <i>Firewall Manager API Reference</i>. This guide is for developers who need detailed information about the Firewall Manager API actions, data types, and errors. For detailed information about Firewall Manager features, see the <a href=\"https://docs.aws.amazon.com/waf/latest/developerguide/fms-chapter.html\">Firewall Manager Developer Guide</a>.</p> <p>Some API actions require explicit resource permissions. For information, see the developer guide topic <a href=\"https://docs.aws.amazon.com/waf/latest/developerguide/fms-api-permissions-ref.html\">Firewall Manager required permissions for API actions</a>. </p>",
+  "metadata": {
+    "apiVersion": "2018-01-01",
+    "endpointPrefix": "fms",
+    "jsonVersion": "1.1",
+    "protocol": "json",
+    "serviceAbbreviation": "FMS",
+    "serviceFullName": "Firewall Management Service",
+    "serviceId": "FMS",
+    "signatureVersion": "v4",
+    "targetPrefix": "AWSFMS_20180101",
+    "uid": "fms-2018-01-01"
+  },
+  "operations": {
+    "AssociateAdminAccount": {
+      "documentation": "<p>Sets the Firewall Manager administrator account. The account must be a member of the organization in Organizations whose resources you want to protect. Firewall Manager sets the permissions that allow the account to administer your Firewall Manager policies.</p> <p>The account that you associate with Firewall Manager is called the Firewall Manager administrator account. </p>",
+      "errors": [
+        { "shape": "InvalidOperationException" },
+        { "shape": "InvalidInputException" },
+        { "shape": "ResourceNotFoundException" },
+        { "shape": "InternalErrorException" },
+        { "shape": "LimitExceededException" }
+      ],
+      "http": {
+        "method": "POST",
+        "requestUri": "/"
+      },
+      "input": { "shape": "AssociateAdminAccountRequest" },
+      "name": "AssociateAdminAccount"
+    },
+    "AssociateThirdPartyFirewall": {
+      "documentation": "<p>Sets the Firewall Manager policy administrator as a tenant administrator of a third-party firewall service. A tenant is an instance of the third-party firewall service that's associated with your Amazon Web Services customer account.</p>",
+      "errors": [
+        { "shape": "InvalidOperationException" },
+        { "shape": "InvalidInputException" },
+        { "shape": "ResourceNotFoundException" },
+        { "shape": "InternalErrorException" }
+      ],
+      "http": {
+        "method": "POST",
+        "requestUri": "/"
+      },
+      "input": { "shape": "AssociateThirdPartyFirewallRequest" },
+      "name": "AssociateThirdPartyFirewall",
+      "output": { "shape": "AssociateThirdPartyFirewallResponse" }
+    },
+    "DeleteAppsList": {
+      "documentation": "<p>Permanently deletes an Firewall Manager applications list.</p>",
+      "errors": [
+        { "shape": "ResourceNotFoundException" },
+        { "shape": "InvalidOperationException" },
+        { "shape": "InternalErrorException" }
+      ],
+      "http": {
+        "method": "POST",
+        "requestUri": "/"
+      },
+      "input": { "shape": "DeleteAppsListRequest" },
+      "name": "DeleteAppsList"
+    },
+    "DeleteNotificationChannel": {
+      "documentation": "<p>Deletes an Firewall Manager association with the IAM role and the Amazon Simple Notification Service (SNS) topic that is used to record Firewall Manager SNS logs.</p>",
+      "errors": [
+        { "shape": "ResourceNotFoundException" },
+        { "shape": "InvalidOperationException" },
+        { "shape": "InternalErrorException" }
+      ],
+      "http": {
+        "method": "POST",
+        "requestUri": "/"
+      },
+      "input": { "shape": "DeleteNotificationChannelRequest" },
+      "name": "DeleteNotificationChannel"
+    },
+    "DeletePolicy": {
+      "documentation": "<p>Permanently deletes an Firewall Manager policy. </p>",
+      "errors": [
+        { "shape": "ResourceNotFoundException" },
+        { "shape": "InvalidOperationException" },
+        { "shape": "InternalErrorException" },
+        { "shape": "InvalidInputException" },
+        { "shape": "LimitExceededException" }
+      ],
+      "http": {
+        "method": "POST",
+        "requestUri": "/"
+      },
+      "input": { "shape": "DeletePolicyRequest" },
+      "name": "DeletePolicy"
+    },
+    "DeleteProtocolsList": {
+      "documentation": "<p>Permanently deletes an Firewall Manager protocols list.</p>",
+      "errors": [
+        { "shape": "ResourceNotFoundException" },
+        { "shape": "InvalidOperationException" },
+        { "shape": "InternalErrorException" }
+      ],
+      "http": {
+        "method": "POST",
+        "requestUri": "/"
+      },
+      "input": { "shape": "DeleteProtocolsListRequest" },
+      "name": "DeleteProtocolsList"
+    },
+    "DisassociateAdminAccount": {
+      "documentation": "<p>Disassociates the account that has been set as the Firewall Manager administrator account. To set a different account as the administrator account, you must submit an <code>AssociateAdminAccount</code> request.</p>",
+      "errors": [
+        { "shape": "InvalidOperationException" },
+        { "shape": "ResourceNotFoundException" },
+        { "shape": "InternalErrorException" }
+      ],
+      "http": {
+        "method": "POST",
+        "requestUri": "/"
+      },
+      "input": { "shape": "DisassociateAdminAccountRequest" },
+      "name": "DisassociateAdminAccount"
+    },
+    "DisassociateThirdPartyFirewall": {
+      "documentation": "<p>Disassociates a Firewall Manager policy administrator from a third-party firewall tenant. When you call <code>DisassociateThirdPartyFirewall</code>, the third-party firewall vendor deletes all of the firewalls that are associated with the account.</p>",
+      "errors": [
+        { "shape": "InvalidOperationException" },
+        { "shape": "InvalidInputException" },
+        { "shape": "ResourceNotFoundException" },
+        { "shape": "InternalErrorException" }
+      ],
+      "http": {
+        "method": "POST",
+        "requestUri": "/"
+      },
+      "input": { "shape": "DisassociateThirdPartyFirewallRequest" },
+      "name": "DisassociateThirdPartyFirewall",
+      "output": { "shape": "DisassociateThirdPartyFirewallResponse" }
+    },
+    "GetAdminAccount": {
+      "documentation": "<p>Returns the Organizations account that is associated with Firewall Manager as the Firewall Manager administrator.</p>",
+      "errors": [
+        { "shape": "InvalidOperationException" },
+        { "shape": "ResourceNotFoundException" },
+        { "shape": "InternalErrorException" }
+      ],
+      "http": {
+        "method": "POST",
+        "requestUri": "/"
+      },
+      "input": { "shape": "GetAdminAccountRequest" },
+      "name": "GetAdminAccount",
+      "output": { "shape": "GetAdminAccountResponse" }
+    },
+    "GetAppsList": {
+      "documentation": "<p>Returns information about the specified Firewall Manager applications list.</p>",
+      "errors": [
+        { "shape": "ResourceNotFoundException" },
+        { "shape": "InvalidOperationException" },
+        { "shape": "InternalErrorException" }
+      ],
+      "http": {
+        "method": "POST",
+        "requestUri": "/"
+      },
+      "input": { "shape": "GetAppsListRequest" },
+      "name": "GetAppsList",
+      "output": { "shape": "GetAppsListResponse" }
+    },
+    "GetComplianceDetail": {
+      "documentation": "<p>Returns detailed compliance information about the specified member account. Details include resources that are in and out of compliance with the specified policy. </p> <ul> <li> <p>Resources are considered noncompliant for WAF and Shield Advanced policies if the specified policy has not been applied to them.</p> </li> <li> <p>Resources are considered noncompliant for security group policies if they are in scope of the policy, they violate one or more of the policy rules, and remediation is disabled or not possible.</p> </li> <li> <p>Resources are considered noncompliant for Network Firewall policies if a firewall is missing in the VPC, if the firewall endpoint isn't set up in an expected Availability Zone and subnet, if a subnet created by the Firewall Manager doesn't have the expected route table, and for modifications to a firewall policy that violate the Firewall Manager policy's rules.</p> </li> <li> <p>Resources are considered noncompliant for DNS Firewall policies if a DNS Firewall rule group is missing from the rule group associations for the VPC. </p> </li> </ul>",
+      "errors": [
+        { "shape": "ResourceNotFoundException" },
+        { "shape": "InternalErrorException" },
+        { "shape": "InvalidInputException" },
+        { "shape": "InvalidOperationException" }
+      ],
+      "http": {
+        "method": "POST",
+        "requestUri": "/"
+      },
+      "input": { "shape": "GetComplianceDetailRequest" },
+      "name": "GetComplianceDetail",
+      "output": { "shape": "GetComplianceDetailResponse" }
+    },
+    "GetNotificationChannel": {
+      "documentation": "<p>Information about the Amazon Simple Notification Service (SNS) topic that is used to record Firewall Manager SNS logs.</p>",
+      "errors": [
+        { "shape": "ResourceNotFoundException" },
+        { "shape": "InvalidOperationException" },
+        { "shape": "InternalErrorException" }
+      ],
+      "http": {
+        "method": "POST",
+        "requestUri": "/"
+      },
+      "input": { "shape": "GetNotificationChannelRequest" },
+      "name": "GetNotificationChannel",
+      "output": { "shape": "GetNotificationChannelResponse" }
+    },
+    "GetPolicy": {
+      "documentation": "<p>Returns information about the specified Firewall Manager policy.</p>",
+      "errors": [
+        { "shape": "ResourceNotFoundException" },
+        { "shape": "InvalidOperationException" },
+        { "shape": "InternalErrorException" },
+        { "shape": "InvalidTypeException" }
+      ],
+      "http": {
+        "method": "POST",
+        "requestUri": "/"
+      },
+      "input": { "shape": "GetPolicyRequest" },
+      "name": "GetPolicy",
+      "output": { "shape": "GetPolicyResponse" }
+    },
+    "GetProtectionStatus": {
+      "documentation": "<p>If you created a Shield Advanced policy, returns policy-level attack summary information in the event of a potential DDoS attack. Other policy types are currently unsupported.</p>",
+      "errors": [
+        { "shape": "InvalidInputException" },
+        { "shape": "ResourceNotFoundException" },
+        { "shape": "InternalErrorException" }
+      ],
+      "http": {
+        "method": "POST",
+        "requestUri": "/"
+      },
+      "input": { "shape": "GetProtectionStatusRequest" },
+      "name": "GetProtectionStatus",
+      "output": { "shape": "GetProtectionStatusResponse" }
+    },
+    "GetProtocolsList": {
+      "documentation": "<p>Returns information about the specified Firewall Manager protocols list.</p>",
+      "errors": [
+        { "shape": "ResourceNotFoundException" },
+        { "shape": "InvalidOperationException" },
+        { "shape": "InternalErrorException" }
+      ],
+      "http": {
+        "method": "POST",
+        "requestUri": "/"
+      },
+      "input": { "shape": "GetProtocolsListRequest" },
+      "name": "GetProtocolsList",
+      "output": { "shape": "GetProtocolsListResponse" }
+    },
+    "GetThirdPartyFirewallAssociationStatus": {
+      "documentation": "<p>The onboarding status of a Firewall Manager admin account to third-party firewall vendor tenant.</p>",
+      "errors": [
+        { "shape": "InvalidOperationException" },
+        { "shape": "InvalidInputException" },
+        { "shape": "ResourceNotFoundException" },
+        { "shape": "InternalErrorException" }
+      ],
+      "http": {
+        "method": "POST",
+        "requestUri": "/"
+      },
+      "input": { "shape": "GetThirdPartyFirewallAssociationStatusRequest" },
+      "name": "GetThirdPartyFirewallAssociationStatus",
+      "output": { "shape": "GetThirdPartyFirewallAssociationStatusResponse" }
+    },
+    "GetViolationDetails": {
+      "documentation": "<p>Retrieves violations for a resource based on the specified Firewall Manager policy and Amazon Web Services account.</p>",
+      "errors": [
+        { "shape": "ResourceNotFoundException" },
+        { "shape": "InvalidInputException" },
+        { "shape": "InternalErrorException" }
+      ],
+      "http": {
+        "method": "POST",
+        "requestUri": "/"
+      },
+      "input": { "shape": "GetViolationDetailsRequest" },
+      "name": "GetViolationDetails",
+      "output": { "shape": "GetViolationDetailsResponse" }
+    },
+    "ListAppsLists": {
+      "documentation": "<p>Returns an array of <code>AppsListDataSummary</code> objects.</p>",
+      "errors": [
+        { "shape": "ResourceNotFoundException" },
+        { "shape": "InvalidOperationException" },
+        { "shape": "LimitExceededException" },
+        { "shape": "InternalErrorException" }
+      ],
+      "http": {
+        "method": "POST",
+        "requestUri": "/"
+      },
+      "input": { "shape": "ListAppsListsRequest" },
+      "name": "ListAppsLists",
+      "output": { "shape": "ListAppsListsResponse" }
+    },
+    "ListComplianceStatus": {
+      "documentation": "<p>Returns an array of <code>PolicyComplianceStatus</code> objects. Use <code>PolicyComplianceStatus</code> to get a summary of which member accounts are protected by the specified policy. </p>",
+      "errors": [{ "shape": "ResourceNotFoundException" }, { "shape": "InternalErrorException" }],
+      "http": {
+        "method": "POST",
+        "requestUri": "/"
+      },
+      "input": { "shape": "ListComplianceStatusRequest" },
+      "name": "ListComplianceStatus",
+      "output": { "shape": "ListComplianceStatusResponse" }
+    },
+    "ListMemberAccounts": {
+      "documentation": "<p>Returns a <code>MemberAccounts</code> object that lists the member accounts in the administrator's Amazon Web Services organization.</p> <p>The <code>ListMemberAccounts</code> must be submitted by the account that is set as the Firewall Manager administrator.</p>",
+      "errors": [{ "shape": "ResourceNotFoundException" }, { "shape": "InternalErrorException" }],
+      "http": {
+        "method": "POST",
+        "requestUri": "/"
+      },
+      "input": { "shape": "ListMemberAccountsRequest" },
+      "name": "ListMemberAccounts",
+      "output": { "shape": "ListMemberAccountsResponse" }
+    },
+    "ListPolicies": {
+      "documentation": "<p>Returns an array of <code>PolicySummary</code> objects.</p>",
+      "errors": [
+        { "shape": "ResourceNotFoundException" },
+        { "shape": "InvalidOperationException" },
+        { "shape": "LimitExceededException" },
+        { "shape": "InternalErrorException" }
+      ],
+      "http": {
+        "method": "POST",
+        "requestUri": "/"
+      },
+      "input": { "shape": "ListPoliciesRequest" },
+      "name": "ListPolicies",
+      "output": { "shape": "ListPoliciesResponse" }
+    },
+    "ListProtocolsLists": {
+      "documentation": "<p>Returns an array of <code>ProtocolsListDataSummary</code> objects.</p>",
+      "errors": [
+        { "shape": "ResourceNotFoundException" },
+        { "shape": "InvalidOperationException" },
+        { "shape": "InternalErrorException" }
+      ],
+      "http": {
+        "method": "POST",
+        "requestUri": "/"
+      },
+      "input": { "shape": "ListProtocolsListsRequest" },
+      "name": "ListProtocolsLists",
+      "output": { "shape": "ListProtocolsListsResponse" }
+    },
+    "ListTagsForResource": {
+      "documentation": "<p>Retrieves the list of tags for the specified Amazon Web Services resource. </p>",
+      "errors": [
+        { "shape": "ResourceNotFoundException" },
+        { "shape": "InvalidOperationException" },
+        { "shape": "InternalErrorException" },
+        { "shape": "InvalidInputException" }
+      ],
+      "http": {
+        "method": "POST",
+        "requestUri": "/"
+      },
+      "input": { "shape": "ListTagsForResourceRequest" },
+      "name": "ListTagsForResource",
+      "output": { "shape": "ListTagsForResourceResponse" }
+    },
+    "ListThirdPartyFirewallFirewallPolicies": {
+      "documentation": "<p>Retrieves a list of all of the third-party firewall policies that are associated with the third-party firewall administrator's account.</p>",
+      "errors": [
+        { "shape": "InvalidOperationException" },
+        { "shape": "InvalidInputException" },
+        { "shape": "ResourceNotFoundException" },
+        { "shape": "InternalErrorException" }
+      ],
+      "http": {
+        "method": "POST",
+        "requestUri": "/"
+      },
+      "input": { "shape": "ListThirdPartyFirewallFirewallPoliciesRequest" },
+      "name": "ListThirdPartyFirewallFirewallPolicies",
+      "output": { "shape": "ListThirdPartyFirewallFirewallPoliciesResponse" }
+    },
+    "PutAppsList": {
+      "documentation": "<p>Creates an Firewall Manager applications list.</p>",
+      "errors": [
+        { "shape": "ResourceNotFoundException" },
+        { "shape": "InvalidOperationException" },
+        { "shape": "InvalidInputException" },
+        { "shape": "LimitExceededException" },
+        { "shape": "InternalErrorException" }
+      ],
+      "http": {
+        "method": "POST",
+        "requestUri": "/"
+      },
+      "input": { "shape": "PutAppsListRequest" },
+      "name": "PutAppsList",
+      "output": { "shape": "PutAppsListResponse" }
+    },
+    "PutNotificationChannel": {
+      "documentation": "<p>Designates the IAM role and Amazon Simple Notification Service (SNS) topic that Firewall Manager uses to record SNS logs.</p> <p>To perform this action outside of the console, you must configure the SNS topic to allow the Firewall Manager role <code>AWSServiceRoleForFMS</code> to publish SNS logs. For more information, see <a href=\"https://docs.aws.amazon.com/waf/latest/developerguide/fms-api-permissions-ref.html\">Firewall Manager required permissions for API actions</a> in the <i>Firewall Manager Developer Guide</i>.</p>",
+      "errors": [
+        { "shape": "ResourceNotFoundException" },
+        { "shape": "InvalidOperationException" },
+        { "shape": "InternalErrorException" }
+      ],
+      "http": {
+        "method": "POST",
+        "requestUri": "/"
+      },
+      "input": { "shape": "PutNotificationChannelRequest" },
+      "name": "PutNotificationChannel"
+    },
+    "PutPolicy": {
+      "documentation": "<p>Creates an Firewall Manager policy.</p> <p>Firewall Manager provides the following types of policies: </p> <ul> <li> <p>An WAF policy (type WAFV2), which defines rule groups to run first in the corresponding WAF web ACL and rule groups to run last in the web ACL.</p> </li> <li> <p>An WAF Classic policy (type WAF), which defines a rule group. </p> </li> <li> <p>A Shield Advanced policy, which applies Shield Advanced protection to specified accounts and resources.</p> </li> <li> <p>A security group policy, which manages VPC security groups across your Amazon Web Services organization. </p> </li> <li> <p>An Network Firewall policy, which provides firewall rules to filter network traffic in specified Amazon VPCs.</p> </li> <li> <p>A DNS Firewall policy, which provides Route 53 Resolver DNS Firewall rules to filter DNS queries for specified VPCs.</p> </li> </ul> <p>Each policy is specific to one of the types. If you want to enforce more than one policy type across accounts, create multiple policies. You can create multiple policies for each type.</p> <p>You must be subscribed to Shield Advanced to create a Shield Advanced policy. For more information about subscribing to Shield Advanced, see <a href=\"https://docs.aws.amazon.com/waf/latest/DDOSAPIReference/API_CreateSubscription.html\">CreateSubscription</a>.</p>",
+      "errors": [
+        { "shape": "ResourceNotFoundException" },
+        { "shape": "InvalidOperationException" },
+        { "shape": "InvalidInputException" },
+        { "shape": "LimitExceededException" },
+        { "shape": "InternalErrorException" },
+        { "shape": "InvalidTypeException" }
+      ],
+      "http": {
+        "method": "POST",
+        "requestUri": "/"
+      },
+      "input": { "shape": "PutPolicyRequest" },
+      "name": "PutPolicy",
+      "output": { "shape": "PutPolicyResponse" }
+    },
+    "PutProtocolsList": {
+      "documentation": "<p>Creates an Firewall Manager protocols list.</p>",
+      "errors": [
+        { "shape": "ResourceNotFoundException" },
+        { "shape": "InvalidOperationException" },
+        { "shape": "InvalidInputException" },
+        { "shape": "LimitExceededException" },
+        { "shape": "InternalErrorException" }
+      ],
+      "http": {
+        "method": "POST",
+        "requestUri": "/"
+      },
+      "input": { "shape": "PutProtocolsListRequest" },
+      "name": "PutProtocolsList",
+      "output": { "shape": "PutProtocolsListResponse" }
+    },
+    "TagResource": {
+      "documentation": "<p>Adds one or more tags to an Amazon Web Services resource.</p>",
+      "errors": [
+        { "shape": "ResourceNotFoundException" },
+        { "shape": "InvalidOperationException" },
+        { "shape": "InternalErrorException" },
+        { "shape": "InvalidInputException" },
+        { "shape": "LimitExceededException" }
+      ],
+      "http": {
+        "method": "POST",
+        "requestUri": "/"
+      },
+      "input": { "shape": "TagResourceRequest" },
+      "name": "TagResource",
+      "output": { "shape": "TagResourceResponse" }
+    },
+    "UntagResource": {
+      "documentation": "<p>Removes one or more tags from an Amazon Web Services resource.</p>",
+      "errors": [
+        { "shape": "ResourceNotFoundException" },
+        { "shape": "InvalidOperationException" },
+        { "shape": "InternalErrorException" },
+        { "shape": "InvalidInputException" }
+      ],
+      "http": {
+        "method": "POST",
+        "requestUri": "/"
+      },
+      "input": { "shape": "UntagResourceRequest" },
+      "name": "UntagResource",
+      "output": { "shape": "UntagResourceResponse" }
+    }
+  },
+  "shapes": {
+    "AWSAccountId": {
+      "max": 1024,
+      "min": 1,
+      "pattern": "^[0-9]+$",
+      "type": "string"
+    },
+    "AccountRoleStatus": {
+      "enum": ["READY", "CREATING", "PENDING_DELETION", "DELETING", "DELETED"],
+      "type": "string"
+    },
+    "ActionTarget": {
+      "documentation": "<p>Describes a remediation action target.</p>",
+      "members": {
+        "Description": {
+          "documentation": "<p>A description of the remediation action target.</p>",
+          "shape": "LengthBoundedString"
+        },
+        "ResourceId": {
+          "documentation": "<p>The ID of the remediation target.</p>",
+          "shape": "ResourceId"
+        }
+      },
+      "type": "structure"
+    },
+    "App": {
+      "documentation": "<p>An individual Firewall Manager application.</p>",
+      "members": {
+        "AppName": {
+          "documentation": "<p>The application's name.</p>",
+          "shape": "ResourceName"
+        },
+        "Port": {
+          "documentation": "<p>The application's port number, for example <code>80</code>.</p>",
+          "shape": "IPPortNumber"
+        },
+        "Protocol": {
+          "documentation": "<p>The IP protocol name or number. The name can be one of <code>tcp</code>, <code>udp</code>, or <code>icmp</code>. For information on possible numbers, see <a href=\"https://www.iana.org/assignments/protocol-numbers/protocol-numbers.xhtml\">Protocol Numbers</a>.</p>",
+          "shape": "Protocol"
+        }
+      },
+      "required": ["AppName", "Protocol", "Port"],
+      "type": "structure"
+    },
+    "AppsList": {
+      "member": { "shape": "App" },
+      "type": "list"
+    },
+    "AppsListData": {
+      "documentation": "<p>An Firewall Manager applications list.</p>",
+      "members": {
+        "AppsList": {
+          "documentation": "<p>An array of applications in the Firewall Manager applications list.</p>",
+          "shape": "AppsList"
+        },
+        "CreateTime": {
+          "documentation": "<p>The time that the Firewall Manager applications list was created.</p>",
+          "shape": "TimeStamp"
+        },
+        "LastUpdateTime": {
+          "documentation": "<p>The time that the Firewall Manager applications list was last updated.</p>",
+          "shape": "TimeStamp"
+        },
+        "ListId": {
+          "documentation": "<p>The ID of the Firewall Manager applications list.</p>",
+          "shape": "ListId"
+        },
+        "ListName": {
+          "documentation": "<p>The name of the Firewall Manager applications list.</p>",
+          "shape": "ResourceName"
+        },
+        "ListUpdateToken": {
+          "documentation": "<p>A unique identifier for each update to the list. When you update the list, the update token must match the token of the current version of the application list. You can retrieve the update token by getting the list. </p>",
+          "shape": "UpdateToken"
+        },
+        "PreviousAppsList": {
+          "documentation": "<p>A map of previous version numbers to their corresponding <code>App</code> object arrays.</p>",
+          "shape": "PreviousAppsList"
+        }
+      },
+      "required": ["ListName", "AppsList"],
+      "type": "structure"
+    },
+    "AppsListDataSummary": {
+      "documentation": "<p>Details of the Firewall Manager applications list.</p>",
+      "members": {
+        "AppsList": {
+          "documentation": "<p>An array of <code>App</code> objects in the Firewall Manager applications list.</p>",
+          "shape": "AppsList"
+        },
+        "ListArn": {
+          "documentation": "<p>The Amazon Resource Name (ARN) of the applications list.</p>",
+          "shape": "ResourceArn"
+        },
+        "ListId": {
+          "documentation": "<p>The ID of the applications list.</p>",
+          "shape": "ListId"
+        },
+        "ListName": {
+          "documentation": "<p>The name of the applications list.</p>",
+          "shape": "ResourceName"
+        }
+      },
+      "type": "structure"
+    },
+    "AppsListsData": {
+      "member": { "shape": "AppsListDataSummary" },
+      "type": "list"
+    },
+    "AssociateAdminAccountRequest": {
+      "members": {
+        "AdminAccount": {
+          "documentation": "<p>The Amazon Web Services account ID to associate with Firewall Manager as the Firewall Manager administrator account. This must be an Organizations member account. For more information about Organizations, see <a href=\"https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_accounts.html\">Managing the Amazon Web Services Accounts in Your Organization</a>. </p>",
+          "shape": "AWSAccountId"
+        }
+      },
+      "required": ["AdminAccount"],
+      "type": "structure"
+    },
+    "AssociateThirdPartyFirewallRequest": {
+      "members": {
+        "ThirdPartyFirewall": {
+          "documentation": "<p>The name of the third-party firewall vendor.</p>",
+          "shape": "ThirdPartyFirewall"
+        }
+      },
+      "required": ["ThirdPartyFirewall"],
+      "type": "structure"
+    },
+    "AssociateThirdPartyFirewallResponse": {
+      "members": {
+        "ThirdPartyFirewallStatus": {
+          "documentation": "<p>The current status for setting a Firewall Manager policy administrator's account as an administrator of the third-party firewall tenant.</p> <ul> <li> <p> <code>ONBOARDING</code> - The Firewall Manager policy administrator is being designated as a tenant administrator.</p> </li> <li> <p> <code>ONBOARD_COMPLETE</code> - The Firewall Manager policy administrator is designated as a tenant administrator.</p> </li> <li> <p> <code>OFFBOARDING</code> - The Firewall Manager policy administrator is being removed as a tenant administrator.</p> </li> <li> <p> <code>OFFBOARD_COMPLETE</code> - The Firewall Manager policy administrator has been removed as a tenant administrator.</p> </li> <li> <p> <code>NOT_EXIST</code> - The Firewall Manager policy administrator doesn't exist as a tenant administrator.</p> </li> </ul>",
+          "shape": "ThirdPartyFirewallAssociationStatus"
+        }
+      },
+      "type": "structure"
+    },
+    "AwsEc2InstanceViolation": {
+      "documentation": "<p>Violation detail for an EC2 instance resource.</p>",
+      "members": {
+        "AwsEc2NetworkInterfaceViolations": {
+          "documentation": "<p>Violation detail for network interfaces associated with the EC2 instance.</p>",
+          "shape": "AwsEc2NetworkInterfaceViolations"
+        },
+        "ViolationTarget": {
+          "documentation": "<p>The resource ID of the EC2 instance.</p>",
+          "shape": "ViolationTarget"
+        }
+      },
+      "type": "structure"
+    },
+    "AwsEc2NetworkInterfaceViolation": {
+      "documentation": "<p>Violation detail for network interfaces associated with an EC2 instance.</p>",
+      "members": {
+        "ViolatingSecurityGroups": {
+          "documentation": "<p>List of security groups that violate the rules specified in the primary security group of the Firewall Manager policy.</p>",
+          "shape": "ResourceIdList"
+        },
+        "ViolationTarget": {
+          "documentation": "<p>The resource ID of the network interface.</p>",
+          "shape": "ViolationTarget"
+        }
+      },
+      "type": "structure"
+    },
+    "AwsEc2NetworkInterfaceViolations": {
+      "member": { "shape": "AwsEc2NetworkInterfaceViolation" },
+      "type": "list"
+    },
+    "AwsVPCSecurityGroupViolation": {
+      "documentation": "<p>Violation detail for the rule violation in a security group when compared to the primary security group of the Firewall Manager policy.</p>",
+      "members": {
+        "PartialMatches": {
+          "documentation": "<p>List of rules specified in the security group of the Firewall Manager policy that partially match the <code>ViolationTarget</code> rule.</p>",
+          "shape": "PartialMatches"
+        },
+        "PossibleSecurityGroupRemediationActions": {
+          "documentation": "<p>Remediation options for the rule specified in the <code>ViolationTarget</code>.</p>",
+          "shape": "SecurityGroupRemediationActions"
+        },
+        "ViolationTarget": {
+          "documentation": "<p>The security group rule that is being evaluated.</p>",
+          "shape": "ViolationTarget"
+        },
+        "ViolationTargetDescription": {
+          "documentation": "<p>A description of the security group that violates the policy.</p>",
+          "shape": "LengthBoundedString"
+        }
+      },
+      "type": "structure"
+    },
+    "BasicInteger": {
+      "max": 2147483647,
+      "min": -2147483648,
+      "type": "integer"
+    },
+    "Boolean": { "type": "boolean" },
+    "CIDR": {
+      "max": 256,
+      "min": 0,
+      "pattern": "[a-f0-9:./]+",
+      "type": "string"
+    },
+    "ComplianceViolator": {
+      "documentation": "<p>Details of the resource that is not protected by the policy.</p>",
+      "members": {
+        "Metadata": {
+          "documentation": "<p>Metadata about the resource that doesn't comply with the policy scope.</p>",
+          "shape": "ComplianceViolatorMetadata"
+        },
+        "ResourceId": {
+          "documentation": "<p>The resource ID.</p>",
+          "shape": "ResourceId"
+        },
+        "ResourceType": {
+          "documentation": "<p>The resource type. This is in the format shown in the <a href=\"https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-template-resource-type-ref.html\">Amazon Web Services Resource Types Reference</a>. For example: <code>AWS::ElasticLoadBalancingV2::LoadBalancer</code>, <code>AWS::CloudFront::Distribution</code>, or <code>AWS::NetworkFirewall::FirewallPolicy</code>.</p>",
+          "shape": "ResourceType"
+        },
+        "ViolationReason": {
+          "documentation": "<p>The reason that the resource is not protected by the policy.</p>",
+          "shape": "ViolationReason"
+        }
+      },
+      "type": "structure"
+    },
+    "ComplianceViolatorMetadata": {
+      "key": { "shape": "LengthBoundedString" },
+      "type": "map",
+      "value": { "shape": "LengthBoundedString" }
+    },
+    "ComplianceViolators": {
+      "member": { "shape": "ComplianceViolator" },
+      "type": "list"
+    },
+    "CustomerPolicyScopeId": {
+      "max": 1024,
+      "min": 1,
+      "pattern": "^([\\p{L}\\p{Z}\\p{N}_.:/=+\\-@]*)$",
+      "type": "string"
+    },
+    "CustomerPolicyScopeIdList": {
+      "member": { "shape": "CustomerPolicyScopeId" },
+      "type": "list"
+    },
+    "CustomerPolicyScopeIdType": {
+      "enum": ["ACCOUNT", "ORG_UNIT"],
+      "type": "string"
+    },
+    "CustomerPolicyScopeMap": {
+      "key": { "shape": "CustomerPolicyScopeIdType" },
+      "type": "map",
+      "value": { "shape": "CustomerPolicyScopeIdList" }
+    },
+    "DeleteAppsListRequest": {
+      "members": {
+        "ListId": {
+          "documentation": "<p>The ID of the applications list that you want to delete. You can retrieve this ID from <code>PutAppsList</code>, <code>ListAppsLists</code>, and <code>GetAppsList</code>.</p>",
+          "shape": "ListId"
+        }
+      },
+      "required": ["ListId"],
+      "type": "structure"
+    },
+    "DeleteNotificationChannelRequest": {
+      "members": {},
+      "type": "structure"
+    },
+    "DeletePolicyRequest": {
+      "members": {
+        "DeleteAllPolicyResources": {
+          "documentation": "<p>If <code>True</code>, the request performs cleanup according to the policy type. </p> <p>For WAF and Shield Advanced policies, the cleanup does the following:</p> <ul> <li> <p>Deletes rule groups created by Firewall Manager</p> </li> <li> <p>Removes web ACLs from in-scope resources</p> </li> <li> <p>Deletes web ACLs that contain no rules or rule groups</p> </li> </ul> <p>For security group policies, the cleanup does the following for each security group in the policy:</p> <ul> <li> <p>Disassociates the security group from in-scope resources </p> </li> <li> <p>Deletes the security group if it was created through Firewall Manager and if it's no longer associated with any resources through another policy</p> </li> </ul> <p>After the cleanup, in-scope resources are no longer protected by web ACLs in this policy. Protection of out-of-scope resources remains unchanged. Scope is determined by tags that you create and accounts that you associate with the policy. When creating the policy, if you specify that only resources in specific accounts or with specific tags are in scope of the policy, those accounts and resources are handled by the policy. All others are out of scope. If you don't specify tags or accounts, all resources are in scope. </p>",
+          "shape": "Boolean"
+        },
+        "PolicyId": {
+          "documentation": "<p>The ID of the policy that you want to delete. You can retrieve this ID from <code>PutPolicy</code> and <code>ListPolicies</code>.</p>",
+          "shape": "PolicyId"
+        }
+      },
+      "required": ["PolicyId"],
+      "type": "structure"
+    },
+    "DeleteProtocolsListRequest": {
+      "members": {
+        "ListId": {
+          "documentation": "<p>The ID of the protocols list that you want to delete. You can retrieve this ID from <code>PutProtocolsList</code>, <code>ListProtocolsLists</code>, and <code>GetProtocolsLost</code>.</p>",
+          "shape": "ListId"
+        }
+      },
+      "required": ["ListId"],
+      "type": "structure"
+    },
+    "DependentServiceName": {
+      "enum": ["AWSCONFIG", "AWSWAF", "AWSSHIELD_ADVANCED", "AWSVPC"],
+      "type": "string"
+    },
+    "DestinationType": {
+      "enum": ["IPV4", "IPV6", "PREFIX_LIST"],
+      "type": "string"
+    },
+    "DetailedInfo": {
+      "max": 1024,
+      "min": 1,
+      "pattern": "^([\\p{L}\\p{Z}\\p{N}_.:/=,+\\-@]*)$",
+      "type": "string"
+    },
+    "DisassociateAdminAccountRequest": {
+      "members": {},
+      "type": "structure"
+    },
+    "DisassociateThirdPartyFirewallRequest": {
+      "members": {
+        "ThirdPartyFirewall": {
+          "documentation": "<p>The name of the third-party firewall vendor.</p>",
+          "shape": "ThirdPartyFirewall"
+        }
+      },
+      "required": ["ThirdPartyFirewall"],
+      "type": "structure"
+    },
+    "DisassociateThirdPartyFirewallResponse": {
+      "members": {
+        "ThirdPartyFirewallStatus": {
+          "documentation": "<p>The current status for the disassociation of a Firewall Manager administrators account with a third-party firewall.</p>",
+          "shape": "ThirdPartyFirewallAssociationStatus"
+        }
+      },
+      "type": "structure"
+    },
+    "DnsDuplicateRuleGroupViolation": {
+      "documentation": "<p>A DNS Firewall rule group that Firewall Manager tried to associate with a VPC is already associated with the VPC and can't be associated again. </p>",
+      "members": {
+        "ViolationTarget": {
+          "documentation": "<p>Information about the VPC ID. </p>",
+          "shape": "ViolationTarget"
+        },
+        "ViolationTargetDescription": {
+          "documentation": "<p>A description of the violation that specifies the rule group and VPC.</p>",
+          "shape": "LengthBoundedString"
+        }
+      },
+      "type": "structure"
+    },
+    "DnsRuleGroupLimitExceededViolation": {
+      "documentation": "<p>The VPC that Firewall Manager was applying a DNS Fireall policy to reached the limit for associated DNS Firewall rule groups. Firewall Manager tried to associate another rule group with the VPC and failed due to the limit. </p>",
+      "members": {
+        "NumberOfRuleGroupsAlreadyAssociated": {
+          "documentation": "<p>The number of rule groups currently associated with the VPC. </p>",
+          "shape": "BasicInteger"
+        },
+        "ViolationTarget": {
+          "documentation": "<p>Information about the VPC ID. </p>",
+          "shape": "ViolationTarget"
+        },
+        "ViolationTargetDescription": {
+          "documentation": "<p>A description of the violation that specifies the rule group and VPC.</p>",
+          "shape": "LengthBoundedString"
+        }
+      },
+      "type": "structure"
+    },
+    "DnsRuleGroupPriorities": {
+      "member": { "shape": "DnsRuleGroupPriority" },
+      "type": "list"
+    },
+    "DnsRuleGroupPriority": {
+      "max": 10000,
+      "min": 0,
+      "type": "integer"
+    },
+    "DnsRuleGroupPriorityConflictViolation": {
+      "documentation": "<p>A rule group that Firewall Manager tried to associate with a VPC has the same priority as a rule group that's already associated. </p>",
+      "members": {
+        "ConflictingPolicyId": {
+          "documentation": "<p>The ID of the Firewall Manager DNS Firewall policy that was already applied to the VPC. This policy contains the rule group that's already associated with the VPC. </p>",
+          "shape": "PolicyId"
+        },
+        "ConflictingPriority": {
+          "documentation": "<p>The priority setting of the two conflicting rule groups.</p>",
+          "shape": "DnsRuleGroupPriority"
+        },
+        "UnavailablePriorities": {
+          "documentation": "<p>The priorities of rule groups that are already associated with the VPC. To retry your operation, choose priority settings that aren't in this list for the rule groups in your new DNS Firewall policy. </p>",
+          "shape": "DnsRuleGroupPriorities"
+        },
+        "ViolationTarget": {
+          "documentation": "<p>Information about the VPC ID. </p>",
+          "shape": "ViolationTarget"
+        },
+        "ViolationTargetDescription": {
+          "documentation": "<p>A description of the violation that specifies the VPC and the rule group that's already associated with it.</p>",
+          "shape": "LengthBoundedString"
+        }
+      },
+      "type": "structure"
+    },
+    "EC2AssociateRouteTableAction": {
+      "documentation": "<p>The action of associating an EC2 resource, such as a subnet or internet gateway, with a route table.</p>",
+      "members": {
+        "Description": {
+          "documentation": "<p>A description of the EC2 route table that is associated with the remediation action.</p>",
+          "shape": "LengthBoundedString"
+        },
+        "GatewayId": {
+          "documentation": "<p>The ID of the gateway to be used with the EC2 route table that is associated with the remediation action.</p>",
+          "shape": "ActionTarget"
+        },
+        "RouteTableId": {
+          "documentation": "<p>The ID of the EC2 route table that is associated with the remediation action.</p>",
+          "shape": "ActionTarget"
+        },
+        "SubnetId": {
+          "documentation": "<p>The ID of the subnet for the EC2 route table that is associated with the remediation action.</p>",
+          "shape": "ActionTarget"
+        }
+      },
+      "required": ["RouteTableId"],
+      "type": "structure"
+    },
+    "EC2CopyRouteTableAction": {
+      "documentation": "<p>An action that copies the EC2 route table for use in remediation.</p>",
+      "members": {
+        "Description": {
+          "documentation": "<p>A description of the copied EC2 route table that is associated with the remediation action.</p>",
+          "shape": "LengthBoundedString"
+        },
+        "RouteTableId": {
+          "documentation": "<p>The ID of the copied EC2 route table that is associated with the remediation action.</p>",
+          "shape": "ActionTarget"
+        },
+        "VpcId": {
+          "documentation": "<p>The VPC ID of the copied EC2 route table that is associated with the remediation action.</p>",
+          "shape": "ActionTarget"
+        }
+      },
+      "required": ["VpcId", "RouteTableId"],
+      "type": "structure"
+    },
+    "EC2CreateRouteAction": {
+      "documentation": "<p>Information about the CreateRoute action in Amazon EC2.</p>",
+      "members": {
+        "Description": {
+          "documentation": "<p>A description of CreateRoute action in Amazon EC2.</p>",
+          "shape": "LengthBoundedString"
+        },
+        "DestinationCidrBlock": {
+          "documentation": "<p>Information about the IPv4 CIDR address block used for the destination match.</p>",
+          "shape": "CIDR"
+        },
+        "DestinationIpv6CidrBlock": {
+          "documentation": "<p>Information about the IPv6 CIDR block destination.</p>",
+          "shape": "CIDR"
+        },
+        "DestinationPrefixListId": {
+          "documentation": "<p>Information about the ID of a prefix list used for the destination match.</p>",
+          "shape": "ResourceId"
+        },
+        "GatewayId": {
+          "documentation": "<p>Information about the ID of an internet gateway or virtual private gateway attached to your VPC.</p>",
+          "shape": "ActionTarget"
+        },
+        "RouteTableId": {
+          "documentation": "<p>Information about the ID of the route table for the route.</p>",
+          "shape": "ActionTarget"
+        },
+        "VpcEndpointId": {
+          "documentation": "<p>Information about the ID of a VPC endpoint. Supported for Gateway Load Balancer endpoints only.</p>",
+          "shape": "ActionTarget"
+        }
+      },
+      "required": ["RouteTableId"],
+      "type": "structure"
+    },
+    "EC2CreateRouteTableAction": {
+      "documentation": "<p>Information about the CreateRouteTable action in Amazon EC2.</p>",
+      "members": {
+        "Description": {
+          "documentation": "<p>A description of the CreateRouteTable action.</p>",
+          "shape": "LengthBoundedString"
+        },
+        "VpcId": {
+          "documentation": "<p>Information about the ID of a VPC.</p>",
+          "shape": "ActionTarget"
+        }
+      },
+      "required": ["VpcId"],
+      "type": "structure"
+    },
+    "EC2DeleteRouteAction": {
+      "documentation": "<p>Information about the DeleteRoute action in Amazon EC2.</p>",
+      "members": {
+        "Description": {
+          "documentation": "<p>A description of the DeleteRoute action.</p>",
+          "shape": "LengthBoundedString"
+        },
+        "DestinationCidrBlock": {
+          "documentation": "<p>Information about the IPv4 CIDR range for the route. The value you specify must match the CIDR for the route exactly.</p>",
+          "shape": "CIDR"
+        },
+        "DestinationIpv6CidrBlock": {
+          "documentation": "<p>Information about the IPv6 CIDR range for the route. The value you specify must match the CIDR for the route exactly.</p>",
+          "shape": "CIDR"
+        },
+        "DestinationPrefixListId": {
+          "documentation": "<p>Information about the ID of the prefix list for the route.</p>",
+          "shape": "ResourceId"
+        },
+        "RouteTableId": {
+          "documentation": "<p>Information about the ID of the route table.</p>",
+          "shape": "ActionTarget"
+        }
+      },
+      "required": ["RouteTableId"],
+      "type": "structure"
+    },
+    "EC2ReplaceRouteAction": {
+      "documentation": "<p>Information about the ReplaceRoute action in Amazon EC2.</p>",
+      "members": {
+        "Description": {
+          "documentation": "<p>A description of the ReplaceRoute action in Amazon EC2.</p>",
+          "shape": "LengthBoundedString"
+        },
+        "DestinationCidrBlock": {
+          "documentation": "<p>Information about the IPv4 CIDR address block used for the destination match. The value that you provide must match the CIDR of an existing route in the table.</p>",
+          "shape": "CIDR"
+        },
+        "DestinationIpv6CidrBlock": {
+          "documentation": "<p>Information about the IPv6 CIDR address block used for the destination match. The value that you provide must match the CIDR of an existing route in the table.</p>",
+          "shape": "CIDR"
+        },
+        "DestinationPrefixListId": {
+          "documentation": "<p>Information about the ID of the prefix list for the route.</p>",
+          "shape": "ResourceId"
+        },
+        "GatewayId": {
+          "documentation": "<p>Information about the ID of an internet gateway or virtual private gateway.</p>",
+          "shape": "ActionTarget"
+        },
+        "RouteTableId": {
+          "documentation": "<p>Information about the ID of the route table.</p>",
+          "shape": "ActionTarget"
+        }
+      },
+      "required": ["RouteTableId"],
+      "type": "structure"
+    },
+    "EC2ReplaceRouteTableAssociationAction": {
+      "documentation": "<p>Information about the ReplaceRouteTableAssociation action in Amazon EC2.</p>",
+      "members": {
+        "AssociationId": {
+          "documentation": "<p>Information about the association ID.</p>",
+          "shape": "ActionTarget"
+        },
+        "Description": {
+          "documentation": "<p>A description of the ReplaceRouteTableAssociation action in Amazon EC2.</p>",
+          "shape": "LengthBoundedString"
+        },
+        "RouteTableId": {
+          "documentation": "<p>Information about the ID of the new route table to associate with the subnet.</p>",
+          "shape": "ActionTarget"
+        }
+      },
+      "required": ["AssociationId", "RouteTableId"],
+      "type": "structure"
+    },
+    "ErrorMessage": { "type": "string" },
+    "EvaluationResult": {
+      "documentation": "<p>Describes the compliance status for the account. An account is considered noncompliant if it includes resources that are not protected by the specified policy or that don't comply with the policy.</p>",
+      "members": {
+        "ComplianceStatus": {
+          "documentation": "<p>Describes an Amazon Web Services account's compliance with the Firewall Manager policy.</p>",
+          "shape": "PolicyComplianceStatusType"
+        },
+        "EvaluationLimitExceeded": {
+          "documentation": "<p>Indicates that over 100 resources are noncompliant with the Firewall Manager policy.</p>",
+          "shape": "Boolean"
+        },
+        "ViolatorCount": {
+          "documentation": "<p>The number of resources that are noncompliant with the specified policy. For WAF and Shield Advanced policies, a resource is considered noncompliant if it is not associated with the policy. For security group policies, a resource is considered noncompliant if it doesn't comply with the rules of the policy and remediation is disabled or not possible.</p>",
+          "shape": "ResourceCount"
+        }
+      },
+      "type": "structure"
+    },
+    "EvaluationResults": {
+      "member": { "shape": "EvaluationResult" },
+      "type": "list"
+    },
+    "ExpectedRoute": {
+      "documentation": "<p>Information about the expected route in the route table.</p>",
+      "members": {
+        "AllowedTargets": {
+          "documentation": "<p>Information about the allowed targets.</p>",
+          "shape": "LengthBoundedStringList"
+        },
+        "ContributingSubnets": {
+          "documentation": "<p>Information about the contributing subnets.</p>",
+          "shape": "ResourceIdList"
+        },
+        "IpV4Cidr": {
+          "documentation": "<p>Information about the IPv4 CIDR block.</p>",
+          "shape": "CIDR"
+        },
+        "IpV6Cidr": {
+          "documentation": "<p>Information about the IPv6 CIDR block.</p>",
+          "shape": "CIDR"
+        },
+        "PrefixListId": {
+          "documentation": "<p>Information about the ID of the prefix list for the route.</p>",
+          "shape": "CIDR"
+        },
+        "RouteTableId": {
+          "documentation": "<p>Information about the route table ID.</p>",
+          "shape": "ResourceId"
+        }
+      },
+      "type": "structure"
+    },
+    "ExpectedRoutes": {
+      "member": { "shape": "ExpectedRoute" },
+      "type": "list"
+    },
+    "FMSPolicyUpdateFirewallCreationConfigAction": {
+      "documentation": "<p>Contains information about the actions that you can take to remediate scope violations caused by your policy's <code>FirewallCreationConfig</code>. <code>FirewallCreationConfig</code> is an optional configuration that you can use to choose which Availability Zones Firewall Manager creates Network Firewall endpoints in.</p>",
+      "members": {
+        "Description": {
+          "documentation": "<p>Describes the remedial action.</p>",
+          "shape": "LengthBoundedString"
+        },
+        "FirewallCreationConfig": {
+          "documentation": "<p>A <code>FirewallCreationConfig</code> that you can copy into your current policy's <a href=\"https://docs.aws.amazon.com/fms/2018-01-01/APIReference/API_SecurityServicePolicyData.html\">SecurityServiceData</a> in order to remedy scope violations.</p>",
+          "shape": "ManagedServiceData"
+        }
+      },
+      "type": "structure"
+    },
+    "FirewallDeploymentModel": {
+      "enum": ["CENTRALIZED", "DISTRIBUTED"],
+      "type": "string"
+    },
+    "FirewallPolicyId": {
+      "max": 1024,
+      "min": 1,
+      "pattern": "^([\\p{L}\\p{Z}\\p{N}_.:/=+\\-@]*)$",
+      "type": "string"
+    },
+    "FirewallPolicyName": {
+      "max": 1024,
+      "min": 1,
+      "pattern": "^([\\p{L}\\p{Z}\\p{N}_.:/=+\\-@]*)$",
+      "type": "string"
+    },
+    "FirewallSubnetIsOutOfScopeViolation": {
+      "documentation": "<p>Contains details about the firewall subnet that violates the policy scope.</p>",
+      "members": {
+        "FirewallSubnetId": {
+          "documentation": "<p>The ID of the firewall subnet that violates the policy scope.</p>",
+          "shape": "ResourceId"
+        },
+        "SubnetAvailabilityZone": {
+          "documentation": "<p>The Availability Zone of the firewall subnet that violates the policy scope.</p>",
+          "shape": "LengthBoundedString"
+        },
+        "SubnetAvailabilityZoneId": {
+          "documentation": "<p>The Availability Zone ID of the firewall subnet that violates the policy scope.</p>",
+          "shape": "LengthBoundedString"
+        },
+        "VpcEndpointId": {
+          "documentation": "<p>The VPC endpoint ID of the firewall subnet that violates the policy scope.</p>",
+          "shape": "ResourceId"
+        },
+        "VpcId": {
+          "documentation": "<p>The VPC ID of the firewall subnet that violates the policy scope.</p>",
+          "shape": "ResourceId"
+        }
+      },
+      "type": "structure"
+    },
+    "FirewallSubnetMissingVPCEndpointViolation": {
+      "documentation": "<p>The violation details for a firewall subnet's VPC endpoint that's deleted or missing.</p>",
+      "members": {
+        "FirewallSubnetId": {
+          "documentation": "<p>The ID of the firewall that this VPC endpoint is associated with.</p>",
+          "shape": "ResourceId"
+        },
+        "SubnetAvailabilityZone": {
+          "documentation": "<p>The name of the Availability Zone of the deleted VPC subnet.</p>",
+          "shape": "LengthBoundedString"
+        },
+        "SubnetAvailabilityZoneId": {
+          "documentation": "<p>The ID of the Availability Zone of the deleted VPC subnet.</p>",
+          "shape": "LengthBoundedString"
+        },
+        "VpcId": {
+          "documentation": "<p>The resource ID of the VPC associated with the deleted VPC subnet.</p>",
+          "shape": "ResourceId"
+        }
+      },
+      "type": "structure"
+    },
+    "GetAdminAccountRequest": {
+      "members": {},
+      "type": "structure"
+    },
+    "GetAdminAccountResponse": {
+      "members": {
+        "AdminAccount": {
+          "documentation": "<p>The Amazon Web Services account that is set as the Firewall Manager administrator.</p>",
+          "shape": "AWSAccountId"
+        },
+        "RoleStatus": {
+          "documentation": "<p>The status of the Amazon Web Services account that you set as the Firewall Manager administrator.</p>",
+          "shape": "AccountRoleStatus"
+        }
+      },
+      "type": "structure"
+    },
+    "GetAppsListRequest": {
+      "members": {
+        "DefaultList": {
+          "documentation": "<p>Specifies whether the list to retrieve is a default list owned by Firewall Manager.</p>",
+          "shape": "Boolean"
+        },
+        "ListId": {
+          "documentation": "<p>The ID of the Firewall Manager applications list that you want the details for.</p>",
+          "shape": "ListId"
+        }
+      },
+      "required": ["ListId"],
+      "type": "structure"
+    },
+    "GetAppsListResponse": {
+      "members": {
+        "AppsList": {
+          "documentation": "<p>Information about the specified Firewall Manager applications list.</p>",
+          "shape": "AppsListData"
+        },
+        "AppsListArn": {
+          "documentation": "<p>The Amazon Resource Name (ARN) of the applications list.</p>",
+          "shape": "ResourceArn"
+        }
+      },
+      "type": "structure"
+    },
+    "GetComplianceDetailRequest": {
+      "members": {
+        "MemberAccount": {
+          "documentation": "<p>The Amazon Web Services account that owns the resources that you want to get the details for.</p>",
+          "shape": "AWSAccountId"
+        },
+        "PolicyId": {
+          "documentation": "<p>The ID of the policy that you want to get the details for. <code>PolicyId</code> is returned by <code>PutPolicy</code> and by <code>ListPolicies</code>.</p>",
+          "shape": "PolicyId"
+        }
+      },
+      "required": ["PolicyId", "MemberAccount"],
+      "type": "structure"
+    },
+    "GetComplianceDetailResponse": {
+      "members": {
+        "PolicyComplianceDetail": {
+          "documentation": "<p>Information about the resources and the policy that you specified in the <code>GetComplianceDetail</code> request.</p>",
+          "shape": "PolicyComplianceDetail"
+        }
+      },
+      "type": "structure"
+    },
+    "GetNotificationChannelRequest": {
+      "members": {},
+      "type": "structure"
+    },
+    "GetNotificationChannelResponse": {
+      "members": {
+        "SnsRoleName": {
+          "documentation": "<p>The IAM role that is used by Firewall Manager to record activity to SNS.</p>",
+          "shape": "ResourceArn"
+        },
+        "SnsTopicArn": {
+          "documentation": "<p>The SNS topic that records Firewall Manager activity. </p>",
+          "shape": "ResourceArn"
+        }
+      },
+      "type": "structure"
+    },
+    "GetPolicyRequest": {
+      "members": {
+        "PolicyId": {
+          "documentation": "<p>The ID of the Firewall Manager policy that you want the details for.</p>",
+          "shape": "PolicyId"
+        }
+      },
+      "required": ["PolicyId"],
+      "type": "structure"
+    },
+    "GetPolicyResponse": {
+      "members": {
+        "Policy": {
+          "documentation": "<p>Information about the specified Firewall Manager policy.</p>",
+          "shape": "Policy"
+        },
+        "PolicyArn": {
+          "documentation": "<p>The Amazon Resource Name (ARN) of the specified policy.</p>",
+          "shape": "ResourceArn"
+        }
+      },
+      "type": "structure"
+    },
+    "GetProtectionStatusRequest": {
+      "members": {
+        "EndTime": {
+          "documentation": "<p>The end of the time period to query for the attacks. This is a <code>timestamp</code> type. The request syntax listing indicates a <code>number</code> type because the default used by Firewall Manager is Unix time in seconds. However, any valid <code>timestamp</code> format is allowed.</p>",
+          "shape": "TimeStamp"
+        },
+        "MaxResults": {
+          "documentation": "<p>Specifies the number of objects that you want Firewall Manager to return for this request. If you have more objects than the number that you specify for <code>MaxResults</code>, the response includes a <code>NextToken</code> value that you can use to get another batch of objects.</p>",
+          "shape": "PaginationMaxResults"
+        },
+        "MemberAccountId": {
+          "documentation": "<p>The Amazon Web Services account that is in scope of the policy that you want to get the details for.</p>",
+          "shape": "AWSAccountId"
+        },
+        "NextToken": {
+          "documentation": "<p>If you specify a value for <code>MaxResults</code> and you have more objects than the number that you specify for <code>MaxResults</code>, Firewall Manager returns a <code>NextToken</code> value in the response, which you can use to retrieve another group of objects. For the second and subsequent <code>GetProtectionStatus</code> requests, specify the value of <code>NextToken</code> from the previous response to get information about another batch of objects.</p>",
+          "shape": "PaginationToken"
+        },
+        "PolicyId": {
+          "documentation": "<p>The ID of the policy for which you want to get the attack information.</p>",
+          "shape": "PolicyId"
+        },
+        "StartTime": {
+          "documentation": "<p>The start of the time period to query for the attacks. This is a <code>timestamp</code> type. The request syntax listing indicates a <code>number</code> type because the default used by Firewall Manager is Unix time in seconds. However, any valid <code>timestamp</code> format is allowed.</p>",
+          "shape": "TimeStamp"
+        }
+      },
+      "required": ["PolicyId"],
+      "type": "structure"
+    },
+    "GetProtectionStatusResponse": {
+      "members": {
+        "AdminAccountId": {
+          "documentation": "<p>The ID of the Firewall Manager administrator account for this policy.</p>",
+          "shape": "AWSAccountId"
+        },
+        "Data": {
+          "documentation": "<p>Details about the attack, including the following:</p> <ul> <li> <p>Attack type</p> </li> <li> <p>Account ID</p> </li> <li> <p>ARN of the resource attacked</p> </li> <li> <p>Start time of the attack</p> </li> <li> <p>End time of the attack (ongoing attacks will not have an end time)</p> </li> </ul> <p>The details are in JSON format. </p>",
+          "shape": "ProtectionData"
+        },
+        "NextToken": {
+          "documentation": "<p>If you have more objects than the number that you specified for <code>MaxResults</code> in the request, the response includes a <code>NextToken</code> value. To list more objects, submit another <code>GetProtectionStatus</code> request, and specify the <code>NextToken</code> value from the response in the <code>NextToken</code> value in the next request.</p> <p>Amazon Web Services SDKs provide auto-pagination that identify <code>NextToken</code> in a response and make subsequent request calls automatically on your behalf. However, this feature is not supported by <code>GetProtectionStatus</code>. You must submit subsequent requests with <code>NextToken</code> using your own processes. </p>",
+          "shape": "PaginationToken"
+        },
+        "ServiceType": {
+          "documentation": "<p>The service type that is protected by the policy. Currently, this is always <code>SHIELD_ADVANCED</code>.</p>",
+          "shape": "SecurityServiceType"
+        }
+      },
+      "type": "structure"
+    },
+    "GetProtocolsListRequest": {
+      "members": {
+        "DefaultList": {
+          "documentation": "<p>Specifies whether the list to retrieve is a default list owned by Firewall Manager.</p>",
+          "shape": "Boolean"
+        },
+        "ListId": {
+          "documentation": "<p>The ID of the Firewall Manager protocols list that you want the details for.</p>",
+          "shape": "ListId"
+        }
+      },
+      "required": ["ListId"],
+      "type": "structure"
+    },
+    "GetProtocolsListResponse": {
+      "members": {
+        "ProtocolsList": {
+          "documentation": "<p>Information about the specified Firewall Manager protocols list.</p>",
+          "shape": "ProtocolsListData"
+        },
+        "ProtocolsListArn": {
+          "documentation": "<p>The Amazon Resource Name (ARN) of the specified protocols list.</p>",
+          "shape": "ResourceArn"
+        }
+      },
+      "type": "structure"
+    },
+    "GetThirdPartyFirewallAssociationStatusRequest": {
+      "members": {
+        "ThirdPartyFirewall": {
+          "documentation": "<p>The name of the third-party firewall vendor.</p>",
+          "shape": "ThirdPartyFirewall"
+        }
+      },
+      "required": ["ThirdPartyFirewall"],
+      "type": "structure"
+    },
+    "GetThirdPartyFirewallAssociationStatusResponse": {
+      "members": {
+        "MarketplaceOnboardingStatus": {
+          "documentation": "<p>The status for subscribing to the third-party firewall vendor in the AWS Marketplace.</p> <ul> <li> <p> <code>NO_SUBSCRIPTION</code> - The Firewall Manager policy administrator isn't subscribed to the third-party firewall service in the AWS Marketplace.</p> </li> <li> <p> <code>NOT_COMPLETE</code> - The Firewall Manager policy administrator is in the process of subscribing to the third-party firewall service in the Amazon Web Services Marketplace, but doesn't yet have an active subscription.</p> </li> <li> <p> <code>COMPLETE</code> - The Firewall Manager policy administrator has an active subscription to the third-party firewall service in the Amazon Web Services Marketplace.</p> </li> </ul>",
+          "shape": "MarketplaceSubscriptionOnboardingStatus"
+        },
+        "ThirdPartyFirewallStatus": {
+          "documentation": "<p>The current status for setting a Firewall Manager policy administrators account as an administrator of the third-party firewall tenant.</p> <ul> <li> <p> <code>ONBOARDING</code> - The Firewall Manager policy administrator is being designated as a tenant administrator.</p> </li> <li> <p> <code>ONBOARD_COMPLETE</code> - The Firewall Manager policy administrator is designated as a tenant administrator.</p> </li> <li> <p> <code>OFFBOARDING</code> - The Firewall Manager policy administrator is being removed as a tenant administrator.</p> </li> <li> <p> <code>OFFBOARD_COMPLETE</code> - The Firewall Manager policy administrator has been removed as a tenant administrator.</p> </li> <li> <p> <code>NOT_EXIST</code> - The Firewall Manager policy administrator doesn't exist as a tenant administrator.</p> </li> </ul>",
+          "shape": "ThirdPartyFirewallAssociationStatus"
+        }
+      },
+      "type": "structure"
+    },
+    "GetViolationDetailsRequest": {
+      "members": {
+        "MemberAccount": {
+          "documentation": "<p>The Amazon Web Services account ID that you want the details for.</p>",
+          "shape": "AWSAccountId"
+        },
+        "PolicyId": {
+          "documentation": "<p>The ID of the Firewall Manager policy that you want the details for. This currently only supports security group content audit policies.</p>",
+          "shape": "PolicyId"
+        },
+        "ResourceId": {
+          "documentation": "<p>The ID of the resource that has violations.</p>",
+          "shape": "ResourceId"
+        },
+        "ResourceType": {
+          "documentation": "<p>The resource type. This is in the format shown in the <a href=\"https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-template-resource-type-ref.html\">Amazon Web Services Resource Types Reference</a>. Supported resource types are: <code>AWS::EC2::Instance</code>, <code>AWS::EC2::NetworkInterface</code>, <code>AWS::EC2::SecurityGroup</code>, <code>AWS::NetworkFirewall::FirewallPolicy</code>, and <code>AWS::EC2::Subnet</code>. </p>",
+          "shape": "ResourceType"
+        }
+      },
+      "required": ["PolicyId", "MemberAccount", "ResourceId", "ResourceType"],
+      "type": "structure"
+    },
+    "GetViolationDetailsResponse": {
+      "members": {
+        "ViolationDetail": {
+          "documentation": "<p>Violation detail for a resource.</p>",
+          "shape": "ViolationDetail"
+        }
+      },
+      "type": "structure"
+    },
+    "IPPortNumber": {
+      "max": 65535,
+      "min": 0,
+      "type": "long"
+    },
+    "InternalErrorException": {
+      "documentation": "<p>The operation failed because of a system problem, even though the request was valid. Retry your request.</p>",
+      "exception": true,
+      "members": {
+        "Message": { "shape": "ErrorMessage" }
+      },
+      "type": "structure"
+    },
+    "InvalidInputException": {
+      "documentation": "<p>The parameters of the request were invalid.</p>",
+      "exception": true,
+      "members": {
+        "Message": { "shape": "ErrorMessage" }
+      },
+      "type": "structure"
+    },
+    "InvalidOperationException": {
+      "documentation": "<p>The operation failed because there was nothing to do or the operation wasn't possible. For example, you might have submitted an <code>AssociateAdminAccount</code> request for an account ID that was already set as the Firewall Manager administrator. Or you might have tried to access a Region that's disabled by default, and that you need to enable for the Firewall Manager administrator account and for Organizations before you can access it.</p>",
+      "exception": true,
+      "members": {
+        "Message": { "shape": "ErrorMessage" }
+      },
+      "type": "structure"
+    },
+    "InvalidTypeException": {
+      "documentation": "<p>The value of the <code>Type</code> parameter is invalid.</p>",
+      "exception": true,
+      "members": {
+        "Message": { "shape": "ErrorMessage" }
+      },
+      "type": "structure"
+    },
+    "IssueInfoMap": {
+      "key": { "shape": "DependentServiceName" },
+      "type": "map",
+      "value": { "shape": "DetailedInfo" }
+    },
+    "LengthBoundedString": {
+      "max": 1024,
+      "min": 0,
+      "type": "string"
+    },
+    "LengthBoundedStringList": {
+      "member": { "shape": "LengthBoundedString" },
+      "type": "list"
+    },
+    "LimitExceededException": {
+      "documentation": "<p>The operation exceeds a resource limit, for example, the maximum number of <code>policy</code> objects that you can create for an Amazon Web Services account. For more information, see <a href=\"https://docs.aws.amazon.com/waf/latest/developerguide/fms-limits.html\">Firewall Manager Limits</a> in the <i>WAF Developer Guide</i>.</p>",
+      "exception": true,
+      "members": {
+        "Message": { "shape": "ErrorMessage" }
+      },
+      "type": "structure"
+    },
+    "ListAppsListsRequest": {
+      "members": {
+        "DefaultLists": {
+          "documentation": "<p>Specifies whether the lists to retrieve are default lists owned by Firewall Manager.</p>",
+          "shape": "Boolean"
+        },
+        "MaxResults": {
+          "documentation": "<p>The maximum number of objects that you want Firewall Manager to return for this request. If more objects are available, in the response, Firewall Manager provides a <code>NextToken</code> value that you can use in a subsequent call to get the next batch of objects.</p> <p>If you don't specify this, Firewall Manager returns all available objects.</p>",
+          "shape": "PaginationMaxResults"
+        },
+        "NextToken": {
+          "documentation": "<p>If you specify a value for <code>MaxResults</code> in your list request, and you have more objects than the maximum, Firewall Manager returns this token in the response. For all but the first request, you provide the token returned by the prior request in the request parameters, to retrieve the next batch of objects.</p>",
+          "shape": "PaginationToken"
+        }
+      },
+      "required": ["MaxResults"],
+      "type": "structure"
+    },
+    "ListAppsListsResponse": {
+      "members": {
+        "AppsLists": {
+          "documentation": "<p>An array of <code>AppsListDataSummary</code> objects.</p>",
+          "shape": "AppsListsData"
+        },
+        "NextToken": {
+          "documentation": "<p>If you specify a value for <code>MaxResults</code> in your list request, and you have more objects than the maximum, Firewall Manager returns this token in the response. You can use this token in subsequent requests to retrieve the next batch of objects.</p>",
+          "shape": "PaginationToken"
+        }
+      },
+      "type": "structure"
+    },
+    "ListComplianceStatusRequest": {
+      "members": {
+        "MaxResults": {
+          "documentation": "<p>Specifies the number of <code>PolicyComplianceStatus</code> objects that you want Firewall Manager to return for this request. If you have more <code>PolicyComplianceStatus</code> objects than the number that you specify for <code>MaxResults</code>, the response includes a <code>NextToken</code> value that you can use to get another batch of <code>PolicyComplianceStatus</code> objects.</p>",
+          "shape": "PaginationMaxResults"
+        },
+        "NextToken": {
+          "documentation": "<p>If you specify a value for <code>MaxResults</code> and you have more <code>PolicyComplianceStatus</code> objects than the number that you specify for <code>MaxResults</code>, Firewall Manager returns a <code>NextToken</code> value in the response that allows you to list another group of <code>PolicyComplianceStatus</code> objects. For the second and subsequent <code>ListComplianceStatus</code> requests, specify the value of <code>NextToken</code> from the previous response to get information about another batch of <code>PolicyComplianceStatus</code> objects.</p>",
+          "shape": "PaginationToken"
+        },
+        "PolicyId": {
+          "documentation": "<p>The ID of the Firewall Manager policy that you want the details for.</p>",
+          "shape": "PolicyId"
+        }
+      },
+      "required": ["PolicyId"],
+      "type": "structure"
+    },
+    "ListComplianceStatusResponse": {
+      "members": {
+        "NextToken": {
+          "documentation": "<p>If you have more <code>PolicyComplianceStatus</code> objects than the number that you specified for <code>MaxResults</code> in the request, the response includes a <code>NextToken</code> value. To list more <code>PolicyComplianceStatus</code> objects, submit another <code>ListComplianceStatus</code> request, and specify the <code>NextToken</code> value from the response in the <code>NextToken</code> value in the next request.</p>",
+          "shape": "PaginationToken"
+        },
+        "PolicyComplianceStatusList": {
+          "documentation": "<p>An array of <code>PolicyComplianceStatus</code> objects.</p>",
+          "shape": "PolicyComplianceStatusList"
+        }
+      },
+      "type": "structure"
+    },
+    "ListId": {
+      "max": 36,
+      "min": 36,
+      "pattern": "^[a-z0-9A-Z-]{36}$",
+      "type": "string"
+    },
+    "ListMemberAccountsRequest": {
+      "members": {
+        "MaxResults": {
+          "documentation": "<p>Specifies the number of member account IDs that you want Firewall Manager to return for this request. If you have more IDs than the number that you specify for <code>MaxResults</code>, the response includes a <code>NextToken</code> value that you can use to get another batch of member account IDs.</p>",
+          "shape": "PaginationMaxResults"
+        },
+        "NextToken": {
+          "documentation": "<p>If you specify a value for <code>MaxResults</code> and you have more account IDs than the number that you specify for <code>MaxResults</code>, Firewall Manager returns a <code>NextToken</code> value in the response that allows you to list another group of IDs. For the second and subsequent <code>ListMemberAccountsRequest</code> requests, specify the value of <code>NextToken</code> from the previous response to get information about another batch of member account IDs.</p>",
+          "shape": "PaginationToken"
+        }
+      },
+      "type": "structure"
+    },
+    "ListMemberAccountsResponse": {
+      "members": {
+        "MemberAccounts": {
+          "documentation": "<p>An array of account IDs.</p>",
+          "shape": "MemberAccounts"
+        },
+        "NextToken": {
+          "documentation": "<p>If you have more member account IDs than the number that you specified for <code>MaxResults</code> in the request, the response includes a <code>NextToken</code> value. To list more IDs, submit another <code>ListMemberAccounts</code> request, and specify the <code>NextToken</code> value from the response in the <code>NextToken</code> value in the next request.</p>",
+          "shape": "PaginationToken"
+        }
+      },
+      "type": "structure"
+    },
+    "ListPoliciesRequest": {
+      "members": {
+        "MaxResults": {
+          "documentation": "<p>Specifies the number of <code>PolicySummary</code> objects that you want Firewall Manager to return for this request. If you have more <code>PolicySummary</code> objects than the number that you specify for <code>MaxResults</code>, the response includes a <code>NextToken</code> value that you can use to get another batch of <code>PolicySummary</code> objects.</p>",
+          "shape": "PaginationMaxResults"
+        },
+        "NextToken": {
+          "documentation": "<p>If you specify a value for <code>MaxResults</code> and you have more <code>PolicySummary</code> objects than the number that you specify for <code>MaxResults</code>, Firewall Manager returns a <code>NextToken</code> value in the response that allows you to list another group of <code>PolicySummary</code> objects. For the second and subsequent <code>ListPolicies</code> requests, specify the value of <code>NextToken</code> from the previous response to get information about another batch of <code>PolicySummary</code> objects.</p>",
+          "shape": "PaginationToken"
+        }
+      },
+      "type": "structure"
+    },
+    "ListPoliciesResponse": {
+      "members": {
+        "NextToken": {
+          "documentation": "<p>If you have more <code>PolicySummary</code> objects than the number that you specified for <code>MaxResults</code> in the request, the response includes a <code>NextToken</code> value. To list more <code>PolicySummary</code> objects, submit another <code>ListPolicies</code> request, and specify the <code>NextToken</code> value from the response in the <code>NextToken</code> value in the next request.</p>",
+          "shape": "PaginationToken"
+        },
+        "PolicyList": {
+          "documentation": "<p>An array of <code>PolicySummary</code> objects.</p>",
+          "shape": "PolicySummaryList"
+        }
+      },
+      "type": "structure"
+    },
+    "ListProtocolsListsRequest": {
+      "members": {
+        "DefaultLists": {
+          "documentation": "<p>Specifies whether the lists to retrieve are default lists owned by Firewall Manager.</p>",
+          "shape": "Boolean"
+        },
+        "MaxResults": {
+          "documentation": "<p>The maximum number of objects that you want Firewall Manager to return for this request. If more objects are available, in the response, Firewall Manager provides a <code>NextToken</code> value that you can use in a subsequent call to get the next batch of objects.</p> <p>If you don't specify this, Firewall Manager returns all available objects.</p>",
+          "shape": "PaginationMaxResults"
+        },
+        "NextToken": {
+          "documentation": "<p>If you specify a value for <code>MaxResults</code> in your list request, and you have more objects than the maximum, Firewall Manager returns this token in the response. For all but the first request, you provide the token returned by the prior request in the request parameters, to retrieve the next batch of objects.</p>",
+          "shape": "PaginationToken"
+        }
+      },
+      "required": ["MaxResults"],
+      "type": "structure"
+    },
+    "ListProtocolsListsResponse": {
+      "members": {
+        "NextToken": {
+          "documentation": "<p>If you specify a value for <code>MaxResults</code> in your list request, and you have more objects than the maximum, Firewall Manager returns this token in the response. You can use this token in subsequent requests to retrieve the next batch of objects.</p>",
+          "shape": "PaginationToken"
+        },
+        "ProtocolsLists": {
+          "documentation": "<p>An array of <code>ProtocolsListDataSummary</code> objects.</p>",
+          "shape": "ProtocolsListsData"
+        }
+      },
+      "type": "structure"
+    },
+    "ListTagsForResourceRequest": {
+      "members": {
+        "ResourceArn": {
+          "documentation": "<p>The Amazon Resource Name (ARN) of the resource to return tags for. The Firewall Manager resources that support tagging are policies, applications lists, and protocols lists. </p>",
+          "shape": "ResourceArn"
+        }
+      },
+      "required": ["ResourceArn"],
+      "type": "structure"
+    },
+    "ListTagsForResourceResponse": {
+      "members": {
+        "TagList": {
+          "documentation": "<p>The tags associated with the resource.</p>",
+          "shape": "TagList"
+        }
+      },
+      "type": "structure"
+    },
+    "ListThirdPartyFirewallFirewallPoliciesRequest": {
+      "members": {
+        "MaxResults": {
+          "documentation": "<p>The maximum number of third-party firewall policies that you want Firewall Manager to return. If the specified third-party firewall vendor is associated with more than <code>MaxResults</code> firewall policies, the response includes a <code>NextToken</code> element. <code>NextToken</code> contains an encrypted token that identifies the first third-party firewall policies that Firewall Manager will return if you submit another request.</p>",
+          "shape": "PaginationMaxResults"
+        },
+        "NextToken": {
+          "documentation": "<p>If the previous response included a <code>NextToken</code> element, the specified third-party firewall vendor is associated with more third-party firewall policies. To get more third-party firewall policies, submit another <code>ListThirdPartyFirewallFirewallPoliciesRequest</code> request.</p> <p> For the value of <code>NextToken</code>, specify the value of <code>NextToken</code> from the previous response. If the previous response didn't include a <code>NextToken</code> element, there are no more third-party firewall policies to get. </p>",
+          "shape": "PaginationToken"
+        },
+        "ThirdPartyFirewall": {
+          "documentation": "<p>The name of the third-party firewall vendor.</p>",
+          "shape": "ThirdPartyFirewall"
+        }
+      },
+      "required": ["ThirdPartyFirewall", "MaxResults"],
+      "type": "structure"
+    },
+    "ListThirdPartyFirewallFirewallPoliciesResponse": {
+      "members": {
+        "NextToken": {
+          "documentation": "<p>The value that you will use for <code>NextToken</code> in the next <code>ListThirdPartyFirewallFirewallPolicies</code> request.</p>",
+          "shape": "PaginationToken"
+        },
+        "ThirdPartyFirewallFirewallPolicies": {
+          "documentation": "<p>A list that contains one <code>ThirdPartyFirewallFirewallPolicies</code> element for each third-party firewall policies that the specified third-party firewall vendor is associated with. Each <code>ThirdPartyFirewallFirewallPolicies</code> element contains the firewall policy name and ID.</p>",
+          "shape": "ThirdPartyFirewallFirewallPolicies"
+        }
+      },
+      "type": "structure"
+    },
+    "ManagedServiceData": {
+      "max": 8192,
+      "min": 1,
+      "pattern": "^((?!\\\\[nr]).)+",
+      "type": "string"
+    },
+    "MarketplaceSubscriptionOnboardingStatus": {
+      "enum": ["NO_SUBSCRIPTION", "NOT_COMPLETE", "COMPLETE"],
+      "type": "string"
+    },
+    "MemberAccounts": {
+      "member": { "shape": "AWSAccountId" },
+      "type": "list"
+    },
+    "NetworkFirewallAction": {
+      "max": 128,
+      "min": 1,
+      "pattern": "^[a-zA-Z0-9]+$",
+      "type": "string"
+    },
+    "NetworkFirewallActionList": {
+      "member": { "shape": "NetworkFirewallAction" },
+      "type": "list"
+    },
+    "NetworkFirewallBlackHoleRouteDetectedViolation": {
+      "documentation": "<p>Violation detail for an internet gateway route with an inactive state in the customer subnet route table or Network Firewall subnet route table.</p>",
+      "members": {
+        "RouteTableId": {
+          "documentation": "<p>Information about the route table ID.</p>",
+          "shape": "ResourceId"
+        },
+        "ViolatingRoutes": {
+          "documentation": "<p>Information about the route or routes that are in violation.</p>",
+          "shape": "Routes"
+        },
+        "ViolationTarget": {
+          "documentation": "<p>The subnet that has an inactive state.</p>",
+          "shape": "ViolationTarget"
+        },
+        "VpcId": {
+          "documentation": "<p>Information about the VPC ID.</p>",
+          "shape": "ResourceId"
+        }
+      },
+      "type": "structure"
+    },
+    "NetworkFirewallInternetTrafficNotInspectedViolation": {
+      "documentation": "<p>Violation detail for the subnet for which internet traffic that hasn't been inspected.</p>",
+      "members": {
+        "ActualFirewallSubnetRoutes": {
+          "documentation": "<p>The actual firewall subnet routes.</p>",
+          "shape": "Routes"
+        },
+        "ActualInternetGatewayRoutes": {
+          "documentation": "<p>The actual internet gateway routes.</p>",
+          "shape": "Routes"
+        },
+        "CurrentFirewallSubnetRouteTable": {
+          "documentation": "<p>Information about the subnet route table for the current firewall.</p>",
+          "shape": "ResourceId"
+        },
+        "CurrentInternetGatewayRouteTable": {
+          "documentation": "<p>The current route table for the internet gateway.</p>",
+          "shape": "ResourceId"
+        },
+        "ExpectedFirewallEndpoint": {
+          "documentation": "<p>The expected endpoint for the current firewall.</p>",
+          "shape": "ResourceId"
+        },
+        "ExpectedFirewallSubnetRoutes": {
+          "documentation": "<p>The firewall subnet routes that are expected.</p>",
+          "shape": "ExpectedRoutes"
+        },
+        "ExpectedInternetGatewayRoutes": {
+          "documentation": "<p>The internet gateway routes that are expected.</p>",
+          "shape": "ExpectedRoutes"
+        },
+        "FirewallSubnetId": {
+          "documentation": "<p>The firewall subnet ID.</p>",
+          "shape": "ResourceId"
+        },
+        "InternetGatewayId": {
+          "documentation": "<p>The internet gateway ID.</p>",
+          "shape": "ResourceId"
+        },
+        "IsRouteTableUsedInDifferentAZ": {
+          "documentation": "<p>Information about whether the route table is used in another Availability Zone.</p>",
+          "shape": "Boolean"
+        },
+        "RouteTableId": {
+          "documentation": "<p>Information about the route table ID.</p>",
+          "shape": "ResourceId"
+        },
+        "SubnetAvailabilityZone": {
+          "documentation": "<p>The subnet Availability Zone.</p>",
+          "shape": "LengthBoundedString"
+        },
+        "SubnetId": {
+          "documentation": "<p>The subnet ID.</p>",
+          "shape": "ResourceId"
+        },
+        "ViolatingRoutes": {
+          "documentation": "<p>The route or routes that are in violation.</p>",
+          "shape": "Routes"
+        },
+        "VpcId": {
+          "documentation": "<p>Information about the VPC ID.</p>",
+          "shape": "ResourceId"
+        }
+      },
+      "type": "structure"
+    },
+    "NetworkFirewallInvalidRouteConfigurationViolation": {
+      "documentation": "<p>Violation detail for the improperly configured subnet route. It's possible there is a missing route table route, or a configuration that causes traffic to cross an Availability Zone boundary.</p>",
+      "members": {
+        "ActualFirewallEndpoint": {
+          "documentation": "<p>The actual firewall endpoint.</p>",
+          "shape": "ResourceId"
+        },
+        "ActualFirewallSubnetId": {
+          "documentation": "<p>The actual subnet ID for the firewall.</p>",
+          "shape": "ResourceId"
+        },
+        "ActualFirewallSubnetRoutes": {
+          "documentation": "<p>The actual firewall subnet routes that are expected.</p>",
+          "shape": "Routes"
+        },
+        "ActualInternetGatewayRoutes": {
+          "documentation": "<p>The actual internet gateway routes.</p>",
+          "shape": "Routes"
+        },
+        "AffectedSubnets": {
+          "documentation": "<p>The subnets that are affected.</p>",
+          "shape": "ResourceIdList"
+        },
+        "CurrentFirewallSubnetRouteTable": {
+          "documentation": "<p>The subnet route table for the current firewall.</p>",
+          "shape": "ResourceId"
+        },
+        "CurrentInternetGatewayRouteTable": {
+          "documentation": "<p>The route table for the current internet gateway.</p>",
+          "shape": "ResourceId"
+        },
+        "ExpectedFirewallEndpoint": {
+          "documentation": "<p>The firewall endpoint that's expected.</p>",
+          "shape": "ResourceId"
+        },
+        "ExpectedFirewallSubnetId": {
+          "documentation": "<p>The expected subnet ID for the firewall.</p>",
+          "shape": "ResourceId"
+        },
+        "ExpectedFirewallSubnetRoutes": {
+          "documentation": "<p>The firewall subnet routes that are expected.</p>",
+          "shape": "ExpectedRoutes"
+        },
+        "ExpectedInternetGatewayRoutes": {
+          "documentation": "<p>The expected routes for the internet gateway.</p>",
+          "shape": "ExpectedRoutes"
+        },
+        "InternetGatewayId": {
+          "documentation": "<p>The internet gateway ID.</p>",
+          "shape": "ResourceId"
+        },
+        "IsRouteTableUsedInDifferentAZ": {
+          "documentation": "<p>Information about whether the route table is used in another Availability Zone.</p>",
+          "shape": "Boolean"
+        },
+        "RouteTableId": {
+          "documentation": "<p>The route table ID.</p>",
+          "shape": "ResourceId"
+        },
+        "ViolatingRoute": {
+          "documentation": "<p>The route that's in violation.</p>",
+          "shape": "Route"
+        },
+        "VpcId": {
+          "documentation": "<p>Information about the VPC ID.</p>",
+          "shape": "ResourceId"
+        }
+      },
+      "type": "structure"
+    },
+    "NetworkFirewallMissingExpectedRTViolation": {
+      "documentation": "<p>Violation detail for Network Firewall for a subnet that's not associated to the expected Firewall Manager managed route table.</p>",
+      "members": {
+        "AvailabilityZone": {
+          "documentation": "<p>The Availability Zone of a violating subnet. </p>",
+          "shape": "LengthBoundedString"
+        },
+        "CurrentRouteTable": {
+          "documentation": "<p>The resource ID of the current route table that's associated with the subnet, if one is available.</p>",
+          "shape": "ResourceId"
+        },
+        "ExpectedRouteTable": {
+          "documentation": "<p>The resource ID of the route table that should be associated with the subnet.</p>",
+          "shape": "ResourceId"
+        },
+        "VPC": {
+          "documentation": "<p>The resource ID of the VPC associated with a violating subnet.</p>",
+          "shape": "ResourceId"
+        },
+        "ViolationTarget": {
+          "documentation": "<p>The ID of the Network Firewall or VPC resource that's in violation.</p>",
+          "shape": "ViolationTarget"
+        }
+      },
+      "type": "structure"
+    },
+    "NetworkFirewallMissingExpectedRoutesViolation": {
+      "documentation": "<p>Violation detail for an expected route missing in Network Firewall.</p>",
+      "members": {
+        "ExpectedRoutes": {
+          "documentation": "<p>The expected routes.</p>",
+          "shape": "ExpectedRoutes"
+        },
+        "ViolationTarget": {
+          "documentation": "<p>The target of the violation.</p>",
+          "shape": "ViolationTarget"
+        },
+        "VpcId": {
+          "documentation": "<p>Information about the VPC ID.</p>",
+          "shape": "ResourceId"
+        }
+      },
+      "type": "structure"
+    },
+    "NetworkFirewallMissingFirewallViolation": {
+      "documentation": "<p>Violation detail for Network Firewall for a subnet that doesn't have a Firewall Manager managed firewall in its VPC. </p>",
+      "members": {
+        "AvailabilityZone": {
+          "documentation": "<p>The Availability Zone of a violating subnet. </p>",
+          "shape": "LengthBoundedString"
+        },
+        "TargetViolationReason": {
+          "documentation": "<p>The reason the resource has this violation, if one is available. </p>",
+          "shape": "TargetViolationReason"
+        },
+        "VPC": {
+          "documentation": "<p>The resource ID of the VPC associated with a violating subnet.</p>",
+          "shape": "ResourceId"
+        },
+        "ViolationTarget": {
+          "documentation": "<p>The ID of the Network Firewall or VPC resource that's in violation.</p>",
+          "shape": "ViolationTarget"
+        }
+      },
+      "type": "structure"
+    },
+    "NetworkFirewallMissingSubnetViolation": {
+      "documentation": "<p>Violation detail for Network Firewall for an Availability Zone that's missing the expected Firewall Manager managed subnet.</p>",
+      "members": {
+        "AvailabilityZone": {
+          "documentation": "<p>The Availability Zone of a violating subnet. </p>",
+          "shape": "LengthBoundedString"
+        },
+        "TargetViolationReason": {
+          "documentation": "<p>The reason the resource has this violation, if one is available. </p>",
+          "shape": "TargetViolationReason"
+        },
+        "VPC": {
+          "documentation": "<p>The resource ID of the VPC associated with a violating subnet.</p>",
+          "shape": "ResourceId"
+        },
+        "ViolationTarget": {
+          "documentation": "<p>The ID of the Network Firewall or VPC resource that's in violation.</p>",
+          "shape": "ViolationTarget"
+        }
+      },
+      "type": "structure"
+    },
+    "NetworkFirewallPolicy": {
+      "documentation": "<p>Configures the firewall policy deployment model of Network Firewall. For information about Network Firewall deployment models, see <a href=\"https://docs.aws.amazon.com/network-firewall/latest/developerguide/architectures.html\">Network Firewall example architectures with routing</a> in the <i>Network Firewall Developer Guide</i>.</p>",
+      "members": {
+        "FirewallDeploymentModel": {
+          "documentation": "<p>Defines the deployment model to use for the firewall policy. To use a distributed model, set <a href=\"https://docs.aws.amazon.com/fms/2018-01-01/APIReference/API_PolicyOption.html\">PolicyOption</a> to <code>NULL</code>.</p>",
+          "shape": "FirewallDeploymentModel"
+        }
+      },
+      "type": "structure"
+    },
+    "NetworkFirewallPolicyDescription": {
+      "documentation": "<p>The definition of the Network Firewall firewall policy.</p>",
+      "members": {
+        "StatefulRuleGroups": {
+          "documentation": "<p>The stateful rule groups that are used in the Network Firewall firewall policy. </p>",
+          "shape": "StatefulRuleGroupList"
+        },
+        "StatelessCustomActions": {
+          "documentation": "<p>Names of custom actions that are available for use in the stateless default actions settings.</p>",
+          "shape": "NetworkFirewallActionList"
+        },
+        "StatelessDefaultActions": {
+          "documentation": "<p>The actions to take on packets that don't match any of the stateless rule groups. </p>",
+          "shape": "NetworkFirewallActionList"
+        },
+        "StatelessFragmentDefaultActions": {
+          "documentation": "<p>The actions to take on packet fragments that don't match any of the stateless rule groups. </p>",
+          "shape": "NetworkFirewallActionList"
+        },
+        "StatelessRuleGroups": {
+          "documentation": "<p>The stateless rule groups that are used in the Network Firewall firewall policy. </p>",
+          "shape": "StatelessRuleGroupList"
+        }
+      },
+      "type": "structure"
+    },
+    "NetworkFirewallPolicyModifiedViolation": {
+      "documentation": "<p>Violation detail for Network Firewall for a firewall policy that has a different <a>NetworkFirewallPolicyDescription</a> than is required by the Firewall Manager policy. </p>",
+      "members": {
+        "CurrentPolicyDescription": {
+          "documentation": "<p>The policy that's currently in use in the individual account. </p>",
+          "shape": "NetworkFirewallPolicyDescription"
+        },
+        "ExpectedPolicyDescription": {
+          "documentation": "<p>The policy that should be in use in the individual account in order to be compliant. </p>",
+          "shape": "NetworkFirewallPolicyDescription"
+        },
+        "ViolationTarget": {
+          "documentation": "<p>The ID of the Network Firewall or VPC resource that's in violation.</p>",
+          "shape": "ViolationTarget"
+        }
+      },
+      "type": "structure"
+    },
+    "NetworkFirewallResourceName": {
+      "max": 128,
+      "min": 1,
+      "pattern": "^[a-zA-Z0-9-]+$",
+      "type": "string"
+    },
+    "NetworkFirewallUnexpectedFirewallRoutesViolation": {
+      "documentation": "<p>Violation detail for an unexpected route that's present in a route table.</p>",
+      "members": {
+        "FirewallEndpoint": {
+          "documentation": "<p>The endpoint of the firewall.</p>",
+          "shape": "ResourceId"
+        },
+        "FirewallSubnetId": {
+          "documentation": "<p>The subnet ID for the firewall.</p>",
+          "shape": "ResourceId"
+        },
+        "RouteTableId": {
+          "documentation": "<p>The ID of the route table.</p>",
+          "shape": "ResourceId"
+        },
+        "ViolatingRoutes": {
+          "documentation": "<p>The routes that are in violation.</p>",
+          "shape": "Routes"
+        },
+        "VpcId": {
+          "documentation": "<p>Information about the VPC ID.</p>",
+          "shape": "ResourceId"
+        }
+      },
+      "type": "structure"
+    },
+    "NetworkFirewallUnexpectedGatewayRoutesViolation": {
+      "documentation": "<p>Violation detail for an unexpected gateway route that’s present in a route table.</p>",
+      "members": {
+        "GatewayId": {
+          "documentation": "<p>Information about the gateway ID.</p>",
+          "shape": "ResourceId"
+        },
+        "RouteTableId": {
+          "documentation": "<p>Information about the route table.</p>",
+          "shape": "ResourceId"
+        },
+        "ViolatingRoutes": {
+          "documentation": "<p>The routes that are in violation.</p>",
+          "shape": "Routes"
+        },
+        "VpcId": {
+          "documentation": "<p>Information about the VPC ID.</p>",
+          "shape": "ResourceId"
+        }
+      },
+      "type": "structure"
+    },
+    "OrderedRemediationActions": {
+      "member": { "shape": "RemediationActionWithOrder" },
+      "type": "list"
+    },
+    "PaginationMaxResults": {
+      "max": 100,
+      "min": 1,
+      "type": "integer"
+    },
+    "PaginationToken": {
+      "max": 4096,
+      "min": 1,
+      "pattern": "^([\\p{L}\\p{Z}\\p{N}_.:/=+\\-@]*)$",
+      "type": "string"
+    },
+    "PartialMatch": {
+      "documentation": "<p>The reference rule that partially matches the <code>ViolationTarget</code> rule and violation reason.</p>",
+      "members": {
+        "Reference": {
+          "documentation": "<p>The reference rule from the primary security group of the Firewall Manager policy.</p>",
+          "shape": "ReferenceRule"
+        },
+        "TargetViolationReasons": {
+          "documentation": "<p>The violation reason.</p>",
+          "shape": "TargetViolationReasons"
+        }
+      },
+      "type": "structure"
+    },
+    "PartialMatches": {
+      "member": { "shape": "PartialMatch" },
+      "type": "list"
+    },
+    "Policy": {
+      "documentation": "<p>An Firewall Manager policy.</p>",
+      "members": {
+        "DeleteUnusedFMManagedResources": {
+          "documentation": "<p>Indicates whether Firewall Manager should automatically remove protections from resources that leave the policy scope and clean up resources that Firewall Manager is managing for accounts when those accounts leave policy scope. For example, Firewall Manager will disassociate a Firewall Manager managed web ACL from a protected customer resource when the customer resource leaves policy scope. </p> <p>By default, Firewall Manager doesn't remove protections or delete Firewall Manager managed resources. </p> <p>This option is not available for Shield Advanced or WAF Classic policies.</p>",
+          "shape": "Boolean"
+        },
+        "ExcludeMap": {
+          "documentation": "<p>Specifies the Amazon Web Services account IDs and Organizations organizational units (OUs) to exclude from the policy. Specifying an OU is the equivalent of specifying all accounts in the OU and in any of its child OUs, including any child OUs and accounts that are added at a later time.</p> <p>You can specify inclusions or exclusions, but not both. If you specify an <code>IncludeMap</code>, Firewall Manager applies the policy to all accounts specified by the <code>IncludeMap</code>, and does not evaluate any <code>ExcludeMap</code> specifications. If you do not specify an <code>IncludeMap</code>, then Firewall Manager applies the policy to all accounts except for those specified by the <code>ExcludeMap</code>.</p> <p>You can specify account IDs, OUs, or a combination: </p> <ul> <li> <p>Specify account IDs by setting the key to <code>ACCOUNT</code>. For example, the following is a valid map: <code>{“ACCOUNT” : [“accountID1”, “accountID2”]}</code>.</p> </li> <li> <p>Specify OUs by setting the key to <code>ORG_UNIT</code>. For example, the following is a valid map: <code>{“ORG_UNIT” : [“ouid111”, “ouid112”]}</code>.</p> </li> <li> <p>Specify accounts and OUs together in a single map, separated with a comma. For example, the following is a valid map: <code>{“ACCOUNT” : [“accountID1”, “accountID2”], “ORG_UNIT” : [“ouid111”, “ouid112”]}</code>.</p> </li> </ul>",
+          "shape": "CustomerPolicyScopeMap"
+        },
+        "ExcludeResourceTags": {
+          "documentation": "<p>If set to <code>True</code>, resources with the tags that are specified in the <code>ResourceTag</code> array are not in scope of the policy. If set to <code>False</code>, and the <code>ResourceTag</code> array is not null, only resources with the specified tags are in scope of the policy.</p>",
+          "shape": "Boolean"
+        },
+        "IncludeMap": {
+          "documentation": "<p>Specifies the Amazon Web Services account IDs and Organizations organizational units (OUs) to include in the policy. Specifying an OU is the equivalent of specifying all accounts in the OU and in any of its child OUs, including any child OUs and accounts that are added at a later time.</p> <p>You can specify inclusions or exclusions, but not both. If you specify an <code>IncludeMap</code>, Firewall Manager applies the policy to all accounts specified by the <code>IncludeMap</code>, and does not evaluate any <code>ExcludeMap</code> specifications. If you do not specify an <code>IncludeMap</code>, then Firewall Manager applies the policy to all accounts except for those specified by the <code>ExcludeMap</code>.</p> <p>You can specify account IDs, OUs, or a combination: </p> <ul> <li> <p>Specify account IDs by setting the key to <code>ACCOUNT</code>. For example, the following is a valid map: <code>{“ACCOUNT” : [“accountID1”, “accountID2”]}</code>.</p> </li> <li> <p>Specify OUs by setting the key to <code>ORG_UNIT</code>. For example, the following is a valid map: <code>{“ORG_UNIT” : [“ouid111”, “ouid112”]}</code>.</p> </li> <li> <p>Specify accounts and OUs together in a single map, separated with a comma. For example, the following is a valid map: <code>{“ACCOUNT” : [“accountID1”, “accountID2”], “ORG_UNIT” : [“ouid111”, “ouid112”]}</code>.</p> </li> </ul>",
+          "shape": "CustomerPolicyScopeMap"
+        },
+        "PolicyId": {
+          "documentation": "<p>The ID of the Firewall Manager policy.</p>",
+          "shape": "PolicyId"
+        },
+        "PolicyName": {
+          "documentation": "<p>The name of the Firewall Manager policy.</p>",
+          "shape": "ResourceName"
+        },
+        "PolicyUpdateToken": {
+          "documentation": "<p>A unique identifier for each update to the policy. When issuing a <code>PutPolicy</code> request, the <code>PolicyUpdateToken</code> in the request must match the <code>PolicyUpdateToken</code> of the current policy version. To get the <code>PolicyUpdateToken</code> of the current policy version, use a <code>GetPolicy</code> request.</p>",
+          "shape": "PolicyUpdateToken"
+        },
+        "RemediationEnabled": {
+          "documentation": "<p>Indicates if the policy should be automatically applied to new resources.</p>",
+          "shape": "Boolean"
+        },
+        "ResourceTags": {
+          "documentation": "<p>An array of <code>ResourceTag</code> objects.</p>",
+          "shape": "ResourceTags"
+        },
+        "ResourceType": {
+          "documentation": "<p>The type of resource protected by or in scope of the policy. This is in the format shown in the <a href=\"https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-template-resource-type-ref.html\">Amazon Web Services Resource Types Reference</a>. To apply this policy to multiple resource types, specify a resource type of <code>ResourceTypeList</code> and then specify the resource types in a <code>ResourceTypeList</code>.</p> <p>For WAF and Shield Advanced, resource types include <code>AWS::ElasticLoadBalancingV2::LoadBalancer</code>, <code>AWS::ElasticLoadBalancing::LoadBalancer</code>, <code>AWS::EC2::EIP</code>, and <code>AWS::CloudFront::Distribution</code>. For a security group common policy, valid values are <code>AWS::EC2::NetworkInterface</code> and <code>AWS::EC2::Instance</code>. For a security group content audit policy, valid values are <code>AWS::EC2::SecurityGroup</code>, <code>AWS::EC2::NetworkInterface</code>, and <code>AWS::EC2::Instance</code>. For a security group usage audit policy, the value is <code>AWS::EC2::SecurityGroup</code>. For an Network Firewall policy or DNS Firewall policy, the value is <code>AWS::EC2::VPC</code>.</p>",
+          "shape": "ResourceType"
+        },
+        "ResourceTypeList": {
+          "documentation": "<p>An array of <code>ResourceType</code> objects. Use this only to specify multiple resource types. To specify a single resource type, use <code>ResourceType</code>.</p>",
+          "shape": "ResourceTypeList"
+        },
+        "SecurityServicePolicyData": {
+          "documentation": "<p>Details about the security service that is being used to protect the resources.</p>",
+          "shape": "SecurityServicePolicyData"
+        }
+      },
+      "required": [
+        "PolicyName",
+        "SecurityServicePolicyData",
+        "ResourceType",
+        "ExcludeResourceTags",
+        "RemediationEnabled"
+      ],
+      "type": "structure"
+    },
+    "PolicyComplianceDetail": {
+      "documentation": "<p>Describes the noncompliant resources in a member account for a specific Firewall Manager policy. A maximum of 100 entries are displayed. If more than 100 resources are noncompliant, <code>EvaluationLimitExceeded</code> is set to <code>True</code>.</p>",
+      "members": {
+        "EvaluationLimitExceeded": {
+          "documentation": "<p>Indicates if over 100 resources are noncompliant with the Firewall Manager policy.</p>",
+          "shape": "Boolean"
+        },
+        "ExpiredAt": {
+          "documentation": "<p>A timestamp that indicates when the returned information should be considered out of date.</p>",
+          "shape": "TimeStamp"
+        },
+        "IssueInfoMap": {
+          "documentation": "<p>Details about problems with dependent services, such as WAF or Config, and the error message received that indicates the problem with the service.</p>",
+          "shape": "IssueInfoMap"
+        },
+        "MemberAccount": {
+          "documentation": "<p>The Amazon Web Services account ID.</p>",
+          "shape": "AWSAccountId"
+        },
+        "PolicyId": {
+          "documentation": "<p>The ID of the Firewall Manager policy.</p>",
+          "shape": "PolicyId"
+        },
+        "PolicyOwner": {
+          "documentation": "<p>The Amazon Web Services account that created the Firewall Manager policy.</p>",
+          "shape": "AWSAccountId"
+        },
+        "Violators": {
+          "documentation": "<p>An array of resources that aren't protected by the WAF or Shield Advanced policy or that aren't in compliance with the security group policy.</p>",
+          "shape": "ComplianceViolators"
+        }
+      },
+      "type": "structure"
+    },
+    "PolicyComplianceStatus": {
+      "documentation": "<p>Indicates whether the account is compliant with the specified policy. An account is considered noncompliant if it includes resources that are not protected by the policy, for WAF and Shield Advanced policies, or that are noncompliant with the policy, for security group policies.</p>",
+      "members": {
+        "EvaluationResults": {
+          "documentation": "<p>An array of <code>EvaluationResult</code> objects.</p>",
+          "shape": "EvaluationResults"
+        },
+        "IssueInfoMap": {
+          "documentation": "<p>Details about problems with dependent services, such as WAF or Config, and the error message received that indicates the problem with the service.</p>",
+          "shape": "IssueInfoMap"
+        },
+        "LastUpdated": {
+          "documentation": "<p>Timestamp of the last update to the <code>EvaluationResult</code> objects.</p>",
+          "shape": "TimeStamp"
+        },
+        "MemberAccount": {
+          "documentation": "<p>The member account ID.</p>",
+          "shape": "AWSAccountId"
+        },
+        "PolicyId": {
+          "documentation": "<p>The ID of the Firewall Manager policy.</p>",
+          "shape": "PolicyId"
+        },
+        "PolicyName": {
+          "documentation": "<p>The name of the Firewall Manager policy.</p>",
+          "shape": "ResourceName"
+        },
+        "PolicyOwner": {
+          "documentation": "<p>The Amazon Web Services account that created the Firewall Manager policy.</p>",
+          "shape": "AWSAccountId"
+        }
+      },
+      "type": "structure"
+    },
+    "PolicyComplianceStatusList": {
+      "member": { "shape": "PolicyComplianceStatus" },
+      "type": "list"
+    },
+    "PolicyComplianceStatusType": {
+      "enum": ["COMPLIANT", "NON_COMPLIANT"],
+      "type": "string"
+    },
+    "PolicyId": {
+      "max": 36,
+      "min": 36,
+      "pattern": "^[a-z0-9A-Z-]{36}$",
+      "type": "string"
+    },
+    "PolicyOption": {
+      "documentation": "<p>Contains the Network Firewall firewall policy options to configure a centralized deployment model.</p>",
+      "members": {
+        "NetworkFirewallPolicy": {
+          "documentation": "<p>Defines the deployment model to use for the firewall policy.</p>",
+          "shape": "NetworkFirewallPolicy"
+        },
+        "ThirdPartyFirewallPolicy": {
+          "documentation": "<p>Defines the policy options for a third-party firewall policy.</p>",
+          "shape": "ThirdPartyFirewallPolicy"
+        }
+      },
+      "type": "structure"
+    },
+    "PolicySummary": {
+      "documentation": "<p>Details of the Firewall Manager policy. </p>",
+      "members": {
+        "DeleteUnusedFMManagedResources": {
+          "documentation": "<p>Indicates whether Firewall Manager should automatically remove protections from resources that leave the policy scope and clean up resources that Firewall Manager is managing for accounts when those accounts leave policy scope. For example, Firewall Manager will disassociate a Firewall Manager managed web ACL from a protected customer resource when the customer resource leaves policy scope. </p> <p>By default, Firewall Manager doesn't remove protections or delete Firewall Manager managed resources. </p> <p>This option is not available for Shield Advanced or WAF Classic policies.</p>",
+          "shape": "Boolean"
+        },
+        "PolicyArn": {
+          "documentation": "<p>The Amazon Resource Name (ARN) of the specified policy.</p>",
+          "shape": "ResourceArn"
+        },
+        "PolicyId": {
+          "documentation": "<p>The ID of the specified policy.</p>",
+          "shape": "PolicyId"
+        },
+        "PolicyName": {
+          "documentation": "<p>The name of the specified policy.</p>",
+          "shape": "ResourceName"
+        },
+        "RemediationEnabled": {
+          "documentation": "<p>Indicates if the policy should be automatically applied to new resources.</p>",
+          "shape": "Boolean"
+        },
+        "ResourceType": {
+          "documentation": "<p>The type of resource protected by or in scope of the policy. This is in the format shown in the <a href=\"https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-template-resource-type-ref.html\">Amazon Web Services Resource Types Reference</a>. For WAF and Shield Advanced, examples include <code>AWS::ElasticLoadBalancingV2::LoadBalancer</code> and <code>AWS::CloudFront::Distribution</code>. For a security group common policy, valid values are <code>AWS::EC2::NetworkInterface</code> and <code>AWS::EC2::Instance</code>. For a security group content audit policy, valid values are <code>AWS::EC2::SecurityGroup</code>, <code>AWS::EC2::NetworkInterface</code>, and <code>AWS::EC2::Instance</code>. For a security group usage audit policy, the value is <code>AWS::EC2::SecurityGroup</code>. For an Network Firewall policy or DNS Firewall policy, the value is <code>AWS::EC2::VPC</code>.</p>",
+          "shape": "ResourceType"
+        },
+        "SecurityServiceType": {
+          "documentation": "<p>The service that the policy is using to protect the resources. This specifies the type of policy that is created, either an WAF policy, a Shield Advanced policy, or a security group policy.</p>",
+          "shape": "SecurityServiceType"
+        }
+      },
+      "type": "structure"
+    },
+    "PolicySummaryList": {
+      "member": { "shape": "PolicySummary" },
+      "type": "list"
+    },
+    "PolicyUpdateToken": {
+      "max": 1024,
+      "min": 1,
+      "pattern": "^([\\p{L}\\p{Z}\\p{N}_.:/=+\\-@]*)$",
+      "type": "string"
+    },
+    "PossibleRemediationAction": {
+      "documentation": "<p>A list of remediation actions.</p>",
+      "members": {
+        "Description": {
+          "documentation": "<p>A description of the list of remediation actions.</p>",
+          "shape": "LengthBoundedString"
+        },
+        "IsDefaultAction": {
+          "documentation": "<p>Information about whether an action is taken by default.</p>",
+          "shape": "Boolean"
+        },
+        "OrderedRemediationActions": {
+          "documentation": "<p>The ordered list of remediation actions.</p>",
+          "shape": "OrderedRemediationActions"
+        }
+      },
+      "required": ["OrderedRemediationActions"],
+      "type": "structure"
+    },
+    "PossibleRemediationActionList": {
+      "member": { "shape": "PossibleRemediationAction" },
+      "type": "list"
+    },
+    "PossibleRemediationActions": {
+      "documentation": "<p>A list of possible remediation action lists. Each individual possible remediation action is a list of individual remediation actions.</p>",
+      "members": {
+        "Actions": {
+          "documentation": "<p>Information about the actions.</p>",
+          "shape": "PossibleRemediationActionList"
+        },
+        "Description": {
+          "documentation": "<p>A description of the possible remediation actions list.</p>",
+          "shape": "LengthBoundedString"
+        }
+      },
+      "type": "structure"
+    },
+    "PreviousAppsList": {
+      "key": { "shape": "PreviousListVersion" },
+      "type": "map",
+      "value": { "shape": "AppsList" }
+    },
+    "PreviousListVersion": {
+      "max": 2,
+      "min": 1,
+      "pattern": "^\\d{1,2}$",
+      "type": "string"
+    },
+    "PreviousProtocolsList": {
+      "key": { "shape": "PreviousListVersion" },
+      "type": "map",
+      "value": { "shape": "ProtocolsList" }
+    },
+    "ProtectionData": { "type": "string" },
+    "Protocol": {
+      "max": 20,
+      "min": 1,
+      "pattern": "^([\\p{L}\\p{Z}\\p{N}_.:/=+\\-@]*)$",
+      "type": "string"
+    },
+    "ProtocolsList": {
+      "member": { "shape": "Protocol" },
+      "type": "list"
+    },
+    "ProtocolsListData": {
+      "documentation": "<p>An Firewall Manager protocols list.</p>",
+      "members": {
+        "CreateTime": {
+          "documentation": "<p>The time that the Firewall Manager protocols list was created.</p>",
+          "shape": "TimeStamp"
+        },
+        "LastUpdateTime": {
+          "documentation": "<p>The time that the Firewall Manager protocols list was last updated.</p>",
+          "shape": "TimeStamp"
+        },
+        "ListId": {
+          "documentation": "<p>The ID of the Firewall Manager protocols list.</p>",
+          "shape": "ListId"
+        },
+        "ListName": {
+          "documentation": "<p>The name of the Firewall Manager protocols list.</p>",
+          "shape": "ResourceName"
+        },
+        "ListUpdateToken": {
+          "documentation": "<p>A unique identifier for each update to the list. When you update the list, the update token must match the token of the current version of the application list. You can retrieve the update token by getting the list. </p>",
+          "shape": "UpdateToken"
+        },
+        "PreviousProtocolsList": {
+          "documentation": "<p>A map of previous version numbers to their corresponding protocol arrays.</p>",
+          "shape": "PreviousProtocolsList"
+        },
+        "ProtocolsList": {
+          "documentation": "<p>An array of protocols in the Firewall Manager protocols list.</p>",
+          "shape": "ProtocolsList"
+        }
+      },
+      "required": ["ListName", "ProtocolsList"],
+      "type": "structure"
+    },
+    "ProtocolsListDataSummary": {
+      "documentation": "<p>Details of the Firewall Manager protocols list.</p>",
+      "members": {
+        "ListArn": {
+          "documentation": "<p>The Amazon Resource Name (ARN) of the specified protocols list.</p>",
+          "shape": "ResourceArn"
+        },
+        "ListId": {
+          "documentation": "<p>The ID of the specified protocols list.</p>",
+          "shape": "ListId"
+        },
+        "ListName": {
+          "documentation": "<p>The name of the specified protocols list.</p>",
+          "shape": "ResourceName"
+        },
+        "ProtocolsList": {
+          "documentation": "<p>An array of protocols in the Firewall Manager protocols list.</p>",
+          "shape": "ProtocolsList"
+        }
+      },
+      "type": "structure"
+    },
+    "ProtocolsListsData": {
+      "member": { "shape": "ProtocolsListDataSummary" },
+      "type": "list"
+    },
+    "PutAppsListRequest": {
+      "members": {
+        "AppsList": {
+          "documentation": "<p>The details of the Firewall Manager applications list to be created.</p>",
+          "shape": "AppsListData"
+        },
+        "TagList": {
+          "documentation": "<p>The tags associated with the resource.</p>",
+          "shape": "TagList"
+        }
+      },
+      "required": ["AppsList"],
+      "type": "structure"
+    },
+    "PutAppsListResponse": {
+      "members": {
+        "AppsList": {
+          "documentation": "<p>The details of the Firewall Manager applications list.</p>",
+          "shape": "AppsListData"
+        },
+        "AppsListArn": {
+          "documentation": "<p>The Amazon Resource Name (ARN) of the applications list.</p>",
+          "shape": "ResourceArn"
+        }
+      },
+      "type": "structure"
+    },
+    "PutNotificationChannelRequest": {
+      "members": {
+        "SnsRoleName": {
+          "documentation": "<p>The Amazon Resource Name (ARN) of the IAM role that allows Amazon SNS to record Firewall Manager activity. </p>",
+          "shape": "ResourceArn"
+        },
+        "SnsTopicArn": {
+          "documentation": "<p>The Amazon Resource Name (ARN) of the SNS topic that collects notifications from Firewall Manager.</p>",
+          "shape": "ResourceArn"
+        }
+      },
+      "required": ["SnsTopicArn", "SnsRoleName"],
+      "type": "structure"
+    },
+    "PutPolicyRequest": {
+      "members": {
+        "Policy": {
+          "documentation": "<p>The details of the Firewall Manager policy to be created.</p>",
+          "shape": "Policy"
+        },
+        "TagList": {
+          "documentation": "<p>The tags to add to the Amazon Web Services resource.</p>",
+          "shape": "TagList"
+        }
+      },
+      "required": ["Policy"],
+      "type": "structure"
+    },
+    "PutPolicyResponse": {
+      "members": {
+        "Policy": {
+          "documentation": "<p>The details of the Firewall Manager policy.</p>",
+          "shape": "Policy"
+        },
+        "PolicyArn": {
+          "documentation": "<p>The Amazon Resource Name (ARN) of the policy.</p>",
+          "shape": "ResourceArn"
+        }
+      },
+      "type": "structure"
+    },
+    "PutProtocolsListRequest": {
+      "members": {
+        "ProtocolsList": {
+          "documentation": "<p>The details of the Firewall Manager protocols list to be created.</p>",
+          "shape": "ProtocolsListData"
+        },
+        "TagList": {
+          "documentation": "<p>The tags associated with the resource.</p>",
+          "shape": "TagList"
+        }
+      },
+      "required": ["ProtocolsList"],
+      "type": "structure"
+    },
+    "PutProtocolsListResponse": {
+      "members": {
+        "ProtocolsList": {
+          "documentation": "<p>The details of the Firewall Manager protocols list.</p>",
+          "shape": "ProtocolsListData"
+        },
+        "ProtocolsListArn": {
+          "documentation": "<p>The Amazon Resource Name (ARN) of the protocols list.</p>",
+          "shape": "ResourceArn"
+        }
+      },
+      "type": "structure"
+    },
+    "ReferenceRule": { "type": "string" },
+    "RemediationAction": {
+      "documentation": "<p>Information about an individual action you can take to remediate a violation.</p>",
+      "members": {
+        "Description": {
+          "documentation": "<p>A description of a remediation action.</p>",
+          "shape": "LengthBoundedString"
+        },
+        "EC2AssociateRouteTableAction": {
+          "documentation": "<p>Information about the AssociateRouteTable action in the Amazon EC2 API.</p>",
+          "shape": "EC2AssociateRouteTableAction"
+        },
+        "EC2CopyRouteTableAction": {
+          "documentation": "<p>Information about the CopyRouteTable action in the Amazon EC2 API.</p>",
+          "shape": "EC2CopyRouteTableAction"
+        },
+        "EC2CreateRouteAction": {
+          "documentation": "<p>Information about the CreateRoute action in the Amazon EC2 API.</p>",
+          "shape": "EC2CreateRouteAction"
+        },
+        "EC2CreateRouteTableAction": {
+          "documentation": "<p>Information about the CreateRouteTable action in the Amazon EC2 API.</p>",
+          "shape": "EC2CreateRouteTableAction"
+        },
+        "EC2DeleteRouteAction": {
+          "documentation": "<p>Information about the DeleteRoute action in the Amazon EC2 API.</p>",
+          "shape": "EC2DeleteRouteAction"
+        },
+        "EC2ReplaceRouteAction": {
+          "documentation": "<p>Information about the ReplaceRoute action in the Amazon EC2 API.</p>",
+          "shape": "EC2ReplaceRouteAction"
+        },
+        "EC2ReplaceRouteTableAssociationAction": {
+          "documentation": "<p>Information about the ReplaceRouteTableAssociation action in the Amazon EC2 API.</p>",
+          "shape": "EC2ReplaceRouteTableAssociationAction"
+        },
+        "FMSPolicyUpdateFirewallCreationConfigAction": {
+          "documentation": "<p>The remedial action to take when updating a firewall configuration.</p>",
+          "shape": "FMSPolicyUpdateFirewallCreationConfigAction"
+        }
+      },
+      "type": "structure"
+    },
+    "RemediationActionDescription": {
+      "max": 1024,
+      "min": 0,
+      "pattern": ".*",
+      "type": "string"
+    },
+    "RemediationActionType": {
+      "enum": ["REMOVE", "MODIFY"],
+      "type": "string"
+    },
+    "RemediationActionWithOrder": {
+      "documentation": "<p>An ordered list of actions you can take to remediate a violation.</p>",
+      "members": {
+        "Order": {
+          "documentation": "<p>The order of the remediation actions in the list.</p>",
+          "shape": "BasicInteger"
+        },
+        "RemediationAction": {
+          "documentation": "<p>Information about an action you can take to remediate a violation.</p>",
+          "shape": "RemediationAction"
+        }
+      },
+      "type": "structure"
+    },
+    "ResourceArn": {
+      "max": 1024,
+      "min": 1,
+      "pattern": "^([\\p{L}\\p{Z}\\p{N}_.:/=+\\-@]*)$",
+      "type": "string"
+    },
+    "ResourceCount": {
+      "min": 0,
+      "type": "long"
+    },
+    "ResourceId": {
+      "max": 1024,
+      "min": 1,
+      "pattern": "^([\\p{L}\\p{Z}\\p{N}_.:/=+\\-@]*)$",
+      "type": "string"
+    },
+    "ResourceIdList": {
+      "member": { "shape": "ResourceId" },
+      "type": "list"
+    },
+    "ResourceName": {
+      "max": 128,
+      "min": 1,
+      "pattern": "^([\\p{L}\\p{Z}\\p{N}_.:/=+\\-@]*)$",
+      "type": "string"
+    },
+    "ResourceNotFoundException": {
+      "documentation": "<p>The specified resource was not found.</p>",
+      "exception": true,
+      "members": {
+        "Message": { "shape": "ErrorMessage" }
+      },
+      "type": "structure"
+    },
+    "ResourceTag": {
+      "documentation": "<p>The resource tags that Firewall Manager uses to determine if a particular resource should be included or excluded from the Firewall Manager policy. Tags enable you to categorize your Amazon Web Services resources in different ways, for example, by purpose, owner, or environment. Each tag consists of a key and an optional value. Firewall Manager combines the tags with \"AND\" so that, if you add more than one tag to a policy scope, a resource must have all the specified tags to be included or excluded. For more information, see <a href=\"https://docs.aws.amazon.com/awsconsolehelpdocs/latest/gsg/tag-editor.html\">Working with Tag Editor</a>.</p>",
+      "members": {
+        "Key": {
+          "documentation": "<p>The resource tag key.</p>",
+          "shape": "ResourceTagKey"
+        },
+        "Value": {
+          "documentation": "<p>The resource tag value.</p>",
+          "shape": "ResourceTagValue"
+        }
+      },
+      "required": ["Key"],
+      "type": "structure"
+    },
+    "ResourceTagKey": {
+      "max": 128,
+      "min": 1,
+      "pattern": "^([\\p{L}\\p{Z}\\p{N}_.:/=+\\-@]*)$",
+      "type": "string"
+    },
+    "ResourceTagValue": {
+      "max": 256,
+      "pattern": "^([\\p{L}\\p{Z}\\p{N}_.:/=+\\-@]*)$",
+      "type": "string"
+    },
+    "ResourceTags": {
+      "max": 8,
+      "member": { "shape": "ResourceTag" },
+      "min": 0,
+      "type": "list"
+    },
+    "ResourceType": {
+      "max": 128,
+      "min": 1,
+      "pattern": "^([\\p{L}\\p{Z}\\p{N}_.:/=+\\-@]*)$",
+      "type": "string"
+    },
+    "ResourceTypeList": {
+      "member": { "shape": "ResourceType" },
+      "type": "list"
+    },
+    "ResourceViolation": {
+      "documentation": "<p>Violation detail based on resource type.</p>",
+      "members": {
+        "AwsEc2InstanceViolation": {
+          "documentation": "<p>Violation detail for an EC2 instance.</p>",
+          "shape": "AwsEc2InstanceViolation"
+        },
+        "AwsEc2NetworkInterfaceViolation": {
+          "documentation": "<p>Violation detail for a network interface.</p>",
+          "shape": "AwsEc2NetworkInterfaceViolation"
+        },
+        "AwsVPCSecurityGroupViolation": {
+          "documentation": "<p>Violation detail for security groups.</p>",
+          "shape": "AwsVPCSecurityGroupViolation"
+        },
+        "DnsDuplicateRuleGroupViolation": {
+          "documentation": "<p>Violation detail for a DNS Firewall policy that indicates that a rule group that Firewall Manager tried to associate with a VPC is already associated with the VPC and can't be associated again. </p>",
+          "shape": "DnsDuplicateRuleGroupViolation"
+        },
+        "DnsRuleGroupLimitExceededViolation": {
+          "documentation": "<p>Violation detail for a DNS Firewall policy that indicates that the VPC reached the limit for associated DNS Firewall rule groups. Firewall Manager tried to associate another rule group with the VPC and failed. </p>",
+          "shape": "DnsRuleGroupLimitExceededViolation"
+        },
+        "DnsRuleGroupPriorityConflictViolation": {
+          "documentation": "<p>Violation detail for a DNS Firewall policy that indicates that a rule group that Firewall Manager tried to associate with a VPC has the same priority as a rule group that's already associated. </p>",
+          "shape": "DnsRuleGroupPriorityConflictViolation"
+        },
+        "FirewallSubnetIsOutOfScopeViolation": {
+          "documentation": "<p>Contains details about the firewall subnet that violates the policy scope.</p>",
+          "shape": "FirewallSubnetIsOutOfScopeViolation"
+        },
+        "FirewallSubnetMissingVPCEndpointViolation": {
+          "documentation": "<p>The violation details for a third-party firewall's VPC endpoint subnet that was deleted.</p>",
+          "shape": "FirewallSubnetMissingVPCEndpointViolation"
+        },
+        "NetworkFirewallBlackHoleRouteDetectedViolation": { "shape": "NetworkFirewallBlackHoleRouteDetectedViolation" },
+        "NetworkFirewallInternetTrafficNotInspectedViolation": {
+          "documentation": "<p>Violation detail for the subnet for which internet traffic hasn't been inspected.</p>",
+          "shape": "NetworkFirewallInternetTrafficNotInspectedViolation"
+        },
+        "NetworkFirewallInvalidRouteConfigurationViolation": {
+          "documentation": "<p>The route configuration is invalid.</p>",
+          "shape": "NetworkFirewallInvalidRouteConfigurationViolation"
+        },
+        "NetworkFirewallMissingExpectedRTViolation": {
+          "documentation": "<p>Violation detail for an Network Firewall policy that indicates that a subnet is not associated with the expected Firewall Manager managed route table. </p>",
+          "shape": "NetworkFirewallMissingExpectedRTViolation"
+        },
+        "NetworkFirewallMissingExpectedRoutesViolation": {
+          "documentation": "<p>Expected routes are missing from Network Firewall.</p>",
+          "shape": "NetworkFirewallMissingExpectedRoutesViolation"
+        },
+        "NetworkFirewallMissingFirewallViolation": {
+          "documentation": "<p>Violation detail for an Network Firewall policy that indicates that a subnet has no Firewall Manager managed firewall in its VPC. </p>",
+          "shape": "NetworkFirewallMissingFirewallViolation"
+        },
+        "NetworkFirewallMissingSubnetViolation": {
+          "documentation": "<p>Violation detail for an Network Firewall policy that indicates that an Availability Zone is missing the expected Firewall Manager managed subnet.</p>",
+          "shape": "NetworkFirewallMissingSubnetViolation"
+        },
+        "NetworkFirewallPolicyModifiedViolation": {
+          "documentation": "<p>Violation detail for an Network Firewall policy that indicates that a firewall policy in an individual account has been modified in a way that makes it noncompliant. For example, the individual account owner might have deleted a rule group, changed the priority of a stateless rule group, or changed a policy default action.</p>",
+          "shape": "NetworkFirewallPolicyModifiedViolation"
+        },
+        "NetworkFirewallUnexpectedFirewallRoutesViolation": {
+          "documentation": "<p>There's an unexpected firewall route.</p>",
+          "shape": "NetworkFirewallUnexpectedFirewallRoutesViolation"
+        },
+        "NetworkFirewallUnexpectedGatewayRoutesViolation": {
+          "documentation": "<p>There's an unexpected gateway route.</p>",
+          "shape": "NetworkFirewallUnexpectedGatewayRoutesViolation"
+        },
+        "PossibleRemediationActions": {
+          "documentation": "<p>A list of possible remediation action lists. Each individual possible remediation action is a list of individual remediation actions.</p>",
+          "shape": "PossibleRemediationActions"
+        },
+        "RouteHasOutOfScopeEndpointViolation": {
+          "documentation": "<p>Contains details about the route endpoint that violates the policy scope.</p>",
+          "shape": "RouteHasOutOfScopeEndpointViolation"
+        },
+        "ThirdPartyFirewallMissingExpectedRouteTableViolation": {
+          "documentation": "<p>The violation details for a third-party firewall that has the Firewall Manager managed route table that was associated with the third-party firewall has been deleted.</p>",
+          "shape": "ThirdPartyFirewallMissingExpectedRouteTableViolation"
+        },
+        "ThirdPartyFirewallMissingFirewallViolation": {
+          "documentation": "<p>The violation details for a third-party firewall that's been deleted.</p>",
+          "shape": "ThirdPartyFirewallMissingFirewallViolation"
+        },
+        "ThirdPartyFirewallMissingSubnetViolation": {
+          "documentation": "<p>The violation details for a third-party firewall's subnet that's been deleted.</p>",
+          "shape": "ThirdPartyFirewallMissingSubnetViolation"
+        }
+      },
+      "type": "structure"
+    },
+    "ResourceViolations": {
+      "member": { "shape": "ResourceViolation" },
+      "type": "list"
+    },
+    "Route": {
+      "documentation": "<p>Describes a route in a route table.</p>",
+      "members": {
+        "Destination": {
+          "documentation": "<p>The destination of the route.</p>",
+          "shape": "LengthBoundedString"
+        },
+        "DestinationType": {
+          "documentation": "<p>The type of destination for the route.</p>",
+          "shape": "DestinationType"
+        },
+        "Target": {
+          "documentation": "<p>The route's target.</p>",
+          "shape": "LengthBoundedString"
+        },
+        "TargetType": {
+          "documentation": "<p>The type of target for the route.</p>",
+          "shape": "TargetType"
+        }
+      },
+      "type": "structure"
+    },
+    "RouteHasOutOfScopeEndpointViolation": {
+      "documentation": "<p>Contains details about the route endpoint that violates the policy scope.</p>",
+      "members": {
+        "CurrentFirewallSubnetRouteTable": {
+          "documentation": "<p>The route table associated with the current firewall subnet.</p>",
+          "shape": "ResourceId"
+        },
+        "CurrentInternetGatewayRouteTable": {
+          "documentation": "<p>The current route table associated with the Internet Gateway.</p>",
+          "shape": "ResourceId"
+        },
+        "FirewallSubnetId": {
+          "documentation": "<p>The ID of the firewall subnet.</p>",
+          "shape": "ResourceId"
+        },
+        "FirewallSubnetRoutes": {
+          "documentation": "<p>The list of firewall subnet routes.</p>",
+          "shape": "Routes"
+        },
+        "InternetGatewayId": {
+          "documentation": "<p>The ID of the Internet Gateway.</p>",
+          "shape": "ResourceId"
+        },
+        "InternetGatewayRoutes": {
+          "documentation": "<p>The routes in the route table associated with the Internet Gateway.</p>",
+          "shape": "Routes"
+        },
+        "RouteTableId": {
+          "documentation": "<p>The ID of the route table.</p>",
+          "shape": "ResourceId"
+        },
+        "SubnetAvailabilityZone": {
+          "documentation": "<p>The subnet's Availability Zone.</p>",
+          "shape": "LengthBoundedString"
+        },
+        "SubnetAvailabilityZoneId": {
+          "documentation": "<p>The ID of the subnet's Availability Zone.</p>",
+          "shape": "LengthBoundedString"
+        },
+        "SubnetId": {
+          "documentation": "<p>The ID of the subnet associated with the route that violates the policy scope.</p>",
+          "shape": "ResourceId"
+        },
+        "ViolatingRoutes": {
+          "documentation": "<p>The list of routes that violate the route table.</p>",
+          "shape": "Routes"
+        },
+        "VpcId": {
+          "documentation": "<p>The VPC ID of the route that violates the policy scope.</p>",
+          "shape": "ResourceId"
+        }
+      },
+      "type": "structure"
+    },
+    "Routes": {
+      "member": { "shape": "Route" },
+      "type": "list"
+    },
+    "SecurityGroupRemediationAction": {
+      "documentation": "<p>Remediation option for the rule specified in the <code>ViolationTarget</code>.</p>",
+      "members": {
+        "Description": {
+          "documentation": "<p>Brief description of the action that will be performed.</p>",
+          "shape": "RemediationActionDescription"
+        },
+        "IsDefaultAction": {
+          "documentation": "<p>Indicates if the current action is the default action.</p>",
+          "shape": "Boolean"
+        },
+        "RemediationActionType": {
+          "documentation": "<p>The remediation action that will be performed.</p>",
+          "shape": "RemediationActionType"
+        },
+        "RemediationResult": {
+          "documentation": "<p>The final state of the rule specified in the <code>ViolationTarget</code> after it is remediated.</p>",
+          "shape": "SecurityGroupRuleDescription"
+        }
+      },
+      "type": "structure"
+    },
+    "SecurityGroupRemediationActions": {
+      "member": { "shape": "SecurityGroupRemediationAction" },
+      "type": "list"
+    },
+    "SecurityGroupRuleDescription": {
+      "documentation": "<p>Describes a set of permissions for a security group rule.</p>",
+      "members": {
+        "FromPort": {
+          "documentation": "<p>The start of the port range for the TCP and UDP protocols, or an ICMP/ICMPv6 type number. A value of <code>-1</code> indicates all ICMP/ICMPv6 types.</p>",
+          "shape": "IPPortNumber"
+        },
+        "IPV4Range": {
+          "documentation": "<p>The IPv4 ranges for the security group rule.</p>",
+          "shape": "CIDR"
+        },
+        "IPV6Range": {
+          "documentation": "<p>The IPv6 ranges for the security group rule.</p>",
+          "shape": "CIDR"
+        },
+        "PrefixListId": {
+          "documentation": "<p>The ID of the prefix list for the security group rule.</p>",
+          "shape": "ResourceId"
+        },
+        "Protocol": {
+          "documentation": "<p>The IP protocol name (<code>tcp</code>, <code>udp</code>, <code>icmp</code>, <code>icmpv6</code>) or number.</p>",
+          "shape": "LengthBoundedString"
+        },
+        "ToPort": {
+          "documentation": "<p>The end of the port range for the TCP and UDP protocols, or an ICMP/ICMPv6 code. A value of <code>-1</code> indicates all ICMP/ICMPv6 codes.</p>",
+          "shape": "IPPortNumber"
+        }
+      },
+      "type": "structure"
+    },
+    "SecurityServicePolicyData": {
+      "documentation": "<p>Details about the security service that is being used to protect the resources.</p>",
+      "members": {
+        "ManagedServiceData": {
+          "documentation": "<p>Details about the service that are specific to the service type, in JSON format. </p> <ul> <li> <p>Example: <code>DNS_FIREWALL</code> </p> <p> <code>\"{\\\"type\\\":\\\"DNS_FIREWALL\\\",\\\"preProcessRuleGroups\\\":[{\\\"ruleGroupId\\\":\\\"rslvr-frg-1\\\",\\\"priority\\\":10}],\\\"postProcessRuleGroups\\\":[{\\\"ruleGroupId\\\":\\\"rslvr-frg-2\\\",\\\"priority\\\":9911}]}\"</code> </p> <note> <p>Valid values for <code>preProcessRuleGroups</code> are between 1 and 99. Valid values for <code>postProcessRuleGroups</code> are between 9901 and 10000.</p> </note> </li> <li> <p>Example: <code>DNS_FIREWALL</code> </p> <p> <code>\"{\\\"type\\\":\\\"DNS_FIREWALL\\\",\\\"preProcessRuleGroups\\\":[{\\\"ruleGroupId\\\":\\\"rslvr-frg-1\\\",\\\"priority\\\":10}],\\\"postProcessRuleGroups\\\":[{\\\"ruleGroupId\\\":\\\"rslvr-frg-2\\\",\\\"priority\\\":9911}]}\"</code> </p> <note> <p>Valid values for <code>preProcessRuleGroups</code> are between 1 and 99. Valid values for <code>postProcessRuleGroups</code> are between 9901 and 10000.</p> </note> </li> <li> <p>Example: <code>NETWORK_FIREWALL</code> - Distributed deployment model with automatic Availability Zone configuration. With automatic Availbility Zone configuration, Firewall Manager chooses which Availability Zones to create the endpoints in. </p> <p> <code>\"{ \\\"type\\\": \\\"NETWORK_FIREWALL\\\", \\\"networkFirewallStatelessRuleGroupReferences\\\": [ { \\\"resourceARN\\\": \\\"arn:aws:network-firewall:us-east-1:123456789011:stateless-rulegroup/test\\\", \\\"priority\\\": 1 } ], \\\"networkFirewallStatelessDefaultActions\\\": [ \\\"aws:forward_to_sfe\\\", \\\"customActionName\\\" ], \\\"networkFirewallStatelessFragmentDefaultActions\\\": [ \\\"aws:forward_to_sfe\\\", \\\"customActionName\\\" ], \\\"networkFirewallStatelessCustomActions\\\": [ { \\\"actionName\\\": \\\"customActionName\\\", \\\"actionDefinition\\\": { \\\"publishMetricAction\\\": { \\\"dimensions\\\": [ { \\\"value\\\": \\\"metricdimensionvalue\\\" } ] } } } ], \\\"networkFirewallStatefulRuleGroupReferences\\\": [ { \\\"resourceARN\\\": \\\"arn:aws:network-firewall:us-east-1:123456789011:stateful-rulegroup/test\\\" } ], \\\"networkFirewallOrchestrationConfig\\\": { \\\"singleFirewallEndpointPerVPC\\\": false, \\\"allowedIPV4CidrList\\\": [ \\\"10.0.0.0/28\\\", \\\"192.168.0.0/28\\\" ], \\\"routeManagementAction\\\": \\\"OFF\\\" }, \\\"networkFirewallLoggingConfiguration\\\": { \\\"logDestinationConfigs\\\": [ { \\\"logDestinationType\\\": \\\"S3\\\", \\\"logType\\\": \\\"ALERT\\\", \\\"logDestination\\\": { \\\"bucketName\\\": \\\"s3-bucket-name\\\" } }, { \\\"logDestinationType\\\": \\\"S3\\\", \\\"logType\\\": \\\"FLOW\\\", \\\"logDestination\\\": { \\\"bucketName\\\": \\\"s3-bucket-name\\\" } } ], \\\"overrideExistingConfig\\\": true } }\"</code> </p> <p> To use the distributed deployment model, you must set <a href=\"https://docs.aws.amazon.com/fms/2018-01-01/APIReference/API_PolicyOption.html\">PolicyOption</a> to <code>NULL</code>. </p> </li> <li> <p>Example: <code>NETWORK_FIREWALL</code> - Distributed deployment model with automatic Availability Zone configuration, and route management. </p> <p> <code>\"{ \\\"type\\\": \\\"NETWORK_FIREWALL\\\", \\\"networkFirewallStatelessRuleGroupReferences\\\": [ { \\\"resourceARN\\\": \\\"arn:aws:network-firewall:us-east-1:123456789011:stateless-rulegroup/test\\\", \\\"priority\\\": 1 } ], \\\"networkFirewallStatelessDefaultActions\\\": [ \\\"aws:forward_to_sfe\\\", \\\"customActionName\\\" ], \\\"networkFirewallStatelessFragmentDefaultActions\\\": [ \\\"aws:forward_to_sfe\\\", \\\"customActionName\\\" ], \\\"networkFirewallStatelessCustomActions\\\": [ { \\\"actionName\\\": \\\"customActionName\\\", \\\"actionDefinition\\\": { \\\"publishMetricAction\\\": { \\\"dimensions\\\": [ { \\\"value\\\": \\\"metricdimensionvalue\\\" } ] } } } ], \\\"networkFirewallStatefulRuleGroupReferences\\\": [ { \\\"resourceARN\\\": \\\"arn:aws:network-firewall:us-east-1:123456789011:stateful-rulegroup/test\\\" } ], \\\"networkFirewallOrchestrationConfig\\\": { \\\"singleFirewallEndpointPerVPC\\\": false, \\\"allowedIPV4CidrList\\\": [ \\\"10.0.0.0/28\\\", \\\"192.168.0.0/28\\\" ], \\\"routeManagementAction\\\": \\\"MONITOR\\\", \\\"routeManagementTargetTypes\\\": [ \\\"InternetGateway\\\" ] }, \\\"networkFirewallLoggingConfiguration\\\": { \\\"logDestinationConfigs\\\": [ { \\\"logDestinationType\\\": \\\"S3\\\", \\\"logType\\\": \\\"ALERT\\\", \\\"logDestination\\\": { \\\"bucketName\\\": \\\"s3-bucket-name\\\" } }, { \\\"logDestinationType\\\": \\\"S3\\\", \\\"logType\\\": \\\"FLOW\\\", \\\"logDestination\\\": { \\\"bucketName\\\": \\\"s3-bucket-name\\\" } } ], \\\"overrideExistingConfig\\\": true } }\"</code> </p> </li> <li> <p>Example: <code>NETWORK_FIREWALL</code> - Distributed deployment model with custom Availability Zone configuration. With custom Availability Zone configuration, you define which specific Availability Zones to create endpoints in by configuring <code>firewallCreationConfig</code>. </p> <p> <code>\"{ \\\"type\\\":\\\"NETWORK_FIREWALL\\\",\\\"networkFirewallStatelessRuleGroupReferences\\\":[{\\\"resourceARN\\\":\\\"arn:aws:network-firewall:us-east-1:123456789011:stateless-rulegroup/test\\\",\\\"priority\\\":1}], \\\"networkFirewallStatelessDefaultActions\\\":[ \\\"aws:forward_to_sfe\\\", \\\"customActionName\\\" ], \\\"networkFirewallStatelessFragmentDefaultActions\\\":[ \\\"aws:forward_to_sfe\\\", \\\"fragmentcustomactionname\\\" ], \\\"networkFirewallStatelessCustomActions\\\":[ { \\\"actionName\\\":\\\"customActionName\\\", \\\"actionDefinition\\\":{ \\\"publishMetricAction\\\":{ \\\"dimensions\\\":[ { \\\"value\\\":\\\"metricdimensionvalue\\\" } ] } } }, { \\\"actionName\\\":\\\"fragmentcustomactionname\\\", \\\"actionDefinition\\\":{ \\\"publishMetricAction\\\":{ \\\"dimensions\\\":[ { \\\"value\\\":\\\"fragmentmetricdimensionvalue\\\" } ] } } } ], \\\"networkFirewallStatefulRuleGroupReferences\\\":[ { \\\"resourceARN\\\":\\\"arn:aws:network-firewall:us-east-1:123456789011:stateful-rulegroup/test\\\" } ], \\\"networkFirewallOrchestrationConfig\\\":{ \\\"firewallCreationConfig\\\":{ \\\"endpointLocation\\\":{ \\\"availabilityZoneConfigList\\\":[ { \\\"availabilityZoneId\\\":null, \\\"availabilityZoneName\\\":\\\"us-east-1a\\\", \\\"allowedIPV4CidrList\\\":[ \\\"10.0.0.0/28\\\" ] }, { ¯\\\"availabilityZoneId\\\":null, \\\"availabilityZoneName\\\":\\\"us-east-1b\\\", \\\"allowedIPV4CidrList\\\":[ \\\"10.0.0.0/28\\\" ] } ] } }, \\\"singleFirewallEndpointPerVPC\\\":false, \\\"allowedIPV4CidrList\\\":null, \\\"routeManagementAction\\\":\\\"OFF\\\", \\\"networkFirewallLoggingConfiguration\\\":{ \\\"logDestinationConfigs\\\":[ { \\\"logDestinationType\\\":\\\"S3\\\", \\\"logType\\\":\\\"ALERT\\\", \\\"logDestination\\\":{ \\\"bucketName\\\":\\\"s3-bucket-name\\\" } }, { \\\"logDestinationType\\\":\\\"S3\\\", \\\"logType\\\":\\\"FLOW\\\", \\\"logDestination\\\":{ \\\"bucketName\\\":\\\"s3-bucket-name\\\" } } ], \\\"overrideExistingConfig\\\":boolean } }\"</code> </p> </li> <li> <p>Example: <code>NETWORK_FIREWALL</code> - Distributed deployment model with custom Availability Zone configuration, and route management. </p> <p> <code>\"{ \\\"type\\\":\\\"NETWORK_FIREWALL\\\",\\\"networkFirewallStatelessRuleGroupReferences\\\":[{\\\"resourceARN\\\":\\\"arn:aws:network-firewall:us-east-1:123456789011:stateless-rulegroup/test\\\",\\\"priority\\\":1}], \\\"networkFirewallStatelessDefaultActions\\\":[ \\\"aws:forward_to_sfe\\\", \\\"customActionName\\\" ], \\\"networkFirewallStatelessFragmentDefaultActions\\\":[ \\\"aws:forward_to_sfe\\\", \\\"fragmentcustomactionname\\\" ], \\\"networkFirewallStatelessCustomActions\\\":[ { \\\"actionName\\\":\\\"customActionName\\\", \\\"actionDefinition\\\":{ \\\"publishMetricAction\\\":{ \\\"dimensions\\\":[ { \\\"value\\\":\\\"metricdimensionvalue\\\" } ] } } }, { \\\"actionName\\\":\\\"fragmentcustomactionname\\\", \\\"actionDefinition\\\":{ \\\"publishMetricAction\\\":{ \\\"dimensions\\\":[ { \\\"value\\\":\\\"fragmentmetricdimensionvalue\\\" } ] } } } ], \\\"networkFirewallStatefulRuleGroupReferences\\\":[ { \\\"resourceARN\\\":\\\"arn:aws:network-firewall:us-east-1:123456789011:stateful-rulegroup/test\\\" } ], \\\"networkFirewallOrchestrationConfig\\\":{ \\\"firewallCreationConfig\\\":{ \\\"endpointLocation\\\":{ \\\"availabilityZoneConfigList\\\":[ { \\\"availabilityZoneId\\\":null, \\\"availabilityZoneName\\\":\\\"us-east-1a\\\", \\\"allowedIPV4CidrList\\\":[ \\\"10.0.0.0/28\\\" ] }, { ¯\\\"availabilityZoneId\\\":null, \\\"availabilityZoneName\\\":\\\"us-east-1b\\\", \\\"allowedIPV4CidrList\\\":[ \\\"10.0.0.0/28\\\" ] } ] } }, \\\"singleFirewallEndpointPerVPC\\\":false, \\\"allowedIPV4CidrList\\\":null, \\\"routeManagementAction\\\":\\\"MONITOR\\\", \\\"routeManagementTargetTypes\\\":[ \\\"InternetGateway\\\" ], \\\"routeManagementConfig\\\":{ \\\"allowCrossAZTrafficIfNoEndpoint\\\":true } }, \\\"networkFirewallLoggingConfiguration\\\":{ \\\"logDestinationConfigs\\\":[ { \\\"logDestinationType\\\":\\\"S3\\\", \\\"logType\\\":\\\"ALERT\\\", \\\"logDestination\\\":{ \\\"bucketName\\\":\\\"s3-bucket-name\\\" } }, { \\\"logDestinationType\\\":\\\"S3\\\", \\\"logType\\\":\\\"FLOW\\\", \\\"logDestination\\\":{ \\\"bucketName\\\":\\\"s3-bucket-name\\\" } } ], \\\"overrideExistingConfig\\\":boolean } }\"</code> </p> </li> <li> <p>Example: <code>PARTNER_FIREWALL</code> for Firewall Manager</p> <p> <code>\"{\\\"type\\\":\\\"THIRD_PARTY_FIREWALL\\\",\\\"thirdPartyrFirewall\\\":\\\"PALO_ALTO_NETWORKS_CLOUD_NGFW\\\",\\\"thirdPartyFirewallConfig\\\":{\\\"thirdPartyFirewallPolicyList\\\":[\\\"global-123456789012-1\\\"],\\\"networkFirewallLoggingConfiguration\\\":null},\\\"firewallDeploymentModel\\\":{\\\"distributedFirewallDeploymentModel\\\":{\\\"distributedFirewallOrchestrationConfig\\\":{\\\"firewallCreationConfig\\\":{\\\"endpointLocation\\\":{\\\"availabilityZoneConfigList\\\":[{\\\"availabilityZoneId\\\":null,\\\"availabilityZoneName\\\":\\\"us-east-1a\\\",\\\"allowedIPV4CidrList\\\":[\\\"10.0.1.0/28\\\"]}]}},\\\"allowedIPV4CidrList\\\":null},\\\"distributedRouteManagementConfig\\\":null},\\\"centralizedFirewallDeploymentModel\\\":null}}\"\"</code> </p> </li> <li> <p>Specification for <code>SHIELD_ADVANCED</code> for Amazon CloudFront distributions </p> <p> <code>\"{\\\"type\\\":\\\"SHIELD_ADVANCED\\\",\\\"automaticResponseConfiguration\\\": {\\\"automaticResponseStatus\\\":\\\"ENABLED|IGNORED|DISABLED\\\", \\\"automaticResponseAction\\\":\\\"BLOCK|COUNT\\\"}, \\\"overrideCustomerWebaclClassic\\\":true|false}\"</code> </p> <p>For example: <code>\"{\\\"type\\\":\\\"SHIELD_ADVANCED\\\",\\\"automaticResponseConfiguration\\\": {\\\"automaticResponseStatus\\\":\\\"ENABLED\\\", \\\"automaticResponseAction\\\":\\\"COUNT\\\"}}\"</code> </p> <p>The default value for <code>automaticResponseStatus</code> is <code>IGNORED</code>. The value for <code>automaticResponseAction</code> is only required when <code>automaticResponseStatus</code> is set to <code>ENABLED</code>. The default value for <code>overrideCustomerWebaclClassic</code> is <code>false</code>.</p> <p>For other resource types that you can protect with a Shield Advanced policy, this <code>ManagedServiceData</code> configuration is an empty string.</p> </li> <li> <p>Example: <code>WAFV2</code> </p> <p> <code>\"{\\\"type\\\":\\\"WAFV2\\\",\\\"preProcessRuleGroups\\\":[{\\\"ruleGroupArn\\\":null,\\\"overrideAction\\\":{\\\"type\\\":\\\"NONE\\\"},\\\"managedRuleGroupIdentifier\\\":{\\\"version\\\":null,\\\"vendorName\\\":\\\"AWS\\\",\\\"managedRuleGroupName\\\":\\\"AWSManagedRulesAmazonIpReputationList\\\"},\\\"ruleGroupType\\\":\\\"ManagedRuleGroup\\\",\\\"excludeRules\\\":[{\\\"name\\\":\\\"NoUserAgent_HEADER\\\"}]}],\\\"postProcessRuleGroups\\\":[],\\\"defaultAction\\\":{\\\"type\\\":\\\"ALLOW\\\"},\\\"overrideCustomerWebACLAssociation\\\":false,\\\"loggingConfiguration\\\":{\\\"logDestinationConfigs\\\":[\\\"arn:aws:firehose:us-west-2:12345678912:deliverystream/aws-waf-logs-fms-admin-destination\\\"],\\\"redactedFields\\\":[{\\\"redactedFieldType\\\":\\\"SingleHeader\\\",\\\"redactedFieldValue\\\":\\\"Cookies\\\"},{\\\"redactedFieldType\\\":\\\"Method\\\"}]}}\"</code> </p> <p>In the <code>loggingConfiguration</code>, you can specify one <code>logDestinationConfigs</code>, you can optionally provide up to 20 <code>redactedFields</code>, and the <code>RedactedFieldType</code> must be one of <code>URI</code>, <code>QUERY_STRING</code>, <code>HEADER</code>, or <code>METHOD</code>.</p> </li> <li> <p>Example: <code>WAF Classic</code> </p> <p> <code>\"{\\\"type\\\": \\\"WAF\\\", \\\"ruleGroups\\\": [{\\\"id\\\":\\\"12345678-1bcd-9012-efga-0987654321ab\\\", \\\"overrideAction\\\" : {\\\"type\\\": \\\"COUNT\\\"}}], \\\"defaultAction\\\": {\\\"type\\\": \\\"BLOCK\\\"}}\"</code> </p> </li> <li> <p>Example: <code>WAFV2</code> - Firewall Manager support for WAF managed rule group versioning </p> <p> <code>\"{\\\"type\\\":\\\"WAFV2\\\",\\\"preProcessRuleGroups\\\":[{\\\"ruleGroupArn\\\":null,\\\"overrideAction\\\":{\\\"type\\\":\\\"NONE\\\"},\\\"managedRuleGroupIdentifier\\\":{\\\"versionEnabled\\\":true,\\\"version\\\":\\\"Version_2.0\\\",\\\"vendorName\\\":\\\"AWS\\\",\\\"managedRuleGroupName\\\":\\\"AWSManagedRulesCommonRuleSet\\\"},\\\"ruleGroupType\\\":\\\"ManagedRuleGroup\\\",\\\"excludeRules\\\":[{\\\"name\\\":\\\"NoUserAgent_HEADER\\\"}]}],\\\"postProcessRuleGroups\\\":[],\\\"defaultAction\\\":{\\\"type\\\":\\\"ALLOW\\\"},\\\"overrideCustomerWebACLAssociation\\\":false,\\\"loggingConfiguration\\\":{\\\"logDestinationConfigs\\\":[\\\"arn:aws:firehose:us-west-2:12345678912:deliverystream/aws-waf-logs-fms-admin-destination\\\"],\\\"redactedFields\\\":[{\\\"redactedFieldType\\\":\\\"SingleHeader\\\",\\\"redactedFieldValue\\\":\\\"Cookies\\\"},{\\\"redactedFieldType\\\":\\\"Method\\\"}]}}\"</code> </p> <p> To use a specific version of a WAF managed rule group in your Firewall Manager policy, you must set <code>versionEnabled</code> to <code>true</code>, and set <code>version</code> to the version you'd like to use. If you don't set <code>versionEnabled</code> to <code>true</code>, or if you omit <code>versionEnabled</code>, then Firewall Manager uses the default version of the WAF managed rule group. </p> </li> <li> <p>Example: <code>SECURITY_GROUPS_COMMON</code> </p> <p> <code>\"{\\\"type\\\":\\\"SECURITY_GROUPS_COMMON\\\",\\\"revertManualSecurityGroupChanges\\\":false,\\\"exclusiveResourceSecurityGroupManagement\\\":false, \\\"applyToAllEC2InstanceENIs\\\":false,\\\"securityGroups\\\":[{\\\"id\\\":\\\" sg-000e55995d61a06bd\\\"}]}\"</code> </p> </li> <li> <p>Example: Shared VPCs. Apply the preceding policy to resources in shared VPCs as well as to those in VPCs that the account owns </p> <p> <code>\"{\\\"type\\\":\\\"SECURITY_GROUPS_COMMON\\\",\\\"revertManualSecurityGroupChanges\\\":false,\\\"exclusiveResourceSecurityGroupManagement\\\":false, \\\"applyToAllEC2InstanceENIs\\\":false,\\\"includeSharedVPC\\\":true,\\\"securityGroups\\\":[{\\\"id\\\":\\\" sg-000e55995d61a06bd\\\"}]}\"</code> </p> </li> <li> <p>Example: <code>SECURITY_GROUPS_CONTENT_AUDIT</code> </p> <p> <code>\"{\\\"type\\\":\\\"SECURITY_GROUPS_CONTENT_AUDIT\\\",\\\"securityGroups\\\":[{\\\"id\\\":\\\"sg-000e55995d61a06bd\\\"}],\\\"securityGroupAction\\\":{\\\"type\\\":\\\"ALLOW\\\"}}\"</code> </p> <p>The security group action for content audit can be <code>ALLOW</code> or <code>DENY</code>. For <code>ALLOW</code>, all in-scope security group rules must be within the allowed range of the policy's security group rules. For <code>DENY</code>, all in-scope security group rules must not contain a value or a range that matches a rule value or range in the policy security group.</p> </li> <li> <p>Example: <code>SECURITY_GROUPS_USAGE_AUDIT</code> </p> <p> <code>\"{\\\"type\\\":\\\"SECURITY_GROUPS_USAGE_AUDIT\\\",\\\"deleteUnusedSecurityGroups\\\":true,\\\"coalesceRedundantSecurityGroups\\\":true}\"</code> </p> </li> </ul>",
+          "shape": "ManagedServiceData"
+        },
+        "PolicyOption": {
+          "documentation": "<p>Contains the Network Firewall firewall policy options to configure a centralized deployment model.</p>",
+          "shape": "PolicyOption"
+        },
+        "Type": {
+          "documentation": "<p>The service that the policy is using to protect the resources. This specifies the type of policy that is created, either an WAF policy, a Shield Advanced policy, or a security group policy. For security group policies, Firewall Manager supports one security group for each common policy and for each content audit policy. This is an adjustable limit that you can increase by contacting Amazon Web Services Support.</p>",
+          "shape": "SecurityServiceType"
+        }
+      },
+      "required": ["Type"],
+      "type": "structure"
+    },
+    "SecurityServiceType": {
+      "enum": [
+        "WAF",
+        "WAFV2",
+        "SHIELD_ADVANCED",
+        "SECURITY_GROUPS_COMMON",
+        "SECURITY_GROUPS_CONTENT_AUDIT",
+        "SECURITY_GROUPS_USAGE_AUDIT",
+        "NETWORK_FIREWALL",
+        "DNS_FIREWALL",
+        "THIRD_PARTY_FIREWALL"
+      ],
+      "type": "string"
+    },
+    "StatefulRuleGroup": {
+      "documentation": "<p>Network Firewall stateful rule group, used in a <a>NetworkFirewallPolicyDescription</a>. </p>",
+      "members": {
+        "ResourceId": {
+          "documentation": "<p>The resource ID of the rule group.</p>",
+          "shape": "ResourceId"
+        },
+        "RuleGroupName": {
+          "documentation": "<p>The name of the rule group.</p>",
+          "shape": "NetworkFirewallResourceName"
+        }
+      },
+      "type": "structure"
+    },
+    "StatefulRuleGroupList": {
+      "member": { "shape": "StatefulRuleGroup" },
+      "type": "list"
+    },
+    "StatelessRuleGroup": {
+      "documentation": "<p>Network Firewall stateless rule group, used in a <a>NetworkFirewallPolicyDescription</a>. </p>",
+      "members": {
+        "Priority": {
+          "documentation": "<p>The priority of the rule group. Network Firewall evaluates the stateless rule groups in a firewall policy starting from the lowest priority setting. </p>",
+          "shape": "StatelessRuleGroupPriority"
+        },
+        "ResourceId": {
+          "documentation": "<p>The resource ID of the rule group.</p>",
+          "shape": "ResourceId"
+        },
+        "RuleGroupName": {
+          "documentation": "<p>The name of the rule group.</p>",
+          "shape": "NetworkFirewallResourceName"
+        }
+      },
+      "type": "structure"
+    },
+    "StatelessRuleGroupList": {
+      "member": { "shape": "StatelessRuleGroup" },
+      "type": "list"
+    },
+    "StatelessRuleGroupPriority": {
+      "max": 65535,
+      "min": 1,
+      "type": "integer"
+    },
+    "Tag": {
+      "documentation": "<p>A collection of key:value pairs associated with an Amazon Web Services resource. The key:value pair can be anything you define. Typically, the tag key represents a category (such as \"environment\") and the tag value represents a specific value within that category (such as \"test,\" \"development,\" or \"production\"). You can add up to 50 tags to each Amazon Web Services resource. </p>",
+      "members": {
+        "Key": {
+          "documentation": "<p>Part of the key:value pair that defines a tag. You can use a tag key to describe a category of information, such as \"customer.\" Tag keys are case-sensitive.</p>",
+          "shape": "TagKey"
+        },
+        "Value": {
+          "documentation": "<p>Part of the key:value pair that defines a tag. You can use a tag value to describe a specific value within a category, such as \"companyA\" or \"companyB.\" Tag values are case-sensitive. </p>",
+          "shape": "TagValue"
+        }
+      },
+      "required": ["Key", "Value"],
+      "type": "structure"
+    },
+    "TagKey": {
+      "max": 128,
+      "min": 1,
+      "pattern": "^([\\p{L}\\p{Z}\\p{N}_.:/=+\\-@]*)$",
+      "type": "string"
+    },
+    "TagKeyList": {
+      "max": 200,
+      "member": { "shape": "TagKey" },
+      "min": 0,
+      "type": "list"
+    },
+    "TagList": {
+      "max": 200,
+      "member": { "shape": "Tag" },
+      "min": 0,
+      "type": "list"
+    },
+    "TagResourceRequest": {
+      "members": {
+        "ResourceArn": {
+          "documentation": "<p>The Amazon Resource Name (ARN) of the resource to return tags for. The Firewall Manager resources that support tagging are policies, applications lists, and protocols lists. </p>",
+          "shape": "ResourceArn"
+        },
+        "TagList": {
+          "documentation": "<p>The tags to add to the resource.</p>",
+          "shape": "TagList"
+        }
+      },
+      "required": ["ResourceArn", "TagList"],
+      "type": "structure"
+    },
+    "TagResourceResponse": {
+      "members": {},
+      "type": "structure"
+    },
+    "TagValue": {
+      "max": 256,
+      "min": 0,
+      "pattern": "^([\\p{L}\\p{Z}\\p{N}_.:/=+\\-@]*)$",
+      "type": "string"
+    },
+    "TargetType": {
+      "enum": [
+        "GATEWAY",
+        "CARRIER_GATEWAY",
+        "INSTANCE",
+        "LOCAL_GATEWAY",
+        "NAT_GATEWAY",
+        "NETWORK_INTERFACE",
+        "VPC_ENDPOINT",
+        "VPC_PEERING_CONNECTION",
+        "EGRESS_ONLY_INTERNET_GATEWAY",
+        "TRANSIT_GATEWAY"
+      ],
+      "type": "string"
+    },
+    "TargetViolationReason": {
+      "max": 256,
+      "min": 0,
+      "pattern": "\\w+",
+      "type": "string"
+    },
+    "TargetViolationReasons": {
+      "member": { "shape": "TargetViolationReason" },
+      "type": "list"
+    },
+    "ThirdPartyFirewall": {
+      "enum": ["PALO_ALTO_NETWORKS_CLOUD_NGFW"],
+      "type": "string"
+    },
+    "ThirdPartyFirewallAssociationStatus": {
+      "enum": ["ONBOARDING", "ONBOARD_COMPLETE", "OFFBOARDING", "OFFBOARD_COMPLETE", "NOT_EXIST"],
+      "type": "string"
+    },
+    "ThirdPartyFirewallFirewallPolicies": {
+      "member": { "shape": "ThirdPartyFirewallFirewallPolicy" },
+      "type": "list"
+    },
+    "ThirdPartyFirewallFirewallPolicy": {
+      "documentation": "<p>Configures the firewall policy deployment model for a third-party firewall. The deployment model can either be distributed or centralized.</p>",
+      "members": {
+        "FirewallPolicyId": {
+          "documentation": "<p>The ID of the specified firewall policy.</p>",
+          "shape": "FirewallPolicyId"
+        },
+        "FirewallPolicyName": {
+          "documentation": "<p>The name of the specified firewall policy.</p>",
+          "shape": "FirewallPolicyName"
+        }
+      },
+      "type": "structure"
+    },
+    "ThirdPartyFirewallMissingExpectedRouteTableViolation": {
+      "documentation": "<p>The violation details for a third-party firewall that's not associated with an Firewall Manager managed route table.</p>",
+      "members": {
+        "AvailabilityZone": {
+          "documentation": "<p>The Availability Zone of the firewall subnet that's causing the violation.</p>",
+          "shape": "LengthBoundedString"
+        },
+        "CurrentRouteTable": {
+          "documentation": "<p>The resource ID of the current route table that's associated with the subnet, if one is available.</p>",
+          "shape": "ResourceId"
+        },
+        "ExpectedRouteTable": {
+          "documentation": "<p>The resource ID of the route table that should be associated with the subnet.</p>",
+          "shape": "ResourceId"
+        },
+        "VPC": {
+          "documentation": "<p>The resource ID of the VPC associated with a fireawll subnet that's causing the violation.</p>",
+          "shape": "ResourceId"
+        },
+        "ViolationTarget": {
+          "documentation": "<p>The ID of the third-party firewall or VPC resource that's causing the violation.</p>",
+          "shape": "ViolationTarget"
+        }
+      },
+      "type": "structure"
+    },
+    "ThirdPartyFirewallMissingFirewallViolation": {
+      "documentation": "<p>The violation details about a third-party firewall's subnet that doesn't have a Firewall Manager managed firewall in its VPC.</p>",
+      "members": {
+        "AvailabilityZone": {
+          "documentation": "<p>The Availability Zone of the third-party firewall that's causing the violation.</p>",
+          "shape": "LengthBoundedString"
+        },
+        "TargetViolationReason": {
+          "documentation": "<p>The reason the resource is causing this violation, if a reason is available.</p>",
+          "shape": "TargetViolationReason"
+        },
+        "VPC": {
+          "documentation": "<p>The resource ID of the VPC associated with a third-party firewall.</p>",
+          "shape": "ResourceId"
+        },
+        "ViolationTarget": {
+          "documentation": "<p>The ID of the third-party firewall that's causing the violation.</p>",
+          "shape": "ViolationTarget"
+        }
+      },
+      "type": "structure"
+    },
+    "ThirdPartyFirewallMissingSubnetViolation": {
+      "documentation": "<p>The violation details for a third-party firewall for an Availability Zone that's missing the Firewall Manager managed subnet.</p>",
+      "members": {
+        "AvailabilityZone": {
+          "documentation": "<p>The Availability Zone of a subnet that's causing the violation.</p>",
+          "shape": "LengthBoundedString"
+        },
+        "TargetViolationReason": {
+          "documentation": "<p>The reason the resource is causing the violation, if a reason is available.</p>",
+          "shape": "TargetViolationReason"
+        },
+        "VPC": {
+          "documentation": "<p>The resource ID of the VPC associated with a subnet that's causing the violation.</p>",
+          "shape": "ResourceId"
+        },
+        "ViolationTarget": {
+          "documentation": "<p>The ID of the third-party firewall or VPC resource that's causing the violation.</p>",
+          "shape": "ViolationTarget"
+        }
+      },
+      "type": "structure"
+    },
+    "ThirdPartyFirewallPolicy": {
+      "documentation": "<p>Configures the policy for the third-party firewall.</p>",
+      "members": {
+        "FirewallDeploymentModel": {
+          "documentation": "<p>Defines the deployment model to use for the third-party firewall.</p>",
+          "shape": "FirewallDeploymentModel"
+        }
+      },
+      "type": "structure"
+    },
+    "TimeStamp": { "type": "timestamp" },
+    "UntagResourceRequest": {
+      "members": {
+        "ResourceArn": {
+          "documentation": "<p>The Amazon Resource Name (ARN) of the resource to return tags for. The Firewall Manager resources that support tagging are policies, applications lists, and protocols lists. </p>",
+          "shape": "ResourceArn"
+        },
+        "TagKeys": {
+          "documentation": "<p>The keys of the tags to remove from the resource. </p>",
+          "shape": "TagKeyList"
+        }
+      },
+      "required": ["ResourceArn", "TagKeys"],
+      "type": "structure"
+    },
+    "UntagResourceResponse": {
+      "members": {},
+      "type": "structure"
+    },
+    "UpdateToken": {
+      "max": 1024,
+      "min": 1,
+      "pattern": "^([\\p{L}\\p{Z}\\p{N}_.:/=+\\-@]*)$",
+      "type": "string"
+    },
+    "ViolationDetail": {
+      "documentation": "<p>Violations for a resource based on the specified Firewall Manager policy and Amazon Web Services account.</p>",
+      "members": {
+        "MemberAccount": {
+          "documentation": "<p>The Amazon Web Services account that the violation details were requested for.</p>",
+          "shape": "AWSAccountId"
+        },
+        "PolicyId": {
+          "documentation": "<p>The ID of the Firewall Manager policy that the violation details were requested for.</p>",
+          "shape": "PolicyId"
+        },
+        "ResourceDescription": {
+          "documentation": "<p>Brief description for the requested resource.</p>",
+          "shape": "LengthBoundedString"
+        },
+        "ResourceId": {
+          "documentation": "<p>The resource ID that the violation details were requested for.</p>",
+          "shape": "ResourceId"
+        },
+        "ResourceTags": {
+          "documentation": "<p>The <code>ResourceTag</code> objects associated with the resource.</p>",
+          "shape": "TagList"
+        },
+        "ResourceType": {
+          "documentation": "<p>The resource type that the violation details were requested for.</p>",
+          "shape": "ResourceType"
+        },
+        "ResourceViolations": {
+          "documentation": "<p>List of violations for the requested resource.</p>",
+          "shape": "ResourceViolations"
+        }
+      },
+      "required": ["PolicyId", "MemberAccount", "ResourceId", "ResourceType", "ResourceViolations"],
+      "type": "structure"
+    },
+    "ViolationReason": {
+      "enum": [
+        "WEB_ACL_MISSING_RULE_GROUP",
+        "RESOURCE_MISSING_WEB_ACL",
+        "RESOURCE_INCORRECT_WEB_ACL",
+        "RESOURCE_MISSING_SHIELD_PROTECTION",
+        "RESOURCE_MISSING_WEB_ACL_OR_SHIELD_PROTECTION",
+        "RESOURCE_MISSING_SECURITY_GROUP",
+        "RESOURCE_VIOLATES_AUDIT_SECURITY_GROUP",
+        "SECURITY_GROUP_UNUSED",
+        "SECURITY_GROUP_REDUNDANT",
+        "FMS_CREATED_SECURITY_GROUP_EDITED",
+        "MISSING_FIREWALL",
+        "MISSING_FIREWALL_SUBNET_IN_AZ",
+        "MISSING_EXPECTED_ROUTE_TABLE",
+        "NETWORK_FIREWALL_POLICY_MODIFIED",
+        "FIREWALL_SUBNET_IS_OUT_OF_SCOPE",
+        "INTERNET_GATEWAY_MISSING_EXPECTED_ROUTE",
+        "FIREWALL_SUBNET_MISSING_EXPECTED_ROUTE",
+        "UNEXPECTED_FIREWALL_ROUTES",
+        "UNEXPECTED_TARGET_GATEWAY_ROUTES",
+        "TRAFFIC_INSPECTION_CROSSES_AZ_BOUNDARY",
+        "INVALID_ROUTE_CONFIGURATION",
+        "MISSING_TARGET_GATEWAY",
+        "INTERNET_TRAFFIC_NOT_INSPECTED",
+        "BLACK_HOLE_ROUTE_DETECTED",
+        "BLACK_HOLE_ROUTE_DETECTED_IN_FIREWALL_SUBNET",
+        "RESOURCE_MISSING_DNS_FIREWALL",
+        "ROUTE_HAS_OUT_OF_SCOPE_ENDPOINT",
+        "FIREWALL_SUBNET_MISSING_VPCE_ENDPOINT"
+      ],
+      "type": "string"
+    },
+    "ViolationTarget": {
+      "max": 1024,
+      "min": 0,
+      "pattern": ".*",
+      "type": "string"
+    }
+  },
+  "version": "2.0"
+}

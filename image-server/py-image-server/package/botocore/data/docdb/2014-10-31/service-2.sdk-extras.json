@@ -1,0 +1,23 @@
+{
+  "merge": {
+    "shapes": {
+      "CopyDBClusterSnapshotMessage": {
+        "members": {
+          "SourceRegion": {
+            "documentation": "<p>The ID of the region that contains the snapshot to be copied.</p>",
+            "shape": "String"
+          }
+        }
+      },
+      "CreateDBClusterMessage": {
+        "members": {
+          "SourceRegion": {
+            "documentation": "<p>The ID of the region that contains the source for the db cluster.</p>",
+            "shape": "String"
+          }
+        }
+      }
+    }
+  },
+  "version": 1.0
+}

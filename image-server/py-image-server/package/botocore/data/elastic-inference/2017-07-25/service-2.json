@@ -1,0 +1,519 @@
+{
+  "documentation": "<p> Elastic Inference public APIs. </p>",
+  "metadata": {
+    "apiVersion": "2017-07-25",
+    "endpointPrefix": "api.elastic-inference",
+    "jsonVersion": "1.1",
+    "protocol": "rest-json",
+    "serviceAbbreviation": "Amazon Elastic Inference",
+    "serviceFullName": "Amazon Elastic  Inference",
+    "serviceId": "Elastic Inference",
+    "signatureVersion": "v4",
+    "signingName": "elastic-inference",
+    "uid": "elastic-inference-2017-07-25"
+  },
+  "operations": {
+    "DescribeAcceleratorOfferings": {
+      "documentation": "<p> Describes the locations in which a given accelerator type or set of types is present in a given region. </p>",
+      "errors": [
+        { "shape": "BadRequestException" },
+        { "shape": "ResourceNotFoundException" },
+        { "shape": "InternalServerException" }
+      ],
+      "http": {
+        "method": "POST",
+        "requestUri": "/describe-accelerator-offerings"
+      },
+      "input": { "shape": "DescribeAcceleratorOfferingsRequest" },
+      "name": "DescribeAcceleratorOfferings",
+      "output": { "shape": "DescribeAcceleratorOfferingsResponse" }
+    },
+    "DescribeAcceleratorTypes": {
+      "documentation": "<p> Describes the accelerator types available in a given region, as well as their characteristics, such as memory and throughput. </p>",
+      "errors": [{ "shape": "InternalServerException" }],
+      "http": {
+        "method": "GET",
+        "requestUri": "/describe-accelerator-types"
+      },
+      "input": { "shape": "DescribeAcceleratorTypesRequest" },
+      "name": "DescribeAcceleratorTypes",
+      "output": { "shape": "DescribeAcceleratorTypesResponse" }
+    },
+    "DescribeAccelerators": {
+      "documentation": "<p> Describes information over a provided set of accelerators belonging to an account. </p>",
+      "errors": [
+        { "shape": "BadRequestException" },
+        { "shape": "ResourceNotFoundException" },
+        { "shape": "InternalServerException" }
+      ],
+      "http": {
+        "method": "POST",
+        "requestUri": "/describe-accelerators"
+      },
+      "input": { "shape": "DescribeAcceleratorsRequest" },
+      "name": "DescribeAccelerators",
+      "output": { "shape": "DescribeAcceleratorsResponse" }
+    },
+    "ListTagsForResource": {
+      "documentation": "<p> Returns all tags of an Elastic Inference Accelerator. </p>",
+      "errors": [
+        { "shape": "BadRequestException" },
+        { "shape": "ResourceNotFoundException" },
+        { "shape": "InternalServerException" }
+      ],
+      "http": {
+        "method": "GET",
+        "requestUri": "/tags/{resourceArn}"
+      },
+      "input": { "shape": "ListTagsForResourceRequest" },
+      "name": "ListTagsForResource",
+      "output": { "shape": "ListTagsForResourceResult" }
+    },
+    "TagResource": {
+      "documentation": "<p> Adds the specified tags to an Elastic Inference Accelerator. </p>",
+      "errors": [
+        { "shape": "BadRequestException" },
+        { "shape": "ResourceNotFoundException" },
+        { "shape": "InternalServerException" }
+      ],
+      "http": {
+        "method": "POST",
+        "requestUri": "/tags/{resourceArn}"
+      },
+      "input": { "shape": "TagResourceRequest" },
+      "name": "TagResource",
+      "output": { "shape": "TagResourceResult" }
+    },
+    "UntagResource": {
+      "documentation": "<p> Removes the specified tags from an Elastic Inference Accelerator. </p>",
+      "errors": [
+        { "shape": "BadRequestException" },
+        { "shape": "ResourceNotFoundException" },
+        { "shape": "InternalServerException" }
+      ],
+      "http": {
+        "method": "DELETE",
+        "requestUri": "/tags/{resourceArn}"
+      },
+      "input": { "shape": "UntagResourceRequest" },
+      "name": "UntagResource",
+      "output": { "shape": "UntagResourceResult" }
+    }
+  },
+  "shapes": {
+    "AcceleratorHealthStatus": {
+      "max": 256,
+      "min": 1,
+      "type": "string"
+    },
+    "AcceleratorId": {
+      "max": 256,
+      "min": 1,
+      "pattern": "^eia-[0-9a-f]+$",
+      "type": "string"
+    },
+    "AcceleratorIdList": {
+      "max": 1000,
+      "member": { "shape": "AcceleratorId" },
+      "min": 0,
+      "type": "list"
+    },
+    "AcceleratorType": {
+      "documentation": "<p> The details of an Elastic Inference Accelerator type. </p>",
+      "members": {
+        "acceleratorTypeName": {
+          "documentation": "<p> The name of the Elastic Inference Accelerator type. </p>",
+          "shape": "AcceleratorTypeName"
+        },
+        "memoryInfo": {
+          "documentation": "<p> The memory information of the Elastic Inference Accelerator type. </p>",
+          "shape": "MemoryInfo"
+        },
+        "throughputInfo": {
+          "documentation": "<p> The throughput information of the Elastic Inference Accelerator type. </p>",
+          "shape": "ThroughputInfoList"
+        }
+      },
+      "type": "structure"
+    },
+    "AcceleratorTypeList": {
+      "max": 100,
+      "member": { "shape": "AcceleratorType" },
+      "min": 0,
+      "type": "list"
+    },
+    "AcceleratorTypeName": {
+      "max": 256,
+      "min": 1,
+      "pattern": "^\\S+$",
+      "type": "string"
+    },
+    "AcceleratorTypeNameList": {
+      "max": 100,
+      "member": { "shape": "AcceleratorTypeName" },
+      "min": 0,
+      "type": "list"
+    },
+    "AcceleratorTypeOffering": {
+      "documentation": "<p> The offering for an Elastic Inference Accelerator type. </p>",
+      "members": {
+        "acceleratorType": {
+          "documentation": "<p> The name of the Elastic Inference Accelerator type. </p>",
+          "shape": "AcceleratorTypeName"
+        },
+        "location": {
+          "documentation": "<p> The location for the offering. It will return either the region, availability zone or availability zone id for the offering depending on the locationType value. </p>",
+          "shape": "Location"
+        },
+        "locationType": {
+          "documentation": "<p> The location type for the offering. It can assume the following values: region: defines that the offering is at the regional level. availability-zone: defines that the offering is at the availability zone level. availability-zone-id: defines that the offering is at the availability zone level, defined by the availability zone id. </p>",
+          "shape": "LocationType"
+        }
+      },
+      "type": "structure"
+    },
+    "AcceleratorTypeOfferingList": {
+      "max": 100,
+      "member": { "shape": "AcceleratorTypeOffering" },
+      "min": 0,
+      "type": "list"
+    },
+    "AvailabilityZone": {
+      "max": 256,
+      "min": 1,
+      "type": "string"
+    },
+    "BadRequestException": {
+      "documentation": "<p> Raised when a malformed input has been provided to the API. </p>",
+      "error": { "httpStatusCode": 400 },
+      "exception": true,
+      "members": {
+        "message": { "shape": "String" }
+      },
+      "type": "structure"
+    },
+    "DescribeAcceleratorOfferingsRequest": {
+      "members": {
+        "acceleratorTypes": {
+          "documentation": "<p> The list of accelerator types to describe. </p>",
+          "shape": "AcceleratorTypeNameList"
+        },
+        "locationType": {
+          "documentation": "<p> The location type that you want to describe accelerator type offerings for. It can assume the following values: region: will return the accelerator type offering at the regional level. availability-zone: will return the accelerator type offering at the availability zone level. availability-zone-id: will return the accelerator type offering at the availability zone level returning the availability zone id. </p>",
+          "shape": "LocationType"
+        }
+      },
+      "required": ["locationType"],
+      "type": "structure"
+    },
+    "DescribeAcceleratorOfferingsResponse": {
+      "members": {
+        "acceleratorTypeOfferings": {
+          "documentation": "<p> The list of accelerator type offerings for a specific location. </p>",
+          "shape": "AcceleratorTypeOfferingList"
+        }
+      },
+      "type": "structure"
+    },
+    "DescribeAcceleratorTypesRequest": {
+      "members": {},
+      "type": "structure"
+    },
+    "DescribeAcceleratorTypesResponse": {
+      "members": {
+        "acceleratorTypes": {
+          "documentation": "<p> The available accelerator types. </p>",
+          "shape": "AcceleratorTypeList"
+        }
+      },
+      "type": "structure"
+    },
+    "DescribeAcceleratorsRequest": {
+      "members": {
+        "acceleratorIds": {
+          "documentation": "<p> The IDs of the accelerators to describe. </p>",
+          "shape": "AcceleratorIdList"
+        },
+        "filters": {
+          "documentation": "<p> One or more filters. Filter names and values are case-sensitive. Valid filter names are: accelerator-types: can provide a list of accelerator type names to filter for. instance-id: can provide a list of EC2 instance ids to filter for. </p>",
+          "shape": "FilterList"
+        },
+        "maxResults": {
+          "documentation": "<p> The total number of items to return in the command's output. If the total number of items available is more than the value specified, a NextToken is provided in the command's output. To resume pagination, provide the NextToken value in the starting-token argument of a subsequent command. Do not use the NextToken response element directly outside of the AWS CLI. </p>",
+          "shape": "MaxResults"
+        },
+        "nextToken": {
+          "documentation": "<p> A token to specify where to start paginating. This is the NextToken from a previously truncated response. </p>",
+          "shape": "NextToken"
+        }
+      },
+      "type": "structure"
+    },
+    "DescribeAcceleratorsResponse": {
+      "members": {
+        "acceleratorSet": {
+          "documentation": "<p> The details of the Elastic Inference Accelerators. </p>",
+          "shape": "ElasticInferenceAcceleratorSet"
+        },
+        "nextToken": {
+          "documentation": "<p> A token to specify where to start paginating. This is the NextToken from a previously truncated response. </p>",
+          "shape": "NextToken"
+        }
+      },
+      "type": "structure"
+    },
+    "ElasticInferenceAccelerator": {
+      "documentation": "<p> The details of an Elastic Inference Accelerator. </p>",
+      "members": {
+        "acceleratorHealth": {
+          "documentation": "<p> The health of the Elastic Inference Accelerator. </p>",
+          "shape": "ElasticInferenceAcceleratorHealth"
+        },
+        "acceleratorId": {
+          "documentation": "<p> The ID of the Elastic Inference Accelerator. </p>",
+          "shape": "AcceleratorId"
+        },
+        "acceleratorType": {
+          "documentation": "<p> The type of the Elastic Inference Accelerator. </p>",
+          "shape": "AcceleratorTypeName"
+        },
+        "attachedResource": {
+          "documentation": "<p> The ARN of the resource that the Elastic Inference Accelerator is attached to. </p>",
+          "shape": "ResourceArn"
+        },
+        "availabilityZone": {
+          "documentation": "<p> The availability zone where the Elastic Inference Accelerator is present. </p>",
+          "shape": "AvailabilityZone"
+        }
+      },
+      "type": "structure"
+    },
+    "ElasticInferenceAcceleratorHealth": {
+      "documentation": "<p> The health details of an Elastic Inference Accelerator. </p>",
+      "members": {
+        "status": {
+          "documentation": "<p> The health status of the Elastic Inference Accelerator. </p>",
+          "shape": "AcceleratorHealthStatus"
+        }
+      },
+      "type": "structure"
+    },
+    "ElasticInferenceAcceleratorSet": {
+      "member": { "shape": "ElasticInferenceAccelerator" },
+      "type": "list"
+    },
+    "Filter": {
+      "documentation": "<p> A filter expression for the Elastic Inference Accelerator list. </p>",
+      "members": {
+        "name": {
+          "documentation": "<p> The filter name for the Elastic Inference Accelerator list. It can assume the following values: accelerator-type: the type of Elastic Inference Accelerator to filter for. instance-id: an EC2 instance id to filter for. </p>",
+          "shape": "FilterName"
+        },
+        "values": {
+          "documentation": "<p> The values for the filter of the Elastic Inference Accelerator list. </p>",
+          "shape": "ValueStringList"
+        }
+      },
+      "type": "structure"
+    },
+    "FilterList": {
+      "max": 100,
+      "member": { "shape": "Filter" },
+      "min": 0,
+      "type": "list"
+    },
+    "FilterName": {
+      "max": 128,
+      "min": 1,
+      "pattern": "^\\S+$",
+      "type": "string"
+    },
+    "Integer": { "type": "integer" },
+    "InternalServerException": {
+      "documentation": "<p> Raised when an unexpected error occurred during request processing. </p>",
+      "error": { "httpStatusCode": 500 },
+      "exception": true,
+      "members": {
+        "message": { "shape": "String" }
+      },
+      "type": "structure"
+    },
+    "Key": {
+      "max": 256,
+      "min": 1,
+      "pattern": "^\\S+$",
+      "type": "string"
+    },
+    "KeyValuePair": {
+      "documentation": "<p> A throughput entry for an Elastic Inference Accelerator type. </p>",
+      "members": {
+        "key": {
+          "documentation": "<p> The throughput value of the Elastic Inference Accelerator type. It can assume the following values: TFLOPS16bit: the throughput expressed in 16bit TeraFLOPS. TFLOPS32bit: the throughput expressed in 32bit TeraFLOPS. </p>",
+          "shape": "Key"
+        },
+        "value": {
+          "documentation": "<p> The throughput value of the Elastic Inference Accelerator type. </p>",
+          "shape": "Value"
+        }
+      },
+      "type": "structure"
+    },
+    "ListTagsForResourceRequest": {
+      "members": {
+        "resourceArn": {
+          "documentation": "<p> The ARN of the Elastic Inference Accelerator to list the tags for. </p>",
+          "location": "uri",
+          "locationName": "resourceArn",
+          "shape": "ResourceARN"
+        }
+      },
+      "required": ["resourceArn"],
+      "type": "structure"
+    },
+    "ListTagsForResourceResult": {
+      "members": {
+        "tags": {
+          "documentation": "<p> The tags of the Elastic Inference Accelerator. </p>",
+          "shape": "TagMap"
+        }
+      },
+      "type": "structure"
+    },
+    "Location": {
+      "max": 256,
+      "min": 1,
+      "type": "string"
+    },
+    "LocationType": {
+      "enum": ["region", "availability-zone", "availability-zone-id"],
+      "max": 256,
+      "min": 1,
+      "type": "string"
+    },
+    "MaxResults": {
+      "max": 100,
+      "min": 0,
+      "type": "integer"
+    },
+    "MemoryInfo": {
+      "documentation": "<p> The memory information of an Elastic Inference Accelerator type. </p>",
+      "members": {
+        "sizeInMiB": {
+          "documentation": "<p> The size in mebibytes of the Elastic Inference Accelerator type. </p>",
+          "shape": "Integer"
+        }
+      },
+      "type": "structure"
+    },
+    "NextToken": {
+      "max": 2048,
+      "min": 1,
+      "pattern": "^[A-Za-z0-9+/]+={0,2}$",
+      "type": "string"
+    },
+    "ResourceARN": {
+      "max": 1011,
+      "min": 1,
+      "pattern": "^arn:aws\\S*:elastic-inference:\\S+:\\d{12}:elastic-inference-accelerator/eia-[0-9a-f]+$",
+      "type": "string"
+    },
+    "ResourceArn": {
+      "max": 1283,
+      "min": 1,
+      "type": "string"
+    },
+    "ResourceNotFoundException": {
+      "documentation": "<p> Raised when the requested resource cannot be found. </p>",
+      "error": { "httpStatusCode": 404 },
+      "exception": true,
+      "members": {
+        "message": { "shape": "String" }
+      },
+      "type": "structure"
+    },
+    "String": {
+      "max": 500000,
+      "pattern": "^.*$",
+      "type": "string"
+    },
+    "TagKey": {
+      "max": 128,
+      "min": 1,
+      "pattern": "^\\S$",
+      "type": "string"
+    },
+    "TagKeyList": {
+      "max": 50,
+      "member": { "shape": "TagKey" },
+      "min": 1,
+      "type": "list"
+    },
+    "TagMap": {
+      "key": { "shape": "TagKey" },
+      "max": 50,
+      "min": 1,
+      "type": "map",
+      "value": { "shape": "TagValue" }
+    },
+    "TagResourceRequest": {
+      "members": {
+        "resourceArn": {
+          "documentation": "<p> The ARN of the Elastic Inference Accelerator to tag. </p>",
+          "location": "uri",
+          "locationName": "resourceArn",
+          "shape": "ResourceARN"
+        },
+        "tags": {
+          "documentation": "<p> The tags to add to the Elastic Inference Accelerator. </p>",
+          "shape": "TagMap"
+        }
+      },
+      "required": ["resourceArn", "tags"],
+      "type": "structure"
+    },
+    "TagResourceResult": {
+      "members": {},
+      "type": "structure"
+    },
+    "TagValue": {
+      "max": 256,
+      "type": "string"
+    },
+    "ThroughputInfoList": {
+      "max": 100,
+      "member": { "shape": "KeyValuePair" },
+      "min": 0,
+      "type": "list"
+    },
+    "UntagResourceRequest": {
+      "members": {
+        "resourceArn": {
+          "documentation": "<p> The ARN of the Elastic Inference Accelerator to untag. </p>",
+          "location": "uri",
+          "locationName": "resourceArn",
+          "shape": "ResourceARN"
+        },
+        "tagKeys": {
+          "documentation": "<p> The list of tags to remove from the Elastic Inference Accelerator. </p>",
+          "location": "querystring",
+          "locationName": "tagKeys",
+          "shape": "TagKeyList"
+        }
+      },
+      "required": ["resourceArn", "tagKeys"],
+      "type": "structure"
+    },
+    "UntagResourceResult": {
+      "members": {},
+      "type": "structure"
+    },
+    "Value": { "type": "integer" },
+    "ValueStringList": {
+      "max": 100,
+      "member": { "shape": "String" },
+      "min": 0,
+      "type": "list"
+    }
+  },
+  "version": "2.0"
+}

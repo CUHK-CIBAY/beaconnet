@@ -1,0 +1,152 @@
+{
+  "version": 2,
+  "waiters": {
+    "ClusterCreated": {
+      "acceptors": [
+        {
+          "argument": "Cluster.Status",
+          "expected": "DEPLOYED",
+          "matcher": "path",
+          "state": "success"
+        },
+        {
+          "argument": "Cluster.Status",
+          "expected": "PENDING",
+          "matcher": "path",
+          "state": "retry"
+        },
+        {
+          "expected": 500,
+          "matcher": "status",
+          "state": "retry"
+        }
+      ],
+      "delay": 5,
+      "description": "Wait until a cluster is created",
+      "maxAttempts": 26,
+      "operation": "DescribeCluster"
+    },
+    "ClusterDeleted": {
+      "acceptors": [
+        {
+          "expected": 404,
+          "matcher": "status",
+          "state": "success"
+        },
+        {
+          "argument": "Cluster.Status",
+          "expected": "PENDING_DELETION",
+          "matcher": "path",
+          "state": "retry"
+        },
+        {
+          "expected": 500,
+          "matcher": "status",
+          "state": "retry"
+        }
+      ],
+      "delay": 5,
+      "description": "Wait for a cluster to be deleted",
+      "maxAttempts": 26,
+      "operation": "DescribeCluster"
+    },
+    "ControlPanelCreated": {
+      "acceptors": [
+        {
+          "argument": "ControlPanel.Status",
+          "expected": "DEPLOYED",
+          "matcher": "path",
+          "state": "success"
+        },
+        {
+          "argument": "ControlPanel.Status",
+          "expected": "PENDING",
+          "matcher": "path",
+          "state": "retry"
+        },
+        {
+          "expected": 500,
+          "matcher": "status",
+          "state": "retry"
+        }
+      ],
+      "delay": 5,
+      "description": "Wait until a control panel is created",
+      "maxAttempts": 26,
+      "operation": "DescribeControlPanel"
+    },
+    "ControlPanelDeleted": {
+      "acceptors": [
+        {
+          "expected": 404,
+          "matcher": "status",
+          "state": "success"
+        },
+        {
+          "argument": "ControlPanel.Status",
+          "expected": "PENDING_DELETION",
+          "matcher": "path",
+          "state": "retry"
+        },
+        {
+          "expected": 500,
+          "matcher": "status",
+          "state": "retry"
+        }
+      ],
+      "delay": 5,
+      "description": "Wait until a control panel is deleted",
+      "maxAttempts": 26,
+      "operation": "DescribeControlPanel"
+    },
+    "RoutingControlCreated": {
+      "acceptors": [
+        {
+          "argument": "RoutingControl.Status",
+          "expected": "DEPLOYED",
+          "matcher": "path",
+          "state": "success"
+        },
+        {
+          "argument": "RoutingControl.Status",
+          "expected": "PENDING",
+          "matcher": "path",
+          "state": "retry"
+        },
+        {
+          "expected": 500,
+          "matcher": "status",
+          "state": "retry"
+        }
+      ],
+      "delay": 5,
+      "description": "Wait until a routing control is created",
+      "maxAttempts": 26,
+      "operation": "DescribeRoutingControl"
+    },
+    "RoutingControlDeleted": {
+      "acceptors": [
+        {
+          "expected": 404,
+          "matcher": "status",
+          "state": "success"
+        },
+        {
+          "argument": "RoutingControl.Status",
+          "expected": "PENDING_DELETION",
+          "matcher": "path",
+          "state": "retry"
+        },
+        {
+          "expected": 500,
+          "matcher": "status",
+          "state": "retry"
+        }
+      ],
+      "delay": 5,
+      "description": "Wait for a routing control to be deleted",
+      "maxAttempts": 26,
+      "operation": "DescribeRoutingControl"
+    }
+  }
+}

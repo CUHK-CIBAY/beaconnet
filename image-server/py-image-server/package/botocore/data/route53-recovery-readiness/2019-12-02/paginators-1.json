@@ -1,0 +1,68 @@
+{
+  "pagination": {
+    "GetCellReadinessSummary": {
+      "input_token": "NextToken",
+      "limit_key": "MaxResults",
+      "non_aggregate_keys": ["Readiness"],
+      "output_token": "NextToken",
+      "result_key": "ReadinessChecks"
+    },
+    "GetReadinessCheckResourceStatus": {
+      "input_token": "NextToken",
+      "limit_key": "MaxResults",
+      "non_aggregate_keys": ["Readiness"],
+      "output_token": "NextToken",
+      "result_key": "Rules"
+    },
+    "GetReadinessCheckStatus": {
+      "input_token": "NextToken",
+      "limit_key": "MaxResults",
+      "non_aggregate_keys": ["Readiness", "Messages"],
+      "output_token": "NextToken",
+      "result_key": "Resources"
+    },
+    "GetRecoveryGroupReadinessSummary": {
+      "input_token": "NextToken",
+      "limit_key": "MaxResults",
+      "non_aggregate_keys": ["Readiness"],
+      "output_token": "NextToken",
+      "result_key": "ReadinessChecks"
+    },
+    "ListCells": {
+      "input_token": "NextToken",
+      "limit_key": "MaxResults",
+      "output_token": "NextToken",
+      "result_key": "Cells"
+    },
+    "ListCrossAccountAuthorizations": {
+      "input_token": "NextToken",
+      "limit_key": "MaxResults",
+      "output_token": "NextToken",
+      "result_key": "CrossAccountAuthorizations"
+    },
+    "ListReadinessChecks": {
+      "input_token": "NextToken",
+      "limit_key": "MaxResults",
+      "output_token": "NextToken",
+      "result_key": "ReadinessChecks"
+    },
+    "ListRecoveryGroups": {
+      "input_token": "NextToken",
+      "limit_key": "MaxResults",
+      "output_token": "NextToken",
+      "result_key": "RecoveryGroups"
+    },
+    "ListResourceSets": {
+      "input_token": "NextToken",
+      "limit_key": "MaxResults",
+      "output_token": "NextToken",
+      "result_key": "ResourceSets"
+    },
+    "ListRules": {
+      "input_token": "NextToken",
+      "limit_key": "MaxResults",
+      "output_token": "NextToken",
+      "result_key": "Rules"
+    }
+  }
+}

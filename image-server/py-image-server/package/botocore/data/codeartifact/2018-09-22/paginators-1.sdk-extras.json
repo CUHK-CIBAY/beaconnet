@@ -1,0 +1,13 @@
+{
+  "merge": {
+    "pagination": {
+      "ListPackageVersionAssets": {
+        "non_aggregate_keys": ["package", "format", "namespace", "version", "versionRevision"]
+      },
+      "ListPackageVersions": {
+        "non_aggregate_keys": ["defaultDisplayVersion", "format", "package", "namespace"]
+      }
+    }
+  },
+  "version": 1.0
+}

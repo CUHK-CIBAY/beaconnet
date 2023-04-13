@@ -1,0 +1,28 @@
+{
+  "pagination": {
+    "ListFirewallPolicies": {
+      "input_token": "NextToken",
+      "limit_key": "MaxResults",
+      "output_token": "NextToken",
+      "result_key": "FirewallPolicies"
+    },
+    "ListFirewalls": {
+      "input_token": "NextToken",
+      "limit_key": "MaxResults",
+      "output_token": "NextToken",
+      "result_key": "Firewalls"
+    },
+    "ListRuleGroups": {
+      "input_token": "NextToken",
+      "limit_key": "MaxResults",
+      "output_token": "NextToken",
+      "result_key": "RuleGroups"
+    },
+    "ListTagsForResource": {
+      "input_token": "NextToken",
+      "limit_key": "MaxResults",
+      "output_token": "NextToken",
+      "result_key": "Tags"
+    }
+  }
+}

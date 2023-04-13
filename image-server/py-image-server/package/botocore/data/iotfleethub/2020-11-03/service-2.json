@@ -1,0 +1,571 @@
+{
+  "documentation": "<p>With Fleet Hub for AWS IoT Device Management you can build stand-alone web applications for monitoring the health of your device fleets.</p> <note> <p>Fleet Hub for AWS IoT Device Management is in public preview and is subject to change.</p> </note>",
+  "metadata": {
+    "apiVersion": "2020-11-03",
+    "endpointPrefix": "api.fleethub.iot",
+    "jsonVersion": "1.1",
+    "protocol": "rest-json",
+    "serviceFullName": "AWS IoT Fleet Hub",
+    "serviceId": "IoTFleetHub",
+    "signatureVersion": "v4",
+    "signingName": "iotfleethub",
+    "uid": "iotfleethub-2020-11-03"
+  },
+  "operations": {
+    "CreateApplication": {
+      "documentation": "<p>Creates a Fleet Hub for AWS IoT Device Management web application.</p> <note> <p>Fleet Hub for AWS IoT Device Management is in public preview and is subject to change.</p> </note>",
+      "errors": [
+        { "shape": "InvalidRequestException" },
+        { "shape": "InternalFailureException" },
+        { "shape": "ThrottlingException" },
+        { "shape": "LimitExceededException" }
+      ],
+      "http": {
+        "method": "POST",
+        "requestUri": "/applications",
+        "responseCode": 201
+      },
+      "input": { "shape": "CreateApplicationRequest" },
+      "name": "CreateApplication",
+      "output": { "shape": "CreateApplicationResponse" }
+    },
+    "DeleteApplication": {
+      "documentation": "<p>Deletes a Fleet Hub for AWS IoT Device Management web application.</p> <note> <p>Fleet Hub for AWS IoT Device Management is in public preview and is subject to change.</p> </note>",
+      "errors": [
+        { "shape": "InvalidRequestException" },
+        { "shape": "ResourceNotFoundException" },
+        { "shape": "InternalFailureException" },
+        { "shape": "ThrottlingException" }
+      ],
+      "http": {
+        "method": "DELETE",
+        "requestUri": "/applications/{applicationId}",
+        "responseCode": 204
+      },
+      "input": { "shape": "DeleteApplicationRequest" },
+      "name": "DeleteApplication",
+      "output": { "shape": "DeleteApplicationResponse" }
+    },
+    "DescribeApplication": {
+      "documentation": "<p>Gets information about a Fleet Hub for AWS IoT Device Management web application.</p> <note> <p>Fleet Hub for AWS IoT Device Management is in public preview and is subject to change.</p> </note>",
+      "errors": [
+        { "shape": "InvalidRequestException" },
+        { "shape": "ResourceNotFoundException" },
+        { "shape": "InternalFailureException" },
+        { "shape": "ThrottlingException" }
+      ],
+      "http": {
+        "method": "GET",
+        "requestUri": "/applications/{applicationId}",
+        "responseCode": 200
+      },
+      "input": { "shape": "DescribeApplicationRequest" },
+      "name": "DescribeApplication",
+      "output": { "shape": "DescribeApplicationResponse" }
+    },
+    "ListApplications": {
+      "documentation": "<p>Gets a list of Fleet Hub for AWS IoT Device Management web applications for the current account.</p> <note> <p>Fleet Hub for AWS IoT Device Management is in public preview and is subject to change.</p> </note>",
+      "errors": [
+        { "shape": "InvalidRequestException" },
+        { "shape": "InternalFailureException" },
+        { "shape": "ThrottlingException" }
+      ],
+      "http": {
+        "method": "GET",
+        "requestUri": "/applications",
+        "responseCode": 200
+      },
+      "input": { "shape": "ListApplicationsRequest" },
+      "name": "ListApplications",
+      "output": { "shape": "ListApplicationsResponse" }
+    },
+    "ListTagsForResource": {
+      "documentation": "<p>Lists the tags for the specified resource.</p> <note> <p>Fleet Hub for AWS IoT Device Management is in public preview and is subject to change.</p> </note>",
+      "errors": [
+        { "shape": "InternalFailureException" },
+        { "shape": "InvalidRequestException" },
+        { "shape": "ResourceNotFoundException" }
+      ],
+      "http": {
+        "method": "GET",
+        "requestUri": "/tags/{resourceArn}"
+      },
+      "input": { "shape": "ListTagsForResourceRequest" },
+      "name": "ListTagsForResource",
+      "output": { "shape": "ListTagsForResourceResponse" }
+    },
+    "TagResource": {
+      "documentation": "<p>Adds to or modifies the tags of the specified resource. Tags are metadata which can be used to manage a resource.</p> <note> <p>Fleet Hub for AWS IoT Device Management is in public preview and is subject to change.</p> </note>",
+      "errors": [
+        { "shape": "InternalFailureException" },
+        { "shape": "InvalidRequestException" },
+        { "shape": "ResourceNotFoundException" }
+      ],
+      "http": {
+        "method": "POST",
+        "requestUri": "/tags/{resourceArn}"
+      },
+      "input": { "shape": "TagResourceRequest" },
+      "name": "TagResource",
+      "output": { "shape": "TagResourceResponse" }
+    },
+    "UntagResource": {
+      "documentation": "<p>Removes the specified tags (metadata) from the resource.</p> <note> <p>Fleet Hub for AWS IoT Device Management is in public preview and is subject to change.</p> </note>",
+      "errors": [
+        { "shape": "InternalFailureException" },
+        { "shape": "InvalidRequestException" },
+        { "shape": "ResourceNotFoundException" }
+      ],
+      "http": {
+        "method": "DELETE",
+        "requestUri": "/tags/{resourceArn}"
+      },
+      "input": { "shape": "UntagResourceRequest" },
+      "name": "UntagResource",
+      "output": { "shape": "UntagResourceResponse" }
+    },
+    "UpdateApplication": {
+      "documentation": "<p>Updates information about a Fleet Hub for a AWS IoT Device Management web application.</p> <note> <p>Fleet Hub for AWS IoT Device Management is in public preview and is subject to change.</p> </note>",
+      "errors": [
+        { "shape": "InvalidRequestException" },
+        { "shape": "ResourceNotFoundException" },
+        { "shape": "InternalFailureException" },
+        { "shape": "ConflictException" },
+        { "shape": "ThrottlingException" }
+      ],
+      "http": {
+        "method": "PATCH",
+        "requestUri": "/applications/{applicationId}",
+        "responseCode": 202
+      },
+      "input": { "shape": "UpdateApplicationRequest" },
+      "name": "UpdateApplication",
+      "output": { "shape": "UpdateApplicationResponse" }
+    }
+  },
+  "shapes": {
+    "ApplicationState": {
+      "enum": ["CREATING", "DELETING", "ACTIVE", "CREATE_FAILED", "DELETE_FAILED"],
+      "type": "string"
+    },
+    "ApplicationSummaries": {
+      "member": { "shape": "ApplicationSummary" },
+      "type": "list"
+    },
+    "ApplicationSummary": {
+      "documentation": "<p>A summary of information about a AWS IoT Device Management web application.</p> <note> <p>Fleet Hub for AWS IoT Device Management is in public preview and is subject to change.</p> </note>",
+      "members": {
+        "applicationCreationDate": {
+          "documentation": "<p>The date (in Unix epoch time) when the web application was created.</p>",
+          "shape": "Timestamp"
+        },
+        "applicationDescription": {
+          "documentation": "<p>An optional description of the web application.</p>",
+          "shape": "Description"
+        },
+        "applicationId": {
+          "documentation": "<p>The unique Id of the web application.</p>",
+          "shape": "Id"
+        },
+        "applicationLastUpdateDate": {
+          "documentation": "<p>The date (in Unix epoch time) when the web application was last updated.</p>",
+          "shape": "Timestamp"
+        },
+        "applicationName": {
+          "documentation": "<p>The name of the web application.</p>",
+          "shape": "Name"
+        },
+        "applicationState": {
+          "documentation": "<p>The current state of the web application.</p>",
+          "shape": "ApplicationState"
+        },
+        "applicationUrl": {
+          "documentation": "<p>The URL of the web application.</p>",
+          "shape": "Url"
+        }
+      },
+      "required": ["applicationId", "applicationName", "applicationUrl"],
+      "type": "structure"
+    },
+    "Arn": {
+      "max": 1600,
+      "min": 1,
+      "pattern": "^arn:[!-~]+$",
+      "type": "string"
+    },
+    "ClientRequestToken": {
+      "max": 64,
+      "min": 1,
+      "pattern": "^[a-zA-Z0-9-_]+$",
+      "type": "string"
+    },
+    "ConflictException": {
+      "documentation": "<p>The request conflicts with the current state of the resource.</p>",
+      "error": { "httpStatusCode": 409 },
+      "exception": true,
+      "members": {
+        "message": { "shape": "errorMessage" }
+      },
+      "type": "structure"
+    },
+    "CreateApplicationRequest": {
+      "members": {
+        "applicationDescription": {
+          "documentation": "<p>An optional description of the web application.</p>",
+          "shape": "Description"
+        },
+        "applicationName": {
+          "documentation": "<p>The name of the web application.</p>",
+          "shape": "Name"
+        },
+        "clientToken": {
+          "documentation": "<p>A unique case-sensitive identifier that you can provide to ensure the idempotency of the request. Don't reuse this client token if a new idempotent request is required.</p>",
+          "idempotencyToken": true,
+          "shape": "ClientRequestToken"
+        },
+        "roleArn": {
+          "documentation": "<p>The ARN of the role that the web application assumes when it interacts with AWS IoT Core.</p> <note> <p>The name of the role must be in the form <code>AWSIotFleetHub_<i>random_string</i> </code>.</p> </note>",
+          "shape": "Arn"
+        },
+        "tags": {
+          "documentation": "<p>A set of key/value pairs that you can use to manage the web application resource.</p>",
+          "shape": "TagMap"
+        }
+      },
+      "required": ["applicationName", "roleArn"],
+      "type": "structure"
+    },
+    "CreateApplicationResponse": {
+      "members": {
+        "applicationArn": {
+          "documentation": "<p>The ARN of the web application.</p>",
+          "shape": "Arn"
+        },
+        "applicationId": {
+          "documentation": "<p>The unique Id of the web application.</p>",
+          "shape": "Id"
+        }
+      },
+      "required": ["applicationId", "applicationArn"],
+      "type": "structure"
+    },
+    "DeleteApplicationRequest": {
+      "members": {
+        "applicationId": {
+          "documentation": "<p>The unique Id of the web application.</p>",
+          "location": "uri",
+          "locationName": "applicationId",
+          "shape": "Id"
+        },
+        "clientToken": {
+          "documentation": "<p>A unique case-sensitive identifier that you can provide to ensure the idempotency of the request. Don't reuse this client token if a new idempotent request is required.</p>",
+          "idempotencyToken": true,
+          "location": "querystring",
+          "locationName": "clientToken",
+          "shape": "ClientRequestToken"
+        }
+      },
+      "required": ["applicationId"],
+      "type": "structure"
+    },
+    "DeleteApplicationResponse": {
+      "members": {},
+      "type": "structure"
+    },
+    "DescribeApplicationRequest": {
+      "members": {
+        "applicationId": {
+          "documentation": "<p>The unique Id of the web application.</p>",
+          "location": "uri",
+          "locationName": "applicationId",
+          "shape": "Id"
+        }
+      },
+      "required": ["applicationId"],
+      "type": "structure"
+    },
+    "DescribeApplicationResponse": {
+      "members": {
+        "applicationArn": {
+          "documentation": "<p>The ARN of the web application.</p>",
+          "shape": "Arn"
+        },
+        "applicationCreationDate": {
+          "documentation": "<p>The date (in Unix epoch time) when the application was created.</p>",
+          "shape": "Timestamp"
+        },
+        "applicationDescription": {
+          "documentation": "<p>An optional description of the web application.</p>",
+          "shape": "Description"
+        },
+        "applicationId": {
+          "documentation": "<p>The unique Id of the web application.</p>",
+          "shape": "Id"
+        },
+        "applicationLastUpdateDate": {
+          "documentation": "<p>The date (in Unix epoch time) when the application was last updated.</p>",
+          "shape": "Timestamp"
+        },
+        "applicationName": {
+          "documentation": "<p>The name of the web application.</p>",
+          "shape": "Name"
+        },
+        "applicationState": {
+          "documentation": "<p>The current state of the web application.</p>",
+          "shape": "ApplicationState"
+        },
+        "applicationUrl": {
+          "documentation": "<p>The URL of the web application.</p>",
+          "shape": "Url"
+        },
+        "errorMessage": {
+          "documentation": "<p>A message indicating why the <code>DescribeApplication</code> API failed.</p>",
+          "shape": "ErrorMessage"
+        },
+        "roleArn": {
+          "documentation": "<p>The ARN of the role that the web application assumes when it interacts with AWS IoT Core.</p>",
+          "shape": "Arn"
+        },
+        "ssoClientId": {
+          "documentation": "<p>The Id of the single sign-on client that you use to authenticate and authorize users on the web application.</p>",
+          "shape": "SsoClientId"
+        },
+        "tags": {
+          "documentation": "<p>A set of key/value pairs that you can use to manage the web application resource.</p>",
+          "shape": "TagMap"
+        }
+      },
+      "required": [
+        "applicationId",
+        "applicationArn",
+        "applicationName",
+        "applicationUrl",
+        "applicationState",
+        "applicationCreationDate",
+        "applicationLastUpdateDate",
+        "roleArn"
+      ],
+      "type": "structure"
+    },
+    "Description": {
+      "max": 2048,
+      "min": 1,
+      "pattern": "^[ -~]*$",
+      "type": "string"
+    },
+    "ErrorMessage": { "type": "string" },
+    "Id": {
+      "max": 36,
+      "min": 36,
+      "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$",
+      "type": "string"
+    },
+    "InternalFailureException": {
+      "documentation": "<p>An unexpected error has occurred.</p>",
+      "error": { "httpStatusCode": 500 },
+      "exception": true,
+      "fault": true,
+      "members": {
+        "message": { "shape": "errorMessage" }
+      },
+      "type": "structure"
+    },
+    "InvalidRequestException": {
+      "documentation": "<p>The request is not valid.</p>",
+      "error": { "httpStatusCode": 400 },
+      "exception": true,
+      "members": {
+        "message": { "shape": "errorMessage" }
+      },
+      "type": "structure"
+    },
+    "LimitExceededException": {
+      "documentation": "<p>A limit has been exceeded.</p>",
+      "error": { "httpStatusCode": 410 },
+      "exception": true,
+      "members": {
+        "message": { "shape": "errorMessage" }
+      },
+      "type": "structure"
+    },
+    "ListApplicationsRequest": {
+      "members": {
+        "nextToken": {
+          "documentation": "<p>A token used to get the next set of results.</p>",
+          "location": "querystring",
+          "locationName": "nextToken",
+          "shape": "NextToken"
+        }
+      },
+      "type": "structure"
+    },
+    "ListApplicationsResponse": {
+      "members": {
+        "applicationSummaries": {
+          "documentation": "<p>An array of objects that provide summaries of information about the web applications in the list.</p>",
+          "shape": "ApplicationSummaries"
+        },
+        "nextToken": {
+          "documentation": "<p>A token used to get the next set of results.</p>",
+          "shape": "NextToken"
+        }
+      },
+      "type": "structure"
+    },
+    "ListTagsForResourceRequest": {
+      "members": {
+        "resourceArn": {
+          "documentation": "<p>The ARN of the resource.</p>",
+          "location": "uri",
+          "locationName": "resourceArn",
+          "shape": "ResourceArn"
+        }
+      },
+      "required": ["resourceArn"],
+      "type": "structure"
+    },
+    "ListTagsForResourceResponse": {
+      "members": {
+        "tags": {
+          "documentation": "<p>The list of tags assigned to the resource.</p>",
+          "shape": "TagMap"
+        }
+      },
+      "type": "structure"
+    },
+    "Name": {
+      "max": 100,
+      "min": 1,
+      "pattern": "^[ -~]*$",
+      "type": "string"
+    },
+    "NextToken": {
+      "max": 2048,
+      "min": 1,
+      "pattern": "^[A-Za-z0-9+/=]+$",
+      "type": "string"
+    },
+    "ResourceArn": { "type": "string" },
+    "ResourceNotFoundException": {
+      "documentation": "<p>The specified resource does not exist.</p>",
+      "error": { "httpStatusCode": 404 },
+      "exception": true,
+      "members": {
+        "message": { "shape": "errorMessage" }
+      },
+      "type": "structure"
+    },
+    "SsoClientId": { "type": "string" },
+    "TagKey": {
+      "max": 128,
+      "min": 1,
+      "pattern": "^([\\p{L}\\p{Z}\\p{N}_.:/=+\\-@]*)$",
+      "type": "string"
+    },
+    "TagKeyList": {
+      "member": { "shape": "TagKey" },
+      "type": "list"
+    },
+    "TagMap": {
+      "key": { "shape": "TagKey" },
+      "max": 50,
+      "min": 1,
+      "type": "map",
+      "value": { "shape": "TagValue" }
+    },
+    "TagResourceRequest": {
+      "members": {
+        "resourceArn": {
+          "documentation": "<p>The ARN of the resource.</p>",
+          "location": "uri",
+          "locationName": "resourceArn",
+          "shape": "ResourceArn"
+        },
+        "tags": {
+          "documentation": "<p>The new or modified tags for the resource.</p>",
+          "shape": "TagMap"
+        }
+      },
+      "required": ["resourceArn", "tags"],
+      "type": "structure"
+    },
+    "TagResourceResponse": {
+      "members": {},
+      "type": "structure"
+    },
+    "TagValue": {
+      "max": 256,
+      "min": 1,
+      "type": "string"
+    },
+    "ThrottlingException": {
+      "documentation": "<p>The rate exceeds the limit.</p>",
+      "error": { "httpStatusCode": 400 },
+      "exception": true,
+      "members": {
+        "message": { "shape": "errorMessage" }
+      },
+      "type": "structure"
+    },
+    "Timestamp": { "type": "long" },
+    "UntagResourceRequest": {
+      "members": {
+        "resourceArn": {
+          "documentation": "<p>The ARN of the resource.</p>",
+          "location": "uri",
+          "locationName": "resourceArn",
+          "shape": "ResourceArn"
+        },
+        "tagKeys": {
+          "documentation": "<p>A list of the keys of the tags to be removed from the resource.</p>",
+          "location": "querystring",
+          "locationName": "tagKeys",
+          "shape": "TagKeyList"
+        }
+      },
+      "required": ["resourceArn", "tagKeys"],
+      "type": "structure"
+    },
+    "UntagResourceResponse": {
+      "members": {},
+      "type": "structure"
+    },
+    "UpdateApplicationRequest": {
+      "members": {
+        "applicationDescription": {
+          "documentation": "<p>An optional description of the web application.</p>",
+          "shape": "Description"
+        },
+        "applicationId": {
+          "documentation": "<p>The unique Id of the web application.</p>",
+          "location": "uri",
+          "locationName": "applicationId",
+          "shape": "Id"
+        },
+        "applicationName": {
+          "documentation": "<p>The name of the web application.</p>",
+          "shape": "Name"
+        },
+        "clientToken": {
+          "documentation": "<p>A unique case-sensitive identifier that you can provide to ensure the idempotency of the request. Don't reuse this client token if a new idempotent request is required.</p>",
+          "idempotencyToken": true,
+          "shape": "ClientRequestToken"
+        }
+      },
+      "required": ["applicationId"],
+      "type": "structure"
+    },
+    "UpdateApplicationResponse": {
+      "members": {},
+      "type": "structure"
+    },
+    "Url": {
+      "max": 256,
+      "min": 1,
+      "pattern": "^https\\://\\S+$",
+      "type": "string"
+    },
+    "errorMessage": { "type": "string" }
+  },
+  "version": "2.0"
+}

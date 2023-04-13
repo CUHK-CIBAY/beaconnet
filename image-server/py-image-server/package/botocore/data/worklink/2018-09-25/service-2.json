@@ -1,0 +1,1832 @@
+{
+  "documentation": "<p>Amazon WorkLink is a cloud-based service that provides secure access to internal websites and web apps from iOS and Android phones. In a single step, your users, such as employees, can access internal websites as efficiently as they access any other public website. They enter a URL in their web browser, or choose a link to an internal website in an email. Amazon WorkLink authenticates the user's access and securely renders authorized internal web content in a secure rendering service in the AWS cloud. Amazon WorkLink doesn't download or store any internal web content on mobile devices.</p>",
+  "metadata": {
+    "apiVersion": "2018-09-25",
+    "endpointPrefix": "worklink",
+    "jsonVersion": "1.1",
+    "protocol": "rest-json",
+    "serviceAbbreviation": "WorkLink",
+    "serviceFullName": "Amazon WorkLink",
+    "serviceId": "WorkLink",
+    "signatureVersion": "v4",
+    "signingName": "worklink",
+    "uid": "worklink-2018-09-25"
+  },
+  "operations": {
+    "AssociateDomain": {
+      "deprecated": true,
+      "deprecatedMessage": "Amazon WorkLink is no longer supported. This will be removed in a future version of the SDK.",
+      "documentation": "<p>Specifies a domain to be associated to Amazon WorkLink.</p>",
+      "errors": [
+        { "shape": "UnauthorizedException" },
+        { "shape": "InternalServerErrorException" },
+        { "shape": "InvalidRequestException" },
+        { "shape": "ResourceNotFoundException" },
+        { "shape": "ResourceAlreadyExistsException" },
+        { "shape": "TooManyRequestsException" }
+      ],
+      "http": {
+        "method": "POST",
+        "requestUri": "/associateDomain"
+      },
+      "input": { "shape": "AssociateDomainRequest" },
+      "name": "AssociateDomain",
+      "output": { "shape": "AssociateDomainResponse" }
+    },
+    "AssociateWebsiteAuthorizationProvider": {
+      "deprecated": true,
+      "deprecatedMessage": "Amazon WorkLink is no longer supported. This will be removed in a future version of the SDK.",
+      "documentation": "<p>Associates a website authorization provider with a specified fleet. This is used to authorize users against associated websites in the company network.</p>",
+      "errors": [
+        { "shape": "UnauthorizedException" },
+        { "shape": "InternalServerErrorException" },
+        { "shape": "InvalidRequestException" },
+        { "shape": "ResourceNotFoundException" },
+        { "shape": "ResourceAlreadyExistsException" },
+        { "shape": "TooManyRequestsException" }
+      ],
+      "http": {
+        "method": "POST",
+        "requestUri": "/associateWebsiteAuthorizationProvider"
+      },
+      "input": { "shape": "AssociateWebsiteAuthorizationProviderRequest" },
+      "name": "AssociateWebsiteAuthorizationProvider",
+      "output": { "shape": "AssociateWebsiteAuthorizationProviderResponse" }
+    },
+    "AssociateWebsiteCertificateAuthority": {
+      "deprecated": true,
+      "deprecatedMessage": "Amazon WorkLink is no longer supported. This will be removed in a future version of the SDK.",
+      "documentation": "<p>Imports the root certificate of a certificate authority (CA) used to obtain TLS certificates used by associated websites within the company network.</p>",
+      "errors": [
+        { "shape": "UnauthorizedException" },
+        { "shape": "InternalServerErrorException" },
+        { "shape": "InvalidRequestException" },
+        { "shape": "ResourceNotFoundException" },
+        { "shape": "ResourceAlreadyExistsException" },
+        { "shape": "TooManyRequestsException" }
+      ],
+      "http": {
+        "method": "POST",
+        "requestUri": "/associateWebsiteCertificateAuthority"
+      },
+      "input": { "shape": "AssociateWebsiteCertificateAuthorityRequest" },
+      "name": "AssociateWebsiteCertificateAuthority",
+      "output": { "shape": "AssociateWebsiteCertificateAuthorityResponse" }
+    },
+    "CreateFleet": {
+      "deprecated": true,
+      "deprecatedMessage": "Amazon WorkLink is no longer supported. This will be removed in a future version of the SDK.",
+      "documentation": "<p>Creates a fleet. A fleet consists of resources and the configuration that delivers associated websites to authorized users who download and set up the Amazon WorkLink app.</p>",
+      "errors": [
+        { "shape": "UnauthorizedException" },
+        { "shape": "InternalServerErrorException" },
+        { "shape": "InvalidRequestException" },
+        { "shape": "ResourceNotFoundException" },
+        { "shape": "ResourceAlreadyExistsException" },
+        { "shape": "TooManyRequestsException" }
+      ],
+      "http": {
+        "method": "POST",
+        "requestUri": "/createFleet"
+      },
+      "input": { "shape": "CreateFleetRequest" },
+      "name": "CreateFleet",
+      "output": { "shape": "CreateFleetResponse" }
+    },
+    "DeleteFleet": {
+      "deprecated": true,
+      "deprecatedMessage": "Amazon WorkLink is no longer supported. This will be removed in a future version of the SDK.",
+      "documentation": "<p>Deletes a fleet. Prevents users from accessing previously associated websites. </p>",
+      "errors": [
+        { "shape": "UnauthorizedException" },
+        { "shape": "InternalServerErrorException" },
+        { "shape": "InvalidRequestException" },
+        { "shape": "ResourceNotFoundException" },
+        { "shape": "TooManyRequestsException" }
+      ],
+      "http": {
+        "method": "POST",
+        "requestUri": "/deleteFleet"
+      },
+      "input": { "shape": "DeleteFleetRequest" },
+      "name": "DeleteFleet",
+      "output": { "shape": "DeleteFleetResponse" }
+    },
+    "DescribeAuditStreamConfiguration": {
+      "deprecated": true,
+      "deprecatedMessage": "Amazon WorkLink is no longer supported. This will be removed in a future version of the SDK.",
+      "documentation": "<p>Describes the configuration for delivering audit streams to the customer account.</p>",
+      "errors": [
+        { "shape": "UnauthorizedException" },
+        { "shape": "InternalServerErrorException" },
+        { "shape": "InvalidRequestException" },
+        { "shape": "ResourceNotFoundException" },
+        { "shape": "TooManyRequestsException" }
+      ],
+      "http": {
+        "method": "POST",
+        "requestUri": "/describeAuditStreamConfiguration"
+      },
+      "input": { "shape": "DescribeAuditStreamConfigurationRequest" },
+      "name": "DescribeAuditStreamConfiguration",
+      "output": { "shape": "DescribeAuditStreamConfigurationResponse" }
+    },
+    "DescribeCompanyNetworkConfiguration": {
+      "deprecated": true,
+      "deprecatedMessage": "Amazon WorkLink is no longer supported. This will be removed in a future version of the SDK.",
+      "documentation": "<p>Describes the networking configuration to access the internal websites associated with the specified fleet.</p>",
+      "errors": [
+        { "shape": "UnauthorizedException" },
+        { "shape": "InternalServerErrorException" },
+        { "shape": "InvalidRequestException" },
+        { "shape": "ResourceNotFoundException" },
+        { "shape": "TooManyRequestsException" }
+      ],
+      "http": {
+        "method": "POST",
+        "requestUri": "/describeCompanyNetworkConfiguration"
+      },
+      "input": { "shape": "DescribeCompanyNetworkConfigurationRequest" },
+      "name": "DescribeCompanyNetworkConfiguration",
+      "output": { "shape": "DescribeCompanyNetworkConfigurationResponse" }
+    },
+    "DescribeDevice": {
+      "deprecated": true,
+      "deprecatedMessage": "Amazon WorkLink is no longer supported. This will be removed in a future version of the SDK.",
+      "documentation": "<p>Provides information about a user's device.</p>",
+      "errors": [
+        { "shape": "UnauthorizedException" },
+        { "shape": "InternalServerErrorException" },
+        { "shape": "InvalidRequestException" },
+        { "shape": "ResourceNotFoundException" },
+        { "shape": "TooManyRequestsException" }
+      ],
+      "http": {
+        "method": "POST",
+        "requestUri": "/describeDevice"
+      },
+      "input": { "shape": "DescribeDeviceRequest" },
+      "name": "DescribeDevice",
+      "output": { "shape": "DescribeDeviceResponse" }
+    },
+    "DescribeDevicePolicyConfiguration": {
+      "deprecated": true,
+      "deprecatedMessage": "Amazon WorkLink is no longer supported. This will be removed in a future version of the SDK.",
+      "documentation": "<p>Describes the device policy configuration for the specified fleet.</p>",
+      "errors": [
+        { "shape": "UnauthorizedException" },
+        { "shape": "InternalServerErrorException" },
+        { "shape": "InvalidRequestException" },
+        { "shape": "ResourceNotFoundException" },
+        { "shape": "TooManyRequestsException" }
+      ],
+      "http": {
+        "method": "POST",
+        "requestUri": "/describeDevicePolicyConfiguration"
+      },
+      "input": { "shape": "DescribeDevicePolicyConfigurationRequest" },
+      "name": "DescribeDevicePolicyConfiguration",
+      "output": { "shape": "DescribeDevicePolicyConfigurationResponse" }
+    },
+    "DescribeDomain": {
+      "deprecated": true,
+      "deprecatedMessage": "Amazon WorkLink is no longer supported. This will be removed in a future version of the SDK.",
+      "documentation": "<p>Provides information about the domain.</p>",
+      "errors": [
+        { "shape": "UnauthorizedException" },
+        { "shape": "InternalServerErrorException" },
+        { "shape": "InvalidRequestException" },
+        { "shape": "ResourceNotFoundException" },
+        { "shape": "TooManyRequestsException" }
+      ],
+      "http": {
+        "method": "POST",
+        "requestUri": "/describeDomain"
+      },
+      "input": { "shape": "DescribeDomainRequest" },
+      "name": "DescribeDomain",
+      "output": { "shape": "DescribeDomainResponse" }
+    },
+    "DescribeFleetMetadata": {
+      "deprecated": true,
+      "deprecatedMessage": "Amazon WorkLink is no longer supported. This will be removed in a future version of the SDK.",
+      "documentation": "<p>Provides basic information for the specified fleet, excluding identity provider, networking, and device configuration details.</p>",
+      "errors": [
+        { "shape": "UnauthorizedException" },
+        { "shape": "InternalServerErrorException" },
+        { "shape": "InvalidRequestException" },
+        { "shape": "ResourceNotFoundException" },
+        { "shape": "TooManyRequestsException" }
+      ],
+      "http": {
+        "method": "POST",
+        "requestUri": "/describeFleetMetadata"
+      },
+      "input": { "shape": "DescribeFleetMetadataRequest" },
+      "name": "DescribeFleetMetadata",
+      "output": { "shape": "DescribeFleetMetadataResponse" }
+    },
+    "DescribeIdentityProviderConfiguration": {
+      "deprecated": true,
+      "deprecatedMessage": "Amazon WorkLink is no longer supported. This will be removed in a future version of the SDK.",
+      "documentation": "<p>Describes the identity provider configuration of the specified fleet.</p>",
+      "errors": [
+        { "shape": "UnauthorizedException" },
+        { "shape": "InternalServerErrorException" },
+        { "shape": "InvalidRequestException" },
+        { "shape": "ResourceNotFoundException" },
+        { "shape": "TooManyRequestsException" }
+      ],
+      "http": {
+        "method": "POST",
+        "requestUri": "/describeIdentityProviderConfiguration"
+      },
+      "input": { "shape": "DescribeIdentityProviderConfigurationRequest" },
+      "name": "DescribeIdentityProviderConfiguration",
+      "output": { "shape": "DescribeIdentityProviderConfigurationResponse" }
+    },
+    "DescribeWebsiteCertificateAuthority": {
+      "deprecated": true,
+      "deprecatedMessage": "Amazon WorkLink is no longer supported. This will be removed in a future version of the SDK.",
+      "documentation": "<p>Provides information about the certificate authority.</p>",
+      "errors": [
+        { "shape": "UnauthorizedException" },
+        { "shape": "InternalServerErrorException" },
+        { "shape": "InvalidRequestException" },
+        { "shape": "ResourceNotFoundException" },
+        { "shape": "TooManyRequestsException" }
+      ],
+      "http": {
+        "method": "POST",
+        "requestUri": "/describeWebsiteCertificateAuthority"
+      },
+      "input": { "shape": "DescribeWebsiteCertificateAuthorityRequest" },
+      "name": "DescribeWebsiteCertificateAuthority",
+      "output": { "shape": "DescribeWebsiteCertificateAuthorityResponse" }
+    },
+    "DisassociateDomain": {
+      "deprecated": true,
+      "deprecatedMessage": "Amazon WorkLink is no longer supported. This will be removed in a future version of the SDK.",
+      "documentation": "<p>Disassociates a domain from Amazon WorkLink. End users lose the ability to access the domain with Amazon WorkLink. </p>",
+      "errors": [
+        { "shape": "UnauthorizedException" },
+        { "shape": "InternalServerErrorException" },
+        { "shape": "InvalidRequestException" },
+        { "shape": "ResourceNotFoundException" },
+        { "shape": "TooManyRequestsException" }
+      ],
+      "http": {
+        "method": "POST",
+        "requestUri": "/disassociateDomain"
+      },
+      "input": { "shape": "DisassociateDomainRequest" },
+      "name": "DisassociateDomain",
+      "output": { "shape": "DisassociateDomainResponse" }
+    },
+    "DisassociateWebsiteAuthorizationProvider": {
+      "deprecated": true,
+      "deprecatedMessage": "Amazon WorkLink is no longer supported. This will be removed in a future version of the SDK.",
+      "documentation": "<p>Disassociates a website authorization provider from a specified fleet. After the disassociation, users can't load any associated websites that require this authorization provider.</p>",
+      "errors": [
+        { "shape": "UnauthorizedException" },
+        { "shape": "InternalServerErrorException" },
+        { "shape": "InvalidRequestException" },
+        { "shape": "ResourceNotFoundException" },
+        { "shape": "ResourceAlreadyExistsException" },
+        { "shape": "TooManyRequestsException" }
+      ],
+      "http": {
+        "method": "POST",
+        "requestUri": "/disassociateWebsiteAuthorizationProvider"
+      },
+      "input": { "shape": "DisassociateWebsiteAuthorizationProviderRequest" },
+      "name": "DisassociateWebsiteAuthorizationProvider",
+      "output": { "shape": "DisassociateWebsiteAuthorizationProviderResponse" }
+    },
+    "DisassociateWebsiteCertificateAuthority": {
+      "deprecated": true,
+      "deprecatedMessage": "Amazon WorkLink is no longer supported. This will be removed in a future version of the SDK.",
+      "documentation": "<p>Removes a certificate authority (CA).</p>",
+      "errors": [
+        { "shape": "UnauthorizedException" },
+        { "shape": "InternalServerErrorException" },
+        { "shape": "InvalidRequestException" },
+        { "shape": "ResourceNotFoundException" },
+        { "shape": "TooManyRequestsException" }
+      ],
+      "http": {
+        "method": "POST",
+        "requestUri": "/disassociateWebsiteCertificateAuthority"
+      },
+      "input": { "shape": "DisassociateWebsiteCertificateAuthorityRequest" },
+      "name": "DisassociateWebsiteCertificateAuthority",
+      "output": { "shape": "DisassociateWebsiteCertificateAuthorityResponse" }
+    },
+    "ListDevices": {
+      "deprecated": true,
+      "deprecatedMessage": "Amazon WorkLink is no longer supported. This will be removed in a future version of the SDK.",
+      "documentation": "<p>Retrieves a list of devices registered with the specified fleet.</p>",
+      "errors": [
+        { "shape": "UnauthorizedException" },
+        { "shape": "InternalServerErrorException" },
+        { "shape": "InvalidRequestException" },
+        { "shape": "ResourceNotFoundException" },
+        { "shape": "TooManyRequestsException" }
+      ],
+      "http": {
+        "method": "POST",
+        "requestUri": "/listDevices"
+      },
+      "input": { "shape": "ListDevicesRequest" },
+      "name": "ListDevices",
+      "output": { "shape": "ListDevicesResponse" }
+    },
+    "ListDomains": {
+      "deprecated": true,
+      "deprecatedMessage": "Amazon WorkLink is no longer supported. This will be removed in a future version of the SDK.",
+      "documentation": "<p>Retrieves a list of domains associated to a specified fleet.</p>",
+      "errors": [
+        { "shape": "UnauthorizedException" },
+        { "shape": "InternalServerErrorException" },
+        { "shape": "InvalidRequestException" },
+        { "shape": "ResourceNotFoundException" },
+        { "shape": "TooManyRequestsException" }
+      ],
+      "http": {
+        "method": "POST",
+        "requestUri": "/listDomains"
+      },
+      "input": { "shape": "ListDomainsRequest" },
+      "name": "ListDomains",
+      "output": { "shape": "ListDomainsResponse" }
+    },
+    "ListFleets": {
+      "deprecated": true,
+      "deprecatedMessage": "Amazon WorkLink is no longer supported. This will be removed in a future version of the SDK.",
+      "documentation": "<p>Retrieves a list of fleets for the current account and Region.</p>",
+      "errors": [
+        { "shape": "UnauthorizedException" },
+        { "shape": "InternalServerErrorException" },
+        { "shape": "InvalidRequestException" },
+        { "shape": "TooManyRequestsException" }
+      ],
+      "http": {
+        "method": "POST",
+        "requestUri": "/listFleets"
+      },
+      "input": { "shape": "ListFleetsRequest" },
+      "name": "ListFleets",
+      "output": { "shape": "ListFleetsResponse" }
+    },
+    "ListTagsForResource": {
+      "deprecated": true,
+      "deprecatedMessage": "Amazon WorkLink is no longer supported. This will be removed in a future version of the SDK.",
+      "documentation": "<p>Retrieves a list of tags for the specified resource.</p>",
+      "errors": [{ "shape": "InvalidRequestException" }],
+      "http": {
+        "method": "GET",
+        "requestUri": "/tags/{ResourceArn}"
+      },
+      "input": { "shape": "ListTagsForResourceRequest" },
+      "name": "ListTagsForResource",
+      "output": { "shape": "ListTagsForResourceResponse" }
+    },
+    "ListWebsiteAuthorizationProviders": {
+      "deprecated": true,
+      "deprecatedMessage": "Amazon WorkLink is no longer supported. This will be removed in a future version of the SDK.",
+      "documentation": "<p>Retrieves a list of website authorization providers associated with a specified fleet.</p>",
+      "errors": [
+        { "shape": "UnauthorizedException" },
+        { "shape": "InternalServerErrorException" },
+        { "shape": "InvalidRequestException" },
+        { "shape": "ResourceNotFoundException" },
+        { "shape": "TooManyRequestsException" }
+      ],
+      "http": {
+        "method": "POST",
+        "requestUri": "/listWebsiteAuthorizationProviders"
+      },
+      "input": { "shape": "ListWebsiteAuthorizationProvidersRequest" },
+      "name": "ListWebsiteAuthorizationProviders",
+      "output": { "shape": "ListWebsiteAuthorizationProvidersResponse" }
+    },
+    "ListWebsiteCertificateAuthorities": {
+      "deprecated": true,
+      "deprecatedMessage": "Amazon WorkLink is no longer supported. This will be removed in a future version of the SDK.",
+      "documentation": "<p>Retrieves a list of certificate authorities added for the current account and Region.</p>",
+      "errors": [
+        { "shape": "UnauthorizedException" },
+        { "shape": "InternalServerErrorException" },
+        { "shape": "InvalidRequestException" },
+        { "shape": "TooManyRequestsException" }
+      ],
+      "http": {
+        "method": "POST",
+        "requestUri": "/listWebsiteCertificateAuthorities"
+      },
+      "input": { "shape": "ListWebsiteCertificateAuthoritiesRequest" },
+      "name": "ListWebsiteCertificateAuthorities",
+      "output": { "shape": "ListWebsiteCertificateAuthoritiesResponse" }
+    },
+    "RestoreDomainAccess": {
+      "deprecated": true,
+      "deprecatedMessage": "Amazon WorkLink is no longer supported. This will be removed in a future version of the SDK.",
+      "documentation": "<p>Moves a domain to ACTIVE status if it was in the INACTIVE status.</p>",
+      "errors": [
+        { "shape": "UnauthorizedException" },
+        { "shape": "InternalServerErrorException" },
+        { "shape": "InvalidRequestException" },
+        { "shape": "ResourceNotFoundException" },
+        { "shape": "TooManyRequestsException" }
+      ],
+      "http": {
+        "method": "POST",
+        "requestUri": "/restoreDomainAccess"
+      },
+      "input": { "shape": "RestoreDomainAccessRequest" },
+      "name": "RestoreDomainAccess",
+      "output": { "shape": "RestoreDomainAccessResponse" }
+    },
+    "RevokeDomainAccess": {
+      "deprecated": true,
+      "deprecatedMessage": "Amazon WorkLink is no longer supported. This will be removed in a future version of the SDK.",
+      "documentation": "<p>Moves a domain to INACTIVE status if it was in the ACTIVE status.</p>",
+      "errors": [
+        { "shape": "UnauthorizedException" },
+        { "shape": "InternalServerErrorException" },
+        { "shape": "InvalidRequestException" },
+        { "shape": "ResourceNotFoundException" },
+        { "shape": "TooManyRequestsException" }
+      ],
+      "http": {
+        "method": "POST",
+        "requestUri": "/revokeDomainAccess"
+      },
+      "input": { "shape": "RevokeDomainAccessRequest" },
+      "name": "RevokeDomainAccess",
+      "output": { "shape": "RevokeDomainAccessResponse" }
+    },
+    "SignOutUser": {
+      "deprecated": true,
+      "deprecatedMessage": "Amazon WorkLink is no longer supported. This will be removed in a future version of the SDK.",
+      "documentation": "<p>Signs the user out from all of their devices. The user can sign in again if they have valid credentials.</p>",
+      "errors": [
+        { "shape": "UnauthorizedException" },
+        { "shape": "InternalServerErrorException" },
+        { "shape": "InvalidRequestException" },
+        { "shape": "ResourceNotFoundException" },
+        { "shape": "TooManyRequestsException" }
+      ],
+      "http": {
+        "method": "POST",
+        "requestUri": "/signOutUser"
+      },
+      "input": { "shape": "SignOutUserRequest" },
+      "name": "SignOutUser",
+      "output": { "shape": "SignOutUserResponse" }
+    },
+    "TagResource": {
+      "deprecated": true,
+      "deprecatedMessage": "Amazon WorkLink is no longer supported. This will be removed in a future version of the SDK.",
+      "documentation": "<p>Adds or overwrites one or more tags for the specified resource, such as a fleet. Each tag consists of a key and an optional value. If a resource already has a tag with the same key, this operation updates its value.</p>",
+      "errors": [{ "shape": "InvalidRequestException" }],
+      "http": {
+        "method": "POST",
+        "requestUri": "/tags/{ResourceArn}"
+      },
+      "input": { "shape": "TagResourceRequest" },
+      "name": "TagResource",
+      "output": { "shape": "TagResourceResponse" }
+    },
+    "UntagResource": {
+      "deprecated": true,
+      "deprecatedMessage": "Amazon WorkLink is no longer supported. This will be removed in a future version of the SDK.",
+      "documentation": "<p>Removes one or more tags from the specified resource.</p>",
+      "errors": [{ "shape": "InvalidRequestException" }],
+      "http": {
+        "method": "DELETE",
+        "requestUri": "/tags/{ResourceArn}"
+      },
+      "input": { "shape": "UntagResourceRequest" },
+      "name": "UntagResource",
+      "output": { "shape": "UntagResourceResponse" }
+    },
+    "UpdateAuditStreamConfiguration": {
+      "deprecated": true,
+      "deprecatedMessage": "Amazon WorkLink is no longer supported. This will be removed in a future version of the SDK.",
+      "documentation": "<p>Updates the audit stream configuration for the fleet.</p>",
+      "errors": [
+        { "shape": "UnauthorizedException" },
+        { "shape": "InternalServerErrorException" },
+        { "shape": "InvalidRequestException" },
+        { "shape": "ResourceNotFoundException" },
+        { "shape": "TooManyRequestsException" }
+      ],
+      "http": {
+        "method": "POST",
+        "requestUri": "/updateAuditStreamConfiguration"
+      },
+      "input": { "shape": "UpdateAuditStreamConfigurationRequest" },
+      "name": "UpdateAuditStreamConfiguration",
+      "output": { "shape": "UpdateAuditStreamConfigurationResponse" }
+    },
+    "UpdateCompanyNetworkConfiguration": {
+      "deprecated": true,
+      "deprecatedMessage": "Amazon WorkLink is no longer supported. This will be removed in a future version of the SDK.",
+      "documentation": "<p>Updates the company network configuration for the fleet.</p>",
+      "errors": [
+        { "shape": "UnauthorizedException" },
+        { "shape": "InternalServerErrorException" },
+        { "shape": "InvalidRequestException" },
+        { "shape": "ResourceNotFoundException" },
+        { "shape": "TooManyRequestsException" }
+      ],
+      "http": {
+        "method": "POST",
+        "requestUri": "/updateCompanyNetworkConfiguration"
+      },
+      "input": { "shape": "UpdateCompanyNetworkConfigurationRequest" },
+      "name": "UpdateCompanyNetworkConfiguration",
+      "output": { "shape": "UpdateCompanyNetworkConfigurationResponse" }
+    },
+    "UpdateDevicePolicyConfiguration": {
+      "deprecated": true,
+      "deprecatedMessage": "Amazon WorkLink is no longer supported. This will be removed in a future version of the SDK.",
+      "documentation": "<p>Updates the device policy configuration for the fleet.</p>",
+      "errors": [
+        { "shape": "UnauthorizedException" },
+        { "shape": "InternalServerErrorException" },
+        { "shape": "InvalidRequestException" },
+        { "shape": "ResourceNotFoundException" },
+        { "shape": "TooManyRequestsException" }
+      ],
+      "http": {
+        "method": "POST",
+        "requestUri": "/updateDevicePolicyConfiguration"
+      },
+      "input": { "shape": "UpdateDevicePolicyConfigurationRequest" },
+      "name": "UpdateDevicePolicyConfiguration",
+      "output": { "shape": "UpdateDevicePolicyConfigurationResponse" }
+    },
+    "UpdateDomainMetadata": {
+      "deprecated": true,
+      "deprecatedMessage": "Amazon WorkLink is no longer supported. This will be removed in a future version of the SDK.",
+      "documentation": "<p>Updates domain metadata, such as DisplayName.</p>",
+      "errors": [
+        { "shape": "UnauthorizedException" },
+        { "shape": "InternalServerErrorException" },
+        { "shape": "InvalidRequestException" },
+        { "shape": "ResourceNotFoundException" },
+        { "shape": "TooManyRequestsException" }
+      ],
+      "http": {
+        "method": "POST",
+        "requestUri": "/updateDomainMetadata"
+      },
+      "input": { "shape": "UpdateDomainMetadataRequest" },
+      "name": "UpdateDomainMetadata",
+      "output": { "shape": "UpdateDomainMetadataResponse" }
+    },
+    "UpdateFleetMetadata": {
+      "deprecated": true,
+      "deprecatedMessage": "Amazon WorkLink is no longer supported. This will be removed in a future version of the SDK.",
+      "documentation": "<p>Updates fleet metadata, such as DisplayName.</p>",
+      "errors": [
+        { "shape": "UnauthorizedException" },
+        { "shape": "InternalServerErrorException" },
+        { "shape": "InvalidRequestException" },
+        { "shape": "ResourceNotFoundException" },
+        { "shape": "TooManyRequestsException" }
+      ],
+      "http": {
+        "method": "POST",
+        "requestUri": "/UpdateFleetMetadata"
+      },
+      "input": { "shape": "UpdateFleetMetadataRequest" },
+      "name": "UpdateFleetMetadata",
+      "output": { "shape": "UpdateFleetMetadataResponse" }
+    },
+    "UpdateIdentityProviderConfiguration": {
+      "deprecated": true,
+      "deprecatedMessage": "Amazon WorkLink is no longer supported. This will be removed in a future version of the SDK.",
+      "documentation": "<p>Updates the identity provider configuration for the fleet.</p>",
+      "errors": [
+        { "shape": "UnauthorizedException" },
+        { "shape": "InternalServerErrorException" },
+        { "shape": "InvalidRequestException" },
+        { "shape": "ResourceNotFoundException" },
+        { "shape": "TooManyRequestsException" }
+      ],
+      "http": {
+        "method": "POST",
+        "requestUri": "/updateIdentityProviderConfiguration"
+      },
+      "input": { "shape": "UpdateIdentityProviderConfigurationRequest" },
+      "name": "UpdateIdentityProviderConfiguration",
+      "output": { "shape": "UpdateIdentityProviderConfigurationResponse" }
+    }
+  },
+  "shapes": {
+    "AcmCertificateArn": {
+      "pattern": "arn:[\\w+=/,.@-]+:[\\w+=/,.@-]+:[\\w+=/,.@-]*:[0-9]+:[\\w+=,.@-]+(/[\\w+=/,.@-]+)*",
+      "type": "string"
+    },
+    "AssociateDomainRequest": {
+      "members": {
+        "AcmCertificateArn": {
+          "documentation": "<p>The ARN of an issued ACM certificate that is valid for the domain being associated.</p>",
+          "shape": "AcmCertificateArn"
+        },
+        "DisplayName": {
+          "documentation": "<p>The name to display.</p>",
+          "shape": "DisplayName"
+        },
+        "DomainName": {
+          "documentation": "<p>The fully qualified domain name (FQDN).</p>",
+          "shape": "DomainName"
+        },
+        "FleetArn": {
+          "documentation": "<p>The Amazon Resource Name (ARN) of the fleet.</p>",
+          "shape": "FleetArn"
+        }
+      },
+      "required": ["FleetArn", "DomainName", "AcmCertificateArn"],
+      "type": "structure"
+    },
+    "AssociateDomainResponse": {
+      "members": {},
+      "type": "structure"
+    },
+    "AssociateWebsiteAuthorizationProviderRequest": {
+      "members": {
+        "AuthorizationProviderType": {
+          "documentation": "<p>The authorization provider type.</p>",
+          "shape": "AuthorizationProviderType"
+        },
+        "DomainName": {
+          "documentation": "<p>The domain name of the authorization provider. This applies only to SAML-based authorization providers.</p>",
+          "shape": "DomainName"
+        },
+        "FleetArn": {
+          "documentation": "<p>The ARN of the fleet.</p>",
+          "shape": "FleetArn"
+        }
+      },
+      "required": ["FleetArn", "AuthorizationProviderType"],
+      "type": "structure"
+    },
+    "AssociateWebsiteAuthorizationProviderResponse": {
+      "members": {
+        "AuthorizationProviderId": {
+          "documentation": "<p>A unique identifier for the authorization provider.</p>",
+          "shape": "Id"
+        }
+      },
+      "type": "structure"
+    },
+    "AssociateWebsiteCertificateAuthorityRequest": {
+      "members": {
+        "Certificate": {
+          "documentation": "<p>The root certificate of the CA.</p>",
+          "shape": "Certificate"
+        },
+        "DisplayName": {
+          "documentation": "<p>The certificate name to display.</p>",
+          "shape": "DisplayName"
+        },
+        "FleetArn": {
+          "documentation": "<p>The ARN of the fleet.</p>",
+          "shape": "FleetArn"
+        }
+      },
+      "required": ["FleetArn", "Certificate"],
+      "type": "structure"
+    },
+    "AssociateWebsiteCertificateAuthorityResponse": {
+      "members": {
+        "WebsiteCaId": {
+          "documentation": "<p>A unique identifier for the CA.</p>",
+          "shape": "Id"
+        }
+      },
+      "type": "structure"
+    },
+    "AuditStreamArn": {
+      "pattern": "^arn:aws:kinesis:.+:[0-9]{12}:stream/AmazonWorkLink-.*$",
+      "type": "string"
+    },
+    "AuthorizationProviderType": {
+      "enum": ["SAML"],
+      "type": "string"
+    },
+    "Boolean": { "type": "boolean" },
+    "Certificate": {
+      "max": 8192,
+      "min": 1,
+      "pattern": "-{5}BEGIN CERTIFICATE-{5}\\u000D?\\u000A([A-Za-z0-9/+]{64}\\u000D?\\u000A)*[A-Za-z0-9/+]{1,64}={0,2}\\u000D?\\u000A-{5}END CERTIFICATE-{5}(\\u000D?\\u000A)?",
+      "type": "string"
+    },
+    "CertificateChain": {
+      "max": 32768,
+      "min": 1,
+      "pattern": "(-{5}BEGIN CERTIFICATE-{5}\\u000D?\\u000A([A-Za-z0-9/+]{64}\\u000D?\\u000A)*[A-Za-z0-9/+]{1,64}={0,2}\\u000D?\\u000A-{5}END CERTIFICATE-{5}\\u000D?\\u000A)*-{5}BEGIN CERTIFICATE-{5}\\u000D?\\u000A([A-Za-z0-9/+]{64}\\u000D?\\u000A)*[A-Za-z0-9/+]{1,64}={0,2}\\u000D?\\u000A-{5}END CERTIFICATE-{5}(\\u000D?\\u000A)?",
+      "type": "string"
+    },
+    "CompanyCode": {
+      "max": 32,
+      "min": 1,
+      "type": "string"
+    },
+    "CreateFleetRequest": {
+      "members": {
+        "DisplayName": {
+          "documentation": "<p>The fleet name to display.</p>",
+          "shape": "DisplayName"
+        },
+        "FleetName": {
+          "documentation": "<p>A unique name for the fleet.</p>",
+          "shape": "FleetName"
+        },
+        "OptimizeForEndUserLocation": {
+          "documentation": "<p>The option to optimize for better performance by routing traffic through the closest AWS Region to users, which may be outside of your home Region.</p>",
+          "shape": "Boolean"
+        },
+        "Tags": {
+          "documentation": "<p> The tags to add to the resource. A tag is a key-value pair.</p>",
+          "shape": "TagMap"
+        }
+      },
+      "required": ["FleetName"],
+      "type": "structure"
+    },
+    "CreateFleetResponse": {
+      "members": {
+        "FleetArn": {
+          "documentation": "<p>The Amazon Resource Name (ARN) of the fleet.</p>",
+          "shape": "FleetArn"
+        }
+      },
+      "type": "structure"
+    },
+    "DateTime": { "type": "timestamp" },
+    "DeleteFleetRequest": {
+      "members": {
+        "FleetArn": {
+          "documentation": "<p>The ARN of the fleet.</p>",
+          "shape": "FleetArn"
+        }
+      },
+      "required": ["FleetArn"],
+      "type": "structure"
+    },
+    "DeleteFleetResponse": {
+      "members": {},
+      "type": "structure"
+    },
+    "DescribeAuditStreamConfigurationRequest": {
+      "members": {
+        "FleetArn": {
+          "documentation": "<p>The ARN of the fleet.</p>",
+          "shape": "FleetArn"
+        }
+      },
+      "required": ["FleetArn"],
+      "type": "structure"
+    },
+    "DescribeAuditStreamConfigurationResponse": {
+      "members": {
+        "AuditStreamArn": {
+          "documentation": "<p>The ARN of the Amazon Kinesis data stream that will receive the audit events.</p>",
+          "shape": "AuditStreamArn"
+        }
+      },
+      "type": "structure"
+    },
+    "DescribeCompanyNetworkConfigurationRequest": {
+      "members": {
+        "FleetArn": {
+          "documentation": "<p>The ARN of the fleet.</p>",
+          "shape": "FleetArn"
+        }
+      },
+      "required": ["FleetArn"],
+      "type": "structure"
+    },
+    "DescribeCompanyNetworkConfigurationResponse": {
+      "members": {
+        "SecurityGroupIds": {
+          "documentation": "<p>The security groups associated with access to the provided subnets.</p>",
+          "shape": "SecurityGroupIds"
+        },
+        "SubnetIds": {
+          "documentation": "<p>The subnets used for X-ENI connections from Amazon WorkLink rendering containers.</p>",
+          "shape": "SubnetIds"
+        },
+        "VpcId": {
+          "documentation": "<p>The VPC with connectivity to associated websites.</p>",
+          "shape": "VpcId"
+        }
+      },
+      "type": "structure"
+    },
+    "DescribeDevicePolicyConfigurationRequest": {
+      "members": {
+        "FleetArn": {
+          "documentation": "<p>The ARN of the fleet.</p>",
+          "shape": "FleetArn"
+        }
+      },
+      "required": ["FleetArn"],
+      "type": "structure"
+    },
+    "DescribeDevicePolicyConfigurationResponse": {
+      "members": {
+        "DeviceCaCertificate": {
+          "documentation": "<p>The certificate chain, including intermediate certificates and the root certificate authority certificate used to issue device certificates.</p>",
+          "shape": "Certificate"
+        }
+      },
+      "type": "structure"
+    },
+    "DescribeDeviceRequest": {
+      "members": {
+        "DeviceId": {
+          "documentation": "<p>A unique identifier for a registered user's device.</p>",
+          "shape": "Id"
+        },
+        "FleetArn": {
+          "documentation": "<p>The ARN of the fleet.</p>",
+          "shape": "FleetArn"
+        }
+      },
+      "required": ["FleetArn", "DeviceId"],
+      "type": "structure"
+    },
+    "DescribeDeviceResponse": {
+      "members": {
+        "FirstAccessedTime": {
+          "documentation": "<p>The date that the device first signed in to Amazon WorkLink.</p>",
+          "shape": "DateTime"
+        },
+        "LastAccessedTime": {
+          "documentation": "<p>The date that the device last accessed Amazon WorkLink.</p>",
+          "shape": "DateTime"
+        },
+        "Manufacturer": {
+          "documentation": "<p>The manufacturer of the device.</p>",
+          "shape": "DeviceManufacturer"
+        },
+        "Model": {
+          "documentation": "<p>The model of the device.</p>",
+          "shape": "DeviceModel"
+        },
+        "OperatingSystem": {
+          "documentation": "<p>The operating system of the device.</p>",
+          "shape": "DeviceOperatingSystemName"
+        },
+        "OperatingSystemVersion": {
+          "documentation": "<p>The operating system version of the device.</p>",
+          "shape": "DeviceOperatingSystemVersion"
+        },
+        "PatchLevel": {
+          "documentation": "<p>The operating system patch level of the device.</p>",
+          "shape": "DevicePatchLevel"
+        },
+        "Status": {
+          "documentation": "<p>The current state of the device.</p>",
+          "shape": "DeviceStatus"
+        },
+        "Username": {
+          "documentation": "<p>The user name associated with the device.</p>",
+          "shape": "Username"
+        }
+      },
+      "type": "structure"
+    },
+    "DescribeDomainRequest": {
+      "members": {
+        "DomainName": {
+          "documentation": "<p>The name of the domain.</p>",
+          "shape": "DomainName"
+        },
+        "FleetArn": {
+          "documentation": "<p>The ARN of the fleet.</p>",
+          "shape": "FleetArn"
+        }
+      },
+      "required": ["FleetArn", "DomainName"],
+      "type": "structure"
+    },
+    "DescribeDomainResponse": {
+      "members": {
+        "AcmCertificateArn": {
+          "documentation": "<p>The ARN of an issued ACM certificate that is valid for the domain being associated.</p>",
+          "shape": "AcmCertificateArn"
+        },
+        "CreatedTime": {
+          "documentation": "<p>The time that the domain was added.</p>",
+          "shape": "DateTime"
+        },
+        "DisplayName": {
+          "documentation": "<p>The name to display.</p>",
+          "shape": "DisplayName"
+        },
+        "DomainName": {
+          "documentation": "<p>The name of the domain.</p>",
+          "shape": "DomainName"
+        },
+        "DomainStatus": {
+          "documentation": "<p>The current state for the domain.</p>",
+          "shape": "DomainStatus"
+        }
+      },
+      "type": "structure"
+    },
+    "DescribeFleetMetadataRequest": {
+      "members": {
+        "FleetArn": {
+          "documentation": "<p>The Amazon Resource Name (ARN) of the fleet.</p>",
+          "shape": "FleetArn"
+        }
+      },
+      "required": ["FleetArn"],
+      "type": "structure"
+    },
+    "DescribeFleetMetadataResponse": {
+      "members": {
+        "CompanyCode": {
+          "documentation": "<p>The identifier used by users to sign in to the Amazon WorkLink app.</p>",
+          "shape": "CompanyCode"
+        },
+        "CreatedTime": {
+          "documentation": "<p>The time that the fleet was created.</p>",
+          "shape": "DateTime"
+        },
+        "DisplayName": {
+          "documentation": "<p>The name to display.</p>",
+          "shape": "DisplayName"
+        },
+        "FleetName": {
+          "documentation": "<p>The name of the fleet.</p>",
+          "shape": "FleetName"
+        },
+        "FleetStatus": {
+          "documentation": "<p>The current state of the fleet.</p>",
+          "shape": "FleetStatus"
+        },
+        "LastUpdatedTime": {
+          "documentation": "<p>The time that the fleet was last updated.</p>",
+          "shape": "DateTime"
+        },
+        "OptimizeForEndUserLocation": {
+          "documentation": "<p>The option to optimize for better performance by routing traffic through the closest AWS Region to users, which may be outside of your home Region.</p>",
+          "shape": "Boolean"
+        },
+        "Tags": {
+          "documentation": "<p>The tags attached to the resource. A tag is a key-value pair.</p>",
+          "shape": "TagMap"
+        }
+      },
+      "type": "structure"
+    },
+    "DescribeIdentityProviderConfigurationRequest": {
+      "members": {
+        "FleetArn": {
+          "documentation": "<p>The ARN of the fleet.</p>",
+          "shape": "FleetArn"
+        }
+      },
+      "required": ["FleetArn"],
+      "type": "structure"
+    },
+    "DescribeIdentityProviderConfigurationResponse": {
+      "members": {
+        "IdentityProviderSamlMetadata": {
+          "documentation": "<p>The SAML metadata document provided by the user’s identity provider.</p>",
+          "shape": "SamlMetadata"
+        },
+        "IdentityProviderType": {
+          "documentation": "<p>The type of identity provider.</p>",
+          "shape": "IdentityProviderType"
+        },
+        "ServiceProviderSamlMetadata": {
+          "documentation": "<p>The SAML metadata document uploaded to the user’s identity provider.</p>",
+          "shape": "SamlMetadata"
+        }
+      },
+      "type": "structure"
+    },
+    "DescribeWebsiteCertificateAuthorityRequest": {
+      "members": {
+        "FleetArn": {
+          "documentation": "<p>The ARN of the fleet.</p>",
+          "shape": "FleetArn"
+        },
+        "WebsiteCaId": {
+          "documentation": "<p>A unique identifier for the certificate authority.</p>",
+          "shape": "Id"
+        }
+      },
+      "required": ["FleetArn", "WebsiteCaId"],
+      "type": "structure"
+    },
+    "DescribeWebsiteCertificateAuthorityResponse": {
+      "members": {
+        "Certificate": {
+          "documentation": "<p>The root certificate of the certificate authority.</p>",
+          "shape": "Certificate"
+        },
+        "CreatedTime": {
+          "documentation": "<p>The time that the certificate authority was added.</p>",
+          "shape": "DateTime"
+        },
+        "DisplayName": {
+          "documentation": "<p>The certificate name to display.</p>",
+          "shape": "DisplayName"
+        }
+      },
+      "type": "structure"
+    },
+    "DeviceManufacturer": {
+      "max": 256,
+      "min": 1,
+      "type": "string"
+    },
+    "DeviceModel": {
+      "max": 256,
+      "min": 1,
+      "type": "string"
+    },
+    "DeviceOperatingSystemName": {
+      "max": 256,
+      "min": 1,
+      "type": "string"
+    },
+    "DeviceOperatingSystemVersion": {
+      "max": 256,
+      "min": 1,
+      "type": "string"
+    },
+    "DevicePatchLevel": {
+      "max": 256,
+      "min": 1,
+      "type": "string"
+    },
+    "DeviceStatus": {
+      "enum": ["ACTIVE", "SIGNED_OUT"],
+      "type": "string"
+    },
+    "DeviceSummary": {
+      "documentation": "<p>The summary of devices.</p>",
+      "members": {
+        "DeviceId": {
+          "documentation": "<p>The ID of the device.</p>",
+          "shape": "Id"
+        },
+        "DeviceStatus": {
+          "documentation": "<p>The status of the device.</p>",
+          "shape": "DeviceStatus"
+        }
+      },
+      "type": "structure"
+    },
+    "DeviceSummaryList": {
+      "member": { "shape": "DeviceSummary" },
+      "type": "list"
+    },
+    "DisassociateDomainRequest": {
+      "members": {
+        "DomainName": {
+          "documentation": "<p>The name of the domain.</p>",
+          "shape": "DomainName"
+        },
+        "FleetArn": {
+          "documentation": "<p>The ARN of the fleet.</p>",
+          "shape": "FleetArn"
+        }
+      },
+      "required": ["FleetArn", "DomainName"],
+      "type": "structure"
+    },
+    "DisassociateDomainResponse": {
+      "members": {},
+      "type": "structure"
+    },
+    "DisassociateWebsiteAuthorizationProviderRequest": {
+      "members": {
+        "AuthorizationProviderId": {
+          "documentation": "<p>A unique identifier for the authorization provider.</p>",
+          "shape": "Id"
+        },
+        "FleetArn": {
+          "documentation": "<p>The ARN of the fleet.</p>",
+          "shape": "FleetArn"
+        }
+      },
+      "required": ["FleetArn", "AuthorizationProviderId"],
+      "type": "structure"
+    },
+    "DisassociateWebsiteAuthorizationProviderResponse": {
+      "members": {},
+      "type": "structure"
+    },
+    "DisassociateWebsiteCertificateAuthorityRequest": {
+      "members": {
+        "FleetArn": {
+          "documentation": "<p>The ARN of the fleet.</p>",
+          "shape": "FleetArn"
+        },
+        "WebsiteCaId": {
+          "documentation": "<p>A unique identifier for the CA.</p>",
+          "shape": "Id"
+        }
+      },
+      "required": ["FleetArn", "WebsiteCaId"],
+      "type": "structure"
+    },
+    "DisassociateWebsiteCertificateAuthorityResponse": {
+      "members": {},
+      "type": "structure"
+    },
+    "DisplayName": {
+      "max": 100,
+      "type": "string"
+    },
+    "DomainName": {
+      "max": 253,
+      "min": 1,
+      "pattern": "^[a-zA-Z0-9]?((?!-)([A-Za-z0-9-]*[A-Za-z0-9])\\.)+[a-zA-Z0-9]+$",
+      "type": "string"
+    },
+    "DomainStatus": {
+      "enum": [
+        "PENDING_VALIDATION",
+        "ASSOCIATING",
+        "ACTIVE",
+        "INACTIVE",
+        "DISASSOCIATING",
+        "DISASSOCIATED",
+        "FAILED_TO_ASSOCIATE",
+        "FAILED_TO_DISASSOCIATE"
+      ],
+      "type": "string"
+    },
+    "DomainSummary": {
+      "documentation": "<p>The summary of the domain.</p>",
+      "members": {
+        "CreatedTime": {
+          "documentation": "<p>The time that the domain was created.</p>",
+          "shape": "DateTime"
+        },
+        "DisplayName": {
+          "documentation": "<p>The name to display.</p>",
+          "shape": "DisplayName"
+        },
+        "DomainName": {
+          "documentation": "<p>The name of the domain.</p>",
+          "shape": "DomainName"
+        },
+        "DomainStatus": {
+          "documentation": "<p>The status of the domain.</p>",
+          "shape": "DomainStatus"
+        }
+      },
+      "required": ["DomainName", "CreatedTime", "DomainStatus"],
+      "type": "structure"
+    },
+    "DomainSummaryList": {
+      "member": { "shape": "DomainSummary" },
+      "type": "list"
+    },
+    "ExceptionMessage": { "type": "string" },
+    "FleetArn": {
+      "max": 2048,
+      "min": 20,
+      "type": "string"
+    },
+    "FleetName": {
+      "max": 48,
+      "min": 1,
+      "pattern": "^[a-z0-9](?:[a-z0-9\\-]{0,46}[a-z0-9])?$",
+      "type": "string"
+    },
+    "FleetStatus": {
+      "enum": ["CREATING", "ACTIVE", "DELETING", "DELETED", "FAILED_TO_CREATE", "FAILED_TO_DELETE"],
+      "type": "string"
+    },
+    "FleetSummary": {
+      "documentation": "<p>The summary of the fleet.</p>",
+      "members": {
+        "CompanyCode": {
+          "documentation": "<p>The identifier used by users to sign into the Amazon WorkLink app.</p>",
+          "shape": "CompanyCode"
+        },
+        "CreatedTime": {
+          "documentation": "<p>The time when the fleet was created.</p>",
+          "shape": "DateTime"
+        },
+        "DisplayName": {
+          "documentation": "<p>The name of the fleet to display.</p>",
+          "shape": "DisplayName"
+        },
+        "FleetArn": {
+          "documentation": "<p>The Amazon Resource Name (ARN) of the fleet.</p>",
+          "shape": "FleetArn"
+        },
+        "FleetName": {
+          "documentation": "<p>The name of the fleet.</p>",
+          "shape": "FleetName"
+        },
+        "FleetStatus": {
+          "documentation": "<p>The status of the fleet.</p>",
+          "shape": "FleetStatus"
+        },
+        "LastUpdatedTime": {
+          "documentation": "<p>The time when the fleet was last updated.</p>",
+          "shape": "DateTime"
+        },
+        "Tags": {
+          "documentation": "<p>The tags attached to the resource. A tag is a key-value pair.</p>",
+          "shape": "TagMap"
+        }
+      },
+      "type": "structure"
+    },
+    "FleetSummaryList": {
+      "member": { "shape": "FleetSummary" },
+      "type": "list"
+    },
+    "Id": {
+      "max": 256,
+      "min": 1,
+      "type": "string"
+    },
+    "IdentityProviderType": {
+      "enum": ["SAML"],
+      "type": "string"
+    },
+    "InternalServerErrorException": {
+      "documentation": "<p>The service is temporarily unavailable.</p>",
+      "error": { "httpStatusCode": 500 },
+      "exception": true,
+      "members": {
+        "Message": { "shape": "ExceptionMessage" }
+      },
+      "type": "structure"
+    },
+    "InvalidRequestException": {
+      "documentation": "<p>The request is not valid.</p>",
+      "error": { "httpStatusCode": 400 },
+      "exception": true,
+      "members": {
+        "Message": { "shape": "ExceptionMessage" }
+      },
+      "type": "structure"
+    },
+    "ListDevicesRequest": {
+      "members": {
+        "FleetArn": {
+          "documentation": "<p>The ARN of the fleet.</p>",
+          "shape": "FleetArn"
+        },
+        "MaxResults": {
+          "documentation": "<p>The maximum number of results to be included in the next page.</p>",
+          "shape": "MaxResults"
+        },
+        "NextToken": {
+          "documentation": "<p>The pagination token used to retrieve the next page of results for this operation. If this value is null, it retrieves the first page.</p>",
+          "shape": "NextToken"
+        }
+      },
+      "required": ["FleetArn"],
+      "type": "structure"
+    },
+    "ListDevicesResponse": {
+      "members": {
+        "Devices": {
+          "documentation": "<p>Information about the devices.</p>",
+          "shape": "DeviceSummaryList"
+        },
+        "NextToken": {
+          "documentation": "<p>The pagination token used to retrieve the next page of results for this operation. If there are no more pages, this value is null.</p>",
+          "shape": "NextToken"
+        }
+      },
+      "type": "structure"
+    },
+    "ListDomainsRequest": {
+      "members": {
+        "FleetArn": {
+          "documentation": "<p>The ARN of the fleet.</p>",
+          "shape": "FleetArn"
+        },
+        "MaxResults": {
+          "documentation": "<p>The maximum number of results to be included in the next page.</p>",
+          "shape": "MaxResults"
+        },
+        "NextToken": {
+          "documentation": "<p>The pagination token used to retrieve the next page of results for this operation. If this value is null, it retrieves the first page.</p>",
+          "shape": "NextToken"
+        }
+      },
+      "required": ["FleetArn"],
+      "type": "structure"
+    },
+    "ListDomainsResponse": {
+      "members": {
+        "Domains": {
+          "documentation": "<p>Information about the domains.</p>",
+          "shape": "DomainSummaryList"
+        },
+        "NextToken": {
+          "documentation": "<p>The pagination token used to retrieve the next page of results for this operation. If there are no more pages, this value is null.</p>",
+          "shape": "NextToken"
+        }
+      },
+      "type": "structure"
+    },
+    "ListFleetsRequest": {
+      "members": {
+        "MaxResults": {
+          "documentation": "<p>The maximum number of results to be included in the next page.</p>",
+          "shape": "MaxResults"
+        },
+        "NextToken": {
+          "documentation": "<p>The pagination token used to retrieve the next page of results for this operation. If this value is null, it retrieves the first page.</p>",
+          "shape": "NextToken"
+        }
+      },
+      "type": "structure"
+    },
+    "ListFleetsResponse": {
+      "members": {
+        "FleetSummaryList": {
+          "documentation": "<p>The summary list of the fleets.</p>",
+          "shape": "FleetSummaryList"
+        },
+        "NextToken": {
+          "documentation": "<p>The pagination token used to retrieve the next page of results for this operation. If there are no more pages, this value is null.</p>",
+          "shape": "NextToken"
+        }
+      },
+      "type": "structure"
+    },
+    "ListTagsForResourceRequest": {
+      "members": {
+        "ResourceArn": {
+          "documentation": "<p>The Amazon Resource Name (ARN) of the fleet.</p>",
+          "location": "uri",
+          "locationName": "ResourceArn",
+          "shape": "FleetArn"
+        }
+      },
+      "required": ["ResourceArn"],
+      "type": "structure"
+    },
+    "ListTagsForResourceResponse": {
+      "members": {
+        "Tags": {
+          "documentation": "<p>The tags attached to the resource. A tag is a key-value pair.</p>",
+          "shape": "TagMap"
+        }
+      },
+      "type": "structure"
+    },
+    "ListWebsiteAuthorizationProvidersRequest": {
+      "members": {
+        "FleetArn": {
+          "documentation": "<p>The ARN of the fleet.</p>",
+          "shape": "FleetArn"
+        },
+        "MaxResults": {
+          "documentation": "<p>The maximum number of results to be included in the next page.</p>",
+          "shape": "MaxResults"
+        },
+        "NextToken": {
+          "documentation": "<p>The pagination token to use to retrieve the next page of results for this operation. If this value is null, it retrieves the first page.</p>",
+          "shape": "NextToken"
+        }
+      },
+      "required": ["FleetArn"],
+      "type": "structure"
+    },
+    "ListWebsiteAuthorizationProvidersResponse": {
+      "members": {
+        "NextToken": {
+          "documentation": "<p>The pagination token to use to retrieve the next page of results for this operation. If this value is null, it retrieves the first page.</p>",
+          "shape": "NextToken"
+        },
+        "WebsiteAuthorizationProviders": {
+          "documentation": "<p>The website authorization providers.</p>",
+          "shape": "WebsiteAuthorizationProvidersSummaryList"
+        }
+      },
+      "type": "structure"
+    },
+    "ListWebsiteCertificateAuthoritiesRequest": {
+      "members": {
+        "FleetArn": {
+          "documentation": "<p>The ARN of the fleet.</p>",
+          "shape": "FleetArn"
+        },
+        "MaxResults": {
+          "documentation": "<p>The maximum number of results to be included in the next page.</p>",
+          "shape": "MaxResults"
+        },
+        "NextToken": {
+          "documentation": "<p>The pagination token used to retrieve the next page of results for this operation. If this value is null, it retrieves the first page.</p>",
+          "shape": "NextToken"
+        }
+      },
+      "required": ["FleetArn"],
+      "type": "structure"
+    },
+    "ListWebsiteCertificateAuthoritiesResponse": {
+      "members": {
+        "NextToken": {
+          "documentation": "<p>The pagination token used to retrieve the next page of results for this operation. If there are no more pages, this value is null.</p>",
+          "shape": "NextToken"
+        },
+        "WebsiteCertificateAuthorities": {
+          "documentation": "<p>Information about the certificates.</p>",
+          "shape": "WebsiteCaSummaryList"
+        }
+      },
+      "type": "structure"
+    },
+    "MaxResults": {
+      "min": 1,
+      "type": "integer"
+    },
+    "NextToken": {
+      "max": 4096,
+      "min": 1,
+      "pattern": "[\\w\\-]+",
+      "type": "string"
+    },
+    "ResourceAlreadyExistsException": {
+      "documentation": "<p>The resource already exists.</p>",
+      "error": { "httpStatusCode": 400 },
+      "exception": true,
+      "members": {
+        "Message": { "shape": "ExceptionMessage" }
+      },
+      "type": "structure"
+    },
+    "ResourceNotFoundException": {
+      "documentation": "<p>The requested resource was not found.</p>",
+      "error": { "httpStatusCode": 404 },
+      "exception": true,
+      "members": {
+        "Message": { "shape": "ExceptionMessage" }
+      },
+      "type": "structure"
+    },
+    "RestoreDomainAccessRequest": {
+      "members": {
+        "DomainName": {
+          "documentation": "<p>The name of the domain.</p>",
+          "shape": "DomainName"
+        },
+        "FleetArn": {
+          "documentation": "<p>The ARN of the fleet.</p>",
+          "shape": "FleetArn"
+        }
+      },
+      "required": ["FleetArn", "DomainName"],
+      "type": "structure"
+    },
+    "RestoreDomainAccessResponse": {
+      "members": {},
+      "type": "structure"
+    },
+    "RevokeDomainAccessRequest": {
+      "members": {
+        "DomainName": {
+          "documentation": "<p>The name of the domain.</p>",
+          "shape": "DomainName"
+        },
+        "FleetArn": {
+          "documentation": "<p>The ARN of the fleet.</p>",
+          "shape": "FleetArn"
+        }
+      },
+      "required": ["FleetArn", "DomainName"],
+      "type": "structure"
+    },
+    "RevokeDomainAccessResponse": {
+      "members": {},
+      "type": "structure"
+    },
+    "SamlMetadata": {
+      "max": 204800,
+      "min": 1,
+      "type": "string"
+    },
+    "SecurityGroupId": {
+      "pattern": "^sg-([0-9a-f]{8}|[0-9a-f]{17})$",
+      "type": "string"
+    },
+    "SecurityGroupIds": {
+      "max": 5,
+      "member": { "shape": "SecurityGroupId" },
+      "type": "list"
+    },
+    "SignOutUserRequest": {
+      "members": {
+        "FleetArn": {
+          "documentation": "<p>The ARN of the fleet.</p>",
+          "shape": "FleetArn"
+        },
+        "Username": {
+          "documentation": "<p>The name of the user.</p>",
+          "shape": "Username"
+        }
+      },
+      "required": ["FleetArn", "Username"],
+      "type": "structure"
+    },
+    "SignOutUserResponse": {
+      "members": {},
+      "type": "structure"
+    },
+    "SubnetId": {
+      "pattern": "^subnet-([0-9a-f]{8}|[0-9a-f]{17})$",
+      "type": "string"
+    },
+    "SubnetIds": {
+      "member": { "shape": "SubnetId" },
+      "type": "list"
+    },
+    "TagKey": {
+      "max": 128,
+      "min": 1,
+      "pattern": "^(?!aws:)[a-zA-Z+-=._:/]+$",
+      "type": "string"
+    },
+    "TagKeyList": {
+      "max": 50,
+      "member": { "shape": "TagKey" },
+      "min": 1,
+      "type": "list"
+    },
+    "TagMap": {
+      "key": { "shape": "TagKey" },
+      "max": 50,
+      "min": 1,
+      "type": "map",
+      "value": { "shape": "TagValue" }
+    },
+    "TagResourceRequest": {
+      "members": {
+        "ResourceArn": {
+          "documentation": "<p>The Amazon Resource Name (ARN) of the fleet.</p>",
+          "location": "uri",
+          "locationName": "ResourceArn",
+          "shape": "FleetArn"
+        },
+        "Tags": {
+          "documentation": "<p>The tags to add to the resource. A tag is a key-value pair.</p>",
+          "shape": "TagMap"
+        }
+      },
+      "required": ["ResourceArn", "Tags"],
+      "type": "structure"
+    },
+    "TagResourceResponse": {
+      "members": {},
+      "type": "structure"
+    },
+    "TagValue": {
+      "max": 256,
+      "type": "string"
+    },
+    "TooManyRequestsException": {
+      "documentation": "<p>The number of requests exceeds the limit.</p>",
+      "error": { "httpStatusCode": 429 },
+      "exception": true,
+      "members": {
+        "Message": { "shape": "ExceptionMessage" }
+      },
+      "type": "structure"
+    },
+    "UnauthorizedException": {
+      "documentation": "<p>You are not authorized to perform this action.</p>",
+      "error": { "httpStatusCode": 403 },
+      "exception": true,
+      "members": {
+        "Message": { "shape": "ExceptionMessage" }
+      },
+      "type": "structure"
+    },
+    "UntagResourceRequest": {
+      "members": {
+        "ResourceArn": {
+          "documentation": "<p>The Amazon Resource Name (ARN) of the fleet.</p>",
+          "location": "uri",
+          "locationName": "ResourceArn",
+          "shape": "FleetArn"
+        },
+        "TagKeys": {
+          "documentation": "<p>The list of tag keys to remove from the resource.</p>",
+          "location": "querystring",
+          "locationName": "tagKeys",
+          "shape": "TagKeyList"
+        }
+      },
+      "required": ["ResourceArn", "TagKeys"],
+      "type": "structure"
+    },
+    "UntagResourceResponse": {
+      "members": {},
+      "type": "structure"
+    },
+    "UpdateAuditStreamConfigurationRequest": {
+      "members": {
+        "AuditStreamArn": {
+          "documentation": "<p>The ARN of the Amazon Kinesis data stream that receives the audit events.</p>",
+          "shape": "AuditStreamArn"
+        },
+        "FleetArn": {
+          "documentation": "<p>The ARN of the fleet.</p>",
+          "shape": "FleetArn"
+        }
+      },
+      "required": ["FleetArn"],
+      "type": "structure"
+    },
+    "UpdateAuditStreamConfigurationResponse": {
+      "members": {},
+      "type": "structure"
+    },
+    "UpdateCompanyNetworkConfigurationRequest": {
+      "members": {
+        "FleetArn": {
+          "documentation": "<p>The ARN of the fleet.</p>",
+          "shape": "FleetArn"
+        },
+        "SecurityGroupIds": {
+          "documentation": "<p>The security groups associated with access to the provided subnets.</p>",
+          "shape": "SecurityGroupIds"
+        },
+        "SubnetIds": {
+          "documentation": "<p>The subnets used for X-ENI connections from Amazon WorkLink rendering containers.</p>",
+          "shape": "SubnetIds"
+        },
+        "VpcId": {
+          "documentation": "<p>The VPC with connectivity to associated websites.</p>",
+          "shape": "VpcId"
+        }
+      },
+      "required": ["FleetArn", "VpcId", "SubnetIds", "SecurityGroupIds"],
+      "type": "structure"
+    },
+    "UpdateCompanyNetworkConfigurationResponse": {
+      "members": {},
+      "type": "structure"
+    },
+    "UpdateDevicePolicyConfigurationRequest": {
+      "members": {
+        "DeviceCaCertificate": {
+          "documentation": "<p>The certificate chain, including intermediate certificates and the root certificate authority certificate used to issue device certificates.</p>",
+          "shape": "CertificateChain"
+        },
+        "FleetArn": {
+          "documentation": "<p>The ARN of the fleet.</p>",
+          "shape": "FleetArn"
+        }
+      },
+      "required": ["FleetArn"],
+      "type": "structure"
+    },
+    "UpdateDevicePolicyConfigurationResponse": {
+      "members": {},
+      "type": "structure"
+    },
+    "UpdateDomainMetadataRequest": {
+      "members": {
+        "DisplayName": {
+          "documentation": "<p>The name to display.</p>",
+          "shape": "DisplayName"
+        },
+        "DomainName": {
+          "documentation": "<p>The name of the domain.</p>",
+          "shape": "DomainName"
+        },
+        "FleetArn": {
+          "documentation": "<p>The ARN of the fleet.</p>",
+          "shape": "FleetArn"
+        }
+      },
+      "required": ["FleetArn", "DomainName"],
+      "type": "structure"
+    },
+    "UpdateDomainMetadataResponse": {
+      "members": {},
+      "type": "structure"
+    },
+    "UpdateFleetMetadataRequest": {
+      "members": {
+        "DisplayName": {
+          "documentation": "<p>The fleet name to display. The existing DisplayName is unset if null is passed.</p>",
+          "shape": "DisplayName"
+        },
+        "FleetArn": {
+          "documentation": "<p>The ARN of the fleet.</p>",
+          "shape": "FleetArn"
+        },
+        "OptimizeForEndUserLocation": {
+          "documentation": "<p>The option to optimize for better performance by routing traffic through the closest AWS Region to users, which may be outside of your home Region.</p>",
+          "shape": "Boolean"
+        }
+      },
+      "required": ["FleetArn"],
+      "type": "structure"
+    },
+    "UpdateFleetMetadataResponse": {
+      "members": {},
+      "type": "structure"
+    },
+    "UpdateIdentityProviderConfigurationRequest": {
+      "members": {
+        "FleetArn": {
+          "documentation": "<p>The ARN of the fleet.</p>",
+          "shape": "FleetArn"
+        },
+        "IdentityProviderSamlMetadata": {
+          "documentation": "<p>The SAML metadata document provided by the customer’s identity provider. The existing IdentityProviderSamlMetadata is unset if null is passed.</p>",
+          "shape": "SamlMetadata"
+        },
+        "IdentityProviderType": {
+          "documentation": "<p>The type of identity provider.</p>",
+          "shape": "IdentityProviderType"
+        }
+      },
+      "required": ["FleetArn", "IdentityProviderType"],
+      "type": "structure"
+    },
+    "UpdateIdentityProviderConfigurationResponse": {
+      "members": {},
+      "type": "structure"
+    },
+    "Username": {
+      "max": 256,
+      "min": 1,
+      "type": "string"
+    },
+    "VpcId": {
+      "pattern": "^vpc-([0-9a-f]{8}|[0-9a-f]{17})$",
+      "type": "string"
+    },
+    "WebsiteAuthorizationProviderSummary": {
+      "documentation": "<p>The summary of the website authorization provider.</p>",
+      "members": {
+        "AuthorizationProviderId": {
+          "documentation": "<p>A unique identifier for the authorization provider.</p>",
+          "shape": "Id"
+        },
+        "AuthorizationProviderType": {
+          "documentation": "<p>The authorization provider type.</p>",
+          "shape": "AuthorizationProviderType"
+        },
+        "CreatedTime": {
+          "documentation": "<p>The time of creation.</p>",
+          "shape": "DateTime"
+        },
+        "DomainName": {
+          "documentation": "<p>The domain name of the authorization provider. This applies only to SAML-based authorization providers.</p>",
+          "shape": "DomainName"
+        }
+      },
+      "required": ["AuthorizationProviderType"],
+      "type": "structure"
+    },
+    "WebsiteAuthorizationProvidersSummaryList": {
+      "member": { "shape": "WebsiteAuthorizationProviderSummary" },
+      "type": "list"
+    },
+    "WebsiteCaSummary": {
+      "documentation": "<p>The summary of the certificate authority (CA).</p>",
+      "members": {
+        "CreatedTime": {
+          "documentation": "<p>The time when the CA was added.</p>",
+          "shape": "DateTime"
+        },
+        "DisplayName": {
+          "documentation": "<p>The name to display.</p>",
+          "shape": "DisplayName"
+        },
+        "WebsiteCaId": {
+          "documentation": "<p>A unique identifier for the CA.</p>",
+          "shape": "Id"
+        }
+      },
+      "type": "structure"
+    },
+    "WebsiteCaSummaryList": {
+      "member": { "shape": "WebsiteCaSummary" },
+      "type": "list"
+    }
+  },
+  "version": "2.0"
+}

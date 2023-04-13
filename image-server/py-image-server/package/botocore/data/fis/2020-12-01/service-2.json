@@ -1,0 +1,1936 @@
+{
+  "documentation": "<p>Fault Injection Simulator is a managed service that enables you to perform fault injection experiments on your Amazon Web Services workloads. For more information, see the <a href=\"https://docs.aws.amazon.com/fis/latest/userguide/\">Fault Injection Simulator User Guide</a>.</p>",
+  "metadata": {
+    "apiVersion": "2020-12-01",
+    "endpointPrefix": "fis",
+    "jsonVersion": "1.1",
+    "protocol": "rest-json",
+    "serviceAbbreviation": "FIS",
+    "serviceFullName": "AWS Fault Injection Simulator",
+    "serviceId": "fis",
+    "signatureVersion": "v4",
+    "signingName": "fis",
+    "uid": "fis-2020-12-01"
+  },
+  "operations": {
+    "CreateExperimentTemplate": {
+      "documentation": "<p>Creates an experiment template. </p> <p>An experiment template includes the following components:</p> <ul> <li> <p> <b>Targets</b>: A target can be a specific resource in your Amazon Web Services environment, or one or more resources that match criteria that you specify, for example, resources that have specific tags.</p> </li> <li> <p> <b>Actions</b>: The actions to carry out on the target. You can specify multiple actions, the duration of each action, and when to start each action during an experiment.</p> </li> <li> <p> <b>Stop conditions</b>: If a stop condition is triggered while an experiment is running, the experiment is automatically stopped. You can define a stop condition as a CloudWatch alarm.</p> </li> </ul> <p>For more information, see <a href=\"https://docs.aws.amazon.com/fis/latest/userguide/experiment-templates.html\">Experiment templates</a> in the <i>Fault Injection Simulator User Guide</i>.</p>",
+      "errors": [
+        { "shape": "ValidationException" },
+        { "shape": "ConflictException" },
+        { "shape": "ResourceNotFoundException" },
+        { "shape": "ServiceQuotaExceededException" }
+      ],
+      "http": {
+        "method": "POST",
+        "requestUri": "/experimentTemplates",
+        "responseCode": 200
+      },
+      "input": { "shape": "CreateExperimentTemplateRequest" },
+      "name": "CreateExperimentTemplate",
+      "output": { "shape": "CreateExperimentTemplateResponse" }
+    },
+    "DeleteExperimentTemplate": {
+      "documentation": "<p>Deletes the specified experiment template.</p>",
+      "errors": [{ "shape": "ValidationException" }, { "shape": "ResourceNotFoundException" }],
+      "http": {
+        "method": "DELETE",
+        "requestUri": "/experimentTemplates/{id}",
+        "responseCode": 200
+      },
+      "input": { "shape": "DeleteExperimentTemplateRequest" },
+      "name": "DeleteExperimentTemplate",
+      "output": { "shape": "DeleteExperimentTemplateResponse" }
+    },
+    "GetAction": {
+      "documentation": "<p>Gets information about the specified FIS action.</p>",
+      "errors": [{ "shape": "ValidationException" }, { "shape": "ResourceNotFoundException" }],
+      "http": {
+        "method": "GET",
+        "requestUri": "/actions/{id}",
+        "responseCode": 200
+      },
+      "input": { "shape": "GetActionRequest" },
+      "name": "GetAction",
+      "output": { "shape": "GetActionResponse" }
+    },
+    "GetExperiment": {
+      "documentation": "<p>Gets information about the specified experiment.</p>",
+      "errors": [{ "shape": "ValidationException" }, { "shape": "ResourceNotFoundException" }],
+      "http": {
+        "method": "GET",
+        "requestUri": "/experiments/{id}",
+        "responseCode": 200
+      },
+      "input": { "shape": "GetExperimentRequest" },
+      "name": "GetExperiment",
+      "output": { "shape": "GetExperimentResponse" }
+    },
+    "GetExperimentTemplate": {
+      "documentation": "<p>Gets information about the specified experiment template.</p>",
+      "errors": [{ "shape": "ValidationException" }, { "shape": "ResourceNotFoundException" }],
+      "http": {
+        "method": "GET",
+        "requestUri": "/experimentTemplates/{id}",
+        "responseCode": 200
+      },
+      "input": { "shape": "GetExperimentTemplateRequest" },
+      "name": "GetExperimentTemplate",
+      "output": { "shape": "GetExperimentTemplateResponse" }
+    },
+    "GetTargetResourceType": {
+      "documentation": "<p>Gets information about the specified resource type.</p>",
+      "errors": [{ "shape": "ValidationException" }, { "shape": "ResourceNotFoundException" }],
+      "http": {
+        "method": "GET",
+        "requestUri": "/targetResourceTypes/{resourceType}",
+        "responseCode": 200
+      },
+      "input": { "shape": "GetTargetResourceTypeRequest" },
+      "name": "GetTargetResourceType",
+      "output": { "shape": "GetTargetResourceTypeResponse" }
+    },
+    "ListActions": {
+      "documentation": "<p>Lists the available FIS actions.</p>",
+      "errors": [{ "shape": "ValidationException" }],
+      "http": {
+        "method": "GET",
+        "requestUri": "/actions",
+        "responseCode": 200
+      },
+      "input": { "shape": "ListActionsRequest" },
+      "name": "ListActions",
+      "output": { "shape": "ListActionsResponse" }
+    },
+    "ListExperimentTemplates": {
+      "documentation": "<p>Lists your experiment templates.</p>",
+      "errors": [{ "shape": "ValidationException" }],
+      "http": {
+        "method": "GET",
+        "requestUri": "/experimentTemplates",
+        "responseCode": 200
+      },
+      "input": { "shape": "ListExperimentTemplatesRequest" },
+      "name": "ListExperimentTemplates",
+      "output": { "shape": "ListExperimentTemplatesResponse" }
+    },
+    "ListExperiments": {
+      "documentation": "<p>Lists your experiments.</p>",
+      "errors": [{ "shape": "ValidationException" }],
+      "http": {
+        "method": "GET",
+        "requestUri": "/experiments",
+        "responseCode": 200
+      },
+      "input": { "shape": "ListExperimentsRequest" },
+      "name": "ListExperiments",
+      "output": { "shape": "ListExperimentsResponse" }
+    },
+    "ListTagsForResource": {
+      "documentation": "<p>Lists the tags for the specified resource.</p>",
+      "http": {
+        "method": "GET",
+        "requestUri": "/tags/{resourceArn}",
+        "responseCode": 200
+      },
+      "input": { "shape": "ListTagsForResourceRequest" },
+      "name": "ListTagsForResource",
+      "output": { "shape": "ListTagsForResourceResponse" }
+    },
+    "ListTargetResourceTypes": {
+      "documentation": "<p>Lists the target resource types.</p>",
+      "errors": [{ "shape": "ValidationException" }],
+      "http": {
+        "method": "GET",
+        "requestUri": "/targetResourceTypes",
+        "responseCode": 200
+      },
+      "input": { "shape": "ListTargetResourceTypesRequest" },
+      "name": "ListTargetResourceTypes",
+      "output": { "shape": "ListTargetResourceTypesResponse" }
+    },
+    "StartExperiment": {
+      "documentation": "<p>Starts running an experiment from the specified experiment template.</p>",
+      "errors": [
+        { "shape": "ValidationException" },
+        { "shape": "ConflictException" },
+        { "shape": "ResourceNotFoundException" },
+        { "shape": "ServiceQuotaExceededException" }
+      ],
+      "http": {
+        "method": "POST",
+        "requestUri": "/experiments",
+        "responseCode": 200
+      },
+      "input": { "shape": "StartExperimentRequest" },
+      "name": "StartExperiment",
+      "output": { "shape": "StartExperimentResponse" }
+    },
+    "StopExperiment": {
+      "documentation": "<p>Stops the specified experiment.</p>",
+      "errors": [{ "shape": "ValidationException" }, { "shape": "ResourceNotFoundException" }],
+      "http": {
+        "method": "DELETE",
+        "requestUri": "/experiments/{id}",
+        "responseCode": 200
+      },
+      "input": { "shape": "StopExperimentRequest" },
+      "name": "StopExperiment",
+      "output": { "shape": "StopExperimentResponse" }
+    },
+    "TagResource": {
+      "documentation": "<p>Applies the specified tags to the specified resource.</p>",
+      "http": {
+        "method": "POST",
+        "requestUri": "/tags/{resourceArn}",
+        "responseCode": 200
+      },
+      "input": { "shape": "TagResourceRequest" },
+      "name": "TagResource",
+      "output": { "shape": "TagResourceResponse" }
+    },
+    "UntagResource": {
+      "documentation": "<p>Removes the specified tags from the specified resource.</p>",
+      "http": {
+        "method": "DELETE",
+        "requestUri": "/tags/{resourceArn}",
+        "responseCode": 200
+      },
+      "input": { "shape": "UntagResourceRequest" },
+      "name": "UntagResource",
+      "output": { "shape": "UntagResourceResponse" }
+    },
+    "UpdateExperimentTemplate": {
+      "documentation": "<p>Updates the specified experiment template.</p>",
+      "errors": [
+        { "shape": "ValidationException" },
+        { "shape": "ResourceNotFoundException" },
+        { "shape": "ServiceQuotaExceededException" }
+      ],
+      "http": {
+        "method": "PATCH",
+        "requestUri": "/experimentTemplates/{id}",
+        "responseCode": 200
+      },
+      "input": { "shape": "UpdateExperimentTemplateRequest" },
+      "name": "UpdateExperimentTemplate",
+      "output": { "shape": "UpdateExperimentTemplateResponse" }
+    }
+  },
+  "shapes": {
+    "Action": {
+      "documentation": "<p>Describes an action. For more information, see <a href=\"https://docs.aws.amazon.com/fis/latest/userguide/fis-actions-reference.html\">FIS actions</a> in the <i>Fault Injection Simulator User Guide</i>.</p>",
+      "members": {
+        "description": {
+          "documentation": "<p>The description for the action.</p>",
+          "shape": "ActionDescription"
+        },
+        "id": {
+          "documentation": "<p>The ID of the action.</p>",
+          "shape": "ActionId"
+        },
+        "parameters": {
+          "documentation": "<p>The action parameters, if applicable.</p>",
+          "shape": "ActionParameterMap"
+        },
+        "tags": {
+          "documentation": "<p>The tags for the action.</p>",
+          "shape": "TagMap"
+        },
+        "targets": {
+          "documentation": "<p>The supported targets for the action.</p>",
+          "shape": "ActionTargetMap"
+        }
+      },
+      "type": "structure"
+    },
+    "ActionDescription": {
+      "max": 512,
+      "pattern": "[\\s\\S]+",
+      "type": "string"
+    },
+    "ActionId": {
+      "max": 128,
+      "pattern": "[\\S]+",
+      "type": "string"
+    },
+    "ActionParameter": {
+      "documentation": "<p>Describes a parameter for an action.</p>",
+      "members": {
+        "description": {
+          "documentation": "<p>The parameter description.</p>",
+          "shape": "ActionParameterDescription"
+        },
+        "required": {
+          "box": true,
+          "documentation": "<p>Indicates whether the parameter is required.</p>",
+          "shape": "ActionParameterRequired"
+        }
+      },
+      "type": "structure"
+    },
+    "ActionParameterDescription": {
+      "max": 512,
+      "pattern": "[\\s\\S]+",
+      "type": "string"
+    },
+    "ActionParameterMap": {
+      "key": { "shape": "ActionParameterName" },
+      "type": "map",
+      "value": { "shape": "ActionParameter" }
+    },
+    "ActionParameterName": {
+      "max": 64,
+      "pattern": "[\\S]+",
+      "type": "string"
+    },
+    "ActionParameterRequired": { "type": "boolean" },
+    "ActionSummary": {
+      "documentation": "<p>Provides a summary of an action.</p>",
+      "members": {
+        "description": {
+          "documentation": "<p>The description for the action.</p>",
+          "shape": "ActionDescription"
+        },
+        "id": {
+          "documentation": "<p>The ID of the action.</p>",
+          "shape": "ActionId"
+        },
+        "tags": {
+          "documentation": "<p>The tags for the action.</p>",
+          "shape": "TagMap"
+        },
+        "targets": {
+          "documentation": "<p>The targets for the action.</p>",
+          "shape": "ActionTargetMap"
+        }
+      },
+      "type": "structure"
+    },
+    "ActionSummaryList": {
+      "member": { "shape": "ActionSummary" },
+      "type": "list"
+    },
+    "ActionTarget": {
+      "documentation": "<p>Describes a target for an action.</p>",
+      "members": {
+        "resourceType": {
+          "documentation": "<p>The resource type of the target.</p>",
+          "shape": "TargetResourceTypeId"
+        }
+      },
+      "type": "structure"
+    },
+    "ActionTargetMap": {
+      "key": { "shape": "ActionTargetName" },
+      "type": "map",
+      "value": { "shape": "ActionTarget" }
+    },
+    "ActionTargetName": {
+      "max": 64,
+      "pattern": "[\\S]+",
+      "type": "string"
+    },
+    "ClientToken": {
+      "max": 1024,
+      "min": 1,
+      "pattern": "[\\S]+",
+      "type": "string"
+    },
+    "CloudWatchLogGroupArn": {
+      "max": 2048,
+      "min": 20,
+      "pattern": "[\\S]+",
+      "type": "string"
+    },
+    "ConflictException": {
+      "documentation": "<p>The request could not be processed because of a conflict.</p>",
+      "error": { "httpStatusCode": 409 },
+      "exception": true,
+      "members": {
+        "message": { "shape": "ExceptionMessage" }
+      },
+      "type": "structure"
+    },
+    "CreateExperimentTemplateActionInput": {
+      "documentation": "<p>Specifies an action for an experiment template.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/fis/latest/userguide/actions.html\">Actions</a> in the <i>Fault Injection Simulator User Guide</i>.</p>",
+      "members": {
+        "actionId": {
+          "documentation": "<p>The ID of the action. The format of the action ID is: aws:<i>service-name</i>:<i>action-type</i>.</p>",
+          "shape": "ActionId"
+        },
+        "description": {
+          "documentation": "<p>A description for the action.</p>",
+          "shape": "ExperimentTemplateActionDescription"
+        },
+        "parameters": {
+          "documentation": "<p>The parameters for the action, if applicable.</p>",
+          "shape": "ExperimentTemplateActionParameterMap"
+        },
+        "startAfter": {
+          "documentation": "<p>The name of the action that must be completed before the current action starts. Omit this parameter to run the action at the start of the experiment.</p>",
+          "shape": "ExperimentTemplateActionStartAfterList"
+        },
+        "targets": {
+          "documentation": "<p>The targets for the action.</p>",
+          "shape": "ExperimentTemplateActionTargetMap"
+        }
+      },
+      "required": ["actionId"],
+      "type": "structure"
+    },
+    "CreateExperimentTemplateActionInputMap": {
+      "key": { "shape": "ExperimentTemplateActionName" },
+      "type": "map",
+      "value": { "shape": "CreateExperimentTemplateActionInput" }
+    },
+    "CreateExperimentTemplateLogConfigurationInput": {
+      "documentation": "<p>Specifies the configuration for experiment logging.</p>",
+      "members": {
+        "cloudWatchLogsConfiguration": {
+          "documentation": "<p>The configuration for experiment logging to Amazon CloudWatch Logs.</p>",
+          "shape": "ExperimentTemplateCloudWatchLogsLogConfigurationInput"
+        },
+        "logSchemaVersion": {
+          "documentation": "<p>The schema version.</p>",
+          "shape": "LogSchemaVersion"
+        },
+        "s3Configuration": {
+          "documentation": "<p>The configuration for experiment logging to Amazon S3.</p>",
+          "shape": "ExperimentTemplateS3LogConfigurationInput"
+        }
+      },
+      "required": ["logSchemaVersion"],
+      "type": "structure"
+    },
+    "CreateExperimentTemplateRequest": {
+      "members": {
+        "actions": {
+          "documentation": "<p>The actions for the experiment.</p>",
+          "shape": "CreateExperimentTemplateActionInputMap"
+        },
+        "clientToken": {
+          "documentation": "<p>Unique, case-sensitive identifier that you provide to ensure the idempotency of the request.</p>",
+          "idempotencyToken": true,
+          "shape": "ClientToken"
+        },
+        "description": {
+          "documentation": "<p>A description for the experiment template.</p>",
+          "shape": "ExperimentTemplateDescription"
+        },
+        "logConfiguration": {
+          "documentation": "<p>The configuration for experiment logging.</p>",
+          "shape": "CreateExperimentTemplateLogConfigurationInput"
+        },
+        "roleArn": {
+          "documentation": "<p>The Amazon Resource Name (ARN) of an IAM role that grants the FIS service permission to perform service actions on your behalf.</p>",
+          "shape": "RoleArn"
+        },
+        "stopConditions": {
+          "documentation": "<p>The stop conditions.</p>",
+          "shape": "CreateExperimentTemplateStopConditionInputList"
+        },
+        "tags": {
+          "documentation": "<p>The tags to apply to the experiment template.</p>",
+          "shape": "TagMap"
+        },
+        "targets": {
+          "documentation": "<p>The targets for the experiment.</p>",
+          "shape": "CreateExperimentTemplateTargetInputMap"
+        }
+      },
+      "required": ["clientToken", "description", "stopConditions", "actions", "roleArn"],
+      "type": "structure"
+    },
+    "CreateExperimentTemplateResponse": {
+      "members": {
+        "experimentTemplate": {
+          "documentation": "<p>Information about the experiment template.</p>",
+          "shape": "ExperimentTemplate"
+        }
+      },
+      "type": "structure"
+    },
+    "CreateExperimentTemplateStopConditionInput": {
+      "documentation": "<p>Specifies a stop condition for an experiment template.</p>",
+      "members": {
+        "source": {
+          "documentation": "<p>The source for the stop condition. Specify <code>aws:cloudwatch:alarm</code> if the stop condition is defined by a CloudWatch alarm. Specify <code>none</code> if there is no stop condition.</p>",
+          "shape": "StopConditionSource"
+        },
+        "value": {
+          "documentation": "<p>The Amazon Resource Name (ARN) of the CloudWatch alarm. This is required if the source is a CloudWatch alarm.</p>",
+          "shape": "StopConditionValue"
+        }
+      },
+      "required": ["source"],
+      "type": "structure"
+    },
+    "CreateExperimentTemplateStopConditionInputList": {
+      "member": { "shape": "CreateExperimentTemplateStopConditionInput" },
+      "type": "list"
+    },
+    "CreateExperimentTemplateTargetInput": {
+      "documentation": "<p>Specifies a target for an experiment. You must specify at least one Amazon Resource Name (ARN) or at least one resource tag. You cannot specify both ARNs and tags.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/fis/latest/userguide/targets.html\">Targets</a> in the <i>Fault Injection Simulator User Guide</i>.</p>",
+      "members": {
+        "filters": {
+          "documentation": "<p>The filters to apply to identify target resources using specific attributes.</p>",
+          "shape": "ExperimentTemplateTargetFilterInputList"
+        },
+        "parameters": {
+          "documentation": "<p>The resource type parameters.</p>",
+          "shape": "ExperimentTemplateTargetParameterMap"
+        },
+        "resourceArns": {
+          "documentation": "<p>The Amazon Resource Names (ARNs) of the resources.</p>",
+          "shape": "ResourceArnList"
+        },
+        "resourceTags": {
+          "documentation": "<p>The tags for the target resources.</p>",
+          "shape": "TagMap"
+        },
+        "resourceType": {
+          "documentation": "<p>The resource type. The resource type must be supported for the specified action.</p>",
+          "shape": "TargetResourceTypeId"
+        },
+        "selectionMode": {
+          "documentation": "<p>Scopes the identified resources to a specific count of the resources at random, or a percentage of the resources. All identified resources are included in the target.</p> <ul> <li> <p>ALL - Run the action on all identified targets. This is the default.</p> </li> <li> <p>COUNT(n) - Run the action on the specified number of targets, chosen from the identified targets at random. For example, COUNT(1) selects one of the targets.</p> </li> <li> <p>PERCENT(n) - Run the action on the specified percentage of targets, chosen from the identified targets at random. For example, PERCENT(25) selects 25% of the targets.</p> </li> </ul>",
+          "shape": "ExperimentTemplateTargetSelectionMode"
+        }
+      },
+      "required": ["resourceType", "selectionMode"],
+      "type": "structure"
+    },
+    "CreateExperimentTemplateTargetInputMap": {
+      "key": { "shape": "ExperimentTemplateTargetName" },
+      "type": "map",
+      "value": { "shape": "CreateExperimentTemplateTargetInput" }
+    },
+    "CreationTime": { "type": "timestamp" },
+    "DeleteExperimentTemplateRequest": {
+      "members": {
+        "id": {
+          "documentation": "<p>The ID of the experiment template.</p>",
+          "location": "uri",
+          "locationName": "id",
+          "shape": "ExperimentTemplateId"
+        }
+      },
+      "required": ["id"],
+      "type": "structure"
+    },
+    "DeleteExperimentTemplateResponse": {
+      "members": {
+        "experimentTemplate": {
+          "documentation": "<p>Information about the experiment template.</p>",
+          "shape": "ExperimentTemplate"
+        }
+      },
+      "type": "structure"
+    },
+    "ExceptionMessage": {
+      "max": 1024,
+      "pattern": "[\\s\\S]+",
+      "type": "string"
+    },
+    "Experiment": {
+      "documentation": "<p>Describes an experiment.</p>",
+      "members": {
+        "actions": {
+          "documentation": "<p>The actions for the experiment.</p>",
+          "shape": "ExperimentActionMap"
+        },
+        "creationTime": {
+          "documentation": "<p>The time that the experiment was created.</p>",
+          "shape": "CreationTime"
+        },
+        "endTime": {
+          "documentation": "<p>The time that the experiment ended.</p>",
+          "shape": "ExperimentEndTime"
+        },
+        "experimentTemplateId": {
+          "documentation": "<p>The ID of the experiment template.</p>",
+          "shape": "ExperimentTemplateId"
+        },
+        "id": {
+          "documentation": "<p>The ID of the experiment.</p>",
+          "shape": "ExperimentId"
+        },
+        "logConfiguration": {
+          "documentation": "<p>The configuration for experiment logging.</p>",
+          "shape": "ExperimentLogConfiguration"
+        },
+        "roleArn": {
+          "documentation": "<p>The Amazon Resource Name (ARN) of an IAM role that grants the FIS service permission to perform service actions on your behalf.</p>",
+          "shape": "RoleArn"
+        },
+        "startTime": {
+          "documentation": "<p>The time that the experiment started.</p>",
+          "shape": "ExperimentStartTime"
+        },
+        "state": {
+          "documentation": "<p>The state of the experiment.</p>",
+          "shape": "ExperimentState"
+        },
+        "stopConditions": {
+          "documentation": "<p>The stop conditions for the experiment.</p>",
+          "shape": "ExperimentStopConditionList"
+        },
+        "tags": {
+          "documentation": "<p>The tags for the experiment.</p>",
+          "shape": "TagMap"
+        },
+        "targets": {
+          "documentation": "<p>The targets for the experiment.</p>",
+          "shape": "ExperimentTargetMap"
+        }
+      },
+      "type": "structure"
+    },
+    "ExperimentAction": {
+      "documentation": "<p>Describes the action for an experiment.</p>",
+      "members": {
+        "actionId": {
+          "documentation": "<p>The ID of the action.</p>",
+          "shape": "ActionId"
+        },
+        "description": {
+          "documentation": "<p>The description for the action.</p>",
+          "shape": "ExperimentActionDescription"
+        },
+        "endTime": {
+          "documentation": "<p>The time that the action ended.</p>",
+          "shape": "ExperimentActionEndTime"
+        },
+        "parameters": {
+          "documentation": "<p>The parameters for the action.</p>",
+          "shape": "ExperimentActionParameterMap"
+        },
+        "startAfter": {
+          "documentation": "<p>The name of the action that must be completed before this action starts.</p>",
+          "shape": "ExperimentActionStartAfterList"
+        },
+        "startTime": {
+          "documentation": "<p>The time that the action started.</p>",
+          "shape": "ExperimentActionStartTime"
+        },
+        "state": {
+          "documentation": "<p>The state of the action.</p>",
+          "shape": "ExperimentActionState"
+        },
+        "targets": {
+          "documentation": "<p>The targets for the action.</p>",
+          "shape": "ExperimentActionTargetMap"
+        }
+      },
+      "type": "structure"
+    },
+    "ExperimentActionDescription": {
+      "max": 512,
+      "pattern": "[\\s\\S]+",
+      "type": "string"
+    },
+    "ExperimentActionEndTime": { "type": "timestamp" },
+    "ExperimentActionMap": {
+      "key": { "shape": "ExperimentActionName" },
+      "type": "map",
+      "value": { "shape": "ExperimentAction" }
+    },
+    "ExperimentActionName": {
+      "max": 64,
+      "pattern": "[\\S]+",
+      "type": "string"
+    },
+    "ExperimentActionParameter": {
+      "max": 1024,
+      "pattern": "[\\S]+",
+      "type": "string"
+    },
+    "ExperimentActionParameterMap": {
+      "key": { "shape": "ExperimentActionParameterName" },
+      "type": "map",
+      "value": { "shape": "ExperimentActionParameter" }
+    },
+    "ExperimentActionParameterName": {
+      "max": 64,
+      "pattern": "[\\S]+",
+      "type": "string"
+    },
+    "ExperimentActionStartAfter": {
+      "max": 64,
+      "pattern": "[\\S]+",
+      "type": "string"
+    },
+    "ExperimentActionStartAfterList": {
+      "member": { "shape": "ExperimentActionStartAfter" },
+      "type": "list"
+    },
+    "ExperimentActionStartTime": { "type": "timestamp" },
+    "ExperimentActionState": {
+      "documentation": "<p>Describes the state of an action.</p>",
+      "members": {
+        "reason": {
+          "documentation": "<p>The reason for the state.</p>",
+          "shape": "ExperimentActionStatusReason"
+        },
+        "status": {
+          "documentation": "<p>The state of the action.</p>",
+          "shape": "ExperimentActionStatus"
+        }
+      },
+      "type": "structure"
+    },
+    "ExperimentActionStatus": {
+      "enum": ["pending", "initiating", "running", "completed", "cancelled", "stopping", "stopped", "failed"],
+      "type": "string"
+    },
+    "ExperimentActionStatusReason": {
+      "max": 512,
+      "pattern": "[\\s\\S]+",
+      "type": "string"
+    },
+    "ExperimentActionTargetMap": {
+      "key": { "shape": "ExperimentActionTargetName" },
+      "type": "map",
+      "value": { "shape": "ExperimentTargetName" }
+    },
+    "ExperimentActionTargetName": {
+      "max": 64,
+      "pattern": "[\\S]+",
+      "type": "string"
+    },
+    "ExperimentCloudWatchLogsLogConfiguration": {
+      "documentation": "<p>Describes the configuration for experiment logging to Amazon CloudWatch Logs.</p>",
+      "members": {
+        "logGroupArn": {
+          "documentation": "<p>The Amazon Resource Name (ARN) of the destination Amazon CloudWatch Logs log group.</p>",
+          "shape": "CloudWatchLogGroupArn"
+        }
+      },
+      "type": "structure"
+    },
+    "ExperimentEndTime": { "type": "timestamp" },
+    "ExperimentId": {
+      "max": 64,
+      "pattern": "[\\S]+",
+      "type": "string"
+    },
+    "ExperimentLogConfiguration": {
+      "documentation": "<p>Describes the configuration for experiment logging.</p>",
+      "members": {
+        "cloudWatchLogsConfiguration": {
+          "documentation": "<p>The configuration for experiment logging to Amazon CloudWatch Logs.</p>",
+          "shape": "ExperimentCloudWatchLogsLogConfiguration"
+        },
+        "logSchemaVersion": {
+          "documentation": "<p>The schema version.</p>",
+          "shape": "LogSchemaVersion"
+        },
+        "s3Configuration": {
+          "documentation": "<p>The configuration for experiment logging to Amazon S3.</p>",
+          "shape": "ExperimentS3LogConfiguration"
+        }
+      },
+      "type": "structure"
+    },
+    "ExperimentS3LogConfiguration": {
+      "documentation": "<p>Describes the configuration for experiment logging to Amazon S3.</p>",
+      "members": {
+        "bucketName": {
+          "documentation": "<p>The name of the destination bucket.</p>",
+          "shape": "S3BucketName"
+        },
+        "prefix": {
+          "documentation": "<p>The bucket prefix.</p>",
+          "shape": "S3ObjectKey"
+        }
+      },
+      "type": "structure"
+    },
+    "ExperimentStartTime": { "type": "timestamp" },
+    "ExperimentState": {
+      "documentation": "<p>Describes the state of an experiment.</p>",
+      "members": {
+        "reason": {
+          "documentation": "<p>The reason for the state.</p>",
+          "shape": "ExperimentStatusReason"
+        },
+        "status": {
+          "documentation": "<p>The state of the experiment.</p>",
+          "shape": "ExperimentStatus"
+        }
+      },
+      "type": "structure"
+    },
+    "ExperimentStatus": {
+      "enum": ["pending", "initiating", "running", "completed", "stopping", "stopped", "failed"],
+      "type": "string"
+    },
+    "ExperimentStatusReason": {
+      "max": 512,
+      "pattern": "[\\s\\S]+",
+      "type": "string"
+    },
+    "ExperimentStopCondition": {
+      "documentation": "<p>Describes the stop condition for an experiment.</p>",
+      "members": {
+        "source": {
+          "documentation": "<p>The source for the stop condition.</p>",
+          "shape": "StopConditionSource"
+        },
+        "value": {
+          "documentation": "<p>The Amazon Resource Name (ARN) of the CloudWatch alarm, if applicable.</p>",
+          "shape": "StopConditionValue"
+        }
+      },
+      "type": "structure"
+    },
+    "ExperimentStopConditionList": {
+      "member": { "shape": "ExperimentStopCondition" },
+      "type": "list"
+    },
+    "ExperimentSummary": {
+      "documentation": "<p>Provides a summary of an experiment.</p>",
+      "members": {
+        "creationTime": {
+          "documentation": "<p>The time that the experiment was created.</p>",
+          "shape": "CreationTime"
+        },
+        "experimentTemplateId": {
+          "documentation": "<p>The ID of the experiment template.</p>",
+          "shape": "ExperimentTemplateId"
+        },
+        "id": {
+          "documentation": "<p>The ID of the experiment.</p>",
+          "shape": "ExperimentId"
+        },
+        "state": {
+          "documentation": "<p>The state of the experiment.</p>",
+          "shape": "ExperimentState"
+        },
+        "tags": {
+          "documentation": "<p>The tags for the experiment.</p>",
+          "shape": "TagMap"
+        }
+      },
+      "type": "structure"
+    },
+    "ExperimentSummaryList": {
+      "member": { "shape": "ExperimentSummary" },
+      "type": "list"
+    },
+    "ExperimentTarget": {
+      "documentation": "<p>Describes a target for an experiment.</p>",
+      "members": {
+        "filters": {
+          "documentation": "<p>The filters to apply to identify target resources using specific attributes.</p>",
+          "shape": "ExperimentTargetFilterList"
+        },
+        "parameters": {
+          "documentation": "<p>The resource type parameters.</p>",
+          "shape": "ExperimentTargetParameterMap"
+        },
+        "resourceArns": {
+          "documentation": "<p>The Amazon Resource Names (ARNs) of the resources.</p>",
+          "shape": "ResourceArnList"
+        },
+        "resourceTags": {
+          "documentation": "<p>The tags for the target resources.</p>",
+          "shape": "TagMap"
+        },
+        "resourceType": {
+          "documentation": "<p>The resource type.</p>",
+          "shape": "TargetResourceTypeId"
+        },
+        "selectionMode": {
+          "documentation": "<p>Scopes the identified resources to a specific count or percentage.</p>",
+          "shape": "ExperimentTargetSelectionMode"
+        }
+      },
+      "type": "structure"
+    },
+    "ExperimentTargetFilter": {
+      "documentation": "<p>Describes a filter used for the target resources in an experiment.</p>",
+      "members": {
+        "path": {
+          "documentation": "<p>The attribute path for the filter.</p>",
+          "shape": "ExperimentTargetFilterPath"
+        },
+        "values": {
+          "documentation": "<p>The attribute values for the filter.</p>",
+          "shape": "ExperimentTargetFilterValues"
+        }
+      },
+      "type": "structure"
+    },
+    "ExperimentTargetFilterList": {
+      "member": { "shape": "ExperimentTargetFilter" },
+      "type": "list"
+    },
+    "ExperimentTargetFilterPath": {
+      "max": 256,
+      "pattern": "[\\S]+",
+      "type": "string"
+    },
+    "ExperimentTargetFilterValue": {
+      "max": 128,
+      "pattern": "[\\S]+",
+      "type": "string"
+    },
+    "ExperimentTargetFilterValues": {
+      "member": { "shape": "ExperimentTargetFilterValue" },
+      "type": "list"
+    },
+    "ExperimentTargetMap": {
+      "key": { "shape": "ExperimentTargetName" },
+      "type": "map",
+      "value": { "shape": "ExperimentTarget" }
+    },
+    "ExperimentTargetName": {
+      "max": 64,
+      "pattern": "[\\S]+",
+      "type": "string"
+    },
+    "ExperimentTargetParameterMap": {
+      "key": { "shape": "ExperimentTargetParameterName" },
+      "type": "map",
+      "value": { "shape": "ExperimentTargetParameterValue" }
+    },
+    "ExperimentTargetParameterName": {
+      "max": 64,
+      "pattern": "[\\S]+",
+      "type": "string"
+    },
+    "ExperimentTargetParameterValue": {
+      "max": 1024,
+      "min": 1,
+      "type": "string"
+    },
+    "ExperimentTargetSelectionMode": {
+      "max": 64,
+      "pattern": "[\\S]+",
+      "type": "string"
+    },
+    "ExperimentTemplate": {
+      "documentation": "<p>Describes an experiment template.</p>",
+      "members": {
+        "actions": {
+          "documentation": "<p>The actions for the experiment.</p>",
+          "shape": "ExperimentTemplateActionMap"
+        },
+        "creationTime": {
+          "documentation": "<p>The time the experiment template was created.</p>",
+          "shape": "CreationTime"
+        },
+        "description": {
+          "documentation": "<p>The description for the experiment template.</p>",
+          "shape": "ExperimentTemplateDescription"
+        },
+        "id": {
+          "documentation": "<p>The ID of the experiment template.</p>",
+          "shape": "ExperimentTemplateId"
+        },
+        "lastUpdateTime": {
+          "documentation": "<p>The time the experiment template was last updated.</p>",
+          "shape": "LastUpdateTime"
+        },
+        "logConfiguration": {
+          "documentation": "<p>The configuration for experiment logging.</p>",
+          "shape": "ExperimentTemplateLogConfiguration"
+        },
+        "roleArn": {
+          "documentation": "<p>The Amazon Resource Name (ARN) of an IAM role.</p>",
+          "shape": "RoleArn"
+        },
+        "stopConditions": {
+          "documentation": "<p>The stop conditions for the experiment.</p>",
+          "shape": "ExperimentTemplateStopConditionList"
+        },
+        "tags": {
+          "documentation": "<p>The tags for the experiment template.</p>",
+          "shape": "TagMap"
+        },
+        "targets": {
+          "documentation": "<p>The targets for the experiment.</p>",
+          "shape": "ExperimentTemplateTargetMap"
+        }
+      },
+      "type": "structure"
+    },
+    "ExperimentTemplateAction": {
+      "documentation": "<p>Describes an action for an experiment template.</p>",
+      "members": {
+        "actionId": {
+          "documentation": "<p>The ID of the action.</p>",
+          "shape": "ActionId"
+        },
+        "description": {
+          "documentation": "<p>A description for the action.</p>",
+          "shape": "ExperimentTemplateActionDescription"
+        },
+        "parameters": {
+          "documentation": "<p>The parameters for the action.</p>",
+          "shape": "ExperimentTemplateActionParameterMap"
+        },
+        "startAfter": {
+          "documentation": "<p>The name of the action that must be completed before the current action starts.</p>",
+          "shape": "ExperimentTemplateActionStartAfterList"
+        },
+        "targets": {
+          "documentation": "<p>The targets for the action.</p>",
+          "shape": "ExperimentTemplateActionTargetMap"
+        }
+      },
+      "type": "structure"
+    },
+    "ExperimentTemplateActionDescription": {
+      "max": 512,
+      "pattern": "[\\s\\S]+",
+      "type": "string"
+    },
+    "ExperimentTemplateActionMap": {
+      "key": { "shape": "ExperimentTemplateActionName" },
+      "type": "map",
+      "value": { "shape": "ExperimentTemplateAction" }
+    },
+    "ExperimentTemplateActionName": {
+      "max": 64,
+      "pattern": "[\\S]+",
+      "type": "string"
+    },
+    "ExperimentTemplateActionParameter": {
+      "max": 1024,
+      "pattern": "[\\S]+",
+      "type": "string"
+    },
+    "ExperimentTemplateActionParameterMap": {
+      "key": { "shape": "ExperimentTemplateActionParameterName" },
+      "type": "map",
+      "value": { "shape": "ExperimentTemplateActionParameter" }
+    },
+    "ExperimentTemplateActionParameterName": {
+      "max": 64,
+      "pattern": "[\\S]+",
+      "type": "string"
+    },
+    "ExperimentTemplateActionStartAfter": {
+      "max": 64,
+      "pattern": "[\\S]+",
+      "type": "string"
+    },
+    "ExperimentTemplateActionStartAfterList": {
+      "member": { "shape": "ExperimentTemplateActionStartAfter" },
+      "type": "list"
+    },
+    "ExperimentTemplateActionTargetMap": {
+      "key": { "shape": "ExperimentTemplateActionTargetName" },
+      "type": "map",
+      "value": { "shape": "ExperimentTemplateTargetName" }
+    },
+    "ExperimentTemplateActionTargetName": {
+      "max": 64,
+      "pattern": "[\\S]+",
+      "type": "string"
+    },
+    "ExperimentTemplateCloudWatchLogsLogConfiguration": {
+      "documentation": "<p>Describes the configuration for experiment logging to Amazon CloudWatch Logs.</p>",
+      "members": {
+        "logGroupArn": {
+          "documentation": "<p>The Amazon Resource Name (ARN) of the destination Amazon CloudWatch Logs log group.</p>",
+          "shape": "CloudWatchLogGroupArn"
+        }
+      },
+      "type": "structure"
+    },
+    "ExperimentTemplateCloudWatchLogsLogConfigurationInput": {
+      "documentation": "<p>Specifies the configuration for experiment logging to Amazon CloudWatch Logs.</p>",
+      "members": {
+        "logGroupArn": {
+          "documentation": "<p>The Amazon Resource Name (ARN) of the destination Amazon CloudWatch Logs log group.</p>",
+          "shape": "CloudWatchLogGroupArn"
+        }
+      },
+      "required": ["logGroupArn"],
+      "type": "structure"
+    },
+    "ExperimentTemplateDescription": {
+      "max": 512,
+      "pattern": "[\\s\\S]+",
+      "type": "string"
+    },
+    "ExperimentTemplateId": {
+      "max": 64,
+      "pattern": "[\\S]+",
+      "type": "string"
+    },
+    "ExperimentTemplateLogConfiguration": {
+      "documentation": "<p>Describes the configuration for experiment logging.</p>",
+      "members": {
+        "cloudWatchLogsConfiguration": {
+          "documentation": "<p>The configuration for experiment logging to Amazon CloudWatch Logs.</p>",
+          "shape": "ExperimentTemplateCloudWatchLogsLogConfiguration"
+        },
+        "logSchemaVersion": {
+          "documentation": "<p>The schema version.</p>",
+          "shape": "LogSchemaVersion"
+        },
+        "s3Configuration": {
+          "documentation": "<p>The configuration for experiment logging to Amazon S3.</p>",
+          "shape": "ExperimentTemplateS3LogConfiguration"
+        }
+      },
+      "type": "structure"
+    },
+    "ExperimentTemplateS3LogConfiguration": {
+      "documentation": "<p>Describes the configuration for experiment logging to Amazon S3.</p>",
+      "members": {
+        "bucketName": {
+          "documentation": "<p>The name of the destination bucket.</p>",
+          "shape": "S3BucketName"
+        },
+        "prefix": {
+          "documentation": "<p>The bucket prefix.</p>",
+          "shape": "S3ObjectKey"
+        }
+      },
+      "type": "structure"
+    },
+    "ExperimentTemplateS3LogConfigurationInput": {
+      "documentation": "<p>Specifies the configuration for experiment logging to Amazon S3.</p>",
+      "members": {
+        "bucketName": {
+          "documentation": "<p>The name of the destination bucket.</p>",
+          "shape": "S3BucketName"
+        },
+        "prefix": {
+          "documentation": "<p>The bucket prefix.</p>",
+          "shape": "S3ObjectKey"
+        }
+      },
+      "required": ["bucketName"],
+      "type": "structure"
+    },
+    "ExperimentTemplateStopCondition": {
+      "documentation": "<p>Describes a stop condition for an experiment template.</p>",
+      "members": {
+        "source": {
+          "documentation": "<p>The source for the stop condition.</p>",
+          "shape": "StopConditionSource"
+        },
+        "value": {
+          "documentation": "<p>The Amazon Resource Name (ARN) of the CloudWatch alarm, if applicable.</p>",
+          "shape": "StopConditionValue"
+        }
+      },
+      "type": "structure"
+    },
+    "ExperimentTemplateStopConditionList": {
+      "member": { "shape": "ExperimentTemplateStopCondition" },
+      "type": "list"
+    },
+    "ExperimentTemplateSummary": {
+      "documentation": "<p>Provides a summary of an experiment template.</p>",
+      "members": {
+        "creationTime": {
+          "documentation": "<p>The time that the experiment template was created.</p>",
+          "shape": "CreationTime"
+        },
+        "description": {
+          "documentation": "<p>The description of the experiment template.</p>",
+          "shape": "ExperimentTemplateDescription"
+        },
+        "id": {
+          "documentation": "<p>The ID of the experiment template.</p>",
+          "shape": "ExperimentTemplateId"
+        },
+        "lastUpdateTime": {
+          "documentation": "<p>The time that the experiment template was last updated.</p>",
+          "shape": "LastUpdateTime"
+        },
+        "tags": {
+          "documentation": "<p>The tags for the experiment template.</p>",
+          "shape": "TagMap"
+        }
+      },
+      "type": "structure"
+    },
+    "ExperimentTemplateSummaryList": {
+      "member": { "shape": "ExperimentTemplateSummary" },
+      "type": "list"
+    },
+    "ExperimentTemplateTarget": {
+      "documentation": "<p>Describes a target for an experiment template.</p>",
+      "members": {
+        "filters": {
+          "documentation": "<p>The filters to apply to identify target resources using specific attributes.</p>",
+          "shape": "ExperimentTemplateTargetFilterList"
+        },
+        "parameters": {
+          "documentation": "<p>The resource type parameters.</p>",
+          "shape": "ExperimentTemplateTargetParameterMap"
+        },
+        "resourceArns": {
+          "documentation": "<p>The Amazon Resource Names (ARNs) of the targets.</p>",
+          "shape": "ResourceArnList"
+        },
+        "resourceTags": {
+          "documentation": "<p>The tags for the target resources.</p>",
+          "shape": "TagMap"
+        },
+        "resourceType": {
+          "documentation": "<p>The resource type.</p>",
+          "shape": "TargetResourceTypeId"
+        },
+        "selectionMode": {
+          "documentation": "<p>Scopes the identified resources to a specific count or percentage.</p>",
+          "shape": "ExperimentTemplateTargetSelectionMode"
+        }
+      },
+      "type": "structure"
+    },
+    "ExperimentTemplateTargetFilter": {
+      "documentation": "<p>Describes a filter used for the target resources in an experiment template.</p>",
+      "members": {
+        "path": {
+          "documentation": "<p>The attribute path for the filter.</p>",
+          "shape": "ExperimentTemplateTargetFilterPath"
+        },
+        "values": {
+          "documentation": "<p>The attribute values for the filter.</p>",
+          "shape": "ExperimentTemplateTargetFilterValues"
+        }
+      },
+      "type": "structure"
+    },
+    "ExperimentTemplateTargetFilterInputList": {
+      "member": { "shape": "ExperimentTemplateTargetInputFilter" },
+      "type": "list"
+    },
+    "ExperimentTemplateTargetFilterList": {
+      "member": { "shape": "ExperimentTemplateTargetFilter" },
+      "type": "list"
+    },
+    "ExperimentTemplateTargetFilterPath": {
+      "max": 256,
+      "pattern": "[\\S]+",
+      "type": "string"
+    },
+    "ExperimentTemplateTargetFilterValue": {
+      "max": 128,
+      "pattern": "[\\S]+",
+      "type": "string"
+    },
+    "ExperimentTemplateTargetFilterValues": {
+      "member": { "shape": "ExperimentTemplateTargetFilterValue" },
+      "type": "list"
+    },
+    "ExperimentTemplateTargetInputFilter": {
+      "documentation": "<p>Specifies a filter used for the target resource input in an experiment template.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/fis/latest/userguide/targets.html#target-filters\">Resource filters</a> in the <i>Fault Injection Simulator User Guide</i>.</p>",
+      "members": {
+        "path": {
+          "documentation": "<p>The attribute path for the filter.</p>",
+          "shape": "ExperimentTemplateTargetFilterPath"
+        },
+        "values": {
+          "documentation": "<p>The attribute values for the filter.</p>",
+          "shape": "ExperimentTemplateTargetFilterValues"
+        }
+      },
+      "required": ["path", "values"],
+      "type": "structure"
+    },
+    "ExperimentTemplateTargetMap": {
+      "key": { "shape": "ExperimentTemplateTargetName" },
+      "type": "map",
+      "value": { "shape": "ExperimentTemplateTarget" }
+    },
+    "ExperimentTemplateTargetName": {
+      "max": 64,
+      "pattern": "[\\S]+",
+      "type": "string"
+    },
+    "ExperimentTemplateTargetParameterMap": {
+      "key": { "shape": "ExperimentTemplateTargetParameterName" },
+      "type": "map",
+      "value": { "shape": "ExperimentTemplateTargetParameterValue" }
+    },
+    "ExperimentTemplateTargetParameterName": {
+      "max": 64,
+      "pattern": "[\\S]+",
+      "type": "string"
+    },
+    "ExperimentTemplateTargetParameterValue": {
+      "max": 1024,
+      "min": 1,
+      "pattern": "^[\\p{L}\\p{Z}\\p{N}_.:/=+\\-@]+$",
+      "type": "string"
+    },
+    "ExperimentTemplateTargetSelectionMode": {
+      "max": 64,
+      "pattern": "[\\S]+",
+      "type": "string"
+    },
+    "GetActionRequest": {
+      "members": {
+        "id": {
+          "documentation": "<p>The ID of the action.</p>",
+          "location": "uri",
+          "locationName": "id",
+          "shape": "ActionId"
+        }
+      },
+      "required": ["id"],
+      "type": "structure"
+    },
+    "GetActionResponse": {
+      "members": {
+        "action": {
+          "documentation": "<p>Information about the action.</p>",
+          "shape": "Action"
+        }
+      },
+      "type": "structure"
+    },
+    "GetExperimentRequest": {
+      "members": {
+        "id": {
+          "documentation": "<p>The ID of the experiment.</p>",
+          "location": "uri",
+          "locationName": "id",
+          "shape": "ExperimentId"
+        }
+      },
+      "required": ["id"],
+      "type": "structure"
+    },
+    "GetExperimentResponse": {
+      "members": {
+        "experiment": {
+          "documentation": "<p>Information about the experiment.</p>",
+          "shape": "Experiment"
+        }
+      },
+      "type": "structure"
+    },
+    "GetExperimentTemplateRequest": {
+      "members": {
+        "id": {
+          "documentation": "<p>The ID of the experiment template.</p>",
+          "location": "uri",
+          "locationName": "id",
+          "shape": "ExperimentTemplateId"
+        }
+      },
+      "required": ["id"],
+      "type": "structure"
+    },
+    "GetExperimentTemplateResponse": {
+      "members": {
+        "experimentTemplate": {
+          "documentation": "<p>Information about the experiment template.</p>",
+          "shape": "ExperimentTemplate"
+        }
+      },
+      "type": "structure"
+    },
+    "GetTargetResourceTypeRequest": {
+      "members": {
+        "resourceType": {
+          "documentation": "<p>The resource type.</p>",
+          "location": "uri",
+          "locationName": "resourceType",
+          "shape": "TargetResourceTypeId"
+        }
+      },
+      "required": ["resourceType"],
+      "type": "structure"
+    },
+    "GetTargetResourceTypeResponse": {
+      "members": {
+        "targetResourceType": {
+          "documentation": "<p>Information about the resource type.</p>",
+          "shape": "TargetResourceType"
+        }
+      },
+      "type": "structure"
+    },
+    "LastUpdateTime": { "type": "timestamp" },
+    "ListActionsMaxResults": {
+      "max": 100,
+      "min": 1,
+      "type": "integer"
+    },
+    "ListActionsRequest": {
+      "members": {
+        "maxResults": {
+          "box": true,
+          "documentation": "<p>The maximum number of results to return with a single call. To retrieve the remaining results, make another call with the returned <code>nextToken</code> value.</p>",
+          "location": "querystring",
+          "locationName": "maxResults",
+          "shape": "ListActionsMaxResults"
+        },
+        "nextToken": {
+          "documentation": "<p>The token for the next page of results.</p>",
+          "location": "querystring",
+          "locationName": "nextToken",
+          "shape": "NextToken"
+        }
+      },
+      "type": "structure"
+    },
+    "ListActionsResponse": {
+      "members": {
+        "actions": {
+          "documentation": "<p>The actions.</p>",
+          "shape": "ActionSummaryList"
+        },
+        "nextToken": {
+          "documentation": "<p>The token to use to retrieve the next page of results. This value is <code>null</code> when there are no more results to return.</p>",
+          "shape": "NextToken"
+        }
+      },
+      "type": "structure"
+    },
+    "ListExperimentTemplatesMaxResults": {
+      "max": 100,
+      "min": 1,
+      "type": "integer"
+    },
+    "ListExperimentTemplatesRequest": {
+      "members": {
+        "maxResults": {
+          "box": true,
+          "documentation": "<p>The maximum number of results to return with a single call. To retrieve the remaining results, make another call with the returned <code>nextToken</code> value.</p>",
+          "location": "querystring",
+          "locationName": "maxResults",
+          "shape": "ListExperimentTemplatesMaxResults"
+        },
+        "nextToken": {
+          "documentation": "<p>The token for the next page of results.</p>",
+          "location": "querystring",
+          "locationName": "nextToken",
+          "shape": "NextToken"
+        }
+      },
+      "type": "structure"
+    },
+    "ListExperimentTemplatesResponse": {
+      "members": {
+        "experimentTemplates": {
+          "documentation": "<p>The experiment templates.</p>",
+          "shape": "ExperimentTemplateSummaryList"
+        },
+        "nextToken": {
+          "documentation": "<p>The token to use to retrieve the next page of results. This value is <code>null</code> when there are no more results to return.</p>",
+          "shape": "NextToken"
+        }
+      },
+      "type": "structure"
+    },
+    "ListExperimentsMaxResults": {
+      "max": 100,
+      "min": 1,
+      "type": "integer"
+    },
+    "ListExperimentsRequest": {
+      "members": {
+        "maxResults": {
+          "box": true,
+          "documentation": "<p>The maximum number of results to return with a single call. To retrieve the remaining results, make another call with the returned <code>nextToken</code> value.</p>",
+          "location": "querystring",
+          "locationName": "maxResults",
+          "shape": "ListExperimentsMaxResults"
+        },
+        "nextToken": {
+          "documentation": "<p>The token for the next page of results.</p>",
+          "location": "querystring",
+          "locationName": "nextToken",
+          "shape": "NextToken"
+        }
+      },
+      "type": "structure"
+    },
+    "ListExperimentsResponse": {
+      "members": {
+        "experiments": {
+          "documentation": "<p>The experiments.</p>",
+          "shape": "ExperimentSummaryList"
+        },
+        "nextToken": {
+          "documentation": "<p>The token to use to retrieve the next page of results. This value is <code>null</code> when there are no more results to return.</p>",
+          "shape": "NextToken"
+        }
+      },
+      "type": "structure"
+    },
+    "ListTagsForResourceRequest": {
+      "members": {
+        "resourceArn": {
+          "documentation": "<p>The Amazon Resource Name (ARN) of the resource.</p>",
+          "location": "uri",
+          "locationName": "resourceArn",
+          "shape": "ResourceArn"
+        }
+      },
+      "required": ["resourceArn"],
+      "type": "structure"
+    },
+    "ListTagsForResourceResponse": {
+      "members": {
+        "tags": {
+          "documentation": "<p>The tags for the resource.</p>",
+          "shape": "TagMap"
+        }
+      },
+      "type": "structure"
+    },
+    "ListTargetResourceTypesMaxResults": {
+      "max": 100,
+      "min": 1,
+      "type": "integer"
+    },
+    "ListTargetResourceTypesRequest": {
+      "members": {
+        "maxResults": {
+          "box": true,
+          "documentation": "<p>The maximum number of results to return with a single call. To retrieve the remaining results, make another call with the returned <code>nextToken</code> value.</p>",
+          "location": "querystring",
+          "locationName": "maxResults",
+          "shape": "ListTargetResourceTypesMaxResults"
+        },
+        "nextToken": {
+          "documentation": "<p>The token for the next page of results.</p>",
+          "location": "querystring",
+          "locationName": "nextToken",
+          "shape": "NextToken"
+        }
+      },
+      "type": "structure"
+    },
+    "ListTargetResourceTypesResponse": {
+      "members": {
+        "nextToken": {
+          "documentation": "<p>The token to use to retrieve the next page of results. This value is <code>null</code> when there are no more results to return.</p>",
+          "shape": "NextToken"
+        },
+        "targetResourceTypes": {
+          "documentation": "<p>The target resource types.</p>",
+          "shape": "TargetResourceTypeSummaryList"
+        }
+      },
+      "type": "structure"
+    },
+    "LogSchemaVersion": { "type": "integer" },
+    "NextToken": {
+      "max": 1024,
+      "min": 1,
+      "pattern": "[\\S]+",
+      "type": "string"
+    },
+    "ResourceArn": {
+      "max": 2048,
+      "min": 20,
+      "pattern": "[\\S]+",
+      "type": "string"
+    },
+    "ResourceArnList": {
+      "max": 5,
+      "member": { "shape": "ResourceArn" },
+      "type": "list"
+    },
+    "ResourceNotFoundException": {
+      "documentation": "<p>The specified resource cannot be found.</p>",
+      "error": { "httpStatusCode": 404 },
+      "exception": true,
+      "members": {
+        "message": { "shape": "ExceptionMessage" }
+      },
+      "type": "structure"
+    },
+    "RoleArn": {
+      "max": 2048,
+      "min": 20,
+      "pattern": "[\\S]+",
+      "type": "string"
+    },
+    "S3BucketName": {
+      "max": 63,
+      "min": 3,
+      "pattern": "[\\S]+",
+      "type": "string"
+    },
+    "S3ObjectKey": {
+      "max": 1024,
+      "min": 1,
+      "pattern": "[\\s\\S]+",
+      "type": "string"
+    },
+    "ServiceQuotaExceededException": {
+      "documentation": "<p>You have exceeded your service quota.</p>",
+      "error": { "httpStatusCode": 402 },
+      "exception": true,
+      "members": {
+        "message": { "shape": "ExceptionMessage" }
+      },
+      "type": "structure"
+    },
+    "StartExperimentRequest": {
+      "members": {
+        "clientToken": {
+          "documentation": "<p>Unique, case-sensitive identifier that you provide to ensure the idempotency of the request.</p>",
+          "idempotencyToken": true,
+          "shape": "ClientToken"
+        },
+        "experimentTemplateId": {
+          "documentation": "<p>The ID of the experiment template.</p>",
+          "shape": "ExperimentTemplateId"
+        },
+        "tags": {
+          "documentation": "<p>The tags to apply to the experiment.</p>",
+          "shape": "TagMap"
+        }
+      },
+      "required": ["clientToken", "experimentTemplateId"],
+      "type": "structure"
+    },
+    "StartExperimentResponse": {
+      "members": {
+        "experiment": {
+          "documentation": "<p>Information about the experiment.</p>",
+          "shape": "Experiment"
+        }
+      },
+      "type": "structure"
+    },
+    "StopConditionSource": {
+      "max": 64,
+      "pattern": "[\\S]+",
+      "type": "string"
+    },
+    "StopConditionValue": {
+      "max": 2048,
+      "min": 20,
+      "pattern": "[\\s\\S]+",
+      "type": "string"
+    },
+    "StopExperimentRequest": {
+      "members": {
+        "id": {
+          "documentation": "<p>The ID of the experiment.</p>",
+          "location": "uri",
+          "locationName": "id",
+          "shape": "ExperimentId"
+        }
+      },
+      "required": ["id"],
+      "type": "structure"
+    },
+    "StopExperimentResponse": {
+      "members": {
+        "experiment": {
+          "documentation": "<p>Information about the experiment.</p>",
+          "shape": "Experiment"
+        }
+      },
+      "type": "structure"
+    },
+    "TagKey": {
+      "max": 128,
+      "pattern": "[\\s\\S]+",
+      "type": "string"
+    },
+    "TagKeyList": {
+      "member": { "shape": "TagKey" },
+      "type": "list"
+    },
+    "TagMap": {
+      "key": { "shape": "TagKey" },
+      "max": 50,
+      "type": "map",
+      "value": { "shape": "TagValue" }
+    },
+    "TagResourceRequest": {
+      "members": {
+        "resourceArn": {
+          "documentation": "<p>The Amazon Resource Name (ARN) of the resource.</p>",
+          "location": "uri",
+          "locationName": "resourceArn",
+          "shape": "ResourceArn"
+        },
+        "tags": {
+          "documentation": "<p>The tags for the resource.</p>",
+          "shape": "TagMap"
+        }
+      },
+      "required": ["resourceArn", "tags"],
+      "type": "structure"
+    },
+    "TagResourceResponse": {
+      "members": {},
+      "type": "structure"
+    },
+    "TagValue": {
+      "max": 256,
+      "pattern": "[\\s\\S]*",
+      "type": "string"
+    },
+    "TargetResourceType": {
+      "documentation": "<p>Describes a resource type.</p>",
+      "members": {
+        "description": {
+          "documentation": "<p>A description of the resource type.</p>",
+          "shape": "TargetResourceTypeDescription"
+        },
+        "parameters": {
+          "documentation": "<p>The parameters for the resource type.</p>",
+          "shape": "TargetResourceTypeParameterMap"
+        },
+        "resourceType": {
+          "documentation": "<p>The resource type.</p>",
+          "shape": "TargetResourceTypeId"
+        }
+      },
+      "type": "structure"
+    },
+    "TargetResourceTypeDescription": {
+      "max": 512,
+      "pattern": "[\\s\\S]+",
+      "type": "string"
+    },
+    "TargetResourceTypeId": {
+      "max": 128,
+      "pattern": "[\\S]+",
+      "type": "string"
+    },
+    "TargetResourceTypeParameter": {
+      "documentation": "<p>Describes the parameters for a resource type. Use parameters to determine which tasks are identified during target resolution.</p>",
+      "members": {
+        "description": {
+          "documentation": "<p>A description of the parameter.</p>",
+          "shape": "TargetResourceTypeParameterDescription"
+        },
+        "required": {
+          "box": true,
+          "documentation": "<p>Indicates whether the parameter is required.</p>",
+          "shape": "TargetResourceTypeParameterRequired"
+        }
+      },
+      "type": "structure"
+    },
+    "TargetResourceTypeParameterDescription": {
+      "max": 512,
+      "pattern": "[\\s\\S]+",
+      "type": "string"
+    },
+    "TargetResourceTypeParameterMap": {
+      "key": { "shape": "TargetResourceTypeParameterName" },
+      "type": "map",
+      "value": { "shape": "TargetResourceTypeParameter" }
+    },
+    "TargetResourceTypeParameterName": {
+      "max": 64,
+      "pattern": "[\\S]+",
+      "type": "string"
+    },
+    "TargetResourceTypeParameterRequired": { "type": "boolean" },
+    "TargetResourceTypeSummary": {
+      "documentation": "<p>Describes a resource type.</p>",
+      "members": {
+        "description": {
+          "documentation": "<p>A description of the resource type.</p>",
+          "shape": "TargetResourceTypeDescription"
+        },
+        "resourceType": {
+          "documentation": "<p>The resource type.</p>",
+          "shape": "TargetResourceTypeId"
+        }
+      },
+      "type": "structure"
+    },
+    "TargetResourceTypeSummaryList": {
+      "member": { "shape": "TargetResourceTypeSummary" },
+      "type": "list"
+    },
+    "UntagResourceRequest": {
+      "members": {
+        "resourceArn": {
+          "documentation": "<p>The Amazon Resource Name (ARN) of the resource.</p>",
+          "location": "uri",
+          "locationName": "resourceArn",
+          "shape": "ResourceArn"
+        },
+        "tagKeys": {
+          "documentation": "<p>The tag keys to remove.</p>",
+          "location": "querystring",
+          "locationName": "tagKeys",
+          "shape": "TagKeyList"
+        }
+      },
+      "required": ["resourceArn"],
+      "type": "structure"
+    },
+    "UntagResourceResponse": {
+      "members": {},
+      "type": "structure"
+    },
+    "UpdateExperimentTemplateActionInputItem": {
+      "documentation": "<p>Specifies an action for an experiment template.</p>",
+      "members": {
+        "actionId": {
+          "documentation": "<p>The ID of the action.</p>",
+          "shape": "ActionId"
+        },
+        "description": {
+          "documentation": "<p>A description for the action.</p>",
+          "shape": "ExperimentTemplateActionDescription"
+        },
+        "parameters": {
+          "documentation": "<p>The parameters for the action, if applicable.</p>",
+          "shape": "ExperimentTemplateActionParameterMap"
+        },
+        "startAfter": {
+          "documentation": "<p>The name of the action that must be completed before the current action starts. Omit this parameter to run the action at the start of the experiment.</p>",
+          "shape": "ExperimentTemplateActionStartAfterList"
+        },
+        "targets": {
+          "documentation": "<p>The targets for the action.</p>",
+          "shape": "ExperimentTemplateActionTargetMap"
+        }
+      },
+      "type": "structure"
+    },
+    "UpdateExperimentTemplateActionInputMap": {
+      "key": { "shape": "ExperimentTemplateActionName" },
+      "type": "map",
+      "value": { "shape": "UpdateExperimentTemplateActionInputItem" }
+    },
+    "UpdateExperimentTemplateLogConfigurationInput": {
+      "documentation": "<p>Specifies the configuration for experiment logging.</p>",
+      "members": {
+        "cloudWatchLogsConfiguration": {
+          "documentation": "<p>The configuration for experiment logging to Amazon CloudWatch Logs.</p>",
+          "shape": "ExperimentTemplateCloudWatchLogsLogConfigurationInput"
+        },
+        "logSchemaVersion": {
+          "documentation": "<p>The schema version.</p>",
+          "shape": "LogSchemaVersion"
+        },
+        "s3Configuration": {
+          "documentation": "<p>The configuration for experiment logging to Amazon S3.</p>",
+          "shape": "ExperimentTemplateS3LogConfigurationInput"
+        }
+      },
+      "type": "structure"
+    },
+    "UpdateExperimentTemplateRequest": {
+      "members": {
+        "actions": {
+          "documentation": "<p>The actions for the experiment.</p>",
+          "shape": "UpdateExperimentTemplateActionInputMap"
+        },
+        "description": {
+          "documentation": "<p>A description for the template.</p>",
+          "shape": "ExperimentTemplateDescription"
+        },
+        "id": {
+          "documentation": "<p>The ID of the experiment template.</p>",
+          "location": "uri",
+          "locationName": "id",
+          "shape": "ExperimentTemplateId"
+        },
+        "logConfiguration": {
+          "documentation": "<p>The configuration for experiment logging.</p>",
+          "shape": "UpdateExperimentTemplateLogConfigurationInput"
+        },
+        "roleArn": {
+          "documentation": "<p>The Amazon Resource Name (ARN) of an IAM role that grants the FIS service permission to perform service actions on your behalf.</p>",
+          "shape": "RoleArn"
+        },
+        "stopConditions": {
+          "documentation": "<p>The stop conditions for the experiment.</p>",
+          "shape": "UpdateExperimentTemplateStopConditionInputList"
+        },
+        "targets": {
+          "documentation": "<p>The targets for the experiment.</p>",
+          "shape": "UpdateExperimentTemplateTargetInputMap"
+        }
+      },
+      "required": ["id"],
+      "type": "structure"
+    },
+    "UpdateExperimentTemplateResponse": {
+      "members": {
+        "experimentTemplate": {
+          "documentation": "<p>Information about the experiment template.</p>",
+          "shape": "ExperimentTemplate"
+        }
+      },
+      "type": "structure"
+    },
+    "UpdateExperimentTemplateStopConditionInput": {
+      "documentation": "<p>Specifies a stop condition for an experiment. You can define a stop condition as a CloudWatch alarm.</p>",
+      "members": {
+        "source": {
+          "documentation": "<p>The source for the stop condition. Specify <code>aws:cloudwatch:alarm</code> if the stop condition is defined by a CloudWatch alarm. Specify <code>none</code> if there is no stop condition.</p>",
+          "shape": "StopConditionSource"
+        },
+        "value": {
+          "documentation": "<p>The Amazon Resource Name (ARN) of the CloudWatch alarm.</p>",
+          "shape": "StopConditionValue"
+        }
+      },
+      "required": ["source"],
+      "type": "structure"
+    },
+    "UpdateExperimentTemplateStopConditionInputList": {
+      "member": { "shape": "UpdateExperimentTemplateStopConditionInput" },
+      "type": "list"
+    },
+    "UpdateExperimentTemplateTargetInput": {
+      "documentation": "<p>Specifies a target for an experiment. You must specify at least one Amazon Resource Name (ARN) or at least one resource tag. You cannot specify both.</p>",
+      "members": {
+        "filters": {
+          "documentation": "<p>The filters to apply to identify target resources using specific attributes.</p>",
+          "shape": "ExperimentTemplateTargetFilterInputList"
+        },
+        "parameters": {
+          "documentation": "<p>The resource type parameters.</p>",
+          "shape": "ExperimentTemplateTargetParameterMap"
+        },
+        "resourceArns": {
+          "documentation": "<p>The Amazon Resource Names (ARNs) of the targets.</p>",
+          "shape": "ResourceArnList"
+        },
+        "resourceTags": {
+          "documentation": "<p>The tags for the target resources.</p>",
+          "shape": "TagMap"
+        },
+        "resourceType": {
+          "documentation": "<p>The resource type. The resource type must be supported for the specified action.</p>",
+          "shape": "TargetResourceTypeId"
+        },
+        "selectionMode": {
+          "documentation": "<p>Scopes the identified resources to a specific count or percentage.</p>",
+          "shape": "ExperimentTemplateTargetSelectionMode"
+        }
+      },
+      "required": ["resourceType", "selectionMode"],
+      "type": "structure"
+    },
+    "UpdateExperimentTemplateTargetInputMap": {
+      "key": { "shape": "ExperimentTemplateTargetName" },
+      "type": "map",
+      "value": { "shape": "UpdateExperimentTemplateTargetInput" }
+    },
+    "ValidationException": {
+      "documentation": "<p>The specified input is not valid, or fails to satisfy the constraints for the request.</p>",
+      "error": { "httpStatusCode": 400 },
+      "exception": true,
+      "members": {
+        "message": { "shape": "ExceptionMessage" }
+      },
+      "type": "structure"
+    }
+  },
+  "version": "2.0"
+}

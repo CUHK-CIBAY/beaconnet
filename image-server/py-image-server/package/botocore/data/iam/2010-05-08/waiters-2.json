@@ -1,0 +1,73 @@
+{
+  "version": 2,
+  "waiters": {
+    "InstanceProfileExists": {
+      "acceptors": [
+        {
+          "expected": 200,
+          "matcher": "status",
+          "state": "success"
+        },
+        {
+          "expected": 404,
+          "matcher": "status",
+          "state": "retry"
+        }
+      ],
+      "delay": 1,
+      "maxAttempts": 40,
+      "operation": "GetInstanceProfile"
+    },
+    "PolicyExists": {
+      "acceptors": [
+        {
+          "expected": 200,
+          "matcher": "status",
+          "state": "success"
+        },
+        {
+          "expected": "NoSuchEntity",
+          "matcher": "error",
+          "state": "retry"
+        }
+      ],
+      "delay": 1,
+      "maxAttempts": 20,
+      "operation": "GetPolicy"
+    },
+    "RoleExists": {
+      "acceptors": [
+        {
+          "expected": 200,
+          "matcher": "status",
+          "state": "success"
+        },
+        {
+          "expected": "NoSuchEntity",
+          "matcher": "error",
+          "state": "retry"
+        }
+      ],
+      "delay": 1,
+      "maxAttempts": 20,
+      "operation": "GetRole"
+    },
+    "UserExists": {
+      "acceptors": [
+        {
+          "expected": 200,
+          "matcher": "status",
+          "state": "success"
+        },
+        {
+          "expected": "NoSuchEntity",
+          "matcher": "error",
+          "state": "retry"
+        }
+      ],
+      "delay": 1,
+      "maxAttempts": 20,
+      "operation": "GetUser"
+    }
+  }
+}
