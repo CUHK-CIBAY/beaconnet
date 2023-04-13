@@ -7,22 +7,21 @@ export type showUsersListQueryResult = {
       id: string;
       info: {
         nickname: string;
-        };
+      };
     },
-    ];
+  ];
 };
 
 export const showUsersListQuery = gql`
   query {
-      users {
-        username
-        id
-        info {
-            nickname
-        }
+    users {
+      username
+      id
+      info {
+        nickname
+      }
     }
-
-}
+  }
 `;
 
 export type deleteUserMutationVariables = {
