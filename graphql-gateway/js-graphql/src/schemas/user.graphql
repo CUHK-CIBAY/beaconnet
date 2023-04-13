@@ -61,6 +61,7 @@ input UpdateInfoInput {
     birthday: String
     age: Int
     bio: String
+    image: String
 }
 
 input RegisterInput {
