@@ -9,12 +9,12 @@
   padding: 0px 0px 0px 75px;
 }
 
-.page-center-content {
+.setting-page-container .page-center-content {
   width: 35%;
   margin: 0px 20px;
 }
 
-.page-right-content {
+.setting-page-container .page-right-content {
   position: absolute;
   top: 0px;
   right: 10px;
