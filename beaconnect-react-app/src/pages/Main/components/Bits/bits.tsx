@@ -78,7 +78,7 @@ export const WriteBitBox = () => {
 
   const uploadAttachment = (file: any | null, content: string) => {
     if (file.size > 6_000_000) {
-    // !AWS lambda function max size is 6MB
+      // !AWS lambda function max size is 6MB
       alert('Filesize exceed 6MB');
     } else {
       toBase64(file).then((data) => {

@@ -7,12 +7,12 @@
     "build": "react-scripts build",
     "depcheck": "depcheck",
     "deploy": "aws s3 sync build/ s3://www.beaconnet.online",
-    "prod": "yarn build && yarn deploy",
     "format": "yarn run format/js && yarn run format/properties && yarn run format/yaml",
     "format/js": "prettier --write \"./**/*.{js,jsx,ts,tsx,css,json}\" --config ./.prettierrc",
     "format/properties": "find . -name '*.properties' -print -exec sort -o {} {} \\;",
     "format/yaml": "git ls-files '*.yml' '*.yaml' | xargs -t -I {} yq -i -S -Y . {}",
     "lint": "eslint \"src/**.*.{js,jsx,ts,tsx}\"",
+    "prod": "yarn build && yarn deploy",
     "start": "react-scripts start",
     "test": "react-scripts test"
   },
