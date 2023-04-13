@@ -15,39 +15,29 @@ const Setting = () => (
           <div className="setting-header-icon">
             <AiOutlineLeft />
           </div>
-          <div className="setting-header-text">
-            Setting
-          </div>
+          <div className="setting-header-text">Setting</div>
         </div>
         <div className="setting-bar">
           <div className="setting-bar-your-account">
-            <div className="setting-bar-your-account-text">
-              Your Account
-            </div>
+            <div className="setting-bar-your-account-text">Your Account</div>
             <div className="setting-bar-your-account-arrow">
               <RiArrowRightSLine />
             </div>
           </div>
           <div className="setting-bar-privacy-safety">
-            <div className="setting-bar-privacy-safety-text">
-              Privacy and Safety
-            </div>
+            <div className="setting-bar-privacy-safety-text">Privacy and Safety</div>
             <div className="setting-bar-privacy-safety-arrow">
               <RiArrowRightSLine />
             </div>
           </div>
           <div className="setting-bar-notification">
-            <div className="setting-bar-notification-text">
-              Notification
-            </div>
+            <div className="setting-bar-notification-text">Notification</div>
             <div className="setting-bar-notification-arrow">
               <RiArrowRightSLine />
             </div>
           </div>
           <div className="setting-bar-accessibility">
-            <div className="setting-bar-accessibility-text">
-              Acceessibility
-            </div>
+            <div className="setting-bar-accessibility-text">Acceessibility</div>
             <div className="setting-bar-accessibility-arrow">
               <RiArrowRightSLine />
             </div>
