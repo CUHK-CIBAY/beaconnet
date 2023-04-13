@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 import React, { useState } from 'react';
 import { useMutation } from '@apollo/client';
 import { AiOutlineHeart } from 'react-icons/ai';
@@ -273,14 +274,14 @@ export const BitBox = (data: any, showBits: any) => {
         <img
           className="bit-box-icon"
           src={
-            // eslint-disable-next-line operator-linebreak, max-len
-            `https://beaconnect-image-imagebucket-ft90dpqhkbr1.s3.ap-southeast-1.amazonaws.com/${data?.author?.info?.image}` ||
-            userIcon
+            data?.author?.info?.image
+              ? `https://beaconnect-image-imagebucket-ft90dpqhkbr1.s3.ap-southeast-1.amazonaws.com/${data?.author?.info?.image}`
+              : userIcon
           }
           alt="profile"
         />
         <div className="bit-box-content-header-name">{data?.author?.info?.nickname}</div>
-        <div className="bit-box-content-header-userID">{data?.author?.username}</div>
+        <div className="bit-box-content-header-userID">{`@${data?.author?.username}`}</div>
         <div className="bit-box-content-header-time">
           {formatDistance(new Date(data?.createAt), new Date(), { addSuffix: true })}
         </div>
