@@ -18,6 +18,25 @@ export const postBitQuery = gql`
   }
 `;
 
+export type reBitMutationVariables = {
+  content: string;
+  id: string;
+};
+
+export type reBitMutationResult = {
+  reBit: {
+    id: string;
+  };
+};
+
+export const reBitQuery = gql`
+  mutation ReBit($content: String!, $id: ID!) {
+    reBit(content: $content, id: $id) {
+      id
+    }
+  }
+`;
+
 export type likeBitMutationVariables = {
   id: string;
 };
@@ -68,12 +87,24 @@ export type showBitsQueryResult = {
       content: string;
       createAt: string;
       totalLike: number;
+      image: string;
       author: {
         id: string;
         username: string;
         info: {
           image: string;
           nickname: string;
+        };
+      };
+      reBit: {
+        content: string;
+        createAt: string;
+        author: {
+          username: string;
+          info: {
+            image: string;
+            nickname: string;
+          };
         };
       };
     },
@@ -87,12 +118,24 @@ export const showBitsQuery = gql`
       content
       createAt
       totalLike
+      image
       author {
         id
         username
         info {
           image
           nickname
+        }
+      }
+      reBit {
+        content
+        createAt
+        author {
+          username
+          info {
+            image
+            nickname
+          }
         }
       }
     }

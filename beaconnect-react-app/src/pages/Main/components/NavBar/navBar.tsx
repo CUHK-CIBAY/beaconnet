@@ -38,7 +38,7 @@ const NavBar = ({ isLoggedIn }: { isLoggedIn: boolean }) => {
 
     NavControls = [
       { icon: <FiLogOut />, text: 'Logout', path: 'logout' },
-      { icon: <FiUser />, text: 'Account', path: 'account' },
+      // { icon: <FiUser />, text: 'Account', path: 'account' },
     ];
   } else {
     NavLinks = [

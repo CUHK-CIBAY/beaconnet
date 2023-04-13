@@ -1,3 +1,5 @@
+/* eslint-disable max-len */
+/* eslint-disable max-len */
 import React, { useState } from 'react';
 import { useMutation } from '@apollo/client';
 import { AiOutlineHeart } from 'react-icons/ai';
@@ -18,6 +20,9 @@ import {
   likeBitMutationVariables,
   likeBitQuery,
   likeBitMutationResult,
+  reBitMutationVariables,
+  reBitQuery,
+  reBitMutationResult,
 } from '../Query/bit.query';
 import userIcon from '../../pages/Home/components/icon.png';
 
@@ -31,9 +36,21 @@ const toBase64 = (file: any) =>
   });
 /* eslint-enable */
 
-export const WriteBitBox = () => {
+export const WriteBitBox = ({
+  reBit,
+  setReBit,
+  bitAttachment,
+  setBitAttachment,
+  showBits,
+}: {
+  reBit: any;
+  // eslint-disable-next-line no-shadow, no-unused-vars
+  setReBit: any;
+  bitAttachment: any;
+  setBitAttachment: any;
+  showBits: any;
+}) => {
   const [draggingState, setDraggingState] = useState(false);
-  const [bitAttachment, setBitAttachment] = useState<any>(null);
 
   const sendBitSuccess = () => {
     const writeBitBox = document.querySelector('.write-bit-box') as HTMLDivElement;
@@ -43,6 +60,8 @@ export const WriteBitBox = () => {
     setTimeout(() => {
       writeBitBox.classList.remove('loading');
       writeBitBox.classList.remove('success');
+      // eslint-disable-next-line no-unused-expressions
+      showBits;
     }, 2000);
   };
 
@@ -51,9 +70,24 @@ export const WriteBitBox = () => {
       const {
         postBit: { id },
       } = data;
+      console.log(data, id);
       if (id) {
         setTimeout(() => {
           sendBitSuccess();
+        }, 2000);
+      }
+    },
+  });
+
+  const [postReBit] = useMutation<reBitMutationResult, reBitMutationVariables>(reBitQuery, {
+    onCompleted: (data) => {
+      const {
+        reBit: { id },
+      } = data;
+      if (id) {
+        setTimeout(() => {
+          sendBitSuccess();
+          setReBit(null);
         }, 2000);
       }
     },
@@ -106,6 +140,9 @@ export const WriteBitBox = () => {
     const textArea = currentTarget.parentElement?.parentElement?.querySelector('textarea') as HTMLTextAreaElement;
     const text = textArea.value;
     if (text.length > 0) {
+      if (reBit) {
+        postReBit({ variables: { content: reBit[1], id: reBit[0] } });
+      }
       if (bitAttachment) {
         uploadAttachment(bitAttachment, text);
       } else {
@@ -186,21 +223,37 @@ export const WriteBitBox = () => {
               </div>
             </div>
           )}
-          <div className="write-bit-box-options">
-            <div className="write-bit-box-options-attachment">
-              <BsImage
-                className="write-bit-box-options-icon"
-                onClick={() => {
-                  FileUpload('image/*');
-                }}
-              />
-              <FiVideo
-                className="write-bit-box-options-icon"
-                onClick={() => {
-                  FileUpload('video/*');
-                }}
-              />
+          {reBit && (
+            <div className="write-bit-box-rebit">
+              <div className="write-bit-box-rebit-content">{reBit[1]}</div>
+              <div
+                className="write-bit-box-rebit-remove"
+                onClick={() => setReBit(null)}
+                onKeyDown={() => setReBit(null)}
+                role="button"
+                tabIndex={0}
+              >
+                <RxCross2 />
+              </div>
             </div>
+          )}
+          <div className="write-bit-box-options">
+            {!reBit && (
+              <div className="write-bit-box-options-attachment">
+                <BsImage
+                  className="write-bit-box-options-icon"
+                  onClick={() => {
+                    FileUpload('image/*');
+                  }}
+                />
+                <FiVideo
+                  className="write-bit-box-options-icon"
+                  onClick={() => {
+                    FileUpload('video/*');
+                  }}
+                />
+              </div>
+            )}
             <div
               className="write-bit-box-options-submit"
               onClick={postBitHandler}
@@ -229,7 +282,7 @@ export const WriteBitBox = () => {
   );
 };
 
-export const BitBox = (data: any, showBits: any) => {
+export const BitBox = (data: any) => {
   const addActiveStatus = (e: React.FocusEvent) => {
     const { currentTarget } = e;
     const parent = currentTarget.parentElement?.parentElement?.parentElement as HTMLDivElement;
@@ -248,8 +301,8 @@ export const BitBox = (data: any, showBits: any) => {
 
   const [giveLikeToBit] = useMutation<likeBitMutationResult, likeBitMutationVariables>(likeBitQuery, {
     onCompleted: () => {
-      // eslint-disable-next-line no-unused-expressions
-      showBits;
+      // eslint-disable-next-line no-unused-expressions, react/destructuring-assignment
+      data.showBits;
     },
   });
 
@@ -259,6 +312,12 @@ export const BitBox = (data: any, showBits: any) => {
         id,
       },
     });
+  };
+
+  const handleRepost = (id: string, content: string) => {
+    // eslint-disable-next-line react/destructuring-assignment
+    data.setReBit([id, content]);
+    document.querySelector('.write-bit-box-content-text')?.scrollIntoView({ behavior: 'smooth' });
   };
 
   return (
@@ -273,14 +332,14 @@ export const BitBox = (data: any, showBits: any) => {
         <img
           className="bit-box-icon"
           src={
-            // eslint-disable-next-line operator-linebreak, max-len
-            `https://beaconnect-image-imagebucket-ft90dpqhkbr1.s3.ap-southeast-1.amazonaws.com/${data?.author?.info?.image}` ||
-            userIcon
+            data?.author?.info?.image
+              ? `https://beaconnect-image-imagebucket-ft90dpqhkbr1.s3.ap-southeast-1.amazonaws.com/${data?.author?.info?.image}`
+              : userIcon
           }
           alt="profile"
         />
         <div className="bit-box-content-header-name">{data?.author?.info?.nickname}</div>
-        <div className="bit-box-content-header-userID">{data?.author?.username}</div>
+        <div className="bit-box-content-header-userID">{`@${data?.author?.username}`}</div>
         <div className="bit-box-content-header-time">
           {formatDistance(new Date(data?.createAt), new Date(), { addSuffix: true })}
         </div>
@@ -288,23 +347,36 @@ export const BitBox = (data: any, showBits: any) => {
       <div className="bit-box-content">
         <div className="bit-box-content-text">{data?.content}</div>
       </div>
-      {/* {haveCaption && (
+      {data?.reBit && (
         <div className="bit-box-rebit-with-caption">
           <div className="bit-box-content-header">
-            <img className="bit-box-icon" src={userIcon} alt="profile" />
-            <div className="bit-box-content-header-name">John Doe</div>
-            <div className="bit-box-content-header-userID">@johndoe</div>
-            <div className="bit-box-content-header-time">2 hours ago</div>
-          </div>
-          <div className="bit-box-content">
-            <div className="bit-box-content-text">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec auctor, nisl eget tincidunt lacinia, nisl
-              nisl aliquet nisl, eget aliquet nisl nisl eget nisl. Donec auctor, nisl eget tincidunt lacinia, nisl nisl
-              aliquet nisl, eget aliquet nisl nisl eget nisl.
+            <img
+              className="bit-box-icon"
+              src={
+                data?.reBit?.author?.info?.image
+                  ? `https://beaconnect-image-imagebucket-ft90dpqhkbr1.s3.ap-southeast-1.amazonaws.com/${data?.reBit?.author?.info?.image}`
+                  : userIcon
+              }
+              alt="profile"
+            />
+            <div className="bit-box-content-header-name">{data?.reBit?.author?.info?.nickname}</div>
+            <div className="bit-box-content-header-userID">{data?.reBit?.author?.username}</div>
+            <div className="bit-box-content-header-time">
+              {formatDistance(new Date(data?.reBit?.createAt), new Date(), { addSuffix: true })}
             </div>
           </div>
+          <div className="bit-box-content">
+            <div className="bit-box-content-text">{data?.reBit?.content}</div>
+          </div>
         </div>
-      )} */}
+      )}
+      {data?.image && (
+        <img
+          className="bit-box-content-image"
+          src={`https://beaconnect-image-imagebucket-ft90dpqhkbr1.s3.ap-southeast-1.amazonaws.com/${data?.image}`}
+          alt="bit"
+        />
+      )}
       <div className="bit-box-content-footer">
         <div
           className="bit-box-content-footer-likes bit-box-content-footer-icons"
@@ -324,7 +396,19 @@ export const BitBox = (data: any, showBits: any) => {
           <BiComment />
           <p>5 comments</p>
         </div>
-        <div className="bit-box-content-footer-repost bit-box-content-footer-icons">
+        <div
+          className="bit-box-content-footer-repost bit-box-content-footer-icons"
+          onClick={() => {
+            handleRepost(data?.id, data?.content);
+            data?.setBitAttachment(null);
+          }}
+          onKeyDown={() => {
+            handleRepost(data?.id, data?.content);
+            data?.setBitAttachment(null);
+          }}
+          role="button"
+          tabIndex={0}
+        >
           <BiRepost />
         </div>
       </div>
