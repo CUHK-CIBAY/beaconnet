@@ -17,11 +17,11 @@ export const userBitsResolver = async ({ id }: any) => {
   }
 };
 
-export const meResolver = async (_p: any, _a: any, { id }: any) => {
+export const meResolver = async (_p: any, _a: any, { me }: any) => {
   const session = driver.session({ database: 'neo4j' });
   try {
     const query = 'MATCH(u:User {id: $id}) RETURN u';
-    const result = await session.run(query, { id });
+    const result = await session.run(query, { id: me.id });
     return result.records[0].get('u').properties;
   } catch (error) {
     console.error(error);
