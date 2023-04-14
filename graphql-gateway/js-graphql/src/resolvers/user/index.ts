@@ -1,15 +1,16 @@
 import { userInfoResolver, updateUserInfo } from './user-info-impl';
+import { userBitsResolver, meResolver } from './user-impl';
 
 export const Query = {
   findUser: require('./user-search'),
   users: require('./user-show'),
-  me: require('./user-impl'),
+  me: meResolver,
 };
 
 export const User = {
   // following: (p: UserType) => filterUsersByUserIds(p.followingIds ?? []),
   info: userInfoResolver,
-  bits: require('./user-impl'),
+  bits: userBitsResolver,
 };
 
 export const Mutation = {
