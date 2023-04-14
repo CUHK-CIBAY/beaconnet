@@ -1,4 +1,5 @@
 import * as dotenv from 'dotenv';
+import { v4 as uuidv4 } from 'uuid';
 import driver from '../../util/neo4j-driver';
 
 dotenv.config();
@@ -11,19 +12,18 @@ const commentBitResolver = async (_p: any, { id, content }: any, { me }: any) =>
             WITH u
             MATCH (b:Bit {id: $bid})
             WITH u, b
-            MATCH (:Comment)
-            WITH u, b, toString(COUNT(*) + 1) as count
-            CREATE (c:Comment {
-                   id: count,
+            MERGE (c:Comment {
+                   id: $cid,
                    content: $content,
                    createAt: $createAt
             })
-            CREATE (u)-[:COMMENTED]->(c)-[:ON]->(b)
+            MERGE (u)-[:COMMENTED]->(c)-[:ON]->(b)
             RETURN c
         `;
     const result = await session.run(query, {
       bid: id,
       uid: me.id,
+      cid: uuidv4(),
       content,
       createAt: new Date().toISOString(),
     });
