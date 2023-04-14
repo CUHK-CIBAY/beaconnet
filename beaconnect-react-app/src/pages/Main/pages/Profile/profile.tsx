@@ -1,25 +1,20 @@
-import React, { useEffect } from 'react';
+/* eslint-disable max-len */
+import React, { useState } from 'react';
 import { useQuery } from '@apollo/client';
-import { showProfileQuery, showProfileQueryVariables, showProfileQueryResult } from './components/profile.query';
+import { showProfileQuery, showProfileQueryResult } from './components/profile.query';
 import Banner1 from './components/borzoi.jpeg';
 import Banner2 from './components/images.jpeg';
+import { BitBox } from '../../components/Bits/bits';
 import './profile.css';
 
 const Profile = () => {
-  useEffect(() => {
-    const queryString = window.location.search;
-    const urlParams = new URLSearchParams(queryString);
-    const userId = urlParams.get('userID');
-    if (userId) {
-      console.log(userId);
-      // eslint-disable-next-line no-use-before-define, no-unused-expressions
-      showProfile;
-    }
-  }, []);
+  // eslint-disable-next-line no-shadow
+  const [profileDetails, setProfileDetails] = useState<any>(null);
 
-  const showProfile = useQuery<showProfileQueryResult, showProfileQueryVariables>(showProfileQuery, {
+  useQuery<showProfileQueryResult>(showProfileQuery, {
     onCompleted: (data: any) => {
-      console.log(data);
+      setProfileDetails(data.me);
+      // console.log(data.me);
     },
   });
 
@@ -31,37 +26,50 @@ const Profile = () => {
         </div>
         <div className="user-info-container">
           <div className="user-icon-container">
-            <img className="profile-icon-image" src={Banner1} alt={Banner2} />
-            <button type="button" className="profile-edit-button">
+            <img
+              className="profile-icon-image"
+              src={
+                profileDetails?.info?.image
+                  ? `https://beaconnect-image-imagebucket-ft90dpqhkbr1.s3.ap-southeast-1.amazonaws.com/${profileDetails?.info?.image}`
+                  : Banner1
+              }
+              alt={Banner2}
+            />
+            {/* <button type="button" className="profile-edit-button">
               Edit
-            </button>
+            </button> */}
           </div>
           <div className="user-info-detail">
             <div className="user-info-usernameUserID">
-              <p className="user-info-username">Jonna</p>
-              <p className="user-info-userID">@joNNA389</p>
+              <p className="user-info-username">{profileDetails?.info?.nickname}</p>
+              <p className="user-info-userID">{`@${profileDetails?.username}`}</p>
             </div>
-            <div className="user-info-descriptionBox">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam tristique odio quam, vel finibus lorem
-              aliquam in. Donec interdum quam non lacus lacinia egestas. Nulla accumsan cursus lectus consequat euismod.
-            </div>
-            <div className="user-info-followItem">
+            <div className="user-info-descriptionBox">{profileDetails?.info?.bio}</div>
+            {/* <div className="user-info-followItem">
               <p className="user-info-following">123 Following</p>
               <p className="user-info-follower">404 Follower</p>
-            </div>
+            </div> */}
           </div>
           <div className="horizontal-line">
             <hr />
           </div>
           <div className="user-profile-button">
             <button type="button" className="profile-Bit-button profile-buttons">
-              Bit
+              Bits
             </button>
-            <button type="button" className="profile-ReBit-button profile-buttons">
+            {/* <button type="button" className="profile-ReBit-button profile-buttons">
               ReBits
-            </button>
+            </button> */}
           </div>
-          <div className="user-bits-show">aaa</div>
+          <div className="user-bits-show">
+            {profileDetails?.bits?.map((item: any) => (
+              <BitBox
+                key={item.id}
+                // eslint-disable-next-line react/jsx-props-no-spreading
+                {...item}
+              />
+            ))}
+          </div>
         </div>
       </div>
     </div>

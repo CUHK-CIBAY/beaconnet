@@ -1,12 +1,14 @@
 import { gql } from '@apollo/client';
 
-export type showProfileQueryVariables = {
-  following: Boolean;
-};
-
 export type showProfileQueryResult = {
-  bits: [
-    {
+  me: {
+    info: {
+      bio: string;
+      nickname: string;
+      image: string;
+    };
+    username: string;
+    bits: {
       id: string;
       content: string;
       createAt: string;
@@ -31,30 +33,37 @@ export type showProfileQueryResult = {
           };
         };
       };
-    },
-  ];
+      comment: {
+        content: string;
+        createAt: string;
+        owner: {
+          info: {
+            nickname: string;
+          };
+          username: string;
+        };
+      };
+    };
+  }
 };
 
 export const showProfileQuery = gql`
-  query GetBits($following: Boolean) {
-    showBits(following: $following) {
-      id
-      content
-      createAt
-      totalLike
-      image
-      author {
-        id
-        username
-        info {
-          image
-          nickname
-        }
+  query showProfile {
+    me {
+      info {
+        bio
+        nickname
+        image
       }
-      reBit {
+      username
+      bits {
+        id
         content
         createAt
+        totalLike
+        image
         author {
+          id
           username
           info {
             image
