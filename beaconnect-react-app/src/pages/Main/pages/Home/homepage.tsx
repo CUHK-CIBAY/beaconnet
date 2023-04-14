@@ -18,7 +18,7 @@ const Home = ({ isLoggedIn }: { isLoggedIn: boolean }) => {
 
   /* eslint-disable */
   useEffect(() => {
-    showBits();
+    showBits({ variables: { following: isLoggedIn ? true : false } });
   }, []);
   /* eslint-enable */
 
@@ -35,17 +35,22 @@ const Home = ({ isLoggedIn }: { isLoggedIn: boolean }) => {
               showBits={showBits}
             />
           )}
-          {result?.showBits?.map((item: any) => (
-            <BitBox
-              setReBit={setReBit}
-              showBits={showBits}
-              setBitAttachment={setBitAttachment}
-              isLoggedIn={isLoggedIn}
-              key={item.id}
-              // eslint-disable-next-line react/jsx-props-no-spreading
-              {...item}
-            />
-          ))}
+
+          {result.showBits?.length > 0 ? (
+            result?.showBits?.map((item: any) => (
+              <BitBox
+                setReBit={setReBit}
+                showBits={showBits}
+                setBitAttachment={setBitAttachment}
+                isLoggedIn={isLoggedIn}
+                key={item.id}
+                // eslint-disable-next-line react/jsx-props-no-spreading
+                {...item}
+              />
+            ))
+          ) : (
+            <div className="main-no-bit-warning">Try to follow someone to see their bits!</div>
+          )}
         </div>
 
         <div className="page-right-content">
