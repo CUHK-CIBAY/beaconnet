@@ -34,6 +34,7 @@ Resources:
       Handler: src/index.handler
       PackageType: Zip
       Runtime: nodejs16.x
+      Timeout: 30
     Type: 'AWS::Serverless::Function'
   GraphQLIntegration:
     Properties:
