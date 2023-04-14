@@ -412,6 +412,7 @@ export const BitBox = (data: any) => {
           <BiRepost />
         </div>
       </div>
+
       <div className="bit-box-content-footer-comment-list">
         {data?.comment.map(
           (comment: any) =>
@@ -430,14 +431,17 @@ export const BitBox = (data: any) => {
             ),
         )}
       </div>
-      <div className="bit-box-content-footer-comment">
-        <div className="bit-box-content-footer-comment-input">
-          <input type="text" placeholder="Write a comment..." onFocus={addActiveStatus} onBlur={removeActiveStatus} />
+
+      {data?.isLoggedIn && (
+        <div className="bit-box-content-footer-comment">
+          <div className="bit-box-content-footer-comment-input">
+            <input type="text" placeholder="Write a comment..." onFocus={addActiveStatus} onBlur={removeActiveStatus} />
+          </div>
+          <div className="bit-box-content-footer-comment-submit">
+            <TbSend />
+          </div>
         </div>
-        <div className="bit-box-content-footer-comment-submit">
-          <TbSend />
-        </div>
-      </div>
+      )}
     </div>
   );
 };

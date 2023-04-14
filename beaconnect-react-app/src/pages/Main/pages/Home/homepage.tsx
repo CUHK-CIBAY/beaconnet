@@ -40,6 +40,7 @@ const Home = ({ isLoggedIn }: { isLoggedIn: boolean }) => {
               setReBit={setReBit}
               showBits={showBits}
               setBitAttachment={setBitAttachment}
+              isLoggedIn={isLoggedIn}
               key={item.id}
               // eslint-disable-next-line react/jsx-props-no-spreading
               {...item}

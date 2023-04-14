@@ -634,6 +634,8 @@
 }
 
 .bit-box-content-footer-comment-list-item-header {
+  font-size: 0.8rem;
+  margin-top: 10px;
 }
 
 .bit-box-content-footer-comment-list-item p::before {
