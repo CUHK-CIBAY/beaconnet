@@ -122,3 +122,47 @@
   background-color: #ffffff;
   position: relative;
 }
+
+@media only screen and (max-width: 600px) {
+  .info-container {
+    width: 100%;
+    height: 100%;
+  }
+
+  .profile-banner-container {
+    width: 100%;
+    height: fit-content;
+  }
+
+  .user-info-container {
+    margin: 0px;
+    padding: 5px;
+  }
+
+  .profile-icon-image {
+    height: 100px;
+    width: 100px;
+  }
+
+  .profile-edit-button {
+    top: 8px;
+    right: 35px;
+  }
+
+  .user-info-detail {
+    width: calc(100% - 75px);
+    margin: 0px;
+    padding-right: 0px;
+    padding: 5px;
+  }
+
+  .user-info-follower,
+  .user-info-following {
+    padding-right: 10px;
+  }
+
+  .horizontal-line,
+  .user-profile-button {
+    width: calc(100% - 30px);
+  }
+}
