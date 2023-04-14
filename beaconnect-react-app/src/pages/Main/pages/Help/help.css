@@ -1,0 +1,92 @@
+.page-content-help {
+  background: #f3f4f5;
+  width: calc(100vw - 105px);
+  height: 100vh;
+  padding: 15px 15px 15px 90px;
+  display: block;
+}
+
+.help-main-content-container {
+  height: calc(100% - 30px);
+  padding: 15px 30px;
+  background: #ffffff;
+  border-radius: 15px;
+}
+
+.help-main-header {
+  font-size: 20px;
+  font-weight: bold;
+  margin: 10px 0px;
+}
+
+.help-main-description {
+  margin: 10px 0px;
+}
+
+.help-main-description p {
+  font-size: 14px;
+  margin: 5px 15px;
+}
+
+.help-main-report-header {
+  font-size: 16px;
+  font-weight: bold;
+  margin: 10px;
+}
+
+.help-main-report-content {
+  margin: 15px 20px;
+}
+
+.help-main-report-content-header {
+  margin: 10px;
+  display: flex;
+  align-items: center;
+}
+
+.help-main-report-content-title {
+  width: 100%;
+}
+
+.help-main-report-content-title-input {
+  padding: 5px 10px;
+  width: calc(100% - 55px);
+  border: #ccd5ae 2px solid;
+  border-radius: 4px;
+  outline: none;
+}
+
+.help-main-report-content-title-input:focus {
+  border: #a1ab7d 2px solid;
+}
+
+.help-main-report-content-button {
+  float: right;
+}
+
+.help-main-report-content-submit {
+  padding: 5px 15px;
+  border-radius: 6px;
+  background: #e9edc9;
+  border: 0px;
+  outline: none;
+}
+
+.help-main-report-content-submit:hover {
+  background: #ccd5ae;
+}
+
+.help-main-report-content-description-input {
+  margin: 10px;
+  box-sizing: border-box;
+  resize: none;
+  width: calc(100% - 15px);
+  height: 50vh;
+  border: #ccd5ae 2px solid;
+  border-radius: 4px;
+  outline: none;
+}
+
+.help-main-report-content-description-input:focus {
+  border: #a1ab7d 2px solid;
+}
