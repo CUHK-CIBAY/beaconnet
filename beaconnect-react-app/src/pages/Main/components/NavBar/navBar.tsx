@@ -7,7 +7,7 @@ import { BiHomeAlt2 } from 'react-icons/bi';
 import { CgProfile } from 'react-icons/cg';
 import { FiLogOut, FiUser } from 'react-icons/fi';
 import { useNavigate } from 'react-router-dom';
-
+import logo from './images/logo.png';
 // eslint-disable-next-line no-undef
 const NavItem = ({ icon, text, path }: { icon: JSX.Element; text: string; path: string }) => {
   const navigate = useNavigate();
@@ -58,7 +58,9 @@ const NavBar = ({ isLoggedIn }: { isLoggedIn: boolean }) => {
     <nav>
       <div className="nav-wrapper">
         <div className="logo">
-          <div className="logo-icon">B</div>
+          <div className="logo-icon">
+            <img src={logo} alt="logo" width="50" height="50" />
+          </div>
           <div className="logo-name">Beaconnet</div>
         </div>
 
