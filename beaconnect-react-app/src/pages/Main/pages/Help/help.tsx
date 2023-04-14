@@ -22,7 +22,7 @@ const Help = () => (
           </div>
         </div>
         <div className="help-main-report-content-description">
-          <textarea className="help-main-report-content-description-input">Writing something...</textarea>
+          <textarea className="help-main-report-content-description-input" placeholder="Descrition" />
         </div>
       </div>
     </div>
