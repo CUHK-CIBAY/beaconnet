@@ -20,12 +20,12 @@ export const searchUserQuery = gql`
   query searchUserQuery($username: String!) {
     findUser(input: { username: $username }) {
       id
-    username
-    info {
-      bio
-      image
-      nickname
-    }
+      username
+      info {
+        bio
+        image
+        nickname
+      }
     }
   }
 `;
