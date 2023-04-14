@@ -616,3 +616,17 @@
   display: flex;
   justify-content: center;
 }
+
+@media only screen and (max-width: 600px) {
+  .page-content {
+    display: flex;
+  }
+  .page-right-content {
+    display: none;
+  }
+
+  .page-center-content {
+    width: 100%;
+  }
+
+}

@@ -214,3 +214,17 @@
   border-radius: 15px;
   background-color: #ccd5ae;
 }
+
+@media only screen and (max-width: 600px) {
+  .setting-container {
+    width: 100%;
+  }
+
+  .setting-page-container .page-right-content {
+    display: none;
+  }
+
+  .setting-page-container .page-center-content {
+    width: calc(100vh - 20px);
+  }
+}

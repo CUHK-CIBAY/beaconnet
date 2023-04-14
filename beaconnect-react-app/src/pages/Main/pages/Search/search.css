@@ -261,3 +261,43 @@
   padding: 10px 10px;
   width: 60px;
 }
+
+@media only screen and (max-width: 600px) {
+  .page-center-content{
+    margin: 0px;
+  }
+
+  .search-result-people-container {
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr;
+    justify-content: center;
+    align-items: center;
+    width: calc(100% - 22px);
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    padding: 10px 10px;
+    margin: 10px 0;
+  }
+
+  .search-result-user-icon {
+    width: 20px;
+    height: 20px;
+    margin-bottom: 5px;
+  }
+
+  .search-result-user-follow {
+    display: flex;
+    justify-content: center;
+  }
+
+  .search-user-follow-button {
+    width: 100%;
+    padding: 3px 20px;
+  }
+
+  .search-result-user-bio {
+    margin: 5px 10px;
+  }
+
+}
