@@ -77,7 +77,7 @@ const Login = (props: {
           </p>
 
           <button type="button">
-            <a href="/forgot-password">Forgot Password</a>
+            <a href="/">Back to Home</a>
           </button>
         </div>
       </div>
