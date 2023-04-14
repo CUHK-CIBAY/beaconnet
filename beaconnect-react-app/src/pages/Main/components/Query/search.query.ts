@@ -5,15 +5,41 @@ export type searchUserVariables = {
 };
 
 export type searchUserResult = {
-  searchUser: {
+  findUser: {
+    id: string;
     username: string;
+    info: {
+      bio: string;
+      image: string;
+      nickname: string;
+    };
   };
 };
 
 export const searchUserQuery = gql`
   query searchUserQuery($username: String!) {
     findUser(input: { username: $username }) {
+      id
       username
+      info {
+        bio
+        image
+        nickname
+      }
+    }
+  }
+`;
+
+export const showUsersListQuery = gql`
+  query {
+    users {
+      username
+      id
+      info {
+        nickname
+        bio
+        image
+      }
     }
   }
 `;

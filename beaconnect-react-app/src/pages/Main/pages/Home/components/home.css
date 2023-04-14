@@ -668,3 +668,11 @@
 .bit-box-content-footer-comment-list-item-content {
   margin: 10px 0;
 }
+
+.main-no-bit-warning {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin: 60px 0;
+}
