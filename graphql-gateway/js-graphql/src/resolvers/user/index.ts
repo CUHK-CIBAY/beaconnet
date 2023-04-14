@@ -9,6 +9,7 @@ export const Query = {
 export const User = {
   // following: (p: UserType) => filterUsersByUserIds(p.followingIds ?? []),
   info: userInfoResolver,
+  bits: require('./user-impl'),
 };
 
 export const Mutation = {
