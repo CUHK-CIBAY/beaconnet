@@ -54,3 +54,21 @@ export const likeGiverResolver = async ({ id }: any) => {
     await session.close();
   }
 };
+
+export const commentResolver = async ({ id }: any) => {
+  const session = driver.session({ database: 'neo4j' });
+  try {
+    const query = `
+            MATCH (c:Comment)-[:ON]->(:Bit {id: $id})
+            RETURN c
+        `;
+    const result = await session.run(query, { id });
+    const users = result.records.map((record) => record.get('c').properties);
+    return users;
+  } catch (error) {
+    console.error(error);
+    return null;
+  } finally {
+    await session.close();
+  }
+};

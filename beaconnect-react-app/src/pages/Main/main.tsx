@@ -4,6 +4,7 @@ import Search from './pages/Search/search';
 import Profile from './pages/Profile/profile';
 import Setting from './pages/Setting/setting';
 import NavBar from './components/NavBar/navBar';
+import Help from './pages/Help/help';
 import './components/main.css';
 import './pages/Home/components/home.css';
 import Homepage from './pages/Home/homepage';
@@ -16,6 +17,7 @@ const Main = ({ isLoggedIn }: { isLoggedIn: boolean }) => (
         <Route path="/search" element={<Search />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/settings" element={<Setting />} />
+        <Route path="/help" element={<Help />} />
         <Route path="*" element={<Homepage isLoggedIn={isLoggedIn} />} />
       </Routes>
     </Suspense>

@@ -107,6 +107,16 @@ export type showBitsQueryResult = {
           };
         };
       };
+      comment: {
+        content: string;
+        createAt: string;
+        owner: {
+          info: {
+            nickname: string;
+          };
+          username: string;
+        };
+      };
     },
   ];
 };
@@ -136,6 +146,16 @@ export const showBitsQuery = gql`
             image
             nickname
           }
+        }
+      }
+      comment {
+        content
+        createAt
+        owner {
+          info {
+            nickname
+          }
+          username
         }
       }
     }

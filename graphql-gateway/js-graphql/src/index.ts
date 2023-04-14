@@ -13,6 +13,9 @@ const main = async () => {
       resolvers,
     }),
     context: baseContext,
+    cors: {
+      origin: '*',
+    },
   });
   const server = createServer(yoga);
   server.listen(4000, () => {

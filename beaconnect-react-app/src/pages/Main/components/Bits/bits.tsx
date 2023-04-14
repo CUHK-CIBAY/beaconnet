@@ -61,7 +61,7 @@ export const WriteBitBox = ({
       writeBitBox.classList.remove('loading');
       writeBitBox.classList.remove('success');
       // eslint-disable-next-line no-unused-expressions
-      showBits;
+      showBits();
     }, 2000);
   };
 
@@ -141,9 +141,8 @@ export const WriteBitBox = ({
     const text = textArea.value;
     if (text.length > 0) {
       if (reBit) {
-        postReBit({ variables: { content: reBit[1], id: reBit[0] } });
-      }
-      if (bitAttachment) {
+        postReBit({ variables: { content: text, id: reBit[0] } });
+      } else if (bitAttachment) {
         uploadAttachment(bitAttachment, text);
       } else {
         postBit({ variables: { content: text } });
@@ -394,7 +393,7 @@ export const BitBox = (data: any) => {
         </div>
         <div className="bit-box-content-footer-comments bit-box-content-footer-icons">
           <BiComment />
-          <p>5 comments</p>
+          <p>{`${data?.comment?.length} comments`}</p>
         </div>
         <div
           className="bit-box-content-footer-repost bit-box-content-footer-icons"
@@ -412,14 +411,36 @@ export const BitBox = (data: any) => {
           <BiRepost />
         </div>
       </div>
-      <div className="bit-box-content-footer-comment">
-        <div className="bit-box-content-footer-comment-input">
-          <input type="text" placeholder="Write a comment..." onFocus={addActiveStatus} onBlur={removeActiveStatus} />
-        </div>
-        <div className="bit-box-content-footer-comment-submit">
-          <TbSend />
-        </div>
+
+      <div className="bit-box-content-footer-comment-list">
+        {data?.comment.map(
+          (comment: any) =>
+            // eslint-disable-next-line implicit-arrow-linebreak
+            comment && (
+              <div className="bit-box-content-footer-comment-list-item" key={comment.id}>
+                <div className="bit-box-content-footer-comment-list-item-header">
+                  <p>{comment.owner?.info?.nickname}</p>
+                  <p>{`@${comment.owner?.username}`}</p>
+                  <p>{formatDistance(new Date(comment.createAt), new Date(), { addSuffix: true })}</p>
+                </div>
+                <div className="bit-box-content-footer-comment-list-item-content">
+                  <p>{comment.content}</p>
+                </div>
+              </div>
+            ),
+        )}
       </div>
+
+      {data?.isLoggedIn && (
+        <div className="bit-box-content-footer-comment">
+          <div className="bit-box-content-footer-comment-input">
+            <input type="text" placeholder="Write a comment..." onFocus={addActiveStatus} onBlur={removeActiveStatus} />
+          </div>
+          <div className="bit-box-content-footer-comment-submit">
+            <TbSend />
+          </div>
+        </div>
+      )}
     </div>
   );
 };

@@ -17,6 +17,9 @@ export const handler = async (event: APIGatewayEvent, lambdaContext: Context): P
       resolvers,
     }),
     context: baseContext,
+    cors: {
+      origin: '*',
+    },
   });
   const response = await yoga.fetch(
     event.path + '?' + new URLSearchParams((event.queryStringParameters as Record<string, string>) || {}).toString(),

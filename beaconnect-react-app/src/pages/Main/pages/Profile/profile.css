@@ -21,8 +21,8 @@
 
 .profile-banner-image {
   width: 100%;
-  height: auto;
-  object-fit: cover;
+  aspect-ratio: 16 / 9;
+  object-fit: fill;
 }
 
 .profile-icon-image {
@@ -53,7 +53,8 @@
   display: flex;
   margin: 10px 0;
   align-items: center;
-  font-weight: bold;
+  font-weight: bolder;
+  font-size: 1.2rem;
 }
 
 .user-info-username,
@@ -69,6 +70,7 @@
 
 .user-info-detail {
   padding: 0 15px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .user-info-descriptionBox {
@@ -101,29 +103,16 @@
   overflow: scroll;
 }
 
-.profile-Bit-button,
-.profile-ReBit-button,
-.profile-Comment-button,
-.profile-Like-button {
+.profile-buttons {
   border: none;
   background-color: #ffffff;
+  font-weight: bolder;
+  margin-bottom: 10px;
+  font-size: 0.8rem;
+}
+
+.profile-buttons:hover {
   text-decoration: underline;
-}
-
-.profile-Bit-button:hover {
-  color: #a1ab7d;
-}
-
-.profile-ReBit-button:hover {
-  color: #a1ab7d;
-}
-
-.profile-Comment-button:hover {
-  color: #a1ab7d;
-}
-
-.profile-Like-button:hover {
-  color: #a1ab7d;
 }
 
 .user-info-container {
