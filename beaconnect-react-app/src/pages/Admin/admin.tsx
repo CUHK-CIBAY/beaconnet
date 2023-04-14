@@ -9,13 +9,24 @@ import {
   deleteUserMutationVariables,
   deleteUserQuery,
 } from '../Main/components/Query/user.query';
+import logo from '../Main/components/NavBar/images/logo.png';
 
 import './admin.css';
 
 const NavBar = () => (
   <div className="Navbar-container">
-    <p>logo</p>
-    <div className="logoutIcon">
+    <img className="admin-panel-logo" src={logo} alt="logo" />
+    <div
+      className="logoutIcon"
+      onClick={() => {
+        window.location.href = '/logout';
+      }}
+      onKeyDown={() => {
+        window.location.href = '/logout';
+      }}
+      role="button"
+      tabIndex={0}
+    >
       <FiLogOut />
     </div>
   </div>

@@ -67,3 +67,7 @@
   cursor: pointer;
   height: 100%;
 }
+
+.admin-panel-logo {
+  width: 30px;
+}
