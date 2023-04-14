@@ -1,7 +1,7 @@
-/* eslint-disable max-len */
+/* eslint-disable */
 /* eslint-disable max-len */
 import React, { useState } from 'react';
-import { useMutation } from '@apollo/client';
+import { useMutation, gql } from '@apollo/client';
 import { AiOutlineHeart } from 'react-icons/ai';
 import { BiComment, BiRepost } from 'react-icons/bi';
 import { BsImage } from 'react-icons/bs';
@@ -27,6 +27,7 @@ import {
 import userIcon from '../../pages/Home/components/icon.png';
 
 /* eslint-disable */
+
 const toBase64 = (file: any) =>
   new Promise((resolve, reject) => {
     const reader = new FileReader();
@@ -35,6 +36,7 @@ const toBase64 = (file: any) =>
     reader.onerror = (error) => reject(error);
   });
 /* eslint-enable */
+/* eslint-disable */
 
 export const WriteBitBox = ({
   reBit,
@@ -319,6 +321,35 @@ export const BitBox = (data: any) => {
     document.querySelector('.write-bit-box-content-text')?.scrollIntoView({ behavior: 'smooth' });
   };
 
+  const [commentBit] = useMutation<any, any>(
+    gql`
+      mutation commentBit($bitID: ID!, $comment: String!) {
+        commentBit(id: $bitID, content: $comment) {
+          id
+        }
+      }
+    `,
+    {
+      onCompleted: (data2) => {
+        console.log(data2);
+      },
+    },
+  );
+
+  const handleCommentSubmit = (e: React.KeyboardEvent | React.MouseEvent) => {
+    const input = e.currentTarget.parentElement?.querySelector('input') as HTMLInputElement;
+    const currentInput = input.value;
+
+    if (currentInput.length > 0) {
+      commentBit({
+        variables: {
+          bitID: data.id,
+          comment: currentInput,
+        },
+      });
+      input.value = '';
+    }
+  };
   return (
     <div className="bit-box bit-box-container">
       {/* {isRepost && (
@@ -436,7 +467,13 @@ export const BitBox = (data: any) => {
           <div className="bit-box-content-footer-comment-input">
             <input type="text" placeholder="Write a comment..." onFocus={addActiveStatus} onBlur={removeActiveStatus} />
           </div>
-          <div className="bit-box-content-footer-comment-submit">
+          <div
+            className="bit-box-content-footer-comment-submit"
+            onClick={handleCommentSubmit}
+            onKeyDown={handleCommentSubmit}
+            role="button"
+            tabIndex={0}
+          >
             <TbSend />
           </div>
         </div>
@@ -444,6 +481,7 @@ export const BitBox = (data: any) => {
     </div>
   );
 };
+
 BitBox.defaultProps = {
   haveCaption: false,
   isRepost: false,

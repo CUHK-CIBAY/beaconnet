@@ -1,31 +1,69 @@
 import React, { useEffect, useState } from 'react';
-import { useLazyQuery } from '@apollo/client';
+import { gql, useLazyQuery, useMutation } from '@apollo/client';
 import userIcon from '../../Home/components/icon.png';
 import { showUsersListQuery } from '../../../components/Query/search.query';
 /* eslint-disable */
-export const SearchResultPeopleList = (user: any) => (
-  <div className="search-result-people-container">
-    <img
-      className="search-result-user-icon"
-      src={
-        user?.user?.info?.image
-          ? `https://beaconnect-image-imagebucket-ft90dpqhkbr1.s3.ap-southeast-1.amazonaws.com/${user.user.info.image}`
-          : userIcon
+export const SearchResultPeopleList = (user: any) => {
+  type deleteUserMutationVariables = {
+    id: string;
+  };
+
+  type followUserMutationResult = {
+    followUser: {
+      id: string;
+    };
+  };
+
+  const followUserQuery = gql`
+    mutation followUser($id: ID!) {
+      followUser(id: $id) {
+        id
       }
-      alt="profile"
-    />
-    <div className="search-result-user-info">
-      <div className="search-result-user-names">
-        <p className="search-result-user-nickname">{user?.user?.info?.nickname || user?.user?.username}</p>
-        <p className="search-result-user-nameid">{`@${user?.user?.username}`}</p>
+    }
+  `;
+
+  const [followUser] = useMutation<any, any>(followUserQuery, {
+    onCompleted: (data) => {
+      console.log(data);
+    },
+  });
+
+  const followOtherUser = (id: any) => {
+    console.log(id);
+    followUser({ variables: { id } });
+  };
+
+  return (
+    <div className="search-result-people-container">
+      <img
+        className="search-result-user-icon"
+        src={
+          user?.user?.info?.image
+            ? `https://beaconnect-image-imagebucket-ft90dpqhkbr1.s3.ap-southeast-1.amazonaws.com/${user.user.info.image}`
+            : userIcon
+        }
+        alt="profile"
+      />
+      <div className="search-result-user-info">
+        <div className="search-result-user-names">
+          <p className="search-result-user-nickname">{user?.user?.info?.nickname || user?.user?.username}</p>
+          <p className="search-result-user-nameid">{`@${user?.user?.username}`}</p>
+        </div>
+        <div className="search-result-user-bio">{user?.user?.info?.bio || 'Hello World'}</div>
       </div>
-      <div className="search-result-user-bio">{user?.user?.info?.bio || 'Hello World'}</div>
+      <div className="search-result-user-follow">
+        <input
+          type="submit"
+          value="Follow"
+          className="search-user-follow-button"
+          onClick={() => {
+            followOtherUser(user?.user?.id);
+          }}
+        />
+      </div>
     </div>
-    <div className="search-result-user-follow">
-      <input type="submit" value="Follow" className="search-user-follow-button" />
-    </div>
-  </div>
-);
+  );
+};
 
 const SearchResultPeople = (result: any) => {
   const [users, setUsers] = useState<any>([]);
@@ -45,7 +83,7 @@ const SearchResultPeople = (result: any) => {
   useEffect(() => {
     console.log(result?.result?.findUser);
   }, [result]);
-  
+
   return (
     <div className="search-result-people-section">
       <div className="search-result-people-header">
