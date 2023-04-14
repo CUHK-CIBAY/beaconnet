@@ -1,15 +1,23 @@
 import React, { useEffect } from 'react';
 import userIcon from '../../Home/components/icon.png';
-
-export const SearchResultPeopleList = (username: any) => (
+/* eslint-disable */
+export const SearchResultPeopleList = (user: any) => (
   <div className="search-result-people-container">
-    <img className="search-result-user-icon" src={userIcon} alt="profile" />
+    <img
+      className="search-result-user-icon"
+      src={
+        user?.user?.info?.image
+          ? `https://beaconnect-image-imagebucket-ft90dpqhkbr1.s3.ap-southeast-1.amazonaws.com/${user.user.info.image}`
+          : userIcon
+      }
+      alt="profile"
+    />
     <div className="search-result-user-info">
       <div className="search-result-user-names">
-        <p className="search-result-user-nickname">{}</p>
-        <p className="search-result-user-nameid">{`@${username}`}</p>
+        <p className="search-result-user-nickname">{user?.user?.info?.nickname || user?.user?.username}</p>
+        <p className="search-result-user-nameid">{`@${user?.user?.username}`}</p>
       </div>
-      <div className="search-result-user-bio"> This is my bio. haha : blah balh balh balh </div>
+      <div className="search-result-user-bio">{user?.user?.info?.bio || 'Hello World'}</div>
     </div>
     <div className="search-result-user-follow">
       <input type="submit" value="Follow" className="search-user-follow-button" />
@@ -19,7 +27,7 @@ export const SearchResultPeopleList = (username: any) => (
 
 const SearchResultPeople = (result: any) => {
   useEffect(() => {
-    // console.log(result?.result?.findUser);
+    console.log(result?.result?.findUser);
   }, [result]);
   return (
     <div className="search-result-people-section">
@@ -34,7 +42,7 @@ const SearchResultPeople = (result: any) => {
       <div className="search-result-people">
         {result?.result?.findUser && (
           <>
-            <SearchResultPeopleList username={result?.result?.findUser?.username} />
+            <SearchResultPeopleList user={result?.result.findUser} />
             <hr />
           </>
         )}
