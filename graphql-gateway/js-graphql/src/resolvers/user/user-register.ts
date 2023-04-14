@@ -1,5 +1,6 @@
 import * as dotenv from 'dotenv';
 import { MutationRegisterArgs } from '../../gql.types';
+import { v4 as uuidv4 } from 'uuid';
 import driver from '../../util/neo4j-driver';
 
 dotenv.config();
@@ -20,12 +21,10 @@ const userRegisterResolver = async (_p: any, { input }: MutationRegisterArgs) =>
     let result = await session.run(query, { username, email });
     if (result.records.length > 0) throw Error('username or email is used');
     query = `
-        MATCH (:User)
-        WITH toString(COUNT(*) + 1) as count
-        CREATE (u:User {id: count, username: $username, password: $password, email: $email, role: "NORMAL"}) 
+        CREATE (u:User {id: $id, username: $username, password: $password, email: $email, role: "NORMAL"}) 
         RETURN u
     `;
-    result = await session.run(query, { username, password: hashedPassword, email });
+    result = await session.run(query, { id: uuidv4(), username, password: hashedPassword, email });
     return result.records[0].get('u').properties;
   } catch (error) {
     console.error(error);
