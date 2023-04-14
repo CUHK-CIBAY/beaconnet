@@ -29,3 +29,17 @@ export const searchUserQuery = gql`
     }
   }
 `;
+
+export const showUsersListQuery = gql`
+  query {
+    users {
+      username
+      id
+      info {
+        nickname
+        bio
+        image
+      }
+    }
+  }
+`;
