@@ -3,7 +3,7 @@ import driver from '../../util/neo4j-driver';
 
 dotenv.config();
 
-export const postBitResolver = async (_p: any, { content, image = "" }: any, { me }: any) => {
+export const postBitResolver = async (_p: any, { content, image = '' }: any, { me }: any) => {
   const session = driver.session({ database: 'neo4j' });
   try {
     const query = `

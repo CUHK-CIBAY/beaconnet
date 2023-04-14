@@ -72,4 +72,3 @@ export const commentResolver = async ({ id }: any) => {
     await session.close();
   }
 };
-
