@@ -10,7 +10,7 @@ type Bit {
   reBit: Bit
   "If include image return URL"
   image: String
-  # comment: ???
+  comment: [Comment!]
 }
 
 type Query {
