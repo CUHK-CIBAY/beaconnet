@@ -252,6 +252,7 @@
 .bit-box-content {
   margin: 6px 0 6px 36px;
   font-weight: bold;
+  overflow-wrap: break-word;
 }
 
 .bit-box-content-footer {

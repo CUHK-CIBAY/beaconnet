@@ -61,7 +61,7 @@ export const WriteBitBox = ({
       writeBitBox.classList.remove('loading');
       writeBitBox.classList.remove('success');
       // eslint-disable-next-line no-unused-expressions
-      showBits;
+      showBits();
     }, 2000);
   };
 

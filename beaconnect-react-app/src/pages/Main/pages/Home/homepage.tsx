@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useQuery } from '@apollo/client';
+import { useLazyQuery } from '@apollo/client';
 // import { BiSearchAlt } from 'react-icons/bi';
 import { WriteBitBox, BitBox } from '../../components/Bits/bits';
 import { showBitsQuery, showBitsQueryVariables, showBitsQueryResult } from '../../components/Query/bit.query';
@@ -10,7 +10,7 @@ const Home = ({ isLoggedIn }: { isLoggedIn: boolean }) => {
   const [reBit, setReBit] = useState(null);
   const [bitAttachment, setBitAttachment] = useState<any>(null);
 
-  const showBits = useQuery<showBitsQueryResult, showBitsQueryVariables>(showBitsQuery, {
+  const [showBits] = useLazyQuery<showBitsQueryResult, showBitsQueryVariables>(showBitsQuery, {
     onCompleted: (data: any) => {
       setResult(data);
     },
@@ -18,7 +18,7 @@ const Home = ({ isLoggedIn }: { isLoggedIn: boolean }) => {
 
   /* eslint-disable */
   useEffect(() => {
-    showBits;
+    showBits();
   }, []);
   /* eslint-enable */
 
