@@ -101,6 +101,7 @@
 
 .user-bits-show {
   overflow: scroll;
+  height: calc(100vh - 400px);
 }
 
 .profile-buttons {

@@ -393,7 +393,7 @@ export const BitBox = (data: any) => {
         </div>
         <div className="bit-box-content-footer-comments bit-box-content-footer-icons">
           <BiComment />
-          <p>{`${data?.comment?.length} comments`}</p>
+          <p>{`${data?.comment?.length ? data?.comment?.length : 0} comments`}</p>
         </div>
         <div
           className="bit-box-content-footer-repost bit-box-content-footer-icons"
@@ -413,7 +413,7 @@ export const BitBox = (data: any) => {
       </div>
 
       <div className="bit-box-content-footer-comment-list">
-        {data?.comment.map(
+        {data?.comment?.map(
           (comment: any) =>
             // eslint-disable-next-line implicit-arrow-linebreak
             comment && (
