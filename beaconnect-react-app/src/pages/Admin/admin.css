@@ -59,3 +59,15 @@
   background: #f3f4f5;
   height: 100vh;
 }
+
+.panel-show-user-delete-icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  height: 100%;
+}
+
+.admin-panel-logo {
+  width: 30px;
+}
