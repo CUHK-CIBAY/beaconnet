@@ -394,7 +394,7 @@ export const BitBox = (data: any) => {
         </div>
         <div className="bit-box-content-footer-comments bit-box-content-footer-icons">
           <BiComment />
-          <p>5 comments</p>
+          <p>{`${data?.comment?.length} comments`}</p>
         </div>
         <div
           className="bit-box-content-footer-repost bit-box-content-footer-icons"
@@ -411,6 +411,24 @@ export const BitBox = (data: any) => {
         >
           <BiRepost />
         </div>
+      </div>
+      <div className="bit-box-content-footer-comment-list">
+        {data?.comment.map(
+          (comment: any) =>
+            // eslint-disable-next-line implicit-arrow-linebreak
+            comment && (
+              <div className="bit-box-content-footer-comment-list-item" key={comment.id}>
+                <div className="bit-box-content-footer-comment-list-item-header">
+                  <p>{comment.owner?.info?.nickname}</p>
+                  <p>{`@${comment.owner?.username}`}</p>
+                  <p>{formatDistance(new Date(comment.createAt), new Date(), { addSuffix: true })}</p>
+                </div>
+                <div className="bit-box-content-footer-comment-list-item-content">
+                  <p>{comment.content}</p>
+                </div>
+              </div>
+            ),
+        )}
       </div>
       <div className="bit-box-content-footer-comment">
         <div className="bit-box-content-footer-comment-input">
