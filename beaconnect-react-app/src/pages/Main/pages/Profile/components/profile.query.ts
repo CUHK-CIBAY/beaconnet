@@ -44,7 +44,7 @@ export type showProfileQueryResult = {
         };
       };
     };
-  }
+  };
 };
 
 export const showProfileQuery = gql`
