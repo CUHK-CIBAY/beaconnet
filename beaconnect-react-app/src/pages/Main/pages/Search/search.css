@@ -263,7 +263,7 @@
 }
 
 @media only screen and (max-width: 600px) {
-  .page-center-content{
+  .page-center-content {
     margin: 0px;
   }
 
@@ -299,5 +299,4 @@
   .search-result-user-bio {
     margin: 5px 10px;
   }
-
 }

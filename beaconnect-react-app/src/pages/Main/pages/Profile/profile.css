@@ -140,7 +140,7 @@
     height: 100%;
   }
 
-  .profile-banner-container{
+  .profile-banner-container {
     width: 100%;
     height: fit-content;
   }
@@ -176,5 +176,4 @@
   .user-profile-button {
     width: calc(100% - 30px);
   }
-
 }
