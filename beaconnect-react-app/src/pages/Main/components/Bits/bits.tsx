@@ -141,9 +141,8 @@ export const WriteBitBox = ({
     const text = textArea.value;
     if (text.length > 0) {
       if (reBit) {
-        postReBit({ variables: { content: reBit[1], id: reBit[0] } });
-      }
-      if (bitAttachment) {
+        postReBit({ variables: { content: text, id: reBit[0] } });
+      } else if (bitAttachment) {
         uploadAttachment(bitAttachment, text);
       } else {
         postBit({ variables: { content: text } });

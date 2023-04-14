@@ -49,8 +49,7 @@ export const reBitResolver = async (_p: any, { content, id }: any, { me }: any) 
                    id: $bid2,
                    content: $content,
                    createAt: $createAt,
-                   totalLike: $totalLike,
-                   likeGivers: []
+                   totalLike: $totalLike
             })
             MERGE (u)-[:POST]->(b2)
             MERGE (b2)-[:REBITED]->(b1)
