@@ -1,6 +1,6 @@
 import * as dotenv from 'dotenv';
-import { MutationRegisterArgs } from '../../gql.types';
 import { v4 as uuidv4 } from 'uuid';
+import { MutationRegisterArgs } from '../../gql.types';
 import driver from '../../util/neo4j-driver';
 
 dotenv.config();
@@ -24,7 +24,12 @@ const userRegisterResolver = async (_p: any, { input }: MutationRegisterArgs) =>
         CREATE (u:User {id: $id, username: $username, password: $password, email: $email, role: "NORMAL"}) 
         RETURN u
     `;
-    result = await session.run(query, { id: uuidv4(), username, password: hashedPassword, email });
+    result = await session.run(query, {
+      id: uuidv4(),
+      username,
+      password: hashedPassword,
+      email,
+    });
     return result.records[0].get('u').properties;
   } catch (error) {
     console.error(error);

@@ -30,4 +30,3 @@ export const meResolver = async (_p: any, _a: any, { me }: any) => {
     await session.close();
   }
 };
-
