@@ -1,6 +1,5 @@
 import * as dotenv from 'dotenv';
 import { User } from '../../gql.types';
-import driver from '../../util/neo4j-driver';
 
 dotenv.config();
 
@@ -12,7 +11,7 @@ const createToken = async ({ id, email, username, role }: User) =>
   jwt.sign({ id, email, username, role }, process.env.SECRET, { expiresIn: '1d' });
 /* eslint-enable */
 
-const userLoginResolver = async (_p: any, { input }: any) => {
+const userLoginResolver = async (_p: any, { input }: any, { driver }: any) => {
   const session = driver.session({ database: 'neo4j' });
   try {
     const { email, username, password } = input;

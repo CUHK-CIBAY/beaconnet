@@ -1,9 +1,8 @@
 import * as dotenv from 'dotenv';
-import driver from '../../util/neo4j-driver';
 
 dotenv.config();
 
-const findBit = async (_p: any, { id }: any) => {
+const findBit = async (_p: any, { id }: any, { driver }: any) => {
   const session = driver.session({ database: 'neo4j' });
   try {
     const query = 'MATCH(b:Bit {id: $id}) RETURN b';

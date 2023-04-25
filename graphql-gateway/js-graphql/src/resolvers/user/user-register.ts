@@ -1,13 +1,12 @@
 import * as dotenv from 'dotenv';
-import { MutationRegisterArgs } from '../../gql.types';
 import { v4 as uuidv4 } from 'uuid';
-import driver from '../../util/neo4j-driver';
+import { MutationRegisterArgs } from '../../gql.types';
 
 dotenv.config();
 
 const bcrypt = require('bcryptjs');
 
-const userRegisterResolver = async (_p: any, { input }: MutationRegisterArgs) => {
+const userRegisterResolver = async (_p: any, { input }: MutationRegisterArgs, { driver }: any) => {
   const session = driver.session({ database: 'neo4j' });
   try {
     const { username, email, password } = input;
@@ -24,7 +23,12 @@ const userRegisterResolver = async (_p: any, { input }: MutationRegisterArgs) =>
         CREATE (u:User {id: $id, username: $username, password: $password, email: $email, role: "NORMAL"}) 
         RETURN u
     `;
-    result = await session.run(query, { id: uuidv4(), username, password: hashedPassword, email });
+    result = await session.run(query, {
+      id: uuidv4(),
+      username,
+      password: hashedPassword,
+      email,
+    });
     return result.records[0].get('u').properties;
   } catch (error) {
     console.error(error);

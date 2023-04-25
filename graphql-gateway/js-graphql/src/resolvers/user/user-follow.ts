@@ -1,9 +1,8 @@
 import * as dotenv from 'dotenv';
-import driver from '../../util/neo4j-driver';
 
 dotenv.config();
 
-const userFollowResolver = async (_p: any, { id }: any, { me }: any) => {
+const userFollowResolver = async (_p: any, { id }: any, { me, driver }: any) => {
   const session = driver.session({ database: 'neo4j' });
   try {
     const checkQuery = `

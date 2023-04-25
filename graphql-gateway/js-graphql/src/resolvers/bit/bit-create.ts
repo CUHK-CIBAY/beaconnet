@@ -1,10 +1,9 @@
 import * as dotenv from 'dotenv';
 import { v4 as uuidv4 } from 'uuid';
-import driver from '../../util/neo4j-driver';
 
 dotenv.config();
 
-export const postBitResolver = async (_p: any, { content, image = '' }: any, { me }: any) => {
+export const postBitResolver = async (_p: any, { content, image = '' }: any, { me, driver }: any) => {
   const session = driver.session({ database: 'neo4j' });
   try {
     const query = `
@@ -37,7 +36,7 @@ export const postBitResolver = async (_p: any, { content, image = '' }: any, { m
   }
 };
 
-export const reBitResolver = async (_p: any, { content, id }: any, { me }: any) => {
+export const reBitResolver = async (_p: any, { content, id }: any, { me, driver }: any) => {
   const session = driver.session({ database: 'neo4j' });
   try {
     const query = `

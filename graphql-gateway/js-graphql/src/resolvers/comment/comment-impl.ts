@@ -1,9 +1,8 @@
 import * as dotenv from 'dotenv';
-import driver from '../../util/neo4j-driver';
 
 dotenv.config();
 
-export const getCommenOwner = async (p: any) => {
+export const getCommenOwner = async (p: any, _a: any, { driver }: any) => {
   const session = driver.session({ database: 'neo4j' });
   try {
     const query = `
@@ -20,7 +19,7 @@ export const getCommenOwner = async (p: any) => {
   }
 };
 
-export const getCommentBit = async (p: any) => {
+export const getCommentBit = async (p: any, _a: any, { driver }: any) => {
   const session = driver.session({ database: 'neo4j' });
   try {
     const query = `

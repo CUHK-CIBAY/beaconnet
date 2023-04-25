@@ -1,9 +1,8 @@
 import * as dotenv from 'dotenv';
-import driver from '../../util/neo4j-driver';
 
 dotenv.config();
 
-export const likeBit = async (_p: any, { id }: any, { me }: any) => {
+export const likeBit = async (_p: any, { id }: any, { me, driver }: any) => {
   const session = driver.session({ database: 'neo4j' });
   try {
     let query = `
@@ -38,7 +37,7 @@ export const likeBit = async (_p: any, { id }: any, { me }: any) => {
   }
 };
 
-export const isLikedBit = async (_p: any, { id }: any, { me }: any) => {
+export const isLikedBit = async (_p: any, { id }: any, { me, driver }: any) => {
   const session = driver.session({ database: 'neo4j' });
   try {
     const query = `
