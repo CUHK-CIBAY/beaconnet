@@ -1,9 +1,8 @@
 import * as dotenv from 'dotenv';
-import driver from '../../util/neo4j-driver';
 
 dotenv.config();
 
-export const authorResolver = async ({ id }: any) => {
+export const authorResolver = async ({ id }: any, _a: any, { driver }: any) => {
   const session = driver.session({ database: 'neo4j' });
   try {
     const query = `
@@ -20,7 +19,7 @@ export const authorResolver = async ({ id }: any) => {
   }
 };
 
-export const reBitResolver = async ({ id }: any) => {
+export const reBitResolver = async ({ id }: any, _a: any, { driver }: any) => {
   const session = driver.session({ database: 'neo4j' });
   try {
     const query = `
@@ -37,7 +36,7 @@ export const reBitResolver = async ({ id }: any) => {
   }
 };
 
-export const likeGiverResolver = async ({ id }: any) => {
+export const likeGiverResolver = async ({ id }: any, _a: any, { driver }: any) => {
   const session = driver.session({ database: 'neo4j' });
   try {
     const query = `
@@ -45,7 +44,7 @@ export const likeGiverResolver = async ({ id }: any) => {
             RETURN u
         `;
     const result = await session.run(query, { id });
-    const users = result.records.map((record) => record.get('u').properties);
+    const users = result.records.map((record: any) => record.get('u').properties);
     return users;
   } catch (error) {
     console.error(error);
@@ -55,7 +54,7 @@ export const likeGiverResolver = async ({ id }: any) => {
   }
 };
 
-export const commentResolver = async ({ id }: any) => {
+export const commentResolver = async ({ id }: any, _a: any, { driver }: any) => {
   const session = driver.session({ database: 'neo4j' });
   try {
     const query = `
@@ -63,7 +62,7 @@ export const commentResolver = async ({ id }: any) => {
             RETURN c
         `;
     const result = await session.run(query, { id });
-    const users = result.records.map((record) => record.get('c').properties);
+    const users = result.records.map((record: any) => record.get('c').properties);
     return users;
   } catch (error) {
     console.error(error);

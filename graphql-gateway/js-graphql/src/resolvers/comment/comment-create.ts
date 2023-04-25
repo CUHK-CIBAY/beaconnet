@@ -1,10 +1,9 @@
 import * as dotenv from 'dotenv';
 import { v4 as uuidv4 } from 'uuid';
-import driver from '../../util/neo4j-driver';
 
 dotenv.config();
 
-const commentBitResolver = async (_p: any, { id, content }: any, { me }: any) => {
+const commentBitResolver = async (_p: any, { id, content }: any, { me, driver }: any) => {
   const session = driver.session({ database: 'neo4j' });
   try {
     const query = `

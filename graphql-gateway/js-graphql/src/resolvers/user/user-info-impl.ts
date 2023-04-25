@@ -1,10 +1,9 @@
 import * as dotenv from 'dotenv';
 import { User, MutationUpdateInfoArgs } from '../../gql.types';
-import driver from '../../util/neo4j-driver';
 
 dotenv.config();
 
-export const userInfoResolver = async ({ id }: User) => {
+export const userInfoResolver = async ({ id }: User, _a: any, { driver }: any) => {
   const session = driver.session({ database: 'neo4j' });
   try {
     const query = `
@@ -21,7 +20,7 @@ export const userInfoResolver = async ({ id }: User) => {
   }
 };
 
-export const updateUserInfo = async (_p: any, { input }: MutationUpdateInfoArgs, { me }: any): Promise<User | null> => {
+export const updateUserInfo = async (_p: any, { input }: MutationUpdateInfoArgs, { me, driver }: any): Promise<User | null> => {
   const session = driver.session({ database: 'neo4j' });
   try {
     const query = `

@@ -1,14 +1,13 @@
 import * as dotenv from 'dotenv';
-import driver from '../../util/neo4j-driver';
 
 dotenv.config();
 
-export const userBitsResolver = async ({ id }: any) => {
+export const userBitsResolver = async ({ id }: any, { driver }: any) => {
   const session = driver.session({ database: 'neo4j' });
   try {
     const query = 'MATCH(:User {id: $id})-[:POST]->(b:Bit) RETURN b';
     const result = await session.run(query, { id });
-    return result.records.map((record) => record.get('b').properties);
+    return result.records.map((record: any) => record.get('b').properties);
   } catch (error) {
     console.error(error);
     return null;
@@ -17,7 +16,7 @@ export const userBitsResolver = async ({ id }: any) => {
   }
 };
 
-export const meResolver = async (_p: any, _a: any, { me }: any) => {
+export const meResolver = async (_p: any, _a: any, { me, driver }: any) => {
   const session = driver.session({ database: 'neo4j' });
   try {
     const query = 'MATCH(u:User {id: $id}) RETURN u';
