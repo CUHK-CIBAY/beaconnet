@@ -20,7 +20,11 @@ export const userInfoResolver = async ({ id }: User, _a: any, { driver }: any) =
   }
 };
 
-export const updateUserInfo = async (_p: any, { input }: MutationUpdateInfoArgs, { me, driver }: any): Promise<User | null> => {
+export const updateUserInfo = async (
+  _p: any,
+  { input }: MutationUpdateInfoArgs,
+  { me, driver }: any,
+): Promise<User | null> => {
   const session = driver.session({ database: 'neo4j' });
   try {
     const query = `
