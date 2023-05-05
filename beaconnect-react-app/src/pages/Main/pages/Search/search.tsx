@@ -1,5 +1,3 @@
-/* eslint-disable jsx-a11y/label-has-associated-control */
-
 import React from 'react';
 import { useLazyQuery } from '@apollo/client';
 import './search.css';
@@ -53,14 +51,11 @@ const Search = () => {
             </div>
             <SearchUserBar setFetchResult={setFetchResult} />
           </div>
-          {/* <TrendSuggestionSection /> */}
-          {/* <SearchResultLatest /> */}
           <SearchResultPeople result={fetchResult} />
         </div>
       </div>
 
       <div>
-        {/* <AdvancedSearch /> */}
         <SearchResultRight />
       </div>
     </div>
