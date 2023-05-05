@@ -4,7 +4,7 @@ import { useQuery } from '@apollo/client';
 import { showProfileQuery, showProfileQueryResult } from './components/profile.query';
 import Banner1 from './components/borzoi.jpeg';
 import Banner2 from './components/images.jpeg';
-import { BitBox } from '../../components/Bits/bits';
+import BitBox from '../../components/Bits/bits';
 import './profile.css';
 
 const Profile = () => {
@@ -14,7 +14,6 @@ const Profile = () => {
   useQuery<showProfileQueryResult>(showProfileQuery, {
     onCompleted: (data: any) => {
       setProfileDetails(data.me);
-      // console.log(data.me);
     },
   });
 

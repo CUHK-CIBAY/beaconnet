@@ -2,9 +2,10 @@ import React, { useEffect, useState } from 'react';
 import { useLazyQuery } from '@apollo/client';
 // import { BiSearchAlt } from 'react-icons/bi';
 import { RxCrossCircled } from 'react-icons/rx';
-import { WriteBitBox, BitBox } from '../../components/Bits/bits';
+import BitBox from '../../components/Bits/bits';
+import WriteBitBox from '../../components/Bits/writeBits';
 import { showBitsQuery, showBitsQueryVariables, showBitsQueryResult } from '../../components/Query/bit.query';
-import seasonalEvent from './components/seasonalpic.jpg';
+import seasonalEvent from './components/seasonalPicture.jpg';
 
 const Home = ({ isLoggedIn }: { isLoggedIn: boolean }) => {
   const [result, setResult] = useState<any>([]);
@@ -63,7 +64,7 @@ const Home = ({ isLoggedIn }: { isLoggedIn: boolean }) => {
           <img className="profile-background-picture" src={seasonalEvent} alt="profile" />
           <div className="trend-searching-container">
             <div className="welcome-speech-container">
-              <div className="welcome-speech-container-header">Welcome to Beaconnnect!!!</div>
+              <div className="welcome-speech-container-header">Welcome to beaConnnet!!!</div>
               <div>You can sending Bits to your friend with picture, video and voice.</div>
               <div>There are some function at the left hand side, such as</div>
               <div>

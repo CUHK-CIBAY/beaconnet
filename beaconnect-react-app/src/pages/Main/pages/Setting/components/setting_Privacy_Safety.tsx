@@ -18,7 +18,7 @@ const SettingPrivacy = () => (
       <div>
         <p className="privacy-safety-content-see-header">Content you see</p>
         <div className="privacy-safety-content-see-content">
-          Decide what you see on Beaconnect based on your perferences, like topics and interests.
+          Decide what you see on Beaconnect based on your preferences, like topics and interests.
         </div>
       </div>
       <div className="privacy-safety-content-see-arrow">

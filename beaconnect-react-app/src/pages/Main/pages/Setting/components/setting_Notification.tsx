@@ -15,12 +15,12 @@ const SettingNotification = () => (
         <RiArrowRightSLine />
       </div>
     </div>
-    <div className="notification-perferences">
+    <div className="notification-preferences">
       <div>
-        <p className="notification-perferences-header">Perferences</p>
-        <div className="notification-perferences-content">Select your perference by notification type</div>
+        <p className="notification-preferences-header">preferences</p>
+        <div className="notification-preferences-content">Select your perference by notification type</div>
       </div>
-      <div className="notification-perferences-arrow">
+      <div className="notification-preferences-arrow">
         <RiArrowRightSLine />
       </div>
     </div>
