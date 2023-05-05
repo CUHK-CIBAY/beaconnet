@@ -4,10 +4,8 @@ import './search.css';
 import { BiSearchAlt } from 'react-icons/bi';
 import { AiOutlineLeft } from 'react-icons/ai';
 import { searchUserQuery, searchUserVariables, searchUserResult } from '../../components/Query/search.query';
-
-// for seach result latest page
-import SearchResultRight from './components/searchresult_right';
 import SearchResultPeople from './components/searchresult_people_left';
+import seasonalContent from '../../components/Seasonal/seasonal';
 
 export const SearchUserBar = ({ setFetchResult }: { setFetchResult: any }) => {
   const [searchUser] = useLazyQuery<searchUserResult, searchUserVariables>(searchUserQuery);
@@ -55,9 +53,7 @@ const Search = () => {
         </div>
       </div>
 
-      <div>
-        <SearchResultRight />
-      </div>
+      <div>{seasonalContent}</div>
     </div>
   );
 };
