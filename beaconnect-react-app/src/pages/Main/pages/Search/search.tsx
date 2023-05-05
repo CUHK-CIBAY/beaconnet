@@ -68,7 +68,7 @@ const Search = () => {
         </div>
       </div>
 
-      <div className="page-right-content">
+      <div className="">
         {/* <AdvancedSearch /> */}
         <SearchResultRight />
       </div>

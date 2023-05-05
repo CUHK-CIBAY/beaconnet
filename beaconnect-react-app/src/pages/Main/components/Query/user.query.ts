@@ -19,6 +19,7 @@ export const showUsersListQuery = gql`
       id
       info {
         nickname
+        image
       }
     }
   }

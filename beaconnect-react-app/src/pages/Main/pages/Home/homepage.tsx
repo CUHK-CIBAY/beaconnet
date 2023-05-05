@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useLazyQuery } from '@apollo/client';
 // import { BiSearchAlt } from 'react-icons/bi';
+import { RxCrossCircled } from 'react-icons/rx';
 import { WriteBitBox, BitBox } from '../../components/Bits/bits';
 import { showBitsQuery, showBitsQueryVariables, showBitsQueryResult } from '../../components/Query/bit.query';
 import seasonalEvent from './components/seasonalpic.jpg';
@@ -49,7 +50,12 @@ const Home = ({ isLoggedIn }: { isLoggedIn: boolean }) => {
               />
             ))
           ) : (
-            <div className="main-no-bit-warning">Try to follow someone to see their bits!</div>
+            <div className="main-no-bit-warning">
+              <RxCrossCircled />
+              <p className="main-no-bit-warning-text">
+                {isLoggedIn ? 'Try to follow someone to see their bits!' : 'No Bits Yet!'}
+              </p>
+            </div>
           )}
         </div>
 

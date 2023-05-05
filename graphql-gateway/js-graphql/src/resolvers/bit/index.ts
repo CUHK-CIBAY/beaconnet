@@ -1,11 +1,6 @@
 import { likeBit, isLikedBit } from './bit-like';
 import { postBitResolver, reBitResolver } from './bit-create';
-import {
-  authorResolver,
-  reBitResolver as reBit,
-  likeGiverResolver,
-  commentResolver,
-} from './bit-impl';
+import { authorResolver, reBitResolver as reBit, likeGiverResolver, commentResolver } from './bit-impl';
 
 export const Query = {
   findBit: require('./bit-find'),

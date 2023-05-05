@@ -349,18 +349,10 @@
 }
 
 .profile-background-picture {
-  width: 100%;
+  width: 90%;
   border-radius: 20px;
-  margin: 20px 0 0 0;
-  box-shadow: 0 10px 50px 0 #e4e5ed;
-}
-
-.trend-searching-container {
-  position: relative;
-  background: #fff;
-  padding: 20px;
-  border-radius: 20px;
-  height: calc(100vh - 70px);
+  margin: 20px 5% 0 5%;
+  box-shadow: 1px 2px 3px 0 rgba(0, 0, 0, 0.2);
 }
 
 .trend-search-bar {
@@ -413,12 +405,14 @@
 /* search page css*/
 
 .trend-searching-container {
-  margin-top: 15px;
+  position: relative;
   background: #fff;
   padding: 20px;
   border-radius: 20px;
-  height: calc(100vh - 70px);
-  /* unti the end of page */
+  width: 78%;
+  margin: 20px auto;
+  box-shadow: 1px 2px 3px 0 rgba(0, 0, 0, 0.2);
+  overflow: scroll;
 }
 
 .recent-and-trend-suggestion-section {
@@ -618,19 +612,6 @@
   justify-content: center;
 }
 
-@media only screen and (max-width: 600px) {
-  .page-content {
-    display: flex;
-  }
-  .page-right-content {
-    display: none;
-  }
-
-  .page-center-content {
-    width: 100%;
-  }
-}
-
 .bit-box-content-footer-comment-list-item {
   display: flex;
   flex-direction: column;
@@ -674,5 +655,9 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  margin: 60px 0;
+  margin: 20px 20px;
+  padding: 30px 0 20px 0;
+  background-color: #fff;
+  border-radius: 20px;
+  box-shadow: 0 0 5px #ddd;
 }
