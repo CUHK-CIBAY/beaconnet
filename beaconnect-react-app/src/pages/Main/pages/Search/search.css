@@ -1,10 +1,3 @@
-/* search page css*/
-
-.recent-and-trend-suggestion-section {
-  max-height: calc(100vh - 150px);
-  overflow: scroll;
-}
-
 .trend-search-header {
   position: relative;
   height: 40px;
@@ -121,7 +114,7 @@
 .advance-search-location-same,
 .advance-search-location-anywhere,
 .advance-search-content-photo,
-.aadvance-search-content-video {
+.advance-search-content-video {
   display: block;
   margin-bottom: 10px;
 }
@@ -163,27 +156,27 @@
 }
 
 /* searching-result-latest-css */
-.search-result-lastest .bit-box-container {
+.search-result-latest .bit-box-container {
   background: #fffefe;
   box-shadow: 0 2px 2px 0 #ddd;
 }
 
-.search-result-lastest-header {
+.search-result-latest-header {
   display: flex;
   justify-content: space-around;
   width: 100%;
   border-bottom: 1px solid #ddd;
 }
 
-.search-result-islastest-header p {
+.search-result-isLatest-header p {
   text-decoration: underline;
 }
 
-.search-result-isnotpeople-header p {
+.search-result-isNotPeople-header p {
   color: #757575;
 }
 
-.search-result-lastest {
+.search-result-latest {
   max-height: calc(100vh - 200px);
   overflow: scroll;
 }
@@ -195,7 +188,7 @@
   border-bottom: 1px solid #ddd;
 }
 
-.search-result-isnotlastest-header p {
+.search-result-isNotLatest-header p {
   color: #757575;
 }
 
@@ -236,7 +229,7 @@
   margin: 0 10px 0 0;
 }
 
-.search-result-user-nameid {
+.search-result-user-nameID {
   display: flex;
   justify-content: center;
   align-items: center;

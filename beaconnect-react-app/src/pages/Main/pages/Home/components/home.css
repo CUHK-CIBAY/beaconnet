@@ -423,30 +423,9 @@
   overflow: scroll;
 }
 
-.recent-and-trend-suggestion-section {
-  max-height: calc(100vh - 150px);
-  overflow: scroll;
-}
-
 .recent-suggestion-section {
   margin-top: 20px;
   border-top: 1px solid #000;
-}
-
-.trend-search-header {
-  position: relative;
-  height: 40px;
-}
-
-.trend-search-header-text {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 50px;
-  right: 0px;
-  display: flex;
-  justify-content: left;
-  align-items: center;
 }
 
 .trend-suggestion-list {
@@ -455,37 +434,6 @@
   align-items: center;
   justify-items: center;
   margin-bottom: 10px;
-}
-
-.trend-search-header-icon {
-  scale: 1.5;
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 20px;
-  z-index: 1;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.trend-suggestion-list-number {
-  width: 100%;
-  height: 100%;
-}
-
-.trend-suggestion-list-item {
-  display: flex;
-  justify-content: left;
-  align-items: center;
-  justify-self: left;
-}
-
-.trend-suggestion-item-no-of-bits {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: #757575;
-  font-size: 13px;
 }
 
 .trend-suggestion-list-icon {

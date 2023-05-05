@@ -47,7 +47,7 @@ export const SearchResultPeopleList = (user: any) => {
       <div className="search-result-user-info">
         <div className="search-result-user-names">
           <p className="search-result-user-nickname">{user?.user?.info?.nickname || user?.user?.username}</p>
-          <p className="search-result-user-nameid">{`@${user?.user?.username}`}</p>
+          <p className="search-result-user-nameID">{`@${user?.user?.username}`}</p>
         </div>
         <div className="search-result-user-bio">{user?.user?.info?.bio || 'Hello World'}</div>
       </div>
@@ -87,7 +87,7 @@ const SearchResultPeople = (result: any) => {
   return (
     <div className="search-result-people-section">
       <div className="search-result-people-header">
-        <div className="search-result-isnotlastest-header">
+        <div className="search-result-isNotLatest-header">
           <p>Latest</p>
         </div>
         <div className="search-result-ispeople-header">
