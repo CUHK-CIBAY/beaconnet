@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react';
-import { Navigate, useLocation } from 'react-router-dom';
 import { useUserContext } from '../../userContext';
 
 const Logout = ({
@@ -12,7 +11,6 @@ const Logout = ({
   setUserProfile: React.Dispatch<React.SetStateAction<boolean>>;
 }) => {
   const { signOut } = useUserContext();
-  const location = useLocation();
 
   useEffect(() => {
     localStorage.clear();
@@ -22,7 +20,8 @@ const Logout = ({
     setIsLoggedIn(false);
   }, []);
 
-  return <Navigate to="/" state={{ from: location }} replace />;
+  // eslint-disable-next-line react/jsx-no-useless-fragment
+  return <></>;
 };
 
 export default Logout;

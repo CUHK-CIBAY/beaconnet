@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 import { useMutation } from '@apollo/client';
-import { Navigate, useNavigate } from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
 
 import Login from './login';
 import { useUserContext } from '../../userContext';
@@ -23,7 +23,6 @@ const LoginCompound = (props: {
 }) => {
   const { loginType, isLoggedIn, setIsLoggedIn } = props;
   if (isLoggedIn) return <Navigate to="/" replace />;
-  const navigate = useNavigate();
   const { signIn } = useUserContext();
   const [currentLoginType, setCurrentLoginType] = useState(loginType);
   const [errorMessage, setErrorMessage] = useState('');
@@ -36,12 +35,16 @@ const LoginCompound = (props: {
 
   const [login, { loading: loginLoading }] = useMutation<LoginMutationResult, LoginMutationVariables>(loginQuery, {
     onCompleted: (data) => {
+      const loginWrapper = document.querySelector('.Login-Register-Wrapper');
       const {
         login: { token },
       } = data;
       signIn(token);
-      setIsLoggedIn(true);
-      navigate('/', { replace: true });
+      loginWrapper?.classList.add('redirect');
+      setTimeout(() => {
+        setIsLoggedIn(true);
+        loginWrapper?.classList.remove('redirect');
+      }, 1000);
     },
     onError: (error) => {
       setErrorMessage(error.message);
