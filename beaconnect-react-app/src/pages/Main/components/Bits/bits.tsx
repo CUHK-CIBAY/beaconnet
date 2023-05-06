@@ -11,61 +11,14 @@ import AUTH from '../../../../config/constants';
 import userIcon from '../../pages/Home/components/icon.png';
 
 const BitBox = (data: any) => {
-  const addActiveStatus = (e: React.FocusEvent) => {
-    const { currentTarget } = e;
-    const parent = currentTarget.parentElement?.parentElement?.parentElement as HTMLDivElement;
-    parent.classList.add('active');
-  };
-
-  const removeActiveStatus = (e: React.FocusEvent) => {
-    const { currentTarget, target } = e;
-    const textBox = target as HTMLTextAreaElement;
-    const currentInput = textBox.value;
-    if (currentInput.length === 0) {
-      const parent = currentTarget.parentElement?.parentElement?.parentElement as HTMLDivElement;
-      parent.classList.remove('active');
-    }
-  };
-
-  const handleRepost = (id: string, content: string) => {
-    // eslint-disable-next-line react/destructuring-assignment
-    data.setReBit([id, content]);
-    document.querySelector('.write-bit-box-content-text')?.scrollIntoView({ behavior: 'smooth' });
-  };
-
-  const [commentBit] = useMutation<any, any>(
-    gql`
-      mutation commentBit($bitID: ID!, $comment: String!) {
-        commentBit(id: $bitID, content: $comment) {
-          id
-        }
-      }
-    `,
-    {
-      onCompleted: () => {
-        data.showBits({ variables: { following: true } });
-      },
-    },
-  );
-
-  const handleCommentSubmit = (e: React.KeyboardEvent | React.MouseEvent) => {
-    const input = e.currentTarget.parentElement?.querySelector('input') as HTMLInputElement;
-    const currentInput = input.value;
-
-    if (currentInput.length > 0) {
-      commentBit({
-        variables: {
-          bitID: data.id,
-          comment: currentInput,
-        },
-      });
-      input.value = '';
-    }
-  };
+  const [showComment, setShowComment] = React.useState(false);
+  function redirectToProfile(username: any): void {
+    if (username) window.location.href = `/profile?username=${username}`;
+  }
 
   return (
     <div className="bit-box bit-box-container">
-      {bitBoxHeader(data)}
+      {bitBoxHeader(data, redirectToProfile)}
       <div className="bit-box-content">
         <div className="bit-box-content-text">{data?.content}</div>
       </div>
@@ -77,17 +30,17 @@ const BitBox = (data: any) => {
           alt="bit"
         />
       )}
-      {data?.showFooterButton && bitBoxFooterButtons(data, handleRepost)}
+      {data?.showFooterButton && bitBoxFooterButtons(data, showComment, setShowComment)}
 
       <div className="bit-box-content-footer-comment-list">
         {data?.comment?.map(
           (comment: any) =>
             // eslint-disable-next-line implicit-arrow-linebreak
-            comment && bitBoxShowComment(comment),
+            comment && showComment && bitBoxShowComment(comment, redirectToProfile),
         )}
       </div>
 
-      {data?.isLoggedIn && bitBoxComment(addActiveStatus, removeActiveStatus, handleCommentSubmit)}
+      {data?.isLoggedIn && bitBoxComment(data)}
     </div>
   );
 };
@@ -124,10 +77,7 @@ function bitBoxReBit(data: any): React.ReactNode {
   );
 }
 
-function bitBoxHeader(data: any) {
-  function redirectToProfile(username: any): void {
-    if (username) window.location.href = `/profile?username=${username}`;
-  }
+function bitBoxHeader(data: any, redirectToProfile: any): React.ReactNode {
   return (
     <div
       className="bit-box-content-header"
@@ -154,15 +104,16 @@ function bitBoxHeader(data: any) {
   );
 }
 
-function bitBoxFooterButtons(data: any, handleRepost: (id: string, content: string) => void) {
+function bitBoxFooterButtons(data: any, showComment: any, setShowComment: any): React.ReactNode {
   const [giveLikeToBit] = useMutation<likeBitMutationResult, likeBitMutationVariables>(likeBitQuery, {
     onCompleted: () => {
       data.showBits({ variables: { following: true } });
     },
   });
 
-  const handleGiveLike = (id: string) => {
+  const handleGiveLike = () => {
     if (data?.isLoggedIn) {
+      const id = data?.id;
       giveLikeToBit({
         variables: {
           id,
@@ -173,29 +124,35 @@ function bitBoxFooterButtons(data: any, handleRepost: (id: string, content: stri
     }
   };
 
+  const handleRepost = (id: string, content: string) => {
+    // eslint-disable-next-line react/destructuring-assignment
+    data.setReBit([id, content]);
+    document.querySelector('.write-bit-box-content-text')?.scrollIntoView({ behavior: 'smooth' });
+  };
+
   return (
     <div className="bit-box-content-footer">
       <div
         className={`bit-box-content-footer-likes bit-box-content-footer-icons ${
-          data?.likeGivers.find(
-            (likeGiver: any) => likeGiver.id === JSON.parse(localStorage.getItem(AUTH.userInfo)!).id,
-          )
+          data.likeGivers.find((likeGiver: any) => likeGiver.id === JSON.parse(localStorage.getItem(AUTH.userInfo)!).id)
             ? 'active'
             : ''
         }`}
-        onClick={() => {
-          handleGiveLike(data?.id);
-        }}
-        onKeyDown={() => {
-          handleGiveLike(data?.id);
-        }}
+        onClick={handleGiveLike}
+        onKeyDown={handleGiveLike}
         role="button"
         tabIndex={0}
       >
         <AiFillHeart />
         <p>{data?.totalLike}</p>
       </div>
-      <div className="bit-box-content-footer-comments bit-box-content-footer-icons">
+      <div
+        className="bit-box-content-footer-comments bit-box-content-footer-icons"
+        onClick={() => setShowComment(!showComment)}
+        onKeyDown={() => setShowComment(!showComment)}
+        role="button"
+        tabIndex={0}
+      >
         <BiComment />
         <p>{`${data?.comment?.length ? data?.comment?.length : 0} comments`}</p>
       </div>
@@ -218,10 +175,16 @@ function bitBoxFooterButtons(data: any, handleRepost: (id: string, content: stri
   );
 }
 
-function bitBoxShowComment(comment: any) {
+function bitBoxShowComment(comment: any, redirectToProfile: any) {
   return (
     <div className="bit-box-content-footer-comment-list-item" key={comment.id}>
-      <div className="bit-box-content-footer-comment-list-item-header">
+      <div
+        className="bit-box-content-footer-comment-list-item-header"
+        onClick={() => redirectToProfile(comment.owner?.username)}
+        onKeyDown={() => redirectToProfile(comment.owner?.username)}
+        role="button"
+        tabIndex={0}
+      >
         <p>{comment.owner?.username ? comment.owner?.info?.nickname : 'DeletedUser'}</p>
         {comment.owner?.username && (
           <p>
@@ -238,11 +201,53 @@ function bitBoxShowComment(comment: any) {
   );
 }
 
-function bitBoxComment(
-  addActiveStatus: (e: React.FocusEvent) => void,
-  removeActiveStatus: (e: React.FocusEvent) => void,
-  handleCommentSubmit: (e: React.KeyboardEvent | React.MouseEvent) => void,
-): React.ReactNode {
+const bitBoxComment = (data: any) => {
+  const addActiveStatus = (e: React.FocusEvent) => {
+    const { currentTarget } = e;
+    const parent = currentTarget.parentElement?.parentElement?.parentElement as HTMLDivElement;
+    parent.classList.add('active');
+  };
+
+  const removeActiveStatus = (e: React.FocusEvent) => {
+    const { currentTarget, target } = e;
+    const textBox = target as HTMLTextAreaElement;
+    const currentInput = textBox.value;
+    if (currentInput.length === 0) {
+      const parent = currentTarget.parentElement?.parentElement?.parentElement as HTMLDivElement;
+      parent.classList.remove('active');
+    }
+  };
+
+  const [commentBit] = useMutation<any, any>(
+    gql`
+      mutation commentBit($bitID: ID!, $comment: String!) {
+        commentBit(id: $bitID, content: $comment) {
+          id
+        }
+      }
+    `,
+    {
+      onCompleted: () => {
+        data.showBits({ variables: { following: true } });
+      },
+    },
+  );
+
+  const handleCommentSubmit = (e: React.KeyboardEvent | React.MouseEvent) => {
+    const input = e.currentTarget.parentElement?.querySelector('input') as HTMLInputElement;
+    const currentInput = input.value;
+
+    if (currentInput.length > 0) {
+      commentBit({
+        variables: {
+          bitID: data.id,
+          comment: currentInput,
+        },
+      });
+      input.value = '';
+    }
+  };
+
   return (
     <div className="bit-box-content-footer-comment">
       <div className="bit-box-content-footer-comment-input">
@@ -269,6 +274,6 @@ function bitBoxComment(
       </div>
     </div>
   );
-}
+};
 
 export default BitBox;
