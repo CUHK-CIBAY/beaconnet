@@ -8,11 +8,20 @@ const httpLink = createHttpLink({
 });
 
 const authLink = setContext((_, { headers }) => {
-  const token = localStorage.getItem(AUTH.token);
+  const tokenString = localStorage.getItem(AUTH.token);
+  const token = tokenString ? JSON.parse(tokenString) : null;
+  if (token) {
+    const now = new Date();
+    if (now.getTime() > token.expiry) {
+      localStorage.removeItem(AUTH.token);
+      window.location.reload();
+    }
+  }
+
   return {
     headers: {
       ...headers,
-      'x-token': token ? `${token}` : '',
+      'x-token': token ? `${token.value}` : '',
     },
   };
 });
