@@ -95,9 +95,9 @@ const SearchResultPeople = (props: any) => {
       console.log(getuser.me.following);
       setUsers(
         getuser?.users
-          // ?.map((value: any) => ({ value, sort: Math.random() }))
-          // .sort((a: { sort: number }, b: { sort: number }) => a.sort - b.sort)
-          // .map((a: { value: any }) => a.value)
+          ?.map((value: any) => ({ value, sort: Math.random() }))
+          .sort((a: { sort: number }, b: { sort: number }) => a.sort - b.sort)
+          .map((a: { value: any }) => a.value)
           .slice(0, 5),
       );
     },
