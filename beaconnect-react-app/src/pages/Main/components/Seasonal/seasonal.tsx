@@ -9,15 +9,15 @@ const seasonalContent = (
       <p>
         You can sending Bits to your friend with picture, video and voice. There are some function at the left hand
         side, such as
-        <ul>
-          <li>Home</li>
-          <li>Profile</li>
-          <li>Search</li>
-          <li>Help</li>
-          <li>Setting</li>
-        </ul>
-        If you help any problem, you can find the help center at the left hand side.
       </p>
+      <ul>
+        <li>Home</li>
+        <li>Profile</li>
+        <li>Search</li>
+        <li>Help</li>
+        <li>Setting</li>
+      </ul>
+      <p>If you help any problem, you can find the help center at the left hand side.</p>
     </div>
   </div>
 );
