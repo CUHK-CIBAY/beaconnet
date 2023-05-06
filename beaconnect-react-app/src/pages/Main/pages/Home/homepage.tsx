@@ -58,6 +58,9 @@ const Home = ({ isLoggedIn }: { isLoggedIn: boolean }) => {
     onCompleted: (data: any) => {
       setResult(data);
     },
+    onError: () => {
+      window.alert('Failed to communicate with server. Please try again later.');
+    },
   });
 
   /* eslint-disable */
