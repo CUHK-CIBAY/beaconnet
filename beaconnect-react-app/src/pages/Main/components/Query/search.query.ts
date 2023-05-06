@@ -41,5 +41,10 @@ export const showUsersListQuery = gql`
         image
       }
     }
+    me {
+      following {
+        id
+      }
+    }
   }
 `;
