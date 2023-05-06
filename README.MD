@@ -1,6 +1,6 @@
 # Beaconnect
 
-This a yet another twitter clone written in Typescript/React/GraphQL/Neo4j. Peek the production environent at [here](www.beaconnet.online)
+This a yet another twitter clone written in Typescript/React/GraphQL/Neo4j. Peek the production environent at [here](http://www.beaconnet.online)
 
 ## Environment
 
