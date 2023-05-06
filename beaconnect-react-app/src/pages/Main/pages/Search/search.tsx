@@ -55,7 +55,9 @@ const Search = () => {
         </div>
       </div>
 
-      <div>{seasonalContent}</div>
+      <div className="page-right-content">
+        <div>{seasonalContent}</div>
+      </div>
     </div>
   );
 };
