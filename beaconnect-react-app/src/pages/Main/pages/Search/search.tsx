@@ -32,6 +32,14 @@ export const SearchUserBar = ({ setFetchResult }: { setFetchResult: any }) => {
   );
 };
 
+const backButtonHandler = () => {
+  if (window.history.length === 1) {
+    window.location.href = '/';
+  } else {
+    window.history.back();
+  }
+};
+
 const Search = (isLoggedIn: any) => {
   const [fetchResult, setFetchResult] = React.useState<any>([]);
   return (
@@ -40,7 +48,7 @@ const Search = (isLoggedIn: any) => {
         <div className="trend-searching-container">
           <div className="trend-search-header">
             <div className="trend-search-header-icon">
-              <AiOutlineLeft />
+              <AiOutlineLeft onClick={backButtonHandler} onKeyDown={backButtonHandler} role="button" tabIndex={0} />
             </div>
             <div className="trend-search-header-text">
               <h2>Search</h2>
