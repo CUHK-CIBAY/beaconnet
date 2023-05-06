@@ -27,21 +27,6 @@ const BitBox = (data: any) => {
     }
   };
 
-  const [giveLikeToBit] = useMutation<likeBitMutationResult, likeBitMutationVariables>(likeBitQuery, {
-    onCompleted: () => {
-      data.showBits;
-    },
-  });
-
-  const handleGiveLike = (id: string, currentTarget: HTMLDivElement) => {
-    currentTarget.classList.toggle('active');
-    giveLikeToBit({
-      variables: {
-        id,
-      },
-    });
-  };
-
   const handleRepost = (id: string, content: string) => {
     // eslint-disable-next-line react/destructuring-assignment
     data.setReBit([id, content]);
@@ -58,8 +43,7 @@ const BitBox = (data: any) => {
     `,
     {
       onCompleted: () => {
-        console.log('commented');
-        data.showBits;
+        data.showBits({ variables: { following: true } });
       },
     },
   );
@@ -93,7 +77,7 @@ const BitBox = (data: any) => {
           alt="bit"
         />
       )}
-      {data?.showFooterButton && bitBoxFooterButtons(handleGiveLike, data, handleRepost)}
+      {data?.showFooterButton && bitBoxFooterButtons(data, handleRepost)}
 
       <div className="bit-box-content-footer-comment-list">
         {data?.comment?.map(
@@ -170,24 +154,40 @@ function bitBoxHeader(data: any) {
   );
 }
 
-function bitBoxFooterButtons(
-  handleGiveLike: (id: string, currentTarget: HTMLDivElement) => void,
-  data: any,
-  handleRepost: (id: string, content: string) => void,
-) {
+function bitBoxFooterButtons(data: any, handleRepost: (id: string, content: string) => void) {
+  const [giveLikeToBit] = useMutation<likeBitMutationResult, likeBitMutationVariables>(likeBitQuery, {
+    onCompleted: () => {
+      data.showBits({ variables: { following: true } });
+    },
+  });
+
+  const handleGiveLike = (id: string) => {
+    if (data?.isLoggedIn) {
+      giveLikeToBit({
+        variables: {
+          id,
+        },
+      });
+    } else {
+      window.location.href = '/login';
+    }
+  };
+
   return (
     <div className="bit-box-content-footer">
       <div
         className={`bit-box-content-footer-likes bit-box-content-footer-icons ${
-          data.likeGivers.find((likeGiver: any) => likeGiver.id === JSON.parse(localStorage.getItem(AUTH.userInfo)!).id)
+          data?.likeGivers.find(
+            (likeGiver: any) => likeGiver.id === JSON.parse(localStorage.getItem(AUTH.userInfo)!).id,
+          )
             ? 'active'
             : ''
         }`}
-        onClick={(e) => {
-          handleGiveLike(data?.id, e.currentTarget);
+        onClick={() => {
+          handleGiveLike(data?.id);
         }}
-        onKeyDown={(e) => {
-          handleGiveLike(data?.id, e.currentTarget);
+        onKeyDown={() => {
+          handleGiveLike(data?.id);
         }}
         role="button"
         tabIndex={0}
