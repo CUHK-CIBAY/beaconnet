@@ -1,13 +1,12 @@
-.page-content-help {
-  background: #f3f4f5;
-  width: calc(100vw - 105px);
-  height: 100vh;
-  padding: 15px 15px 15px 90px;
-  display: block;
+.page-content.page-content-help {
+  position: relative;
+  width: calc(100vw - 75px);
+  grid-template-columns: 1fr;
 }
 
 .help-main-content-container {
   height: calc(100% - 30px);
+  width: calc(100% - 60px);
   padding: 15px 30px;
   background: #ffffff;
   border-radius: 15px;

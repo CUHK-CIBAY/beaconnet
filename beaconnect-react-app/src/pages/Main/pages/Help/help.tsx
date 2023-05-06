@@ -10,7 +10,7 @@ const Help = () => {
   };
 
   return (
-    <div className="page-content-help">
+    <div className="page-content page-content-help">
       <div className="help-main-content-container">
         <div className="help-main-header">Help Center</div>
         <div className="help-main-description">
