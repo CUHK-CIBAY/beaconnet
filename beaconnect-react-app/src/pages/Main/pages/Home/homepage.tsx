@@ -37,6 +37,7 @@ const ListBits = (
           showBits={showBits}
           setBitAttachment={setBitAttachment}
           isLoggedIn={isLoggedIn}
+          showFooterButton
           key={item.id}
           // eslint-disable-next-line react/jsx-props-no-spreading
           {...item}

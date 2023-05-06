@@ -197,7 +197,7 @@ a {
   user-select: none;
 }
 
-@media (max-width: 900px) {
+@media (max-width: 955px) {
   .Login-Register-Container {
     width: 80%;
     height: 80%;

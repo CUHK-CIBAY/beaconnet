@@ -95,7 +95,7 @@ const BitBox = (data: any) => {
           alt="bit"
         />
       )}
-      {bitBoxFooterButtons(handleGiveLike, data, handleRepost)}
+      {data?.showFooterButton && bitBoxFooterButtons(handleGiveLike, data, handleRepost)}
 
       <div className="bit-box-content-footer-comment-list">
         {data?.comment?.map(
