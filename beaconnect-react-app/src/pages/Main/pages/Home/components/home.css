@@ -375,8 +375,8 @@
   position: absolute;
   top: 0;
   left: 0;
-  right: 0;
-  bottom: 0;
+  width: calc(100% - 60px);
+  height: 100%;
   padding: 0 15px 0 45px;
   border: 1px solid #000;
   outline: none;
