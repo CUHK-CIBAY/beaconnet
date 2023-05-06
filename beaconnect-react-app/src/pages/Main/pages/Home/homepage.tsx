@@ -65,7 +65,6 @@ const Home = ({ isLoggedIn }: { isLoggedIn: boolean }) => {
 
   const [showBits] = useLazyQuery<showBitsQueryResult, showBitsQueryVariables>(showBitsQuery, {
     onCompleted: (data: any) => {
-      console.log(data);
       setResult(data);
     },
     onError: () => {

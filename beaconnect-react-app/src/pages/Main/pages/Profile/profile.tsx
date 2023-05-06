@@ -1,7 +1,14 @@
 /* eslint-disable max-len */
-import React, { useState } from 'react';
-import { useQuery } from '@apollo/client';
-import { showProfileQuery, showProfileQueryResult } from './components/profile.query';
+import React, { useEffect, useState } from 'react';
+import { useLazyQuery } from '@apollo/client';
+import { AiOutlineLoading } from 'react-icons/ai';
+import {
+  showProfileQuery,
+  showProfileQueryResult,
+  showUserProfileQuery,
+  showUserProfileQueryResult,
+  showUserProfileQueryVariables,
+} from './components/profile.query';
 import Banner1 from './components/borzoi.jpeg';
 import Banner2 from './components/images.jpeg';
 import BitBox from '../../components/Bits/bits';
@@ -11,11 +18,42 @@ const Profile = () => {
   // eslint-disable-next-line no-shadow
   const [profileDetails, setProfileDetails] = useState<any>(null);
 
-  useQuery<showProfileQueryResult>(showProfileQuery, {
+  const [queryProfile] = useLazyQuery<showProfileQueryResult>(showProfileQuery, {
     onCompleted: (data: any) => {
       setProfileDetails(data.me);
     },
+    fetchPolicy: 'network-only',
   });
+
+  const [queryOtherProfile] = useLazyQuery<showUserProfileQueryResult, showUserProfileQueryVariables>(
+    showUserProfileQuery,
+    {
+      onCompleted: (data: any) => {
+        if (data.findUser) setProfileDetails(data.findUser);
+        else {
+          window.alert('User not found');
+          setTimeout(() => {
+            window.location.href = '/search';
+          }, 1000);
+        }
+      },
+      fetchPolicy: 'network-only',
+    },
+  );
+
+  useEffect(() => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const username = urlParams.get('username');
+    if (username) {
+      queryOtherProfile({
+        variables: {
+          username,
+        },
+      });
+    } else {
+      queryProfile();
+    }
+  }, []);
 
   return (
     <div className="page-content">
@@ -73,7 +111,9 @@ const Profile = () => {
           </div>
         </div>
       ) : (
-        <div className="loading">{/* <div className="loading-text">Loading...</div> */}</div>
+        <div className="profile-page-loading">
+          <AiOutlineLoading className="reactLoadingCircle profile-page-loading-icon" />
+        </div>
       )}
     </div>
   );
