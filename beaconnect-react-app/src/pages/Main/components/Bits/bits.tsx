@@ -141,8 +141,17 @@ function bitBoxReBit(data: any): React.ReactNode {
 }
 
 function bitBoxHeader(data: any) {
+  function redirectToProfile(username: any): void {
+    if (username) window.location.href = `/profile?username=${username}`;
+  }
   return (
-    <div className="bit-box-content-header">
+    <div
+      className="bit-box-content-header"
+      onClick={() => redirectToProfile(data?.author?.username)}
+      onKeyDown={() => redirectToProfile(data?.author?.username)}
+      role="button"
+      tabIndex={0}
+    >
       <img
         className="bit-box-icon"
         src={

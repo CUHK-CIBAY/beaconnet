@@ -229,6 +229,7 @@
   align-items: center;
   padding-bottom: 10px;
   font-weight: bold;
+  cursor: pointer;
 }
 .bit-box-repost-statement {
   display: flex;

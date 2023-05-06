@@ -73,6 +73,17 @@ export const SearchResultPeopleList = (props: any) => {
           ></input>
         </div>
       )}
+
+      <div className="search-result-user-viewUser">
+        <input
+          type="button"
+          value="View"
+          className="search-user-follow-button"
+          onClick={() => {
+            window.location.href = `/profile?username=${props.user?.username}`;
+          }}
+        ></input>
+      </div>
     </div>
   );
 };
