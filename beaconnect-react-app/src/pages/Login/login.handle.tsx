@@ -37,14 +37,18 @@ const LoginCompound = (props: {
     onCompleted: (data) => {
       const loginWrapper = document.querySelector('.Login-Register-Wrapper');
       const {
-        login: { token },
+        login: { token, me },
       } = data;
       signIn(token);
-      loginWrapper?.classList.add('redirect');
-      setTimeout(() => {
+      if (me?.info && me.info.nickname) {
+        loginWrapper?.classList.add('redirect');
+        setTimeout(() => {
+          setIsLoggedIn(true);
+          loginWrapper?.classList.remove('redirect');
+        }, 1000);
+      } else {
         setIsLoggedIn(true);
-        loginWrapper?.classList.remove('redirect');
-      }, 1000);
+      }
     },
     onError: (error) => {
       setErrorMessage(error.message);
