@@ -41,6 +41,13 @@ const LoginCompound = (props: {
       } = data;
       const tokenWithRole = window.btoa(`${token}::${me?.role}`);
       signIn(tokenWithRole);
+      localStorage.setItem(
+        'user_info',
+        JSON.stringify({
+          id: me?.id,
+          image: me?.info?.image,
+        }),
+      );
       if (me?.info && me.info.nickname) {
         loginWrapper?.classList.add('redirect');
         setTimeout(() => {
