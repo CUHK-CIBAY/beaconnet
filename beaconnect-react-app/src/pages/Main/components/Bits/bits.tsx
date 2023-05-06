@@ -28,7 +28,6 @@ const BitBox = (data: any) => {
 
   const [giveLikeToBit] = useMutation<likeBitMutationResult, likeBitMutationVariables>(likeBitQuery, {
     onCompleted: () => {
-      // eslint-disable-next-line no-unused-expressions, react/destructuring-assignment
       data.showBits;
     },
   });
@@ -78,12 +77,6 @@ const BitBox = (data: any) => {
   };
   return (
     <div className="bit-box bit-box-container">
-      {/* {isRepost && (
-        <div className="bit-box-repost-statement">
-          <BiRepost className="bit-box-repost-statement-icon" />
-          <p>reBit by Username</p>
-        </div>
-      )} */}
       <div className="bit-box-content-header">
         <img
           className="bit-box-icon"
