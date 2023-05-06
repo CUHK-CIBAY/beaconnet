@@ -1,5 +1,9 @@
+/* eslint-disable no-nested-ternary */
+/* eslint-disable indent */
+/* eslint-disable react/jsx-indent */
 import React, { useEffect, useState } from 'react';
 import { useLazyQuery } from '@apollo/client';
+import { AiOutlineLoading } from 'react-icons/ai';
 import { RxCrossCircled } from 'react-icons/rx';
 import BitBox from '../../components/Bits/bits';
 import WriteBitBox from '../../components/Bits/writeBits';
@@ -40,9 +44,13 @@ const ListBits = (
       ))
     ) : (
       <div className="main-no-bit-warning">
-        <RxCrossCircled />
+        {result[0] === 'Loading' ? <AiOutlineLoading className="reactLoadingCircle" /> : <RxCrossCircled />}
         <p className="main-no-bit-warning-text">
-          {isLoggedIn ? 'Try to follow someone to see their bits!' : 'No Bits Yet!'}
+          {result[0] === 'Loading'
+            ? 'Loading'
+            : isLoggedIn
+            ? 'Try to follow someone to see their bits!'
+            : 'No Bits Yet!'}
         </p>
       </div>
     )}
@@ -50,7 +58,7 @@ const ListBits = (
 );
 
 const Home = ({ isLoggedIn }: { isLoggedIn: boolean }) => {
-  const [result, setResult] = useState<any>([]);
+  const [result, setResult] = useState<any>(['Loading']);
   const [reBit, setReBit] = useState(null);
   const [bitAttachment, setBitAttachment] = useState<any>(null);
 
@@ -60,6 +68,7 @@ const Home = ({ isLoggedIn }: { isLoggedIn: boolean }) => {
     },
     onError: () => {
       window.alert('Failed to communicate with server. Please try again later.');
+      setResult([]);
     },
     fetchPolicy: 'network-only',
   });
@@ -68,6 +77,7 @@ const Home = ({ isLoggedIn }: { isLoggedIn: boolean }) => {
   useEffect(() => {
     showBits({ variables: { following: isLoggedIn ? true : false } });
   }, []);
+
   const listBits = (
     <div className="page-content">
       <div className="page-center-content">
