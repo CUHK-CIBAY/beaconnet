@@ -25,17 +25,14 @@ export const likedBitHandler = (
   likes: number,
   setLikes: (likes: number) => void,
 ) => {
-  console.log('test');
   setLikes(likes + 1);
 
   likedBit({ variables: { postId } })
     .then((result: any) => {
       const updatedLikes = result.data.likedBit.likes.length;
-      console.log(updatedLikes);
       setLikes(updatedLikes);
     })
     .catch((error: any) => {
-      console.log(error);
       setLikes(likes);
     });
 };

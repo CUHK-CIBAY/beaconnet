@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { gql, useLazyQuery, useMutation } from '@apollo/client';
 import userIcon from '../../Home/components/icon.png';
 import { showUsersListQuery } from '../../../components/Query/search.query';
+// eslint-disable-next-line no-unused-vars
 import AUTH from '../../../../../config/constants';
 /* eslint-disable */
 export const SearchResultPeopleList = (props: any) => {
@@ -13,8 +14,6 @@ export const SearchResultPeopleList = (props: any) => {
   //       (following: any) => following.id === JSON.parse(localStorage.getItem(AUTH.userInfo)!).id,
   //     ),
   // );
-
-  console.log('search result people', props);
 
   type deleteUserMutationVariables = {
     id: string;
@@ -36,7 +35,7 @@ export const SearchResultPeopleList = (props: any) => {
 
   const [followUser] = useMutation<any, any>(followUserQuery, {
     onCompleted: (data) => {
-      console.log(data);
+      // console.log(data);
     },
   });
 

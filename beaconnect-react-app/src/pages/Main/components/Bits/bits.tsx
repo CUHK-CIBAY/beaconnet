@@ -35,8 +35,6 @@ const BitBox = (data: any) => {
 
   const handleGiveLike = (id: string, currentTarget: HTMLDivElement) => {
     currentTarget.classList.toggle('active');
-    // console.log(data?.totalLike + (currentTarget.classList.contains('active') ? 1 : -1));
-    // data?.totalLike =      ;
     giveLikeToBit({
       variables: {
         id,

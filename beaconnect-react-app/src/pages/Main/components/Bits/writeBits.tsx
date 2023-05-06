@@ -104,9 +104,6 @@ const WriteBitBox = ({
         }, 2000);
       }
     },
-    onError: (error) => {
-      console.log(error);
-    },
   });
 
   const uploadAttachment = (file: any | null, content: string) => {
