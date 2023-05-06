@@ -10,8 +10,8 @@
 .create-profile-container {
   position: relative;
   box-sizing: border-box;
-  display: flex;
-  justify-content: center;
+  display: grid;
+  grid-template-columns: repeat(2, 450px);
   align-items: center;
   width: 450px;
   height: 500px;
@@ -94,7 +94,7 @@
 }
 
 .create-profile-form-field textarea {
-  height: 220px;
+  height: 240px;
   padding: 10px 10px;
   resize: none;
 }

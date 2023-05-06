@@ -40,7 +40,13 @@ const OptionalProfile = ({ setUserProfile }: { setUserProfile: (done: boolean) =
       >
         Skip
       </div>
-      <form className="create-profile-form">
+      <form
+        className="create-profile-form"
+        onSubmit={(e) => {
+          e.preventDefault();
+          handleFormSubmit();
+        }}
+      >
         <div className="create-profile-form-group">
           <div className="create-profile-form-field">
             <textarea id="Bio" className="create-profile-form-input" placeholder="Introduce yourself!" required />

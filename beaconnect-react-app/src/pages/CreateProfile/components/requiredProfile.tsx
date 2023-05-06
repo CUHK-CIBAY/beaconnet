@@ -136,14 +136,20 @@ const RequiredProfile = ({
         <br />
         Getting started...
       </h1>
-      <form className="create-profile-form">
+      <form
+        className="create-profile-form"
+        onSubmit={(e) => {
+          e.preventDefault();
+          handleFormSubmit();
+        }}
+      >
         <div className="create-profile-form-group">
           <div className="create-profile-form-field">
             <div className="create-profile-form-upload-image">
               <div
                 className="create-profile-form-upload-image-container"
-                onClick={FileUpload}
-                onKeyDown={FileUpload}
+                onClick={doneRequired ? () => {} : FileUpload}
+                onKeyDown={doneRequired ? () => {} : FileUpload}
                 role="button"
                 tabIndex={0}
               >
