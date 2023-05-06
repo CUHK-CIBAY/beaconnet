@@ -2,8 +2,20 @@ import React, { useEffect, useState } from 'react';
 import { gql, useLazyQuery, useMutation } from '@apollo/client';
 import userIcon from '../../Home/components/icon.png';
 import { showUsersListQuery } from '../../../components/Query/search.query';
+import AUTH from '../../../../../config/constants';
 /* eslint-disable */
-export const SearchResultPeopleList = (user: any) => {
+export const SearchResultPeopleList = (props: any) => {
+  const [followed, setFollowed] = useState<boolean>(false);
+  // console.log(user);
+  // console.log(
+  //   user.user.following &&
+  //     user.user.following.find(
+  //       (following: any) => following.id === JSON.parse(localStorage.getItem(AUTH.userInfo)!).id,
+  //     ),
+  // );
+
+  console.log('search result people', props);
+
   type deleteUserMutationVariables = {
     id: string;
   };
@@ -29,7 +41,6 @@ export const SearchResultPeopleList = (user: any) => {
   });
 
   const followOtherUser = (id: any) => {
-    console.log(id);
     followUser({ variables: { id } });
   };
 
@@ -38,72 +49,67 @@ export const SearchResultPeopleList = (user: any) => {
       <img
         className="search-result-user-icon"
         src={
-          user?.user?.info?.image
-            ? `https://beaconnect-image-imagebucket-ft90dpqhkbr1.s3.ap-southeast-1.amazonaws.com/${user.user.info.image}`
+          props.user?.info?.image
+            ? `https://beaconnect-image-imagebucket-ft90dpqhkbr1.s3.ap-southeast-1.amazonaws.com/${props.user.user.info.image}`
             : userIcon
         }
         alt="profile"
       />
       <div className="search-result-user-info">
         <div className="search-result-user-names">
-          <p className="search-result-user-nickname">{user?.user?.info?.nickname || user?.user?.username}</p>
-          <p className="search-result-user-nameID">{`@${user?.user?.username}`}</p>
+          <p className="search-result-user-nickname">{props.user?.info?.nickname || props.user?.username}</p>
+          <p className="search-result-user-nameID">{`@${props.user?.username}`}</p>
         </div>
-        <div className="search-result-user-bio">{user?.user?.info?.bio || 'Hello World'}</div>
+        <div className="search-result-user-bio">{props.user?.info?.bio || 'Hello World'}</div>
       </div>
-      <div className="search-result-user-follow">
-        <input
-          type="submit"
-          value="Follow"
-          className="search-user-follow-button"
-          onClick={() => {
-            followOtherUser(user?.user?.id);
-          }}
-        />
-      </div>
+      {props.isLoggedIn.isLoggedIn && (
+        <div className="search-result-user-follow">
+          <input
+            type="button"
+            value={followed ? 'Unfollow' : 'Follow'}
+            className="search-user-follow-button"
+            onClick={() => {
+              followOtherUser(props.user?.id);
+            }}
+          ></input>
+        </div>
+      )}
     </div>
   );
 };
 
-const SearchResultPeople = (result: any) => {
+const SearchResultPeople = (props: any) => {
   const [users, setUsers] = useState<any>([]);
-
   const [queryUser] = useLazyQuery<any>(showUsersListQuery, {
     onCompleted: (getuser) => {
-      setUsers(getuser);
+      console.log(getuser.me.following);
+      setUsers(
+        getuser?.users
+          // ?.map((value: any) => ({ value, sort: Math.random() }))
+          // .sort((a: { sort: number }, b: { sort: number }) => a.sort - b.sort)
+          // .map((a: { value: any }) => a.value)
+          .slice(0, 5),
+      );
     },
     fetchPolicy: 'network-only',
   });
+
   useEffect(() => {
-    // eslint-disable-next-line no-unused-expressions
     queryUser();
   }, []);
 
-  const userResult = users?.users?.slice(0, 5);
-
-  useEffect(() => {
-    console.log(result?.result?.findUser);
-  }, [result]);
-
   return (
     <div className="search-result-people-section">
-      <div className="search-result-people-header">
-        <div className="search-result-isNotLatest-header">
-          <p>Latest</p>
-        </div>
-        <div className="search-result-ispeople-header">
-          <p>People</p>
-        </div>
-      </div>
       <div className="search-result-people">
-        {result?.result?.findUser && (
+        {props.result?.findUser && (
           <>
-            <SearchResultPeopleList user={result?.result.findUser} />
+            <SearchResultPeopleList user={props?.result.findUser} isLoggedIn={props.isLoggedIn} />
             <hr />
           </>
         )}
-        <p>Users you may know~</p>
-        {userResult && userResult.map((user: any) => <SearchResultPeopleList user={user} />)}
+        <h3>Users you may know</h3>
+        {users &&
+          users.map((user: any) => <SearchResultPeopleList user={user} isLoggedIn={props.isLoggedIn} key={user.id} />)}
       </div>
     </div>
   );

@@ -1,3 +1,4 @@
+/* eslint-disable react/destructuring-assignment */
 import React from 'react';
 import { useLazyQuery } from '@apollo/client';
 import './search.css';
@@ -31,7 +32,7 @@ export const SearchUserBar = ({ setFetchResult }: { setFetchResult: any }) => {
   );
 };
 
-const Search = () => {
+const Search = (isLoggedIn: any) => {
   const [fetchResult, setFetchResult] = React.useState<any>([]);
   return (
     <div className="page-content">
@@ -51,7 +52,7 @@ const Search = () => {
             </div>
             <SearchUserBar setFetchResult={setFetchResult} />
           </div>
-          <SearchResultPeople result={fetchResult} />
+          <SearchResultPeople isLoggedIn={isLoggedIn} result={fetchResult} />
         </div>
       </div>
 
