@@ -33,10 +33,10 @@ const NavBar = () => (
 );
 
 // eslint-disable-next-line no-unused-vars
-const DeleteUserOnPage = ({ userID, setRefreshQuery }: any) => {
+const DeleteUserOnPage = ({ userID, queryUser }: any) => {
   const [deleteUser] = useMutation<deleteUserMutationResult, deleteUserMutationVariables>(deleteUserQuery, {
     onCompleted: () => {
-      window.location.reload();
+      queryUser();
     },
   });
 
@@ -61,7 +61,7 @@ const DeleteUserOnPage = ({ userID, setRefreshQuery }: any) => {
   );
 };
 
-const ShowUsers = ({ username, userID, nickname, image, setRefreshQuery }: any) => (
+const ShowUsers = ({ username, userID, nickname, image, queryUser }: any) => (
   <div className="show-user-row">
     <div className="panel-show-user-name">
       <img
@@ -86,33 +86,13 @@ const ShowUsers = ({ username, userID, nickname, image, setRefreshQuery }: any) 
       </div>
     )}
     <div className="panel-show-user-delete">
-      <DeleteUserOnPage userID={userID} setRefreshQuery={setRefreshQuery} />
+      <DeleteUserOnPage userID={userID} queryUser={queryUser} />
     </div>
   </div>
 );
 
-const Panel = ({ result, setRefreshQuery }: any) => (
-  <div>
-    <div className="Panel-component">User List</div>
-    <div className="Panel-page">
-      {result?.users?.map((user: any) => (
-        /* eslint-disable-next-line */
-        <ShowUsers
-          username={user?.username}
-          userID={user?.id}
-          nickname={user?.info?.nickname}
-          image={user?.info?.image}
-          key={user.id}
-          setRefreshQuery={setRefreshQuery}
-        />
-      ))}
-    </div>
-  </div>
-);
-
-const Admin = () => {
+const Panel = () => {
   const [result, setResult] = useState<any>([]);
-  const [refreshQuery, setRefreshQuery] = useState<boolean>(false);
 
   const [queryUser] = useLazyQuery<showUsersListQueryResult>(showUsersListQuery, {
     onCompleted: (getUser) => {
@@ -121,25 +101,36 @@ const Admin = () => {
     fetchPolicy: 'network-only',
   });
   useEffect(() => {
-    // eslint-disable-next-line no-unused-expressions
     queryUser();
   }, []);
 
-  useEffect(() => {
-    if (refreshQuery) {
-      queryUser();
-      setRefreshQuery(false);
-    }
-  }, [refreshQuery]);
-
   return (
-    <div className="admin-container">
-      <NavBar />
-      <div className="Panel-container">
-        <Panel result={result} setRefreshQuery={setRefreshQuery} />
+    <div>
+      <div className="Panel-component">User List</div>
+      <div className="Panel-page">
+        {result?.users?.map((user: any) => (
+          /* eslint-disable-next-line */
+          <ShowUsers
+            username={user?.username}
+            userID={user?.id}
+            nickname={user?.info?.nickname}
+            image={user?.info?.image}
+            queryUser={queryUser}
+            key={user.id}
+          />
+        ))}
       </div>
     </div>
   );
 };
+
+const Admin = () => (
+  <div className="admin-container">
+    <NavBar />
+    <div className="Panel-container">
+      <Panel />
+    </div>
+  </div>
+);
 
 export default Admin;
