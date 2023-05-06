@@ -96,7 +96,7 @@ nav:hover .nav-link .nav-link-desc {
   margin: 15px 0 15px 0px;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 955px) {
   nav {
     width: 100%;
     max-width: none;
@@ -130,17 +130,19 @@ nav:hover .nav-link .nav-link-desc {
 
   .nav-links {
     display: inline-flex;
-    width: max-content;
+    width: fit-content;
+    max-width: calc(100vw / 6 * 5);
   }
 
   .nav-controls {
     display: inline-flex;
-    width: max-content;
+    width: fit-content;
+    max-width: calc(100vw / 6);
     position: relative;
   }
 
   .nav-link {
-    width: 100%;
+    width: 100vw;
     display: flex;
     justify-content: center;
   }
