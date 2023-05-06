@@ -10,6 +10,13 @@ import seasonalContent from '../../components/Seasonal/seasonal';
 
 export const SearchUserBar = ({ setFetchResult }: { setFetchResult: any }) => {
   const [searchUser] = useLazyQuery<searchUserResult, searchUserVariables>(searchUserQuery, {
+    onCompleted: (data) => {
+      if (data.findUser) {
+        setFetchResult(data);
+      } else {
+        window.alert('No user found');
+      }
+    },
     fetchPolicy: 'network-only',
   });
 
@@ -20,9 +27,7 @@ export const SearchUserBar = ({ setFetchResult }: { setFetchResult: any }) => {
       const username = searchInput.value;
 
       if (username.length > 0) {
-        searchUser({ variables: { username } }).then((res) => {
-          setFetchResult(res.data);
-        });
+        searchUser({ variables: { username } });
       }
     }
   };
