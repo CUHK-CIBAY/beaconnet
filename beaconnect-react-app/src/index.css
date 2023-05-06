@@ -47,7 +47,6 @@ img {
 
 .reactLoadingCircle {
   animation: reactLoadingCircle 0.5s linear infinite;
-  transform: translateZ(0);
 }
 
 @keyframes reactLoadingCircle {
