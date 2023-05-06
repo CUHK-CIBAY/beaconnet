@@ -118,6 +118,7 @@ const Admin = () => {
     onCompleted: (getUser) => {
       setResult(getUser);
     },
+    fetchPolicy: 'network-only',
   });
   useEffect(() => {
     // eslint-disable-next-line no-unused-expressions

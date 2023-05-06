@@ -72,6 +72,7 @@ const SearchResultPeople = (result: any) => {
     onCompleted: (getuser) => {
       setUsers(getuser);
     },
+    fetchPolicy: 'network-only',
   });
   useEffect(() => {
     // eslint-disable-next-line no-unused-expressions

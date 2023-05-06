@@ -8,7 +8,9 @@ import SearchResultPeople from './components/searchresult_people_left';
 import seasonalContent from '../../components/Seasonal/seasonal';
 
 export const SearchUserBar = ({ setFetchResult }: { setFetchResult: any }) => {
-  const [searchUser] = useLazyQuery<searchUserResult, searchUserVariables>(searchUserQuery);
+  const [searchUser] = useLazyQuery<searchUserResult, searchUserVariables>(searchUserQuery, {
+    fetchPolicy: 'network-only',
+  });
 
   const searchUserHandler = (e: React.KeyboardEvent) => {
     if (e.key === 'Enter') {
