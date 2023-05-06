@@ -52,7 +52,11 @@ const WriteBitBox = ({
       writeBitBox.classList.remove('loading');
       writeBitBox.classList.remove('success');
       // eslint-disable-next-line no-unused-expressions
-      showBits();
+      showBits({
+        variables: {
+          following: true,
+        },
+      });
     }, 2000);
   };
 
@@ -61,7 +65,6 @@ const WriteBitBox = ({
       const {
         postBit: { id },
       } = data;
-      console.log(data, id);
       if (id) {
         setTimeout(() => {
           sendBitSuccess();
