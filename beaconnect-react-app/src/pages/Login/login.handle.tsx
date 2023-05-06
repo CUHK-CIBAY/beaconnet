@@ -39,7 +39,8 @@ const LoginCompound = (props: {
       const {
         login: { token, me },
       } = data;
-      signIn(token);
+      const tokenWithRole = window.btoa(`${token}::${me?.role}`);
+      signIn(tokenWithRole);
       if (me?.info && me.info.nickname) {
         loginWrapper?.classList.add('redirect');
         setTimeout(() => {
