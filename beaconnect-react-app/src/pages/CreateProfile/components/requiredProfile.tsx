@@ -13,10 +13,13 @@ import {
 const RequiredProfile = ({
   doneRequired,
   setDoneRequired,
+  setLoading,
 }: {
   doneRequired: boolean;
   // eslint-disable-next-line no-unused-vars
   setDoneRequired: (done: boolean) => void;
+  // eslint-disable-next-line no-unused-vars
+  setLoading: (loading: boolean) => void;
 }) => {
   const [profileIcon, setProfileIcon] = useState<any>(null);
 
@@ -25,6 +28,7 @@ const RequiredProfile = ({
     {
       onCompleted: (data: UpdateRequiredInfoMutationResult) => {
         if (data.updateInfo.info.nickname) setDoneRequired(true);
+        setLoading(false);
       },
       onError: () => {
         window.alert('Failed to communicate with server. Please try again later.');
@@ -38,6 +42,7 @@ const RequiredProfile = ({
   >(updateRequiredInfoQuery, {
     onCompleted: (data: UpdateRequiredInfoMutationResult) => {
       if (data.updateInfo.info.nickname) setDoneRequired(true);
+      setLoading(false);
     },
     onError: () => {
       window.alert('Failed to communicate with server. Please try again later.');
@@ -107,6 +112,10 @@ const RequiredProfile = ({
           .then((returnData) => {
             const { key } = returnData as any;
             updateInfoWithAttachment({ variables: { nickname, image: key } });
+            localStorage.setItem(
+              'user_info',
+              JSON.stringify({ ...JSON.parse(localStorage.getItem('user_info')!), image: key }),
+            );
           });
       });
     }
@@ -115,6 +124,7 @@ const RequiredProfile = ({
   const handleFormSubmit = () => {
     const nickname = document.getElementById('nickname') as HTMLInputElement;
     if (nickname.value) {
+      setLoading(true);
       if (!profileIcon) {
         updateInfo({ variables: { nickname: nickname.value } });
       } else {

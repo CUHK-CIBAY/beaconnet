@@ -1,3 +1,4 @@
+/* eslint-disable indent */
 import React, { useState } from 'react';
 import { BsImage } from 'react-icons/bs';
 import { FiVideo } from 'react-icons/fi';
@@ -16,6 +17,7 @@ import {
   reBitQuery,
   reBitMutationResult,
 } from '../Query/bit.query';
+import AUTH from '../../../../config/constants';
 import userIcon from '../../pages/Home/components/icon.png';
 
 const toBase64 = (file: any) =>
@@ -194,7 +196,17 @@ const WriteBitBox = ({
       onDragLeave={handleDragLeave}
     >
       <div className="write-bit-box-container">
-        <img className="bit-box-icon" src={userIcon} alt="profile" />
+        <img
+          className="bit-box-icon"
+          src={
+            JSON.parse(localStorage.getItem(AUTH.userInfo)!).image
+              ? `https://beaconnect-image-imagebucket-ft90dpqhkbr1.s3.ap-southeast-1.amazonaws.com/${
+                  JSON.parse(localStorage.getItem(AUTH.userInfo)!).image
+                }`
+              : userIcon
+          }
+          alt="profile"
+        />
         <div className="write-bit-box-content">
           <textarea className="write-bit-box-content-text" placeholder="Write something..." />
           {bitAttachment && (

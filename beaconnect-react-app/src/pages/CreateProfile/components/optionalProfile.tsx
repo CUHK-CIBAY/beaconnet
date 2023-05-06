@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React from 'react';
 import { useMutation } from '@apollo/client';
 import { FaTelegramPlane } from 'react-icons/fa';
@@ -7,13 +8,19 @@ import {
   updateOptionalInfoQuery,
 } from '../../../router/components/profile.query';
 
-// eslint-disable-next-line no-unused-vars
-const OptionalProfile = ({ setUserProfile }: { setUserProfile: (done: boolean) => void }) => {
+const OptionalProfile = ({
+  setUserProfile,
+  setLoading,
+}: {
+  setUserProfile: (done: boolean) => void;
+  setLoading: (loading: boolean) => void;
+}) => {
   const [updateInfo] = useMutation<UpdateOptionalInfoMutationResult, UpdateOptionalInfoMutationVariables>(
     updateOptionalInfoQuery,
     {
       onCompleted: (data: UpdateOptionalInfoMutationResult) => {
         console.log(data);
+        setLoading(false);
         if (data.updateInfo.info.bio || data.updateInfo.info.phone) setUserProfile(true);
       },
       onError: () => {
@@ -25,6 +32,7 @@ const OptionalProfile = ({ setUserProfile }: { setUserProfile: (done: boolean) =
   const handleFormSubmit = () => {
     const bio = document.getElementById('Bio') as HTMLInputElement;
     const phone = document.getElementById('phone') as HTMLInputElement;
+    setLoading(true);
     updateInfo({ variables: { bio: bio.value, phone: phone.value } });
   };
 

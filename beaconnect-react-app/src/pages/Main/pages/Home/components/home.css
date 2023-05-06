@@ -90,6 +90,8 @@
 .bit-box-icon {
   width: 25px;
   aspect-ratio: 1 / 1;
+  border-radius: 50%;
+  box-shadow: 0 0 5px #e4e5ed;
 }
 
 .bit-box-reBit-with-photo {
@@ -97,7 +99,7 @@
   border-radius: 20px;
   overflow: hidden;
   margin: 20px 20px 0 10px;
-  box-shadow: 0 10px 50px 0 #e4e5ed;
+  box-shadow: 0 2px 4px 0 #e4e5ed;
 }
 
 .bit-box-reBit-with-photo img {
