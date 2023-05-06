@@ -4,6 +4,7 @@ nav {
   top: 0;
   bottom: 0;
   width: 75px;
+  max-width: 200px;
   background-color: #e9edc9;
   border-radius: 0 25px 25px 0;
   transition: width 0.5s ease-in-out;
@@ -80,7 +81,6 @@ nav {
   font-weight: bolder;
   overflow: hidden;
   margin: 15px 0;
-  /* width: 0; */
   font-size: 1rem;
   color: #000;
   text-decoration: none;
@@ -94,9 +94,58 @@ nav:hover {
 nav:hover .nav-control .nav-link-desc,
 nav:hover .nav-link .nav-link-desc {
   margin: 15px 0 15px 0px;
-  /* width: 75px; */
 }
 
-/* nav:hover .logo-name {
-  width: 112.5px;
-} */
+@media (max-width: 768px) {
+  nav {
+    width: 100%;
+    max-width: none;
+    height: 60px;
+    border-radius: 25px 25px 0 0;
+    bottom: 0;
+    top: auto;
+    transition: height 0.5s ease-in-out;
+    border-radius: 0;
+    display: flex;
+    align-items: center;
+  }
+
+  nav:hover {
+    width: auto;
+  }
+
+  .logo {
+    position: fixed;
+    top: 0;
+    margin: 0;
+    height: 50px;
+    background: #e9edc9;
+  }
+
+  .nav-links {
+    display: inline-flex;
+    width: calc(100vw / 6 * 5);
+  }
+
+  .nav-controls {
+    display: inline-flex;
+    width: calc(100vw / 6);
+    position: relative;
+  }
+
+  .nav-link {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+
+  .nav-control:hover,
+  .nav-link:hover {
+    transform: none;
+  }
+
+  .nav-control .nav-link-desc,
+  .nav-link .nav-link-desc {
+    display: none;
+  }
+}
