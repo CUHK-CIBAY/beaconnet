@@ -69,7 +69,6 @@ const Home = ({ isLoggedIn }: { isLoggedIn: boolean }) => {
       setResult(data);
     },
     onError: () => {
-      window.alert('Failed to communicate with server. Please try again later.');
       setResult([]);
     },
     fetchPolicy: 'network-only',
