@@ -15,13 +15,19 @@ const OptionalProfile = ({
   setUserProfile: (done: boolean) => void;
   setLoading: (loading: boolean) => void;
 }) => {
+  const doneSetProfile = () => {
+    document.querySelector('.create-profile-wrapper')?.classList.toggle('redirect');
+    setTimeout(() => {
+      setUserProfile(true);
+    }, 1000);
+  };
+
   const [updateInfo] = useMutation<UpdateOptionalInfoMutationResult, UpdateOptionalInfoMutationVariables>(
     updateOptionalInfoQuery,
     {
       onCompleted: (data: UpdateOptionalInfoMutationResult) => {
-        console.log(data);
         setLoading(false);
-        if (data.updateInfo.info.bio || data.updateInfo.info.phone) setUserProfile(true);
+        if (data.updateInfo.info.bio || data.updateInfo.info.phone) doneSetProfile();
       },
       onError: () => {
         window.alert('Failed to communicate with server. Please try again later.');
@@ -41,8 +47,8 @@ const OptionalProfile = ({
       <h1>Let us know more...</h1>
       <div
         className="create-optional-profile-skip"
-        onClick={() => setUserProfile(true)}
-        onKeyDown={() => setUserProfile(true)}
+        onClick={doneSetProfile}
+        onKeyDown={doneSetProfile}
         role="button"
         tabIndex={0}
       >

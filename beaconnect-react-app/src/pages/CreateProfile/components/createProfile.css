@@ -5,6 +5,7 @@
   height: 100vh;
   width: 100vw;
   background: #ced5b2;
+  transition: background 0.8s ease-in-out;
 }
 
 .create-profile-container {
@@ -20,7 +21,15 @@
   box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.15);
   border-radius: 20px;
   padding: 0;
-  transition: width 0.2s ease-in-out;
+  transition: width 0.2s ease-in-out, transform 0.8s ease-in-out;
+}
+
+.create-profile-wrapper.redirect {
+  background: #f3f4f5;
+}
+
+.create-profile-wrapper.redirect .create-profile-container {
+  transform: translateY(-100vh);
 }
 
 .create-profile-container.doneRequired {
