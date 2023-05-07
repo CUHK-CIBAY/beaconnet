@@ -247,8 +247,9 @@
 }
 
 @media only screen and (max-width: 955px) {
-  .page-center-content {
-    margin: 0px;
+  .trend-searching-container {
+    max-height: calc(100vh - 190px);
+    box-shadow: unset;
   }
 
   .search-result-people-container {
@@ -259,6 +260,7 @@
     width: 20px;
     height: 20px;
     margin-bottom: 5px;
+    margin: 0 0 10px 0;
   }
 
   .search-result-user-follow {
@@ -266,12 +268,17 @@
     justify-content: center;
   }
 
+  .search-result-user-names {
+    font-weight: bold;
+  }
+
   .search-user-follow-button {
     width: 100%;
     padding: 3px 20px;
+    margin-top: 7px;
   }
 
   .search-result-user-bio {
-    margin: 5px 10px;
+    margin: 5px 0;
   }
 }
