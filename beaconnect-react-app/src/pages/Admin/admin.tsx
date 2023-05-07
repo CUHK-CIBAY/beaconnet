@@ -13,6 +13,7 @@ import logo from '../Main/components/NavBar/images/logo.png';
 
 import './admin.css';
 
+// Output navigation bar for admin panel
 function NavBar() {
   return (
     <div className="Navbar-container">
@@ -35,12 +36,14 @@ function NavBar() {
 }
 
 function DeleteUserOnPage({ userID, queryUser }: { userID: string; queryUser: () => void }) {
+  // Delete user mutation to graphql
   const [deleteUser] = useMutation<deleteUserMutationResult, deleteUserMutationVariables>(deleteUserQuery, {
     onCompleted: () => {
       queryUser();
     },
   });
 
+  // Delete user button
   const handleDeleteUser = (idNumber: string) => {
     deleteUser({ variables: { id: idNumber } });
   };
@@ -62,6 +65,7 @@ function DeleteUserOnPage({ userID, queryUser }: { userID: string; queryUser: ()
   );
 }
 
+// Output list of users
 function ShowUsers({
   username,
   userID,
@@ -109,19 +113,24 @@ function ShowUsers({
   );
 }
 
+// Output admin panel
 function Panel() {
   const [result, setResult] = useState<showUsersListQueryResult>();
 
+  // Query user list from graphql
   const [queryUser] = useLazyQuery<showUsersListQueryResult>(showUsersListQuery, {
     onCompleted: (getUser) => {
       setResult(getUser);
     },
     fetchPolicy: 'network-only',
   });
+
+  // Query user list when page is loaded
   useEffect(() => {
     queryUser();
   }, []);
 
+  // Output user list
   return (
     <div>
       <div className="Panel-component">User List</div>
@@ -150,6 +159,7 @@ function Panel() {
   );
 }
 
+// Output admin page
 function Admin() {
   return (
     <div className="admin-container">

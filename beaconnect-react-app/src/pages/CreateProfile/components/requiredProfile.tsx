@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useMutation } from '@apollo/client';
 import { AiFillPlusCircle } from 'react-icons/ai';
 import { FaTelegramPlane } from 'react-icons/fa';
+import { toBase64 } from '../../../config/tools';
 import profileCover from '../../Login/images/cover.jpg';
 import {
   updateRequiredResult,
@@ -21,6 +22,7 @@ function RequiredProfile({
 }) {
   const [profileIcon, setProfileIcon] = useState<File | null>(null);
 
+  // update user info mutation by graphql
   const [updateInfo] = useMutation<updateRequiredResult, updateRequiredVar>(updateRequiredQuery, {
     onCompleted: (data: updateRequiredResult) => {
       if (data.updateInfo.info.nickname) {
@@ -30,10 +32,12 @@ function RequiredProfile({
       setLoading(false);
     },
     onError: () => {
+      // output error message
       window.alert('Failed to communicate with server. Please try again later.');
     },
   });
 
+  // update user info mutation by graphql
   const [updateInfoWithAttachment] = useMutation<
     updateRequiredResult,
     UpdateRequiredInfoWithAttachmentMutationVariables
@@ -49,14 +53,6 @@ function RequiredProfile({
       window.alert('Failed to communicate with server. Please try again later.');
     },
   });
-
-  const toBase64 = (file: File) =>
-    new Promise((resolve, reject) => {
-      const reader = new FileReader();
-      reader.readAsDataURL(file);
-      reader.onload = () => resolve(reader.result);
-      reader.onerror = (error) => reject(error);
-    });
 
   const handleRequiredProfileDragOver = (e: React.DragEvent) => {
     e.preventDefault();
