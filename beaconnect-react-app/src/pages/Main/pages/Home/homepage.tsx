@@ -44,18 +44,20 @@ const ListBits = (
       )}
 
       {result.showBits?.length > 0 ? (
-        result?.showBits?.map((item: any) => (
-          <BitBox
-            setReBit={setReBit}
-            showBits={showBits}
-            setBitAttachment={setBitAttachment}
-            isLoggedIn={isLoggedIn}
-            showFooterButton
-            key={item.id}
-            // eslint-disable-next-line react/jsx-props-no-spreading
-            {...item}
-          />
-        ))
+        result?.showBits
+          ?.sort(() => Math.random() - 0.5)
+          .map((item: any) => (
+            <BitBox
+              setReBit={setReBit}
+              showBits={showBits}
+              setBitAttachment={setBitAttachment}
+              isLoggedIn={isLoggedIn}
+              showFooterButton
+              key={item.id}
+              // eslint-disable-next-line react/jsx-props-no-spreading
+              {...item}
+            />
+          ))
       ) : (
         <div className="main-no-bit-warning">
           {result[0] === 'Loading' ? <AiOutlineLoading className="reactLoadingCircle" /> : <RxCrossCircled />}
