@@ -10,7 +10,7 @@ export const getUserProfileQuery = gql`
   }
 `;
 
-export type UpdateRequiredInfoMutationVariables = {
+export type updateRequiredVar = {
   nickname: string;
 };
 
@@ -19,7 +19,7 @@ export type UpdateRequiredInfoWithAttachmentMutationVariables = {
   image: string;
 };
 
-export type UpdateRequiredInfoMutationResult = {
+export type updateRequiredResult = {
   updateInfo: {
     info: {
       nickname: string;
@@ -27,7 +27,7 @@ export type UpdateRequiredInfoMutationResult = {
   };
 };
 
-export const updateRequiredInfoQuery = gql`
+export const updateRequiredQuery = gql`
   mutation MyMutation($nickname: String, $image: String) {
     updateInfo(input: { nickname: $nickname, image: $image }) {
       info {
@@ -37,12 +37,12 @@ export const updateRequiredInfoQuery = gql`
   }
 `;
 
-export type UpdateOptionalInfoMutationVariables = {
+export type optionUpdateVariables = {
   bio: string;
   phone: string;
 };
 
-export type UpdateOptionalInfoMutationResult = {
+export type optionUpdateResult = {
   updateInfo: {
     info: {
       bio: string;
@@ -51,7 +51,7 @@ export type UpdateOptionalInfoMutationResult = {
   };
 };
 
-export const updateOptionalInfoQuery = gql`
+export const optionUpdateQuery = gql`
   mutation MyMutation($bio: String, $phone: String) {
     updateInfo(input: { bio: $bio, phone: $phone }) {
       info {

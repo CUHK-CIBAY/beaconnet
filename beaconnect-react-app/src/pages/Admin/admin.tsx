@@ -13,27 +13,28 @@ import logo from '../Main/components/NavBar/images/logo.png';
 
 import './admin.css';
 
-const NavBar = () => (
-  <div className="Navbar-container">
-    <img className="admin-panel-logo" src={logo} alt="logo" />
-    <div
-      className="logoutIcon"
-      onClick={() => {
-        window.location.href = '/logout';
-      }}
-      onKeyDown={() => {
-        window.location.href = '/logout';
-      }}
-      role="button"
-      tabIndex={0}
-    >
-      <FiLogOut />
+function NavBar() {
+  return (
+    <div className="Navbar-container">
+      <img className="admin-panel-logo" src={logo} alt="logo" />
+      <div
+        className="logoutIcon"
+        onClick={() => {
+          window.location.href = '/logout';
+        }}
+        onKeyDown={() => {
+          window.location.href = '/logout';
+        }}
+        role="button"
+        tabIndex={0}
+      >
+        <FiLogOut />
+      </div>
     </div>
-  </div>
-);
+  );
+}
 
-// eslint-disable-next-line no-unused-vars
-const DeleteUserOnPage = ({ userID, queryUser }: any) => {
+function DeleteUserOnPage({ userID, queryUser }: any) {
   const [deleteUser] = useMutation<deleteUserMutationResult, deleteUserMutationVariables>(deleteUserQuery, {
     onCompleted: () => {
       queryUser();
@@ -59,39 +60,41 @@ const DeleteUserOnPage = ({ userID, queryUser }: any) => {
       Delete
     </div>
   );
-};
+}
 
-const ShowUsers = ({ username, userID, nickname, image, queryUser }: any) => (
-  <div className="show-user-row">
-    <div className="panel-show-user-name">
-      <img
-        className="search-result-user-icon"
-        src={
-          image
-            ? `https://beaconnect-image-imagebucket-ft90dpqhkbr1.s3.ap-southeast-1.amazonaws.com/${image}`
-            : userIcon
-        }
-        alt="profile"
-      />
-      <p className="panel-show-user-name-text">{username}</p>
-    </div>
-    {userID && (
-      <div className="panel-show-user-id">
-        <p className="panel-show-user-id-text">{userID}</p>
+function ShowUsers({ username, userID, nickname, image, queryUser }: any) {
+  return (
+    <div className="show-user-row">
+      <div className="panel-show-user-name">
+        <img
+          className="search-result-user-icon"
+          src={
+            image
+              ? `https://beaconnect-image-imagebucket-ft90dpqhkbr1.s3.ap-southeast-1.amazonaws.com/${image}`
+              : userIcon
+          }
+          alt="profile"
+        />
+        <p className="panel-show-user-name-text">{username}</p>
       </div>
-    )}
-    {nickname && (
-      <div className="panel-show-user-nickname">
-        <p className="panel-show-user-nickname-text">{nickname}</p>
+      {userID && (
+        <div className="panel-show-user-id">
+          <p className="panel-show-user-id-text">{userID}</p>
+        </div>
+      )}
+      {nickname && (
+        <div className="panel-show-user-nickname">
+          <p className="panel-show-user-nickname-text">{nickname}</p>
+        </div>
+      )}
+      <div className="panel-show-user-delete">
+        <DeleteUserOnPage userID={userID} queryUser={queryUser} />
       </div>
-    )}
-    <div className="panel-show-user-delete">
-      <DeleteUserOnPage userID={userID} queryUser={queryUser} />
     </div>
-  </div>
-);
+  );
+}
 
-const Panel = () => {
+function Panel() {
   const [result, setResult] = useState<any>([]);
 
   const [queryUser] = useLazyQuery<showUsersListQueryResult>(showUsersListQuery, {
@@ -109,7 +112,6 @@ const Panel = () => {
       <div className="Panel-component">User List</div>
       <div className="Panel-page">
         {result?.users?.map((user: any) => (
-          /* eslint-disable-next-line */
           <ShowUsers
             username={user?.username}
             userID={user?.id}
@@ -122,15 +124,17 @@ const Panel = () => {
       </div>
     </div>
   );
-};
+}
 
-const Admin = () => (
-  <div className="admin-container">
-    <NavBar />
-    <div className="Panel-container">
-      <Panel />
+function Admin() {
+  return (
+    <div className="admin-container">
+      <NavBar />
+      <div className="Panel-container">
+        <Panel />
+      </div>
     </div>
-  </div>
-);
+  );
+}
 
 export default Admin;

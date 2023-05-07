@@ -1,4 +1,3 @@
-/* eslint-disable indent */
 import React, { useState } from 'react';
 import { BsImage } from 'react-icons/bs';
 import { FiVideo } from 'react-icons/fi';
@@ -21,7 +20,6 @@ import AUTH from '../../../../config/constants';
 import userIcon from '../../pages/Home/components/icon.png';
 
 const toBase64 = (file: any) =>
-  // eslint-disable-next-line implicit-arrow-linebreak
   new Promise((resolve, reject) => {
     const reader = new FileReader();
     reader.readAsDataURL(file);
@@ -29,7 +27,7 @@ const toBase64 = (file: any) =>
     reader.onerror = (error) => reject(error);
   });
 
-const WriteBitBox = ({
+function WriteBitBox({
   reBit,
   setReBit,
   bitAttachment,
@@ -37,12 +35,11 @@ const WriteBitBox = ({
   showBits,
 }: {
   reBit: any;
-  // eslint-disable-next-line no-shadow, no-unused-vars
   setReBit: any;
   bitAttachment: any;
   setBitAttachment: any;
   showBits: any;
-}) => {
+}) {
   const [draggingState, setDraggingState] = useState(false);
 
   const sendBitSuccess = () => {
@@ -53,7 +50,6 @@ const WriteBitBox = ({
     setTimeout(() => {
       writeBitBox.classList.remove('loading');
       writeBitBox.classList.remove('success');
-      // eslint-disable-next-line no-unused-expressions
       showBits({
         variables: {
           following: true,
@@ -282,6 +278,6 @@ const WriteBitBox = ({
       )}
     </div>
   );
-};
+}
 
 export default WriteBitBox;

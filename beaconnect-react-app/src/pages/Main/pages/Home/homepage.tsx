@@ -1,6 +1,3 @@
-/* eslint-disable no-nested-ternary */
-/* eslint-disable indent */
-/* eslint-disable react/jsx-indent */
 import React, { useEffect, useState } from 'react';
 import { useLazyQuery } from '@apollo/client';
 import { AiOutlineLoading } from 'react-icons/ai';
@@ -10,13 +7,13 @@ import WriteBitBox from '../../components/Bits/writeBits';
 import { showBitsQuery, showBitsQueryVariables, showBitsQueryResult } from '../../components/Query/bit.query';
 import seasonalContent from '../../components/Seasonal/seasonal';
 
-const ListBits = (
+function ListBits(
   isLoggedIn: boolean,
   reBit: null,
   setReBit: React.Dispatch<React.SetStateAction<null>>,
   bitAttachment: any,
   setBitAttachment: React.Dispatch<any>,
-) => {
+) {
   const [result, setResult] = useState<any>(['Loading']);
   const [showBits] = useLazyQuery<showBitsQueryResult, showBitsQueryVariables>(showBitsQuery, {
     onCompleted: (data: any) => {
@@ -52,29 +49,25 @@ const ListBits = (
               showBits={showBits}
               setBitAttachment={setBitAttachment}
               isLoggedIn={isLoggedIn}
-              showFooterButton
+              showInHomepage
               key={item.id}
-              // eslint-disable-next-line react/jsx-props-no-spreading
-              {...item}
+              data={item}
             />
           ))
       ) : (
         <div className="main-no-bit-warning">
           {result[0] === 'Loading' ? <AiOutlineLoading className="reactLoadingCircle" /> : <RxCrossCircled />}
           <p className="main-no-bit-warning-text">
-            {result[0] === 'Loading'
-              ? 'Loading'
-              : isLoggedIn
-              ? 'Try to follow someone to see their bits!'
-              : 'No Bits Yet!'}
+            {result[0] === 'Loading' && 'Loading'}
+            {result[0] !== 'Loading' && (isLoggedIn ? 'Try to follow someone to see their bits!' : 'No Bits Yet!')}
           </p>
         </div>
       )}
     </div>
   );
-};
+}
 
-const Home = ({ isLoggedIn }: { isLoggedIn: boolean }) => {
+function Home({ isLoggedIn }: { isLoggedIn: boolean }) {
   const [reBit, setReBit] = useState(null);
   const [bitAttachment, setBitAttachment] = useState<any>(null);
 
@@ -86,8 +79,7 @@ const Home = ({ isLoggedIn }: { isLoggedIn: boolean }) => {
       <div className="page-right-content">{seasonalContent}</div>
     </div>
   );
-  /* eslint-enable */
 
   return <div className="home-page-container">{listBits}</div>;
-};
+}
 export default Home;

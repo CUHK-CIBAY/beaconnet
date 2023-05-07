@@ -5,14 +5,16 @@ import client from './config/apollo';
 import Router from './router';
 import UserContextProvider from './userContext';
 
-const App = () => (
-  <ApolloProvider client={client}>
-    <BrowserRouter>
-      <UserContextProvider>
-        <Router />
-      </UserContextProvider>
-    </BrowserRouter>
-  </ApolloProvider>
-);
+function App() {
+  return (
+    <ApolloProvider client={client}>
+      <BrowserRouter>
+        <UserContextProvider>
+          <Router />
+        </UserContextProvider>
+      </BrowserRouter>
+    </ApolloProvider>
+  );
+}
 
 export default App;

@@ -2,11 +2,10 @@ import React, { useEffect, useState } from 'react';
 import { gql, useLazyQuery, useMutation } from '@apollo/client';
 import userIcon from '../../Home/components/icon.png';
 import { showUsersListQuery } from '../../../components/Query/search.query';
-// eslint-disable-next-line no-unused-vars
-import AUTH from '../../../../../config/constants';
-/* eslint-disable */
-export const SearchResultPeopleList = (props: any) => {
-  const [followed, setFollowed] = useState<boolean>(false);
+// import AUTH from '../../../../../config/constants';
+
+export function SearchResultPeopleList(props: any) {
+  const [followed] = useState<boolean>(false);
   // console.log(user);
   // console.log(
   //   user?.user?.following &&
@@ -15,7 +14,7 @@ export const SearchResultPeopleList = (props: any) => {
   //     ),
   // );
 
-  type deleteUserMutationVariables = {
+  type followUserMutationVariables = {
     id: string;
   };
 
@@ -33,11 +32,7 @@ export const SearchResultPeopleList = (props: any) => {
     }
   `;
 
-  const [followUser] = useMutation<any, any>(followUserQuery, {
-    onCompleted: (data) => {
-      // console.log(data);
-    },
-  });
+  const [followUser] = useMutation<followUserMutationResult, followUserMutationVariables>(followUserQuery);
 
   const followOtherUser = (id: any) => {
     followUser({ variables: { id } });
@@ -70,7 +65,7 @@ export const SearchResultPeopleList = (props: any) => {
             onClick={() => {
               followOtherUser(props?.user?.id);
             }}
-          ></input>
+          />
         </div>
       )}
 
@@ -82,13 +77,13 @@ export const SearchResultPeopleList = (props: any) => {
           onClick={() => {
             window.location.href = `/profile?username=${props?.user?.username}`;
           }}
-        ></input>
+        />
       </div>
     </div>
   );
-};
+}
 
-const SearchResultPeople = (props: any) => {
+function SearchResultPeople(props: any) {
   const [users, setUsers] = useState<any>([]);
   const [queryUser] = useLazyQuery<any>(showUsersListQuery, {
     onCompleted: (getuser) => {
@@ -125,6 +120,6 @@ const SearchResultPeople = (props: any) => {
       </div>
     </div>
   );
-};
+}
 
 export default SearchResultPeople;

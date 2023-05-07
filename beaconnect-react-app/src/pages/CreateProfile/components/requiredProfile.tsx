@@ -4,46 +4,25 @@ import { AiFillPlusCircle } from 'react-icons/ai';
 import { FaTelegramPlane } from 'react-icons/fa';
 import profileCover from '../../Login/images/cover.jpg';
 import {
-  UpdateRequiredInfoMutationResult,
-  UpdateRequiredInfoMutationVariables,
+  updateRequiredResult,
+  updateRequiredVar,
   UpdateRequiredInfoWithAttachmentMutationVariables,
-  updateRequiredInfoQuery,
+  updateRequiredQuery,
 } from '../../../router/components/profile.query';
 
-const RequiredProfile = ({
+function RequiredProfile({
   doneRequired,
   setDoneRequired,
   setLoading,
 }: {
   doneRequired: boolean;
-  // eslint-disable-next-line no-unused-vars
-  setDoneRequired: (done: boolean) => void;
-  // eslint-disable-next-line no-unused-vars
-  setLoading: (loading: boolean) => void;
-}) => {
+  setDoneRequired: (_done: boolean) => void;
+  setLoading: (_loading: boolean) => void;
+}) {
   const [profileIcon, setProfileIcon] = useState<any>(null);
 
-  const [updateInfo] = useMutation<UpdateRequiredInfoMutationResult, UpdateRequiredInfoMutationVariables>(
-    updateRequiredInfoQuery,
-    {
-      onCompleted: (data: UpdateRequiredInfoMutationResult) => {
-        if (data.updateInfo.info.nickname) {
-          setDoneRequired(true);
-          window.history.pushState({}, '', '/');
-        }
-        setLoading(false);
-      },
-      onError: () => {
-        window.alert('Failed to communicate with server. Please try again later.');
-      },
-    },
-  );
-
-  const [updateInfoWithAttachment] = useMutation<
-    UpdateRequiredInfoMutationResult,
-    UpdateRequiredInfoWithAttachmentMutationVariables
-  >(updateRequiredInfoQuery, {
-    onCompleted: (data: UpdateRequiredInfoMutationResult) => {
+  const [updateInfo] = useMutation<updateRequiredResult, updateRequiredVar>(updateRequiredQuery, {
+    onCompleted: (data: updateRequiredResult) => {
       if (data.updateInfo.info.nickname) {
         setDoneRequired(true);
         window.history.pushState({}, '', '/');
@@ -55,7 +34,22 @@ const RequiredProfile = ({
     },
   });
 
-  /* eslint-disable */
+  const [updateInfoWithAttachment] = useMutation<
+    updateRequiredResult,
+    UpdateRequiredInfoWithAttachmentMutationVariables
+  >(updateRequiredQuery, {
+    onCompleted: (data: updateRequiredResult) => {
+      if (data.updateInfo.info.nickname) {
+        setDoneRequired(true);
+        window.history.pushState({}, '', '/');
+      }
+      setLoading(false);
+    },
+    onError: () => {
+      window.alert('Failed to communicate with server. Please try again later.');
+    },
+  });
+
   const toBase64 = (file: any) =>
     new Promise((resolve, reject) => {
       const reader = new FileReader();
@@ -63,7 +57,6 @@ const RequiredProfile = ({
       reader.onload = () => resolve(reader.result);
       reader.onerror = (error) => reject(error);
     });
-  /* eslint-enable */
 
   const handleRequiredProfileDragOver = (e: React.DragEvent) => {
     e.preventDefault();
@@ -192,6 +185,6 @@ const RequiredProfile = ({
       </form>
     </div>
   );
-};
+}
 
 export default RequiredProfile;

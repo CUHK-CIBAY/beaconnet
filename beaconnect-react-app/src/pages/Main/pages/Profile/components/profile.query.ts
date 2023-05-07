@@ -70,6 +70,30 @@ export const showProfileQuery = gql`
             nickname
           }
         }
+        likeGivers {
+          id
+        }
+        reBit {
+          content
+          createAt
+          author {
+            username
+            info {
+              image
+              nickname
+            }
+          }
+        }
+        comment {
+          content
+          createAt
+          owner {
+            info {
+              nickname
+            }
+            username
+          }
+        }
       }
     }
   }
@@ -150,6 +174,30 @@ export const showUserProfileQueryUsername = gql`
             nickname
           }
         }
+        likeGivers {
+          id
+        }
+        reBit {
+          content
+          createAt
+          author {
+            username
+            info {
+              image
+              nickname
+            }
+          }
+        }
+        comment {
+          content
+          createAt
+          owner {
+            info {
+              nickname
+            }
+            username
+          }
+        }
       }
     }
   }
@@ -176,6 +224,30 @@ export const showUserProfileQueryEmail = gql`
           info {
             image
             nickname
+          }
+        }
+        likeGivers {
+          id
+        }
+        reBit {
+          content
+          createAt
+          author {
+            username
+            info {
+              image
+              nickname
+            }
+          }
+        }
+        comment {
+          content
+          createAt
+          owner {
+            info {
+              nickname
+            }
+            username
           }
         }
       }

@@ -1,4 +1,3 @@
-/* eslint-disable max-len */
 import React, { useEffect, useState } from 'react';
 import { useLazyQuery } from '@apollo/client';
 import { AiOutlineLoading } from 'react-icons/ai';
@@ -15,8 +14,7 @@ import Banner2 from './components/images.jpeg';
 import BitBox from '../../components/Bits/bits';
 import './profile.css';
 
-const Profile = () => {
-  // eslint-disable-next-line no-shadow
+function Profile({ isLoggedIn }: { isLoggedIn: boolean }) {
   const [profileDetails, setProfileDetails] = useState<any>(null);
 
   const [queryProfile] = useLazyQuery<showProfileQueryResult>(showProfileQuery, {
@@ -125,11 +123,7 @@ const Profile = () => {
             </div>
             <div className="user-bits-show">
               {profileDetails?.bits?.map((item: any) => (
-                <BitBox
-                  key={item.id}
-                  // eslint-disable-next-line react/jsx-props-no-spreading
-                  {...item}
-                />
+                <BitBox key={item.id} isLoggedIn={isLoggedIn} data={item} showBits={queryProfile} />
               ))}
             </div>
           </div>
@@ -141,6 +135,6 @@ const Profile = () => {
       )}
     </div>
   );
-};
+}
 
 export default Profile;

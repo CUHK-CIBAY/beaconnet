@@ -1,20 +1,15 @@
-/* eslint-disable no-unused-vars */
 import React from 'react';
 import { useMutation } from '@apollo/client';
 import { FaTelegramPlane } from 'react-icons/fa';
-import {
-  UpdateOptionalInfoMutationResult,
-  UpdateOptionalInfoMutationVariables,
-  updateOptionalInfoQuery,
-} from '../../../router/components/profile.query';
+import { optionUpdateResult, optionUpdateVariables, optionUpdateQuery } from '../../../router/components/profile.query';
 
-const OptionalProfile = ({
+function OptionalProfile({
   setUserProfile,
   setLoading,
 }: {
-  setUserProfile: (done: boolean) => void;
-  setLoading: (loading: boolean) => void;
-}) => {
+  setUserProfile: (_done: boolean) => void;
+  setLoading: (_loading: boolean) => void;
+}) {
   const doneSetProfile = () => {
     document.querySelector('.create-profile-wrapper')?.classList.toggle('redirect');
     setTimeout(() => {
@@ -22,18 +17,15 @@ const OptionalProfile = ({
     }, 1000);
   };
 
-  const [updateInfo] = useMutation<UpdateOptionalInfoMutationResult, UpdateOptionalInfoMutationVariables>(
-    updateOptionalInfoQuery,
-    {
-      onCompleted: (data: UpdateOptionalInfoMutationResult) => {
-        setLoading(false);
-        if (data.updateInfo.info.bio || data.updateInfo.info.phone) doneSetProfile();
-      },
-      onError: () => {
-        window.alert('Failed to communicate with server. Please try again later.');
-      },
+  const [updateInfo] = useMutation<optionUpdateResult, optionUpdateVariables>(optionUpdateQuery, {
+    onCompleted: (data: optionUpdateResult) => {
+      setLoading(false);
+      if (data.updateInfo.info.bio || data.updateInfo.info.phone) doneSetProfile();
     },
-  );
+    onError: () => {
+      window.alert('Failed to communicate with server. Please try again later.');
+    },
+  });
 
   const handleFormSubmit = () => {
     const bio = document.getElementById('Bio') as HTMLInputElement;
@@ -81,6 +73,6 @@ const OptionalProfile = ({
       </form>
     </div>
   );
-};
+}
 
 export default OptionalProfile;

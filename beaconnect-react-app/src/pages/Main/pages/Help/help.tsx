@@ -1,7 +1,7 @@
 import React from 'react';
 import './help.css';
 
-const Help = () => {
+function Help() {
   const clearAllField = () => {
     const title = document.querySelector('.help-main-report-content-title-input') as HTMLInputElement;
     const description = document.querySelector('.help-main-report-content-description-input') as HTMLInputElement;
@@ -42,6 +42,6 @@ const Help = () => {
       </div>
     </div>
   );
-};
+}
 
 export default Help;
