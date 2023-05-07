@@ -137,6 +137,12 @@
   .user-info-container {
     margin: 0px;
     padding: 5px;
+    width: 100vw;
+    height: auto;
+  }
+
+  .user-bits-show {
+    height: auto;
   }
 
   .profile-icon-image {
