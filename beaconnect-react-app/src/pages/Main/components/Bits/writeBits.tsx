@@ -159,7 +159,7 @@ function WriteBitBox({
     e.currentTarget.classList.remove('dragging');
     setDraggingState(false);
     if (e.dataTransfer?.files[0].type.includes('image') || e.dataTransfer?.files[0].type.includes('video')) {
-      setBitAttachment(e.dataTransfer?.files[0]);
+      if (!reBit) setBitAttachment(e.dataTransfer?.files[0]);
     } else {
       alert('Only image or video file is allowed');
     }
