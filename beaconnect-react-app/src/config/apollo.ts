@@ -8,13 +8,29 @@ const httpLink = createHttpLink({
 });
 
 const authLink = setContext((_, { headers }) => {
-  const token = localStorage.getItem(AUTH.token);
-  return {
-    headers: {
-      ...headers,
-      'x-token': token ? `${token}` : '',
-    },
-  };
+  const tokenString = localStorage.getItem(AUTH.token);
+  try {
+    const token = tokenString ? JSON.parse(tokenString) : null;
+
+    if (token) {
+      const now = new Date();
+      if (now.getTime() > token.expiry) {
+        localStorage.clear();
+        window.location.reload();
+      }
+    }
+
+    return {
+      headers: {
+        ...headers,
+        'x-token': token ? window.atob(token.value).split('::')[0] : '',
+      },
+    };
+  } catch (e) {
+    localStorage.clear();
+    window.location.reload();
+    return {};
+  }
 });
 
 const errorLink = onError(({ graphQLErrors, networkError, response }) => {

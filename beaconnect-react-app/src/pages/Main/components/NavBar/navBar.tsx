@@ -59,7 +59,7 @@ const NavBar = ({ isLoggedIn }: { isLoggedIn: boolean }) => {
       <div className="nav-wrapper">
         <div className="logo">
           <div className="logo-icon">
-            <img src={logo} alt="logo" width="50" height="50" />
+            <img src={logo} alt="logo" />
           </div>
           <div className="logo-name">Beaconnet</div>
         </div>

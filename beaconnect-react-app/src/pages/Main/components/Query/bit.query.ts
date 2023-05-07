@@ -81,7 +81,7 @@ export type showBitsQueryVariables = {
 };
 
 export type showBitsQueryResult = {
-  bits: [
+  showBits: [
     {
       id: string;
       content: string;
@@ -96,6 +96,11 @@ export type showBitsQueryResult = {
           nickname: string;
         };
       };
+      likeGivers: [
+        {
+          id: string;
+        },
+      ];
       reBit: {
         content: string;
         createAt: string;
@@ -136,6 +141,9 @@ export const showBitsQuery = gql`
           image
           nickname
         }
+      }
+      likeGivers {
+        id
       }
       reBit {
         content

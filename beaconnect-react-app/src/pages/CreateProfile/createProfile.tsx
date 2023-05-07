@@ -7,6 +7,7 @@ import OptionalProfile from './components/optionalProfile';
 
 const createProfile = ({ setUserProfile }: { setUserProfile: (done: boolean) => void }) => {
   const [doneRequired, setDoneRequired] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     if (doneRequired) {
@@ -17,8 +18,13 @@ const createProfile = ({ setUserProfile }: { setUserProfile: (done: boolean) => 
   return (
     <div className="create-profile-wrapper">
       <div className="create-profile-container">
-        <RequiredProfile setDoneRequired={setDoneRequired} doneRequired={doneRequired} />
-        {doneRequired && <OptionalProfile setUserProfile={setUserProfile} />}
+        <RequiredProfile setDoneRequired={setDoneRequired} doneRequired={doneRequired} setLoading={setLoading} />
+        {doneRequired && <OptionalProfile setUserProfile={setUserProfile} setLoading={setLoading} />}
+        {loading && (
+          <div className="create-profile-loading">
+            <div className="create-profile-loading-circle" />
+          </div>
+        )}
       </div>
     </div>
   );

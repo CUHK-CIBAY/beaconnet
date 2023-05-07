@@ -4,8 +4,7 @@
   height: 100vh;
   padding: 0 0 0 75px;
   display: grid;
-  grid-template-columns: 2fr 1fr;
-  grid-template-rows: 1fr;
+  grid-template-columns: 1fr 350px;
 }
 
 .page-center-content {
@@ -15,4 +14,21 @@
 
 .page-right-content {
   padding: 0 10px 0px 10px;
+}
+
+@media only screen and (max-width: 955px) {
+  .page-content {
+    display: flex;
+    width: 100vw;
+    height: calc(100vh - 110px);
+    padding: 50px 0 0 0;
+    overflow: scroll;
+  }
+  .page-right-content {
+    display: none;
+  }
+
+  .page-center-content {
+    width: 100%;
+  }
 }

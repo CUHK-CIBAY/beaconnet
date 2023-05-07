@@ -120,22 +120,22 @@
 }
 
 .your-account-change-password-header,
-.your-account-deactive-account-header,
+.your-account-deActive-account-header,
 .privacy-safety-your-bits-header,
 .privacy-safety-content-see-header,
 .notification-filter-header,
-.notification-perferences-header,
+.notification-preferences-header,
 .accessibility-font-size-header,
 .accessibility-color-header {
   margin: 0px;
 }
 
 .your-account-change-password-content,
-.your-account-deactive-account-content,
+.your-account-deActive-account-content,
 .privacy-safety-your-bits-content,
 .privacy-safety-content-see-content,
 .notification-filter-content,
-.notification-perferences-content,
+.notification-preferences-content,
 .accessibility-font-size-content,
 .accessibility-color-content {
   padding: 10px 15px;
@@ -144,22 +144,22 @@
 }
 
 .your-account-change-password-arrow,
-.your-account-deactive-account-arrow,
+.your-account-deActive-account-arrow,
 .privacy-safety-your-bits-arrow,
 .privacy-safety-content-see-arrow,
 .notification-filter-arrow,
-.notification-perferences-arrow,
+.notification-preferences-arrow,
 .accessibility-font-size-arrow,
 .accessibility-color-arrow {
   float: right;
 }
 
 .your-account-change-password,
-.your-account-deactive-account,
+.your-account-deActive-account,
 .privacy-safety-your-bits,
 .privacy-safety-content-see,
 .notification-filter,
-.notification-perferences,
+.notification-preferences,
 .accessibility-font-size,
 .accessibility-color {
   margin-top: 10px;
@@ -215,7 +215,7 @@
   background-color: #ccd5ae;
 }
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 955px) {
   .setting-container {
     width: 100%;
   }

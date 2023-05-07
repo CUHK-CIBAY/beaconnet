@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React from 'react';
 import { useMutation } from '@apollo/client';
 import { FaTelegramPlane } from 'react-icons/fa';
@@ -7,14 +8,26 @@ import {
   updateOptionalInfoQuery,
 } from '../../../router/components/profile.query';
 
-// eslint-disable-next-line no-unused-vars
-const OptionalProfile = ({ setUserProfile }: { setUserProfile: (done: boolean) => void }) => {
+const OptionalProfile = ({
+  setUserProfile,
+  setLoading,
+}: {
+  setUserProfile: (done: boolean) => void;
+  setLoading: (loading: boolean) => void;
+}) => {
+  const doneSetProfile = () => {
+    document.querySelector('.create-profile-wrapper')?.classList.toggle('redirect');
+    setTimeout(() => {
+      setUserProfile(true);
+    }, 1000);
+  };
+
   const [updateInfo] = useMutation<UpdateOptionalInfoMutationResult, UpdateOptionalInfoMutationVariables>(
     updateOptionalInfoQuery,
     {
       onCompleted: (data: UpdateOptionalInfoMutationResult) => {
-        console.log(data);
-        if (data.updateInfo.info.bio || data.updateInfo.info.phone) setUserProfile(true);
+        setLoading(false);
+        if (data.updateInfo.info.bio || data.updateInfo.info.phone) doneSetProfile();
       },
       onError: () => {
         window.alert('Failed to communicate with server. Please try again later.');
@@ -25,6 +38,7 @@ const OptionalProfile = ({ setUserProfile }: { setUserProfile: (done: boolean) =
   const handleFormSubmit = () => {
     const bio = document.getElementById('Bio') as HTMLInputElement;
     const phone = document.getElementById('phone') as HTMLInputElement;
+    setLoading(true);
     updateInfo({ variables: { bio: bio.value, phone: phone.value } });
   };
 
@@ -33,14 +47,20 @@ const OptionalProfile = ({ setUserProfile }: { setUserProfile: (done: boolean) =
       <h1>Let us know more...</h1>
       <div
         className="create-optional-profile-skip"
-        onClick={() => setUserProfile(true)}
-        onKeyDown={() => setUserProfile(true)}
+        onClick={doneSetProfile}
+        onKeyDown={doneSetProfile}
         role="button"
         tabIndex={0}
       >
         Skip
       </div>
-      <form className="create-profile-form">
+      <form
+        className="create-profile-form"
+        onSubmit={(e) => {
+          e.preventDefault();
+          handleFormSubmit();
+        }}
+      >
         <div className="create-profile-form-group">
           <div className="create-profile-form-field">
             <textarea id="Bio" className="create-profile-form-input" placeholder="Introduce yourself!" required />

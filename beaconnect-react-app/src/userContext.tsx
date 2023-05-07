@@ -24,7 +24,13 @@ const UserContextProvider = ({ children }: Props) => {
   }, []);
 
   const signIn = useCallback((token: string) => {
-    localStorage.setItem(AUTH.token, token);
+    const now = new Date();
+    const authTOKEN = {
+      value: token,
+      // expire in 1 day
+      expiry: now.getTime() + 86400000,
+    };
+    localStorage.setItem(AUTH.token, JSON.stringify(authTOKEN));
   }, []);
 
   const contextValue = useMemo(

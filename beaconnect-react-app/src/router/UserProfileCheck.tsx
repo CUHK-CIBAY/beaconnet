@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { useQuery } from '@apollo/client';
+import { useLazyQuery } from '@apollo/client';
 import { getUserProfileQuery } from './components/profile.query';
 import { useUserContext } from '../userContext';
 import Loading from '../pages/Essentials/Loading/loading';
@@ -21,7 +21,7 @@ const UserProfileCheck = ({
   userProfile: boolean;
 }) => {
   const { signOut } = useUserContext();
-  const userProfileChecker = useQuery(getUserProfileQuery, {
+  const [userProfileChecker] = useLazyQuery(getUserProfileQuery, {
     onCompleted: (data) => {
       setGetStatus(true);
       if (data.me.info.nickname) setUserProfile(true);
@@ -41,7 +41,7 @@ const UserProfileCheck = ({
     // eslint-disable-next-line no-unused-expressions
     setGetStatus(false);
     setUserProfile(false);
-    userProfileChecker.refetch();
+    userProfileChecker();
   }, [isLoggedIn]);
 
   if (!isLoggedIn) return <>{children}</>;

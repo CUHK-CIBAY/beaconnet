@@ -14,7 +14,7 @@ const Main = ({ isLoggedIn }: { isLoggedIn: boolean }) => (
     <NavBar isLoggedIn={isLoggedIn} />
     <Suspense fallback={<p>loading</p>}>
       <Routes>
-        <Route path="/search" element={<Search />} />
+        <Route path="/search" element={<Search isLoggedIn={isLoggedIn} />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/settings" element={<Setting />} />
         <Route path="/help" element={<Help />} />

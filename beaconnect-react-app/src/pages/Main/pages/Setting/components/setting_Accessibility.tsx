@@ -16,7 +16,7 @@ const SettingAccessibility = () => (
     <div className="accessibility-color">
       <div>
         <p className="accessibility-color-header">Color</p>
-        <div className="accessibility-color-content">Select the mode and color for your perferences</div>
+        <div className="accessibility-color-content">Select the mode and color for your preferences</div>
       </div>
       <div className="accessibility-color-arrow">
         <RiArrowRightSLine />

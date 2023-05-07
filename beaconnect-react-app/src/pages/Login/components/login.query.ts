@@ -9,6 +9,14 @@ export type LoginMutationVariables = {
 export type LoginMutationResult = {
   login: {
     token: string;
+    me: {
+      id: string;
+      role: string;
+      info: {
+        nickname: string;
+        image: string;
+      };
+    };
   };
 };
 
@@ -28,6 +36,14 @@ export const loginQuery = gql`
   mutation Login($email: String, $username: String, $password: String!) {
     login(input: { email: $email, username: $username, password: $password }) {
       token
+      me {
+        id
+        role
+        info {
+          nickname
+          image
+        }
+      }
     }
   }
 `;
