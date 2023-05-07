@@ -56,18 +56,17 @@ export function SearchResultPeopleList(props: any) {
         </div>
         <div className="search-result-user-bio">{props?.user?.info?.bio || 'Hello World'}</div>
       </div>
-      {props?.isLoggedIn.isLoggedIn && (
-        <div className="search-result-user-follow">
-          <input
-            type="button"
-            value={followed ? 'Unfollow' : 'Follow'}
-            className="search-user-follow-button"
-            onClick={() => {
-              followOtherUser(props?.user?.id);
-            }}
-          />
-        </div>
-      )}
+      <div className="search-result-user-follow">
+        <input
+          type="button"
+          value={followed ? 'Unfollow' : 'Follow'}
+          className="search-user-follow-button"
+          onClick={() => {
+            if (props?.isLoggedIn.isLoggedIn) followOtherUser(props?.user?.id);
+            else window.location.href = '/login';
+          }}
+        />
+      </div>
 
       <div className="search-result-user-viewUser">
         <input
