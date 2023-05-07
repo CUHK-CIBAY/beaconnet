@@ -42,7 +42,7 @@ function ListBits(isLoggedIn: boolean) {
         />
       )}
 
-      {result && result?.showBits[0].id !== 'ERROR' ? (
+      {result && result?.showBits[0]?.id !== 'ERROR' ? (
         result?.showBits.map(
           (item: showBitsQueryResult['showBits'][0]) =>
             item?.id && (
