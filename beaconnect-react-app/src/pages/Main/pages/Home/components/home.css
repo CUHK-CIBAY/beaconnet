@@ -7,6 +7,13 @@
   box-shadow: 0 0 5px #e4e5ed;
   margin: 20px;
   padding: 15px 20px 10px 20px;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -webkit-user-drag: none;
+  user-drag: none;
+  -webkit-touch-callout: none;
 }
 
 .write-bit-box {
@@ -343,6 +350,15 @@
   }
 }
 
+.bit-box-content-footer-comments svg {
+  fill: #444;
+  transition: fill 0.3s ease-in-out;
+}
+
+.bit-box-content-footer-comments.active svg {
+  fill: #a3ab82;
+}
+
 .bit-box-content-footer-repost {
   scale: 1.3;
 }
@@ -638,6 +654,18 @@
   margin: 0px;
 }
 
+.bit-box-content-footer-comment-list {
+  display: grid;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease-in-out;
+}
+
+.bit-box-content-footer-comment-list.active {
+  max-height: 250px;
+  overflow: auto;
+}
+
 .bit-box-content-footer-comment-list-item {
   display: flex;
   flex-direction: column;
@@ -656,6 +684,7 @@
   font-size: 0.8rem;
   color: #757575;
   margin-top: 10px;
+  cursor: pointer;
 }
 
 .bit-box-content-footer-comment-list-item p::before {
@@ -686,4 +715,17 @@
   background-color: #fff;
   border-radius: 20px;
   box-shadow: 0 0 5px #e4e5ed;
+}
+
+.bit-box-content-loading {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(255, 255, 255, 0.95);
+  border-radius: 20px;
 }

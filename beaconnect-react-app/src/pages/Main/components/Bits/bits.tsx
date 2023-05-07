@@ -2,15 +2,17 @@
 /* eslint-disable max-len */
 import React from 'react';
 import { useMutation, gql } from '@apollo/client';
-import { AiFillHeart } from 'react-icons/ai';
-import { BiComment, BiRepost } from 'react-icons/bi';
+import { AiFillHeart, AiOutlineLoading } from 'react-icons/ai';
+import { BiRepost } from 'react-icons/bi';
 import { TbSend } from 'react-icons/tb';
-import { formatDistance } from 'date-fns';
+import { FaCommentAlt } from 'react-icons/fa';
+import { formatDistance, set } from 'date-fns';
 import { likeBitMutationVariables, likeBitQuery, likeBitMutationResult } from '../Query/bit.query';
 import AUTH from '../../../../config/constants';
 import userIcon from '../../pages/Home/components/icon.png';
 
 const BitBox = (data: any) => {
+  const [bitBoxLoading, setBitBoxLoading] = React.useState(false);
   const [showComment, setShowComment] = React.useState(false);
   function redirectToProfile(username: any): void {
     if (username) window.location.href = `/profile?username=${username}`;
@@ -30,17 +32,23 @@ const BitBox = (data: any) => {
           alt="bit"
         />
       )}
-      {data?.showFooterButton && bitBoxFooterButtons(data, showComment, setShowComment)}
+      {data?.showFooterButton &&
+        bitBoxFooterButtons(data, showComment, setShowComment, bitBoxLoading, setBitBoxLoading)}
 
-      <div className="bit-box-content-footer-comment-list">
+      <div className={`bit-box-content-footer-comment-list ${showComment && 'active'}`}>
         {data?.comment?.map(
           (comment: any) =>
             // eslint-disable-next-line implicit-arrow-linebreak
-            comment && showComment && bitBoxShowComment(comment, redirectToProfile),
+            comment && bitBoxShowComment(comment, redirectToProfile),
         )}
       </div>
 
-      {data?.isLoggedIn && bitBoxComment(data)}
+      {data?.isLoggedIn && bitBoxComment(data, bitBoxLoading, setBitBoxLoading)}
+      {bitBoxLoading && (
+        <div className="bit-box-content-loading">
+          <AiOutlineLoading className="reactLoadingCircle profile-page-loading-icon" />
+        </div>
+      )}
     </div>
   );
 };
@@ -104,14 +112,23 @@ function bitBoxHeader(data: any, redirectToProfile: any): React.ReactNode {
   );
 }
 
-function bitBoxFooterButtons(data: any, showComment: any, setShowComment: any): React.ReactNode {
+function bitBoxFooterButtons(
+  data: any,
+  showComment: any,
+  setShowComment: any,
+  bitBoxLoading: any,
+  setBitBoxLoading: any,
+): React.ReactNode {
   const [giveLikeToBit] = useMutation<likeBitMutationResult, likeBitMutationVariables>(likeBitQuery, {
     onCompleted: () => {
-      data.showBits({ variables: { following: true } });
+      data.showBits({ variables: { following: true } }).then(() => {
+        setBitBoxLoading(false);
+      });
     },
   });
 
   const handleGiveLike = () => {
+    setBitBoxLoading(true);
     if (data?.isLoggedIn) {
       const id = data?.id;
       giveLikeToBit({
@@ -130,14 +147,19 @@ function bitBoxFooterButtons(data: any, showComment: any, setShowComment: any): 
     document.querySelector('.write-bit-box-content-text')?.scrollIntoView({ behavior: 'smooth' });
   };
 
+  const selfLikeCheck = () => {
+    if (
+      data.likeGivers.find((likeGiver: any) => likeGiver.id === JSON.parse(localStorage.getItem(AUTH.userInfo)!).id)
+    ) {
+      return 'active';
+    }
+    return '';
+  };
+
   return (
     <div className="bit-box-content-footer">
       <div
-        className={`bit-box-content-footer-likes bit-box-content-footer-icons ${
-          data.likeGivers.find((likeGiver: any) => likeGiver.id === JSON.parse(localStorage.getItem(AUTH.userInfo)!).id)
-            ? 'active'
-            : ''
-        }`}
+        className={`bit-box-content-footer-likes bit-box-content-footer-icons ${selfLikeCheck()}`}
         onClick={handleGiveLike}
         onKeyDown={handleGiveLike}
         role="button"
@@ -147,13 +169,13 @@ function bitBoxFooterButtons(data: any, showComment: any, setShowComment: any): 
         <p>{data?.totalLike}</p>
       </div>
       <div
-        className="bit-box-content-footer-comments bit-box-content-footer-icons"
+        className={`bit-box-content-footer-comments bit-box-content-footer-icons ${showComment && 'active'}`}
         onClick={() => setShowComment(!showComment)}
         onKeyDown={() => setShowComment(!showComment)}
         role="button"
         tabIndex={0}
       >
-        <BiComment />
+        <FaCommentAlt />
         <p>{`${data?.comment?.length ? data?.comment?.length : 0} comments`}</p>
       </div>
       <div
@@ -201,7 +223,7 @@ function bitBoxShowComment(comment: any, redirectToProfile: any) {
   );
 }
 
-const bitBoxComment = (data: any) => {
+const bitBoxComment = (data: any, bitBoxLoading: any, setBitBoxLoading: any) => {
   const addActiveStatus = (e: React.FocusEvent) => {
     const { currentTarget } = e;
     const parent = currentTarget.parentElement?.parentElement?.parentElement as HTMLDivElement;
@@ -228,12 +250,15 @@ const bitBoxComment = (data: any) => {
     `,
     {
       onCompleted: () => {
-        data.showBits({ variables: { following: true } });
+        data.showBits({ variables: { following: true } }).then(() => {
+          setBitBoxLoading(false);
+        });
       },
     },
   );
 
   const handleCommentSubmit = (e: React.KeyboardEvent | React.MouseEvent) => {
+    setBitBoxLoading(true);
     const input = e.currentTarget.parentElement?.querySelector('input') as HTMLInputElement;
     const currentInput = input.value;
 
