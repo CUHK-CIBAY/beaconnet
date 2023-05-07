@@ -1,20 +1,17 @@
-/* eslint-disable no-unused-vars */
-/* eslint-disable object-curly-newline */
-/* eslint-disable jsx-a11y/label-has-associated-control */
 import React from 'react';
 import { RxCross2 } from 'react-icons/rx';
 import Cover from './images/cover.jpg';
 import './components/login.css';
 import { LoginField, RegisterField, FormElement } from './components/login.field';
 
-const Login = (props: {
+function Login(props: {
   loginType: string;
-  changeLoginType: (type: string) => () => void;
-  onLogin: (email: string, password: string) => void;
-  onRegister: (email: string, username: string, password: string, confirmPassword: string) => void;
+  changeLoginType: (_type: string) => () => void;
+  onLogin: (_email: string, _password: string) => void;
+  onRegister: (_email: string, _username: string, _password: string, _confirmPassword: string) => void;
   errorMessage: string;
   Loading: boolean;
-}) => {
+}) {
   const { loginType, onLogin, onRegister, changeLoginType, errorMessage, Loading } = props;
 
   const navigateToHome = () => {
@@ -83,6 +80,6 @@ const Login = (props: {
       </div>
     </div>
   );
-};
+}
 
 export default Login;

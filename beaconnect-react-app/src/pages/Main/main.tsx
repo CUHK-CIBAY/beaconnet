@@ -9,19 +9,21 @@ import './components/main.css';
 import './pages/Home/components/home.css';
 import Homepage from './pages/Home/homepage';
 
-const Main = ({ isLoggedIn }: { isLoggedIn: boolean }) => (
-  <div className="homePage">
-    <NavBar isLoggedIn={isLoggedIn} />
-    <Suspense fallback={<p>loading</p>}>
-      <Routes>
-        <Route path="/search" element={<Search isLoggedIn={isLoggedIn} />} />
-        <Route path="/profile" element={<Profile />} />
-        <Route path="/settings" element={<Setting />} />
-        <Route path="/help" element={<Help />} />
-        <Route path="*" element={<Homepage isLoggedIn={isLoggedIn} />} />
-      </Routes>
-    </Suspense>
-  </div>
-);
+function Main({ isLoggedIn }: { isLoggedIn: boolean }) {
+  return (
+    <div className="homePage">
+      <NavBar isLoggedIn={isLoggedIn} />
+      <Suspense fallback={<p>loading</p>}>
+        <Routes>
+          <Route path="/search" element={<Search isLoggedIn={isLoggedIn} />} />
+          <Route path="/profile" element={<Profile isLoggedIn={isLoggedIn} />} />
+          <Route path="/settings" element={<Setting />} />
+          <Route path="/help" element={<Help />} />
+          <Route path="*" element={<Homepage isLoggedIn={isLoggedIn} />} />
+        </Routes>
+      </Suspense>
+    </div>
+  );
+}
 
 export default Main;

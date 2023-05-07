@@ -7,8 +7,7 @@ type Props = {
 };
 
 type Context = {
-  // eslint-disable-next-line no-unused-vars
-  signIn: (token: string) => void;
+  signIn: (_token: string) => void;
   signOut: () => void;
 };
 
@@ -17,8 +16,7 @@ const UserContext = createContext<Context>({
   signOut: () => {},
 });
 
-// eslint-disable-next-line no-undef
-const UserContextProvider = ({ children }: Props) => {
+function UserContextProvider({ children }: Props) {
   const signOut = useCallback(() => {
     localStorage.removeItem(AUTH.token);
   }, []);
@@ -42,7 +40,7 @@ const UserContextProvider = ({ children }: Props) => {
   );
 
   return <UserContext.Provider value={contextValue}>{children}</UserContext.Provider>;
-};
+}
 
 export const useUserContext = () => {
   const context = useContext(UserContext);

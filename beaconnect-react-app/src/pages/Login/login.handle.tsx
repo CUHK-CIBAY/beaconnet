@@ -14,13 +14,11 @@ import {
   RegisterMutationVariables,
 } from './components/login.query';
 
-// eslint-disable-next-line no-undef
-const LoginCompound = (props: {
+function LoginCompound(props: {
   loginType: string;
   isLoggedIn: boolean;
-  // eslint-disable-next-line no-unused-vars
-  setIsLoggedIn: (isLoggedIn: boolean) => void;
-}) => {
+  setIsLoggedIn: (_isLoggedIn: boolean) => void;
+}) {
   const { loginType, isLoggedIn, setIsLoggedIn } = props;
   if (isLoggedIn) return <Navigate to="/" replace />;
   const { signIn } = useUserContext();
@@ -101,6 +99,6 @@ const LoginCompound = (props: {
       errorMessage={errorMessage}
     />
   );
-};
+}
 
 export default LoginCompound;

@@ -11,7 +11,7 @@
     "format/js": "prettier --write \"./**/*.{js,jsx,ts,tsx,css,json}\" --config ./.prettierrc",
     "format/properties": "find . -name '*.properties' -print -exec sort -o {} {} \\;",
     "format/yaml": "git ls-files '*.yml' '*.yaml' | xargs -t -I {} yq -i -S -Y . {}",
-    "lint": "eslint \"src/**.*.{js,jsx,ts,tsx}\"",
+    "lint": "eslint src --ext .js,.jsx,.ts,.tsx",
     "prod": "yarn build && yarn deploy",
     "start": "react-scripts start",
     "test": "react-scripts test"
@@ -62,7 +62,7 @@
     "eslint-config-react-app": "^7.0.1",
     "eslint-plugin-import": "^2.26.0",
     "eslint-plugin-jsx-a11y": "^6.6.1",
-    "eslint-plugin-react": "^7.31.11",
+    "eslint-plugin-react": "^7.32.2",
     "eslint-plugin-react-hooks": "^4.6.0",
     "prettier": "2.8.8",
     "prettier-plugin-packagejson": "^2.3.0",

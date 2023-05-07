@@ -5,10 +5,15 @@
     "es2021": true
   },
   "extends": ["airbnb"],
+  "globals": {
+    "JSX": true,
+    "React": true
+  },
   "parser": "@typescript-eslint/parser",
   "plugins": ["@typescript-eslint", "react"],
   "rules": {
     "@typescript-eslint/semi": "off",
+    "implicit-arrow-linebreak": "off",
     "import/extensions": [
       "error",
       "ignorePackages",
@@ -20,13 +25,21 @@
       }
     ],
     "import/no-extraneous-dependencies": ["error", { "devDependencies": ["**/*.test.ts", "**/*.test.tsx"] }],
-    "max-len": ["warn", { "code": 120 }],
+    "indent": "off",
+    "max-len": ["warn", { "code": 120, "ignoreUrls": true }],
+    "no-alert": "off",
+    "no-unused-vars": [
+      "error", // or "error"
+      {
+        "argsIgnorePattern": "^_",
+        "caughtErrorsIgnorePattern": "^_",
+        "varsIgnorePattern": "^_"
+      }
+    ],
     "object-curly-newline": "off",
-    "react/function-component-definition": [2, { "namedComponents": "arrow-function" }],
+    "operator-linebreak": "off",
     "react/jsx-filename-extension": [2, { "extensions": [".js", ".jsx", ".ts", ".tsx"] }],
-    "react/jsx-no-useless-fragment": ["error", { "allowExpressions": true }],
-    "react/jsx-wrap-multilines": ["error", { "assignment": false, "declaration": false }],
-    "semi": ["error", "always"]
+    "react/jsx-wrap-multilines": ["error", { "assignment": false, "declaration": false }]
   },
   "settings": {
     "import/resolver": {

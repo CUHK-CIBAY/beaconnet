@@ -1,4 +1,3 @@
-/* eslint-disable react/destructuring-assignment */
 import React from 'react';
 import { useLazyQuery } from '@apollo/client';
 import './search.css';
@@ -13,11 +12,15 @@ import {
 import SearchResultPeople from './components/searchresult_people_left';
 import seasonalContent from '../../components/Seasonal/seasonal';
 
-export const SearchUserBar = ({ setFetchResult }: { setFetchResult: any }) => {
+export function SearchUserBar({
+  setFetchResult,
+}: {
+  setFetchResult: React.Dispatch<React.SetStateAction<searchUserResult['findUser'] | null>>;
+}) {
   const [searchUserEmail] = useLazyQuery<searchUserResult, searchUserVariables>(searchUserQueryEmail, {
     onCompleted: (data) => {
       if (data.findUser) {
-        setFetchResult(data);
+        setFetchResult(data.findUser);
       } else {
         window.alert('No user found');
       }
@@ -28,7 +31,7 @@ export const SearchUserBar = ({ setFetchResult }: { setFetchResult: any }) => {
   const [searchUserUsername] = useLazyQuery<searchUserResult, searchUserVariables>(searchUserQueryUsername, {
     onCompleted: (data) => {
       if (data.findUser) {
-        setFetchResult(data);
+        setFetchResult(data.findUser);
       } else {
         window.alert('No user found');
       }
@@ -63,7 +66,7 @@ export const SearchUserBar = ({ setFetchResult }: { setFetchResult: any }) => {
       tabIndex={0}
     />
   );
-};
+}
 
 const backButtonHandler = () => {
   if (window.history.length === 1) {
@@ -73,8 +76,8 @@ const backButtonHandler = () => {
   }
 };
 
-const Search = (isLoggedIn: any) => {
-  const [fetchResult, setFetchResult] = React.useState<any>([]);
+function Search(isLoggedIn: { isLoggedIn: boolean }) {
+  const [fetchResult, setFetchResult] = React.useState<searchUserResult['findUser'] | null>(null);
   return (
     <div className="page-content">
       <div className="page-center-content">
@@ -102,6 +105,6 @@ const Search = (isLoggedIn: any) => {
       </div>
     </div>
   );
-};
+}
 
 export default Search;

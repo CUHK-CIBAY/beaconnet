@@ -626,6 +626,11 @@
   padding: 10px;
   border: 1px dashed #000;
   border-radius: 10px;
+  margin-top: 2px;
+}
+
+.write-bit-box-reBit-remove {
+  margin-right: 10px;
 }
 
 .welcome-speech-container {

@@ -1,4 +1,3 @@
-/* eslint-disable max-len */
 import React, { useEffect, useState } from 'react';
 import { useLazyQuery } from '@apollo/client';
 import { AiOutlineLoading } from 'react-icons/ai';
@@ -15,12 +14,13 @@ import Banner2 from './components/images.jpeg';
 import BitBox from '../../components/Bits/bits';
 import './profile.css';
 
-const Profile = () => {
-  // eslint-disable-next-line no-shadow
-  const [profileDetails, setProfileDetails] = useState<any>(null);
+function Profile({ isLoggedIn }: { isLoggedIn: boolean }) {
+  const [profileDetails, setProfileDetails] = useState<
+    showProfileQueryResult['me'] | showUserProfileQueryResult['findUser'] | null
+  >(null);
 
   const [queryProfile] = useLazyQuery<showProfileQueryResult>(showProfileQuery, {
-    onCompleted: (data: any) => {
+    onCompleted: (data: showProfileQueryResult) => {
       setProfileDetails(data.me);
     },
     fetchPolicy: 'network-only',
@@ -29,7 +29,7 @@ const Profile = () => {
   const [queryOtherProfileUsername] = useLazyQuery<showUserProfileQueryResult, showUserProfileQueryVariables>(
     showUserProfileQueryUsername,
     {
-      onCompleted: (data: any) => {
+      onCompleted: (data: showUserProfileQueryResult) => {
         if (data.findUser) setProfileDetails(data.findUser);
         else {
           window.alert('User not found');
@@ -45,7 +45,7 @@ const Profile = () => {
   const [queryOtherProfileEmail] = useLazyQuery<showUserProfileQueryResult, showUserProfileQueryVariables>(
     showUserProfileQueryEmail,
     {
-      onCompleted: (data: any) => {
+      onCompleted: (data: showUserProfileQueryResult) => {
         if (data.findUser) setProfileDetails(data.findUser);
         else {
           window.alert('User not found');
@@ -124,13 +124,11 @@ const Profile = () => {
             </button> */}
             </div>
             <div className="user-bits-show">
-              {profileDetails?.bits?.map((item: any) => (
-                <BitBox
-                  key={item.id}
-                  // eslint-disable-next-line react/jsx-props-no-spreading
-                  {...item}
-                />
-              ))}
+              {profileDetails?.bits?.map(
+                (item: showUserProfileQueryResult['findUser']['bits'][0] | showProfileQueryResult['me']['bits'][0]) => (
+                  <BitBox key={item.id} isLoggedIn={isLoggedIn} data={item} showBits={queryProfile} />
+                ),
+              )}
             </div>
           </div>
         </div>
@@ -141,6 +139,6 @@ const Profile = () => {
       )}
     </div>
   );
-};
+}
 
 export default Profile;

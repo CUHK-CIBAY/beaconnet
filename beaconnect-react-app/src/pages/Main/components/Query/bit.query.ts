@@ -57,6 +57,25 @@ export const likeBitQuery = gql`
   }
 `;
 
+export type commentBitMutationResult = {
+  commentBit: {
+    id: string;
+  };
+};
+
+export type commentBitMutationVariables = {
+  id: string;
+  content: string;
+};
+
+export const commentBitMutation = gql`
+  mutation CommentBit($id: ID!, $content: String!) {
+    commentBit(id: $id, content: $content) {
+      id
+    }
+  }
+`;
+
 export type postBitWithAttachmentMutationVariables = {
   image: string;
   content: string;
@@ -84,11 +103,11 @@ export type showBitsQueryResult = {
   showBits: [
     {
       id: string;
-      content: string;
-      createAt: string;
-      totalLike: number;
-      image: string;
-      author: {
+      content?: string;
+      createAt?: string;
+      totalLike?: number;
+      image?: string;
+      author?: {
         id: string;
         username: string;
         info: {
@@ -96,12 +115,12 @@ export type showBitsQueryResult = {
           nickname: string;
         };
       };
-      likeGivers: [
+      likeGivers?: [
         {
           id: string;
         },
       ];
-      reBit: {
+      reBit?: {
         content: string;
         createAt: string;
         author: {
@@ -112,16 +131,18 @@ export type showBitsQueryResult = {
           };
         };
       };
-      comment: {
-        content: string;
-        createAt: string;
-        owner: {
-          info: {
-            nickname: string;
+      comment?: [
+        {
+          content: string;
+          createAt: string;
+          owner: {
+            info: {
+              nickname: string;
+            };
+            username: string;
           };
-          username: string;
-        };
-      };
+        },
+      ];
     },
   ];
 };

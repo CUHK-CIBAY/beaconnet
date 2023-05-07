@@ -1,15 +1,13 @@
-/* eslint-disable no-undef */
 import React from 'react';
-import './nav.css';
-// eslint-disable-next-line no-unused-vars
-import { AiOutlineMessage, AiOutlineQuestionCircle, AiOutlineSearch, AiOutlineSetting } from 'react-icons/ai';
+import { AiOutlineQuestionCircle, AiOutlineSearch, AiOutlineSetting } from 'react-icons/ai';
 import { BiHomeAlt2 } from 'react-icons/bi';
 import { CgProfile } from 'react-icons/cg';
 import { FiLogOut, FiUser } from 'react-icons/fi';
 import { useNavigate } from 'react-router-dom';
 import logo from './images/logo.png';
-// eslint-disable-next-line no-undef
-const NavItem = ({ icon, text, path }: { icon: JSX.Element; text: string; path: string }) => {
+import './nav.css';
+
+function NavItem({ icon, text, path }: { icon: JSX.Element; text: string; path: string }) {
   const navigate = useNavigate();
   const redirectTo = (redirectPath: string) => () => {
     navigate(redirectPath);
@@ -21,9 +19,9 @@ const NavItem = ({ icon, text, path }: { icon: JSX.Element; text: string; path: 
       <p className="nav-link-desc">{text}</p>
     </div>
   );
-};
+}
 
-const NavBar = ({ isLoggedIn }: { isLoggedIn: boolean }) => {
+function NavBar({ isLoggedIn }: { isLoggedIn: boolean }) {
   let NavLinks: { icon: JSX.Element; text: string; path: string }[] = [];
   let NavControls: { icon: JSX.Element; text: string; path: string }[] = [];
   if (isLoggedIn) {
@@ -77,6 +75,6 @@ const NavBar = ({ isLoggedIn }: { isLoggedIn: boolean }) => {
       </div>
     </nav>
   );
-};
+}
 
 export default NavBar;

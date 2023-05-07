@@ -5,7 +5,7 @@ import { useUserContext } from '../userContext';
 import Loading from '../pages/Essentials/Loading/loading';
 import CreateProfile from '../pages/CreateProfile/createProfile';
 
-const UserProfileCheck = ({
+function UserProfileCheck({
   isLoggedIn,
   children,
   setGetStatus,
@@ -19,19 +19,15 @@ const UserProfileCheck = ({
   setUserProfile: React.Dispatch<React.SetStateAction<boolean>>;
   getStatus: boolean;
   userProfile: boolean;
-}) => {
+}) {
   const { signOut } = useUserContext();
   const [userProfileChecker] = useLazyQuery(getUserProfileQuery, {
     onCompleted: (data) => {
-      console.log(data, localStorage, new Date());
       setGetStatus(true);
       if (data?.me?.info?.nickname) setUserProfile(true);
     },
     onError: (error) => {
-      if (
-        // eslint-disable-next-line operator-linebreak
-        error.message === 'Response not successful: Received status code 500'
-      ) {
+      if (error.message === 'Response not successful: Received status code 500') {
         signOut();
         window.location.reload();
       }
@@ -40,16 +36,15 @@ const UserProfileCheck = ({
   });
 
   useEffect(() => {
-    // eslint-disable-next-line no-unused-expressions
     setGetStatus(false);
     setUserProfile(false);
     userProfileChecker();
   }, [isLoggedIn]);
 
-  if (!isLoggedIn) return <>{children}</>;
+  if (!isLoggedIn) return <div id="Beaconnet-Main">{children}</div>;
   if (!getStatus) return <Loading />;
   if (!userProfile) return <CreateProfile setUserProfile={setUserProfile} />;
-  return <>{children}</>;
-};
+  return <div id="Beaconnet-Main">{children}</div>;
+}
 
 export default UserProfileCheck;

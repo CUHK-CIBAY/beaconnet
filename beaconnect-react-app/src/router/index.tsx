@@ -1,4 +1,3 @@
-/* eslint-disable no-nested-ternary */
 import React, { Suspense, lazy, useEffect, useState } from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
 
@@ -12,7 +11,7 @@ const UserProfileCheck = lazy(() => import('./UserProfileCheck'));
 const Main = lazy(() => import('../pages/Main/main'));
 const Admin = lazy(() => import('../pages/Admin/admin'));
 
-const Router = () => {
+function Router() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [getStatus, setGetStatus] = useState(false);
   const [userProfile, setUserProfile] = useState(false);
@@ -77,6 +76,6 @@ const Router = () => {
       </Suspense>
     </UserProfileCheck>
   );
-};
+}
 
 export default Router;

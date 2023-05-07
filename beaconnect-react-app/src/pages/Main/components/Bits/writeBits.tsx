@@ -1,4 +1,3 @@
-/* eslint-disable indent */
 import React, { useState } from 'react';
 import { BsImage } from 'react-icons/bs';
 import { FiVideo } from 'react-icons/fi';
@@ -20,8 +19,7 @@ import {
 import AUTH from '../../../../config/constants';
 import userIcon from '../../pages/Home/components/icon.png';
 
-const toBase64 = (file: any) =>
-  // eslint-disable-next-line implicit-arrow-linebreak
+const toBase64 = (file: File) =>
   new Promise((resolve, reject) => {
     const reader = new FileReader();
     reader.readAsDataURL(file);
@@ -29,20 +27,23 @@ const toBase64 = (file: any) =>
     reader.onerror = (error) => reject(error);
   });
 
-const WriteBitBox = ({
+function WriteBitBox({
   reBit,
   setReBit,
   bitAttachment,
   setBitAttachment,
   showBits,
 }: {
-  reBit: any;
-  // eslint-disable-next-line no-shadow, no-unused-vars
-  setReBit: any;
-  bitAttachment: any;
-  setBitAttachment: any;
-  showBits: any;
-}) => {
+  reBit: [string, string] | string | null;
+  setReBit: (_reBit: string | null) => void;
+  bitAttachment: File | null;
+  setBitAttachment: (_bitAttachment: File | null) => void;
+  showBits: (_variables: {
+    variables: {
+      following: boolean;
+    };
+  }) => void;
+}) {
   const [draggingState, setDraggingState] = useState(false);
 
   const sendBitSuccess = () => {
@@ -53,7 +54,6 @@ const WriteBitBox = ({
     setTimeout(() => {
       writeBitBox.classList.remove('loading');
       writeBitBox.classList.remove('success');
-      // eslint-disable-next-line no-unused-expressions
       showBits({
         variables: {
           following: true,
@@ -106,7 +106,7 @@ const WriteBitBox = ({
     },
   });
 
-  const uploadAttachment = (file: any | null, content: string) => {
+  const uploadAttachment = (file: File, content: string) => {
     if (file.size > 6_000_000) {
       // !AWS lambda function max size is 6MB
       alert('File size exceed 6MB');
@@ -121,7 +121,7 @@ const WriteBitBox = ({
         })
           .then((res) => res.json())
           .then((returnData) => {
-            const { key } = returnData as any;
+            const { key } = returnData;
             postBitWithAttachment({ variables: { image: key as string, content } });
           });
       });
@@ -159,7 +159,7 @@ const WriteBitBox = ({
     e.currentTarget.classList.remove('dragging');
     setDraggingState(false);
     if (e.dataTransfer?.files[0].type.includes('image') || e.dataTransfer?.files[0].type.includes('video')) {
-      setBitAttachment(e.dataTransfer?.files[0]);
+      if (!reBit) setBitAttachment(e.dataTransfer?.files[0]);
     } else {
       alert('Only image or video file is allowed');
     }
@@ -282,6 +282,6 @@ const WriteBitBox = ({
       )}
     </div>
   );
-};
+}
 
 export default WriteBitBox;

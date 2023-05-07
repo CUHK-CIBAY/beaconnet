@@ -8,42 +8,47 @@ export type showProfileQueryResult = {
       image: string;
     };
     username: string;
-    bits: {
-      id: string;
-      content: string;
-      createAt: string;
-      totalLike: number;
-      image: string;
-      author: {
+    bits: [
+      {
         id: string;
-        username: string;
-        info: {
-          image: string;
-          nickname: string;
-        };
-      };
-      reBit: {
         content: string;
         createAt: string;
+        totalLike: number;
+        image: string;
         author: {
+          id: string;
           username: string;
           info: {
             image: string;
             nickname: string;
           };
         };
-      };
-      comment: {
-        content: string;
-        createAt: string;
-        owner: {
-          info: {
-            nickname: string;
+        reBit: {
+          content: string;
+          createAt: string;
+          author: {
+            username: string;
+            info: {
+              image: string;
+              nickname: string;
+            };
           };
-          username: string;
         };
-      };
-    };
+        comment: [
+          {
+            id?: string;
+            content: string;
+            createAt: string;
+            owner: {
+              info: {
+                nickname: string;
+              };
+              username: string;
+            };
+          },
+        ];
+      },
+    ];
   };
 };
 
@@ -70,6 +75,30 @@ export const showProfileQuery = gql`
             nickname
           }
         }
+        likeGivers {
+          id
+        }
+        reBit {
+          content
+          createAt
+          author {
+            username
+            info {
+              image
+              nickname
+            }
+          }
+        }
+        comment {
+          content
+          createAt
+          owner {
+            info {
+              nickname
+            }
+            username
+          }
+        }
       }
     }
   }
@@ -88,42 +117,47 @@ export type showUserProfileQueryResult = {
       image: string;
     };
     username: string;
-    bits: {
-      id: string;
-      content: string;
-      createAt: string;
-      totalLike: number;
-      image: string;
-      author: {
+    bits: [
+      {
         id: string;
-        username: string;
-        info: {
-          image: string;
-          nickname: string;
-        };
-      };
-      reBit: {
         content: string;
         createAt: string;
+        totalLike: number;
+        image: string;
         author: {
+          id: string;
           username: string;
           info: {
             image: string;
             nickname: string;
           };
         };
-      };
-      comment: {
-        content: string;
-        createAt: string;
-        owner: {
-          info: {
-            nickname: string;
+        reBit: {
+          content: string;
+          createAt: string;
+          author: {
+            username: string;
+            info: {
+              image: string;
+              nickname: string;
+            };
           };
-          username: string;
         };
-      };
-    };
+        comment: [
+          {
+            id?: string;
+            content: string;
+            createAt: string;
+            owner: {
+              info: {
+                nickname: string;
+              };
+              username: string;
+            };
+          },
+        ];
+      },
+    ];
   };
 };
 
@@ -148,6 +182,30 @@ export const showUserProfileQueryUsername = gql`
           info {
             image
             nickname
+          }
+        }
+        likeGivers {
+          id
+        }
+        reBit {
+          content
+          createAt
+          author {
+            username
+            info {
+              image
+              nickname
+            }
+          }
+        }
+        comment {
+          content
+          createAt
+          owner {
+            info {
+              nickname
+            }
+            username
           }
         }
       }
@@ -176,6 +234,30 @@ export const showUserProfileQueryEmail = gql`
           info {
             image
             nickname
+          }
+        }
+        likeGivers {
+          id
+        }
+        reBit {
+          content
+          createAt
+          author {
+            username
+            info {
+              image
+              nickname
+            }
+          }
+        }
+        comment {
+          content
+          createAt
+          owner {
+            info {
+              nickname
+            }
+            username
           }
         }
       }
