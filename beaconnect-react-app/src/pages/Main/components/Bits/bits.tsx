@@ -14,12 +14,13 @@ import userIcon from '../../pages/Home/components/icon.png';
 const BitBox = (data: any) => {
   const [bitBoxLoading, setBitBoxLoading] = React.useState(false);
   const [showComment, setShowComment] = React.useState(false);
+  const [showCommentInput, setShowCommentInput] = React.useState(false);
   function redirectToProfile(username: any): void {
     if (username) window.location.href = `/profile?username=${username}`;
   }
 
   return (
-    <div className="bit-box bit-box-container">
+    <div className={`bit-box bit-box-container ${showCommentInput && 'active'}`}>
       {bitBoxHeader(data, redirectToProfile)}
       <div className="bit-box-content">
         <div className="bit-box-content-text">{data?.content}</div>
@@ -43,7 +44,7 @@ const BitBox = (data: any) => {
         )}
       </div>
 
-      {data?.isLoggedIn && bitBoxComment(data, bitBoxLoading, setBitBoxLoading)}
+      {data?.isLoggedIn && bitBoxComment(data, bitBoxLoading, setBitBoxLoading, setShowCommentInput, setShowComment)}
       {bitBoxLoading && (
         <div className="bit-box-content-loading">
           <AiOutlineLoading className="reactLoadingCircle profile-page-loading-icon" />
@@ -231,20 +232,23 @@ function bitBoxShowComment(comment: any, redirectToProfile: any) {
   );
 }
 
-const bitBoxComment = (data: any, bitBoxLoading: any, setBitBoxLoading: any) => {
+const bitBoxComment = (
+  data: any,
+  bitBoxLoading: any,
+  setBitBoxLoading: any,
+  setShowCommentInput: any,
+  setShowComment: any,
+) => {
   const addActiveStatus = (e: React.FocusEvent) => {
-    const { currentTarget } = e;
-    const parent = currentTarget.parentElement?.parentElement?.parentElement as HTMLDivElement;
-    parent.classList.add('active');
+    setShowCommentInput(true);
   };
 
   const removeActiveStatus = (e: React.FocusEvent) => {
-    const { currentTarget, target } = e;
+    const { target } = e;
     const textBox = target as HTMLTextAreaElement;
     const currentInput = textBox.value;
     if (currentInput.length === 0) {
-      const parent = currentTarget.parentElement?.parentElement?.parentElement as HTMLDivElement;
-      parent.classList.remove('active');
+      setShowCommentInput(false);
     }
   };
 
@@ -260,6 +264,7 @@ const bitBoxComment = (data: any, bitBoxLoading: any, setBitBoxLoading: any) => 
       onCompleted: () => {
         data.showBits({ variables: { following: true } }).then(() => {
           setBitBoxLoading(false);
+          setShowComment(true);
         });
       },
     },
