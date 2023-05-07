@@ -87,7 +87,6 @@ function SearchResultPeople(props: any) {
   const [users, setUsers] = useState<any>([]);
   const [queryUser] = useLazyQuery<any>(showUsersListQuery, {
     onCompleted: (getuser) => {
-      console.log(getuser?.me.following);
       setUsers(
         getuser?.users
           ?.map((value: any) => ({ value, sort: Math.random() }))

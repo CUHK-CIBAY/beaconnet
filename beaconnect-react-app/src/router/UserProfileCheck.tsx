@@ -23,7 +23,6 @@ function UserProfileCheck({
   const { signOut } = useUserContext();
   const [userProfileChecker] = useLazyQuery(getUserProfileQuery, {
     onCompleted: (data) => {
-      console.log(data, localStorage, new Date());
       setGetStatus(true);
       if (data?.me?.info?.nickname) setUserProfile(true);
     },
