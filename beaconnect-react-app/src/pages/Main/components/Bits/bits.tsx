@@ -132,7 +132,7 @@ function bitBoxFooterButtons(
 
   const showCommentHandler = () => {
     setShowComment(!showComment);
-    if (data?.comment) {
+    if (data?.comment?.length === 0) {
       setTimeout(() => {
         setShowComment(false);
       }, 500);
