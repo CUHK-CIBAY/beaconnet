@@ -42,7 +42,7 @@ function ListBits(isLoggedIn: boolean) {
         />
       )}
 
-      {result && result?.showBits[0]?.id !== 'ERROR' ? (
+      {result?.showBits[0] && result?.showBits[0].id !== 'ERROR' ? (
         result?.showBits.map(
           (item: showBitsQueryResult['showBits'][0]) =>
             item?.id && (
@@ -62,8 +62,7 @@ function ListBits(isLoggedIn: boolean) {
           {result == null ? <AiOutlineLoading className="reactLoadingCircle" /> : <RxCrossCircled />}
           <p className="main-no-bit-warning-text">
             {result == null && 'Loading'}
-            {result?.showBits[0].id === 'ERROR' &&
-              (isLoggedIn ? 'Try to follow someone to see their bits!' : 'No Bits Yet!')}
+            {result && (result?.showBits[0] ? 'No Bits Yet!' : 'Try to follow someone to see their bits!')}
           </p>
         </div>
       )}
