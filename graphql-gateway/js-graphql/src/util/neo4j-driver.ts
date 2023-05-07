@@ -1,11 +1,8 @@
 import neo4j from 'neo4j-driver';
-import * as dotenv from 'dotenv';
-
-dotenv.config();
 
 const driver = neo4j.driver(
-  process.env.DB_URL ?? '',
-  neo4j.auth.basic(process.env.DB_USER ?? '', process.env.DB_PASSWORD ?? ''),
+  'neo4j+s://50630da3.databases.neo4j.io',
+  neo4j.auth.basic('neo4j', '1VoxGjet256LiHRZVUohfN9FNKq65uFHwXUoW_l6x4E'),
 );
 
 export default driver;
