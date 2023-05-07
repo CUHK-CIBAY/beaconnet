@@ -8,7 +8,7 @@ export type showProfileQueryResult = {
       image: string;
     };
     username: string;
-    bits: {
+    bits: [{
       id: string;
       content: string;
       createAt: string;
@@ -33,7 +33,8 @@ export type showProfileQueryResult = {
           };
         };
       };
-      comment: {
+      comment: [{
+        id?: string;
         content: string;
         createAt: string;
         owner: {
@@ -42,8 +43,8 @@ export type showProfileQueryResult = {
           };
           username: string;
         };
-      };
-    };
+      }];
+    }];
   };
 };
 
@@ -112,7 +113,7 @@ export type showUserProfileQueryResult = {
       image: string;
     };
     username: string;
-    bits: {
+    bits: [{
       id: string;
       content: string;
       createAt: string;
@@ -137,7 +138,8 @@ export type showUserProfileQueryResult = {
           };
         };
       };
-      comment: {
+      comment: [{
+        id?: string;
         content: string;
         createAt: string;
         owner: {
@@ -146,8 +148,8 @@ export type showUserProfileQueryResult = {
           };
           username: string;
         };
-      };
-    };
+      }];
+    }];
   };
 };
 

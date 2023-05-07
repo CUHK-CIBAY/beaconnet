@@ -7,6 +7,7 @@ export type showUsersListQueryResult = {
       id: string;
       info: {
         nickname: string;
+        image: string;
       };
     },
   ];

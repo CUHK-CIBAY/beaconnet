@@ -7,20 +7,22 @@ import WriteBitBox from '../../components/Bits/writeBits';
 import { showBitsQuery, showBitsQueryVariables, showBitsQueryResult } from '../../components/Query/bit.query';
 import seasonalContent from '../../components/Seasonal/seasonal';
 
-function ListBits(
-  isLoggedIn: boolean,
-  reBit: null,
-  setReBit: React.Dispatch<React.SetStateAction<null>>,
-  bitAttachment: any,
-  setBitAttachment: React.Dispatch<any>,
-) {
-  const [result, setResult] = useState<any>(['Loading']);
+function ListBits(isLoggedIn: boolean) {
+  const [reBit, setReBit] = useState<[string, string] | string | null>(null);
+  const [bitAttachment, setBitAttachment] = useState<File | null>(null);
+  const [result, setResult] = useState<showBitsQueryResult | null>(null);
   const [showBits] = useLazyQuery<showBitsQueryResult, showBitsQueryVariables>(showBitsQuery, {
-    onCompleted: (data: any) => {
+    onCompleted: (data: showBitsQueryResult) => {
       setResult(data);
     },
     onError: () => {
-      setResult([]);
+      setResult({
+        showBits: [
+          {
+            id: 'ERROR',
+          },
+        ],
+      });
     },
     fetchPolicy: 'network-only',
   });
@@ -40,26 +42,30 @@ function ListBits(
         />
       )}
 
-      {result.showBits?.length > 0 ? (
+      {result && result?.showBits[0].id !== 'ERROR' ? (
         result?.showBits
           ?.sort(() => Math.random() - 0.5)
-          .map((item: any) => (
-            <BitBox
-              setReBit={setReBit}
-              showBits={showBits}
-              setBitAttachment={setBitAttachment}
-              isLoggedIn={isLoggedIn}
-              showInHomepage
-              key={item.id}
-              data={item}
-            />
-          ))
+          .map(
+            (item: showBitsQueryResult['showBits'][0]) =>
+              item?.id && (
+                <BitBox
+                  setReBit={setReBit}
+                  showBits={showBits}
+                  setBitAttachment={setBitAttachment}
+                  isLoggedIn={isLoggedIn}
+                  showInHomepage
+                  key={item.id}
+                  data={item}
+                />
+              ),
+          )
       ) : (
         <div className="main-no-bit-warning">
-          {result[0] === 'Loading' ? <AiOutlineLoading className="reactLoadingCircle" /> : <RxCrossCircled />}
+          {result == null ? <AiOutlineLoading className="reactLoadingCircle" /> : <RxCrossCircled />}
           <p className="main-no-bit-warning-text">
-            {result[0] === 'Loading' && 'Loading'}
-            {result[0] !== 'Loading' && (isLoggedIn ? 'Try to follow someone to see their bits!' : 'No Bits Yet!')}
+            {result == null && 'Loading'}
+            {result?.showBits[0].id === 'ERROR' &&
+              (isLoggedIn ? 'Try to follow someone to see their bits!' : 'No Bits Yet!')}
           </p>
         </div>
       )}
@@ -68,14 +74,9 @@ function ListBits(
 }
 
 function Home({ isLoggedIn }: { isLoggedIn: boolean }) {
-  const [reBit, setReBit] = useState(null);
-  const [bitAttachment, setBitAttachment] = useState<any>(null);
-
   const listBits = (
     <div className="page-content">
-      <div className="page-center-content">
-        {ListBits(isLoggedIn, reBit, setReBit, bitAttachment, setBitAttachment)}
-      </div>
+      <div className="page-center-content">{ListBits(isLoggedIn)}</div>
       <div className="page-right-content">{seasonalContent}</div>
     </div>
   );

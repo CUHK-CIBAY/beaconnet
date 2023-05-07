@@ -19,7 +19,7 @@ function RequiredProfile({
   setDoneRequired: (_done: boolean) => void;
   setLoading: (_loading: boolean) => void;
 }) {
-  const [profileIcon, setProfileIcon] = useState<any>(null);
+  const [profileIcon, setProfileIcon] = useState<File | null>(null);
 
   const [updateInfo] = useMutation<updateRequiredResult, updateRequiredVar>(updateRequiredQuery, {
     onCompleted: (data: updateRequiredResult) => {
@@ -50,7 +50,7 @@ function RequiredProfile({
     },
   });
 
-  const toBase64 = (file: any) =>
+  const toBase64 = (file: File) =>
     new Promise((resolve, reject) => {
       const reader = new FileReader();
       reader.readAsDataURL(file);
@@ -95,7 +95,7 @@ function RequiredProfile({
     fileInput.click();
   };
 
-  const uploadAttachment = (file: any, nickname: string) => {
+  const uploadAttachment = (file: File, nickname: string) => {
     if (file.size > 6_000_000) {
       alert('File size exceed 6MB');
     } else {
@@ -109,7 +109,7 @@ function RequiredProfile({
         })
           .then((res) => res.json())
           .then((returnData) => {
-            const { key } = returnData as any;
+            const { key } = returnData;
             updateInfoWithAttachment({ variables: { nickname, image: key } });
             localStorage.setItem(
               'user_info',

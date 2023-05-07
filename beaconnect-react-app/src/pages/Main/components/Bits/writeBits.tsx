@@ -19,7 +19,7 @@ import {
 import AUTH from '../../../../config/constants';
 import userIcon from '../../pages/Home/components/icon.png';
 
-const toBase64 = (file: any) =>
+const toBase64 = (file: File) =>
   new Promise((resolve, reject) => {
     const reader = new FileReader();
     reader.readAsDataURL(file);
@@ -34,11 +34,15 @@ function WriteBitBox({
   setBitAttachment,
   showBits,
 }: {
-  reBit: any;
-  setReBit: any;
-  bitAttachment: any;
-  setBitAttachment: any;
-  showBits: any;
+  reBit: [string, string] | string | null;
+  setReBit: (_reBit: string | null) => void;
+  bitAttachment: File | null;
+  setBitAttachment: (_bitAttachment: File | null) => void;
+  showBits: (_variables: {
+    variables: {
+      following: boolean;
+    };
+  }) => void;
 }) {
   const [draggingState, setDraggingState] = useState(false);
 
@@ -102,7 +106,7 @@ function WriteBitBox({
     },
   });
 
-  const uploadAttachment = (file: any | null, content: string) => {
+  const uploadAttachment = (file: File, content: string) => {
     if (file.size > 6_000_000) {
       // !AWS lambda function max size is 6MB
       alert('File size exceed 6MB');
@@ -117,7 +121,7 @@ function WriteBitBox({
         })
           .then((res) => res.json())
           .then((returnData) => {
-            const { key } = returnData as any;
+            const { key } = returnData;
             postBitWithAttachment({ variables: { image: key as string, content } });
           });
       });

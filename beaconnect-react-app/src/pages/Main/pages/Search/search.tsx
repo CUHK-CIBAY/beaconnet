@@ -12,11 +12,15 @@ import {
 import SearchResultPeople from './components/searchresult_people_left';
 import seasonalContent from '../../components/Seasonal/seasonal';
 
-export function SearchUserBar({ setFetchResult }: { setFetchResult: any }) {
+export function SearchUserBar({
+  setFetchResult,
+}: {
+  setFetchResult: React.Dispatch<React.SetStateAction<searchUserResult['findUser'] | null>>;
+}) {
   const [searchUserEmail] = useLazyQuery<searchUserResult, searchUserVariables>(searchUserQueryEmail, {
     onCompleted: (data) => {
       if (data.findUser) {
-        setFetchResult(data);
+        setFetchResult(data.findUser);
       } else {
         window.alert('No user found');
       }
@@ -27,7 +31,7 @@ export function SearchUserBar({ setFetchResult }: { setFetchResult: any }) {
   const [searchUserUsername] = useLazyQuery<searchUserResult, searchUserVariables>(searchUserQueryUsername, {
     onCompleted: (data) => {
       if (data.findUser) {
-        setFetchResult(data);
+        setFetchResult(data.findUser);
       } else {
         window.alert('No user found');
       }
@@ -72,8 +76,8 @@ const backButtonHandler = () => {
   }
 };
 
-function Search(isLoggedIn: any) {
-  const [fetchResult, setFetchResult] = React.useState<any>([]);
+function Search(isLoggedIn: { isLoggedIn: boolean }) {
+  const [fetchResult, setFetchResult] = React.useState<searchUserResult['findUser'] | null>(null);
   return (
     <div className="page-content">
       <div className="page-center-content">

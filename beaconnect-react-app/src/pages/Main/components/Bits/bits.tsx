@@ -1,15 +1,29 @@
 import React from 'react';
-import { useMutation, gql } from '@apollo/client';
+import { useMutation, LazyQueryExecFunction } from '@apollo/client';
 import { AiFillHeart, AiOutlineLoading } from 'react-icons/ai';
 import { BiRepost } from 'react-icons/bi';
 import { TbSend } from 'react-icons/tb';
 import { FaCommentAlt } from 'react-icons/fa';
 import { formatDistance } from 'date-fns';
-import { likeBitMutationVariables, likeBitQuery, likeBitMutationResult } from '../Query/bit.query';
+import {
+  likeBitMutationVariables,
+  likeBitQuery,
+  likeBitMutationResult,
+  showBitsQueryResult,
+  showBitsQueryVariables,
+  commentBitMutationVariables,
+  commentBitMutationResult,
+  commentBitMutation,
+} from '../Query/bit.query';
+import {
+  showProfileQueryResult,
+  showUserProfileQueryResult,
+  showUserProfileQueryVariables,
+} from '../../pages/Profile/components/profile.query';
 import AUTH from '../../../../config/constants';
 import userIcon from '../../pages/Home/components/icon.png';
 
-function bitBoxReBit(data: any): React.ReactNode {
+function bitBoxReBit(data: showBitsQueryResult['showBits'][0] | null | undefined): React.ReactNode {
   return (
     <div className="bit-box-reBit-with-caption">
       <div className="bit-box-content-header">
@@ -25,7 +39,7 @@ function bitBoxReBit(data: any): React.ReactNode {
         <div className="bit-box-content-header-name">{data?.reBit?.author?.info?.nickname}</div>
         <div className="bit-box-content-header-userID">{data?.reBit?.author?.username}</div>
         <div className="bit-box-content-header-time">
-          {formatDistance(new Date(data?.reBit?.createAt), new Date(), { addSuffix: true })}
+          {formatDistance(new Date(data?.reBit?.createAt!), new Date(), { addSuffix: true })}
         </div>
       </div>
       <div className="bit-box-content">
@@ -35,7 +49,10 @@ function bitBoxReBit(data: any): React.ReactNode {
   );
 }
 
-function bitBoxHeader(data: any, redirectToProfile: any): React.ReactNode {
+function bitBoxHeader(
+  data: showBitsQueryResult['showBits'][0] | null | undefined,
+  redirectToProfile: (_username: string | undefined) => void,
+): React.ReactNode {
   return (
     <div
       className="bit-box-content-header"
@@ -56,7 +73,7 @@ function bitBoxHeader(data: any, redirectToProfile: any): React.ReactNode {
       <div className="bit-box-content-header-name">{data?.author?.info?.nickname}</div>
       <div className="bit-box-content-header-userID">{`@${data?.author?.username}`}</div>
       <div className="bit-box-content-header-time">
-        {formatDistance(new Date(data?.createAt), new Date(), { addSuffix: true })}
+        {data?.createAt && formatDistance(new Date(data?.createAt), new Date(), { addSuffix: true })}
       </div>
     </div>
   );
@@ -64,14 +81,16 @@ function bitBoxHeader(data: any, redirectToProfile: any): React.ReactNode {
 
 function bitBoxFooterButtons(
   data: any,
-  showComment: any,
-  setShowComment: any,
-  setBitBoxLoading: any,
-  setReBit: any,
-  isLoggedIn: any,
-  showBits: any,
-  setBitAttachment: any,
-  showInHomepages: any,
+  showComment: boolean,
+  setShowComment: React.Dispatch<React.SetStateAction<boolean>>,
+  setBitBoxLoading: React.Dispatch<React.SetStateAction<boolean>>,
+  setReBit: React.Dispatch<React.SetStateAction<[string, string] | string | null>> | undefined,
+  isLoggedIn: boolean,
+  showBits:
+    | LazyQueryExecFunction<showBitsQueryResult, showBitsQueryVariables>
+    | LazyQueryExecFunction<showProfileQueryResult, showUserProfileQueryVariables>,
+  setBitAttachment: React.Dispatch<React.SetStateAction<File | null>> | undefined,
+  showInHomepages: boolean | undefined,
 ): React.ReactNode {
   const [giveLikeToBit] = useMutation<likeBitMutationResult, likeBitMutationVariables>(likeBitQuery, {
     onCompleted: () => {
@@ -83,7 +102,6 @@ function bitBoxFooterButtons(
 
   const handleGiveLike = () => {
     setBitBoxLoading(true);
-    console.log('isLoggedIn', isLoggedIn);
     if (isLoggedIn) {
       const id = data?.id;
       giveLikeToBit({
@@ -97,13 +115,15 @@ function bitBoxFooterButtons(
   };
 
   const handleRepost = (id: string, content: string) => {
-    setReBit([id, content]);
+    if (setReBit) setReBit([id, content]);
     document.querySelector('.write-bit-box-content-text')?.scrollIntoView({ behavior: 'smooth' });
   };
 
   const selfLikeCheck = () => {
     if (
-      data?.likeGivers?.find((likeGiver: any) => likeGiver.id === JSON.parse(localStorage.getItem(AUTH.userInfo)!).id)
+      data.likeGivers?.find(
+        (likeGiver: { id: string }) => likeGiver.id === JSON.parse(localStorage.getItem(AUTH.userInfo)!).id,
+      )
     ) {
       return 'active';
     }
@@ -112,7 +132,7 @@ function bitBoxFooterButtons(
 
   const showCommentHandler = () => {
     setShowComment(!showComment);
-    if (data?.comment?.length === 0) {
+    if (data?.comment) {
       setTimeout(() => {
         setShowComment(false);
       }, 500);
@@ -145,12 +165,12 @@ function bitBoxFooterButtons(
         <div
           className="bit-box-content-footer-repost bit-box-content-footer-icons"
           onClick={() => {
-            handleRepost(data?.id, data?.content);
-            setBitAttachment(null);
+            if (data?.content) handleRepost(data?.id, data?.content);
+            if (setBitAttachment) setBitAttachment(null);
           }}
           onKeyDown={() => {
-            handleRepost(data?.id, data?.content);
-            setBitAttachment(null);
+            if (data?.content) handleRepost(data?.id, data?.content);
+            if (setBitAttachment) setBitAttachment(null);
           }}
           role="button"
           tabIndex={0}
@@ -162,7 +182,10 @@ function bitBoxFooterButtons(
   );
 }
 
-function bitBoxShowComment(comment: any, redirectToProfile: any) {
+function bitBoxShowComment(
+  comment: showProfileQueryResult['me']['bits'][0]['comment'][0],
+  redirectToProfile: (_username: string | undefined) => void,
+): React.ReactNode {
   return (
     <div className="bit-box-content-footer-comment-list-item" key={comment.id}>
       <div
@@ -189,12 +212,16 @@ function bitBoxShowComment(comment: any, redirectToProfile: any) {
 }
 
 const bitBoxComment = (
-  data: any,
-  bitBoxLoading: any,
-  setBitBoxLoading: any,
-  setShowCommentInput: any,
-  setShowComment: any,
-  showBits: any,
+  data:
+    | showBitsQueryResult['showBits'][0]
+    | showUserProfileQueryResult['findUser']['bits'][0]
+    | showProfileQueryResult['me']['bits'][0],
+  setBitBoxLoading: React.Dispatch<React.SetStateAction<boolean>>,
+  setShowCommentInput: React.Dispatch<React.SetStateAction<boolean>>,
+  setShowComment: React.Dispatch<React.SetStateAction<boolean>>,
+  showBits:
+    | LazyQueryExecFunction<showBitsQueryResult, showBitsQueryVariables>
+    | LazyQueryExecFunction<showProfileQueryResult, showUserProfileQueryVariables>,
 ) => {
   const addActiveStatus = () => {
     setShowCommentInput(true);
@@ -209,23 +236,14 @@ const bitBoxComment = (
     }
   };
 
-  const [commentBit] = useMutation<any, any>(
-    gql`
-      mutation commentBit($bitID: ID!, $comment: String!) {
-        commentBit(id: $bitID, content: $comment) {
-          id
-        }
-      }
-    `,
-    {
-      onCompleted: () => {
-        showBits({ variables: { following: true } }).then(() => {
-          setBitBoxLoading(false);
-          setShowComment(true);
-        });
-      },
+  const [commentBit] = useMutation<commentBitMutationResult, commentBitMutationVariables>(commentBitMutation, {
+    onCompleted: () => {
+      showBits({ variables: { following: true } }).then(() => {
+        setBitBoxLoading(false);
+        setShowComment(true);
+      });
     },
-  );
+  });
 
   const handleCommentSubmit = (e: React.KeyboardEvent | React.MouseEvent) => {
     setBitBoxLoading(true);
@@ -271,11 +289,30 @@ const bitBoxComment = (
   );
 };
 
-function BitBox({ data, showBits, setBitAttachment, isLoggedIn, showInHomepage, setReBit }: any) {
+function BitBox({
+  data,
+  showBits,
+  setBitAttachment,
+  isLoggedIn,
+  showInHomepage,
+  setReBit,
+}: {
+  showBits:
+    | LazyQueryExecFunction<showBitsQueryResult, showBitsQueryVariables>
+    | LazyQueryExecFunction<showProfileQueryResult, showUserProfileQueryVariables>;
+  isLoggedIn: boolean;
+  showInHomepage?: boolean;
+  setBitAttachment?: React.Dispatch<React.SetStateAction<File | null>>;
+  setReBit?: React.Dispatch<React.SetStateAction<[string, string] | string | null>>;
+  data:
+    | showBitsQueryResult['showBits'][0]
+    | showUserProfileQueryResult['findUser']['bits'][0]
+    | showProfileQueryResult['me']['bits'][0];
+}) {
   const [bitBoxLoading, setBitBoxLoading] = React.useState(false);
   const [showComment, setShowComment] = React.useState(false);
   const [showCommentInput, setShowCommentInput] = React.useState(false);
-  function redirectToProfile(username: any): void {
+  function redirectToProfile(username: string | undefined) {
     if (username) window.location.href = `/profile?username=${username}`;
   }
   return (
@@ -305,11 +342,13 @@ function BitBox({ data, showBits, setBitAttachment, isLoggedIn, showInHomepage, 
       )}
 
       <div className={`bit-box-content-footer-comment-list ${showComment && 'active'}`}>
-        {data?.comment?.map((comment: any) => comment && bitBoxShowComment(comment, redirectToProfile))}
+        {data?.comment?.map(
+          (comment: showProfileQueryResult['me']['bits'][0]['comment'][0]) =>
+            comment && bitBoxShowComment(comment, redirectToProfile),
+        )}
       </div>
 
-      {isLoggedIn &&
-        bitBoxComment(data, bitBoxLoading, setBitBoxLoading, setShowCommentInput, setShowComment, showBits)}
+      {isLoggedIn && bitBoxComment(data, setBitBoxLoading, setShowCommentInput, setShowComment, showBits)}
       {bitBoxLoading && (
         <div className="bit-box-content-loading">
           <AiOutlineLoading className="reactLoadingCircle profile-page-loading-icon" />
@@ -321,6 +360,8 @@ function BitBox({ data, showBits, setBitAttachment, isLoggedIn, showInHomepage, 
 
 BitBox.defaultProps = {
   showInHomepage: false,
+  setReBit: null,
+  setBitAttachment: null,
 };
 
 export default BitBox;

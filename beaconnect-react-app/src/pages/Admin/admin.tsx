@@ -34,14 +34,14 @@ function NavBar() {
   );
 }
 
-function DeleteUserOnPage({ userID, queryUser }: any) {
+function DeleteUserOnPage({ userID, queryUser }: { userID: string; queryUser: () => void }) {
   const [deleteUser] = useMutation<deleteUserMutationResult, deleteUserMutationVariables>(deleteUserQuery, {
     onCompleted: () => {
       queryUser();
     },
   });
 
-  const handleDeleteUser = (idNumber: any) => {
+  const handleDeleteUser = (idNumber: string) => {
     deleteUser({ variables: { id: idNumber } });
   };
 
@@ -62,7 +62,22 @@ function DeleteUserOnPage({ userID, queryUser }: any) {
   );
 }
 
-function ShowUsers({ username, userID, nickname, image, queryUser }: any) {
+function ShowUsers({
+  username,
+  userID,
+  nickname,
+  image,
+  queryUser,
+}: {
+  username: string;
+  userID: string;
+  nickname: string;
+  image: string;
+  queryUser: () => void;
+}) {
+  if (!username) {
+    return <div />;
+  }
   return (
     <div className="show-user-row">
       <div className="panel-show-user-name">
@@ -95,7 +110,7 @@ function ShowUsers({ username, userID, nickname, image, queryUser }: any) {
 }
 
 function Panel() {
-  const [result, setResult] = useState<any>([]);
+  const [result, setResult] = useState<showUsersListQueryResult>();
 
   const [queryUser] = useLazyQuery<showUsersListQueryResult>(showUsersListQuery, {
     onCompleted: (getUser) => {
@@ -111,16 +126,25 @@ function Panel() {
     <div>
       <div className="Panel-component">User List</div>
       <div className="Panel-page">
-        {result?.users?.map((user: any) => (
-          <ShowUsers
-            username={user?.username}
-            userID={user?.id}
-            nickname={user?.info?.nickname}
-            image={user?.info?.image}
-            queryUser={queryUser}
-            key={user.id}
-          />
-        ))}
+        {result?.users?.map(
+          (user: {
+            username: string;
+            id: string;
+            info: {
+              nickname: string;
+              image: string;
+            };
+          }) => (
+            <ShowUsers
+              username={user?.username}
+              userID={user?.id}
+              nickname={user?.info?.nickname}
+              image={user?.info?.image}
+              queryUser={queryUser}
+              key={user.id}
+            />
+          ),
+        )}
       </div>
     </div>
   );

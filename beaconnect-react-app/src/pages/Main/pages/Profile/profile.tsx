@@ -15,10 +15,12 @@ import BitBox from '../../components/Bits/bits';
 import './profile.css';
 
 function Profile({ isLoggedIn }: { isLoggedIn: boolean }) {
-  const [profileDetails, setProfileDetails] = useState<any>(null);
+  const [profileDetails, setProfileDetails] = useState<
+    showProfileQueryResult['me'] | showUserProfileQueryResult['findUser'] | null
+  >(null);
 
   const [queryProfile] = useLazyQuery<showProfileQueryResult>(showProfileQuery, {
-    onCompleted: (data: any) => {
+    onCompleted: (data: showProfileQueryResult) => {
       setProfileDetails(data.me);
     },
     fetchPolicy: 'network-only',
@@ -27,7 +29,7 @@ function Profile({ isLoggedIn }: { isLoggedIn: boolean }) {
   const [queryOtherProfileUsername] = useLazyQuery<showUserProfileQueryResult, showUserProfileQueryVariables>(
     showUserProfileQueryUsername,
     {
-      onCompleted: (data: any) => {
+      onCompleted: (data: showUserProfileQueryResult) => {
         if (data.findUser) setProfileDetails(data.findUser);
         else {
           window.alert('User not found');
@@ -43,7 +45,7 @@ function Profile({ isLoggedIn }: { isLoggedIn: boolean }) {
   const [queryOtherProfileEmail] = useLazyQuery<showUserProfileQueryResult, showUserProfileQueryVariables>(
     showUserProfileQueryEmail,
     {
-      onCompleted: (data: any) => {
+      onCompleted: (data: showUserProfileQueryResult) => {
         if (data.findUser) setProfileDetails(data.findUser);
         else {
           window.alert('User not found');
@@ -122,9 +124,11 @@ function Profile({ isLoggedIn }: { isLoggedIn: boolean }) {
             </button> */}
             </div>
             <div className="user-bits-show">
-              {profileDetails?.bits?.map((item: any) => (
-                <BitBox key={item.id} isLoggedIn={isLoggedIn} data={item} showBits={queryProfile} />
-              ))}
+              {profileDetails?.bits?.map(
+                (item: showUserProfileQueryResult['findUser']['bits'][0] | showProfileQueryResult['me']['bits'][0]) => (
+                  <BitBox key={item.id} isLoggedIn={isLoggedIn} data={item} showBits={queryProfile} />
+                ),
+              )}
             </div>
           </div>
         </div>
