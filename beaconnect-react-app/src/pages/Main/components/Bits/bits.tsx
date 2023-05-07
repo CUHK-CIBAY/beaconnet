@@ -116,7 +116,10 @@ function bitBoxFooterButtons(
 
   const handleRepost = (id: string, content: string) => {
     if (setReBit) setReBit([id, content]);
-    document.querySelector('.write-bit-box-content-text')?.scrollIntoView({ behavior: 'smooth' });
+    document.querySelector('.page-center-content')?.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    });
   };
 
   const selfLikeCheck = () => {
