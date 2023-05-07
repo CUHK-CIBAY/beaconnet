@@ -9,8 +9,8 @@ export const SearchResultPeopleList = (props: any) => {
   const [followed, setFollowed] = useState<boolean>(false);
   // console.log(user);
   // console.log(
-  //   user.user.following &&
-  //     user.user.following.find(
+  //   user?.user?.following &&
+  //     user?.user?.following.find(
   //       (following: any) => following.id === JSON.parse(localStorage.getItem(AUTH.userInfo)!).id,
   //     ),
   // );
@@ -48,27 +48,27 @@ export const SearchResultPeopleList = (props: any) => {
       <img
         className="search-result-user-icon"
         src={
-          props.user?.info?.image
-            ? `https://beaconnect-image-imagebucket-ft90dpqhkbr1.s3.ap-southeast-1.amazonaws.com/${props.user.user.info.image}`
+          props?.user?.info?.image
+            ? `https://beaconnect-image-imagebucket-ft90dpqhkbr1.s3.ap-southeast-1.amazonaws.com/${props?.user?.info.image}`
             : userIcon
         }
         alt="profile"
       />
       <div className="search-result-user-info">
         <div className="search-result-user-names">
-          <p className="search-result-user-nickname">{props.user?.info?.nickname || props.user?.username}</p>
-          <p className="search-result-user-nameID">{`@${props.user?.username}`}</p>
+          <p className="search-result-user-nickname">{props?.user?.info?.nickname || props?.user?.username}</p>
+          <p className="search-result-user-nameID">{`@${props?.user?.username}`}</p>
         </div>
-        <div className="search-result-user-bio">{props.user?.info?.bio || 'Hello World'}</div>
+        <div className="search-result-user-bio">{props?.user?.info?.bio || 'Hello World'}</div>
       </div>
-      {props.isLoggedIn.isLoggedIn && (
+      {props?.isLoggedIn.isLoggedIn && (
         <div className="search-result-user-follow">
           <input
             type="button"
             value={followed ? 'Unfollow' : 'Follow'}
             className="search-user-follow-button"
             onClick={() => {
-              followOtherUser(props.user?.id);
+              followOtherUser(props?.user?.id);
             }}
           ></input>
         </div>
@@ -80,7 +80,7 @@ export const SearchResultPeopleList = (props: any) => {
           value="View"
           className="search-user-follow-button"
           onClick={() => {
-            window.location.href = `/profile?username=${props.user?.username}`;
+            window.location.href = `/profile?username=${props?.user?.username}`;
           }}
         ></input>
       </div>
@@ -92,7 +92,7 @@ const SearchResultPeople = (props: any) => {
   const [users, setUsers] = useState<any>([]);
   const [queryUser] = useLazyQuery<any>(showUsersListQuery, {
     onCompleted: (getuser) => {
-      console.log(getuser.me.following);
+      console.log(getuser?.me.following);
       setUsers(
         getuser?.users
           ?.map((value: any) => ({ value, sort: Math.random() }))
@@ -111,15 +111,17 @@ const SearchResultPeople = (props: any) => {
   return (
     <div className="search-result-people-section">
       <div className="search-result-people">
-        {props.result?.findUser && (
+        {props?.result?.findUser && (
           <>
-            <SearchResultPeopleList user={props?.result.findUser} isLoggedIn={props.isLoggedIn} />
+            <SearchResultPeopleList user={props?.result.findUser} isLoggedIn={props?.isLoggedIn} />
             <hr />
           </>
         )}
         <h3>Users you may know</h3>
         {users &&
-          users.map((user: any) => <SearchResultPeopleList user={user} isLoggedIn={props.isLoggedIn} key={user.id} />)}
+          users.map((user: any) => (
+            <SearchResultPeopleList user={user} isLoggedIn={props?.isLoggedIn} key={user?.id} />
+          ))}
       </div>
     </div>
   );

@@ -4,12 +4,28 @@ import { useLazyQuery } from '@apollo/client';
 import './search.css';
 import { BiSearchAlt } from 'react-icons/bi';
 import { AiOutlineLeft } from 'react-icons/ai';
-import { searchUserQuery, searchUserVariables, searchUserResult } from '../../components/Query/search.query';
+import {
+  searchUserVariables,
+  searchUserResult,
+  searchUserQueryUsername,
+  searchUserQueryEmail,
+} from '../../components/Query/search.query';
 import SearchResultPeople from './components/searchresult_people_left';
 import seasonalContent from '../../components/Seasonal/seasonal';
 
 export const SearchUserBar = ({ setFetchResult }: { setFetchResult: any }) => {
-  const [searchUser] = useLazyQuery<searchUserResult, searchUserVariables>(searchUserQuery, {
+  const [searchUserEmail] = useLazyQuery<searchUserResult, searchUserVariables>(searchUserQueryEmail, {
+    onCompleted: (data) => {
+      if (data.findUser) {
+        setFetchResult(data);
+      } else {
+        window.alert('No user found');
+      }
+    },
+    fetchPolicy: 'network-only',
+  });
+
+  const [searchUserUsername] = useLazyQuery<searchUserResult, searchUserVariables>(searchUserQueryUsername, {
     onCompleted: (data) => {
       if (data.findUser) {
         setFetchResult(data);
@@ -24,16 +40,28 @@ export const SearchUserBar = ({ setFetchResult }: { setFetchResult: any }) => {
     if (e.key === 'Enter') {
       const { currentTarget } = e;
       const searchInput = currentTarget as HTMLInputElement;
-      const username = searchInput.value;
+      const userInput = searchInput.value;
 
-      if (username.length > 0) {
-        searchUser({ variables: { username } });
+      if (userInput.length > 0) {
+        // regex test
+        const emailRegex = /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/;
+        if (emailRegex.test(userInput)) {
+          searchUserEmail({ variables: { email: userInput } });
+        } else {
+          searchUserUsername({ variables: { username: userInput } });
+        }
       }
     }
   };
 
   return (
-    <input className="trend-search-input" type="text" placeholder="search" onKeyDown={searchUserHandler} tabIndex={0} />
+    <input
+      className="trend-search-input"
+      type="text"
+      placeholder="Search by Email or Username"
+      onKeyDown={searchUserHandler}
+      tabIndex={0}
+    />
   );
 };
 

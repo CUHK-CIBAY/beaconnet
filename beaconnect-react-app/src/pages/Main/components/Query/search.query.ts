@@ -1,7 +1,8 @@
 import { gql } from '@apollo/client';
 
 export type searchUserVariables = {
-  username: string;
+  username?: string;
+  email?: string;
 };
 
 export type searchUserResult = {
@@ -16,9 +17,23 @@ export type searchUserResult = {
   };
 };
 
-export const searchUserQuery = gql`
+export const searchUserQueryUsername = gql`
   query searchUserQuery($username: String!) {
     findUser(input: { username: $username }) {
+      id
+      username
+      info {
+        bio
+        image
+        nickname
+      }
+    }
+  }
+`;
+
+export const searchUserQueryEmail = gql`
+  query searchUserQuery($email: String!) {
+    findUser(input: { email: $email }) {
       id
       username
       info {
