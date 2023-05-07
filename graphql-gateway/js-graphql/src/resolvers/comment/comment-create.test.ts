@@ -12,7 +12,7 @@ describe('resolver', () => {
 	});
 	it('No Bit id', async () => {
 		const res = await resolver({}, { content }, { me, driver });
-		expect(res.content).toEqual(null);
+		expect(res).toEqual(null);
 	});
 	it('Comment', async () => {
 		const res = await resolver({}, { id, content }, { me, driver });
