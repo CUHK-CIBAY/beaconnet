@@ -48,15 +48,12 @@ const LoginCompound = (props: {
           image: me?.info?.image,
         }),
       );
-      if (me?.info && me.info.nickname) {
-        loginWrapper?.classList.add('redirect');
-        setTimeout(() => {
-          setIsLoggedIn(true);
-          loginWrapper?.classList.remove('redirect');
-        }, 1000);
-      } else {
+      if (!me?.info?.nickname) window.history.pushState({}, '', '/?setProfile=true');
+      loginWrapper?.classList.add(me?.info?.nickname ? 'redirect' : 'profileCreate');
+      setTimeout(() => {
         setIsLoggedIn(true);
-      }
+        loginWrapper?.classList.remove(me?.info?.nickname ? 'redirect' : 'profileCreate');
+      }, 1000);
     },
     onError: (error) => {
       setErrorMessage(error.message);

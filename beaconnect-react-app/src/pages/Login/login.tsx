@@ -32,10 +32,10 @@ const Login = (props: {
   return (
     <div className="Login-Register-Wrapper">
       <div className={`Login-Register-Container ${loginType === 'Login' ? 'Login' : 'Register'}`}>
-        <div className="Login-Register-Image">
+        <div className="Login-Register-Image Login-Register-Container-Content">
           <img src={Cover} alt="Cover" />
         </div>
-        <div className="Login-Register-Form-Container">
+        <div className="Login-Register-Form-Container Login-Register-Container-Content">
           <div
             className="Login-Register-Close-Form"
             onClick={navigateToHome}
@@ -69,7 +69,7 @@ const Login = (props: {
             </div>
           </form>
         </div>
-        <div className="Login-Register-Form-Footer">
+        <div className="Login-Register-Form-Footer Login-Register-Container-Content">
           <p>
             <button type="button" onClick={changeLoginType(loginType)}>
               {loginType === 'Login' ? 'Create Account' : 'Already have an account?'}

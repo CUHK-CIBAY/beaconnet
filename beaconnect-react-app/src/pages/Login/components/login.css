@@ -17,8 +17,12 @@
   box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.15);
   border-radius: 20px;
   padding: 0 0 0 450px;
-  transition: transform 0.8s ease-in-out;
+  transition: transform 0.8s ease-in-out, width 0.5s ease-in-out;
   overflow: hidden;
+}
+
+.Login-Register-Container-Content {
+  transition: opacity 0.5s ease-in-out;
 }
 
 .Login-Register-Wrapper.redirect {
@@ -27,6 +31,14 @@
 
 .Login-Register-Wrapper.redirect .Login-Register-Container {
   transform: translateY(-100vh);
+}
+
+.Login-Register-Wrapper.profileCreate .Login-Register-Container {
+  width: 450px;
+}
+
+.Login-Register-Wrapper.profileCreate .Login-Register-Container-Content {
+  opacity: 0;
 }
 
 .Login-Register-Form-Error {

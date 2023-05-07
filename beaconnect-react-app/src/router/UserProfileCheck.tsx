@@ -23,8 +23,9 @@ const UserProfileCheck = ({
   const { signOut } = useUserContext();
   const [userProfileChecker] = useLazyQuery(getUserProfileQuery, {
     onCompleted: (data) => {
+      console.log(data, localStorage, new Date());
       setGetStatus(true);
-      if (data.me.info.nickname) setUserProfile(true);
+      if (data?.me?.info?.nickname) setUserProfile(true);
     },
     onError: (error) => {
       if (
@@ -35,6 +36,7 @@ const UserProfileCheck = ({
         window.location.reload();
       }
     },
+    fetchPolicy: 'network-only',
   });
 
   useEffect(() => {

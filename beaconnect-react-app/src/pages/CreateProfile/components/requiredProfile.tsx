@@ -27,7 +27,10 @@ const RequiredProfile = ({
     updateRequiredInfoQuery,
     {
       onCompleted: (data: UpdateRequiredInfoMutationResult) => {
-        if (data.updateInfo.info.nickname) setDoneRequired(true);
+        if (data.updateInfo.info.nickname) {
+          setDoneRequired(true);
+          window.history.pushState({}, '', '/');
+        }
         setLoading(false);
       },
       onError: () => {
@@ -41,7 +44,10 @@ const RequiredProfile = ({
     UpdateRequiredInfoWithAttachmentMutationVariables
   >(updateRequiredInfoQuery, {
     onCompleted: (data: UpdateRequiredInfoMutationResult) => {
-      if (data.updateInfo.info.nickname) setDoneRequired(true);
+      if (data.updateInfo.info.nickname) {
+        setDoneRequired(true);
+        window.history.pushState({}, '', '/');
+      }
       setLoading(false);
     },
     onError: () => {
