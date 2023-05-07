@@ -5,8 +5,9 @@ import { AiOutlineLoading } from 'react-icons/ai';
 import {
   showProfileQuery,
   showProfileQueryResult,
-  showUserProfileQuery,
+  showUserProfileQueryEmail,
   showUserProfileQueryResult,
+  showUserProfileQueryUsername,
   showUserProfileQueryVariables,
 } from './components/profile.query';
 import Banner1 from './components/borzoi.jpeg';
@@ -25,8 +26,24 @@ const Profile = () => {
     fetchPolicy: 'network-only',
   });
 
-  const [queryOtherProfile] = useLazyQuery<showUserProfileQueryResult, showUserProfileQueryVariables>(
-    showUserProfileQuery,
+  const [queryOtherProfileUsername] = useLazyQuery<showUserProfileQueryResult, showUserProfileQueryVariables>(
+    showUserProfileQueryUsername,
+    {
+      onCompleted: (data: any) => {
+        if (data.findUser) setProfileDetails(data.findUser);
+        else {
+          window.alert('User not found');
+          setTimeout(() => {
+            window.location.href = '/search';
+          }, 1000);
+        }
+      },
+      fetchPolicy: 'network-only',
+    },
+  );
+
+  const [queryOtherProfileEmail] = useLazyQuery<showUserProfileQueryResult, showUserProfileQueryVariables>(
+    showUserProfileQueryEmail,
     {
       onCompleted: (data: any) => {
         if (data.findUser) setProfileDetails(data.findUser);
@@ -44,10 +61,17 @@ const Profile = () => {
   useEffect(() => {
     const urlParams = new URLSearchParams(window.location.search);
     const username = urlParams.get('username');
+    const email = urlParams.get('email');
     if (username) {
-      queryOtherProfile({
+      queryOtherProfileUsername({
         variables: {
           username,
+        },
+      });
+    } else if (email) {
+      queryOtherProfileEmail({
+        variables: {
+          email,
         },
       });
     } else {

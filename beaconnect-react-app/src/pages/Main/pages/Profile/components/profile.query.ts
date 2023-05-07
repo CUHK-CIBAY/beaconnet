@@ -76,7 +76,8 @@ export const showProfileQuery = gql`
 `;
 
 export type showUserProfileQueryVariables = {
-  username: string;
+  username?: string;
+  email?: string;
 };
 
 export type showUserProfileQueryResult = {
@@ -126,9 +127,37 @@ export type showUserProfileQueryResult = {
   };
 };
 
-export const showUserProfileQuery = gql`
+export const showUserProfileQueryUsername = gql`
   query showUserProfile($username: String!) {
     findUser(input: { username: $username }) {
+      info {
+        bio
+        nickname
+        image
+      }
+      username
+      bits {
+        id
+        content
+        createAt
+        totalLike
+        image
+        author {
+          id
+          username
+          info {
+            image
+            nickname
+          }
+        }
+      }
+    }
+  }
+`;
+
+export const showUserProfileQueryEmail = gql`
+  query showUserProfile($email: String!) {
+    findUser(input: { email: $email }) {
       info {
         bio
         nickname
