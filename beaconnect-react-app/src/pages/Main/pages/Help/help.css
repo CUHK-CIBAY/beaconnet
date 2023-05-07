@@ -89,3 +89,22 @@
 .help-main-report-content-description-input:focus {
   border: #a1ab7d 2px solid;
 }
+
+@media (max-width: 955px) {
+  .page-content.page-content-help {
+    width: calc(100vw);
+  }
+
+  .setting-page-container .page-center-content {
+    display: none;
+  }
+
+  .setting-page-container .page-right-content {
+    display: unset;
+    width: calc(100% - 40px);
+    top: 70px;
+    bottom: 80px;
+    border-radius: 20px;
+    overflow: scroll;
+  }
+}
