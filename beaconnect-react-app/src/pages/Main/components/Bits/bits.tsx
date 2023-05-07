@@ -256,8 +256,8 @@ const bitBoxComment = (
     if (currentInput.length > 0) {
       commentBit({
         variables: {
-          bitID: data?.id,
-          comment: currentInput,
+          id: data!.id,
+          content: currentInput,
         },
       });
       input.value = '';

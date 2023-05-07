@@ -64,13 +64,13 @@ export type commentBitMutationResult = {
 };
 
 export type commentBitMutationVariables = {
-  bitID: string;
-  comment: string;
+  id: string;
+  content: string;
 };
 
 export const commentBitMutation = gql`
-  mutation CommentBit($bitID: ID!, $comment: String!) {
-    commentBit(bitID: $bitID, comment: $comment) {
+  mutation CommentBit($id: ID!, $content: String!) {
+    commentBit(id: $id, content: $content) {
       id
     }
   }
