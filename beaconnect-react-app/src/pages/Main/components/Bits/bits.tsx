@@ -156,6 +156,14 @@ function bitBoxFooterButtons(
     return '';
   };
 
+  const showCommentHandler = () => {
+    setShowComment(!showComment);
+    if (data.comment.length === 0)
+      setTimeout(() => {
+        setShowComment(false);
+      }, 500);
+  };
+
   return (
     <div className="bit-box-content-footer">
       <div
@@ -170,8 +178,8 @@ function bitBoxFooterButtons(
       </div>
       <div
         className={`bit-box-content-footer-comments bit-box-content-footer-icons ${showComment && 'active'}`}
-        onClick={() => setShowComment(!showComment)}
-        onKeyDown={() => setShowComment(!showComment)}
+        onClick={showCommentHandler}
+        onKeyDown={showCommentHandler}
         role="button"
         tabIndex={0}
       >
