@@ -18,6 +18,7 @@ const Logout = ({
     setGetStatus(false);
     setUserProfile(false);
     setIsLoggedIn(false);
+    window.location.reload();
   }, []);
 
   // eslint-disable-next-line react/jsx-no-useless-fragment
