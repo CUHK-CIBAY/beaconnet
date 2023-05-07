@@ -100,13 +100,12 @@ function SearchResultPeople(props: any) {
   useEffect(() => {
     queryUser();
   }, []);
-
   return (
     <div className="search-result-people-section">
       <div className="search-result-people">
-        {props?.result?.findUser && (
+        {props?.result && (
           <>
-            <SearchResultPeopleList user={props?.result.findUser} isLoggedIn={props?.isLoggedIn} />
+            <SearchResultPeopleList user={props?.result} isLoggedIn={!props?.isLoggedIn} />
             <hr />
           </>
         )}
