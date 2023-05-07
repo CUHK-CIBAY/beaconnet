@@ -131,16 +131,18 @@ export type showBitsQueryResult = {
           };
         };
       };
-      comment?: [{
-        content: string;
-        createAt: string;
-        owner: {
-          info: {
-            nickname: string;
+      comment?: [
+        {
+          content: string;
+          createAt: string;
+          owner: {
+            info: {
+              nickname: string;
+            };
+            username: string;
           };
-          username: string;
-        };
-      }];
+        },
+      ];
     },
   ];
 };

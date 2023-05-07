@@ -43,22 +43,20 @@ function ListBits(isLoggedIn: boolean) {
       )}
 
       {result && result?.showBits[0].id !== 'ERROR' ? (
-        result?.showBits
-          ?.sort(() => Math.random() - 0.5)
-          .map(
-            (item: showBitsQueryResult['showBits'][0]) =>
-              item?.id && (
-                <BitBox
-                  setReBit={setReBit}
-                  showBits={showBits}
-                  setBitAttachment={setBitAttachment}
-                  isLoggedIn={isLoggedIn}
-                  showInHomepage
-                  key={item.id}
-                  data={item}
-                />
-              ),
-          )
+        result?.showBits.map(
+          (item: showBitsQueryResult['showBits'][0]) =>
+            item?.id && (
+              <BitBox
+                setReBit={setReBit}
+                showBits={showBits}
+                setBitAttachment={setBitAttachment}
+                isLoggedIn={isLoggedIn}
+                showInHomepage
+                key={item.id}
+                data={item}
+              />
+            ),
+        )
       ) : (
         <div className="main-no-bit-warning">
           {result == null ? <AiOutlineLoading className="reactLoadingCircle" /> : <RxCrossCircled />}
