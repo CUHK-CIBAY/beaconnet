@@ -8,7 +8,7 @@
   "scripts": {
     "dev": "nodemon src/index.ts",
     "generate": "graphql-codegen",
-    "test": "jest --coverage --collectCoverageFrom='src/**/*.ts'"
+    "test": "jest --coverage --collectCoverageFrom='src/**/*.ts' --silent"
   },
   "dependencies": {
     "@graphql-tools/graphql-file-loader": "^7.5.16",
