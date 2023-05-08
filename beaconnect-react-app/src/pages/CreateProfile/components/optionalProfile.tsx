@@ -10,6 +10,7 @@ function OptionalProfile({
   setUserProfile: (_done: boolean) => void;
   setLoading: (_loading: boolean) => void;
 }) {
+  // set profile style and state to redirect
   const doneSetProfile = () => {
     document.querySelector('.create-profile-wrapper')?.classList.toggle('redirect');
     setTimeout(() => {
@@ -17,23 +18,32 @@ function OptionalProfile({
     }, 1000);
   };
 
+  // update user info mutation by graphql
   const [updateInfo] = useMutation<optionUpdateResult, optionUpdateVariables>(optionUpdateQuery, {
     onCompleted: (data: optionUpdateResult) => {
+      // set loading state
       setLoading(false);
+      // redirect to main page
       if (data.updateInfo.info.bio || data.updateInfo.info.phone) doneSetProfile();
     },
     onError: () => {
+      // output error message
+      setLoading(false);
       window.alert('Failed to communicate with server. Please try again later.');
     },
   });
 
+  // handle form submit
   const handleFormSubmit = () => {
     const bio = document.getElementById('Bio') as HTMLInputElement;
     const phone = document.getElementById('phone') as HTMLInputElement;
+    // set loading state
     setLoading(true);
+    // update user info
     updateInfo({ variables: { bio: bio.value, phone: phone.value } });
   };
 
+  // render optional profile form
   return (
     <div className="create-optional-profile">
       <h1>Let us know more...</h1>

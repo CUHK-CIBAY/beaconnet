@@ -12,6 +12,7 @@ const authLink = setContext((_, { headers }) => {
   try {
     const token = tokenString ? JSON.parse(tokenString) : null;
 
+    // Check if token is expired
     if (token) {
       const now = new Date();
       if (now.getTime() > token.expiry) {
@@ -20,6 +21,7 @@ const authLink = setContext((_, { headers }) => {
       }
     }
 
+    // return the headers to the context so httpLink can read them
     return {
       headers: {
         ...headers,
@@ -27,6 +29,7 @@ const authLink = setContext((_, { headers }) => {
       },
     };
   } catch (e) {
+    // If token is invalid, clear local storage and reload page
     localStorage.clear();
     window.location.reload();
     return {};
@@ -35,18 +38,21 @@ const authLink = setContext((_, { headers }) => {
 
 const errorLink = onError(({ graphQLErrors, networkError, response }) => {
   if (graphQLErrors) {
+    // Output error to console
     graphQLErrors.forEach(({ message, locations, path }) => {
       console.log(`[GraphQL error]: Message: ${message}, Location: ${locations}, Path: ${path}, Response: ${response}`);
     });
   }
   if (networkError) {
     if ('statusCode' in networkError && networkError.statusCode === 401) {
+      // If not authorized, clear local storage and reload page
       localStorage.removeItem(AUTH.token);
       window.location.reload();
     }
   }
 });
 
+// Create Apollo client
 const client = new ApolloClient({
   link: authLink.concat(errorLink.concat(httpLink)),
   cache: new InMemoryCache(),

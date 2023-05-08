@@ -16,16 +16,9 @@ import {
   reBitQuery,
   reBitMutationResult,
 } from '../Query/bit.query';
+import { toBase64 } from '../../../../config/tools';
 import AUTH from '../../../../config/constants';
 import userIcon from '../../pages/Home/components/icon.png';
-
-const toBase64 = (file: File) =>
-  new Promise((resolve, reject) => {
-    const reader = new FileReader();
-    reader.readAsDataURL(file);
-    reader.onload = () => resolve(reader.result);
-    reader.onerror = (error) => reject(error);
-  });
 
 function WriteBitBox({
   reBit,
