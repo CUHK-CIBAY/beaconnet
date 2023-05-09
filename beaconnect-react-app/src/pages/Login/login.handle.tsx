@@ -22,6 +22,7 @@ function LoginCompound(props: {
   const { loginType, isLoggedIn, setIsLoggedIn } = props;
   if (isLoggedIn) return <Navigate to="/" replace />;
   const { signIn } = useUserContext();
+  const [loginBoxTransition, setLoginBoxTransition] = useState('');
   const [currentLoginType, setCurrentLoginType] = useState(loginType);
   const [errorMessage, setErrorMessage] = useState('');
   const changeLoginType = (type: string) => () => {
@@ -33,7 +34,6 @@ function LoginCompound(props: {
 
   const [login, { loading: loginLoading }] = useMutation<LoginMutationResult, LoginMutationVariables>(loginQuery, {
     onCompleted: (data) => {
-      const loginWrapper = document.querySelector('.Login-Register-Wrapper');
       const {
         login: { token, me },
       } = data;
@@ -47,10 +47,10 @@ function LoginCompound(props: {
         }),
       );
       if (!me?.info?.nickname) window.history.pushState({}, '', '/?setProfile=true');
-      loginWrapper?.classList.add(me?.info?.nickname ? 'redirect' : 'profileCreate');
+      setLoginBoxTransition(me?.info?.nickname ? 'redirect' : 'profileCreate');
       setTimeout(() => {
         setIsLoggedIn(true);
-        loginWrapper?.classList.remove(me?.info?.nickname ? 'redirect' : 'profileCreate');
+        setLoginBoxTransition('');
       }, 1000);
     },
     onError: (error) => {
@@ -96,6 +96,7 @@ function LoginCompound(props: {
       onLogin={handleLogin}
       onRegister={handleRegister}
       Loading={registerLoading || loginLoading}
+      loginBoxTransition={loginBoxTransition}
       errorMessage={errorMessage}
     />
   );

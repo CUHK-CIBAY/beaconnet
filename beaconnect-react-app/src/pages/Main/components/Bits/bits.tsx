@@ -1,6 +1,6 @@
 import React from 'react';
 import { useMutation, LazyQueryExecFunction } from '@apollo/client';
-import { AiFillHeart, AiOutlineLoading } from 'react-icons/ai';
+import { AiFillHeart } from 'react-icons/ai';
 import { BiRepost } from 'react-icons/bi';
 import { TbSend } from 'react-icons/tb';
 import { FaCommentAlt } from 'react-icons/fa';
@@ -22,6 +22,7 @@ import {
 } from '../../pages/Profile/components/profile.query';
 import AUTH from '../../../../config/constants';
 import userIcon from '../../pages/Home/components/icon.png';
+import Loading from '../../../../components/Loading/loading';
 
 function bitBoxReBit(data: showBitsQueryResult['showBits'][0] | null | undefined): React.ReactNode {
   return (
@@ -352,11 +353,7 @@ function BitBox({
       </div>
 
       {isLoggedIn && bitBoxComment(data, setBitBoxLoading, setShowCommentInput, setShowComment, showBits)}
-      {bitBoxLoading && (
-        <div className="bit-box-content-loading">
-          <AiOutlineLoading className="reactLoadingCircle profile-page-loading-icon" />
-        </div>
-      )}
+      <Loading showLoading={bitBoxLoading} />
     </div>
   );
 }

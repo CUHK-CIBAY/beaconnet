@@ -36,38 +36,6 @@
   width: 900px;
 }
 
-.create-profile-loading {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100%;
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgb(255, 255, 255, 0.95);
-}
-
-.create-profile-loading-circle {
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  border: 5px solid #fff;
-  border-top: 5px solid #9e9e9a;
-  animation: spin 1s linear infinite;
-}
-
-@keyframes spin {
-  0% {
-    transform: rotate(0deg);
-  }
-
-  100% {
-    transform: rotate(360deg);
-  }
-}
-
 .create-required-profile,
 .create-optional-profile {
   display: flex;

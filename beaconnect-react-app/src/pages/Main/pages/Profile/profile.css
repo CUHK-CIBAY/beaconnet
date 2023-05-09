@@ -111,23 +111,6 @@
   position: relative;
 }
 
-.profile-page-loading {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background-color: #ffffff;
-  z-index: 100;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.profile-page-loading-icon {
-  scale: 2;
-}
-
 @media only screen and (max-width: 955px) {
   .profile-banner-container {
     width: 100%;

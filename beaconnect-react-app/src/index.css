@@ -45,16 +45,3 @@ img {
   user-drag: none;
   -webkit-touch-callout: none;
 }
-
-.reactLoadingCircle {
-  animation: reactLoadingCircle 0.5s linear infinite;
-}
-
-@keyframes reactLoadingCircle {
-  0% {
-    rotate: 0;
-  }
-  100% {
-    rotate: 360deg;
-  }
-}

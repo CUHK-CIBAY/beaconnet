@@ -1,5 +1,6 @@
 import React, { Suspense } from 'react';
 import { Routes, Route } from 'react-router-dom';
+import Loading from '../../components/Loading/loading';
 import Search from './pages/Search/search';
 import Profile from './pages/Profile/profile';
 import Setting from './pages/Setting/setting';
@@ -13,7 +14,7 @@ function Main({ isLoggedIn }: { isLoggedIn: boolean }) {
   return (
     <div className="homePage">
       <NavBar isLoggedIn={isLoggedIn} />
-      <Suspense fallback={<p>loading</p>}>
+      <Suspense fallback={<Loading />}>
         <Routes>
           <Route path="/search" element={<Search isLoggedIn={isLoggedIn} />} />
           <Route path="/profile" element={<Profile isLoggedIn={isLoggedIn} />} />

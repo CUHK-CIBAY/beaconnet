@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { useLazyQuery } from '@apollo/client';
-import { AiOutlineLoading } from 'react-icons/ai';
 import { RxCrossCircled } from 'react-icons/rx';
 import BitBox from '../../components/Bits/bits';
 import WriteBitBox from '../../components/Bits/writeBits';
 import { showBitsQuery, showBitsQueryVariables, showBitsQueryResult } from '../../components/Query/bit.query';
 import seasonalContent from '../../components/Seasonal/seasonal';
+import Loading from '../../../../components/Loading/loading';
 
 function ListBits(isLoggedIn: boolean) {
   const [reBit, setReBit] = useState<[string, string] | string | null>(null);
@@ -59,9 +59,9 @@ function ListBits(isLoggedIn: boolean) {
         )
       ) : (
         <div className="main-no-bit-warning">
-          {result == null ? <AiOutlineLoading className="reactLoadingCircle" /> : <RxCrossCircled />}
+          {result !== null && <RxCrossCircled />}
           <p className="main-no-bit-warning-text">
-            {result == null && 'Loading'}
+            <Loading boxWidth="20px" showLoading={result == null} />
             {result && (result?.showBits[0] ? 'No Bits Yet!' : 'Try to follow someone to see their bits!')}
           </p>
         </div>

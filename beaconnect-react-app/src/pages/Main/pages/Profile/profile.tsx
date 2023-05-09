@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { useLazyQuery } from '@apollo/client';
-import { AiOutlineLoading } from 'react-icons/ai';
 import {
   showProfileQuery,
   showProfileQueryResult,
@@ -12,6 +11,7 @@ import {
 import Banner1 from './components/borzoi.jpeg';
 import Banner2 from './components/images.jpeg';
 import BitBox from '../../components/Bits/bits';
+import Loading from '../../../../components/Loading/loading';
 import './profile.css';
 
 function Profile({ isLoggedIn }: { isLoggedIn: boolean }) {
@@ -133,9 +133,7 @@ function Profile({ isLoggedIn }: { isLoggedIn: boolean }) {
           </div>
         </div>
       ) : (
-        <div className="profile-page-loading">
-          <AiOutlineLoading className="reactLoadingCircle profile-page-loading-icon" />
-        </div>
+        <Loading />
       )}
     </div>
   );

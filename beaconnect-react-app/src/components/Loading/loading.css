@@ -1,0 +1,94 @@
+.global-loading-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #f3f4f5;
+  z-index: 9999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+.global-loading-screen::after {
+  content: '';
+  width: 150px;
+  aspect-ratio: 1 / 1;
+  border-radius: 50%;
+  border: 5px solid #f3f3f3;
+  border-top: 5px solid #3498db;
+  animation: spin 2s linear infinite;
+}
+
+.global-loading-screen p {
+  position: absolute;
+  display: block;
+  margin: 0;
+  padding: 0;
+  color: #333;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.create-profile-loading {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgb(255, 255, 255, 0.95);
+  z-index: 2;
+}
+
+.create-profile-loading-circle {
+  aspect-ratio: 1 / 1;
+  border-radius: 50%;
+  border: 5px solid #a3ab82;
+  border-top: 5px solid #fff;
+  animation: spin 1s linear infinite;
+  transition: border-top-color 0.5s ease-in-out;
+}
+
+.create-profile-loading.done .create-profile-loading-circle {
+  border-top-color: #a3ab82;
+}
+
+.create-profile-loading-tick-icon-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
+}
+
+.create-profile-loading.done .create-profile-loading-tick-icon-container {
+  opacity: 1;
+}
+
+.create-profile-loading-tick-icon {
+  width: 30px;
+  aspect-ratio: 1 / 1;
+  scale: 1.5;
+  color: #a3ab82;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
