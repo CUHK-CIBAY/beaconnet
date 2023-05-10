@@ -178,6 +178,7 @@ export const showBitsQuery = gql`
         }
       }
       comment {
+        id
         content
         createAt
         owner {

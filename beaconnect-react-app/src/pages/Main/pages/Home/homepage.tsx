@@ -60,10 +60,10 @@ function ListBits(isLoggedIn: boolean) {
       ) : (
         <div className="main-no-bit-warning">
           {result !== null && <RxCrossCircled />}
-          <p className="main-no-bit-warning-text">
+          <div className="main-no-bit-warning-text">
             <Loading boxWidth="20px" showLoading={result == null} />
             {result && (result?.showBits[0] ? 'No Bits Yet!' : 'Try to follow someone to see their bits!')}
-          </p>
+          </div>
         </div>
       )}
     </div>

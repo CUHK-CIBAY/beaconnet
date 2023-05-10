@@ -15,15 +15,14 @@ function Loading({
   done?: boolean;
   showLoading?: boolean;
 }) {
-  if (fullScreen) {
-    return (
-      <div className="global-loading-screen">
-        <p>Loading</p>
-      </div>
-    );
-  }
-
   if (showLoading) {
+    if (fullScreen) {
+      return (
+        <div className="global-loading-screen">
+          <p>Loading</p>
+        </div>
+      );
+    }
     return (
       <div className={`create-profile-loading ${done ? 'done' : ''}`}>
         <div
