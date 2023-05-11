@@ -46,10 +46,10 @@
 }
 
 .create-required-profile {
-  animation: fadeIn 0.5s ease-in-out;
+  animation: fadeInProfile 0.5s ease-in-out;
 }
 
-@keyframes fadeIn {
+@keyframes fadeInProfile {
   0% {
     opacity: 0;
     transform: translateY(100px);

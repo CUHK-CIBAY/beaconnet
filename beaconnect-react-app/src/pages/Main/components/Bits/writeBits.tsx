@@ -263,7 +263,7 @@ function WriteBitBox({
           </div>
         </div>
       </div>
-      <Loading done={writeBitBoxState === 'success'} showLoading={!!writeBitBoxState} />
+      <Loading done={writeBitBoxState === 'success'} showLoading={!!writeBitBoxState} fade />
       {draggingState && (
         <div className="write-bit-box-upload">
           <div className="write-bit-box-upload-text">Drop your files here</div>
