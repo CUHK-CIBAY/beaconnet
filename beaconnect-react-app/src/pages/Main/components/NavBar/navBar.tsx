@@ -80,7 +80,7 @@ function NavBar({ isLoggedIn }: { isLoggedIn: boolean }) {
       {
         icon: <TiUserAddOutline />,
         text: 'Register',
-        path: 'Register',
+        path: 'register',
         desktopOnly: true,
       },
     ];
