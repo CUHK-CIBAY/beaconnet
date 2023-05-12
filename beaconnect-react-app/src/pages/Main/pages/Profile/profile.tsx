@@ -98,8 +98,8 @@ function Profile({ isLoggedIn }: { isLoggedIn: boolean }) {
                 alt={Banner2}
               />
               {/* <button type="button" className="profile-edit-button">
-              Edit
-            </button> */}
+                Edit
+              </button> */}
             </div>
             <div className="user-info-detail">
               <div className="user-info-usernameUserID">
@@ -107,10 +107,6 @@ function Profile({ isLoggedIn }: { isLoggedIn: boolean }) {
                 <p className="user-info-userID">{`@${profileDetails?.username}`}</p>
               </div>
               <div className="user-info-descriptionBox">{profileDetails?.info?.bio}</div>
-              {/* <div className="user-info-followItem">
-              <p className="user-info-following">123 Following</p>
-              <p className="user-info-follower">404 Follower</p>
-            </div> */}
             </div>
             <div className="horizontal-line">
               <hr />
@@ -119,14 +115,11 @@ function Profile({ isLoggedIn }: { isLoggedIn: boolean }) {
               <button type="button" className="profile-Bit-button profile-buttons">
                 Bits
               </button>
-              {/* <button type="button" className="profile-ReBit-button profile-buttons">
-              ReBits
-            </button> */}
             </div>
             <div className="user-bits-show">
               {profileDetails?.bits?.map(
                 (item: showUserProfileQueryResult['findUser']['bits'][0] | showProfileQueryResult['me']['bits'][0]) => (
-                  <BitBox key={item.id} isLoggedIn={isLoggedIn} data={item} showBits={queryProfile} />
+                  <BitBox key={item.id} isLoggedIn={isLoggedIn} data={item} />
                 ),
               )}
             </div>

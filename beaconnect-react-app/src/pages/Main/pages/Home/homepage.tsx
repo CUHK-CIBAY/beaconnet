@@ -48,7 +48,6 @@ function ListBits(isLoggedIn: boolean) {
             item?.id && (
               <BitBox
                 setReBit={setReBit}
-                showBits={showBits}
                 setBitAttachment={setBitAttachment}
                 isLoggedIn={isLoggedIn}
                 showInHomepage

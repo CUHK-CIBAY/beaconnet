@@ -1,5 +1,6 @@
-import React from 'react';
-import { useMutation, LazyQueryExecFunction } from '@apollo/client';
+/* eslint-disable */
+import React, { useEffect } from 'react';
+import { useMutation, LazyQueryExecFunction, useLazyQuery } from '@apollo/client';
 import { AiFillHeart } from 'react-icons/ai';
 import { BiRepost } from 'react-icons/bi';
 import { TbSend } from 'react-icons/tb';
@@ -9,11 +10,14 @@ import {
   likeBitMutationVariables,
   likeBitQuery,
   likeBitMutationResult,
-  showBitsQueryResult,
-  showBitsQueryVariables,
   commentBitMutationVariables,
   commentBitMutationResult,
   commentBitMutation,
+  BitQuery,
+  BitQueryResult,
+  BitQueryVariables,
+  showBitsQueryResult,
+  showBitsQueryVariables,
 } from '../Query/bit.query';
 import {
   showProfileQueryResult,
@@ -24,7 +28,7 @@ import AUTH from '../../../../config/constants';
 import userIcon from '../../pages/Home/components/icon.png';
 import Loading from '../../../../components/Loading/loading';
 
-function bitBoxReBit(data: showBitsQueryResult['showBits'][0] | null | undefined): React.ReactNode {
+function bitBoxReBit(data: BitQueryResult['findBit'] | null | undefined): React.ReactNode {
   return (
     <div className="bit-box-reBit-with-caption">
       <div className="bit-box-content-header">
@@ -51,7 +55,7 @@ function bitBoxReBit(data: showBitsQueryResult['showBits'][0] | null | undefined
 }
 
 function bitBoxHeader(
-  data: showBitsQueryResult['showBits'][0] | null | undefined,
+  data: BitQueryResult['findBit'] | null | undefined,
   redirectToProfile: (_username: string | undefined) => void,
 ): React.ReactNode {
   return (
@@ -87,15 +91,17 @@ function bitBoxFooterButtons(
   setBitBoxLoading: React.Dispatch<React.SetStateAction<boolean>>,
   setReBit: React.Dispatch<React.SetStateAction<[string, string] | string | null>> | undefined,
   isLoggedIn: boolean,
-  showBits:
-    | LazyQueryExecFunction<showBitsQueryResult, showBitsQueryVariables>
-    | LazyQueryExecFunction<showProfileQueryResult, showUserProfileQueryVariables>,
+  queryBits: LazyQueryExecFunction<BitQueryResult, BitQueryVariables>,
   setBitAttachment: React.Dispatch<React.SetStateAction<File | null>> | undefined,
   showInHomepages: boolean | undefined,
 ): React.ReactNode {
   const [giveLikeToBit] = useMutation<likeBitMutationResult, likeBitMutationVariables>(likeBitQuery, {
     onCompleted: () => {
-      showBits({ variables: { following: true } }).then(() => {
+      queryBits({
+        variables: {
+          id: data?.id,
+        },
+      }).then(() => {
         setBitBoxLoading(false);
       });
     },
@@ -125,8 +131,8 @@ function bitBoxFooterButtons(
 
   const selfLikeCheck = () => {
     if (
-      data.likeGivers?.find(
-        (likeGiver: { id: string }) => likeGiver.id === JSON.parse(localStorage.getItem(AUTH.userInfo)!).id,
+      data?.likeGivers?.find(
+        (likeGiver: { id: string }) => likeGiver?.id === JSON.parse(localStorage.getItem(AUTH.userInfo)!)?.id,
       )
     ) {
       return 'active';
@@ -187,7 +193,7 @@ function bitBoxFooterButtons(
 }
 
 function bitBoxShowComment(
-  comment: showProfileQueryResult['me']['bits'][0]['comment'][0],
+  comment: BitQueryResult['findBit']['comment'][0],
   redirectToProfile: (_username: string | undefined) => void,
 ): React.ReactNode {
   return (
@@ -216,16 +222,11 @@ function bitBoxShowComment(
 }
 
 const bitBoxComment = (
-  data:
-    | showBitsQueryResult['showBits'][0]
-    | showUserProfileQueryResult['findUser']['bits'][0]
-    | showProfileQueryResult['me']['bits'][0],
+  data: showProfileQueryResult['me']['bits'][0],
   setBitBoxLoading: React.Dispatch<React.SetStateAction<boolean>>,
   setShowCommentInput: React.Dispatch<React.SetStateAction<boolean>>,
   setShowComment: React.Dispatch<React.SetStateAction<boolean>>,
-  showBits:
-    | LazyQueryExecFunction<showBitsQueryResult, showBitsQueryVariables>
-    | LazyQueryExecFunction<showProfileQueryResult, showUserProfileQueryVariables>,
+  queryBits: LazyQueryExecFunction<BitQueryResult, BitQueryVariables>,
 ) => {
   const addActiveStatus = () => {
     setShowCommentInput(true);
@@ -242,7 +243,11 @@ const bitBoxComment = (
 
   const [commentBit] = useMutation<commentBitMutationResult, commentBitMutationVariables>(commentBitMutation, {
     onCompleted: () => {
-      showBits({ variables: { following: true } }).then(() => {
+      queryBits({
+        variables: {
+          id: data!.id,
+        },
+      }).then(() => {
         setBitBoxLoading(false);
         setShowComment(true);
       });
@@ -295,64 +300,77 @@ const bitBoxComment = (
 
 function BitBox({
   data,
-  showBits,
   setBitAttachment,
   isLoggedIn,
   showInHomepage,
   setReBit,
 }: {
-  showBits:
-    | LazyQueryExecFunction<showBitsQueryResult, showBitsQueryVariables>
-    | LazyQueryExecFunction<showProfileQueryResult, showUserProfileQueryVariables>;
   isLoggedIn: boolean;
   showInHomepage?: boolean;
   setBitAttachment?: React.Dispatch<React.SetStateAction<File | null>>;
   setReBit?: React.Dispatch<React.SetStateAction<[string, string] | string | null>>;
-  data:
-    | showBitsQueryResult['showBits'][0]
-    | showUserProfileQueryResult['findUser']['bits'][0]
-    | showProfileQueryResult['me']['bits'][0];
+  data: showBitsQueryResult['showBits'][0];
 }) {
-  const [bitBoxLoading, setBitBoxLoading] = React.useState(false);
+  const [bitBoxLoading, setBitBoxLoading] = React.useState(true);
   const [showComment, setShowComment] = React.useState(false);
   const [showCommentInput, setShowCommentInput] = React.useState(false);
+
+  const [queryData, setQueryData] = React.useState<any | null>(null);
+  const [queryBits] = useLazyQuery<BitQueryResult, BitQueryVariables>(BitQuery, {
+    onCompleted: (data) => {
+      setQueryData(data.findBit);
+      setBitBoxLoading(false);
+    },
+    onError: (err) => {
+      setTimeout(() => {
+        queryBits({ variables: { id: data.id } });
+      }, 1000);
+    },
+    fetchPolicy: 'network-only',
+  });
+
+  useEffect(() => {
+    queryBits({ variables: { id: data.id } });
+  }, []);
+
   function redirectToProfile(username: string | undefined) {
     if (username) window.location.href = `/profile?username=${username}`;
   }
+
   return (
     <div className={`bit-box bit-box-container ${showCommentInput && 'active'}`}>
-      {bitBoxHeader(data, redirectToProfile)}
+      {bitBoxHeader(queryData, redirectToProfile)}
       <div className="bit-box-content">
-        <div className="bit-box-content-text">{data?.content}</div>
+        <div className="bit-box-content-text">{queryData?.content}</div>
       </div>
-      {data?.reBit && bitBoxReBit(data)}
-      {data?.image && (
+      {queryData?.reBit && bitBoxReBit(queryData)}
+      {queryData?.image && (
         <img
           className="bit-box-content-image"
-          src={`https://beaconnect-image-imagebucket-ft90dpqhkbr1.s3.ap-southeast-1.amazonaws.com/${data?.image}`}
+          src={`https://beaconnect-image-imagebucket-ft90dpqhkbr1.s3.ap-southeast-1.amazonaws.com/${queryData?.image}`}
           alt="bit"
         />
       )}
       {bitBoxFooterButtons(
-        data,
+        queryData,
         showComment,
         setShowComment,
         setBitBoxLoading,
         setReBit,
         isLoggedIn,
-        showBits,
+        queryBits,
         setBitAttachment,
         showInHomepage,
       )}
 
       <div className={`bit-box-content-footer-comment-list ${showComment && 'active'}`}>
-        {data?.comment?.map(
-          (comment: showProfileQueryResult['me']['bits'][0]['comment'][0]) =>
+        {queryData?.comment?.map(
+          (comment: BitQueryResult['findBit']['comment'][0]) =>
             comment && bitBoxShowComment(comment, redirectToProfile),
         )}
       </div>
 
-      {isLoggedIn && bitBoxComment(data, setBitBoxLoading, setShowCommentInput, setShowComment, showBits)}
+      {isLoggedIn && bitBoxComment(queryData, setBitBoxLoading, setShowCommentInput, setShowComment, queryBits)}
       <Loading showLoading={bitBoxLoading} />
     </div>
   );
