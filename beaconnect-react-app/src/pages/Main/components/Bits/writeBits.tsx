@@ -185,7 +185,7 @@ function WriteBitBox({
         <img
           className="bit-box-icon"
           src={
-            JSON.parse(localStorage.getItem(AUTH.userInfo)!).image
+            JSON.parse(localStorage.getItem(AUTH.userInfo)!)?.image
               ? `https://beaconnect-image-imagebucket-ft90dpqhkbr1.s3.ap-southeast-1.amazonaws.com/${
                   JSON.parse(localStorage.getItem(AUTH.userInfo)!).image
                 }`

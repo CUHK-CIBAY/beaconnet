@@ -10,7 +10,11 @@ const seasonalContent = (
       <h4 className="welcome-speech-container-header">Welcome to beaConnnet!!!</h4>
       <div className="welcome-speech-container-animation">
         <img
-          className="welcome-speech-container-animation-icon"
+          className={
+            JSON.parse(localStorage.getItem(AUTH.userInfo)!)?.image
+              ? 'welcome-speech-container-animation-icon'
+              : 'welcome-speech-container-animation-logo'
+          }
           src={
             JSON.parse(localStorage.getItem(AUTH.userInfo)!)?.image
               ? `https://beaconnect-image-imagebucket-ft90dpqhkbr1.s3.ap-southeast-1.amazonaws.com/${
