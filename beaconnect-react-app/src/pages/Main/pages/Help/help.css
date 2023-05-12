@@ -84,6 +84,7 @@
   border: #ccd5ae 2px solid;
   border-radius: 4px;
   outline: none;
+  padding: 5px 10px;
 }
 
 .help-main-report-content-description-input:focus {

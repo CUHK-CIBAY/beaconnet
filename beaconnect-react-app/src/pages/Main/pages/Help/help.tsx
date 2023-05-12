@@ -1,12 +1,23 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './help.css';
 
 function Help() {
-  const clearAllField = () => {
-    const title = document.querySelector('.help-main-report-content-title-input') as HTMLInputElement;
-    const description = document.querySelector('.help-main-report-content-description-input') as HTMLInputElement;
-    title.value = '';
-    description.value = '';
+  const [title, setTitle] = useState('');
+  const [description, setDescription] = useState('');
+
+  const encodeSpecialCharacters = (str: string) =>
+    str.replace(/(&#(\d+);)/g, (match, capture, charCode) => String.fromCharCode(charCode));
+
+  const sendMessage = () => {
+    if (!title || !description) {
+      alert('Please fill in the title and description.');
+      return;
+    }
+    window.location.href = `mailto:admin@beaconnet.online?subject=${encodeSpecialCharacters(
+      title,
+    )}&body=${encodeSpecialCharacters(description)}`;
+    setTitle('');
+    setDescription('');
   };
 
   return (
@@ -21,14 +32,20 @@ function Help() {
         <div className="help-main-report-content">
           <div className="help-main-report-content-header">
             <div className="help-main-report-content-title">
-              <input type="text" className="help-main-report-content-title-input" placeholder="Title" />
+              <input
+                type="text"
+                className="help-main-report-content-title-input"
+                placeholder="Title"
+                value={title}
+                onChange={(e) => setTitle(e.target.value)}
+              />
             </div>
             <div
               className="help-main-report-content-button"
-              onClick={clearAllField}
+              onClick={sendMessage}
               role="button"
               tabIndex={0}
-              onKeyDown={clearAllField}
+              onKeyDown={sendMessage}
             >
               <button type="submit" className="help-main-report-content-submit">
                 Report
@@ -36,7 +53,12 @@ function Help() {
             </div>
           </div>
           <div className="help-main-report-content-description">
-            <textarea className="help-main-report-content-description-input" placeholder="Description" />
+            <textarea
+              className="help-main-report-content-description-input"
+              placeholder="Description"
+              value={description}
+              onChange={(e) => setDescription(e.target.value)}
+            />
           </div>
         </div>
       </div>
