@@ -217,6 +217,7 @@
 .search-result-user-icon {
   width: 55%;
   aspect-ratio: 1 / 1;
+  border-radius: 50%;
   margin: auto;
 }
 
