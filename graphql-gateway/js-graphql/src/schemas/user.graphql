@@ -5,7 +5,10 @@ type User {
   username: String!
   password: String!
   info: UserInfo
+  "A list of User the given user following"
   following: [User!]
+  "A list of User who follow the given User"
+  follower: [User!]
   bits: [Bit!]
   role: UserRole
 }
