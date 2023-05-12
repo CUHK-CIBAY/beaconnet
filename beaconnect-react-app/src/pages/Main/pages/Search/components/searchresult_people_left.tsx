@@ -87,7 +87,7 @@ export function SearchResultPeopleList({ isLoggedIn, user }: { isLoggedIn: boole
   );
 }
 
-function SearchResultPeople(props: any) {
+function SearchResultPeople({ isLoggedIn, result }: { isLoggedIn: { isLoggedIn: boolean }; result: any }) {
   const [users, setUsers] = useState<any>([]);
   const [queryUser] = useLazyQuery<showUsersListResult>(showUsersListQuery, {
     onCompleted: (getUser) => {
@@ -109,9 +109,9 @@ function SearchResultPeople(props: any) {
   return (
     <div className="search-result-people-section">
       <div className="search-result-people">
-        {props?.result && (
+        {result && (
           <>
-            <SearchResultPeopleList user={props?.result} isLoggedIn={props?.isLoggedIn.isLoggedIn} />
+            <SearchResultPeopleList user={result} isLoggedIn={isLoggedIn.isLoggedIn} />
             <hr />
           </>
         )}
@@ -120,7 +120,7 @@ function SearchResultPeople(props: any) {
           users
             // TODO: Impl Recommendation system / better shuffle Algo
             .map((user: any) => (
-              <SearchResultPeopleList user={user} isLoggedIn={props?.isLoggedIn.isLoggedIn} key={user?.id} />
+              <SearchResultPeopleList user={user} isLoggedIn={isLoggedIn.isLoggedIn} key={user?.id} />
             ))}
       </div>
     </div>

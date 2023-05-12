@@ -14,12 +14,15 @@ import {
   RegisterMutationVariables,
 } from './components/login.query';
 
-function LoginCompound(props: {
+function LoginCompound({
+  loginType,
+  isLoggedIn,
+  setIsLoggedIn,
+}: {
   loginType: string;
   isLoggedIn: boolean;
   setIsLoggedIn: (_isLoggedIn: boolean) => void;
 }) {
-  const { loginType, isLoggedIn, setIsLoggedIn } = props;
   if (isLoggedIn) return <Navigate to="/" replace />;
   const { signIn } = useUserContext();
   const [loginBoxTransition, setLoginBoxTransition] = useState('');
