@@ -45,8 +45,10 @@ function Profile({ isLoggedIn }: { isLoggedIn: boolean }) {
     showUserProfileQueryUsername,
     {
       onCompleted: (data: showUserProfileQueryResult) => {
-        if (data.findUser) setProfileDetails(data.findUser);
-        else {
+        if (data.findUser) {
+          setProfileDetails(data.findUser);
+          setShowProfileDetails(data.findUser.bits.slice(0, 1));
+        } else {
           window.alert('User not found');
           setTimeout(() => {
             window.location.href = '/search';
@@ -61,8 +63,10 @@ function Profile({ isLoggedIn }: { isLoggedIn: boolean }) {
     showUserProfileQueryEmail,
     {
       onCompleted: (data: showUserProfileQueryResult) => {
-        if (data.findUser) setProfileDetails(data.findUser);
-        else {
+        if (data.findUser) {
+          setProfileDetails(data.findUser);
+          setShowProfileDetails(data.findUser.bits.slice(0, 1));
+        } else {
           window.alert('User not found');
           setTimeout(() => {
             window.location.href = '/search';
