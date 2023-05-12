@@ -8,12 +8,6 @@ export type searchUserVariables = {
 export type searchUserResult = {
   findUser: {
     id: string;
-    username: string;
-    info: {
-      bio: string;
-      image: string;
-      nickname: string;
-    };
   };
 };
 
@@ -21,13 +15,7 @@ export const searchUserQueryUsername = gql`
   query searchUserQuery($username: String!) {
     findUser(input: { username: $username }) {
       id
-      username
-      info {
-        bio
-        image
-        nickname
-      }
-    }
+    }  
   }
 `;
 
@@ -35,27 +23,75 @@ export const searchUserQueryEmail = gql`
   query searchUserQuery($email: String!) {
     findUser(input: { email: $email }) {
       id
-      username
-      info {
-        bio
-        image
-        nickname
-      }
     }
   }
 `;
 
+export type showUsersListResult = {
+  users: {
+    id: string;
+  }[];
+};
+
 export const showUsersListQuery = gql`
   query {
     users {
-      username
       id
+    }
+  }
+`;
+
+export type followUserMutationVariables = {
+  id: string;
+};
+
+export type followUserMutationResult = {
+  followUser: {
+    id: string;
+  };
+};
+
+export const followUserQuery = gql`
+  mutation followUser($id: ID!) {
+    followUser(id: $id) {
+      id
+    }
+  }
+`;
+
+export type findUserVariables = {
+  ID: string;
+};
+
+export type findUserResult = {
+  findUser: {
+    id: string;
+    username: string;
+    info: {
+      bio: string;
+      image: string;
+      nickname: string;
+    };
+    followed?: boolean;
+  };
+  me?: {
+    following: {
+      id: string;
+    }[];
+  }
+};
+
+export const findUserQuery = gql`
+  query searchUserQuery($ID: ID!) {
+    findUser(input: { id: $ID }) {
+      id
+      username
       info {
-        nickname
         bio
         image
+        nickname
       }
-    }
+    }  
     me {
       following {
         id
