@@ -35,6 +35,8 @@
   right: 40px;
   padding: 5px 25px;
   background-color: #e9edc9;
+  font-weight: bolder;
+  cursor: pointer;
 }
 
 .user-info-usernameUserID {

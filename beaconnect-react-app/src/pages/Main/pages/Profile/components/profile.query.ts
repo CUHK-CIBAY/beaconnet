@@ -32,6 +32,20 @@ export const showProfileQuery = gql`
   }
 `;
 
+export type resetProfileMutationResult = {
+  updateInfo: {
+    id: string;
+  };
+};
+
+export const resetProfileMutation = gql`
+  mutation resetProfile {
+    updateInfo(input: { nickname: null }) {
+      id
+    }
+  }
+`;
+
 export type showUserProfileQueryVariables = {
   username?: string;
   email?: string;

@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import { useLazyQuery } from '@apollo/client';
+import { useLazyQuery, useMutation } from '@apollo/client';
 import {
+  resetProfileMutation,
+  resetProfileMutationResult,
   showProfileQuery,
   showProfileQueryResult,
   showUserProfileQueryEmail,
@@ -19,11 +21,21 @@ function Profile({ isLoggedIn }: { isLoggedIn: boolean }) {
     showProfileQueryResult['me'] | showUserProfileQueryResult['findUser'] | null
   >(null);
 
+  const [profileMode, setProfileMode] = useState<boolean>(false);
+
   const [queryProfile] = useLazyQuery<showProfileQueryResult>(showProfileQuery, {
     onCompleted: (data: showProfileQueryResult) => {
       setProfileDetails(data.me);
     },
     fetchPolicy: 'network-only',
+  });
+
+  const [resetProfileQuery] = useMutation<resetProfileMutationResult>(resetProfileMutation, {
+    onCompleted: (data: resetProfileMutationResult) => {
+      if (data.updateInfo) {
+        window.location.reload();
+      }
+    },
   });
 
   const [queryOtherProfileUsername] = useLazyQuery<showUserProfileQueryResult, showUserProfileQueryVariables>(
@@ -76,8 +88,14 @@ function Profile({ isLoggedIn }: { isLoggedIn: boolean }) {
       });
     } else {
       queryProfile();
+      setProfileMode(true);
     }
   }, []);
+
+  const resetProfile = () => {
+    resetProfileQuery();
+    setProfileMode(true);
+  };
 
   return (
     <div className="page-content">
@@ -97,9 +115,17 @@ function Profile({ isLoggedIn }: { isLoggedIn: boolean }) {
                 }
                 alt={Banner2}
               />
-              {/* <button type="button" className="profile-edit-button">
-                Edit
-              </button> */}
+              {profileMode && (
+                <button
+                  type="button"
+                  className="profile-edit-button"
+                  onClick={resetProfile}
+                  onKeyDown={resetProfile}
+                  tabIndex={0}
+                >
+                  Reset Profile
+                </button>
+              )}
             </div>
             <div className="user-info-detail">
               <div className="user-info-usernameUserID">
