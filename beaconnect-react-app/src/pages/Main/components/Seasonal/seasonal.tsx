@@ -12,7 +12,7 @@ const seasonalContent = (
         <img
           className="welcome-speech-container-animation-icon"
           src={
-            JSON.parse(localStorage.getItem(AUTH.userInfo)!).image
+            JSON.parse(localStorage.getItem(AUTH.userInfo)!)?.image
               ? `https://beaconnect-image-imagebucket-ft90dpqhkbr1.s3.ap-southeast-1.amazonaws.com/${
                   JSON.parse(localStorage.getItem(AUTH.userInfo)!).image
                 }`
