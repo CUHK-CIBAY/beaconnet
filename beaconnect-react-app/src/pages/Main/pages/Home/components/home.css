@@ -49,9 +49,10 @@
   justify-content: center;
 }
 
-.bit-box-content-image {
+.bit-box-content-image-container {
   width: calc(100% - 45px);
   height: 100%;
+  min-height: 200px;
   margin: 20px 0 10px 35px;
   display: flex;
   justify-content: center;
@@ -60,6 +61,11 @@
   box-shadow: 0 5px 10px 0 #e4e5ed;
   border-radius: 10px;
   overflow: hidden;
+}
+
+.bit-box-content-image {
+  width: 100%;
+  height: 100%;
 }
 
 .write-bit-box-content .write-bit-box-content-text {
@@ -163,6 +169,10 @@
   padding: 15px 20px 5px 20px;
 }
 
+.bit-box.hidden {
+  display: none;
+}
+
 .bit-box-content-header {
   display: flex;
   flex-direction: row;
@@ -190,13 +200,13 @@
   margin-left: 14px;
 }
 
-.bit-box-content-header-userID,
+.bit-box-content-header-ID,
 .bit-box-content-header-time {
   font-size: 14px;
   color: #757575;
 }
 
-.bit-box-content-header-userID::before,
+.bit-box-content-header-ID::before,
 .bit-box-content-header-time::before {
   content: '•';
   margin: 0 5px;
@@ -357,7 +367,7 @@
   font-size: 13px;
 }
 
-.bit-box-reBit-with-caption .bit-box-content-header-userID,
+.bit-box-reBit-with-caption .bit-box-content-header-ID,
 .bit-box-reBit-with-caption .bit-box-content-header-time {
   font-size: 12px;
   color: #757575;

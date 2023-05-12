@@ -1,4 +1,3 @@
-/* eslint-disable */
 import React, { useEffect } from 'react';
 import { useMutation, LazyQueryExecFunction, useLazyQuery } from '@apollo/client';
 import { AiFillHeart } from 'react-icons/ai';
@@ -17,13 +16,8 @@ import {
   BitQueryResult,
   BitQueryVariables,
   showBitsQueryResult,
-  showBitsQueryVariables,
 } from '../Query/bit.query';
-import {
-  showProfileQueryResult,
-  showUserProfileQueryResult,
-  showUserProfileQueryVariables,
-} from '../../pages/Profile/components/profile.query';
+import { showProfileQueryResult } from '../../pages/Profile/components/profile.query';
 import AUTH from '../../../../config/constants';
 import userIcon from '../../pages/Home/components/icon.png';
 import Loading from '../../../../components/Loading/loading';
@@ -42,7 +36,7 @@ function bitBoxReBit(data: BitQueryResult['findBit'] | null | undefined): React.
           alt="profile"
         />
         <div className="bit-box-content-header-name">{data?.reBit?.author?.info?.nickname}</div>
-        <div className="bit-box-content-header-userID">{data?.reBit?.author?.username}</div>
+        <div className="bit-box-content-header-ID">{data?.reBit?.author?.username}</div>
         <div className="bit-box-content-header-time">
           {formatDistance(new Date(data?.reBit?.createAt!), new Date(), { addSuffix: true })}
         </div>
@@ -75,8 +69,10 @@ function bitBoxHeader(
         }
         alt="profile"
       />
-      <div className="bit-box-content-header-name">{data?.author?.info?.nickname}</div>
-      <div className="bit-box-content-header-userID">{`@${data?.author?.username}`}</div>
+      <div className="bit-box-content-header-name">
+        {data?.author?.info?.nickname ? data?.author?.info?.nickname : 'DeletedUser'}
+      </div>
+      {data?.author?.username && <div className="bit-box-content-header-ID">{`@${data?.author?.username}`}</div>}
       <div className="bit-box-content-header-time">
         {data?.createAt && formatDistance(new Date(data?.createAt), new Date(), { addSuffix: true })}
       </div>
@@ -314,17 +310,20 @@ function BitBox({
   const [bitBoxLoading, setBitBoxLoading] = React.useState(true);
   const [showComment, setShowComment] = React.useState(false);
   const [showCommentInput, setShowCommentInput] = React.useState(false);
-
   const [queryData, setQueryData] = React.useState<any | null>(null);
+  const [bitBoxError, setBitBoxError] = React.useState(0);
   const [queryBits] = useLazyQuery<BitQueryResult, BitQueryVariables>(BitQuery, {
-    onCompleted: (data) => {
-      setQueryData(data.findBit);
+    onCompleted: (returnData) => {
+      setQueryData(returnData.findBit);
       setBitBoxLoading(false);
     },
-    onError: (err) => {
-      setTimeout(() => {
-        queryBits({ variables: { id: data.id } });
-      }, 1000);
+    onError: () => {
+      if (bitBoxError < 5) {
+        setTimeout(() => {
+          queryBits({ variables: { id: data.id } });
+          setBitBoxError(bitBoxError + 1);
+        }, 1000);
+      }
     },
     fetchPolicy: 'network-only',
   });
@@ -337,20 +336,39 @@ function BitBox({
     if (username) window.location.href = `/profile?username=${username}`;
   }
 
+  const returnMedia = (image: String) => {
+    const mediaURL = `https://beaconnect-image-imagebucket-ft90dpqhkbr1.s3.ap-southeast-1.amazonaws.com/${image}`;
+    return (
+      <img
+        className="bit-box-content-image"
+        src={mediaURL}
+        onError={(e) => {
+          // change img tag to video tag
+          const target = e.target as HTMLImageElement;
+          const parent = target.parentElement as HTMLDivElement;
+          const video = document.createElement('video');
+          video.src = mediaURL;
+          video.className = 'bit-box-content-image';
+          video.controls = true;
+          parent.removeChild(target);
+          parent.appendChild(video);
+        }}
+        alt="bit"
+      />
+    );
+  };
+
   return (
-    <div className={`bit-box bit-box-container ${showCommentInput && 'active'}`}>
+    <div
+      className={`bit-box bit-box-container ${showCommentInput ? 'active' : ''} ${bitBoxError >= 5 ? 'hidden' : ''}`}
+    >
       {bitBoxHeader(queryData, redirectToProfile)}
       <div className="bit-box-content">
         <div className="bit-box-content-text">{queryData?.content}</div>
       </div>
       {queryData?.reBit && bitBoxReBit(queryData)}
-      {queryData?.image && (
-        <img
-          className="bit-box-content-image"
-          src={`https://beaconnect-image-imagebucket-ft90dpqhkbr1.s3.ap-southeast-1.amazonaws.com/${queryData?.image}`}
-          alt="bit"
-        />
-      )}
+
+      {queryData?.image && <div className="bit-box-content-image-container">{returnMedia(queryData.image)}</div>}
       {bitBoxFooterButtons(
         queryData,
         showComment,
