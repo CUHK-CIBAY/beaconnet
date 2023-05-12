@@ -22,7 +22,7 @@ function ListBits(
         // TODO: Impl Recommendation system / better random algo
         .sort(() => Math.random() - 0.5);
       setResult(showBitsData);
-      setResultShowing(showBitsData.slice(0, 5));
+      setResultShowing(showBitsData.slice(0, 1));
     },
     onError: () => {
       setResult(undefined);
@@ -81,7 +81,10 @@ function Home({ isLoggedIn }: { isLoggedIn: boolean }) {
     if (Math.floor(target.scrollHeight - target.scrollTop) <= target.clientHeight) {
       setResultShowing((prev: any) => {
         if (!result) return prev;
-        const newResult = result?.slice(prev.length, prev.length + 5);
+        const newResult = result?.slice(prev.length, prev.length + 1);
+        setTimeout(() => {
+          loadBits(e);
+        }, 100);
         return newResult?.length > 0 ? [...prev, ...newResult] : prev;
       });
     }
