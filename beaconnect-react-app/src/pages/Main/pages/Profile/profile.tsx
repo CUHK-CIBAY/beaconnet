@@ -20,12 +20,15 @@ function Profile({ isLoggedIn }: { isLoggedIn: boolean }) {
   const [profileDetails, setProfileDetails] = useState<
     showProfileQueryResult['me'] | showUserProfileQueryResult['findUser'] | null
   >(null);
+  const [showProfileDetails, setShowProfileDetails] = useState<any>(null);
+  const [showMoreButton, setShowMoreButton] = useState<boolean>(false);
 
   const [profileMode, setProfileMode] = useState<boolean>(false);
 
   const [queryProfile] = useLazyQuery<showProfileQueryResult>(showProfileQuery, {
     onCompleted: (data: showProfileQueryResult) => {
       setProfileDetails(data.me);
+      setShowProfileDetails(data.me.bits.slice(0, 1));
     },
     fetchPolicy: 'network-only',
   });
@@ -97,6 +100,34 @@ function Profile({ isLoggedIn }: { isLoggedIn: boolean }) {
     setProfileMode(true);
   };
 
+  const loadBits = (e: React.UIEvent<HTMLDivElement, UIEvent>) => {
+    if (!e.target) return;
+    const target = e.target as HTMLDivElement;
+    if (Math.floor(target.scrollHeight - target.scrollTop) <= target.clientHeight) {
+      setShowProfileDetails((prev: any) => {
+        if (!profileDetails?.bits) return prev;
+        if (prev.length === profileDetails.bits.length) {
+          setShowMoreButton(false);
+          return prev;
+        }
+        const newResult = profileDetails.bits.slice(prev.length, prev.length + 1);
+        setTimeout(() => {
+          loadBits(e);
+        }, 100);
+        return newResult?.length > 0 ? [...prev, ...newResult] : prev;
+      });
+    } else {
+      setShowMoreButton(true);
+    }
+  };
+
+  useEffect(() => {
+    loadBits({ target: document.querySelector('.user-bits-show') as HTMLDivElement } as unknown as React.UIEvent<
+      HTMLDivElement,
+      UIEvent
+    >);
+  }, [profileDetails]);
+
   return (
     <div className="page-content">
       {profileDetails ? (
@@ -142,11 +173,22 @@ function Profile({ isLoggedIn }: { isLoggedIn: boolean }) {
                 Bits
               </button>
             </div>
-            <div className="user-bits-show">
-              {profileDetails?.bits?.map(
+            <div className="user-bits-show" onScroll={loadBits}>
+              {showProfileDetails?.map(
                 (item: showUserProfileQueryResult['findUser']['bits'][0] | showProfileQueryResult['me']['bits'][0]) => (
                   <BitBox key={item.id} isLoggedIn={isLoggedIn} data={item} />
                 ),
+              )}
+              {showMoreButton && (
+                <div
+                  className="page-center-listBits-loadMore"
+                  onClick={loadBits}
+                  onKeyDown={loadBits}
+                  role="button"
+                  tabIndex={0}
+                >
+                  Load More
+                </div>
               )}
             </div>
           </div>
