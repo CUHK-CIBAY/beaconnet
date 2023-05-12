@@ -23,9 +23,21 @@ import userIcon from '../../pages/Home/components/icon.png';
 import Loading from '../../../../components/Loading/loading';
 
 function bitBoxReBit(data: BitQueryResult['findBit'] | null | undefined): React.ReactNode {
+  const redirectToProfile = (username: string | undefined) => {
+    if (username) {
+      window.location.href = `/profile?username=${username}`;
+    }
+  };
+
   return (
     <div className="bit-box-reBit-with-caption">
-      <div className="bit-box-content-header">
+      <div
+        className="bit-box-content-header"
+        onClick={() => redirectToProfile(data?.reBit?.author?.username)}
+        onKeyDown={() => redirectToProfile(data?.reBit?.author?.username)}
+        role="button"
+        tabIndex={0}
+      >
         <img
           className="bit-box-icon"
           src={
