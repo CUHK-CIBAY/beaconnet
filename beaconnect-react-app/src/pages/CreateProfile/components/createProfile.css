@@ -210,3 +210,14 @@
   font-size: 0.8rem;
   cursor: pointer;
 }
+
+@media (max-width: 955px) {
+  .create-profile-container.doneRequired {
+    width: 450px;
+  }
+
+  .create-profile-container.doneRequired .create-required-profile,
+  .create-profile-container.doneRequired .create-optional-profile {
+    transform: translateX(-100%);
+  }
+}
