@@ -92,7 +92,7 @@
 
 .user-bits-show {
   overflow: scroll;
-  height: calc(100vh - 400px);
+  height: calc(100vh - 450px);
 }
 
 .profile-buttons {
@@ -136,7 +136,7 @@
   }
 
   .user-bits-show {
-    height: calc(70vh - 220px);
+    height: calc(70vh - 250px);
   }
 
   .profile-icon-image {
