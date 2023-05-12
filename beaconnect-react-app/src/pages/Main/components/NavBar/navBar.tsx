@@ -1,5 +1,5 @@
 import React from 'react';
-import { AiOutlineQuestionCircle, AiOutlineSearch, AiOutlineSetting } from 'react-icons/ai';
+import { AiOutlineQuestionCircle, AiOutlineSearch } from 'react-icons/ai';
 import { BiHomeAlt2 } from 'react-icons/bi';
 import { CgProfile } from 'react-icons/cg';
 import { FiLogOut, FiUser } from 'react-icons/fi';
@@ -31,7 +31,7 @@ function NavBar({ isLoggedIn }: { isLoggedIn: boolean }) {
       // { icon: <AiOutlineMessage />, text: 'Message', path: 'message' },
       { icon: <AiOutlineSearch />, text: 'Search', path: 'search' },
       { icon: <AiOutlineQuestionCircle />, text: 'Help', path: 'help' },
-      { icon: <AiOutlineSetting />, text: 'Settings', path: 'settings' },
+      // { icon: <AiOutlineSetting />, text: 'Settings', path: 'settings' },
     ];
 
     NavControls = [
@@ -54,7 +54,7 @@ function NavBar({ isLoggedIn }: { isLoggedIn: boolean }) {
   }
   return (
     <nav>
-      <div className="nav-wrapper">
+      <div className={`nav-wrapper ${isLoggedIn ? 'LoggedIn' : ''}`}>
         <div className="logo">
           <div className="logo-icon">
             <img src={logo} alt="logo" />
