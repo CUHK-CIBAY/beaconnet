@@ -100,7 +100,6 @@ export type showBitsQueryVariables = {
 };
 
 export type showBitsQueryResult = {
-  data?: any;
   showBits: [
     {
       id: string;

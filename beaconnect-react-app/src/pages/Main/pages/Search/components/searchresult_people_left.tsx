@@ -88,7 +88,6 @@ function SearchResultPeople(props: any) {
   const [users, setUsers] = useState<any>([]);
   const [queryUser] = useLazyQuery<any>(showUsersListQuery, {
     onCompleted: (getUser) => {
-      console.log(getUser);
       setUsers(
         getUser?.users
           // TODO: Impl Recommendation system / better shuffle Algo
@@ -104,12 +103,13 @@ function SearchResultPeople(props: any) {
   useEffect(() => {
     queryUser();
   }, []);
+
   return (
     <div className="search-result-people-section">
       <div className="search-result-people">
         {props?.result && (
           <>
-            <SearchResultPeopleList user={props?.result} isLoggedIn={!props?.isLoggedIn} />
+            <SearchResultPeopleList user={props?.result} isLoggedIn={props?.isLoggedIn} />
             <hr />
           </>
         )}
