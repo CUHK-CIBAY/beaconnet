@@ -164,4 +164,8 @@ nav:hover .nav-link .nav-link-desc {
   .nav-link .nav-link-desc {
     display: none;
   }
+
+  .desktopOnly {
+    display: none;
+  }
 }
