@@ -20,7 +20,7 @@ export function SearchResultPeopleList({ isLoggedIn, user }: { isLoggedIn: boole
   const [findUser] = useLazyQuery<findUserResult, findUserVariables>(findUserQuery, {
     onCompleted: (data) => {
       const dataWithFollowed = data.findUser;
-      dataWithFollowed.followed = !!data.me?.following.find((item: any) => item.id === data.findUser.id);
+      dataWithFollowed.followed = !!data.me?.following?.find((item: any) => item.id === data.findUser.id);
       setUserInfo(dataWithFollowed);
       setLoading(false);
     },
