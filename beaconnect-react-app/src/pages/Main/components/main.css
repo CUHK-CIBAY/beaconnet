@@ -23,7 +23,6 @@
     width: 100vw;
     height: calc(100vh - 110px);
     padding: 50px 0 0 0;
-    overflow: scroll;
   }
   .page-right-content {
     display: none;

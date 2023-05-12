@@ -197,7 +197,8 @@
 }
 
 .search-result-people {
-  max-height: calc(100vh - 200px);
+  margin: 10px 0;
+  max-height: calc(100vh - 280px);
   overflow: scroll;
 }
 /* search username container css */
@@ -274,8 +275,8 @@
 
   .search-user-follow-button {
     width: 100%;
-    padding: 3px 20px;
-    margin-top: 7px;
+    padding: 10px 20px;
+    margin: 7px 0 1px 0;
   }
 
   .search-result-user-bio {

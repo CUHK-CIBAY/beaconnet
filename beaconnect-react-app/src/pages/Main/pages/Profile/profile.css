@@ -1,4 +1,5 @@
 .profile-banner-container {
+  position: relative;
   width: calc(100vw + 20px);
   height: 200px;
   overflow: hidden;
@@ -7,6 +8,7 @@
 .profile-banner-image {
   width: 100vw;
   aspect-ratio: 16 / 9;
+  min-height: 100%;
   max-height: 30vh;
   object-fit: cover;
 }
@@ -117,6 +119,12 @@
     height: fit-content;
   }
 
+  .profile-banner-image {
+    height: 25vh;
+    min-height: unset;
+    max-height: unset;
+  }
+
   .user-info-container {
     margin: 0px;
     padding: 5px;
@@ -125,7 +133,7 @@
   }
 
   .user-bits-show {
-    height: auto;
+    height: calc(70vh - 220px);
   }
 
   .profile-icon-image {
