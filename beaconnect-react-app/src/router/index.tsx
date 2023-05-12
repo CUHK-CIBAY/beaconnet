@@ -2,13 +2,13 @@ import React, { Suspense, lazy, useEffect, useState } from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
 
 import AUTH from '../config/constants';
-import Loading from '../pages/Essentials/Loading/loading';
-import Logout from '../pages/Logout/logout';
+import Main from '../pages/Main/main';
+import Loading from '../components/Loading/loading';
 import LoginCheck from './LoginCheck';
+import UserProfileCheck from './UserProfileCheck';
 
 const Login = lazy(() => import('../pages/Login/login.handle'));
-const UserProfileCheck = lazy(() => import('./UserProfileCheck'));
-const Main = lazy(() => import('../pages/Main/main'));
+const Logout = lazy(() => import('../pages/Logout/logout'));
 const Admin = lazy(() => import('../pages/Admin/admin'));
 
 function Router() {
@@ -41,7 +41,7 @@ function Router() {
       getStatus={getStatus}
       userProfile={userProfile}
     >
-      <Suspense fallback={<Loading />}>
+      <Suspense fallback={<Loading fullScreen />}>
         <Routes>
           <Route
             path="/register"

@@ -1,4 +1,5 @@
 .page-content {
+  position: relative;
   background: #f3f4f5;
   width: calc(100vw - 75px);
   height: 100vh;
@@ -22,7 +23,6 @@
     width: 100vw;
     height: calc(100vh - 110px);
     padding: 50px 0 0 0;
-    overflow: scroll;
   }
   .page-right-content {
     display: none;

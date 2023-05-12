@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import { useLazyQuery } from '@apollo/client';
-import { AiOutlineLoading } from 'react-icons/ai';
+import { useLazyQuery, useMutation } from '@apollo/client';
 import {
+  resetProfileMutation,
+  resetProfileMutationResult,
   showProfileQuery,
   showProfileQueryResult,
   showUserProfileQueryEmail,
@@ -12,6 +13,7 @@ import {
 import Banner1 from './components/borzoi.jpeg';
 import Banner2 from './components/images.jpeg';
 import BitBox from '../../components/Bits/bits';
+import Loading from '../../../../components/Loading/loading';
 import './profile.css';
 
 function Profile({ isLoggedIn }: { isLoggedIn: boolean }) {
@@ -19,11 +21,21 @@ function Profile({ isLoggedIn }: { isLoggedIn: boolean }) {
     showProfileQueryResult['me'] | showUserProfileQueryResult['findUser'] | null
   >(null);
 
+  const [profileMode, setProfileMode] = useState<boolean>(false);
+
   const [queryProfile] = useLazyQuery<showProfileQueryResult>(showProfileQuery, {
     onCompleted: (data: showProfileQueryResult) => {
       setProfileDetails(data.me);
     },
     fetchPolicy: 'network-only',
+  });
+
+  const [resetProfileQuery] = useMutation<resetProfileMutationResult>(resetProfileMutation, {
+    onCompleted: (data: resetProfileMutationResult) => {
+      if (data.updateInfo) {
+        window.location.reload();
+      }
+    },
   });
 
   const [queryOtherProfileUsername] = useLazyQuery<showUserProfileQueryResult, showUserProfileQueryVariables>(
@@ -76,8 +88,14 @@ function Profile({ isLoggedIn }: { isLoggedIn: boolean }) {
       });
     } else {
       queryProfile();
+      setProfileMode(true);
     }
   }, []);
+
+  const resetProfile = () => {
+    resetProfileQuery();
+    setProfileMode(true);
+  };
 
   return (
     <div className="page-content">
@@ -97,9 +115,17 @@ function Profile({ isLoggedIn }: { isLoggedIn: boolean }) {
                 }
                 alt={Banner2}
               />
-              {/* <button type="button" className="profile-edit-button">
-              Edit
-            </button> */}
+              {profileMode && (
+                <button
+                  type="button"
+                  className="profile-edit-button"
+                  onClick={resetProfile}
+                  onKeyDown={resetProfile}
+                  tabIndex={0}
+                >
+                  Reset Profile
+                </button>
+              )}
             </div>
             <div className="user-info-detail">
               <div className="user-info-usernameUserID">
@@ -107,10 +133,6 @@ function Profile({ isLoggedIn }: { isLoggedIn: boolean }) {
                 <p className="user-info-userID">{`@${profileDetails?.username}`}</p>
               </div>
               <div className="user-info-descriptionBox">{profileDetails?.info?.bio}</div>
-              {/* <div className="user-info-followItem">
-              <p className="user-info-following">123 Following</p>
-              <p className="user-info-follower">404 Follower</p>
-            </div> */}
             </div>
             <div className="horizontal-line">
               <hr />
@@ -119,23 +141,18 @@ function Profile({ isLoggedIn }: { isLoggedIn: boolean }) {
               <button type="button" className="profile-Bit-button profile-buttons">
                 Bits
               </button>
-              {/* <button type="button" className="profile-ReBit-button profile-buttons">
-              ReBits
-            </button> */}
             </div>
             <div className="user-bits-show">
               {profileDetails?.bits?.map(
                 (item: showUserProfileQueryResult['findUser']['bits'][0] | showProfileQueryResult['me']['bits'][0]) => (
-                  <BitBox key={item.id} isLoggedIn={isLoggedIn} data={item} showBits={queryProfile} />
+                  <BitBox key={item.id} isLoggedIn={isLoggedIn} data={item} />
                 ),
               )}
             </div>
           </div>
         </div>
       ) : (
-        <div className="profile-page-loading">
-          <AiOutlineLoading className="reactLoadingCircle profile-page-loading-icon" />
-        </div>
+        <Loading />
       )}
     </div>
   );

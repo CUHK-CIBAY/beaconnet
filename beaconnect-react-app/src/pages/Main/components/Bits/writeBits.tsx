@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { BsImage } from 'react-icons/bs';
 import { FiVideo } from 'react-icons/fi';
 import { RxCross2 } from 'react-icons/rx';
-import { TiTick } from 'react-icons/ti';
 import { useMutation } from '@apollo/client';
 import { TbSend } from 'react-icons/tb';
 import {
@@ -19,6 +18,7 @@ import {
 import { toBase64 } from '../../../../config/tools';
 import AUTH from '../../../../config/constants';
 import userIcon from '../../pages/Home/components/icon.png';
+import Loading from '../../../../components/Loading/loading';
 
 function WriteBitBox({
   reBit,
@@ -38,15 +38,14 @@ function WriteBitBox({
   }) => void;
 }) {
   const [draggingState, setDraggingState] = useState(false);
+  const [writeBitBoxState, setWriteBitBoxState] = useState('');
+  const [writeBitBoxValue, setWriteBitBoxValue] = useState('');
 
   const sendBitSuccess = () => {
-    const writeBitBox = document.querySelector('.write-bit-box') as HTMLDivElement;
-    const textArea = writeBitBox.querySelector('textarea') as HTMLTextAreaElement;
-    textArea.value = '';
-    writeBitBox.classList.add('success');
+    setWriteBitBoxValue('');
+    setWriteBitBoxState('success');
     setTimeout(() => {
-      writeBitBox.classList.remove('loading');
-      writeBitBox.classList.remove('success');
+      setWriteBitBoxState('');
       showBits({
         variables: {
           following: true,
@@ -121,10 +120,8 @@ function WriteBitBox({
     }
   };
 
-  const postBitHandler = (e: React.KeyboardEvent | React.MouseEvent) => {
-    const { currentTarget } = e;
-    const textArea = currentTarget.parentElement?.parentElement?.querySelector('textarea') as HTMLTextAreaElement;
-    const text = textArea.value;
+  const postBitHandler = () => {
+    const text = writeBitBoxValue;
     if (text.length > 0) {
       if (reBit) {
         postReBit({ variables: { content: text, id: reBit[0] } });
@@ -134,8 +131,7 @@ function WriteBitBox({
         postBit({ variables: { content: text } });
       }
       // add loading status
-      const writeBitBox = document.querySelector('.write-bit-box') as HTMLDivElement;
-      writeBitBox.classList.add('loading');
+      setWriteBitBoxState('loading');
     }
   };
 
@@ -180,7 +176,7 @@ function WriteBitBox({
 
   return (
     <div
-      className="write-bit-box bit-box-container"
+      className={`write-bit-box bit-box-container ${writeBitBoxState}`}
       onDragOver={handleDragFile}
       onDrop={handleDropFile}
       onDragLeave={handleDragLeave}
@@ -189,7 +185,7 @@ function WriteBitBox({
         <img
           className="bit-box-icon"
           src={
-            JSON.parse(localStorage.getItem(AUTH.userInfo)!).image
+            JSON.parse(localStorage.getItem(AUTH.userInfo)!)?.image
               ? `https://beaconnect-image-imagebucket-ft90dpqhkbr1.s3.ap-southeast-1.amazonaws.com/${
                   JSON.parse(localStorage.getItem(AUTH.userInfo)!).image
                 }`
@@ -198,7 +194,12 @@ function WriteBitBox({
           alt="profile"
         />
         <div className="write-bit-box-content">
-          <textarea className="write-bit-box-content-text" placeholder="Write something..." />
+          <textarea
+            className="write-bit-box-content-text"
+            placeholder="Write something..."
+            value={writeBitBoxValue}
+            onChange={(e) => setWriteBitBoxValue(e.target.value)}
+          />
           {bitAttachment && (
             <div className="write-bit-box-added-attachment">
               <div className="write-bit-box-added-attachment-item">
@@ -262,12 +263,7 @@ function WriteBitBox({
           </div>
         </div>
       </div>
-      <div className="write-bit-box-loading">
-        <div className="write-bit-box-loading-spinner" />
-        <div className="write-bit-box-tick-icon-container">
-          <TiTick className="write-bit-box-tick-icon" />
-        </div>
-      </div>
+      <Loading done={writeBitBoxState === 'success'} showLoading={!!writeBitBoxState} fade />
       {draggingState && (
         <div className="write-bit-box-upload">
           <div className="write-bit-box-upload-text">Drop your files here</div>

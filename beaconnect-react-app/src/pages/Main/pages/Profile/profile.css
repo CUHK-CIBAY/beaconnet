@@ -1,4 +1,5 @@
 .profile-banner-container {
+  position: relative;
   width: calc(100vw + 20px);
   height: 200px;
   overflow: hidden;
@@ -7,6 +8,7 @@
 .profile-banner-image {
   width: 100vw;
   aspect-ratio: 16 / 9;
+  min-height: 100%;
   max-height: 30vh;
   object-fit: cover;
 }
@@ -23,6 +25,7 @@
 
 .user-icon-container {
   align-items: center;
+  background-color: #ffffff;
 }
 
 .profile-edit-button {
@@ -33,6 +36,8 @@
   right: 40px;
   padding: 5px 25px;
   background-color: #e9edc9;
+  font-weight: bolder;
+  cursor: pointer;
 }
 
 .user-info-usernameUserID {
@@ -111,27 +116,16 @@
   position: relative;
 }
 
-.profile-page-loading {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background-color: #ffffff;
-  z-index: 100;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.profile-page-loading-icon {
-  scale: 2;
-}
-
 @media only screen and (max-width: 955px) {
   .profile-banner-container {
     width: 100%;
     height: fit-content;
+  }
+
+  .profile-banner-image {
+    height: 25vh;
+    min-height: unset;
+    max-height: unset;
   }
 
   .user-info-container {
@@ -142,7 +136,7 @@
   }
 
   .user-bits-show {
-    height: auto;
+    height: calc(70vh - 220px);
   }
 
   .profile-icon-image {

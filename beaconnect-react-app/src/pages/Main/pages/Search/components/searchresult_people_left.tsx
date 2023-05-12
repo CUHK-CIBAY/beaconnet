@@ -5,7 +5,7 @@ import { showUsersListQuery } from '../../../components/Query/search.query';
 // import AUTH from '../../../../../config/constants';
 
 export function SearchResultPeopleList(props: any) {
-  const [followed] = useState<boolean>(false);
+  const [followed, setFollowed] = useState<boolean>(false);
   // console.log(user);
   // console.log(
   //   user?.user?.following &&
@@ -35,7 +35,9 @@ export function SearchResultPeopleList(props: any) {
   const [followUser] = useMutation<followUserMutationResult, followUserMutationVariables>(followUserQuery);
 
   const followOtherUser = (id: any) => {
-    followUser({ variables: { id } });
+    followUser({ variables: { id } }).then(() => {
+      setFollowed(!followed);
+    });
   };
 
   return (
@@ -54,9 +56,9 @@ export function SearchResultPeopleList(props: any) {
           <p className="search-result-user-nickname">{props?.user?.info?.nickname || props?.user?.username}</p>
           <p className="search-result-user-nameID">{`@${props?.user?.username}`}</p>
         </div>
-        <div className="search-result-user-bio">{props?.user?.info?.bio || 'Hello World'}</div>
+        <div className="search-result-user-bio">{props?.user?.info?.bio || 'The user has no bio yet!'}</div>
       </div>
-      <div className="search-result-user-follow">
+      <div className={`search-result-user-follow ${followed ? 'search-result-user-followed' : ''}`}>
         <input
           type="button"
           value={followed ? 'Unfollow' : 'Follow'}
@@ -85,9 +87,11 @@ export function SearchResultPeopleList(props: any) {
 function SearchResultPeople(props: any) {
   const [users, setUsers] = useState<any>([]);
   const [queryUser] = useLazyQuery<any>(showUsersListQuery, {
-    onCompleted: (getuser) => {
+    onCompleted: (getUser) => {
+      console.log(getUser);
       setUsers(
-        getuser?.users
+        getUser?.users
+          // TODO: Impl Recommendation system / better shuffle Algo
           ?.map((value: any) => ({ value, sort: Math.random() }))
           .sort((a: { sort: number }, b: { sort: number }) => a.sort - b.sort)
           .map((a: { value: any }) => a.value)

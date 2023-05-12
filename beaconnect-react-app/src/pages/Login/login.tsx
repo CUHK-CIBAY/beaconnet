@@ -1,19 +1,27 @@
 import React from 'react';
 import { RxCross2 } from 'react-icons/rx';
+import LoadingPage from '../../components/Loading/loading';
 import Cover from './images/cover.jpg';
 import './components/login.css';
 import { LoginField, RegisterField, FormElement } from './components/login.field';
 
-function Login(props: {
+function Login({
+  loginType,
+  changeLoginType,
+  onLogin,
+  onRegister,
+  errorMessage,
+  loginBoxTransition,
+  Loading,
+}: {
   loginType: string;
   changeLoginType: (_type: string) => () => void;
   onLogin: (_email: string, _password: string) => void;
   onRegister: (_email: string, _username: string, _password: string, _confirmPassword: string) => void;
   errorMessage: string;
+  loginBoxTransition: string;
   Loading: boolean;
 }) {
-  const { loginType, onLogin, onRegister, changeLoginType, errorMessage, Loading } = props;
-
   const navigateToHome = () => {
     window.location.href = '/';
   };
@@ -27,7 +35,7 @@ function Login(props: {
   };
 
   return (
-    <div className="Login-Register-Wrapper">
+    <div className={`Login-Register-Wrapper ${loginBoxTransition}`}>
       <div className={`Login-Register-Container ${loginType === 'Login' ? 'Login' : 'Register'}`}>
         <div className="Login-Register-Image Login-Register-Container-Content">
           <img src={Cover} alt="Cover" />
@@ -61,7 +69,7 @@ function Login(props: {
                 </div>
               ))}
               <button type="submit" className="Login-Register-Form-Button">
-                {Loading ? 'Loading...' : loginType}
+                {loginType}
               </button>
             </div>
           </form>
@@ -77,6 +85,7 @@ function Login(props: {
             <a href="/">Back to Home</a>
           </button>
         </div>
+        <LoadingPage showLoading={Loading || loginBoxTransition !== ''} />
       </div>
     </div>
   );

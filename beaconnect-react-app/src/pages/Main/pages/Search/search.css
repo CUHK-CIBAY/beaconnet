@@ -197,7 +197,8 @@
 }
 
 .search-result-people {
-  max-height: calc(100vh - 200px);
+  margin: 10px 0;
+  max-height: calc(100vh - 180px);
   overflow: scroll;
 }
 /* search username container css */
@@ -205,8 +206,7 @@
 .search-result-people-container {
   position: relative;
   display: grid;
-  grid-template-columns: 50px 1fr 80px 80px;
-  justify-content: center;
+  grid-template-columns: 50px 1fr 100px 90px;
   align-items: center;
   width: calc(100% - 22px);
   border: 1px solid #ccc;
@@ -217,6 +217,7 @@
 .search-result-user-icon {
   width: 55%;
   aspect-ratio: 1 / 1;
+  border-radius: 50%;
   margin: auto;
 }
 
@@ -243,13 +244,22 @@
   color: #757575;
   border-radius: 5px;
   padding: 10px 15px;
-  width: 70px;
+  width: 90px;
+}
+
+.search-result-user-followed .search-user-follow-button {
+  background: #757575;
+  color: #fff;
 }
 
 @media only screen and (max-width: 955px) {
   .trend-searching-container {
     max-height: calc(100vh - 190px);
     box-shadow: unset;
+  }
+
+  .search-result-people {
+    max-height: calc(100vh - 280px);
   }
 
   .search-result-people-container {
@@ -274,8 +284,8 @@
 
   .search-user-follow-button {
     width: 100%;
-    padding: 3px 20px;
-    margin-top: 7px;
+    padding: 10px 20px;
+    margin: 7px 0 1px 0;
   }
 
   .search-result-user-bio {

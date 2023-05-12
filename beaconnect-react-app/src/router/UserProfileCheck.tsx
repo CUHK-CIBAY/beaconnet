@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useLazyQuery } from '@apollo/client';
 import { getUserProfileQuery } from './components/profile.query';
 import { useUserContext } from '../userContext';
-import Loading from '../pages/Essentials/Loading/loading';
+import Loading from '../components/Loading/loading';
 import CreateProfile from '../pages/CreateProfile/createProfile';
 
 function UserProfileCheck({

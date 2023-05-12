@@ -1,7 +1,7 @@
 make: install format
 
 install:
-	yarn install
+	yarn install --check-files
 
 format:
 	yarn run format

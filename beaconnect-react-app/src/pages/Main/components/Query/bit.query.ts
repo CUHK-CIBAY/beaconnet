@@ -100,49 +100,10 @@ export type showBitsQueryVariables = {
 };
 
 export type showBitsQueryResult = {
+  data?: any;
   showBits: [
     {
       id: string;
-      content?: string;
-      createAt?: string;
-      totalLike?: number;
-      image?: string;
-      author?: {
-        id: string;
-        username: string;
-        info: {
-          image: string;
-          nickname: string;
-        };
-      };
-      likeGivers?: [
-        {
-          id: string;
-        },
-      ];
-      reBit?: {
-        content: string;
-        createAt: string;
-        author: {
-          username: string;
-          info: {
-            image: string;
-            nickname: string;
-          };
-        };
-      };
-      comment?: [
-        {
-          content: string;
-          createAt: string;
-          owner: {
-            info: {
-              nickname: string;
-            };
-            username: string;
-          };
-        },
-      ];
     },
   ];
 };
@@ -150,6 +111,65 @@ export type showBitsQueryResult = {
 export const showBitsQuery = gql`
   query GetBits($following: Boolean) {
     showBits(following: $following) {
+      id
+    }
+  }
+`;
+
+export type BitQueryVariables = {
+  id: string;
+};
+
+export type BitQueryResult = {
+  findBit: {
+    id: string;
+    content?: string;
+    createAt?: string;
+    totalLike?: number;
+    image?: string;
+    author?: {
+      id: string;
+      username: string;
+      info: {
+        image: string;
+        nickname: string;
+      };
+    };
+    likeGivers?: [
+      {
+        id: string;
+      },
+    ];
+    reBit?: {
+      content: string;
+      createAt: string;
+      author: {
+        username: string;
+        info: {
+          image: string;
+          nickname: string;
+        };
+      };
+    };
+    comment: [
+      {
+        id: string;
+        content: string;
+        createAt: string;
+        owner: {
+          info: {
+            nickname: string;
+          };
+          username: string;
+        };
+      },
+    ];
+  };
+};
+
+export const BitQuery = gql`
+  query GetBit($id: String) {
+    findBit(id: $id) {
       id
       content
       createAt
@@ -178,6 +198,7 @@ export const showBitsQuery = gql`
         }
       }
       comment {
+        id
         content
         createAt
         owner {

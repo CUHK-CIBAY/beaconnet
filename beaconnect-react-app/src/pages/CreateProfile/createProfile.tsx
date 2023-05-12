@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import './components/createProfile.css';
 import RequiredProfile from './components/requiredProfile';
 import OptionalProfile from './components/optionalProfile';
+import Loading from '../../components/Loading/loading';
 
 const createProfile = ({ setUserProfile }: { setUserProfile: (_done: boolean) => void }) => {
   const [doneRequired, setDoneRequired] = useState(false);
@@ -18,11 +19,7 @@ const createProfile = ({ setUserProfile }: { setUserProfile: (_done: boolean) =>
       <div className="create-profile-container">
         <RequiredProfile setDoneRequired={setDoneRequired} doneRequired={doneRequired} setLoading={setLoading} />
         {doneRequired && <OptionalProfile setUserProfile={setUserProfile} setLoading={setLoading} />}
-        {loading && (
-          <div className="create-profile-loading">
-            <div className="create-profile-loading-circle" />
-          </div>
-        )}
+        <Loading showLoading={loading} />
       </div>
     </div>
   );
