@@ -80,7 +80,6 @@ function Home({ isLoggedIn }: { isLoggedIn: boolean }) {
     const target = e.target as HTMLDivElement;
     if (Math.floor(target.scrollHeight - target.scrollTop) <= target.clientHeight) {
       setResultShowing((prev: any) => {
-        console.log(prev, result);
         if (!result) return prev;
         const newResult = result?.slice(prev.length, prev.length + 5);
         return newResult?.length > 0 ? [...prev, ...newResult] : prev;
