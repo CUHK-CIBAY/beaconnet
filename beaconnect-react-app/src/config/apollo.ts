@@ -48,6 +48,8 @@ const errorLink = onError(({ graphQLErrors, networkError, response }) => {
       // If not authorized, clear local storage and reload page
       localStorage.removeItem(AUTH.token);
       window.location.reload();
+    } else {
+      console.log(`[Network error]: ${networkError}`);
     }
   }
 });

@@ -205,8 +205,7 @@
 .search-result-people-container {
   position: relative;
   display: grid;
-  grid-template-columns: 50px 1fr 80px 80px;
-  justify-content: center;
+  grid-template-columns: 50px 1fr 100px 90px;
   align-items: center;
   width: calc(100% - 22px);
   border: 1px solid #ccc;
@@ -244,7 +243,7 @@
   color: #757575;
   border-radius: 5px;
   padding: 10px 15px;
-  width: 70px;
+  width: 90px;
 }
 
 @media only screen and (max-width: 955px) {
