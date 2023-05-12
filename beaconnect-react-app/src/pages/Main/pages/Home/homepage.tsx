@@ -75,18 +75,25 @@ function ListBits(
 function Home({ isLoggedIn }: { isLoggedIn: boolean }) {
   const [result, setResult] = useState<showBitsQueryResult['showBits'] | null | undefined>(null);
   const [resultShowing, setResultShowing] = useState<any | null>(null);
+  const [showMoreButton, setShowMoreButton] = useState<boolean>(false);
 
   const loadBits = (e: React.UIEvent<HTMLDivElement, UIEvent>) => {
     const target = e.target as HTMLDivElement;
     if (Math.floor(target.scrollHeight - target.scrollTop) <= target.clientHeight) {
       setResultShowing((prev: any) => {
         if (!result) return prev;
+        if (prev.length === result.length) {
+          setShowMoreButton(false);
+          return prev;
+        }
         const newResult = result?.slice(prev.length, prev.length + 1);
         setTimeout(() => {
           loadBits(e);
         }, 100);
         return newResult?.length > 0 ? [...prev, ...newResult] : prev;
       });
+    } else {
+      setShowMoreButton(true);
     }
   };
 
@@ -101,6 +108,17 @@ function Home({ isLoggedIn }: { isLoggedIn: boolean }) {
     <div className="page-content">
       <div className="page-center-content" onScroll={loadBits}>
         {ListBits(isLoggedIn, result, setResult, resultShowing, setResultShowing)}
+        {showMoreButton && (
+          <div
+            className="page-center-listBits-loadMore"
+            onClick={loadBits}
+            onKeyDown={loadBits}
+            role="button"
+            tabIndex={0}
+          >
+            Load More
+          </div>
+        )}
       </div>
       <div className="page-right-content">{seasonalContent}</div>
     </div>

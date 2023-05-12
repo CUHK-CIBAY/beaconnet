@@ -734,3 +734,15 @@
   box-shadow: 0 0 5px #e4e5ed;
   overflow: hidden;
 }
+
+.page-center-listBits-loadMore {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 20px auto;
+  padding: 10px 20px;
+  background-color: #e9edc9;
+  border-radius: 20px;
+  width: 200px;
+  cursor: pointer;
+}
