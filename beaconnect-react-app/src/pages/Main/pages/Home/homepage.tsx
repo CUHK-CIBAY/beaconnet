@@ -44,6 +44,7 @@ function ListBits(isLoggedIn: boolean) {
 
       {result?.showBits[0] && result?.showBits[0].id !== 'ERROR' ? (
         result?.showBits
+          // TODO: Impl Recommendation system / better random algo
           .sort(() => Math.random() - 0.5)
           .map(
             (item: showBitsQueryResult['showBits'][0]) =>

@@ -91,6 +91,7 @@ function SearchResultPeople(props: any) {
       console.log(getUser);
       setUsers(
         getUser?.users
+          // TODO: Impl Recommendation system / better shuffle Algo
           ?.map((value: any) => ({ value, sort: Math.random() }))
           .sort((a: { sort: number }, b: { sort: number }) => a.sort - b.sort)
           .map((a: { value: any }) => a.value)
