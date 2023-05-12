@@ -58,7 +58,7 @@ export function SearchResultPeopleList(props: any) {
         </div>
         <div className="search-result-user-bio">{props?.user?.info?.bio || 'The user has no bio yet!'}</div>
       </div>
-      <div className="search-result-user-follow">
+      <div className={`search-result-user-follow ${followed ? 'search-result-user-followed' : ''}`}>
         <input
           type="button"
           value={followed ? 'Unfollow' : 'Follow'}

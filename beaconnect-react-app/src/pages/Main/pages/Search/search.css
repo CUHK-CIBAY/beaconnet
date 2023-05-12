@@ -198,7 +198,7 @@
 
 .search-result-people {
   margin: 10px 0;
-  max-height: calc(100vh - 280px);
+  max-height: calc(100vh - 180px);
   overflow: scroll;
 }
 /* search username container css */
@@ -247,10 +247,19 @@
   width: 90px;
 }
 
+.search-result-user-followed .search-user-follow-button {
+  background: #757575;
+  color: #fff;
+}
+
 @media only screen and (max-width: 955px) {
   .trend-searching-container {
     max-height: calc(100vh - 190px);
     box-shadow: unset;
+  }
+
+  .search-result-people {
+    max-height: calc(100vh - 280px);
   }
 
   .search-result-people-container {
