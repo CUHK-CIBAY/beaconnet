@@ -359,9 +359,12 @@ function BitBox({
           const target = e.target as HTMLImageElement;
           const parent = target.parentElement as HTMLDivElement;
           const video = document.createElement('video');
-          video.src = mediaURL;
           video.className = 'bit-box-content-image';
           video.controls = true;
+          const source = document.createElement('source');
+          source.src = mediaURL;
+          source.type = 'video/mp4';
+          video.appendChild(source);
           parent.removeChild(target);
           parent.appendChild(video);
         }}
