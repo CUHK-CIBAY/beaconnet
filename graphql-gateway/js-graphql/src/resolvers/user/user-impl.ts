@@ -2,7 +2,7 @@ import * as dotenv from 'dotenv';
 
 dotenv.config();
 
-export const userBitsResolver = async ({ id }: any, { driver }: any) => {
+export const userBitsResolver = async ({ id }: any, _a: any, { driver }: any) => {
   const session = driver.session({ database: 'neo4j' });
   try {
     const query = 'MATCH(:User {id: $id})-[:POST]->(b:Bit) RETURN b';
