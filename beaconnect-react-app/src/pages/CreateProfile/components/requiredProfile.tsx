@@ -97,7 +97,6 @@ function RequiredProfile({
     } else {
       toBase64(file).then((data) => {
         const base64 = data as string;
-        base64.indexOf(',');
         const base64Data = base64.substring(base64.indexOf(',') + 1);
         fetch('https://iayeuuhkq5.execute-api.ap-southeast-1.amazonaws.com/Prod/image', {
           method: 'post',
