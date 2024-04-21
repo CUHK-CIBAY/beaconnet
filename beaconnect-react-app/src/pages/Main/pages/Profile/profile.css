@@ -152,8 +152,7 @@
   .user-info-detail {
     width: calc(100% - 75px);
     margin: 0px;
-    padding-right: 0px;
-    padding: 5px;
+    padding: 5px 0 5px 5px;
   }
 
   .user-info-follower,
