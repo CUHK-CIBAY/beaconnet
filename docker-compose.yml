@@ -8,6 +8,7 @@ services:
     environment:
       - REACT_APP_API_URL=http://localhost:4000/graphql
       - REACT_APP_IMAGE_SERVER_URL=http://localhost:8000
+      - REACT_APP_IMAGE_VIEW_URL=http://localhost:8000
     volumes:
       - ./beaconnect-react-app:/app
       - /app/node_modules
@@ -60,9 +61,10 @@ services:
     ports:
       - "8000:8000"
     environment:
-      - LOCAL_STORAGE_DIR=/dev/null # Use /dev/null to discard files
+      - LOCAL_STORAGE_DIR=/app/py-image-server/image_data
     volumes:
       - ./local-image-server:/app
+      - image_data:/app/py-image-server/image_data
     restart: always
     working_dir: /app/py-image-server
 
@@ -71,6 +73,7 @@ volumes:
   neo4j_logs:
   neo4j_import:
   neo4j_plugins:
+  image_data:
 
 networks:
   beaconnet: # Define the network referenced by the neo4j service

@@ -190,9 +190,10 @@ function WriteBitBox({
           className="bit-box-icon"
           src={
             JSON.parse(localStorage.getItem(AUTH.userInfo)!)?.image
-              ? `https://beaconnect-image-imagebucket-ft90dpqhkbr1.s3.ap-southeast-1.amazonaws.com/${
-                  JSON.parse(localStorage.getItem(AUTH.userInfo)!).image
-                }`
+              ? `${
+                  process.env.REACT_APP_IMAGE_VIEW_URL ||
+                  'https://beaconnect-image-imagebucket-ft90dpqhkbr1.s3.ap-southeast-1.amazonaws.com'
+                }/${JSON.parse(localStorage.getItem(AUTH.userInfo)!).image}`
               : userIcon
           }
           alt="profile"

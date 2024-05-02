@@ -5,8 +5,8 @@ import json
 import uuid
 import base64
 
-# Assuming you have a local directory for storing files
-LOCAL_STORAGE_DIR = "/path/to/local/storage/"
+# Assuming you have a local directory for storing files (in environment variable)
+LOCAL_STORAGE_DIR = os.environ.get("LOCAL_STORAGE_DIR", "/Users/ansoncheng/Downloads")
 
 def upload_to_local_storage(file):
     try:
@@ -16,9 +16,7 @@ def upload_to_local_storage(file):
             f.write(file)
         return {
             "statusCode": 200,
-            "body": json.dumps({
-                "key": file_name,
-            }),
+            "key": file_name,
         }
     except Exception as ex:
         print(traceback.format_exc())
@@ -45,15 +43,14 @@ def get_object_from_local_storage(file_key):
         }
 
 def handler(event, context):
-    print(event)
     method = event.get("httpMethod", "")
     if method == "POST":
+        print("event", event)
         file = base64.b64decode(event.get("body", ""))
         resp = upload_to_local_storage(file)
     else:
-        query = event.get("queryStringParameters", {})
-        file_key = query.get("image", "")
-        resp = get_object_from_local_storage(file_key)
+        path = event.get("path", "")
+        resp = get_object_from_local_storage(path)
     print(resp)
     return resp
 
@@ -67,14 +64,16 @@ if __name__ == "__main__":
         def do_POST(self):
             content_length = int(self.headers['Content-Length'])
             post_data = self.rfile.read(content_length)
-            parsed_data = parse_qs(post_data.decode('utf-8'))
+            image_data = base64.b64decode(post_data)
             event = {
                 "httpMethod": "POST",
-                "body": parsed_data.get("body", [""])[0]
+                "body": image_data
             }
             response = handler(event, None)
             self.send_response(response["statusCode"])
             self.send_header('Content-type', 'application/json')
+            # TODO: change this to the domain of your frontend app
+            self.send_header('Access-Control-Allow-Origin', '*')
             self.end_headers()
             self.wfile.write(json.dumps(response).encode())
 
@@ -82,16 +81,21 @@ if __name__ == "__main__":
             query_components = parse_qs(urlparse(self.path).query)
             event = {
                 "httpMethod": "GET",
-                "queryStringParameters": query_components
+                "queryStringParameters": query_components,
+                "path": self.path
             }
             response = handler(event, None)
             self.send_response(response["statusCode"])
             self.send_header('Content-type', 'application/json')
+            # TODO: change this to the domain of your frontend app
+            self.send_header('Access-Control-Allow-Origin', '*')
             self.end_headers()
             self.wfile.write(json.dumps(response).encode())
 
     # Run the HTTP server
     server_address = ('', 8000)
+
+
     httpd = HTTPServer(server_address, RequestHandler)
     print('Starting HTTP server on port 8000...')
     try:
