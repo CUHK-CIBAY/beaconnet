@@ -15,7 +15,7 @@ export const searchUserQueryUsername = gql`
   query searchUserQuery($username: String!) {
     findUser(input: { username: $username }) {
       id
-    }  
+    }
   }
 `;
 
@@ -78,7 +78,7 @@ export type findUserResult = {
     following: {
       id: string;
     }[];
-  }
+  };
 };
 
 export const findUserQuery = gql`
@@ -91,7 +91,7 @@ export const findUserQuery = gql`
         image
         nickname
       }
-    }  
+    }
     me {
       following {
         id

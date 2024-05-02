@@ -1,10 +1,5 @@
 import { userInfoResolver, updateUserInfo } from './user-info-impl';
-import {
-  userBitsResolver,
-  meResolver,
-  FollowingResolver,
-  FollowerResolver,
-} from './user-impl';
+import { userBitsResolver, meResolver, FollowingResolver, FollowerResolver } from './user-impl';
 
 export const Query = {
   findUser: require('./user-search'),

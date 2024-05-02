@@ -7,7 +7,16 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 
 const createToken = async ({ id, email, username, role }: User) =>
-  jwt.sign({ id, email, username, role }, process.env.SECRET, { expiresIn: '1d' });
+  jwt.sign(
+    {
+      id,
+      email,
+      username,
+      role,
+    },
+    process.env.SECRET,
+    { expiresIn: '1d' },
+  );
 
 const userLoginResolver = async (_p: any, { input }: any, { driver }: any) => {
   const session = driver.session({ database: 'neo4j' });
