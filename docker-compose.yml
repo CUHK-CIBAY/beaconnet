@@ -1,0 +1,53 @@
+version: "3.8"
+
+services:
+  react-app:
+    image: node:16-alpine # Use an appropriate Node.js image
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./beaconnet-react-app:/app
+      - /app/node_modules
+    working_dir: /app
+    command: yarn start
+    depends_on:
+      - graphql-gateway
+
+  graphql-gateway:
+    image: node:16-alpine
+    ports:
+      - "4000:4000"
+    environment:
+      - DB_URL=neo4j+s://beaconnet-neo4j:7687
+      - DB_USER=neo4j
+      - DB_PASSWORD=HduRGaPgz92Dl1fpjZ61ovqLKVGq5jEr-MCjbw2Ee4U
+      - SALT_ROUND=1
+      - SECRET=CSCI3100
+    volumes:
+      - ./graphql-gateway:/app
+      - /app/node_modules
+    working_dir: /app/js-graphql
+    command: yarn dev # Assuming `yarn start` is the correct command to run your server
+    depends_on:
+      - beaconnet-neo4j
+
+  beaconnet-neo4j:
+    image: neo4j:latest
+    ports:
+      - "7687:7687"
+      - "7474:7474"
+    environment:
+      - NEO4J_AUTH=neo4j/HduRGaPgz92Dl1fpjZ61ovqLKVGq5jEr-MCjbw2Ee4U
+      - NEO4J_dbms_memory_pagecache_size=1G
+      - NEO4J_dbms_memory_heap_maxSize=2G
+    volumes:
+      - ./neo4j/data:/data
+      - ./neo4j/logs:/logs
+      - ./neo4j/import:/var/lib/neo4j/import
+      - ./neo4j/plugins:/plugins
+    networks:
+      - beaconnet
+
+networks:
+  beaconnet: # Define the network referenced by the neo4j service
+    driver: bridge
