@@ -4,7 +4,7 @@ import { onError } from '@apollo/client/link/error';
 import AUTH from './constants';
 
 const httpLink = createHttpLink({
- uri: 'https://h8e9hgszz8.execute-api.ap-southeast-1.amazonaws.com/Prod/graphql',
+  uri: process.env.REACT_APP_API_URL || 'https://h8e9hgszz8.execute-api.ap-southeast-1.amazonaws.com/Prod/graphql',
 });
 
 const authLink = setContext((_, { headers }) => {

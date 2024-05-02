@@ -98,10 +98,14 @@ function RequiredProfile({
       toBase64(file).then((data) => {
         const base64 = data as string;
         const base64Data = base64.substring(base64.indexOf(',') + 1);
-        fetch('https://iayeuuhkq5.execute-api.ap-southeast-1.amazonaws.com/Prod/image', {
-          method: 'post',
-          body: base64Data,
-        })
+        fetch(
+          process.env.REACT_APP_IMAGE_SERVER_URL ||
+            'https://iayeuuhkq5.execute-api.ap-southeast-1.amazonaws.com/Prod/image',
+          {
+            method: 'post',
+            body: base64Data,
+          },
+        )
           .then((res) => res.json())
           .then((returnData) => {
             const { key } = returnData;
