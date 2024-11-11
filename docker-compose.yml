@@ -35,7 +35,7 @@ services:
     working_dir: /app/js-graphql
     networks:
       - beaconnet
-    command: yarn dev # Start development server
+    command: yarn serve # Start development server
     restart: always
     depends_on:
       - beaconnet-neo4j
