@@ -107,10 +107,14 @@ function WriteBitBox({
         const base64 = data as string;
         base64.indexOf(',');
         const base64Data = base64.substring(base64.indexOf(',') + 1);
-        fetch('https://iayeuuhkq5.execute-api.ap-southeast-1.amazonaws.com/Prod/image', {
-          method: 'post',
-          body: base64Data,
-        })
+        fetch(
+          process.env.REACT_APP_IMAGE_SERVER_URL ||
+            'https://iayeuuhkq5.execute-api.ap-southeast-1.amazonaws.com/Prod/image',
+          {
+            method: 'post',
+            body: base64Data,
+          },
+        )
           .then((res) => res.json())
           .then((returnData) => {
             const { key } = returnData;
@@ -186,9 +190,10 @@ function WriteBitBox({
           className="bit-box-icon"
           src={
             JSON.parse(localStorage.getItem(AUTH.userInfo)!)?.image
-              ? `https://beaconnect-image-imagebucket-ft90dpqhkbr1.s3.ap-southeast-1.amazonaws.com/${
-                  JSON.parse(localStorage.getItem(AUTH.userInfo)!).image
-                }`
+              ? `${
+                  process.env.REACT_APP_IMAGE_VIEW_URL ||
+                  'https://beaconnect-image-imagebucket-ft90dpqhkbr1.s3.ap-southeast-1.amazonaws.com'
+                }/${JSON.parse(localStorage.getItem(AUTH.userInfo)!).image}`
               : userIcon
           }
           alt="profile"

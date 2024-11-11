@@ -1,5 +1,6 @@
-const resolver = require('./user-show');
 import driver from '../../util/neo4j-driver';
+
+const resolver = require('./user-show');
 
 describe('resolver', () => {
   it('hello', () => {

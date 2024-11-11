@@ -48,7 +48,10 @@ export function SearchResultPeopleList({ isLoggedIn, user }: { isLoggedIn: boole
         className="search-result-user-icon"
         src={
           userInfo?.info?.image
-            ? `https://beaconnect-image-imagebucket-ft90dpqhkbr1.s3.ap-southeast-1.amazonaws.com/${userInfo?.info.image}`
+            ? `${
+                process.env.REACT_APP_IMAGE_VIEW_URL ||
+                'https://beaconnect-image-imagebucket-ft90dpqhkbr1.s3.ap-southeast-1.amazonaws.com'
+              }/${userInfo?.info.image}`
             : userIcon
         }
         alt="profile"

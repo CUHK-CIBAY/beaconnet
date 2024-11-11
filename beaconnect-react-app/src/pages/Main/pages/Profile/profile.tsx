@@ -145,7 +145,10 @@ function Profile({ isLoggedIn }: { isLoggedIn: boolean }) {
                 className="profile-icon-image"
                 src={
                   profileDetails?.info?.image
-                    ? `https://beaconnect-image-imagebucket-ft90dpqhkbr1.s3.ap-southeast-1.amazonaws.com/${profileDetails?.info?.image}`
+                    ? `${
+                        process.env.REACT_APP_IMAGE_VIEW_URL ||
+                        'https://beaconnect-image-imagebucket-ft90dpqhkbr1.s3.ap-southeast-1.amazonaws.com'
+                      }/${profileDetails?.info?.image}`
                     : Banner1
                 }
                 alt={Banner2}

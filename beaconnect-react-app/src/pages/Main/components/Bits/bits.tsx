@@ -42,7 +42,10 @@ function bitBoxReBit(data: BitQueryResult['findBit'] | null | undefined): React.
           className="bit-box-icon"
           src={
             data?.reBit?.author?.info?.image
-              ? `https://beaconnect-image-imagebucket-ft90dpqhkbr1.s3.ap-southeast-1.amazonaws.com/${data?.reBit?.author?.info?.image}`
+              ? `${
+                  process.env.REACT_APP_IMAGE_VIEW_URL ||
+                  'https://beaconnect-image-imagebucket-ft90dpqhkbr1.s3.ap-southeast-1.amazonaws.com'
+                }/${data?.reBit?.author?.info?.image}`
               : userIcon
           }
           alt="profile"
@@ -76,7 +79,10 @@ function bitBoxHeader(
         className="bit-box-icon"
         src={
           data?.author?.info?.image
-            ? `https://beaconnect-image-imagebucket-ft90dpqhkbr1.s3.ap-southeast-1.amazonaws.com/${data?.author?.info?.image}`
+            ? `${
+                process.env.REACT_APP_IMAGE_VIEW_URL ||
+                'https://beaconnect-image-imagebucket-ft90dpqhkbr1.s3.ap-southeast-1.amazonaws.com'
+              }/${data?.author?.info?.image}`
             : userIcon
         }
         alt="profile"
@@ -349,7 +355,10 @@ function BitBox({
   }
 
   const returnMedia = (image: String) => {
-    const mediaURL = `https://beaconnect-image-imagebucket-ft90dpqhkbr1.s3.ap-southeast-1.amazonaws.com/${image}`;
+    const mediaURL = `${
+      process.env.REACT_APP_IMAGE_VIEW_URL ||
+      'https://beaconnect-image-imagebucket-ft90dpqhkbr1.s3.ap-southeast-1.amazonaws.com'
+    }/${image}`;
     return (
       <img
         className="bit-box-content-image"

@@ -89,7 +89,10 @@ function ShowUsers({
           className="search-result-user-icon"
           src={
             image
-              ? `https://beaconnect-image-imagebucket-ft90dpqhkbr1.s3.ap-southeast-1.amazonaws.com/${image}`
+              ? `${
+                  process.env.REACT_APP_IMAGE_VIEW_URL ||
+                  'https://beaconnect-image-imagebucket-ft90dpqhkbr1.s3.ap-southeast-1.amazonaws.com'
+                }/${image}`
               : userIcon
           }
           alt="profile"

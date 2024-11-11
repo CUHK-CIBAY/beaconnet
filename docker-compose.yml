@@ -1,0 +1,80 @@
+version: "3.8"
+
+services:
+  react-app:
+    image: node:16-alpine # Node.js image
+    ports:
+      - "3000:3000" # Exposing port 3000
+    environment:
+      - REACT_APP_API_URL=http://localhost:4000/graphql
+      - REACT_APP_IMAGE_SERVER_URL=http://localhost:8000
+      - REACT_APP_IMAGE_VIEW_URL=http://localhost:8000
+    volumes:
+      - ./beaconnect-react-app:/app # Mount project directory
+      - /app/node_modules # Node modules volume
+    working_dir: /app
+    command: sh -c "yarn install && yarn start" # Install dependencies and start app
+    restart: always
+    depends_on:
+      - graphql-gateway
+      - local-storage-handler
+
+  graphql-gateway:
+    image: node:16-alpine
+    ports:
+      - "4000:4000" # Exposing port 4000
+    environment:
+      - DB_URL=neo4j://beaconnet-neo4j:7687
+      - DB_USER=neo4j
+      - DB_PASSWORD=HduRGaPgz92Dl1fpjZ61ovqLKVGq5jEr-MCjbw2Ee4U
+      - SALT_ROUND=1
+      - SECRET=CSCI3100
+    volumes:
+      - ./graphql-gateway:/app
+      - /app/node_modules
+    working_dir: /app/js-graphql
+    networks:
+      - beaconnet
+    command: yarn serve # Start development server
+    restart: always
+    depends_on:
+      - beaconnet-neo4j
+
+  beaconnet-neo4j:
+    image: neo4j:latest
+    environment:
+      - NEO4J_AUTH=neo4j/HduRGaPgz92Dl1fpjZ61ovqLKVGq5jEr-MCjbw2Ee4U
+      - NEO4J_server_memory_pagecache_size=1G
+      - NEO4J_server_memory_heap_max__size=2G # Memory configuration
+    volumes:
+      - neo4j_data:/data
+      - neo4j_logs:/logs
+      - neo4j_import:/var/lib/neo4j/import
+      - neo4j_plugins:/plugins
+    restart: always
+    networks:
+      - beaconnet
+
+  local-storage-handler:
+    image: python:3.9
+    command: sh -c "pip install -r requirement.txt && python main.py" # Setup and run Python service
+    ports:
+      - "8000:8000" # Exposing port 8000
+    environment:
+      - LOCAL_STORAGE_DIR=/app/py-image-server/image_data
+    volumes:
+      - ./local-image-server:/app
+      - image_data:/app/py-image-server/image_data
+    restart: always
+    working_dir: /app/py-image-server
+
+volumes:
+  neo4j_data:
+  neo4j_logs:
+  neo4j_import:
+  neo4j_plugins:
+  image_data:
+
+networks:
+  beaconnet:
+    driver: bridge # Using bridge driver for the network
